@@ -15,7 +15,7 @@ private:
   CL_Sprite shadow;
 
   // The angle of the turent relative to the tank in radians
-  float angle;
+  float orientation;
 
   bool fireing;
   int  reloading;
@@ -32,7 +32,9 @@ public:
   void decrease_angle (float delta);
   void start_fire ();
   void stop_fire ();
-  void set_angle (float angle);
+  
+  void set_absolute_orientation (float orientation);
+  void set_relative_orientation (float orientation);
 };
 
 #endif // TURRET_HH

@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: tank.hxx,v 1.8 2003/05/18 23:01:49 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -90,8 +90,8 @@ public:
   void set_angle (float);
   Turret* get_turret () { return turret; }
 
-  float get_angle () { return orientation; }
-  float get_increment () { return increment; }
+  float get_orientation() { return orientation; }
+  float get_increment() { return increment; }
 
   // Implementing Controllable
   float get_acceleration () { return increment; }
