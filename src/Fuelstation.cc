@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cc,v 1.1 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: Fuelstation.cc,v 1.2 2001/05/05 13:40:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <cmath>
+#include "Vehicle.hh"
 #include "Fuelstation.hh"
 
 extern CL_ResourceManager* resources;
@@ -36,13 +38,27 @@ void
 Fuelstation::draw (View* view)
 {
   view->draw (fuelstation, 
-	      pos.x - fuelstation.get_width ()/2, 
-	      pos.y - fuelstation.get_height ()/2);
+	      pos.x - 40,
+	      pos.y - 75);
 }
 
 void 
 Fuelstation::update (float delta)
 {
+  //FIXME: Slow
+  std::list<boost::shared_ptr<GameObj> >& objs = world->get_objects ();
+
+  for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
+    {
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(i->get ());
+      if (vehicle && std::fabs((vehicle->get_pos () - pos).norm ()) < 10)
+	{
+	  if (vehicle->get_velocity () == 0.0)
+	    {
+	      vehicle->refuel (delta);
+	    }
+	}
+    }
 }
 
 /* EOF */

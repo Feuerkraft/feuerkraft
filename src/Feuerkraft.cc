@@ -26,6 +26,7 @@
 #include "Headquarter.hh"
 #include "Basis.hh"
 #include "Fuelstation.hh"
+#include "Ammotent.hh"
 #include "System.hh"
 
 CL_ResourceManager* resources;
@@ -109,7 +110,7 @@ public:
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
 						 &world, tank2));
 	screen.add (radar);
-	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus ()));
+	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank2)));
 	//View view (&world, 10, 10, 790, 590);
 
 	world.add (jeep);
@@ -121,7 +122,8 @@ public:
 	world.add (new Basis (&world, CL_Vector(400, 0)));
 	world.add (new Playfield (&world));
 	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
-	world.add (new Fuelstation (&world, CL_Vector (-100.0f, 400.0f)));
+	world.add (new Fuelstation (&world, CL_Vector (-100.0f, 300.0f)));
+	world.add (new Ammotent (&world, CL_Vector (-200.0f, 300.0f)));
 	world.add (new Tower (&world, 400.0, 200.0));
 	world.add (new Tower (&world, 600.0, 400.0));
 	world.add (new Tower (&world, 600.0, 100.0));

@@ -1,4 +1,4 @@
-//  $Id: VehicleStatus.hh,v 1.2 2001/05/05 13:40:48 grumbel Exp $
+//  $Id: Ammotent.hh,v 1.1 2001/05/05 13:40:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,28 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef VEHICLESTATUS_HH
-#define VEHICLESTATUS_HH
+#ifndef AMMOTENT_HH
+#define AMMOTENT_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
-#include "Vehicle.hh"
-#include "GuiObj.hh"
+#include "View.hh"
+#include "GameObj.hh"
 
-class VehicleStatus : public GuiObj
+class Ammotent : public GameObj
 {
 private:
-  CL_Surface ammo;
-  CL_Surface fuel;
-  boost::dummy_ptr<Vehicle> vehicle;
+  CL_Surface ammotent;
+  CL_Vector pos;
 
 public:
-  VehicleStatus (boost::dummy_ptr<Vehicle> v);
-  virtual ~VehicleStatus ();
-  void update (float delta);
-  void draw ();
-  void draw_rect (int x_pos, int y_pos, float fill);
+  Ammotent (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
+  virtual ~Ammotent ();
+
+  void draw (View* );
+  void update (float delta);  
 };
 
 #endif

@@ -185,6 +185,8 @@ void
 Tank::increase_velocity (float delta)
 {
   velocity += 0.1f * delta;
+
+  fuel -= 0.0001 * delta;
 }
 
 void
@@ -251,6 +253,11 @@ Tank::collide (CL_Vector force)
   std::cout << "Tank: Got force: " << force.norm () << std::endl;
 }
 
+float 
+Tank::get_velocity ()
+{
+  return velocity;
+}
 
 // EOF //
 

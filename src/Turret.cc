@@ -56,8 +56,10 @@ Turret::update (float delta)
   if (reloading)
     reloading--;
 
-  if (fireing && reloading == 0)
+  if (fireing && reloading == 0 && tank->ammo > 0.0)
     {
+      tank->ammo -=  0.003 * delta;
+
       //std::cout << "Fireing..." << std::endl;
       float rot_angle = tank->get_angle () + angle + 3.1415927 - fmod(angle, circle/16.0);
       

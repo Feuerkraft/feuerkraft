@@ -35,6 +35,8 @@ private:
   bool destroyed;
 
 public:
+  friend class Turret;
+
   Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
@@ -81,6 +83,7 @@ public:
   virtual void collide (CL_Vector force);
 
   virtual float get_physical_size () { return 3.0; }
+  float get_velocity ();
 };
 
 #endif // TANK_HH

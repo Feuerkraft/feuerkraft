@@ -1,4 +1,4 @@
-//  $Id: Vehicle.hh,v 1.4 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: Vehicle.hh,v 1.5 2001/05/05 13:40:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,13 +29,19 @@ class Vehicle :
 {
 protected:
   CL_Vector pos;
-  
+  float ammo;
+  float fuel;
 public:
-  Vehicle (boost::dummy_ptr<GameWorld>  w) : Collideable (w) {}
+  Vehicle (boost::dummy_ptr<GameWorld>  w);
   virtual ~Vehicle () {}
 
   virtual CL_Vector get_pos () { return pos; }
   virtual float get_angle () { return 0.0; }
+  virtual float get_ammo ();
+  virtual float get_fuel ();
+  virtual void  refuel (float delta);
+  virtual void  reload_ammo (float delta);
+  virtual float get_velocity () { return 0.0; };
 };
 
 #endif

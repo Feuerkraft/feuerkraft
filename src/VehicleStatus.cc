@@ -1,4 +1,4 @@
-//  $Id: VehicleStatus.cc,v 1.1 2001/05/05 09:06:19 grumbel Exp $
+//  $Id: VehicleStatus.cc,v 1.2 2001/05/05 13:40:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,10 @@
 
 extern CL_ResourceManager* resources;
 
-VehicleStatus::VehicleStatus ()
+VehicleStatus::VehicleStatus (boost::dummy_ptr<Vehicle> v)
   : ammo ("feuerkraft/ammo", resources),
-    fuel ("feuerkraft/fuel", resources)
+    fuel ("feuerkraft/fuel", resources),
+    vehicle (v)
 {
 }
 
@@ -39,13 +40,21 @@ VehicleStatus::update (float delta)
 void 
 VehicleStatus::draw ()
 {
-  CL_Display::fill_rect (8 + 32, 600 - 8 - 24 + 6,
-			 80, 600 - 8 - 6, 0.0f, 1.0f, 0.0f);
-  fuel.put_screen (8, 600 - 8 - 24);
+  fuel.put_screen (8, 600 - 8 - 30);
+  draw_rect (38, 600 - 8 - 24, vehicle->get_fuel ());
 
-  CL_Display::fill_rect (8 + 32, 600 - 40 - 24 + 6, 
-			 100, 600 - 40 - 6, 1.0f, 0.0f, 0.0f);
-  ammo.put_screen (8, 600 - 40 - 24);
+  ammo.put_screen (8, 600 - 40 - 30);
+  draw_rect (38, 600 - 40 - 24, vehicle->get_ammo ());
+}
+
+void
+VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
+{
+  CL_Display::fill_rect (x_pos, y_pos, x_pos + 100, y_pos + 14,
+			 0.0, 0.0, 0.0);
+  if (fill > 0.0)
+    CL_Display::fill_rect (x_pos + 2, y_pos + 2, x_pos + (98 * fill), y_pos + 12,
+			   1.0 - fill, fill, 0.0);
 }
 
 /* EOF */

@@ -1,5 +1,5 @@
-//  $Id: VehicleStatus.hh,v 1.2 2001/05/05 13:40:48 grumbel Exp $
-// 
+//  $Id: Ammotent.cc,v 1.1 2001/05/05 13:40:48 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,35 +12,51 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef VEHICLESTATUS_HH
-#define VEHICLESTATUS_HH
-
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "boost/dummy_ptr.hpp"
 #include "Vehicle.hh"
-#include "GuiObj.hh"
+#include "Ammotent.hh"
 
-class VehicleStatus : public GuiObj
+extern CL_ResourceManager* resources;
+
+Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos)
+  : GameObj (world),
+    ammotent ("feuerkraft/ammotent", resources),
+    pos (arg_pos)
 {
-private:
-  CL_Surface ammo;
-  CL_Surface fuel;
-  boost::dummy_ptr<Vehicle> vehicle;
+}
 
-public:
-  VehicleStatus (boost::dummy_ptr<Vehicle> v);
-  virtual ~VehicleStatus ();
-  void update (float delta);
-  void draw ();
-  void draw_rect (int x_pos, int y_pos, float fill);
-};
+Ammotent::~Ammotent ()
+{
+}
 
-#endif
+void 
+Ammotent::draw (View* view)
+{
+  view->draw (ammotent, 
+	      pos.x - 40,
+	      pos.y - 75);
+}
+
+void 
+Ammotent::update (float delta)
+{
+  std::list<boost::shared_ptr<GameObj> >& objs = world->get_objects ();
+
+  for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
+    {
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(i->get ());
+      if (vehicle && std::fabs((vehicle->get_pos () - pos).norm ()) < 10)
+	{
+	  if (vehicle->get_velocity () == 0.0)
+	    {
+	      vehicle->reload_ammo (delta);
+	    }
+	}
+    }
+}
 
 /* EOF */
