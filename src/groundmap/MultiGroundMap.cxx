@@ -1,4 +1,4 @@
-//  $Id: MultiGroundMap.cxx,v 1.1 2002/03/24 15:44:00 grumbel Exp $
+//  $Id: MultiGroundMap.cxx,v 1.2 2002/03/24 23:26:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,7 +52,7 @@ MultiGroundMap::get_groundtype (float x, float y)
 void
 MultiGroundMap::draw(View* view)
 {
-  std::cout << "MultiGroundMap::draw: " << maps.size () << std::endl;
+  //std::cout << "MultiGroundMap::draw: " << maps.size () << std::endl;
   for (std::vector<GroundMap*>::reverse_iterator i = maps.rbegin (); i != maps.rend (); ++i)
     {
       (*i)->draw (view);

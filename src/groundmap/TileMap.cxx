@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.12 2002/03/23 10:16:17 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.13 2002/03/24 23:26:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -70,16 +70,24 @@ TileMap::get_groundtype (float x, float y)
 void
 TileMap::draw (View* view)
 {
-  //std::cout << "TileMap::draw" << std::endl;
+  //std::cout << "Offset: " << view->get_x_offset () << std::endl;
 
-  for (int y = 0; y < height; ++y)
-    for (int x = 0; x < width; ++x)
+  int tile_x_offset = -(view->get_x_offset () / 40);
+  int tile_y_offset = -(view->get_y_offset () / 40);
+  int tile_width    = tile_x_offset + (view->get_width () / 40) + 1;
+  int tile_height   = tile_y_offset + (view->get_height () / 40) + 1; 
+ // FIXME: one tile more to avoid artefacts, hack, hack hack...
+  
+
+  for (int y = tile_y_offset; y < tile_height; ++y)
+    for (int x = tile_x_offset; x < tile_width; ++x)
     {
       // FIXME: Hard coded tilemap size is ugly
-      if (tilemap [(width * y) + x])
-	tilemap [(width * y) + x]->draw (view , 
-					 int(x * 40),
-					 int(y * 40));
+      if (y < height && y >= 0 && x < width && x >= 0) // Could be optimized away
+	if (tilemap [(width * y) + x])
+	  tilemap [(width * y) + x]->draw (view , 
+					   int(x * 40),
+					   int(y * 40));
     }
 }
 

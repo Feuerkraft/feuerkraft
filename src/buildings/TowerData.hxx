@@ -1,4 +1,4 @@
-//  $Id: TowerData.hxx,v 1.4 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: TowerData.hxx,v 1.5 2002/03/24 23:26:40 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,7 @@ protected:
   double angle;
   int x_pos;
   int y_pos;
+  double start_energie;
 
 public:
   /** Format:

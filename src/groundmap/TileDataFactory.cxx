@@ -1,4 +1,4 @@
-//  $Id: TileDataFactory.cxx,v 1.3 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: TileDataFactory.cxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,8 +51,8 @@ TileDataFactory::create_SpriteTileData (SCM desc)
   SpriteTileData* sprite_data = new SpriteTileData ();
 
   //std::cout << "TileDataFactory:create_SpriteTileData:" << std::flush;
-  gh_display (desc);
-  std::cout << std::endl;
+  //gh_display (desc);
+  //std::cout << std::endl;
 
   while (!gh_null_p (desc))
     {

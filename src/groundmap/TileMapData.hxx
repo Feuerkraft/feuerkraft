@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.7 2002/03/24 15:44:00 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.8 2002/03/24 23:26:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,6 +58,7 @@ public:
   virtual ~TileMapData ();
 
 private:
+  void parse_from_file (SCM desc);
   void parse_tiles (SCM desc);
   void parse_map (SCM desc);
 

@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.cxx,v 1.3 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: GameWorldData.cxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -77,9 +77,9 @@ GameWorldData::GameWorldData (SCM desc)
 void
 GameWorldData::parse_objects (SCM desc)
 {
-  std::cout << "GameWorldData::parse_objects" << std::endl;
-  gh_display (desc);
-  gh_newline ();
+  //std::cout << "GameWorldData::parse_objects" << std::endl;
+  //gh_display (desc);
+  //gh_newline ();
   while (gh_pair_p(desc)) // is a list
     {
       if (gh_pair_p (gh_car (desc))) // is a symbol/value pair

@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.6 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.7 2002/03/24 23:26:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include <ClanLib/png.h>
 #include "TileDataFactory.hxx"
 #include "TileMapData.hxx"
 #include "TileMap.hxx"
@@ -44,6 +45,10 @@ TileMapData::TileMapData (SCM desc)
 	{
 	  parse_tiles (data);
 	}
+      else if (gh_equal_p (gh_symbol2scm ("file"), symbol))
+	{
+	  parse_from_file (data);
+	}
       else if (gh_equal_p (gh_symbol2scm ("map"), symbol))
 	{
 	  parse_map (data);
@@ -67,6 +72,31 @@ TileMapData::~TileMapData ()
 }
 
 void
+TileMapData::parse_from_file (SCM desc)
+{
+  char* str = gh_scm2newstr(gh_car (desc), 0);
+  std::cout << "Loading from: " << str << std::endl;
+  std::string filename = str;
+  free (str);
+
+  CL_PNGProvider provider(filename);
+
+  provider.lock ();
+  assert (provider.is_indexed ());
+
+  width  = provider.get_width ();
+  height = provider.get_height ();
+
+  tilemap_data.resize (width * height);
+  
+  unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
+  for (int i = 0; i < width * height; ++i)
+    tilemap_data[i] = buffer[i];
+
+  provider.unlock ();
+}
+
+void
 TileMapData::parse_map (SCM desc)
 {
   assert (width != -1);
@@ -83,6 +113,7 @@ TileMapData::parse_map (SCM desc)
   gh_newline ();*/
   
   int i = 0;
+  bool to_large = false;
   while (!gh_null_p (desc))
     {
       if (i < static_cast<int>(tilemap_data.size()))
@@ -92,11 +123,15 @@ TileMapData::parse_map (SCM desc)
 	}
       else
 	{
-	  std::cout << "TileMapData: map to large" << std::endl;
+	  to_large = true;
+	  ++i;
 	}
       
       desc = gh_cdr(desc);
     }
+
+  std::cout << "TileMapData: map to large: " << width * height
+	    << " < " << i << std::endl;
 }
 
 void

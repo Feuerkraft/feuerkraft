@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.8 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: View.cxx,v 1.9 2002/03/24 23:26:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -214,6 +214,18 @@ void
 View::set_property (ViewProperty p)
 {
   properties |= p;
+}
+
+int
+View::get_width ()
+{
+  return x2 - x1; // FIXME: Off by one?!
+}
+
+int
+View::get_height ()
+{
+  return y2 - y1;// FIXME: Off by one?!
 }
 
 /* EOF */

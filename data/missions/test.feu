@@ -7,7 +7,8 @@
 		     (angle 102))
 	      (ammotent (pos 5 0))
 	      (fuelstation (pos 0 2))
-	      (tower  (pos 2 10)
+	      (tower  (energie 1)
+		      (pos 2 10)
 		      (angle 45))
 	      (wall (pos 10 10))
 	      (wall (pos 10 11))
@@ -17,23 +18,25 @@
 	      (wall (pos 12 13))
 	      (wall (pos 13 13)
 		    (energie 50))
-	      (tower  (pos 2 8)
+	      (tower  (energie 1)(pos 2 8)
 		      (angle 55))
-	      (tower  (pos 2 6)
+	      (tower  (energie 1)(pos 2 6)
 		      (angle 65))
-	      (tower  (pos 2 4)
+	      (tower  (energie 1)(pos 2 4)
 		      (angle 75))
-	      (tower  (pos 10 12)
+	      (tower  (energie 1)(pos 10 12)
 		      (angle 85))
-	      (tower  (pos 2 0)
+	      (tower  (energie 1)(pos 2 0)
 		      (angle 95))
 	      (base (pos 0 0))
 	      (base (pos 13 0))
 	      (headquarter (pos 7 0))
 	      )
 
- (groundmap (tilemap (width 40)
-		     (height 10)
+ (groundmap 
+
+(tilemap (width 40)
+	 (height 40)
 		     (tiles (spritetile (location "tiles/sand1"))
 			    (spritetile (location "tiles/sand2"))
 			    (spritetile (location "tiles/sand3"))
@@ -69,70 +72,8 @@
 		 (spritetile (location "tiles/sandgrass6")) ;;28
 		 )
 
-	  (map 
-20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16
-))
-
-
-(tilemap (width 20)
-		     (height 20)
-		     (tiles (spritetile (location "tiles/sand1"))
-			    (spritetile (location "tiles/sand2"))
-			    (spritetile (location "tiles/sand3"))
-		 (spritetile (location "tiles/sand4"))
-		 (spritetile (location "tiles/sand5"))
-		 (spritetile (location "tiles/sand6"))
-		 (spritetile (location "tiles/sand7"))
-		 (spritetile (location "tiles/sand8"))
-		 (spritetile (location "tiles/sand9"))
-		 (spritetile (location "tiles/sand10"))
-		 (spritetile (location "tiles/sand11"))
-		 (spritetile (location "tiles/sand12"))
-
-		 (spritetile (location "tiles/grass1")) ;; 13
-		 (spritetile (location "tiles/grass2"))
-		 (spritetile (location "tiles/grass4"))
-		 (spritetile (location "tiles/grass3"))
-		 (spritetile (location "tiles/grass5"))
-		 (spritetile (location "tiles/grass3"))
-		 (spritetile (location "tiles/grass5"))
-
-		 (spritetile (location "tiles/water1"))
-		 (spritetile (location "tiles/water2"))
-		 (spritetile (location "tiles/water3"))
-
-		 (spritetile (location "tiles/sandwater1")) ;; 22
-
-		 (spritetile (location "tiles/sandgrass1")) ;;23
-		 (spritetile (location "tiles/sandgrass2")) ;; 24
-		 (spritetile (location "tiles/sandgrass3")) ;; 25
-		 (spritetile (location "tiles/sandgrass4")) ;; 26
-		 (spritetile (location "tiles/sandgrass5")) ;; 27
-		 (spritetile (location "tiles/sandgrass6")) ;;28
-		 )
-
-	  (map 
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 1613 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
-13 14 15 16 17 13 15 17 16 17 13 16
-))
+	  (file "data/missions/foobar.png")
+)
 
 
 ))

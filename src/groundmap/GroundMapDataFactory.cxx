@@ -1,4 +1,4 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.3 2002/03/24 15:44:00 grumbel Exp $
+//  $Id: GroundMapDataFactory.cxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,15 +27,16 @@ GroundMapDataFactory::create (SCM desc)
 {
   MultiGroundMapData* multigroundmap = new MultiGroundMapData ();
 
-  std::cout << "GroundMapFactory: desc: "<< std::flush;
+  /*std::cout << "GroundMapFactory: desc: "<< std::flush;
   gh_display (desc);
-  gh_newline ();
+  gh_newline ();*/
 
   while (gh_pair_p (desc))
     {
       SCM symbol = gh_caar (desc);
       SCM data   = gh_cdar (desc);
-      
+
+      /*      
       std::cout << "GroundMapFactory: symbol: "<< std::flush;
       gh_display (symbol);
       gh_newline ();
@@ -43,7 +44,7 @@ GroundMapDataFactory::create (SCM desc)
       std::cout << "GroundMapFactory: data: "<< std::flush;
       gh_display (data);
       gh_newline ();
-      
+      */
       if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
 	{
 	  multigroundmap->add(new TileMapData (data));
