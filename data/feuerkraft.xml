@@ -182,7 +182,8 @@
     </sprite>
     
     <sprite name="projectile">
-      <image file="images/projectile.png" />
+      <image file="images/projectile1.png" delay="10" />
+      <image file="images/projectile2.png" delay="10" />
     </sprite>
 
     <sprite name="sandsmoke">

@@ -39,6 +39,7 @@ protected:
   float strafe_steering;
   
   bool firing;
+  bool secondary_firing;
 public:
   Vehicle ();
   virtual ~Vehicle () {}

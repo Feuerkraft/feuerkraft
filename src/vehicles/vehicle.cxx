@@ -29,6 +29,7 @@ Vehicle::Vehicle ()
   steering = 0;
   strafe_steering = 0;
   firing = false;
+  secondary_firing = false;
 }
 
 float 
@@ -68,6 +69,7 @@ Vehicle::update_controlls(const Controller& controller)
   steering     = controller.get_axis_state(ORIENTATION_AXIS);
   strafe_steering = controller.get_axis_state(STRAFE_AXIS);
   firing       = controller.get_button_state(PRIMARY_FIRE_BUTTON);
+  secondary_firing       = controller.get_button_state(SECONDARY_FIRE_BUTTON);
 }
 
 /* EOF */

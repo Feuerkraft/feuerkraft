@@ -56,7 +56,7 @@ void
 Projectile::draw (View& view)
 {
   if (lifetime > 0) {
-    view.draw (sur, pos);
+    view.draw (sur, pos, velocity.get_orientation());
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;
@@ -67,6 +67,7 @@ Projectile::draw (View& view)
 void 
 Projectile::update (float delta)
 {
+  sur.update(delta);
   delta = delta * 50.0f;
 
   if (lifetime >= 0)

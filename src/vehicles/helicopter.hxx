@@ -44,6 +44,7 @@ private:
 
   float strafe;
   int   reloading;
+  float secondary_reload;
   Energie energie;
   bool destroyed;
   VehicleAI* ai;

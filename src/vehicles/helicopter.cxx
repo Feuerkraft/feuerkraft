@@ -25,11 +25,13 @@
 #include "../ai_manager.hxx"
 #include "../rocket.hxx"
 #include "../resource_manager.hxx"
+#include "../math.hxx"
 #include "helicopter.hxx"
 
 Helicopter::Helicopter(const AList& lst)
   : strafe (0.0),
     reloading (0),
+    secondary_reload(0),
     energie (100),
     destroyed (false),
     ai(0)
@@ -159,6 +161,16 @@ Helicopter::update (float delta)
     }
 
   strafe_steering = steering = acceleration = 0;
+
+  if (secondary_firing && secondary_reload > .1)
+    {
+      secondary_reload = 0;
+      GameWorld::current()->add (new Projectile (this, get_pos(),
+                                                 FloatVector2d::make_polar(20 + Math::frand()*2.0f,
+                                                                           orientation + 3.1415927f
+                                                                           + Math::frand()*0.06f - 0.03f)));
+    }
+  secondary_reload += delta;
  
   delta *= 50;
 
@@ -183,7 +195,6 @@ Helicopter::update (float delta)
       GameWorld::current()->add(new Rocket(get_pos(), orientation + 3.1415927f));
       reloading = 10;
     }
-
 
   if (reloading)
     --reloading;

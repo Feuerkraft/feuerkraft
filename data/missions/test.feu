@@ -225,9 +225,9 @@
                (y-pos 31)))
 
  (groundmap 
-  (gridmap 	  (file "data/missions/foobar.png")))
+  (gridmap 	  (file "foobar.png")))
 
- (scripts "data/missions/pathdata.scm"
-          "data/missions/test.scm"))
+ (scripts "pathdata.scm"
+          "test.scm"))
 
 ;; EOF ;;
