@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.8 2002/04/02 15:42:14 grumbel Exp $
+//  $Id: Radar.cxx,v 1.9 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,7 +57,7 @@ Radar::draw (CL_GraphicContext* gc)
 
   world->get_buildingmap ()->draw_radar (this);
 
-  radar_line.set_rotate (angle/3.1415927*180.0f + 180.0f);
+  radar_line.rotate (angle/3.1415927*180.0f + 180.0f);
   radar_line.draw (int(pos.x), int(pos.y), gc);
   //FIXME:Display2: frame support removed 
   /*

@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.15 2002/07/21 19:32:31 grumbel Exp $
+//  $Id: View.cxx,v 1.16 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -113,7 +113,7 @@ View::draw (CL_Sprite& sprite, const CL_Vector& pos, float angle)
 void 
 View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
 {
-  sprite->set_rotate(angle/3.1415927 * 180.0f);
+  sprite->rotate(angle/3.1415927 * 180.0f);
   sprite->draw(int(pos.x + get_x_offset ()), 
 	       int(pos.y + get_y_offset ()),
 	       gc);

@@ -1,4 +1,4 @@
-//  $Id: StartScreen.cxx,v 1.3 2002/04/02 15:42:14 grumbel Exp $
+//  $Id: StartScreen.cxx,v 1.4 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -94,33 +94,33 @@ StartScreen::update (float delta)
 {
   display_time += delta;
 
-  if (logo_mode == S_STARTLOGO && (display->get_keycode (CL_KEY_ESCAPE)
-				   || display->get_keycode (CL_KEY_SPACE)
-				   || display->get_keycode (CL_KEY_RETURN)))
+  if (logo_mode == S_STARTLOGO && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
+				   || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE)
+				   || display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)))
     {
-      while (display->get_keycode (CL_KEY_RETURN)
-	     || display->get_keycode (CL_KEY_ESCAPE)
-	     || display->get_keycode (CL_KEY_SPACE))
+      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
+	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
+	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
 	CL_System::keep_alive ();
 
       logo_mode = S_FADETOGAME;
       display_time = 0;
     }
-  else if (logo_mode == S_GAME  && (display->get_keycode (CL_KEY_ESCAPE)))
+  else if (logo_mode == S_GAME  && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)))
     {
-      while (display->get_keycode (CL_KEY_ESCAPE))
+      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE))
 	CL_System::keep_alive ();
 
       display_time = 0;
       logo_mode = S_ENDLOGO;
     }
-  else if (logo_mode == S_ENDLOGO && (display->get_keycode (CL_KEY_ESCAPE)
-				      || display->get_keycode (CL_KEY_SPACE)
-				      || display->get_keycode (CL_KEY_RETURN)))
+  else if (logo_mode == S_ENDLOGO && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
+				      || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE)
+				      || display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)))
     {
-      while (display->get_keycode (CL_KEY_RETURN)
-	     || display->get_keycode (CL_KEY_ESCAPE)
-	     || display->get_keycode (CL_KEY_SPACE))
+      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
+	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
+	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
 	CL_System::keep_alive ();
 
 

@@ -146,7 +146,7 @@ public:
 
 	CL_Display::set_current_window (&window);
 	global_gc = window.get_gc();
-	window.get_gc()->begin_2d();
+	//window.get_gc()->begin_2d();
 
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
 	//CL_Sprite ("Game/spr_ghost", &resource_manager);
@@ -278,13 +278,13 @@ public:
 	  {
 
 	    // Poor mans pause button
-	    if (window.get_keycode(CL_KEY_P))
+	    if (window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 	      {
-		while (window.get_keycode(CL_KEY_P))
+		while (window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (!window.get_keycode(CL_KEY_P))
+		while (!window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (window.get_keycode(CL_KEY_P))
+		while (window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
 
 		last_time = CL_System::get_time ();
@@ -331,7 +331,7 @@ public:
 	    if (sleep_time > 0)
 	      CL_System::sleep (sleep_time);
 
-	    if (window.get_keycode(CL_KEY_M))
+	    if (window.get_ic()->get_keyboard().get_keycode(CL_KEY_M))
 	      {
 		levelmap.draw (window.get_gc ());
 	      }

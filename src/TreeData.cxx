@@ -1,4 +1,4 @@
-//  $Id: TreeData.cxx,v 1.2 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: TreeData.cxx,v 1.3 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,9 +67,9 @@ TreeData::create (boost::dummy_ptr<GameWorld> world)
 SCM
 TreeData::dump_to_scm ()
 {
-  return gh_list (gh_symbol2scm ("tree"),
-		  Guile::vector2scm (pos),
-		  SCM_UNDEFINED);
+  return SCM_BOOL_F; //scm_listify (gh_symbol2scm ("tree"),
+  //Guile::vector2scm (pos),
+  //                  SCM_UNDEFINED);
 }
 
 /* EOF */

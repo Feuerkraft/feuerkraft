@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cxx,v 1.5 2002/07/21 19:32:31 grumbel Exp $
+//  $Id: KeyboardController.cxx,v 1.6 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,16 +35,16 @@ KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* 
   up_key = false;
   down_key = false;
 
-  key_down_slot = window->get_ic ()->sig_key_down (0).connect (this, &KeyboardController::input_down);
+  key_down_slot = window->get_ic ()->get_keyboard().sig_key_down ().connect (this, &KeyboardController::input_down);
 }  
 
 void
-KeyboardController::input_down (const CL_Key& key)
+KeyboardController::input_down (const CL_InputEvent& key)
 {
   std::cout << "got input: " << key.id << " " << key.type << std::endl;
   
   bool value;
-  if (key.type == CL_Key::released)
+  if (key.type == CL_InputEvent::released)
     {
       std::cout << "Release" << std::endl;
       value = false;

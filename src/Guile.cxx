@@ -1,4 +1,4 @@
-//  $Id: Guile.cxx,v 1.3 2002/05/18 16:44:08 grumbel Exp $
+//  $Id: Guile.cxx,v 1.4 2003/01/02 17:07:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,20 +38,20 @@ SCM
 Guile::vector2scm (const CL_Vector& vec)
 {
   /** If this causes throuble on WIN32, replace it with gh_cons() */
-  return gh_list (gh_symbol2scm ("pos"),
-		  gh_double2scm(vec.x),
-		  gh_double2scm(vec.y),
-		  gh_double2scm(vec.z),
-		  SCM_UNDEFINED);
+  return SCM_BOOL_F; /*scm_listify (gh_symbol2scm ("pos"),
+                      gh_double2scm(vec.x),
+                      gh_double2scm(vec.y),
+                      gh_double2scm(vec.z),
+                      SCM_UNDEFINED);*/
 }
 
 SCM
 Guile::pos2scm (int x, int y)
 {
-  return gh_list (gh_symbol2scm ("pos"),
-		  gh_int2scm (x),
-		  gh_int2scm (y), 
-		  SCM_UNDEFINED);
+  return SCM_BOOL_F;/*scm_listify (gh_symbol2scm ("pos"),
+                      gh_int2scm (x),
+                      gh_int2scm (y), 
+                      SCM_UNDEFINED);*/
 }
 
 void
