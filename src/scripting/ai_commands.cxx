@@ -1,4 +1,4 @@
-//  $Id: ai_commands.cxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: ai_commands.cxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,7 +49,9 @@ ai_goto(int handle, float x, float y)
 void
 ai_stop(int handle)
 {
-  
+  SoldierAI* soldier_ai = Scripting::get_ai<SoldierAI>(handle);
+  if (soldier_ai)
+    soldier_ai->stop();
 }
 
 /* EOF */

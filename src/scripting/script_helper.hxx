@@ -1,4 +1,4 @@
-//  $Id: script_helper.hxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: script_helper.hxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,10 +21,12 @@
 #define HEADER_SCRIPT_HELPER_HXX
 
 #include <iostream>
+#include "../ai_manager.hxx"
 #include "../game_obj_manager.hxx"
 
 namespace Scripting {
 
+/** @return the object that has id */
 template<class T>
 T* get_object(int object_id)
 {
@@ -33,6 +35,33 @@ T* get_object(int object_id)
   if (obj)
     {
       return obj;
+    }
+  else
+    {
+      std::cout  << "Scripting: no object given by id: " << object_id << std::endl;
+      return 0;
+    } 
+}
+
+/** @return the AI for the given object or 0 if no AI is attached to
+    the object */
+template<class T>
+T* get_ai(int object_id)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(object_id);
+
+  if (obj)
+    {
+      AI* ai = AIManager::instance()->get_ai(obj);
+      T* s_ai = 0;
+      
+      if (ai && (s_ai = dynamic_cast<T*>(ai)))
+        return s_ai;
+      else 
+        {
+          std::cout << "Scripting: object doesn't have AI" << std::endl;
+          return 0;
+        }
     }
   else
     {

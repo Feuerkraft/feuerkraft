@@ -1,4 +1,4 @@
-//  $Id: soldier_ai.hxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: soldier_ai.hxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,6 @@ class SoldierAI : public AI
 {
 private:
   Soldier* soldier;
-  float ai_count;
   Controller controller;
 
   enum State { WAITING, GOTO_TARGET, RANDOM } state;
@@ -42,7 +41,9 @@ public:
   GameObj* get_object();
 
   void update(float delta);
+
   void goto_to(const FloatVector2d& target_pos);
+  void stop();
 };
 
 #endif

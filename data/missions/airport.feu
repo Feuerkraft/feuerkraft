@@ -3,6 +3,25 @@
  (objects (tree (pos 120 100)))
  
  (buildings
+  (tower (pos 61 42))
+  (tower (pos 49 42))
+
+  (tower (pos 7  26))
+  (tower (pos 11 26))
+  (tower (pos 15 26))
+
+  (tower (pos 7  22))
+  (tower (pos 11 22))
+  (tower (pos 15 22))
+
+  (tower (pos 7  18))
+  (tower (pos 11 18))
+  (tower (pos 15 18))
+
+  (tower (pos 33 7))
+  (tower (pos 33 12))
+
+
   (tower (pos 61 242))
   (tower (pos 49 242)))
 

@@ -1,4 +1,4 @@
-//  $Id: soldier_ai.cxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: soldier_ai.cxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,6 @@
 
 SoldierAI::SoldierAI(Soldier* arg_soldier)
   : soldier(arg_soldier),
-    ai_count(0.0f),
     state(GOTO_TARGET)
 {
   target_pos = FloatVector2d(2000.0f, 2000.0f);
@@ -33,49 +32,44 @@ SoldierAI::SoldierAI(Soldier* arg_soldier)
 void
 SoldierAI::update(float delta)
 {
-  ai_count += delta;
-
-  if (ai_count > .3)
+  switch(state)
     {
-      ai_count = 0;
-
-      switch(state)
-        {
-        case RANDOM:
-          controller.set_axis_state(ACCELERATE_AXIS,  Math::frand()*2.0f - 1.0f);
-          controller.set_axis_state(ORIENTATION_AXIS, Math::frand()*2.0f - 1.0f);
-          break;
+    case RANDOM:
+      controller.set_axis_state(ACCELERATE_AXIS,  Math::frand()*2.0f - 1.0f);
+      controller.set_axis_state(ORIENTATION_AXIS, Math::frand()*2.0f - 1.0f);
+      break;
           
-        case WAITING:
-          break;
+    case WAITING:
+      controller.set_axis_state(ACCELERATE_AXIS,  0);
+      controller.set_axis_state(ORIENTATION_AXIS, 0);
+      break;
             
-        case GOTO_TARGET:
-          std::cout << "Soldier: "
-                    << target_pos << " "
-                    << soldier->get_pos() << " "
-                    << (target_pos - soldier->get_pos()).get_length() << std::endl;
+    case GOTO_TARGET:
+      /*std::cout << "Soldier: "
+                << target_pos << " "
+                << soldier->get_pos() << " "
+                << (target_pos - soldier->get_pos()).get_length() << std::endl;*/
 
-          if (target_pos.y > soldier->get_pos().y)
-            controller.set_axis_state(ACCELERATE_AXIS,  1.0f);
-          else if (target_pos.y < soldier->get_pos().y)
-            controller.set_axis_state(ACCELERATE_AXIS,   -1.0f);
+      if (target_pos.y > soldier->get_pos().y)
+        controller.set_axis_state(ACCELERATE_AXIS,  1.0f);
+      else if (target_pos.y < soldier->get_pos().y)
+        controller.set_axis_state(ACCELERATE_AXIS,   -1.0f);
 
-          if (target_pos.x > soldier->get_pos().x)
-            controller.set_axis_state(ORIENTATION_AXIS,  1.0f);
-          else if (target_pos.x < soldier->get_pos().x)
-            controller.set_axis_state(ORIENTATION_AXIS,  -1.0f);
+      if (target_pos.x > soldier->get_pos().x)
+        controller.set_axis_state(ORIENTATION_AXIS,  1.0f);
+      else if (target_pos.x < soldier->get_pos().x)
+        controller.set_axis_state(ORIENTATION_AXIS,  -1.0f);
 
-          if ((target_pos - soldier->get_pos()).get_length() < 10.0f)
-            state = WAITING;
+      if ((target_pos - soldier->get_pos()).get_length() < 10.0f)
+        state = WAITING;
 
-          break;
+      break;
 
-        default:
-          break;
-        }
-
-      soldier->update_controlls(controller);
+    default:
+      break;
     }
+
+  soldier->update_controlls(controller);
 }
 
 void
@@ -83,6 +77,12 @@ SoldierAI::goto_to(const FloatVector2d& arg_target_pos)
 {
   state = GOTO_TARGET;
   target_pos = arg_target_pos;
+}
+
+void
+SoldierAI::stop()
+{
+  state = WAITING;
 }
 
 GameObj*

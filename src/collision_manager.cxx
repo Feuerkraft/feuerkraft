@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.9 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -185,7 +185,7 @@ CollisionManager::add_rect(int object_id, float x, float y, float width, float h
   shape.circle.object_id = object_id;
   shape.circle.x = x;
   shape.circle.y = y;
-  shape.circle.radius = Math::max(width/2, height/2);
+  shape.circle.radius = (width + height)/4;
 #endif
   shapes.push_back(shape);
 }

@@ -24,19 +24,20 @@
         (else
          'unknown)))
 
-(define (display-units)
+(define (display-units type)
   "Display all units and there type in a human readable way"
   (display ">>> Start: Game Units <<<\n")
   (for-each (lambda (obj)
               (cond ((gameobj-is-unit obj)
-                     (format #t "[~a]~%" (gameobj-get-type obj))
-                     (for-each (lambda (prop)
-                                 (format #t 
-                                         "  ~a = ~a~%"
-                                         prop
-                                         (gameobj-get-property obj prop)))
-                               (gameobj-properties obj))
-                     (newline))))
+                     (cond ((equal? (gameobj-get-type obj) type)
+                            (format #t "[~a]~%" (gameobj-get-type obj))
+                            (for-each (lambda (prop)
+                                        (format #t 
+                                                "  ~a = ~a~%"
+                                                prop
+                                                (gameobj-get-property obj prop)))
+                                      (gameobj-properties obj))
+                            (newline))))))
             (gameobj-get-all))
   (display ">>> End: Game Units <<<\n"))
 
@@ -256,6 +257,9 @@
                         (target-x (+ (gameobj-get-property obj "x-pos") 100))
                         (target-y (+ (gameobj-get-property obj "y-pos") 100)))
                    
+                   (ai-goto 75 target-x target-y)
+                   (ai-goto 76 target-x target-y)
+
                    (ai-vehicle-clear-orders wingman)
                    (ai-vehicle-drive-to wingman 
                                         (inexact->exact target-x)

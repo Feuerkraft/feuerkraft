@@ -290,4 +290,13 @@
 
 ;; End:   Interface definition
 
+;;(define soldier1 (player-get-soldier))
+(define soldier2 (gameobj-create soldier-type '((x-pos 500.0)
+                                                (y-pos 200.0))))
+(define soldier3 (gameobj-create soldier-type '((x-pos 500.0)
+                                                (y-pos 200.0))))
+
+(input-register-callback "key_2" (lambda () (player-set-soldier soldier2)))
+(input-register-callback "key_3" (lambda () (player-set-soldier soldier3)))
+
 ;; EOF ;;

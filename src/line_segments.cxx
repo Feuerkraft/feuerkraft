@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.13 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.14 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -404,7 +404,7 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
     }
   else
     {
-      assert(false);
+      std::cout << "LineSegment: Already at the requested controll point, doing nothing" << std::endl;
     }
 }
 
