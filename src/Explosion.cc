@@ -1,4 +1,4 @@
-//  $Id: Explosion.cc,v 1.2 2001/02/18 21:53:59 sphair Exp $
+//  $Id: Explosion.cc,v 1.3 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -61,7 +61,7 @@ Explosion::draw ()
 }
   
 void 
-Explosion::update () 
+Explosion::update (float delta) 
 {
   --lifetime;
 }

@@ -68,13 +68,27 @@ public:
 	world.add (new Soldier (CL_Vector (550, 400)));
 	world.add (new Soldier (CL_Vector (550, 100)));
 
+	/** 1/30sec = 1.0delta
+	 */
+	float delta;
+	int last_time = CL_System::get_time ();
+
+	int loops = 0;
+	float deltas = 0.0;
+	
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
+	    delta = (CL_System::get_time () - last_time) / 33.33;
+	    last_time = CL_System::get_time ();
+	    world.update (delta);
+	    
+	    deltas += delta;
+	    ++loops;
+
 	    CL_Display::clear_display (0.7f, 0.7f, 0.6f);
 	    
 	    world.draw ();
-	    world.update ();
 	    
 	    controller.update ();
 	    kcontroller.update ();
@@ -87,6 +101,8 @@ public:
 	    // someone closes the window.
 	    CL_System::keep_alive();
 	  }
+
+	std::cout << "Avarage delta: " << deltas/loops << std::endl;
 
 	CL_SetupPNG::deinit ();
 	CL_SetupCore::deinit_display();

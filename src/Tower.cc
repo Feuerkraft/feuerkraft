@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.4 2001/02/18 13:53:34 grumbel Exp $
+//  $Id: Tower.cc,v 1.5 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -63,7 +63,7 @@ Tower::draw ()
 }
 
 void
-Tower::update () 
+Tower::update (float delta) 
 {
   if (destroyed)
     return;

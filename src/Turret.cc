@@ -42,7 +42,7 @@ Turret::draw ()
 }
 
 void
-Turret::update ()
+Turret::update (float delta)
 {
 
   static bool floppy;
@@ -71,8 +71,6 @@ Turret::update ()
 	}
       floppy = !floppy;
     }
-
-
 }
 
 void 

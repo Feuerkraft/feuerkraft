@@ -1,4 +1,4 @@
-//  $Id: Mine.cc,v 1.2 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: Mine.cc,v 1.3 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ Mine::Mine (const CL_Vector& arg_pos) :
 }
 
 void 
-Mine::update () 
+Mine::update (float delta) 
 {
   if (!is_active ())
     {

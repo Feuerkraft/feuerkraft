@@ -1,4 +1,4 @@
-//  $Id: Projectile.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: Projectile.cc,v 1.4 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,13 +52,13 @@ Projectile::draw ()
 }
 
 void 
-Projectile::update ()
+Projectile::update (float delta)
 {
   if (lifetime >= 0)
     {
       tmp_pos = pos;
 
-      pos = pos + add;
+      pos += add * delta;
       --lifetime;
     }
 

@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.14 2001/02/20 09:17:56 mbn Exp $
+//  $Id: GameWorld.cc,v 1.15 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -93,6 +93,7 @@ Iterator partition(Container &A, Iterator p, Iterator r, Pred &pred)
 void 
 GameWorld::draw ()
 {
+  //objects.sort (z_pos_sorter ());
 #ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
 //  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
 #else
@@ -115,15 +116,20 @@ struct is_removable
 };
 
 void 
-GameWorld::update ()
+GameWorld::update (float delta)
 {
   //std::cout << "Number of GameObj's: " << objects.size () << "\r          " << std::flush;
-//  objects.remove_if(is_removable ()); 
+#ifdef WIN32
+  //std::remove_if doesn't seem to have any effect for gcc?! or
+  //probally I just mixed true/false
   std::remove_if(objects.begin(), objects.end(), is_removable());
-  
+#else
+  objects.remove_if(is_removable ()); 
+#endif 
+
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin ();
        i != objects.end (); ++i)
-    (*i)->update ();
+    (*i)->update (delta);
 }
 
 /* EOF */

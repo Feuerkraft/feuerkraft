@@ -41,7 +41,7 @@ public:
   virtual ~Tank ();
   
   void draw ();
-  void update ();
+  void update (float);
 
   void increase_angle ();
   void decrease_angle ();

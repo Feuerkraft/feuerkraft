@@ -1,4 +1,4 @@
-//  $Id: Soldier.cc,v 1.1 2001/02/17 22:41:37 grumbel Exp $
+//  $Id: Soldier.cc,v 1.2 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,7 +37,7 @@ Soldier::draw ()
 }
 
 void 
-Soldier::update ()
+Soldier::update (float delta)
 {
   if (++step > 5)
     {

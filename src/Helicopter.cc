@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.2 2001/02/18 21:53:59 sphair Exp $
+//  $Id: Helicopter.cc,v 1.3 2001/02/20 22:49:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -66,7 +66,7 @@ Helicopter::draw ()
 }
 
 void 
-Helicopter::update ()
+Helicopter::update (float delta)
 {
   if (energie <= 0 && !destroyed)
     {
@@ -76,8 +76,8 @@ Helicopter::update ()
 
   CL_Vector vel (-velocity, 0.0, 0.0);
 
-  pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0));
-  pos += CL_Vector (0.0, strafe, 0.0).rotate (angle, CL_Vector (0.0, 0.0, 1.0));
+  pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+  pos += CL_Vector (0.0, strafe, 0.0).rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
 
   velocity /= 1.03f;
   strafe /= 1.03f;

@@ -63,7 +63,7 @@ Tank::draw ()
 }
 
 void 
-Tank::update ()
+Tank::update (float delta)
 {
   if (destroyed)
     return;
@@ -82,7 +82,7 @@ Tank::update ()
     }
 
   turret->set_world (world);
-  turret->update ();
+  turret->update (delta);
 
   if (mine_reload_time)
     --mine_reload_time;
@@ -94,16 +94,15 @@ Tank::update ()
   else
     velocity = 0;
 
+  // Terminal velocity
   if (velocity > 2)
     velocity = 2.0f;
   else if (velocity < -1)
     velocity = -1.0f;
 
   CL_Vector vel (-velocity, 0.0);
-  //std::cout << "Angle: " << angle 
-  //	    << " CAngle: " << angle - fmod(angle, circle/16) 
-  //	    << " Mod: " << fmod (angle, circle/16.0) << std::endl;
-  vel = vel.rotate (angle - fmod(angle, circle/16.0), CL_Vector (0.0, 0.0, 1.0));
+  vel = vel.rotate (angle - fmod(angle, circle/16.0), 
+		    CL_Vector (0.0, 0.0, 1.0));
 
   if (velocity != 0.0 || tmp_angle != angle)
     {
@@ -117,7 +116,7 @@ Tank::update ()
 	}
     }
 
-  pos = pos + vel;
+  pos = pos + (vel * delta);
 }
 
 void 
