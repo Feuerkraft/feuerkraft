@@ -6,6 +6,8 @@ command_source = ai_vehicle_commands.cxx \
  sequence_commands.cxx   \
  building_commands.cxx   \
  building_commands.hxx   \
+ gameobj_commands.hxx    \
+ gameobj_commands.cxx    \
  effect_commands.cxx     \
  effect_commands.hxx     \
  object_commands.hxx     \
