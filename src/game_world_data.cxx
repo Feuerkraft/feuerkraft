@@ -1,4 +1,4 @@
-//  $Id: game_world_data.cxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world_data.cxx,v 1.6 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,11 +26,6 @@
 #include "groundmap/ground_map_data_factory.hxx"
 #include "game_obj_data_factory.hxx"
 #include "game_world_data.hxx"
-
-GameWorldData::GameWorldData ()
-  : needs_delete (false)
-{
-}
 
 GameWorldData::GameWorldData (SCM desc)
   : needs_delete (true)
@@ -127,12 +122,6 @@ GameWorldData::~GameWorldData ()
     {
       // FIXME: Memory Leak, we should clear the gameobj_data list here
     }
-}
-
-GameWorld*
-GameWorldData::create ()
-{
-  return new GameWorld (*this);
 }
 
 SCM

@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.8 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: building_map.cxx,v 1.9 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -182,7 +182,7 @@ BuildingMap::get_data ()
 void
 BuildingMap::add_building(Building* building, int x_pos, int y_pos)
 {
-  std::cout << "Adding building " << building << " at " << x_pos << ", " << y_pos << std::endl;
+  //std::cout << "Adding building " << building << " at " << x_pos << ", " << y_pos << std::endl;
 
   for (int x = x_pos; x < x_pos + building->get_map_width(); ++x)
     {

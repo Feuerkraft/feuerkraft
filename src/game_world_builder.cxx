@@ -1,4 +1,4 @@
-//  $Id: game_world_builder.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world_builder.cxx,v 1.3 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 GameWorldBuilder::GameWorldBuilder()
 {
   // The allocated GameWorld class is freeded by the caller of get_world()
-  world = new GameWorld();
+  //world = new GameWorld();
 }
 
 GameWorldBuilder::~GameWorldBuilder()

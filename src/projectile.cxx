@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.13 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: projectile.cxx,v 1.14 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,7 @@
 #include "vehicle.hxx"
 #include "resource_manager.hxx"
 
-Projectile::Projectile (GameObjPtr p,
+Projectile::Projectile (GameObj* p,
 			const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity)
   : sur (resources->get_sprite("feuerkraft/projectile")),
     tmp_pos (arg_pos),
@@ -112,7 +112,7 @@ Projectile::on_collision(GameObj* obj)
 void
 Projectile::on_collision_with_building(Building* building)
 {
-  std::cout << "Projectile touched building" << get_id() << std::endl;
+  //std::cout << "Projectile touched building" << get_id() << std::endl;
   building->collide (this);
   detonate ();
 }

@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.11 2003/06/22 19:22:57 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.12 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -84,9 +84,6 @@ building_create_type(const char* name, SCM lst)
     {
       SCM key   = gh_car(lst);
 
-      gh_display(key);
-      gh_newline();
-
       if (gh_null_p(gh_cdr(lst)))
         {
           std::cout << "Missing argument to keyword!" << std::endl;
@@ -94,9 +91,6 @@ building_create_type(const char* name, SCM lst)
 
       SCM value = gh_cadr(lst);
 
-      gh_display(value);
-      gh_newline();
-      
       if (gh_boolean_p(value))
         {
           alist.set_bool(Guile::keyword2string(key), gh_scm2bool(value));

@@ -1,4 +1,4 @@
-//  $Id: building_map_data.cxx,v 1.6 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: building_map_data.cxx,v 1.7 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@ BuildingMapData::BuildingMapData (SCM desc)
       // FIXME: Should be placed in a BuildingDataFactory class
       buildings_data.push_back(BuildingData(str, alst));
 
-      std::cout << "BuildingData: " << str << "\n" << alst << std::endl;
+      //std::cout << "BuildingData: " << str << "\n" << alst << std::endl;
 
       desc = gh_cdr(desc);
     }

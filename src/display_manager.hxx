@@ -1,4 +1,4 @@
-//  $Id: display_manager.hxx,v 1.3 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: display_manager.hxx,v 1.4 2003/06/22 21:51:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -74,7 +74,7 @@ public:
   /** Hide the current menu */
   void hide_menu();
 
-  /** @retun the currently shown menu or 0 if none is shown */
+  /** @return the currently shown menu or 0 if none is shown */
   Menu* get_menu() const { return menu; }
 private:
   DisplayManager (const DisplayManager&);

@@ -34,8 +34,6 @@
                         #:width  0
                         #:height 0))
 
-(display "#### ---------------------------------\n")
-
 (do ((x 0 (+ x 64)))
     ((> x 500))
   (do ((y 0 (+ y 64)))
@@ -97,8 +95,6 @@
 (building-create building:garage 19 43)
 (building-create building:garage 22 43)
 
-                                        ;(building-create building:armored-generator 25 43)
-
 (building-create building:garage 13 49)
 (building-create building:garage 16 49)
 (building-create building:garage 19 49)
@@ -141,7 +137,6 @@
 
 (define (vehicles-start)
   (for-each (lambda (pos)
-              (display pos)(newline)
               (ai-vehicle-drive-to ai-vehicle (car pos) (cdr pos)))
             path-to-base))
 
@@ -302,5 +297,18 @@
 
 (input-register-callback "key_2" (lambda () (player-set-soldier soldier2)))
 (input-register-callback "key_3" (lambda () (player-set-soldier soldier3)))
+
+(define (airport:add-trigger x y proc)
+  (let ((obj (gameobj-create marker-type
+                             #:x-pos (- (* x 40) 20)
+                             #:y-pos (- (* y 40) 20))))
+    (trigger-add-tile 8 33 (lambda (object) 
+                             (comm-send-message "Hello World")
+                             (gameobj-remove obj)
+                             (proc)))))
+
+(airport:add-trigger 16 33 (lambda () #f))
+(airport:add-trigger 18 34 (lambda () #f))
+(airport:add-trigger 20 34 (lambda () #f))
 
 ;; EOF ;;

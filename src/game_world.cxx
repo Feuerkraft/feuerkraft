@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.17 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: game_world.cxx,v 1.18 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,12 +38,8 @@
 
 GameWorld* GameWorld::current_world = 0;
 
-GameWorld::GameWorld()
-{
-}
-
-GameWorld::GameWorld (const GameWorldData& data)
-  : GameWorldData (data),
+GameWorld::GameWorld (SCM scm)
+  : GameWorldData (scm),
     game_obj_manager(new GameObjManager(this)),
     building_manager(new BuildingManager()),
     trigger_manager (new TriggerManager()),

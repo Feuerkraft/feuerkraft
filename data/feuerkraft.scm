@@ -79,10 +79,10 @@
                                     msg)))))
 
 (define (building-create-type name . args)
-  (display "building-create-type: ")
-  (display name)
-  (display " -> ")
-  (display args)(newline)
+  ;;(display "building-create-type: ")
+  ;;(display name)
+  ;;(display " -> ")
+  ;;(display args)(newline)
   (c:building-create-type name args))
 
 (define (feuerkraft:repl)
@@ -316,38 +316,52 @@
 (define (random-ref vec)
   (vector-ref vec (random (vector-length vec))))
 
-(define editor-type-list (list tree-type
-                               marker-type
-                               mine-type
-                               satchel-type
-                               soldier-type
-                               tank-type
-                               heli-type))
+(define (gameobj-insert-func type . rest)
+  (lambda (x y)
+    (let ((obj (apply gameobj-create type
+                      #:x-pos x
+                      #:y-pos y
+                      rest)))
+      (ai-attach obj)
+      obj)))
 
-(list-cdr-set! editor-type-list (1- (length editor-type-list)) editor-type-list)
+
+(define (building-insert-func type)
+  (lambda (x y)
+    (building-create (primitive-eval type)
+                     (quotient (inexact->exact x) 40)
+                     (quotient (inexact->exact y) 40))))
+
+(define editor-insert-funcs (list 
+                             (gameobj-insert-func tree-type)
+                             (gameobj-insert-func marker-type)
+                             (gameobj-insert-func mine-type)
+                             (gameobj-insert-func satchel-type)
+                             (gameobj-insert-func soldier-type)
+                             (gameobj-insert-func tank-type)
+                             (gameobj-insert-func tank-type 
+                                                  #:turret "feuerkraft/turret2"
+                                                  #:tank "feuerkraft/tank2")
+                             (gameobj-insert-func heli-type)
+                             (building-insert-func 'building:armored-generator)
+                             (building-insert-func 'building:generator)
+                             (building-insert-func 'building:garage)
+                             ))
+;; Make an endless list
+(list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)
 
 (input-register-callback "mouse_left"
                          (lambda ()
                            (let ((x (input-get-mouse-world-x))
                                  (y (input-get-mouse-world-y)))
-                             (cond (#t
-                                    (building-create building:armored-generator
-                                                     (quotient (inexact->exact x) 40)
-                                                     (quotient (inexact->exact y) 40)))
-                                   (else
-                                    (let ((obj (gameobj-create (car editor-type-list)
-                                                               #:x-pos x
-                                                               #:y-pos y)))
-                                      (ai-attach obj)))))))
+                              ((car editor-insert-funcs) x y))))
 
 (input-register-callback "mouse_wheel_up"
                          (lambda ()
-                           (set! editor-type-list (cdr editor-type-list))
-                           (display "Wheel UP\n")))
+                           (set! editor-insert-funcs (cdr editor-insert-funcs))))
 
 (input-register-callback "mouse_wheel_down"
                          (lambda ()
-                           (set! editor-type-list (cdr editor-type-list))
-                           (display "Wheel UP\n")))
+                           (set! editor-insert-funcs (cdr editor-insert-funcs))))
 
 ;; EOF ;;

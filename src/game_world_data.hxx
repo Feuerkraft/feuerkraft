@@ -1,4 +1,4 @@
-//  $Id: game_world_data.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world_data.hxx,v 1.5 2003/06/22 21:51:21 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,12 +39,9 @@ protected:
   BuildingMapData* buildingmap_data;
   
 public:
-  GameWorldData ();
-  GameWorldData (SCM desc);
+  explicit GameWorldData (SCM desc);
   ~GameWorldData ();
  
-  GameWorld* create ();
-
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */
   SCM dump_to_scm ();

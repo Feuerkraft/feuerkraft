@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: alist.cxx,v 1.12 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -108,7 +108,7 @@ AList::set_bool(const std::string& name, bool value)
 AList&
 AList::set_string(const std::string& name, const std::string& value)
 {
-  std::cout << "AList: " << name << " '" << value << "'" << std::endl;
+  //std::cout << "AList: " << name << " '" << value << "'" << std::endl;
   Value& v = ensure_free_cell(name, AL_STRING);
   v.v_string = new std::string(value);
   return *this;

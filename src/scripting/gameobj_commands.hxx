@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.hxx,v 1.6 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: gameobj_commands.hxx,v 1.7 2003/06/22 21:51:21 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,6 +34,9 @@ SCM gameobj_properties(int handle);
 /** Create a game object with the parameters given as \a lst 
     @return handle to the GameObj */
 int gameobj_create(int type_id, SCM lst);
+
+/** Remove the game object given by \a handle from the world */
+void gameobj_remove(int handle);
 
 /** @return a list of all gameobjects */
 SCM  gameobj_get_all();

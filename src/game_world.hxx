@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.12 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: game_world.hxx,v 1.13 2003/06/22 21:51:21 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,9 +53,8 @@ private:
   SCM world_module;
   SCM last_module;
 
-  GameWorld ();
 public:
-  GameWorld (const GameWorldData& data);
+  GameWorld (SCM scm);
   ~GameWorld ();
 
   float get_time() { return current_time; }

@@ -1,4 +1,4 @@
-//  $Id: output_world_builder.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: output_world_builder.hxx,v 1.4 2003/06/22 21:51:21 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,7 @@
 #include <iostream>
 #include "world_builder.hxx"
 
-/** */
+/** Class for converting or serializing a GameWorld */
 class OutputWorldBuilder
   : public WorldBuilder
 {

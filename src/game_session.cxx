@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.4 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: game_session.cxx,v 1.5 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -85,11 +85,12 @@ GameSession::init()
     SCM lst = scm_read (fdes);
     scm_close (fdes);
 
-    OutputWorldBuilder builder;
-    SexprWorldReader(lst, &builder).run();
+    // unstable Testing stuff
+    //OutputWorldBuilder builder;
+    //SexprWorldReader(lst, &builder).run();
 
-    GameWorldData data(lst);
-    world = new GameWorld (lst);
+    // Now we create the real world
+    world = new GameWorld(lst);
     std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
   }
   // End: Test of parsing code

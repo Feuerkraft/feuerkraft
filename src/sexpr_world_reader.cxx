@@ -1,4 +1,4 @@
-//  $Id: sexpr_world_reader.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sexpr_world_reader.cxx,v 1.5 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -86,18 +86,18 @@ SexprWorldReader::parse_file(SCM desc)
 		}
 	      else
 		{
-		  std::cout << "GameWorldData: Error: " << symbol << " " << data << std::endl;;
+		  std::cout << "Error: " << symbol << " " << data << std::endl;;
 		}
 	    }
 	  else
 	    {
-	      std::cout << "GameWorldData: Error not a symbol: ";// << symbol << " " << data << std::endl;;
+	      std::cout << "Error not a symbol: ";// << symbol << " " << data << std::endl;;
 	      gh_display (symbol); gh_newline ();
 	    }
 	}
       else
 	{
-	  std::cout << "GameWorldData: Error not a pair: " << gh_car(desc) << std::endl;;
+	  std::cout << "Error not a pair: " << gh_car(desc) << std::endl;;
 	}
 
       desc = gh_cdr(desc);
