@@ -142,7 +142,7 @@ public:
 	//CL_ResourceManager resource_manager ("data/feuerkraft.scr", false);
 
 	//CL_OpenGL::begin_2d();
-	CL_DisplayWindow window("Feuerkraft", 640, 480);
+	CL_DisplayWindow window("Feuerkraft", 800, 600);
 
 	CL_Display::set_current_window (&window);
 	global_gc = window.get_gc();
@@ -270,13 +270,14 @@ public:
 	*/
 
 	std::cout << ">>>>>>>>>>> The World <<<<<<<<<<<<<<" << std::endl;	
-	Guile::pretty_print(std::cout, world->get_data ()->dump_to_scm ());
+	//Guile::pretty_print(std::cout, world->get_data ()->dump_to_scm ());
 	std::cout << "<<<<<<<<<<< END World >>>>>>>>>>>>>>" << std::endl;	
 
+        CL_System::keep_alive();
 	// Loop until the user hits escape:
 	while (true) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
-
+#if 0
 	    // Poor mans pause button
 	    if (window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 	      {
@@ -291,6 +292,7 @@ public:
 	      }
 
 	    CL_System::sleep (0);
+#endif
 
 	    /* Switch between hard and variable updates here */
 	    //delta = ((CL_System::get_time () - last_time) / 1000.0f);

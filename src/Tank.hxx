@@ -16,7 +16,7 @@ class Tank : public Controllable,
 	     public Vehicle
 {
 private:
-  float angle; //FIXME: Degree or Radian?
+  float angle; //rad
   float speed;
   float velocity;
   float increment;
@@ -70,8 +70,8 @@ public:
   float get_max_backward_velocity () { return -1.0; }
   float get_turn_speed () { return 1.0; }
 
-  void turn_left (float delta) { increase_angle (delta); }
-  void turn_right (float delta) { decrease_angle (delta); }
+  void turn_left (float delta) { decrease_angle (delta); }
+  void turn_right (float delta) { increase_angle (delta); }
 
   void turn_left2 (float delta);
   void turn_right2 (float delta);

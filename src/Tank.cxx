@@ -35,6 +35,9 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
     energie (100),
     destroyed (false)
 {
+  sur.set_alignment(origin_center);
+  sur_destroyed.set_alignment(origin_center);
+
   turret = new Turret(world, this, reloading_speed, str_turret, fire);
   pos = arg_pos;
 
@@ -273,9 +276,16 @@ Tank::decrease_velocity (float delta)
 }
 
 void 
-Tank::turn_left2 (float delta) { turret->increase_angle (delta); }
+Tank::turn_left2 (float delta) 
+{
+  turret->increase_angle (delta); 
+}
+
 void
-Tank::turn_right2 (float delta) { turret->decrease_angle (delta); }
+Tank::turn_right2 (float delta) 
+{ 
+  turret->decrease_angle (delta); 
+}
 
 void 
 Tank::start_fire ()

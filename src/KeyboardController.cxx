@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cxx,v 1.6 2003/01/02 17:07:40 grumbel Exp $
+//  $Id: KeyboardController.cxx,v 1.7 2003/04/04 23:03:32 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,44 +35,48 @@ KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* 
   up_key = false;
   down_key = false;
 
-  key_down_slot = window->get_ic ()->get_keyboard().sig_key_down ().connect (this, &KeyboardController::input_down);
+  key_up_slot = window->get_ic()->get_keyboard().sig_key_up().connect (this, &KeyboardController::input_down);
+  key_down_slot = window->get_ic()->get_keyboard().sig_key_down().connect (this, &KeyboardController::input_down);
 }  
 
 void
 KeyboardController::input_down (const CL_InputEvent& key)
 {
-  std::cout << "got input: " << key.id << " " << key.type << std::endl;
-  
-  bool value;
   if (key.type == CL_InputEvent::released)
     {
-      std::cout << "Release" << std::endl;
-      value = false;
+      switch (key.id)
+        {
+        case CL_KEY_UP: // up
+          up_key   = false;
+          break;
+        case CL_KEY_DOWN: // down
+          down_key = false;
+          break;
+        case CL_KEY_LEFT: // left
+          left_key = false;
+          break;
+        case CL_KEY_RIGHT: // right
+          right_key = false;
+          break;
+        }
     }
   else
     {
-      std::cout << "Press" << std::endl;
-      value = true;
-    }
-
-  switch (key.id)
-    {
-    case 65362: // up
-      up_key = value;
-      down_key = !value;
-      break;
-    case 65364: // down
-      down_key = value;
-      up_key = !value;
-      break;
-    case 65363: // left
-      left_key = value;
-      right_key = !value;
-      break;
-    case 65361: // right
-      right_key = value;
-      left_key = !value;
-      break;
+      switch (key.id)
+        {
+        case CL_KEY_UP: // up
+          up_key   = true;
+          break;
+        case CL_KEY_DOWN: // down
+          down_key = true;
+          break;
+        case CL_KEY_LEFT: // left
+          left_key = true;
+          break;
+        case CL_KEY_RIGHT: // right
+          right_key = true;
+          break;
+        }
     }
 }
 
@@ -86,14 +90,14 @@ KeyboardController::update (float delta)
   else if (right2_key)
     controllable->turn_right2 (delta);
   
-  if (left_key)
+  if (left_key && !right_key)
     controllable->turn_left (delta);
-  else if (right_key)
+  else if (right_key && !left_key)
     controllable->turn_right (delta);
         
-  if (up_key)
+  if (up_key && !down_key)
     controllable->increase_velocity (delta);
-  else if (down_key)
+  else if (down_key && !up_key)
     controllable->decrease_velocity (delta);
 
   if (mine_key)

@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.16 2003/01/02 17:07:40 grumbel Exp $
+//  $Id: View.cxx,v 1.17 2003/04/04 23:03:32 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,15 +19,16 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include "math.hxx"
 #include "View.hxx"
 
 View::View (boost::dummy_ptr<GameWorld> arg_world, 
 	    int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
 	    int arg_x_offset, int arg_y_offset,
-	    CL_GraphicContext* arg_gc) :
-  gc (arg_gc), world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
-  x_offset (-arg_x_offset), y_offset (-arg_y_offset)
+	    CL_GraphicContext* arg_gc)
+  : gc (arg_gc), world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
+    x_offset (-arg_x_offset), y_offset (-arg_y_offset)
 {
   x_offset -= x1;
   y_offset -= y1;
@@ -113,7 +114,7 @@ View::draw (CL_Sprite& sprite, const CL_Vector& pos, float angle)
 void 
 View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
 {
-  sprite->rotate(angle/3.1415927 * 180.0f);
+  sprite->set_angle(Math::rad2deg(angle));
   sprite->draw(int(pos.x + get_x_offset ()), 
 	       int(pos.y + get_y_offset ()),
 	       gc);

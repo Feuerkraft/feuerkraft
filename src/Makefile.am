@@ -9,7 +9,8 @@ LDADD = \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a 
 
-feuerkraft_SOURCES = Collideable.hxx	 Energie.hxx	GameWorld.cxx	       KeyboardController.cxx  Tank.cxx	Turret.cxx \
+feuerkraft_SOURCES = \
+Collideable.hxx	 Energie.hxx	GameWorld.cxx	       KeyboardController.cxx  Tank.cxx	Turret.cxx \
 Controllable.hxx  Explosion.cxx Explosion.hxx	GameWorld.hxx	       KeyboardController.hxx  Tank.hxx	Turret.hxx \
 Controller.hxx	 Feuerkraft.cxx Projectile.cxx	\
 Energie.cxx	 GameObj.hxx	 Projectile.hxx	\
