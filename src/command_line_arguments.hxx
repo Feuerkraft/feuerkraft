@@ -65,6 +65,8 @@ public:
   void parse_arguments(int argc, char** argv);
 };
 
+extern CommandLineArguments* args;
+
 #endif
 
 /* EOF */

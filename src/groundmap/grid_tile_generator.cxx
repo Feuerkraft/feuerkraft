@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../command_line_arguments.hxx"
 #include "grid_tile.hxx"
 #include "grid_tile_generator.hxx"
 
@@ -164,7 +165,8 @@ GridTileGenerator::create (const GridTileData& data)
       else
 	{
 	  // The tile list is empty, no tile available
-          std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
+          if (args->verbose)
+            std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
           return 0;
 	}
     }

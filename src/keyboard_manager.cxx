@@ -24,7 +24,6 @@
 #include "command_line_arguments.hxx"
 #include "keyboard_manager.hxx"
 
-extern CommandLineArguments* args;
 KeyboardManager* KeyboardManager::instance_ = 0;
 
 KeyboardManager::KeyboardManager()

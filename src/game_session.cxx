@@ -63,7 +63,6 @@
 
 // FIXME: Replace this with a PlayerManager class or something similar
 Player*  player;
-extern CommandLineArguments* args;
 
 GameSession::GameSession(const std::string& arg_filename)
   : control_state(UNIT_CONTROL),
