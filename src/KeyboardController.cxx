@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: KeyboardController.cxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,8 @@
 void
 KeyboardController::update (float delta)
 {
+  delta = delta * 50.0f;
+
   if (CL_Keyboard::get_keycode (CL_KEY_F))
     controllable->turn_left2 (delta);
   else if (CL_Keyboard::get_keycode (CL_KEY_S))

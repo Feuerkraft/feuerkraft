@@ -4,8 +4,8 @@ AM_CONFIG_HEADER( config.h )
 PACKAGE=feuerkraft
 
 MAJOR_VERSION=0
-MINOR_VERSION=0
-PATCH_VERSION=3
+MINOR_VERSION=1
+PATCH_VERSION=0
 
 VERSION=${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
 
@@ -88,4 +88,5 @@ AC_OUTPUT( Makefile
            data/Makefile
            src/Makefile
            src/map/Makefile
+           src/particles/Makefile
            src/boost/Makefile)

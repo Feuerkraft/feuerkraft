@@ -46,18 +46,37 @@ section feuerkraft {
 
 	smod = images/smod.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
 
-	towerbase = images/towerbase.png (type=surface);
-	towerturret = images/towerturret.png (type=surface);
+	section towerbase {
+		frame1 = images/towerbase.png (type=surface);
+	}
+
+	section towerturret {
+		frame1 = images/towerturret.png (type=surface);
+	}
 
 	projectile = images/projectile.png (type=surface);
+
+	section	explosion {
+		frame1 = images/explosion.png (type=surface);
+	}
 
 	smallexplo = images/smallexplo.png (type=surface);
 	mediumexplo = images/mediumexplo.png (type=surface);
 	
-	towerdamaged = images/towerdamaged.png (type=surface);
-	towerdestroyed = images/towerdestroyed.png (type=surface);
+	section towerdamaged {
+		frame1 = images/towerdamaged.png (type=surface);
+	}
+
+	section	towerdestroyed {
+		frame1 = images/towerdestroyed.png (type=surface);
+	}
 
 	tree = images/tree.png (type=surface);
+	tree_shadow = images/tree_shadow.png (type=surface);
+
+	tree2 = images/tree2.png (type=surface);
+	tree2_shadow = images/tree2_shadow.png (type=surface);
+
 	soldier = images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
 
 	soldierdead = images/soldierdead.png (type=surface);
@@ -107,6 +126,81 @@ section tiles
 	section grass3 {
 		frame1 = images/tiles/grass3.png (type=surface);
 	}	
+	section grass4{
+		frame1 = images/tiles/grass4.png (type=surface);
+	}	
+	section grass5{
+		frame1 = images/tiles/grass5.png (type=surface);
+	}	
+
+	section sand1 {
+		frame1 = images/tiles/sand1.png (type=surface);
+	}	
+	section sand2 {
+		frame1 = images/tiles/sand2.png (type=surface);
+	}	
+	section sand3 {
+		frame1 = images/tiles/sand3.png (type=surface);
+	}	
+	section sand4{
+		frame1 = images/tiles/sand4.png (type=surface);
+	}	
+	section sand5{
+		frame1 = images/tiles/sand5.png (type=surface);
+	}	
+	section sand6{
+		frame1 = images/tiles/sand6.png (type=surface);
+	}	
+	section sand7{
+		frame1 = images/tiles/sand7.png (type=surface);
+	}	
+	section sand8{
+		frame1 = images/tiles/sand8.png (type=surface);
+	}	
+	section sand9{
+		frame1 = images/tiles/sand9.png (type=surface);
+	}	
+	section sand10{
+		frame1 = images/tiles/sand10.png (type=surface);
+	}	
+	section sand11{
+		frame1 = images/tiles/sand11.png (type=surface);
+	}	
+	section sand12{
+		frame1 = images/tiles/sand12.png (type=surface);
+	}	
+
+	section water1 {
+		frame1 = images/tiles/water1.png (type=surface);
+	}
+	section water2 {
+		frame1 = images/tiles/water2.png (type=surface);
+	}
+	section water3 {
+		frame1 = images/tiles/water3.png (type=surface);
+	}
+	section sandwater1 {
+		frame1 = images/tiles/sandwater1.png (type=surface);
+	}
+
+	section sandgrass1 {
+		frame1 = images/tiles/sandgrass1.png (type=surface);
+	}
+	section sandgrass2 {
+		frame1 = images/tiles/sandgrass2.png (type=surface);
+	}
+	section sandgrass3 {
+		frame1 = images/tiles/sandgrass3.png (type=surface);
+	}
+	section sandgrass4 {
+		frame1 = images/tiles/sandgrass4.png (type=surface);
+	}
+	section sandgrass5 {
+		frame1 = images/tiles/sandgrass5.png (type=surface);
+	}
+	section sandgrass6 {
+		frame1 = images/tiles/sandgrass6.png (type=surface);
+	}
 }
 
 // EOF //

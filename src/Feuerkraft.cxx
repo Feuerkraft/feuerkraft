@@ -222,7 +222,7 @@ public:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
 	    CL_System::sleep (0);
-	    delta = (CL_System::get_time () - last_time) / sec_fraction;
+	    delta = (CL_System::get_time () - last_time) / 1000.0f;
 	    last_time = CL_System::get_time ();
 	    world.update (delta);
 	    

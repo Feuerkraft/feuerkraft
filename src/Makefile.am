@@ -1,4 +1,4 @@
-SUBDIRS = boost map
+SUBDIRS = boost map particles
 
 bindir=$(prefix)/games
 

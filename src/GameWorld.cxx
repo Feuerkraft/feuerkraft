@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,6 +44,12 @@ void
 GameWorld::add (GameObj* obj)
 {
   add (boost::shared_ptr<GameObj>(obj));
+}
+
+void 
+GameWorld::add_front (GameObj* obj)
+{
+  objects.push_front (boost::shared_ptr<GameObj>(obj));
 }
 
 struct z_pos_sorter

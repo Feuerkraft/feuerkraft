@@ -127,6 +127,8 @@ Tank::explode ()
 void 
 Tank::update (float delta)
 {
+  delta = delta * 50.0f;
+
   if (destroyed)
     return;
 

@@ -1,4 +1,4 @@
-//  $Id: Explosion.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Explosion.hxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,10 +30,10 @@ class Explosion : public GameObj
 {
 private:
   bool is_drawn;
-  int lifetime;
+  float lifetime;
   CL_Surface explo;
   CL_Vector pos;
-  
+  float new_particle_time;
 
 public:
   enum Size { SMALL, MEDIUM, LARGE } size;

@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: View.cxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,13 +49,16 @@ void
 View::draw ()
 {
   CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
-  glPushMatrix ();
+  /*glPushMatrix ();
   glTranslated (400, 300, 0.0);
   glScaled (zoom, zoom, 1.0);
   glRotated (rotation, 0, 0, 1.0);
   glTranslated (-400, -300, 0.0);
+  /*/
   world->draw (this);
-  glPopMatrix ();
+
+  //glPopMatrix ();
+
   CL_Display::pop_clip_rect ();
 }
 
