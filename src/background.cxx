@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.6 2003/04/28 23:45:46 grumbel Exp $
+//  $Id: background.cxx,v 1.7 2003/04/28 23:48:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,8 +35,8 @@ void
 Background::draw (View* view)
 {
   // FIXME: We should take the view size and surface size into account
-  for (int y = -1; y <= 1; ++y)
-    for (int x = -1; x <= 1; ++x)
+  for (int y = -1; y <= 2; ++y)
+    for (int x = -1; x <= 2; ++x)
       sur.draw(x * sur.get_width()  + (view->get_x_offset() % sur.get_width()),
                y * sur.get_height() + (view->get_y_offset() % sur.get_height()),
                view->get_gc ());
