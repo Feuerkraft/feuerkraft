@@ -204,7 +204,7 @@ System::get_statdir()
 
   if (homedir) 
     {
-      return std::string(homedir) + "/.pingus/";
+      return std::string(homedir) + "/.feuerkraft/";
     }
   else
     {

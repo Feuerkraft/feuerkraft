@@ -20,51 +20,13 @@
 #ifndef HEADER_INPUT_MANAGER_CUSTOM_HXX
 #define HEADER_INPUT_MANAGER_CUSTOM_HXX
 
+#include <guile/gh.h>
 #include <ClanLib/Display/input_device.h>
 #include <ClanLib/Display/input_event.h>
 #include "input_event.hxx"
+#include "input_button.hxx"
+#include "input_axis.hxx"
 #include "input_manager_impl.hxx"
-
-class InputAxis
-{
-private:
-  CL_InputDevice dev;
-  int axis_num;
-
-  std::vector<CL_Slot> slots;
-  CL_Signal_v1<float> move;  
-public:
-  InputAxis() {}
-  InputAxis(CL_InputDevice& dev, int num);
-  
-  void on_axis_move(const CL_InputEvent& event); 
-
-  void update(float delta) {}
-
-  CL_Signal_v1<float>& on_move() { return move; }
-};
-
-class InputButton
-{
-private:
-  CL_InputDevice dev;
-  int keycode;
-
-  std::vector<CL_Slot> slots;
-  CL_Signal_v0 button_down;
-  CL_Signal_v0 button_up;
-public:
-  InputButton() {}
-  InputButton(CL_InputDevice& dev, int keycode);
-  
-  void on_key_down(const CL_InputEvent& event);
-  void on_key_up(const CL_InputEvent& event);
-
-  void update(float delta) {}
-
-  CL_Signal_v0& on_key_down() { return button_down; }
-  CL_Signal_v0& on_key_up()   { return button_up; }
-};
 
 /** */
 class InputManagerCustom : public InputManagerImpl
@@ -82,7 +44,7 @@ private:
   InputAxis* strafe_axis;
 
 public:
-  InputManagerCustom();
+  InputManagerCustom(SCM lst);
   
   void update(float delta);
 
@@ -90,6 +52,8 @@ public:
   void on_button_down(ButtonName name);
   void on_axis_move(float pos, AxisName name);
 private:
+  void init(SCM lst);
+
   InputManagerCustom (const InputManagerCustom&);
   InputManagerCustom& operator= (const InputManagerCustom&);
 };

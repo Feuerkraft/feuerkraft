@@ -13,6 +13,16 @@ libfeuerkraft_input_a_SOURCES = \
   input_manager_joystick.hxx \
   input_manager_joystick.cxx \
   input_manager_keyboard.hxx \
-  input_manager_keyboard.cxx
+  input_manager_keyboard.cxx \
+  input_button.hxx \
+  input_axis.hxx \
+  input_button_input_device.hxx \
+  input_button_input_device.cxx \
+  input_axis_input_device.hxx \
+  input_axis_input_device.cxx \
+  button_factory.hxx \
+  button_factory.cxx \
+  axis_factory.hxx \
+  axis_factory.cxx
 
 # EOF #

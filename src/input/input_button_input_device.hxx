@@ -1,4 +1,4 @@
-//  $Id: input_manager.hxx,v 1.3 2003/06/06 18:36:24 grumbel Exp $
+//  $Id$
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,31 +17,25 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_HXX
-#define HEADER_INPUT_MANAGER_HXX
+#ifndef HEADER_INPUT_BOTTON_INPUT_DEVICE_HXX
+#define HEADER_INPUT_BOTTON_INPUT_DEVICE_HXX
 
-#include <vector>
-#include "controller.hxx"
-#include "input_event.hxx"
+#include <ClanLib/Display/input_device.h>
+#include "input_button.hxx"
 
-class InputManagerImpl;
-
-/** */
-class InputManager
+class InputButtonInputDevice : public InputButton
 {
 private:
-  static InputManagerImpl* impl;
-public:
-  static void init(InputManagerImpl* arg_impl = 0);
-  static void deinit();
+  CL_InputDevice dev;
+  int keycode;
 
-  static void update(float delta);
-  static InputEventLst get_events();
-  static Controller get_controller();
-  static void clear();
-private:
-  InputManager(const InputManager&);
-  InputManager& operator=(const InputManager&);
+  void on_key_down(const CL_InputEvent& event);
+  void on_key_up(const CL_InputEvent& event);
+
+public:
+  InputButtonInputDevice(CL_InputDevice& dev, int keycode);
+  
+  void update(float delta) {}
 };
 
 #endif

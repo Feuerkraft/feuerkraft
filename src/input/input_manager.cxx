@@ -47,7 +47,16 @@ InputManager::init(InputManagerImpl* arg_impl)
     }
   else
     {
-      impl = new InputManagerCustom();
+      impl = new InputManagerCustom
+        (gh_eval_str("'("
+                     "(primary-button   (joystick-button 1 1))"
+                     "(secondary-button (joystick-button 1 2))"
+                     "(use-button       (joystick-button 1 3))"
+                     "(menu-button      (joystick-button 1 4))"
+                     "(orientation-axis (joystick-axis 1 2))"
+                     "(accelerate-axis  (joystick-axis 1 3))"
+                     "(strafe-axis      (joystick-axis 1 0))"
+                     ")"));
     }
   /*
   else if (args->joystick != -1)
