@@ -20,7 +20,7 @@ dnl -------------------------
 dnl Check for Maintainer Mode
 dnl -------------------------
 AC_MSG_CHECKING(for maintainer mode)
-AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-maintainer-mode], [Enable maintainer mode]),, enable_maintainer_mode="no")
+AC_ARG_ENABLE(maintainer-mode, AC_HELP_STRING([--enable-maintainer-mode], [Enable maintainer mode]),, enable_maintainer_mode="no")
 
 if test "$enable_maintainer_mode" != "no"; then
     CXXFLAGS="$CXXFLAGS -g -O0 -Wall -Werror"

@@ -27,6 +27,7 @@ class InputManagerImpl
 {
 public:
   InputManagerImpl() {}
+
   virtual void update(float delta) =0;
   virtual InputEventLst get_events() =0;
   virtual Controller get_controller() =0;

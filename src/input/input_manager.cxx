@@ -34,6 +34,12 @@ InputManagerImpl* InputManager::impl = 0;
 void
 InputManager::init(InputManagerImpl* arg_impl)
 {
+  if (impl)
+    {
+      delete impl;
+      impl = 0;
+    }
+
   if (arg_impl)
     { 
       impl = arg_impl;

@@ -22,6 +22,9 @@
 #include "../keys.hxx"
 #include "../view.hxx"
 #include "../keyboard_manager.hxx"
+#include "../input/input_manager.hxx"
+#include "../input/input_manager_joystick.hxx"
+#include "../input/input_manager_keyboard.hxx"
 #include "input_commands.hxx"
 
 void
@@ -54,6 +57,18 @@ input_get_mouse_world_y()
 {
   return View::current()->screen_to_world(FloatVector2d(CL_Mouse::get_x(),
                                                         CL_Mouse::get_y())).y;
+}
+
+void
+input_use_joystick()
+{
+  InputManager::init(new InputManagerJoystick());
+}
+
+void
+input_use_keyboard()
+{
+  InputManager::init(new InputManagerKeyboard());
 }
 
 /* EOF */

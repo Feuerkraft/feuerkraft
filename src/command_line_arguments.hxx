@@ -20,6 +20,7 @@
 #ifndef HEADER_FEUERKRAFT_COMMAND_LINE_ARGUMENTS_HXX
 #define HEADER_FEUERKRAFT_COMMAND_LINE_ARGUMENTS_HXX
 
+#include <argp.h>
 #include <string>
 
 /** */

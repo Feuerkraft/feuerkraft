@@ -369,6 +369,13 @@
 ;; Make an endless list
 (list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)
 
+(input-register-callback "key_f2"
+                         (lambda ()
+                           (input-use-keyboard)))
+(input-register-callback "key_f3"
+                         (lambda ()
+                           (input-use-joystick)))
+
 (input-register-callback "mouse_left"
                          (lambda ()
                            (let ((x (input-get-mouse-world-x))
