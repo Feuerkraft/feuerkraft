@@ -6,6 +6,7 @@
 #include "Mine.hxx"
 #include "Turret.hxx"
 #include "Tank.hxx"
+#include "buildings/BuildingMap.hxx"
 #include "particles/SmokeParticle.hxx"
 #include "particles/GrassParticle.hxx"
 
@@ -172,7 +173,29 @@ Tank::update (float delta)
 	}
     }
 
-  pos = pos + (vel * delta);
+  CL_Vector tmp_pos = pos + (vel * delta);
+
+  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+    {
+      //pos = tmp_pos; // We collided with a building
+      //velocity = 0;
+      pos.y = tmp_pos.y;
+    }
+  else
+    {
+      velocity /= delta;
+    }
+
+  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+    {
+      //pos = tmp_pos; // We collided with a building
+      //velocity = 0;
+      pos.x = tmp_pos.x;
+    }
+  else
+    {
+      velocity /= delta;
+    }
 }
 
 void 
