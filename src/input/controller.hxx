@@ -1,7 +1,7 @@
-//  $Id: soldier.hxx,v 1.13 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: controller.hxx,v 1.1 2003/06/06 18:18:13 grumbel Exp $
 // 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,33 +17,32 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef SOLDIER_HH
-#define SOLDIER_HH
+#ifndef HEADER_CONTROLLER_HXX
+#define HEADER_CONTROLLER_HXX
 
-#include "unit.hxx"
-#include "resource_manager.hxx"
+#include "input_event.hxx"
 
-class Soldier : public Unit
+/** */
+class Controller
 {
-private:
-  CL_Sprite sur;
-
-  // Controll variables
-  float acceleration;
-  float steering;
 public:
-  Soldier(const FloatVector2d& new_pos);
-  ~Soldier();
+  float orientation_axis;
+  float accelerate_axis;
 
-  void update_controlls(const Controller& events);
+  bool primary_fire_button;
 
-  float get_angle () { return 0.0; }
-  void draw (View& view);
-  void update (float);
+  InputEventLst events;
 
-  bool is_colliding(FloatVector2d);
-  
-  float get_physical_size () { return 1.0; }
+public:
+  Controller();
+
+  float get_axis_state(AxisName name) const;
+  bool  get_button_state(ButtonName name) const;
+
+  void  set_axis_state(AxisName name, float pos);
+  void  set_button_state(ButtonName name, bool down);
+
+  InputEventLst get_events() const;
 };
 
 #endif

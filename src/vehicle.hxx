@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.11 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.12 2003/06/06 18:18:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,9 @@
 
 #include "unit.hxx"
 
+class Controller;
 class Projectile;
 
-/** FIXME: Wrong name for this kind of class, better rename it at some point */
 class Vehicle : public Unit
 {
 protected:
@@ -42,7 +42,7 @@ public:
   Vehicle ();
   virtual ~Vehicle () {}
 
-  virtual void update_controlls(const InputEventLst&);
+  virtual void update_controlls(const Controller&);
 
   virtual float get_velocity() { return velocity; }
 

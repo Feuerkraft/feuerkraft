@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.9 2003/06/06 18:18:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "input/controller.hxx"
 #include "vehicle.hxx"
 
 Vehicle::Vehicle ()
@@ -60,41 +61,11 @@ Vehicle::reload_ammo (float delta)
 }
 
 void
-Vehicle::update_controlls(const InputEventLst& events)
+Vehicle::update_controlls(const Controller& controller)
 {
-  for (InputEventLst::const_iterator i = events.begin(); i != events.end(); ++i)
-    {
-      switch (i->type)
-        {
-        case AXIS_EVENT:
-          switch (i->axis.name)
-            {
-            case ACCELERATE_AXIS:
-              //std::cout << "Accelerate: " << i->axis.pos << std::endl;
-              acceleration = i->axis.pos;
-              break;
-            case ORIENTATION_AXIS:
-              //std::cout << "Steering: " << i->axis.pos << std::endl;
-              steering = i->axis.pos;
-              break;
-            default:
-              std::cout << "Unknown axis: " << i->axis.name << std::endl;
-            }
-          break;
-        case BUTTON_EVENT:
-          switch(i->button.name)
-            {
-            case PRIMARY_FIRE_BUTTON:
-              firing = i->button.down;
-              break;
-            default:
-              std::cout << "Unknown button: " << i->button.name << std::endl;
-            }
-          break;
-        default:
-          std::cout << "Unknown event type: " << i->type << std::endl;
-        }
-    }
+  acceleration = controller.get_axis_state(ACCELERATE_AXIS);
+  steering     = controller.get_axis_state(ORIENTATION_AXIS);
+  firing       = controller.get_button_state(PRIMARY_FIRE_BUTTON);
 }
 
 /* EOF */

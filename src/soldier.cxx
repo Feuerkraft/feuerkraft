@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.15 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: soldier.cxx,v 1.16 2003/06/06 18:18:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 #include "buildings/building_map.hxx"
 #include "math.hxx"
 #include "view.hxx"
+#include "input/controller.hxx"
 #include "property_set.hxx"
 #include "soldier.hxx"
 
@@ -36,8 +37,14 @@ Soldier::~Soldier ()
 }
 
 void
-Soldier::update_controlls(const InputEventLst& events)
+Soldier::update_controlls(const Controller& controller)
 {
+  acceleration = controller.get_axis_state(ACCELERATE_AXIS);
+  steering     = controller.get_axis_state(ORIENTATION_AXIS);
+
+#if 0
+  const InputEventLst& events = controller.get_events();
+
   for (InputEventLst::const_iterator i = events.begin(); i != events.end(); ++i)
     {
       switch (i->type)
@@ -63,6 +70,7 @@ Soldier::update_controlls(const InputEventLst& events)
           std::cout << "Unknown event type: " << i->type << std::endl;
         }
     }
+#endif 
 }
 
 void 

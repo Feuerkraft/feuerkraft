@@ -1,4 +1,4 @@
-//  $Id: input_manager.cxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: input_manager.cxx,v 1.2 2003/06/06 18:18:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,6 +50,13 @@ InputManager::get_events()
 {
   assert(impl);
   return impl->get_events();
+}
+
+Controller
+InputManager::get_controller()
+{
+  assert(impl);
+  return impl->get_controller();
 }
 
 /* EOF */

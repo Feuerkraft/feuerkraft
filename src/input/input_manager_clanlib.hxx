@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.hxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: input_manager_clanlib.hxx,v 1.2 2003/06/06 18:18:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,19 +20,32 @@
 #ifndef HEADER_INPUT_MANAGER_CLANLIB_HXX
 #define HEADER_INPUT_MANAGER_CLANLIB_HXX
 
+#include <ClanLib/Signals/slot.h>
+#include "controller.hxx"
 #include "input_manager_impl.hxx"
+
+class CL_InputEvent;
 
 /** */
 class InputManagerClanLib : public InputManagerImpl
 {
 private:
+  Controller controller;
   InputEventLst events;
+
+  CL_Slot key_down;
+  CL_Slot key_up;
+  
+  void on_key_event(const CL_InputEvent& event);
+  void add_axis_event(AxisName name, float pos);
+  void add_button_event(ButtonName name, bool down);
 public:
   InputManagerClanLib();
   ~InputManagerClanLib();
 
   void update(float delta);
   InputEventLst get_events();
+  Controller get_controller();
 private:
   InputManagerClanLib (const InputManagerClanLib&);
   InputManagerClanLib& operator= (const InputManagerClanLib&);
