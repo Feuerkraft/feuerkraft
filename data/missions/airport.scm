@@ -40,28 +40,34 @@
     ((> x 500))
   (do ((y 0 (+ y 64)))
       ((> y 500))
-    (gameobj-create mine-type `((x-pos ,(+ 500.0 x))
-                                (y-pos ,(+ 2200.0 y))))))
+    (gameobj-create mine-type 
+                    #:x-pos (+ 500.0 x)
+                    #:y-pos (+ 2200.0 y))))
 
-(gameobj-create tree-type '((x-pos 10.0)
-                            (y-pos 10.0)
-                            (sprite "feuerkraft/start")))
+(gameobj-create tree-type 
+                #:x-pos 10.0
+                #:y-pos 10.0
+                #:sprite "feuerkraft/start")
 
-(gameobj-create tree-type '((x-pos 1.0)
-                            (y-pos 315.0)
-                            (sprite "feuerkraft/start")))
+(gameobj-create tree-type 
+                #:x-pos 1.0
+                #:y-pos 315.0
+                #:sprite "feuerkraft/start")
 
-(gameobj-create tree-type '((x-pos 59.0)
-                            (y-pos 465.0)
-                            (sprite "feuerkraft/start")))
+(gameobj-create tree-type
+                #:x-pos 59.0
+                #:y-pos 465.0
+                #:sprite "feuerkraft/start")
 
-(gameobj-create tree-type '((x-pos -230.0)
-                            (y-pos 397.0)
-                            (sprite "feuerkraft/start")))
+(gameobj-create tree-type 
+                #:x-pos -230.0
+                #:y-pos  397.0
+                #:sprite "feuerkraft/start")
 
-(gameobj-create tree-type '((x-pos -250.0)
-                            (y-pos 13.0)
-                            (sprite "feuerkraft/start")))
+(gameobj-create tree-type
+                #:x-pos -250.0
+                #:y-pos 13.0
+                #:sprite "feuerkraft/start")
 
 (building-create building:parking-lot 8  33)
 (building-create building:parking-lot 11 33)
@@ -149,8 +155,8 @@
                                (player-set-current-unit 8)
                                (player-set-current-unit 6))))
 
-(gameobj-create 2 '((x-pos 470.0)
-                    (y-pos 1134.0)))
+;(gameobj-create 2 '#:x-pos 470.0)
+;                    (y-pos 1134.0)))
 
 (define (bomber-attack x-pos y-pos)
   (trigger-add-timed 
@@ -207,8 +213,9 @@
 
 (menu-add-item comm-util-menu "Drop Mine" 
                (lambda ()
-                 (gameobj-create mine-type `((x-pos ,(gameobj-get-property (player-get-current-unit) "x-pos"))
-                                             (y-pos ,(gameobj-get-property (player-get-current-unit) "y-pos"))))))
+                 (gameobj-create mine-type
+                                 #:x-pos (gameobj-get-property (player-get-current-unit) "x-pos")
+                                 #:y-pos (gameobj-get-property (player-get-current-unit) "y-pos"))))
 
 (menu-add-item comm-util-menu "Show Levelmap" 
                (lambda ()
@@ -285,10 +292,13 @@
 ;; End:   Interface definition
 
 ;;(define soldier1 (player-get-soldier))
-(define soldier2 (gameobj-create soldier-type '((x-pos 500.0)
-                                                (y-pos 200.0))))
-(define soldier3 (gameobj-create soldier-type '((x-pos 500.0)
-                                                (y-pos 200.0))))
+(define soldier2 (gameobj-create soldier-type 
+                                 #:x-pos 500.0
+                                 #:y-pos 200.0))
+
+(define soldier3 (gameobj-create soldier-type 
+                                 #:x-pos 500.0
+                                 #:y-pos 200.0))
 
 (input-register-callback "key_2" (lambda () (player-set-soldier soldier2)))
 (input-register-callback "key_3" (lambda () (player-set-soldier soldier3)))

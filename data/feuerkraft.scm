@@ -9,7 +9,24 @@
 (define mine-type    3)
 (define satchel-type 4)
 (define soldier-type 5)
+(define tank-type    6)
+(define heli-type    7)
 ;; End: GameObj Types
+
+(define (keywords2assoc lst)
+  (cond ((and (pair? lst)
+              (not (null? (cdr lst))))
+         (let ((key   (car lst))
+               (value (cadr lst)))
+           (if (keyword? key)
+               (cons (cons (keyword->symbol key) value)
+                     (keywords2assoc (cddr lst))))))
+        (else
+         '())))
+
+(define c:gameobj-create gameobj-create)
+(define (gameobj-create type . lst)
+  (c:gameobj-create type (keywords2assoc lst)))
 
 (define (gameobj-get-type obj)
   "return the type of a unit"
@@ -191,8 +208,9 @@
 
 (menu-add-item comm-util-menu "Drop Mine" 
                (lambda ()
-                 (gameobj-create mine-type `((x-pos ,(gameobj-get-property (player-get-current-unit) "x-pos"))
-                                             (y-pos ,(gameobj-get-property (player-get-current-unit) "y-pos"))))))
+                 (gameobj-create mine-type
+                                 #:x-pos (gameobj-get-property (player-get-current-unit) "x-pos")
+                                 #:y-pos (gameobj-get-property (player-get-current-unit) "y-pos"))))
 
 (define *satchels* '())
 (menu-add-item comm-util-menu "Touch of Satchel"
@@ -204,9 +222,9 @@
 
 (menu-add-item comm-util-menu "Drop Satchel" 
                (lambda ()
-                 (let* ((obj (gameobj-create
-                              satchel-type `((x-pos ,(gameobj-get-property (player-get-current-unit) "x-pos"))
-                                             (y-pos ,(gameobj-get-property (player-get-current-unit) "y-pos"))))))
+                 (let* ((obj (gameobj-create satchel-type
+                                             #:x-pos (gameobj-get-property (player-get-current-unit) "x-pos")
+                                             #:y-pos (gameobj-get-property (player-get-current-unit) "y-pos"))))
                    (format #t "Put Satchel: ~a~%" obj)
                    (set! *satchels* (cons obj *satchels*)))))
 
@@ -295,23 +313,33 @@
                              (format #t "### Keyboard pressed: mouse: ~A ~A ~%" x y)
                              )))
 
+(define (random-ref vec)
+  (vector-ref vec (random (vector-length vec))))
 
 (define editor-type-list (list tree-type
                                marker-type
                                mine-type
                                satchel-type
-                               soldier-type))
+                               soldier-type
+                               tank-type
+                               heli-type))
+
 (list-cdr-set! editor-type-list (1- (length editor-type-list)) editor-type-list)
 
 (input-register-callback "mouse_left" 
                          (lambda ()
                            (let ((x (input-get-mouse-world-x))
                                  (y (input-get-mouse-world-y)))
-                             
-                             (let ((obj (gameobj-create (car editor-type-list)
-                                                        `((x-pos ,x)
-                                                          (y-pos ,y)))))
-                               (ai-attach obj)))))
+                             (cond (#t
+                                    (building-create building:armored-generator
+                                                     (quotient (inexact->exact x) 40)
+                                                     (quotient (inexact->exact y) 40)))
+                                   (else
+                                    (let ((obj (gameobj-create (car editor-type-list)
+                                                               #:x-pos x
+                                                        #:y-pos y
+                                                        )))
+                                      (ai-attach obj)))))))
   
 (input-register-callback "mouse_wheel_up" 
                          (lambda ()

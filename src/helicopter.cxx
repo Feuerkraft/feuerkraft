@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.10 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.11 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,15 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "alist.hxx"
 #include "projectile.hxx"
 #include "explosion.hxx"
 #include "helicopter.hxx"
+#include "vehicle_ai.hxx"
+#include "ai_manager.hxx"
 #include "resource_manager.hxx"
 
-Helicopter::Helicopter(FloatVector2d arg_pos) 
+Helicopter::Helicopter(const AList& lst)
   : rotor (resources->get_sprite ("feuerkraft/rotor")),
     heli (resources->get_sprite ("feuerkraft/helicopter")),
     heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
@@ -32,10 +35,11 @@ Helicopter::Helicopter(FloatVector2d arg_pos)
     fireing (false),
     reloading (0),
     energie (100),
-    destroyed (false)
+    destroyed (false),
+    ai(0)
 {
-  pos.x = arg_pos.x;
-  pos.y = arg_pos.y;
+  pos.x = lst.get_float("x-pos");
+  pos.y = lst.get_float("y-pos");
 
   velocity = 0;
   orientation = 0;
@@ -170,6 +174,25 @@ void
 Helicopter::collide (Projectile*) 
 {
   energie -= 15;
+}
+
+void
+Helicopter::attach_ai()
+{
+  ai = new VehicleRoboAI(this);
+  AIManager::instance()->add(ai);
+}
+
+void
+Helicopter::dettach_ai()
+{
+  if (ai)
+    {
+      AIManager::instance()->remove(ai);
+      delete ai;
+      ai = 0;
+    }
+
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.12 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: guile.hxx,v 1.13 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,9 +67,12 @@ void scm2property(PropertySet& properties, const char* name, SCM value);
 SCM  property2scm(const Property& property);
 
 /** Convert a SCM of the form '((symbol value) ...) to an AList, types
-    are automatically converted.
-    FIXME: support for keywords instead of simples is missing */
+    are automatically converted. */
 AList scm2alist(SCM lst);
+
+/** Convert a SCM of the form (list #:keyword value #:keyword value
+    ...) to an AList */
+AList keywords2alist(SCM lst);
 
 /** Switches on debugging for Guile, causing line numbers and
     backtraces be printed on errors */

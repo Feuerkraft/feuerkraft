@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.12 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.13 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,9 @@
 #include "energie.hxx"
 #include "vehicle.hxx"
 
+class VehicleAI;
+class AList;
+
 /** @ingroup units */
 class Helicopter : public Vehicle
 {
@@ -42,9 +45,9 @@ private:
   int reloading;
   Energie energie;
   bool destroyed;
-
+  VehicleAI* ai;
 public:
-  Helicopter(FloatVector2d);
+  Helicopter(const AList& lst);
   ~Helicopter();
 
   void draw (View& view);
@@ -61,6 +64,9 @@ public:
   bool is_colliding (FloatVector2d);
   void collide (Projectile*);
   virtual float get_physical_size () { return 3.0; }
+
+  void attach_ai();
+  void dettach_ai();
 };
 
 #endif

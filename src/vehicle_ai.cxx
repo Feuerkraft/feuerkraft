@@ -1,4 +1,4 @@
-//  $Id: vehicle_ai.cxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: vehicle_ai.cxx,v 1.2 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,6 +57,15 @@ VehicleRoboAI::update(float delta)
         }
 
       controller.set_axis_state(ORIENTATION_AXIS, Math::frand() * 2.0f - 1.0f);
+    }
+  
+  if (rand() % 30 == 0)
+    {
+      controller.set_button_state(PRIMARY_FIRE_BUTTON, true);
+    }
+  else
+    {
+      controller.set_button_state(PRIMARY_FIRE_BUTTON, false);
     }
   
   vehicle->update_controlls(controller);

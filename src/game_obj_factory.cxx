@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.9 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.10 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,8 @@
 #include "marker.hxx"
 #include "mine.hxx"
 #include "soldier.hxx"
+#include "tank.hxx"
+#include "helicopter.hxx"
 #include "satchel_charge.hxx"
 
 #include "game_obj.hxx"
@@ -38,12 +40,14 @@ GameObjFactory::GameObjFactory()
   // data/feuerkraft.scm
 
   // FIXME: Types should be named here, to not having update to files
-  register_factory(0); // id=0 -> the empty factory
-  register_factory(new GameObjGenericFactory<Tree>());
-  register_factory(new GameObjGenericFactory<Marker>());
-  register_factory(new GameObjGenericFactory<Mine>());
-  register_factory(new GameObjGenericFactory<SatchelCharge>());
-  register_factory(new GameObjGenericFactory<Soldier>());
+  register_factory("none",       0); // id=0 -> the empty factory
+  register_factory("tree",       new GameObjGenericFactory<Tree>());
+  register_factory("marker",     new GameObjGenericFactory<Marker>());
+  register_factory("mine",       new GameObjGenericFactory<Mine>());
+  register_factory("satchel",    new GameObjGenericFactory<SatchelCharge>());
+  register_factory("soldier",    new GameObjGenericFactory<Soldier>());
+  register_factory("tank",       new GameObjGenericFactory<Tank>());
+  register_factory("helicopter", new GameObjGenericFactory<Helicopter>());
 }
 
 GameObjFactory* 
@@ -118,7 +122,7 @@ GameObjFactory::get_factory(int type_id)
 }
 
 int
-GameObjFactory::register_factory(GameObjAbstractFactory* factory)
+GameObjFactory::register_factory(const char* name, GameObjAbstractFactory* factory)
 {
   int type_id = factories.size();
   factories.push_back(factory);

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.25 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: tank.cxx,v 1.26 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,12 +36,16 @@
 #include "resource_manager.hxx"
 #include "property_set.hxx"
 #include "alist.hxx"
+#include "vehicle_ai.hxx"
+#include "ai_manager.hxx"
 #include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
 
 Tank::Tank(const AList& lst)
+  : energie(100)
 {
+  // FIME: This needs cleanup
   AList def;
 
   def.set_float ("x-pos", 0);
@@ -55,13 +59,42 @@ Tank::Tank(const AList& lst)
 
   def.merge(lst);
 
+  // Load
   smod   = resources->get_sprite(def.get_string("tank"));
+  sur    = resources->get_sprite(def.get_string("tank"));
   turret = new Turret(this, 
                       def.get_int("reloading_speed"),
                       def.get_string("turret"), 
                       def.get_string("fire"));
 
-  Bailout("FIXME: Incomplete");
+  pos.x = def.get_float("x-pos");
+  pos.y = def.get_float("y-pos");
+  
+  // Init local variables
+  speed = 0.0f;
+  increment = 2.0f;
+  burning = false;
+  
+  sur_destroyed = resources->get_sprite ("feuerkraft/tank2destroyed");
+  shadow        = resources->get_sprite ("feuerkraft/tank2_shadow");
+  smod_step = 0;
+  mine_reload_time = 0;
+  destroyed = false;
+  velocity = 0.0f;
+
+  orientation = Math::south;
+  tmp_angle = orientation;
+
+  sur.set_alignment(origin_center);
+  sur_destroyed.set_alignment(origin_center);
+
+  particle_release = 0.0f;
+  
+  properties->register_float("ammo",  &ammo);
+  properties->register_float("fuel",  &fuel);
+  
+  smoke_emitter = new SmokeEmitter(pos);
+  ai = 0;
 }
 
 Tank::Tank (const FloatVector2d &arg_pos,
@@ -79,6 +112,7 @@ Tank::Tank (const FloatVector2d &arg_pos,
     energie (100),
     destroyed (false)
 {
+  ai = 0;
   velocity = 0.0f;
 
   orientation = Math::south;
@@ -184,16 +218,16 @@ void
 Tank::respawn ()
 {
   /* FIXME: This respawn code is extremly ugly... 
-  Tank* tank = new Tank(FloatVector2d (560, 1245), 5,
-                        "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-  GameWorld::current()->add (tank);
-  if (get_controller ())
-    {
-      get_controller ()->set_controllable (tank);
-      tank->set_controller (get_controller ());
-      vehicle_view.set_vehicle (tank);
-    }
-  destroy_time = -1;
+     Tank* tank = new Tank(FloatVector2d (560, 1245), 5,
+     "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+     GameWorld::current()->add (tank);
+     if (get_controller ())
+     {
+     get_controller ()->set_controllable (tank);
+     tank->set_controller (get_controller ());
+     vehicle_view.set_vehicle (tank);
+     }
+     destroy_time = -1;
   */
 }
 
@@ -352,11 +386,28 @@ Tank::on_collision(GameObj* obj)
 {
   if (dynamic_cast<Unit*>(obj))
     {
-      std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
+      //std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
       pos = tmp_pos;
       velocity = 0;
     }
 }
 
-// EOF //
+void
+Tank::attach_ai()
+{
+  ai = new VehicleRoboAI(this);
+  AIManager::instance()->add(ai);
+}
 
+void
+Tank::dettach_ai()
+{
+  if (ai)
+    {
+      AIManager::instance()->remove(ai);
+      delete ai;
+      ai = 0;
+    }
+}
+
+// EOF //

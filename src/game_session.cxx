@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: game_session.cxx,v 1.4 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -115,7 +115,9 @@ GameSession::init()
   }
 
   world->add(new RobotTank(660, 1245, 0, 100.0f));
-  world->add(new Helicopter(FloatVector2d(600, 1245)));
+  world->add(new Helicopter(AList()
+                            .set_float("x-pos", 600)
+                            .set_float("y-pos", 1245)));
 
   world->add(new Tank(FloatVector2d (650, 1245), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));
   world->add(new Tank(FloatVector2d (750, 1245), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));

@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.16 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: guile.cxx,v 1.17 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -90,6 +90,69 @@ std::string keyword2string(SCM keyword)
   std::string ret = str + 1; // skip the dash
   free(str);
   return ret;
+}
+
+AList keywords2alist(SCM lst)
+{
+  AList alist;
+  while(gh_pair_p(lst) && !gh_null_p(gh_cdr(lst)))
+    {
+      SCM key  = gh_car(lst);
+      SCM data = gh_cadr(lst);
+    
+      if (scm_keyword_p(key) == SCM_BOOL_F)
+        {
+          std::cout << "Skipping keyword: " << key << std::endl;
+        }
+      else
+        {
+          std::string keyword = Guile::keyword2string(key);
+          if (gh_string_p(data))
+            {
+              alist.set_string(keyword,
+                               Guile::scm2string(data));
+            }
+          else if (gh_exact_p(data))
+            {
+              alist.set_int(keyword,
+                            gh_scm2int(data));
+            }
+          else if (gh_inexact_p(data))
+            {
+              alist.set_float(keyword,
+                              gh_scm2double(data));
+            }
+          else if (gh_boolean_p(data))
+            {
+              alist.set_bool(keyword,
+                             gh_scm2bool(data));
+            }
+          else if (gh_list_p(data) && gh_length(data) == 2
+                   && gh_exact_p(gh_car(data)) 
+                   && gh_exact_p(gh_cadr(data)))
+            {
+              IntVector2d vec;
+              vec.x = gh_scm2int(gh_car(data));
+              vec.y = gh_scm2int(gh_cadr(data));
+              alist.set_int_vector2d(keyword,
+                                     vec);
+            }
+          else if (gh_symbol_p(data))
+            {
+              alist.set_string(keyword,
+                               Guile::symbol2string(data));
+            }
+          else
+            {
+              std::cout << "Guile: Error: Couldn't handle data" << std::endl;
+              gh_display(data);
+              gh_newline();
+            }          
+        }
+
+      lst = gh_cddr(lst);
+    }
+  return alist;
 }
 
 AList scm2alist(SCM lst)
