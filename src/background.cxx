@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.4 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: background.cxx,v 1.5 2003/04/28 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,11 @@
 
 
 Background::Background (boost::dummy_ptr<GameWorld> w,
-			const CL_Sprite& arg_sprite)
+			const CL_Sprite& arg_sprite,
+                        float arg_z_pos)
   : GameObj (w),
-    sur (arg_sprite.get_frame_surface(0))
+    sur (arg_sprite.get_frame_surface(0)),
+    z_pos(arg_z_pos)
 {
   sur.set_alignment(origin_top_left);
 }

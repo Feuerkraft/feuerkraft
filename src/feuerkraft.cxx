@@ -166,7 +166,8 @@ public:
 	world->add (tank1);
 	world->add (ai_vehicle);
 	world->add (tank2);
-	world->add (new Background (world, resources->get_sprite("feuerkraft/sand")));
+	world->add (new Background (world, resources->get_sprite("feuerkraft/sand"), -10.0f));
+	//world->add (new Background (world, resources->get_sprite("feuerkraft/cloudshadow"), 150.0f));
 	world->add (new Playfield (world));
 	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
 
@@ -178,11 +179,11 @@ public:
 						     rand () % 2048 - 1024)));
 	  }
 
-	world->add (new Soldier (world, CL_Vector (200, 200)));
-	world->add (new Soldier (world, CL_Vector (300, 300)));
-	world->add (new Soldier (world, CL_Vector (150, 400)));
-	world->add (new Soldier (world, CL_Vector (550, 400)));
-	world->add (new Soldier (world, CL_Vector (550, 100)));
+	world->add(new Soldier (world, CL_Vector (200, 200)));
+	world->add(new Soldier (world, CL_Vector (300, 300)));
+	world->add(new Soldier (world, CL_Vector (150, 400)));
+	world->add(new Soldier (world, CL_Vector (550, 400)));
+	world->add(new Soldier (world, CL_Vector (550, 100)));
 	
 	/** 1/30sec = 1.0delta
 	 */
@@ -251,8 +252,9 @@ public:
             
 	    if (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 	      {
-		while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
-		  CL_System::keep_alive ();
+		//while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
+		  //CL_System::keep_alive ();
+
 		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
 		std::cout << "Mouse: " <<  pos << " | "
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 

@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.1 2003/04/28 21:20:37 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.2 2003/04/28 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,8 @@
 
 #include <math.h>
 #include "resource_manager.hxx"
+#include "game_world.hxx"
+#include "particles/smoke_particle.hxx"
 #include "ai_vehicle.hxx"
 
 AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
@@ -70,6 +72,8 @@ AIVehicle::update(float delta)
             pos = target_pos;
             next_order();
           }
+        if (rand()% 15 == 1)
+          world->add (new SmokeParticle (get_world (), pos));
       } 
       break;
 

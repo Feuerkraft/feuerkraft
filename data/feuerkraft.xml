@@ -217,6 +217,7 @@
     <sprite name="hole">
       <image name="image1" file="data/images/hole.png" />
     </sprite>
+
     <sprite name="helidestroyed">
       <image name="image1" file="data/images/helidestroyed.png" />
     </sprite>
@@ -290,6 +291,10 @@
 
     <sprite name="sand">
       <image name="image1" file="data/images/sand.jpg" />
+    </sprite>
+
+    <sprite name="cloudshadow">
+      <image name="image1" file="data/images/cloudshadow.png" />
     </sprite>
 
     <sprite name="stone">

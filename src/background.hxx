@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: background.hxx,v 1.4 2003/04/28 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,15 +31,16 @@ class Background
 {
 private:
   CL_Surface sur;
-  
+  float z_pos;
+
 public:
-  Background (boost::dummy_ptr<GameWorld> w, const CL_Sprite& sprite);
+  Background (boost::dummy_ptr<GameWorld> w, const CL_Sprite& sprite, float z_pos);
   virtual ~Background () {}
 
   void draw (View* draw);
   void update (float delta) {}
 
-  virtual int  get_z_pos () { return -10; }
+  virtual int  get_z_pos () { return static_cast<int>(z_pos); }
 };
 
 #endif
