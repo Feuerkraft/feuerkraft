@@ -1,4 +1,4 @@
-//  $Id: player_view.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: player_view.cxx,v 1.4 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "player_view.hxx"
 
 PlayerViewUpdater::PlayerViewUpdater(Player* arg_player)
-  : VehicleViewUpdater(arg_player->get_current_vehicle()),
+  : VehicleViewUpdater(arg_player->get_current_unit()),
     player(arg_player)
 {
 }
@@ -30,7 +30,7 @@ void
 PlayerViewUpdater::update(float delta, ViewState& state)
 {
   // FIXME: Polling considered evil, maybe CL_Signal will help
-  set_vehicle(player->get_current_vehicle());
+  set_unit(player->get_current_unit());
 
   VehicleViewUpdater::update(delta, state);
 }

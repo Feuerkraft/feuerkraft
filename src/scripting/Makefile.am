@@ -20,6 +20,8 @@ command_source = ai_vehicle_commands.cxx \
  player_commands.cxx     \
  sound_commands.cxx      \
  sound_commands.hxx      \
+ vehicle_commands.hxx    \
+ vehicle_commands.cxx    \
  input_commands.hxx      \
  input_commands.cxx
 

@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.10 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #include <math.h>
 #include "vehicle_view.hxx"
 
-VehicleViewUpdater::VehicleViewUpdater (VehiclePtr arg_vehicle)
-  : vehicle (arg_vehicle)
+VehicleViewUpdater::VehicleViewUpdater (Unit* arg_unit)
+  : unit(arg_unit)
 {
   speed = 0.1f;
   zoom_follower = 1.0f;
@@ -35,14 +35,16 @@ void
 VehicleViewUpdater::update (float delta, ViewState& state)
 {
   delta *= 50.0f;
-  FloatVector2d target = vehicle->get_pos ();
- 
-  float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0) * 1.5f;
+  FloatVector2d target = unit->get_pos ();
+
+#if 0  // FIXME:
+  float zoom = (-fabs(unit->get_velocity ()/10.0f) + 1.0) * 1.5f;
 
   if (zoom_follower > zoom) zoom_follower -= 0.01 * delta;
   if (zoom_follower < zoom) zoom_follower += 0.01 * delta;
 
   state.zoom = zoom_follower;
+#endif 
 
   if ((pos - target).get_length() > 1.0f)
     {
@@ -53,7 +55,7 @@ VehicleViewUpdater::update (float delta, ViewState& state)
   state.x_offset = int(pos.x);
   state.y_offset = int(pos.y);
 
-  float my_rotation = -(vehicle->get_orientation()/3.1415927*180.0) + 90;
+  float my_rotation = -(unit->get_orientation()/3.1415927*180.0) + 90;
 
   if (state.rotation > my_rotation) 
     state.rotation -= 2 * delta;
@@ -63,9 +65,9 @@ VehicleViewUpdater::update (float delta, ViewState& state)
 }
 
 void
-VehicleViewUpdater::set_vehicle (VehiclePtr arg_vehicle)
+VehicleViewUpdater::set_unit(Unit* arg_unit)
 {
-  vehicle = arg_vehicle;
+  unit = arg_unit;
 }
 
 /* EOF */

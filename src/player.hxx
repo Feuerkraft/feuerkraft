@@ -1,4 +1,4 @@
-//  $Id: player.hxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: player.hxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,20 +20,20 @@
 #ifndef HEADER_PLAYER_HXX
 #define HEADER_PLAYER_HXX
 
-class Vehicle;
+class Unit;
 
 /** The player class keeps track of all the stuff that is owned by a
-    player (Controller, Vehicle, VehicleView, etc) */
+    player (Controller, Unit, UnitView, etc) */
 class Player
 {
 private:
-  Vehicle* vehicle;
+  Unit* unit;
 
 public:
-  Player(Vehicle* vehicle);
+  Player(Unit* unit);
 
-  void     set_current_vehicle(Vehicle*);
-  Vehicle* get_current_vehicle();
+  void     set_current_unit(Unit*);
+  Unit* get_current_unit();
 
 private:
   Player (const Player&);

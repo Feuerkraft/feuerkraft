@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.39 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.40 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -211,7 +211,9 @@ Feuerkraft::main(int argc, char** argv)
       RobotTank* robot_tank = new RobotTank(660, 1245, 0, 100.0f);
       world->add(robot_tank);
 
-      Player the_player(tank1);
+      Soldier* soldier = new Soldier(FloatVector2d (200, 200));
+
+      Player the_player(soldier);
       player = &the_player;
       View view(0, 0, CL_Display::get_width(), CL_Display::get_height(),
                 new PlayerViewUpdater(player));
@@ -226,6 +228,7 @@ Feuerkraft::main(int argc, char** argv)
       world->add(new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
       world->add(new Ambulance());
 
+      world->add(soldier);
       world->add(new Soldier(FloatVector2d (200, 200)));
       world->add(new Soldier(FloatVector2d (300, 300)));
       world->add(new Soldier(FloatVector2d (150, 400)));
@@ -350,7 +353,7 @@ Feuerkraft::main(int argc, char** argv)
           // someone closes the window.
           CL_System::keep_alive();
           InputManager::update(delta);
-          player->get_current_vehicle()->update_controlls(InputManager::get_events());
+          player->get_current_unit()->update_controlls(InputManager::get_events());
         }
 
       std::cout << "Avarage delta: " << deltas/loops << std::endl;

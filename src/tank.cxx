@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.17 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: tank.cxx,v 1.18 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -59,8 +59,6 @@ Tank::Tank (const FloatVector2d &arg_pos,
 
   particle_release = 0.0f;
   
-  properties->register_float("x-pos", &pos.x);
-  properties->register_float("y-pos", &pos.y);
   properties->register_float("ammo",  &ammo);
   properties->register_float("fuel",  &fuel);
 }

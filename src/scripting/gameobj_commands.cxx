@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: gameobj_commands.cxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,11 @@
 #include "../guile.hxx"
 #include "../property_set.hxx"
 #include "../property.hxx"
+
+#include "../soldier.hxx"
+#include "../vehicle.hxx"
+#include "../unit.hxx"
+
 #include "../game_obj.hxx"
 #include "../game_obj_manager.hxx"
 #include "../game_obj_factory.hxx"
@@ -86,6 +91,27 @@ gameobj_create(int type_id, SCM lst)
 {
   GameObj* obj = GameObjFactory::instance()->create(type_id, Guile::scm2alist(lst));
   return GameObjManager::current()->add_object(obj);
+}
+
+bool
+gameobj_is_vehicle(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  return (obj && dynamic_cast<Vehicle*>(obj));
+}
+
+bool
+gameobj_is_unit(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  return (obj && dynamic_cast<Unit*>(obj));
+}
+
+bool
+gameobj_is_soldier(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  return (obj && dynamic_cast<Soldier*>(obj));
 }
 
 /* EOF */

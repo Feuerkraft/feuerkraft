@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle_view.hxx,v 1.10 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,20 +23,21 @@
 #include "vehicle.hxx"
 #include "view.hxx"
 
+// FIXME: Rename to UnitViewUpdater
 class VehicleViewUpdater : public ViewUpdater
 {
 private:
-  VehiclePtr vehicle;
+  Unit* unit;
   FloatVector2d pos;
 
   float speed;
   float zoom_follower;
 public:
-  VehicleViewUpdater (VehiclePtr arg_vehicle);
+  VehicleViewUpdater (Unit* arg_unit);
   virtual ~VehicleViewUpdater ();
 
-  virtual void update (float delta, ViewState& state);
-  void set_vehicle (VehiclePtr arg_vehicle);
+  virtual void update(float delta, ViewState& state);
+  void set_unit(Unit* arg_unit);
 };
 
 #endif

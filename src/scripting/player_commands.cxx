@@ -1,4 +1,4 @@
-//  $Id: player_commands.cxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: player_commands.cxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,21 +19,21 @@
 
 #include <iostream>
 #include "../game_obj.hxx"
-#include "../vehicle.hxx"
+#include "../unit.hxx"
 #include "../player.hxx"
 #include "../game_obj_manager.hxx"
 #include "player_commands.hxx"
 
 extern Player* player;
 
-void player_set_current_vehicle(int handle)
+void player_set_current_unit(int handle)
 {
   GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
   if (obj)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(obj);
-      if (vehicle != 0)
-        player->set_current_vehicle(vehicle);
+      Unit* unit = dynamic_cast<Unit*>(obj);
+      if (unit)
+        player->set_current_unit(unit);
     }
   else
     {
@@ -41,9 +41,9 @@ void player_set_current_vehicle(int handle)
     }
 }
 
-int  player_get_current_vehicle()
+int  player_get_current_unit()
 {
-  GameObj* game_obj = player->get_current_vehicle();
+  GameObj* game_obj = player->get_current_unit();
   return game_obj->get_id();
 }
 

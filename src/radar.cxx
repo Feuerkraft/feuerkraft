@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.12 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: radar.cxx,v 1.13 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,7 +76,8 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
   // Callculate the distance between 'pos' and the vehicle that holds
   // the radar
   FloatVector2d diff = arg_pos;
-  diff -= player->get_current_vehicle()->get_pos();
+
+  diff -= player->get_current_unit()->get_pos();
   diff *= 1/30.0f;
 
   float alpha =(diff.get_length() / 64.0);

@@ -1,4 +1,4 @@
-//  $Id: unit.cxx,v 1.1 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: unit.cxx,v 1.2 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,17 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "property_set.hxx"
 #include "unit.hxx"
 
 Unit::Unit()
 {
   pos = FloatVector2d(0,0);
   orientation = 0;
+
+  properties->register_float("x-pos", &pos.x);
+  properties->register_float("y-pos", &pos.y);
+  properties->register_float("orientation", &orientation);
 }
 
 Unit::~Unit()

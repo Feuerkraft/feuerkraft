@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.15 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.16 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,10 +47,7 @@ AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
 
   current_order.type = AI_VO_NONE;
   
-  properties->register_float("x-pos",       &pos.x);
-  properties->register_float("y-pos",       &pos.y);
   properties->register_bool ("destroyed",   &destroyed);
-  properties->register_float("orientation", &orientation);
 }
 
 void

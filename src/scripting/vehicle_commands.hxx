@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle_commands.hxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef HEADER_FEUERKRAFT_VEHICLE_COMMANDS_HXX
 #define HEADER_FEUERKRAFT_VEHICLE_COMMANDS_HXX
 
+#if 0
 void vehicle_set_fuel(int fuel);
 int  vehicle_get_fuel();
 
@@ -28,6 +29,7 @@ int  vehicle_get_weapon(int number);
 
 /** Set the given vehicle to the given x,y coordinates */
 void vehicle_set_position(int vehicle_handle, int x, int y);
+#endif 
 
 /** Find the nearest vehicle to the given coordinates, if the nearest
     vehicle is further away than \a max_distance, it is ignored and 0

@@ -1,4 +1,4 @@
-//  $Id: player.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: player.cxx,v 1.4 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,22 +20,22 @@
 #include <assert.h>
 #include "player.hxx"
 
-Player::Player(Vehicle* arg_vehicle)
+Player::Player(Unit* arg_unit)
 {
-  set_current_vehicle(arg_vehicle);
+  set_current_unit(arg_unit);
 }
 
 void
-Player::set_current_vehicle(Vehicle* arg_vehicle)
+Player::set_current_unit(Unit* arg_unit)
 {
-  vehicle = arg_vehicle;
+  unit = arg_unit;
 }
 
-Vehicle*
-Player::get_current_vehicle()
+Unit*
+Player::get_current_unit()
 {
-  assert(vehicle);
-  return vehicle;
+  assert(unit);
+  return unit;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.8 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: soldier.cxx,v 1.9 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
+#include "view.hxx"
 #include "soldier.hxx"
 
 Soldier::Soldier(const FloatVector2d& arg_pos) 
@@ -32,19 +34,61 @@ Soldier::~Soldier ()
 void
 Soldier::update_controlls(const InputEventLst& events)
 {
-  
+  for (InputEventLst::const_iterator i = events.begin(); i != events.end(); ++i)
+    {
+      switch (i->type)
+        {
+        case AXIS_EVENT:
+          switch (i->axis.name)
+            {
+            case ACCELERATE_AXIS:
+              //std::cout << "Accelerate: " << i->axis.pos << std::endl;
+              acceleration = i->axis.pos;
+              break;
+            case BREAK_AXIS:
+              //std::cout << "Break: " << i->axis.pos << std::endl;
+              deceleration = i->axis.pos;
+              break;
+            case ORIENTATION_AXIS:
+              //std::cout << "Steering: " << i->axis.pos << std::endl;
+              steering = i->axis.pos;
+              break;
+            default:
+              std::cout << "Unknown axis: " << i->axis.name << std::endl;
+            }
+          break;
+        default:
+          std::cout << "Unknown event type: " << i->type << std::endl;
+        }
+    }
 }
 
 void 
 Soldier::draw (View& view)
 {
-  //view->draw (sur, pos);
+  view.draw (sur, pos);
 }
 
 void 
 Soldier::update (float delta)
 {
-  pos += FloatVector2d(0.0f, -0.5f);
+  FloatVector2d velocity;
+
+  if (acceleration != 0)
+    velocity.y = 1;
+  else if (deceleration != 0)
+    velocity.y = -1;
+  else
+    velocity.y = 0;
+
+  if (steering > 0)
+    velocity.x = 1;
+  else if (steering < 0)
+    velocity.x = -1;
+  else
+    velocity.x = 0;
+
+  pos += velocity * 250.0f * delta;
 }
 
 bool 
