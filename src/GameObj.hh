@@ -1,4 +1,4 @@
-//  $Id: GameObj.hh,v 1.6 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: GameObj.hh,v 1.7 2001/04/07 18:03:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,7 @@ class GameWorld;
 class GameObj
 {
 protected:
-  friend GameWorld;
+  friend class GameWorld;
 
   GameWorld* world;
   bool remove_me;
