@@ -21,19 +21,9 @@
 #define HEADER_FEUERKRAFT_VEHICLES_ROTOR_HXX
 
 #include <ClanLib/Display/sprite.h>
+#include "rotor_description.hxx"
 
 class View;
-
-class RotorDescription
-{
-public:
-  enum Direction { LEFT, RIGHT }; 
-
-  std::string   slow_sprite;
-  std::string   fast_sprite;
-  FloatVector2d offset;
-  RotorDescription::Direction direction;
-};
 
 /** */
 class Rotor

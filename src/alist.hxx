@@ -43,6 +43,7 @@ public:
       bool  v_bool;
       std::string*  v_string;
       IntVector2d   v_int_vector2d;
+      FloatVector2d* v_float_vector2d;
     };
   };
 private:
@@ -79,6 +80,7 @@ public:
   std::string get_string(const std::string& str, const std::string& ref = std::string()) const;
 
   bool retrieve_int_vector2d (const std::string& str, IntVector2d& value) const;
+  bool retrieve_float_vector2d (const std::string& str, FloatVector2d& value) const;
 
   /** Merg lst into the current list, overwriting all values in *this
       that are also in lst */

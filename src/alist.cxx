@@ -246,6 +246,21 @@ AList::retrieve_int_vector2d (const std::string& name, IntVector2d& value) const
     }
 }
 
+bool
+AList::retrieve_float_vector2d (const std::string& name, FloatVector2d& value) const
+{
+  return false;
+  /*
+  const Value* v = get_value(name, AL_FLOATVECTOR2D);
+  if (!v)
+    return false;
+  else
+    {
+      value = v->v_float_vector2d;
+      return true;
+      }*/
+}
+
 int
 AList::get_int(const std::string& str, int def) const
 {

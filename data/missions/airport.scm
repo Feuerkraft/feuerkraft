@@ -325,4 +325,8 @@
 
 (airport:add-waypoints *waypoints*)
 
+(input-register-callback "key_4"
+                         (lambda ()
+                           (comm-unit-message 82 "Heavy damage taken\nNeed help emidiatly!")))
+
 ;; EOF ;;

@@ -126,7 +126,16 @@ GameSession::init()
   world->add(new RobotTank(660, 1245, 0, 100.0f));
   world->add(new Helicopter(AList()
                             .set_float("x-pos", 600)
-                            .set_float("y-pos", 1245)));
+                            .set_float("y-pos", 1245)
+                            .set_int("type", 0)));
+  world->add(new Helicopter(AList()
+                            .set_float("x-pos", 600)
+                            .set_float("y-pos", 1445)
+                            .set_int("type", 1)));
+  world->add(new Helicopter(AList()
+                            .set_float("x-pos", 660)
+                            .set_float("y-pos", 1645)
+                            .set_int("type", 2)));
 
   world->add(new Tank(FloatVector2d (650, 1245), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));
   world->add(new Tank(FloatVector2d (750, 1245), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));
@@ -226,6 +235,7 @@ GameSession::update()
   // someone closes the window.
   CL_System::keep_alive();
   InputManager::update(delta);
+
   // FIXME: Add an input dispatcher here, depending on the
   // dispatcher state, input should go to the menu, to the
   // comm-dialog or to the players vehicle
@@ -237,6 +247,7 @@ GameSession::update()
     {
       player->get_current_unit()->update_controlls(InputManager::get_controller());
     }
+
   InputManager::clear();
 }
 

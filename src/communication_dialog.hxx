@@ -1,6 +1,6 @@
-//  $Id: comm_commands.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id$
 // 
-//  Feuerkraft - A Tank Battle Game
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,17 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_COMM_COMMANDS_HXX
-#define HEADER_COMM_COMMANDS_HXX
+#ifndef HEADER_COMMUNICATION_DIALOG_HXX
+#define HEADER_COMMUNICATION_DIALOG_HXX
 
-/** @addtogroup scripting */
-//@{
+#include <map>
+#include "gui_obj.hxx"
 
-void comm_send_message(int color, const char* str);
+/** */
+class CommunicationDialog : public GuiObj
+{
+private:
+  typedef std::map<int, std::string> Messages;
+  Messages messages;
 
-void comm_unit_message(int unit, const char* str);
+  static CommunicationDialog* current_;
+public:
+  static CommunicationDialog* current() { return current_; }
 
-//@}
+  CommunicationDialog();
+  ~CommunicationDialog();
+
+  void send(int id, const std::string& message);
+
+  void draw (CL_GraphicContext& gc);
+  void update (float delta);
+private:
+  CommunicationDialog (const CommunicationDialog&);
+  CommunicationDialog& operator= (const CommunicationDialog&);
+};
 
 #endif
 

@@ -20,6 +20,7 @@
 #include <iostream>
 #include <sstream>
 #include "../message_buffer.hxx"
+#include "../communication_dialog.hxx"
 #include "comm_commands.hxx"
 
 void
@@ -29,6 +30,12 @@ comm_send_message(int color, const char* str)
   s << color << ": '" << str << "'" << std::endl;
   std::cout << "### " << str << std::endl;
   MessageBuffer::current()->add(s.str());
+}
+
+void
+comm_unit_message(int unit, const char* str)
+{
+  CommunicationDialog::current()->send(unit, str);
 }
 
 /* EOF */

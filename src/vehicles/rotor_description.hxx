@@ -1,6 +1,6 @@
-//  $Id: comm_commands.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id$
 // 
-//  Feuerkraft - A Tank Battle Game
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,17 +17,20 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_COMM_COMMANDS_HXX
-#define HEADER_COMM_COMMANDS_HXX
+#ifndef HEADER_ROTOR_DESCRIPTION_HXX
+#define HEADER_ROTOR_DESCRIPTION_HXX
 
-/** @addtogroup scripting */
-//@{
 
-void comm_send_message(int color, const char* str);
+class RotorDescription
+{
+public:
+  enum Direction { LEFT, RIGHT }; 
 
-void comm_unit_message(int unit, const char* str);
-
-//@}
+  std::string   slow_sprite;
+  std::string   fast_sprite;
+  FloatVector2d offset;
+  RotorDescription::Direction direction;
+};
 
 #endif
 

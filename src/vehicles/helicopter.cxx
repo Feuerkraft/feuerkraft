@@ -27,34 +27,57 @@
 #include "helicopter.hxx"
 
 Helicopter::Helicopter(const AList& lst)
-  : 
-  //rotor("feuerkraft/huey_rotor", 
-  //      "feuerkraft/huey_rotor2"),
-  //heli (resources->get_sprite ("feuerkraft/chuey")),
-  //heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
-  heli (resources->get_sprite ("feuerkraft/chinook")),
-  heli_shadow (resources->get_sprite ("feuerkraft/chinook_shadow")),
-  helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
-  strafe (0.0),
-  fireing (false),
-  reloading (0),
-  energie (100),
-  destroyed (false),
-  ai(0)
+  : strafe (0.0),
+    fireing (false),
+    reloading (0),
+    energie (100),
+    destroyed (false),
+    ai(0)
 {
-  RotorDescription rotor1;
-  rotor1.offset = FloatVector2d(40.0f, 0);
-  rotor1.slow_sprite = "feuerkraft/chinook_rotor";
-  rotor1.fast_sprite = "feuerkraft/chinook_rotor2";
-  rotor1.direction = RotorDescription::LEFT;
-  rotors.push_back(Rotor(rotor1));
+  if (lst.get_int("type") == 0)
+    {
+      heli          = resources->get_sprite("feuerkraft/huey");
+      heli_shadow   = resources->get_sprite("feuerkraft/huey_shadow");
+      helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
+      
+      RotorDescription rotor;
+      rotor.direction = RotorDescription::LEFT;
+      rotor.slow_sprite ="feuerkraft/huey_rotor";
+      rotor.fast_sprite = "feuerkraft/huey_rotor2";
+      rotors.push_back(Rotor(rotor));
+    }
+  else if (lst.get_int("type") == 1)
+    {
+      heli          = resources->get_sprite("feuerkraft/helicopter");
+      heli_shadow   = resources->get_sprite("feuerkraft/helicopter_shadow");
+      helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
+      
+      RotorDescription rotor;
+      rotor.direction = RotorDescription::LEFT;
+      rotor.slow_sprite ="feuerkraft/huey_rotor";
+      rotor.fast_sprite = "feuerkraft/huey_rotor2";
+      rotors.push_back(Rotor(rotor));      
+    }
+  else // if (lst.get_int("type") == 2)
+    {
+      heli          = resources->get_sprite("feuerkraft/chinook");
+      heli_shadow   = resources->get_sprite("feuerkraft/chinook_shadow");
+      helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
+        
+      RotorDescription rotor1;
+      rotor1.offset = FloatVector2d(40.0f, 0);
+      rotor1.slow_sprite = "feuerkraft/chinook_rotor";
+      rotor1.fast_sprite = "feuerkraft/chinook_rotor2";
+      rotor1.direction = RotorDescription::LEFT;
+      rotors.push_back(Rotor(rotor1));
   
-  RotorDescription rotor2;
-  rotor2.offset = FloatVector2d(-40.0f, 0);
-  rotor2.slow_sprite = "feuerkraft/chinook_rotor";
-  rotor2.fast_sprite = "feuerkraft/chinook_rotor2";
-  rotor2.direction = RotorDescription::RIGHT;
-  rotors.push_back(Rotor(rotor2));
+      RotorDescription rotor2;
+      rotor2.offset = FloatVector2d(-40.0f, 0);
+      rotor2.slow_sprite = "feuerkraft/chinook_rotor";
+      rotor2.fast_sprite = "feuerkraft/chinook_rotor2";
+      rotor2.direction = RotorDescription::RIGHT;
+      rotors.push_back(Rotor(rotor2));
+    }
 
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");

@@ -25,6 +25,7 @@
 #include "level_map.hxx"
 #include "vehicle_status.hxx"
 #include "message_buffer.hxx"
+#include "communication_dialog.hxx"
 #include "display_manager.hxx"
 
 extern Player*  player;
@@ -50,6 +51,7 @@ DisplayManager::DisplayManager()
   screen.add(message_buffer = new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
   help = new Help();
   screen.add(radar = new Radar(FloatVector2d(64, 64), player));
+  screen.add(new CommunicationDialog());
   screen.add(vehicle_status = new VehicleStatus());
 }
 
