@@ -1,4 +1,4 @@
-//  $Id: Guile.hxx,v 1.1 2002/04/07 16:29:09 grumbel Exp $
+//  $Id: Guile.hxx,v 1.2 2002/05/18 16:44:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <guile/gh.h>
 #include <ClanLib/core.h>
 #include <string>
+#include <iostream>
 
 /** A loose collection of Guile helper functions */
 class Guile
@@ -43,7 +44,8 @@ public:
   static SCM symbol_value_pair (const std::string&, float);
 
   /** Pretty print the object given by obj */
-  static void pretty_print (ostream& stream, SCM obj);
+  static void pretty_print (std::ostream& s, SCM obj);
+
 };
 
 #endif

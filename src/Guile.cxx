@@ -1,4 +1,4 @@
-//  $Id: Guile.cxx,v 1.2 2002/04/07 16:58:34 sphair Exp $
+//  $Id: Guile.cxx,v 1.3 2002/05/18 16:44:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -55,7 +55,7 @@ Guile::pos2scm (int x, int y)
 }
 
 void
-Guile::pretty_print (ostream& stream, SCM obj)
+Guile::pretty_print (std::ostream& stream, SCM obj)
 {
   std::cout << "Guile::pretty_print" << std::endl;
   // FIXME: ...lalala..

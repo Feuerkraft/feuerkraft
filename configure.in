@@ -64,6 +64,14 @@ AC_CHECK_LIB( clanDisplay2,   main,, [
 	exit
 	])
 
+
+AC_CHECK_LIB( clanGL,   main,, [
+	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
+	echo "if that doesn't help have a look at the file config.log and look into"
+	echo "the FAQ."
+	exit
+	])
+
 dnl AC_CHECK_LIB( clanJPEG,   main,, [
 dnl 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
 dnl 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"

@@ -2,6 +2,8 @@
 	Loads a single surface from a pcx file without using resource files.
 */
 
+#include <iostream>
+#include <ClanLib/GL/setupgl.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 //#include <ClanLib/sound.h>
@@ -110,6 +112,7 @@ public:
 	CL_SetupCore::init();
 	//CL_SetupSound::init();
 	CL_SetupDisplay::init();
+	CL_SetupGL::init();
 
 	//CL_SetupGL::init();
 	//FIXME:Display2 CL_SetupPNG::init ();
@@ -267,7 +270,7 @@ public:
 	*/
 
 	std::cout << ">>>>>>>>>>> The World <<<<<<<<<<<<<<" << std::endl;	
-	Guile::pretty_print(cout, world->get_data ()->dump_to_scm ());
+	Guile::pretty_print(std::cout, world->get_data ()->dump_to_scm ());
 	std::cout << "<<<<<<<<<<< END World >>>>>>>>>>>>>>" << std::endl;	
 
 	// Loop until the user hits escape:
