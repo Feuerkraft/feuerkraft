@@ -1,4 +1,4 @@
-//  $Id: Energie.cc,v 1.2 2001/02/17 22:41:37 grumbel Exp $
+//  $Id: Energie.cc,v 1.3 2001/02/18 15:38:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,10 @@ Energie::draw (int x_pos, int y_pos)
 			     0.0, 0.0, 0.0, (1000.0 - float(time_diff))/1000.0 * 0.8);
       CL_Display::fill_rect (x_pos - 30, y_pos - 3,
 			     x_pos - 30 + (energie * 60 / max_energie), y_pos + 3,
-			     0.0, 1.0, 0.0, (1000.0 - float(time_diff)) / 1000.0 * 0.9);
+			     1.0 - energie/float(max_energie),
+			     energie/float(max_energie),
+			     0.0, 
+			     (1000.0 - float(time_diff)) / 1000.0 * 0.9);
       //std::cout << "Alpha: " << float(time_diff) / 500.0 << std::endl;
     }
 }
