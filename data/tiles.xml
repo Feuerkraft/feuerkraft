@@ -1,0 +1,586 @@
+<resources>
+  <section name="tiles">
+    <sprite name="aaaa1">
+      <image name="image1" file="data/images/tiles/aaaa1.png" />
+    </sprite>
+
+    <sprite name="aaaa2">
+      <image name="image1" file="data/images/tiles/aaaa2.png" />
+    </sprite>
+
+    <sprite name="aaaa3">
+      <image name="image1" file="data/images/tiles/aaaa3.png" />
+    </sprite>
+
+    <sprite name="aaas1">
+      <image name="image1" file="data/images/tiles/aaas1.png" />
+    </sprite>
+
+    <sprite name="aadd1">
+      <image name="image1" file="data/images/tiles/aadd1.png" />
+    </sprite>
+
+    <sprite name="aadf1">
+      <image name="image1" file="data/images/tiles/aadf1.png" />
+    </sprite>
+
+    <sprite name="aafd1">
+      <image name="image1" file="data/images/tiles/aafd1.png" />
+    </sprite>
+
+    <sprite name="aaff1">
+      <image name="image1" file="data/images/tiles/aaff1.png" />
+    </sprite>
+
+    <sprite name="aafs1">
+      <image name="image1" file="data/images/tiles/aafs1.png" />
+    </sprite>
+
+    <sprite name="aasa1">
+      <image name="image1" file="data/images/tiles/aasa1.png" />
+    </sprite>
+
+    <sprite name="aasf1">
+      <image name="image1" file="data/images/tiles/aasf1.png" />
+    </sprite>
+
+    <sprite name="aass1">
+      <image name="image1" file="data/images/tiles/aass1.png" />
+    </sprite>
+
+    <sprite name="asaa1">
+      <image name="image1" file="data/images/tiles/asaa1.png" />
+    </sprite>
+
+    <sprite name="asas">
+      <image name="image1" file="data/images/tiles/asas.png" />
+    </sprite>
+
+    <sprite name="asas1">
+      <image name="image1" file="data/images/tiles/asas1.png" />
+    </sprite>
+
+    <sprite name="assa1">
+      <image name="image1" file="data/images/tiles/assa1.png" />
+    </sprite>
+
+    <sprite name="asss1">
+      <image name="image1" file="data/images/tiles/asss1.png" />
+    </sprite>
+
+    <sprite name="ddaa1">
+      <image name="image1" file="data/images/tiles/ddaa1.png" />
+    </sprite>
+
+    <sprite name="dddd1">
+      <image name="image1" file="data/images/tiles/dddd1.png" />
+    </sprite>
+
+    <sprite name="dddf">
+      <image name="image1" file="data/images/tiles/dddf.png" />
+    </sprite>
+
+    <sprite name="ddff">
+      <image name="image1" file="data/images/tiles/ddff.png" />
+    </sprite>
+
+    <sprite name="dfaa1">
+      <image name="image1" file="data/images/tiles/dfaa1.png" />
+    </sprite>
+
+    <sprite name="dfdd">
+      <image name="image1" file="data/images/tiles/dfdd.png" />
+    </sprite>
+
+    <sprite name="dffd">
+      <image name="image1" file="data/images/tiles/dffd.png" />
+    </sprite>
+
+    <sprite name="dfff">
+      <image name="image1" file="data/images/tiles/dfff.png" />
+    </sprite>
+
+    <sprite name="fdaa1">
+      <image name="image1" file="data/images/tiles/fdaa1.png" />
+    </sprite>
+
+    <sprite name="fddd">
+      <image name="image1" file="data/images/tiles/fddd.png" />
+    </sprite>
+
+    <sprite name="fddf">
+      <image name="image1" file="data/images/tiles/fddf.png" />
+    </sprite>
+
+    <sprite name="fdfd">
+      <image name="image1" file="data/images/tiles/fdfd.png" />
+    </sprite>
+
+    <sprite name="fdff">
+      <image name="image1" file="data/images/tiles/fdff.png" />
+    </sprite>
+
+    <sprite name="ffaa1">
+      <image name="image1" file="data/images/tiles/ffaa1.png" />
+    </sprite>
+
+    <sprite name="ffdd">
+      <image name="image1" file="data/images/tiles/ffdd.png" />
+    </sprite>
+
+    <sprite name="ffdf">
+      <image name="image1" file="data/images/tiles/ffdf.png" />
+    </sprite>
+
+    <sprite name="fffd">
+      <image name="image1" file="data/images/tiles/fffd.png" />
+    </sprite>
+
+    <sprite name="ffff1">
+      <image name="image1" file="data/images/tiles/ffff1.png" />
+    </sprite>
+
+    <sprite name="ffff2">
+      <image name="image1" file="data/images/tiles/ffff2.png" />
+    </sprite>
+
+    <sprite name="ffff3">
+      <image name="image1" file="data/images/tiles/ffff3.png" />
+    </sprite>
+
+    <sprite name="fffs">
+      <image name="image1" file="data/images/tiles/fffs.png" />
+    </sprite>
+
+    <sprite name="ffsf">
+      <image name="image1" file="data/images/tiles/ffsf.png" />
+    </sprite>
+
+    <sprite name="ffss">
+      <image name="image1" file="data/images/tiles/ffss.png" />
+    </sprite>
+
+    <sprite name="fsaa">
+      <image name="image1" file="data/images/tiles/fsaa.png" />
+    </sprite>
+
+    <sprite name="fsff">
+      <image name="image1" file="data/images/tiles/fsff.png" />
+    </sprite>
+
+    <sprite name="fsfs">
+      <image name="image1" file="data/images/tiles/fsfs.png" />
+    </sprite>
+
+    <sprite name="fssf">
+      <image name="image1" file="data/images/tiles/fssf.png" />
+    </sprite>
+
+    <sprite name="fsss">
+      <image name="image1" file="data/images/tiles/fsss.png" />
+    </sprite>
+
+    <sprite name="fsss1">
+      <image name="image1" file="data/images/tiles/fsss1.png" />
+    </sprite>
+
+    <sprite name="gggg1">
+      <image name="image1" file="data/images/tiles/gggg1.png" />
+    </sprite>
+
+    <sprite name="gggg2">
+      <image name="image1" file="data/images/tiles/gggg2.png" />
+    </sprite>
+
+    <sprite name="gggg3">
+      <image name="image1" file="data/images/tiles/gggg3.png" />
+    </sprite>
+
+    <sprite name="gggg4">
+      <image name="image1" file="data/images/tiles/gggg4.png" />
+    </sprite>
+
+    <sprite name="gggg5">
+      <image name="image1" file="data/images/tiles/gggg5.png" />
+    </sprite>
+
+    <sprite name="gggm2">
+      <image name="image1" file="data/images/tiles/gggm2.png" />
+    </sprite>
+
+    <sprite name="gggs1">
+      <image name="image1" file="data/images/tiles/gggs1.png" />
+    </sprite>
+
+    <sprite name="ggmg2">
+      <image name="image1" file="data/images/tiles/ggmg2.png" />
+    </sprite>
+
+    <sprite name="ggmm1">
+      <image name="image1" file="data/images/tiles/ggmm1.png" />
+    </sprite>
+
+    <sprite name="ggsg1">
+      <image name="image1" file="data/images/tiles/ggsg1.png" />
+    </sprite>
+
+    <sprite name="ggss">
+      <image name="image1" file="data/images/tiles/ggss.png" />
+    </sprite>
+
+    <sprite name="gmgg1">
+      <image name="image1" file="data/images/tiles/gmgg1.png" />
+    </sprite>
+
+    <sprite name="gmgm1">
+      <image name="image1" file="data/images/tiles/gmgm1.png" />
+    </sprite>
+
+    <sprite name="gmmg1">
+      <image name="image1" file="data/images/tiles/gmmg1.png" />
+    </sprite>
+
+    <sprite name="gmmm1">
+      <image name="image1" file="data/images/tiles/gmmm1.png" />
+    </sprite>
+
+    <sprite name="gsgg1">
+      <image name="image1" file="data/images/tiles/gsgg1.png" />
+    </sprite>
+
+    <sprite name="gsgg2">
+      <image name="image1" file="data/images/tiles/gsgg2.png" />
+    </sprite>
+
+    <sprite name="gsgs1">
+      <image name="image1" file="data/images/tiles/gsgs1.png" />
+    </sprite>
+
+    <sprite name="gssg1">
+      <image name="image1" file="data/images/tiles/gssg1.png" />
+    </sprite>
+
+    <sprite name="gssm1">
+      <image name="image1" file="data/images/tiles/gssm1.png" />
+    </sprite>
+
+    <sprite name="gsss1">
+      <image name="image1" file="data/images/tiles/gsss1.png" />
+    </sprite>
+
+    <sprite name="mggg1">
+      <image name="image1" file="data/images/tiles/mggg1.png" />
+    </sprite>
+
+    <sprite name="mggm1">
+      <image name="image1" file="data/images/tiles/mggm1.png" />
+    </sprite>
+
+    <sprite name="mgmg1">
+      <image name="image1" file="data/images/tiles/mgmg1.png" />
+    </sprite>
+
+    <sprite name="mgmm1">
+      <image name="image1" file="data/images/tiles/mgmm1.png" />
+    </sprite>
+
+    <sprite name="mmgg1">
+      <image name="image1" file="data/images/tiles/mmgg1.png" />
+    </sprite>
+
+    <sprite name="mmgm1">
+      <image name="image1" file="data/images/tiles/mmgm1.png" />
+    </sprite>
+
+    <sprite name="mmmg1">
+      <image name="image1" file="data/images/tiles/mmmg1.png" />
+    </sprite>
+
+    <sprite name="mmmm1">
+      <image name="image1" file="data/images/tiles/mmmm1.png" />
+    </sprite>
+
+    <sprite name="mmmm2">
+      <image name="image1" file="data/images/tiles/mmmm2.png" />
+    </sprite>
+
+    <sprite name="mmmm3">
+      <image name="image1" file="data/images/tiles/mmmm3.png" />
+    </sprite>
+
+    <sprite name="mmmm4">
+      <image name="image1" file="data/images/tiles/mmmm4.png" />
+    </sprite>
+
+    <sprite name="mmms1">
+      <image name="image1" file="data/images/tiles/mmms1.png" />
+    </sprite>
+
+    <sprite name="mmms2">
+      <image name="image1" file="data/images/tiles/mmms2.png" />
+    </sprite>
+
+    <sprite name="mmsm1">
+      <image name="image1" file="data/images/tiles/mmsm1.png" />
+    </sprite>
+
+    <sprite name="mmsm2">
+      <image name="image1" file="data/images/tiles/mmsm2.png" />
+    </sprite>
+
+    <sprite name="mmss1">
+      <image name="image1" file="data/images/tiles/mmss1.png" />
+    </sprite>
+
+    <sprite name="mmss2">
+      <image name="image1" file="data/images/tiles/mmss2.png" />
+    </sprite>
+
+    <sprite name="msmm1">
+      <image name="image1" file="data/images/tiles/msmm1.png" />
+    </sprite>
+
+    <sprite name="msmm2">
+      <image name="image1" file="data/images/tiles/msmm2.png" />
+    </sprite>
+
+    <sprite name="msms1">
+      <image name="image1" file="data/images/tiles/msms1.png" />
+    </sprite>
+
+    <sprite name="mssg1">
+      <image name="image1" file="data/images/tiles/mssg1.png" />
+    </sprite>
+
+    <sprite name="mssm">
+      <image name="image1" file="data/images/tiles/mssm.png" />
+    </sprite>
+
+    <sprite name="mssm1">
+      <image name="image1" file="data/images/tiles/mssm1.png" />
+    </sprite>
+
+    <sprite name="mssm2">
+      <image name="image1" file="data/images/tiles/mssm2.png" />
+    </sprite>
+
+    <sprite name="mssm3">
+      <image name="image1" file="data/images/tiles/mssm3.png" />
+    </sprite>
+
+    <sprite name="msss1">
+      <image name="image1" file="data/images/tiles/msss1.png" />
+    </sprite>
+
+    <sprite name="msss2">
+      <image name="image1" file="data/images/tiles/msss2.png" />
+    </sprite>
+
+    <sprite name="saaa1">
+      <image name="image1" file="data/images/tiles/saaa1.png" />
+    </sprite>
+
+    <sprite name="saas1">
+      <image name="image1" file="data/images/tiles/saas1.png" />
+    </sprite>
+
+    <sprite name="sasa1">
+      <image name="image1" file="data/images/tiles/sasa1.png" />
+    </sprite>
+
+    <sprite name="sass1">
+      <image name="image1" file="data/images/tiles/sass1.png" />
+    </sprite>
+
+    <sprite name="sfaa">
+      <image name="image1" file="data/images/tiles/sfaa.png" />
+    </sprite>
+
+    <sprite name="sfff">
+      <image name="image1" file="data/images/tiles/sfff.png" />
+    </sprite>
+
+    <sprite name="sffs">
+      <image name="image1" file="data/images/tiles/sffs.png" />
+    </sprite>
+
+    <sprite name="sffs1">
+      <image name="image1" file="data/images/tiles/sffs1.png" />
+    </sprite>
+
+    <sprite name="sfsf">
+      <image name="image1" file="data/images/tiles/sfsf.png" />
+    </sprite>
+
+    <sprite name="sfss">
+      <image name="image1" file="data/images/tiles/sfss.png" />
+    </sprite>
+
+    <sprite name="sfss1">
+      <image name="image1" file="data/images/tiles/sfss1.png" />
+    </sprite>
+
+    <sprite name="sggg1">
+      <image name="image1" file="data/images/tiles/sggg1.png" />
+    </sprite>
+
+    <sprite name="sggs1">
+      <image name="image1" file="data/images/tiles/sggs1.png" />
+    </sprite>
+
+    <sprite name="sgms1">
+      <image name="image1" file="data/images/tiles/sgms1.png" />
+    </sprite>
+
+    <sprite name="sgsg1">
+      <image name="image1" file="data/images/tiles/sgsg1.png" />
+    </sprite>
+
+    <sprite name="sgss1">
+      <image name="image1" file="data/images/tiles/sgss1.png" />
+    </sprite>
+
+    <sprite name="smgs1">
+      <image name="image1" file="data/images/tiles/smgs1.png" />
+    </sprite>
+
+    <sprite name="smmm">
+      <image name="image1" file="data/images/tiles/smmm.png" />
+    </sprite>
+
+    <sprite name="smmm1">
+      <image name="image1" file="data/images/tiles/smmm1.png" />
+    </sprite>
+
+    <sprite name="smms">
+      <image name="image1" file="data/images/tiles/smms.png" />
+    </sprite>
+
+    <sprite name="smms1">
+      <image name="image1" file="data/images/tiles/smms1.png" />
+    </sprite>
+
+    <sprite name="smsm1">
+      <image name="image1" file="data/images/tiles/smsm1.png" />
+    </sprite>
+
+    <sprite name="smss1">
+      <image name="image1" file="data/images/tiles/smss1.png" />
+    </sprite>
+
+    <sprite name="smss2">
+      <image name="image1" file="data/images/tiles/smss2.png" />
+    </sprite>
+
+    <sprite name="ssaa1">
+      <image name="image1" file="data/images/tiles/ssaa1.png" />
+    </sprite>
+
+    <sprite name="ssas1">
+      <image name="image1" file="data/images/tiles/ssas1.png" />
+    </sprite>
+
+    <sprite name="ssff">
+      <image name="image1" file="data/images/tiles/ssff.png" />
+    </sprite>
+
+    <sprite name="ssff1">
+      <image name="image1" file="data/images/tiles/ssff1.png" />
+    </sprite>
+
+    <sprite name="ssfs">
+      <image name="image1" file="data/images/tiles/ssfs.png" />
+    </sprite>
+
+    <sprite name="ssfs2">
+      <image name="image1" file="data/images/tiles/ssfs2.png" />
+    </sprite>
+
+    <sprite name="ssgg1">
+      <image name="image1" file="data/images/tiles/ssgg1.png" />
+    </sprite>
+
+    <sprite name="ssgs1">
+      <image name="image1" file="data/images/tiles/ssgs1.png" />
+    </sprite>
+
+    <sprite name="ssmm1">
+      <image name="image1" file="data/images/tiles/ssmm1.png" />
+    </sprite>
+
+    <sprite name="ssmm2">
+      <image name="image1" file="data/images/tiles/ssmm2.png" />
+    </sprite>
+
+    <sprite name="ssmm3">
+      <image name="image1" file="data/images/tiles/ssmm3.png" />
+    </sprite>
+
+    <sprite name="ssms1">
+      <image name="image1" file="data/images/tiles/ssms1.png" />
+    </sprite>
+
+    <sprite name="ssms2">
+      <image name="image1" file="data/images/tiles/ssms2.png" />
+    </sprite>
+
+    <sprite name="sssa1">
+      <image name="image1" file="data/images/tiles/sssa1.png" />
+    </sprite>
+
+    <sprite name="sssf">
+      <image name="image1" file="data/images/tiles/sssf.png" />
+    </sprite>
+
+    <sprite name="sssf1">
+      <image name="image1" file="data/images/tiles/sssf1.png" />
+    </sprite>
+
+    <sprite name="sssg">
+      <image name="image1" file="data/images/tiles/sssg.png" />
+    </sprite>
+
+    <sprite name="sssm1">
+      <image name="image1" file="data/images/tiles/sssm1.png" />
+    </sprite>
+
+    <sprite name="sssm2">
+      <image name="image1" file="data/images/tiles/sssm2.png" />
+    </sprite>
+
+    <sprite name="ssss1">
+      <image name="image1" file="data/images/tiles/ssss1.png" />
+    </sprite>
+
+    <sprite name="ssss10">
+      <image name="image1" file="data/images/tiles/ssss10.png" />
+    </sprite>
+
+    <sprite name="ssss12">
+      <image name="image1" file="data/images/tiles/ssss12.png" />
+    </sprite>
+
+    <sprite name="ssss3">
+      <image name="image1" file="data/images/tiles/ssss3.png" />
+    </sprite>
+
+    <sprite name="ssss4">
+      <image name="image1" file="data/images/tiles/ssss4.png" />
+    </sprite>
+
+    <sprite name="ssss5">
+      <image name="image1" file="data/images/tiles/ssss5.png" />
+    </sprite>
+
+    <sprite name="ssss6">
+      <image name="image1" file="data/images/tiles/ssss6.png" />
+    </sprite>
+
+    <sprite name="ssss7">
+      <image name="image1" file="data/images/tiles/ssss7.png" />
+    </sprite>
+
+  </section>
+ </resources>
+
+
