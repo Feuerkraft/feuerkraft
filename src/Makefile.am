@@ -21,6 +21,8 @@ background.hxx \
 command_line_arguments.hxx \
 command_line_arguments.cxx \
 collideable.hxx \
+collision_manager.hxx \
+collision_manager.cxx \
 controllable.hxx \
 controller.cxx \
 controller.hxx \

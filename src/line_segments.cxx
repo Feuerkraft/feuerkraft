@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.5 2003/05/04 17:42:20 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.6 2003/05/07 16:30:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -288,7 +288,7 @@ LineSegments::add_straight_segment(float x1, float y1, float x2, float y2)
   segment.type   = STRAIGHT;
   segment.length = calc_length(segment);
   
-  std::cout << "Line length: " << segment.length << std::endl;
+  //std::cout << "Line length: " << segment.length << std::endl;
 
   segments.push_back(segment);
 }
@@ -329,7 +329,7 @@ bool LineSegments::calc_route(float start_x, float start_y,
 
   if (h < radius)
     {
-      std::cout << "Couldn't generate line segment" << std::endl;
+      //std::cout << "Couldn't generate line segment" << std::endl;
       return false;
     }
 

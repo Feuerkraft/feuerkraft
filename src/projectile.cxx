@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: projectile.cxx,v 1.4 2003/05/07 16:30:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "collideable.hxx"
+#include "collision_manager.hxx"
 #include "explosion.hxx"
 #include "buildings/building.hxx"
 #include "buildings/building_map.hxx"
@@ -71,32 +72,7 @@ Projectile::update (float delta)
   if (lifetime < 0)
     detonate ();
 
-  
-  GameObjManager* objs = world->get_game_obj_manager();
-  for(GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    {
-      if (*i != Projectile::parent.get ())
-	{ // Is this a lot slower than get_type() stuff?!
-	  Collideable* collideable = dynamic_cast<Collideable*>(*i);
-	  if (collideable)
-	    {
-	      if ((collideable)->is_colliding (get_pos ()))
-		{
-		  collideable->collide (this);
-		  detonate ();
-		  return;
-		}
-	    }
-	}
-    }
-
-  Building* building = get_world ()->get_buildingmap ()->get_building (pos);
-  if (building)
-    {
-      building->collide (this);      
-      detonate ();
-      return;
-    }
+  CollisionManager::current()->add_point(get_id(), pos.x, pos.y);
 }
 
 bool 
@@ -110,6 +86,29 @@ Projectile::detonate ()
 {
   lifetime = -1;
   world->add_front (new Explosion (world, pos));
+}
+
+void
+Projectile::on_collision(GameObj* obj)
+{
+  if (Projectile::parent.get () != obj)
+    {
+      std::cout << "Projectile " << get_id() << " touched gameobj " << obj->get_id() << std::endl;
+      Collideable* collideable = dynamic_cast<Collideable*>(obj);
+      if (collideable)
+        {
+          collideable->collide (this);
+          detonate ();
+        }
+    }
+}
+
+void
+Projectile::on_collision_with_building(Building* building)
+{
+  std::cout << "Projectile touched building" << get_id() << std::endl;
+  building->collide (this);      
+  detonate ();
 }
 
 /* EOF */

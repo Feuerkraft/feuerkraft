@@ -10,6 +10,7 @@
 #include "particles/smoke_particle.hxx"
 #include "particles/grass_particle.hxx"
 #include "resource_manager.hxx"
+#include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
 
@@ -20,7 +21,7 @@ extern VehicleView* vehicle_view;
 Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : Vehicle (w),
-    angle (3.14159f/2.0f),
+    orientation (3.14159f/2.0f),
     speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
@@ -83,14 +84,14 @@ Tank::draw (View* view)
 	}
 
 #ifdef UGLY_SHADOWS_ENABLED
-      view->draw(shadow, pos + CL_Vector (0,0), angle);
-      view->draw(shadow, pos + CL_Vector (5,5), angle);
-      view->draw(shadow, pos + CL_Vector (10,10), angle);
-      view->draw(shadow, pos + CL_Vector (15,15), angle);
+      view->draw(shadow, pos + CL_Vector (0,0), orientation);
+      view->draw(shadow, pos + CL_Vector (5,5), orientation);
+      view->draw(shadow, pos + CL_Vector (10,10), orientation);
+      view->draw(shadow, pos + CL_Vector (15,15), orientation);
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
-      view->draw(sur, pos, angle);
+      view->draw(sur, pos, orientation);
       turret->draw (view);
 
       // Draw Collision rect
@@ -99,13 +100,13 @@ Tank::draw (View* view)
       CL_Vector x2 (30, -15);
       CL_Vector y2 (30, 15);
 
-      x1 = x1.rotate (angle,
+      x1 = x1.rotate (orientation,
 		 CL_Vector (0.0, 0.0, 1.0));
-      y1 = y1.rotate (angle,
+      y1 = y1.rotate (orientation,
 		 CL_Vector (0.0, 0.0, 1.0));
-      x2 = x2.rotate (angle,
+      x2 = x2.rotate (orientation,
 		 CL_Vector (0.0, 0.0, 1.0));
-      y2 = y2.rotate (angle,
+      y2 = y2.rotate (orientation,
 		 CL_Vector (0.0, 0.0, 1.0));      
 
       x1 += pos;
@@ -152,7 +153,6 @@ Tank::update (float delta)
       respawn ();
     }
 
-
   particle_release += fabs(velocity);
 
   if (particle_release > 20.0f && !destroyed)
@@ -194,16 +194,16 @@ Tank::update (float delta)
     velocity = -2.0f;
 
   CL_Vector vel (-velocity, 0.0);
-  vel = vel.rotate (angle, // - fmod(angle, circle/16.0), 
+  vel = vel.rotate (orientation, // - fmod(orientation, circle/16.0), 
 		    CL_Vector (0.0, 0.0, 1.0));
 
-  if (velocity != 0.0 || tmp_angle != angle)
+  if (velocity != 0.0 || tmp_angle != orientation)
     {
       if (smod_step++ > 5)
 	{
 	  smod_step = 0;
-	  tmp_angle = angle;
-	  smodpos.push_back (CL_Vector (pos.x, pos.y, angle));
+	  tmp_angle = orientation;
+	  smodpos.push_back (CL_Vector (pos.x, pos.y, orientation));
 	  if (smodpos.size () > 200)
 	    smodpos.pop_front ();
 	}
@@ -232,32 +232,34 @@ Tank::update (float delta)
     {
       velocity /= delta;
     }
+
+  CollisionManager::current()->add_rect(get_id(), pos.x, pos.y, 30, 68, orientation);
 }
 
 void 
 Tank::increase_angle (float delta)
 {
   if (velocity >= 0)
-    angle += increment * delta;
+    orientation += increment * delta;
   else
-    angle += increment * delta;
-  //angle = fmod (angle + circle, circle);
+    orientation += increment * delta;
+  //orientation = fmod (orientation + circle, circle);
 }
 
 void
 Tank::decrease_angle (float delta)
 {
   if (velocity >= 0)
-    angle -= increment * delta;
+    orientation -= increment * delta;
   else
-    angle -= increment * delta;
-  //angle = fmod (angle + circle, circle);
+    orientation -= increment * delta;
+  //orientation = fmod (orientation + circle, circle);
 }
 
 void
-Tank::set_angle (float arg_angle)
+Tank::set_angle (float arg_orientation)
 {
-  angle = angle;
+  orientation = arg_orientation;
 }
 
 void 
@@ -303,10 +305,10 @@ Tank::drop_mine ()
 {
   if (mine_reload_time <= 0)
     {
-      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle,
+      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (orientation,
 							 CL_Vector (0.0, 0.0, 1.0));
 
-      world->add (new Mine (world, CL_Vector(pos.x, pos.y) + vel));
+      world->add(new Mine (world, CL_Vector(pos.x, pos.y) + vel));
       mine_reload_time = 50;
     }
 }
@@ -344,6 +346,18 @@ float
 Tank::get_velocity ()
 {
   return velocity;
+}
+
+void
+Tank::on_collision_with_building(Building* building)
+{
+  std::cout << "Tank: collision with building " << get_id() << std::endl;
+}
+
+void
+Tank::on_collision(GameObj* obj)
+{
+  std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
 }
 
 // EOF //

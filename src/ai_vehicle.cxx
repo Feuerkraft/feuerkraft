@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.5 2003/05/04 17:42:20 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.6 2003/05/07 16:30:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -89,9 +89,15 @@ AIVehicle::update(float delta)
       break;
     }
 #else
-  length += 100.0f * delta;
-  pos = line_segments.get_pos(length);
-  orientation = line_segments.get_orientation(length);
+  if (current_order.type != AI_VO_NONE)
+    {
+      length += 100.0f * delta;
+      pos = line_segments.get_pos(length);
+      orientation = line_segments.get_orientation(length);
+
+      if (line_segments.get_length() < length)
+        current_order.type = AI_VO_NONE;
+    }
 #endif
 }
 
@@ -157,8 +163,6 @@ AIVehicle::clear_orders()
 void
 AIVehicle::drive_to(const CL_Vector& n_pos)
 {
-  line_segments.add_controll_point(n_pos.x, n_pos.y, 50.0f);
-
 #if 0
   AIVehicleOrder order;
 
@@ -169,6 +173,9 @@ AIVehicle::drive_to(const CL_Vector& n_pos)
   order.drive_to.pos.y = n_pos.y;
   
   add_order(order);
+#else
+  current_order.type = AI_VO_DRIVETO;
+  line_segments.add_controll_point(n_pos.x, n_pos.y, 50.0f);
 #endif
 }
 

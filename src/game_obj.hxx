@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.4 2003/05/07 16:30:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include "boost/dummy_ptr.hpp"
 #include "game_world.hxx"
 
+class Building;
 class Radar;
 class View;
 class LevelMap;
@@ -89,6 +90,9 @@ public:
       finished. This is needed because collision detection is handled
       outsite this gameobject */
   virtual void flip () { /* do nothing */ }
+
+  virtual void on_collision(GameObj* obj);
+  virtual void on_collision_with_building(Building* building);
 
   //
   virtual int  get_z_pos () { return 0; }

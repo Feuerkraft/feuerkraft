@@ -1,4 +1,4 @@
-//  $Id: game_obj.cxx,v 1.1 2003/05/02 00:27:14 grumbel Exp $
+//  $Id: game_obj.cxx,v 1.2 2003/05/07 16:30:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,19 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "game_obj.hxx"
 
+void
+GameObj::on_collision(GameObj* obj)
+{
+  std::cout << "GameObj: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
+}
+
+void
+GameObj::on_collision_with_building(Building* building)
+{
+  std::cout << "GameObj: collision with building: " << get_id() << std::endl;
+}
 
 /* EOF */

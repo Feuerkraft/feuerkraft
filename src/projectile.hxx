@@ -1,4 +1,4 @@
-//  $Id: projectile.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: projectile.hxx,v 1.4 2003/05/07 16:30:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,11 +44,14 @@ public:
   virtual ~Projectile ();
 
   virtual CL_Vector get_pos () { return pos; }
-  virtual void draw (View* view);
-  virtual void update (float);
-  virtual bool removable ();
+  void draw (View* view);
+  void update (float);
+  bool removable ();
 
-  virtual void detonate ();
+  void on_collision(GameObj* obj);
+  void on_collision_with_building(Building* building);
+
+  void detonate ();
   bool is_colliding(CL_Vector) { return false;}
 };
 

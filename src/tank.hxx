@@ -17,7 +17,7 @@ class Tank : public Controllable,
 	     public Vehicle
 {
 private:
-  float angle; //rad
+  float orientation; //rad
   float speed;
   float velocity;
   float increment;
@@ -62,7 +62,7 @@ public:
   void set_angle (float);
   Turret* get_turret () { return turret; }
 
-  float get_angle () { return angle; }
+  float get_angle () { return orientation; }
   float get_increment () { return increment; }
 
   // Implementing Controllable
@@ -88,6 +88,9 @@ public:
   int get_z_pos () { return destroyed ? 0 : 50; }
 
   bool is_colliding (CL_Vector obj_pos);
+
+  void on_collision(GameObj* obj);
+  void on_collision_with_building(Building* building);
 
   void collide (Projectile*);
   void collide (Mine*);

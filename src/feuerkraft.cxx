@@ -38,6 +38,7 @@
 #include "start_screen.hxx"
 #include "line_segments.hxx"
 #include "sound/sound.hxx"
+#include "collision_manager.hxx"
 #include "command_line_arguments.hxx"
 
 #include "groundmap/ground_map.hxx"
@@ -146,8 +147,10 @@ public:
 
 	Screen    screen;
 
-	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5,
+                               "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, 
+                               "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
         AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(342, 1241));
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
@@ -165,6 +168,8 @@ public:
 
 	//Radar radar2 (CL_Vector(64, 64), 
 	//world, tank2);
+
+        CollisionManager collision_mgr;
 
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
@@ -253,13 +258,19 @@ public:
 	    delta = delta_wait/1000.0f;
 
 	    last_time = CL_System::get_time ();
+
+	    view.update (delta);
+
+            collision_mgr.clear();
 	    world->update (delta);
+            collision_mgr.run();
 	    
 	    deltas += delta;
 	    ++loops;
 
 	    view.draw (window.get_gc ());
-	    view.update (delta);
+            segments.draw(&view);
+            collision_mgr.draw(&view);
 
 	    screen.update (delta);
 	    screen.draw (window.get_gc ());
@@ -301,16 +312,6 @@ public:
 
 	    //start_screen.draw ();
 	    //start_screen.update (delta);
-
-            segments.draw(&view);
-            view.draw_arc(560, 1245, 100, 0.0f, Math::pi_2,
-                          1.0f, .0f, .0f);
-
-            view.draw_arc(360, 1245, 100, Math::pi_2, Math::pi_2*3,
-                          1.0f, .0f, .0f);
-
-            view.draw_arc(360, 1345, 100, 2., Math::pi,
-                          .0f, .0f, 1.0f);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();
