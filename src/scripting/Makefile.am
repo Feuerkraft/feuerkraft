@@ -19,7 +19,9 @@ command_source = ai_vehicle_commands.cxx \
  player_commands.hxx     \
  player_commands.cxx     \
  sound_commands.cxx      \
- sound_commands.hxx
+ sound_commands.hxx      \
+ input_commands.hxx      \
+ input_commands.cxx
 
 libfeuerkraft_scripting_a_SOURCES = \
  $(command_source) \

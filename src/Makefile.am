@@ -52,6 +52,8 @@ game_obj_factory.cxx \
 game_obj_factory.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \
+keys.hxx \
+keys.cxx \
 world_builder.hxx \
 game_world_builder.cxx \
 game_world_builder.hxx \
@@ -64,6 +66,8 @@ guile.cxx \
 guile.hxx \
 helicopter.cxx \
 helicopter.hxx \
+keyboard_manager.hxx \
+keyboard_manager.cxx \
 jeep.cxx \
 jeep.hxx \
 keyboard_controller.cxx \
@@ -136,5 +140,34 @@ view.hxx \
 view_plugin.hxx \
 view_properties.hxx \
 z_pos_layers.hxx
+
+STATICBIN_LIBS = \
+-L/usr/X11R6/lib/ \
+-Wl,-Bstatic \
+-lz \
+-ljpeg \
+-lpng \
+-lpthread \
+-lm \
+-lXext \
+-lX11 \
+-lXxf86vm \
+-lSM \
+-lXt \
+-Wl,-Bdynamic \
+-lGL \
+-Wl,-Bstatic \
+/usr/lib/libGLU.a \
+-ldl \
+-lX11
+
+feuerkraft.static: $(feuerkraft_OBJECTS) $(feuerkraft_DEPENDENCIES)
+	$(CXX) -nodefaultlibs $(CXXFLAGS) -s -static -o $@ $(feuerkraft_OBJECTS) \
+         $(feuerkraft_DEPENDENCIES) $(STATICBIN_LIBS) 
+
+feuerkraft.static.comp: feuerkraft.static
+	cp $< $@
+	strip -s $@
+	upx-ucl -q --best $@
 
 # EOF #

@@ -10,6 +10,7 @@
 #include "sound_commands.hxx"
 #include "gameobj_commands.hxx"
 #include "player_commands.hxx"
+#include "input_commands.hxx"
 %}
 
 %include "ai_vehicle_commands.hxx"
@@ -22,5 +23,6 @@
 %include "sound_commands.hxx"
 %include "gameobj_commands.hxx"
 %include "player_commands.hxx"
+%include "input_commands.hxx"
 
 /* EOF */

@@ -14,6 +14,7 @@
 #include "feuerkraft.hxx"
 #include "game_world.hxx"
 #include "keyboard_controller.hxx"
+#include "keyboard_manager.hxx"
 //#include "joystick_controller.hxx"
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
@@ -135,6 +136,7 @@ public:
 
 	resources = new ResourceManager ();
         
+        KeyboardManager::instance();
         //Fonts::init();
         
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
