@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.5 2003/04/28 23:24:41 grumbel Exp $
+//  $Id: background.cxx,v 1.6 2003/04/28 23:45:46 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,14 +34,12 @@ Background::Background (boost::dummy_ptr<GameWorld> w,
 void
 Background::draw (View* view)
 {
-  // FIXME: We should take the view size into account
+  // FIXME: We should take the view size and surface size into account
   for (int y = -1; y <= 1; ++y)
     for (int x = -1; x <= 1; ++x)
-      sur.draw ((x * sur.get_width()) 
-		+ view->get_x_offset () % sur.get_height(),
-                (y * sur.get_height())
-                + view->get_y_offset () % sur.get_height(),
-                view->get_gc ());
+      sur.draw(x * sur.get_width()  + (view->get_x_offset() % sur.get_width()),
+               y * sur.get_height() + (view->get_y_offset() % sur.get_height()),
+               view->get_gc ());
 }
 
 /* EOF */
