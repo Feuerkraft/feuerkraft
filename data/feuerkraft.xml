@@ -125,8 +125,8 @@
     <sprite name="explosion">
       <image name="image1" 
         file="data/images/explosion.png"
-        rotation_hotspot="center, 0, 0" 
-        translation_hotspot="center, 0, 0"
+        rotation_hotspot="center,0,0" 
+        translation_hotspot="center,0,0"
         />
     </sprite>
 
