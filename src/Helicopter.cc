@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.7 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.8 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,11 +52,10 @@ Helicopter::draw (View* view)
       const float circle = 6.2831854f;
       int frame = (int(fmod(angle, circle) / circle * heli.get_num_frames ()) + 16) % 16;
   
-      heli.put_screen (view->get_x_offset () + 
-		       pos.x - heli.get_width ()/2,
-		       view->get_y_offset () + 
-		       pos.y - heli.get_height ()/2,
-		       frame);
+      view->draw (heli,
+		  pos.x - heli.get_width ()/2,
+		  pos.y - heli.get_height ()/2,
+		  frame);
 
       rotor.put_screen (view->get_x_offset () + 
 			pos.x - rotor.get_width ()/2,

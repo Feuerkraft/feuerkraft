@@ -1,4 +1,4 @@
-//  $Id: Flag.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Flag.cc,v 1.4 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,8 +36,7 @@ Flag::~Flag ()
 void 
 Flag::draw (View* view)
 {
-  sur.put_screen (int(pos.x - 24),
-		  int(pos.y - 3));
+  view->draw (sur, int(pos.x - 24), int(pos.y - 3));
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: Explosion.cc,v 1.5 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Explosion.cc,v 1.6 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,10 +45,9 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
 void 
 Explosion::draw (View* view) 
 {
-  explo.put_screen (view->get_x_offset () + 
-		    int(pos.x) - explo.get_width ()/2,
-		    view->get_y_offset () + 
-		    int(pos.y) - explo.get_height ()/2);
+  view->draw (explo,
+	      int(pos.x) - explo.get_width ()/2,
+	      int(pos.y) - explo.get_height ()/2);
   is_drawn = true;
 }
   

@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.5 2001/05/01 22:48:43 sphair Exp $
+//  $Id: View.cc,v 1.6 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -63,6 +63,63 @@ View::set_view (int x_pos, int y_pos)
 {
   x_offset = x_pos;
   y_offset = y_pos;
+}
+
+void 
+View::draw (CL_Surface& sur, CL_Vector& pos)
+{
+  sur.put_screen (int(pos.x + get_x_offset ()),
+		   int(pos.y + get_y_offset ()));
+}
+
+void 
+View::draw (CL_Surface& sur, int x_pos, int y_pos)
+{
+  sur.put_screen (x_pos + get_x_offset (),
+		  y_pos + get_y_offset ());
+}
+
+void 
+View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
+{
+  sur.put_screen (x_pos + get_x_offset (),
+		  y_pos + get_y_offset (), frame);  
+}
+
+void 
+View::draw_line (int x1, int y1, int x2, int y2, 
+		float r, float g, float b, float a)
+{
+  CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (),
+			 x2 + get_x_offset (), y2 + get_y_offset (),
+			 r, g, b, a);
+}
+
+void 
+View::draw_fillrect (int x1, int y1, int x2, int y2, 
+		    float r, float g, float b, float a)
+{
+  CL_Display::fill_rect (x1 + get_x_offset (), y1 + get_y_offset (), 
+			 x2 + get_x_offset (), y2 + get_y_offset (),
+			 r, g, b, a);
+}
+
+void 
+View::draw_rect (int x1, int y1, int x2, int y2, 
+		float r, float g, float b, float a)
+{
+  CL_Display::fill_rect (x1 + get_x_offset (), y1 + get_y_offset (), 
+			 x2 + get_x_offset (), y2 + get_y_offset (),
+			 r, g, b, a);
+}
+
+void 
+View::draw_pixel (int x_pos, int y_pos, 
+		   float r, float g, float b, float a)
+{
+  //CL_Display::put_pixel (x1 + get_x_offset (),
+  //			 y1 + get_y_offset (), r, g, b, a);
+  std::cout << "View::draw_pixel () not implemented" << std::endl;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: VehicleView.hh,v 1.2 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: VehicleView.hh,v 1.3 2001/05/04 17:11:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,6 +29,8 @@ class VehicleView :
 {
 private:
   boost::dummy_ptr<Vehicle> vehicle;
+  CL_Vector pos;
+  float speed;
   
 public:
   VehicleView (boost::dummy_ptr<GameWorld>
@@ -37,7 +39,7 @@ public:
 	       int x1, int y1, int x2, int y2);
   virtual ~VehicleView ();
   
-  void update ();
+  void update (float delta);
 };
 
 #endif

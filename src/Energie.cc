@@ -1,4 +1,4 @@
-//  $Id: Energie.cc,v 1.5 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Energie.cc,v 1.6 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,18 +31,18 @@ Energie::Energie (int arg_energie) :
 }
 
 void
-Energie::draw (View* view, int x_pos, int y_pos)
+Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
 {
   int time_diff = CL_System::get_time () - last_change ;
 
   if (time_diff < 1000
       && CL_System::get_time () > 2000)
     {
-      CL_Display::fill_rect (x_pos - 32, y_pos - 5,
-			     x_pos + 32, y_pos + 5,
+      CL_Display::fill_rect (x_pos - 32 + view->get_x_offset (), y_pos - 5 + view->get_y_offset (),
+			     x_pos + 32 + view->get_x_offset (), y_pos + 5 + view->get_y_offset (),
 			     0.0, 0.0, 0.0, (1000.0 - float(time_diff))/1000.0 * 0.8);
-      CL_Display::fill_rect (x_pos - 30, y_pos - 3,
-			     x_pos - 30 + (energie * 60 / max_energie), y_pos + 3,
+      CL_Display::fill_rect (x_pos - 30 + view->get_x_offset (), y_pos - 3 + view->get_y_offset (),
+			     x_pos - 30 + (energie * 60 / max_energie) + view->get_x_offset (), y_pos + 3  + view->get_y_offset (),
 			     1.0 - energie/float(max_energie),
 			     energie/float(max_energie),
 			     0.0, 

@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.3 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.4 2001/05/04 17:11:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@ VehicleView::VehicleView (boost::dummy_ptr<GameWorld> world,
 	-arg_vehicle->get_pos ().x, -arg_vehicle->get_pos ().y),
   vehicle (arg_vehicle)
 {
-  
+  speed = 0.1;
 }
 
 VehicleView::~VehicleView ()
@@ -34,12 +34,22 @@ VehicleView::~VehicleView ()
 }
 
 void 
-VehicleView::update ()
+VehicleView::update (float time_delta)
 {
-  x_offset = int(vehicle->get_pos ().x);
-  y_offset = int(vehicle->get_pos ().y);
+  // x_offset = int(vehicle->get_pos ().x);
+  // y_offset = int(vehicle->get_pos ().y);
+  CL_Vector target = vehicle->get_pos ();
+  
+  if (!(pos == target))
+    {
+      CL_Vector direction = (target - pos);
+      //.normalize ();
+      
+      pos += direction * speed;
+   }
 
-  //std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
+  x_offset = int(pos.x);
+  y_offset = int(pos.y);
 }
 
 /* EOF */

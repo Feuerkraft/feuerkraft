@@ -157,7 +157,7 @@ public:
 	    ++loops;
 
 	    view.draw ();
-	    view.update ();
+	    view.update (delta);
 
 	    screen.update (delta);
 	    screen.draw ();

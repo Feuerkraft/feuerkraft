@@ -1,4 +1,4 @@
-//  $Id: Energie.hh,v 1.3 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Energie.hh,v 1.4 2001/05/04 17:11:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #ifndef ENERGIE_HH
 #define ENERGIE_HH
 
+#include "boost/dummy_ptr.hpp"
+
 class Energie
 {
 private:
@@ -30,7 +32,7 @@ private:
 public:
   Energie (int arg_energie);
 
-  void draw (View* view, int x_pos, int y_pos);
+  void draw (boost::dummy_ptr<View> view, int x_pos, int y_pos);
   operator int () { return energie; }
 
   void operator--() { 

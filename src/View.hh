@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.3 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: View.hh,v 1.4 2001/05/04 17:11:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
+#include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
 #include "GuiObj.hh"
 #include "GameWorld.hh"
@@ -50,6 +51,19 @@ public:
   int get_x2 ();
   int get_y1 ();
   int get_y2 ();
+
+  void draw (CL_Surface& sur, CL_Vector& pos);
+  void draw (CL_Surface& sur, int x_pos, int y_pos);
+  void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);
+
+  void draw_line (int x1, int y1, int x2, int y2, 
+		  float r, float g, float b, float a = 1.0f);
+  void draw_fillrect (int x1, int y1, int x2, int y2, 
+		      float r, float g, float b, float a = 1.0f);
+  void draw_rect (int x1, int y1, int x2, int y2, 
+		  float r, float g, float b, float a = 1.0f);
+  void draw_pixel (int x_pos, int y_pos, 
+		   float r, float g, float b, float a = 1.0f);
 };
 
 #endif

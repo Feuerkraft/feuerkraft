@@ -40,10 +40,9 @@ Tank::draw (View* view)
 {
   if (destroyed)
     {
-      sur_destroyed.put_screen (view->get_x_offset ()
-				+ pos.x - sur_destroyed.get_width ()/2,
-				view->get_y_offset () 
-				+ pos.y - sur_destroyed.get_height ()/2);
+      view->draw (sur_destroyed, 
+		  pos.x - sur_destroyed.get_width ()/2,
+		  pos.y - sur_destroyed.get_height ()/2);
     }
   else
     {
@@ -52,11 +51,10 @@ Tank::draw (View* view)
       for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
-	  smod.put_screen (view->get_x_offset () + 
-			   i->x - (smod.get_width ()/2),
-			   view->get_y_offset () + 
-			   i->y - (smod.get_height ()/2), 
-			   int(fmod (i->z, circle) / circle * 16.0));
+	  view->draw (smod, 
+		      int(i->x - (smod.get_width ()/2)),
+		      int(i->y - (smod.get_height ()/2)),
+		      int(fmod (i->z, circle) / circle * 16.0));
 	}
 
       sur.put_screen (view->get_x_offset () + 
@@ -87,14 +85,13 @@ Tank::draw (View* view)
       x2 += pos;
       y2 += pos;
 
-      CL_Display::draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-      CL_Display::draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
-      CL_Display::draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-      CL_Display::draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);
+      view->draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+      view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
+      view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+      view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);
 
       energie.draw (view, 
-		    view->get_x_offset () + pos.x,
-		    view->get_y_offset () + pos.y - 40);
+		    pos.x, pos.y - 40);
     }
 }
 
@@ -145,7 +142,7 @@ Tank::update (float delta)
 
   if (velocity != 0.0 || tmp_angle != angle)
     {
-      if (smod_step++ > 50)
+      if (smod_step++ > 5)
 	{
 	  smod_step = 0;
 	  tmp_angle = angle;
