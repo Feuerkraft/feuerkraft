@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.7 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@ Vehicle::Vehicle ()
 {
   acceleration = 0;
   steering = 0;
+  firing = false;
 }
 
 float 
@@ -78,6 +79,16 @@ Vehicle::update_controlls(const InputEventLst& events)
               break;
             default:
               std::cout << "Unknown axis: " << i->axis.name << std::endl;
+            }
+          break;
+        case BUTTON_EVENT:
+          switch(i->button.name)
+            {
+            case PRIMARY_FIRE_BUTTON:
+              firing = i->button.down;
+              break;
+            default:
+              std::cout << "Unknown button: " << i->button.name << std::endl;
             }
           break;
         default:

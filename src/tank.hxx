@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.12 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: tank.hxx,v 1.13 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -99,9 +99,6 @@ public:
   void turn_left2 (float delta);
   void turn_right2 (float delta);
   
-  void start_fire ();
-  void stop_fire ();
-
   void drop_mine ();
   
   float get_z_pos () { return destroyed ? 0 : 50; }

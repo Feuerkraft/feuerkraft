@@ -1,4 +1,4 @@
-//  $Id: explosion_particle.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: explosion_particle.hxx,v 1.9 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,6 +51,8 @@ public:
     // FIXME: memory leak
     sprite = resources->get_sprite("feuerkraft/explosion");
     sprite.rotate (angle);
+    sprite.set_blend_func(blend_src_alpha, blend_one);
+  
     //std::cout << "Angle: " << angle << std::endl;
   }
 

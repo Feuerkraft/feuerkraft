@@ -1,4 +1,4 @@
-//  $Id: handle_manager.hxx,v 1.1 2003/06/05 21:18:20 grumbel Exp $
+//  $Id: handle_manager.hxx,v 1.2 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #ifndef HEADER_HANDLE_MANAGER_HXX
 #define HEADER_HANDLE_MANAGER_HXX
 
+#include <vector>
+
 /** The HandleManager should take care of objects that get created or
     exported from the Scheme world. The HandleManager should assign an
     uniq id to every object that gets allocated and should allow to
@@ -30,7 +32,7 @@
 template<class T>
 class HandleManager
 {
-private:
+protected:
   typedef std::vector<T*> Objects;
   Objects objects;
 public:

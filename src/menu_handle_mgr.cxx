@@ -1,7 +1,7 @@
-//  $Id: explosion.hxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
-// 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  $Id: menu_handle_mgr.cxx,v 1.1 2003/06/06 09:49:35 grumbel Exp $
+//
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,39 +12,14 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#include "menu_handle_mgr.hxx"
 
-#include "vector2d.hxx"
-#include "game_obj.hxx"
-#include "resource_manager.hxx"
-
-/** Particle emmitter for ExplosionParticles */
-class Explosion : public GameObj
-{
-private:
-  bool is_drawn;
-  float lifetime;
-  FloatVector2d pos;
-  float new_particle_time;
-  float size;
-public:
-  enum Size { SMALL, MEDIUM, LARGE } en_size;
-  
-  Explosion (const FloatVector2d& arg_pos, Size arg_size = SMALL);
-  void init ();
-
-  void draw (View& view);
-  void update (float);
-  bool removable ();
-  float get_z_pos ();
-};
-
-#endif
+HandleManager<Menu>     menu_handle_mgr;
+HandleManager<MenuItem> menu_item_handle_mgr;
 
 /* EOF */

@@ -1,7 +1,7 @@
-//  $Id: explosion.hxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: dialog_commands.hxx,v 1.1 2003/06/06 09:50:14 grumbel Exp $
 // 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,33 +17,15 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#ifndef HEADER_DIALOG_COMMANDS_HXX
+#define HEADER_DIALOG_COMMANDS_HXX
 
-#include "vector2d.hxx"
-#include "game_obj.hxx"
-#include "resource_manager.hxx"
+/** Display a dialog window with \a text and call a callback once the
+    dialog window was closed */
+int  dialog_create(const char* text);
 
-/** Particle emmitter for ExplosionParticles */
-class Explosion : public GameObj
-{
-private:
-  bool is_drawn;
-  float lifetime;
-  FloatVector2d pos;
-  float new_particle_time;
-  float size;
-public:
-  enum Size { SMALL, MEDIUM, LARGE } en_size;
-  
-  Explosion (const FloatVector2d& arg_pos, Size arg_size = SMALL);
-  void init ();
-
-  void draw (View& view);
-  void update (float);
-  bool removable ();
-  float get_z_pos ();
-};
+/** Add an answer choice to the dialog */
+void dialog_add_choice(int dialog_id, const char* text, SCM callback);
 
 #endif
 

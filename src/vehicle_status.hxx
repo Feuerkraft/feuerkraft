@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle_status.hxx,v 1.7 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef VEHICLESTATUS_HH
 #define VEHICLESTATUS_HH
 
-#include "vehicle.hxx"
 #include "gui_obj.hxx"
 
 class VehicleStatus : public GuiObj
@@ -28,10 +27,9 @@ class VehicleStatus : public GuiObj
 private:
   CL_Sprite ammo;
   CL_Sprite fuel;
-  VehiclePtr vehicle;
 
 public:
-  VehicleStatus (VehiclePtr v);
+  VehicleStatus ();
   virtual ~VehicleStatus ();
   void update (float delta);
   void draw (CL_GraphicContext& gc);

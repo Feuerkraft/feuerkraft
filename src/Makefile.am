@@ -27,6 +27,8 @@ color.hxx \
 color.cxx \
 collision_manager.hxx \
 collision_manager.cxx \
+display_manager.hxx \
+display_manager.cxx \
 energie.cxx \
 energie.hxx \
 explosion.cxx \
@@ -85,6 +87,8 @@ menu.hxx \
 menu.cxx \
 menu_item.hxx \
 menu_item.cxx \
+menu_handle_mgr.hxx \
+menu_handle_mgr.cxx \
 handle_manager.hxx \
 mine.cxx \
 mine.hxx \

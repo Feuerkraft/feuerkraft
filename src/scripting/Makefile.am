@@ -1,31 +1,34 @@
 noinst_LIBRARIES = libfeuerkraft_scripting.a
 
-command_source = ai_vehicle_commands.cxx \
+command_source = \
+ ai_vehicle_commands.cxx \
  ai_vehicle_commands.hxx \
- sequence_commands.hxx   \
- sequence_commands.cxx   \
  building_commands.cxx   \
  building_commands.hxx   \
- gameobj_commands.hxx    \
- gameobj_commands.cxx    \
+ comm_commands.cxx       \
+ comm_commands.hxx       \
+ display_commands.hxx    \
+ display_commands.cxx    \
  effect_commands.cxx     \
  effect_commands.hxx     \
- object_commands.hxx     \
+ gameobj_commands.cxx    \
+ gameobj_commands.hxx    \
+ input_commands.cxx      \
+ input_commands.hxx      \
+ menu_commands.cxx       \
+ menu_commands.hxx       \
  object_commands.cxx     \
- trigger_commands.hxx    \
- trigger_commands.cxx    \
- comm_commands.hxx       \
- comm_commands.cxx       \
- player_commands.hxx     \
+ object_commands.hxx     \
  player_commands.cxx     \
+ player_commands.hxx     \
+ sequence_commands.cxx   \
+ sequence_commands.hxx   \
  sound_commands.cxx      \
  sound_commands.hxx      \
- vehicle_commands.hxx    \
+ trigger_commands.cxx    \
+ trigger_commands.hxx    \
  vehicle_commands.cxx    \
- input_commands.hxx      \
- input_commands.cxx      \
- menu_commands.cxx       \
- menu_commands.hxx
+ vehicle_commands.hxx
 
 libfeuerkraft_scripting_a_SOURCES = \
  $(command_source) \

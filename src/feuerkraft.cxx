@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.44 2003/06/05 21:34:23 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.45 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,27 +29,25 @@
 #include "feuerkraft.hxx"
 #include "game_world.hxx"
 #include "keyboard_manager.hxx"
+#include "fonts.hxx"
+#include "math.hxx"
+#include "player_view.hxx"
+#include "display_manager.hxx"
+
+// GameObjs
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
 #include "robot_tank.hxx"
 #include "jeep.hxx"
-#include "fonts.hxx"
 #include "tree.hxx"
-#include "math.hxx"
 #include "helicopter.hxx"
-#include "help.hxx"
-#include "turret.hxx"
 #include "soldier.hxx"
-#include "player_view.hxx"
-#include "vehicle_status.hxx"
-#include "radar.hxx"
-#include "screen.hxx"
 #include "background.hxx"
+
 #include "system.hxx"
-#include "message_buffer.hxx"
+
 #include "path_manager.hxx"
 #include "ambulance.hxx"
-#include "level_map.hxx"
 #include "menu.hxx"
 #include "handle_manager.hxx"
 #include "menu_item.hxx"
@@ -175,8 +173,7 @@ Feuerkraft::main(int argc, char** argv)
   try
     {
       BuildingTypeManager buildingtypemanager;
-      Screen    screen;
-      screen.add(new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
+
 
       CollisionManager collision_mgr;
 
@@ -208,8 +205,6 @@ Feuerkraft::main(int argc, char** argv)
 
       AIVehicle* ai_vehicle = new AIVehicle(FloatVector2d(342, 1241));
 
-      Vehicle* current_vehicle = tank1;
-
       GameObj* tree = GameObjFactory::instance()->create(1, AList()
                                                          .set_float("x-pos", 50.0f)
                                                          .set_float("y-pos", 50.0f)
@@ -226,24 +221,14 @@ Feuerkraft::main(int argc, char** argv)
                 new PlayerViewUpdater(player));
       //View view2(400, 0, 800, 600, new VehicleViewUpdater(ai_vehicle));
 
-      HandleManager<Menu>     menu_handle_mgr;
-      HandleManager<MenuItem> menu_item_handle_mgr;
-      
-      Menu* menu = menu_handle_mgr.create();
-
-      menu->add_item(menu_item_handle_mgr.create("Group ->", new MenuItemFunctor()));
-      menu->add_item(menu_item_handle_mgr.create("Enemy ->", new MenuItemFunctor()));
-      menu->add_item(menu_item_handle_mgr.create("Base  ->", new MenuItemFunctor()));
-
-      screen.add(menu);
-      screen.add(new Help());
-      screen.add(new Radar(FloatVector2d(64, 64), player));
-      screen.add(new VehicleStatus(current_vehicle));
-
       world->add(new Helicopter(FloatVector2d(600, 1245)));
 
       world->add(new Tank(FloatVector2d (450, 1245), 5, 
                           "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));
+      
+      for(int x = 15; x < 25; x += 3)
+        world->add(new Tank(FloatVector2d (x*40 - 20, 54*40), 5, 
+                            "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2"));
 
       world->add(tank1);
       world->add(ai_vehicle);
@@ -268,10 +253,8 @@ Feuerkraft::main(int argc, char** argv)
 
       int delta_wait = static_cast<int>(1000/args->fps);
 
-      LevelMap levelmap;
-	
-
       CL_System::keep_alive();
+      DisplayManager::init();
 
       // Loop until the user hits escape:
       while (!CL_Keyboard::get_keycode(CL_KEY_ESCAPE)) //start_screen.logo_mode != StartScreen::S_QUIT)
@@ -321,8 +304,8 @@ Feuerkraft::main(int argc, char** argv)
           //GameWorld::current()->draw(view2);
           //GameWorld::current()->draw_energie(view2);
 
-          screen.update (delta);
-          screen.draw(*(CL_Display::get_current_window()->get_gc()));
+          DisplayManager::current()->update(delta);
+          DisplayManager::current()->draw(*(CL_Display::get_current_window()->get_gc()));
 
           if (CL_Mouse::get_keycode(CL_MOUSE_MIDDLE))
             world->add(new ExplosionParticle(view.screen_to_world(FloatVector2d(CL_Mouse::get_x (),
@@ -354,7 +337,7 @@ Feuerkraft::main(int argc, char** argv)
 
           if (CL_Keyboard::get_keycode(CL_KEY_M))
             {
-              levelmap.draw (*(CL_Display::get_current_window()->get_gc()));
+              DisplayManager::current()->show_levelmap();
             }
 
           //start_screen.draw ();
@@ -370,8 +353,12 @@ Feuerkraft::main(int argc, char** argv)
           // someone closes the window.
           CL_System::keep_alive();
           InputManager::update(delta);
+          // FIXME: Add an input dispatcher here, depending on the
+          // dispatcher state, input should go to the menu, to the
+          // comm-dialog or to the players vehicle
           player->get_current_unit()->update_controlls(InputManager::get_events());
         }
+      DisplayManager::deinit();
 
       std::cout << "Avarage delta: " << deltas/loops << std::endl;
       std::cout << "Avarage fps:   " 

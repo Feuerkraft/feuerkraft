@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.9 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: explosion.cxx,v 1.10 2003/06/06 09:49:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,27 +28,22 @@ Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size)
     pos (arg_pos),
     en_size (arg_size)
 {
-
   new_particle_time = 0.0f;
 
   switch (en_size)
     {
     case SMALL:
     case LARGE:
-      explo = resources->get_sprite("feuerkraft/smallexplo");
       lifetime = .5;
       size = .6;
       break;
     case MEDIUM:
-      explo = resources->get_sprite("feuerkraft/mediumexplo");
       lifetime = 25;
       GameWorld::current()->add(new Shockwave(pos));
       size = 2;
       PingusSound::play_sound("explosion");
       break;
     }
-
-  explo.set_blend_func(blend_src_alpha, blend_one);
 
   lifetime = .5f;
 
@@ -59,10 +54,6 @@ Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size)
 void 
 Explosion::draw (View& view) 
 {
-  /*view->draw (explo,
-	      int(pos.x) - explo.get_width ()/2,
-	      int(pos.y) - explo.get_height ()/2);
-	      is_drawn = true;*/
 }
   
 void 

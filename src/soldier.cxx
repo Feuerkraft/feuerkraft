@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.14 2003/06/04 22:51:52 grumbel Exp $
+//  $Id: soldier.cxx,v 1.15 2003/06/06 09:49:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -56,6 +56,8 @@ Soldier::update_controlls(const InputEventLst& events)
             default:
               std::cout << "Unknown axis: " << i->axis.name << std::endl;
             }
+          break;
+        case BUTTON_EVENT:
           break;
         default:
           std::cout << "Unknown event type: " << i->type << std::endl;

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: feuerkraft.hxx,v 1.7 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -77,10 +77,18 @@ class CommandLineArguments;
    named SomeObjectPtr. typedef for SomeObjectPtr should be in the
    some_object.hxx file.
 */
+
+/** Feuerkraft is wrapper class around main(), which itself is part of
+    clanApp. */
 class Feuerkraft : public CL_ClanApplication
 {
 private:
-  CL_DisplayWindow* window;
+  /** Pointer to the main display window of Feuerkraft. FIXME: Could
+      probally be placed in a DisplayManager or something like that */
+  CL_DisplayWindow*     window;
+
+  /** Command Line arguments in a parsed and easily accessible form,
+      no need to touch \a argc or \a argv */
   CommandLineArguments* args;
 
 public:

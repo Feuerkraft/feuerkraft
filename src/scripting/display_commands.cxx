@@ -1,4 +1,4 @@
-//  $Id: display_commands.cxx,v 1.1 2003/06/05 21:18:20 grumbel Exp $
+//  $Id: display_commands.cxx,v 1.2 2003/06/06 09:49:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,17 +17,31 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../display_manager.hxx"
 #include "display_commands.hxx"
-
-void
-display_show_radar()
-{
-  
-}
 
 void
 display_show_levelmap()
 {
+  DisplayManager::current()->show_levelmap(); 
+}
+
+void
+display_hide_levelmap()
+{
+  DisplayManager::current()->hide_levelmap();
+}
+
+void
+display_show_help()
+{
+  DisplayManager::current()->show_help();
+}
+
+void
+display_hide_help()
+{
+  DisplayManager::current()->hide_help();
 }
 
 /* EOF */

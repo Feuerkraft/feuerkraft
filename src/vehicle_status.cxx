@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle_status.cxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,12 +19,15 @@
 
 #include <ClanLib/Display/display.h>
 #include "resource_manager.hxx"
+#include "player.hxx"
+#include "vehicle.hxx"
 #include "vehicle_status.hxx"
 
-VehicleStatus::VehicleStatus (VehiclePtr v)
+extern Player* player;
+
+VehicleStatus::VehicleStatus()
   : ammo (resources->get_sprite("feuerkraft/ammo")),
-    fuel (resources->get_sprite("feuerkraft/fuel")),
-    vehicle (v)
+    fuel (resources->get_sprite("feuerkraft/fuel"))
 {
   fuel.set_alignment(origin_top_left);
   ammo.set_alignment(origin_top_left);
@@ -42,11 +45,15 @@ VehicleStatus::update (float delta)
 void 
 VehicleStatus::draw (CL_GraphicContext& gc)
 {
-  fuel.draw ( 8, CL_Display::get_height() - 8 - 30);
-  draw_rect (38, CL_Display::get_height() - 8 - 24, vehicle->get_fuel ());
+  Vehicle* vehicle = dynamic_cast<Vehicle*>(player->get_current_unit());
+  if (vehicle)
+    {
+      fuel.draw ( 8, CL_Display::get_height() - 8 - 30);
+      draw_rect (38, CL_Display::get_height() - 8 - 24, vehicle->get_fuel ());
 
-  ammo.draw ( 8, CL_Display::get_height() - 40 - 30);
-  draw_rect (38, CL_Display::get_height() - 40 - 24, vehicle->get_ammo ());
+      ammo.draw ( 8, CL_Display::get_height() - 40 - 30);
+      draw_rect (38, CL_Display::get_height() - 40 - 24, vehicle->get_ammo ());
+    }
 }
 
 void
