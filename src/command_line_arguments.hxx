@@ -38,6 +38,9 @@ public:
   /** number of fps to which the game should limit itself */
   float fps;
 
+  /** Number of the joystick to use, -1 for keyboard support */
+  int joystick;
+
   bool music_enabled;
   bool sound_enabled;
 

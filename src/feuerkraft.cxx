@@ -151,9 +151,9 @@ Feuerkraft::main(int argc, char** argv)
     {
       std::cout << "CL_Error: " << err.message.c_str() << std::endl;
     }
-  catch (...)
+  catch (std::exception& err)
     {
-      std::cout << "Something catched..." << std::endl;
+      std::cout << "Error: " << err.what() << std::endl;
     }
 
   // Display console close message and wait for a key

@@ -19,12 +19,16 @@
 
 #include <assert.h>
 #include <iostream>
+#include <stdexcept>
+#include <sstream>
 #include <ClanLib/Display/joystick.h>
+#include "../command_line_arguments.hxx"
 #include "input_manager_clanlib.hxx"
 #include "input_manager_keyboard.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
 
+extern CommandLineArguments* args;
 InputManagerImpl* InputManager::impl = 0;
 
 void
@@ -34,10 +38,20 @@ InputManager::init(InputManagerImpl* arg_impl)
     { 
       impl = arg_impl;
     }
-  else if (CL_Joystick::get_device_count() > 0)
+  else if (args->joystick != -1)
     {
-      std::cout << "InputManager: Using joystick" << std::endl;
-      impl = new InputManagerClanLib();
+      if (args->joystick < CL_Joystick::get_device_count())
+        {
+          std::cout << "InputManager: Using joystick " << args->joystick << std::endl;
+          impl = new InputManagerClanLib();
+        }
+      else
+        {
+          std::ostringstream os;
+          os << "Feuerkraft: ClanLib doesn't have joystick number " << args->joystick
+             << ", only " << CL_Joystick::get_device_count() << " joysticks available" << std::endl;
+          throw std::runtime_error(os.str());
+        }
     }
   else 
     {

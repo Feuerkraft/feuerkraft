@@ -21,8 +21,10 @@
 #include <ClanLib/Display/keyboard.h>
 #include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/mouse.h>
+#include "command_line_arguments.hxx"
 #include "keyboard_manager.hxx"
 
+extern CommandLineArguments* args;
 KeyboardManager* KeyboardManager::instance_ = 0;
 
 KeyboardManager::KeyboardManager()
@@ -32,11 +34,14 @@ KeyboardManager::KeyboardManager()
   slots.push_back(CL_Mouse::sig_key_down().connect(this, &KeyboardManager::button_down));
   slots.push_back(CL_Mouse::sig_key_up().connect(this, &KeyboardManager::button_up));
 
-  for (int i = 0; i < CL_Joystick::get_device_count(); ++i)
+  if (args->joystick != -1)
     {
-      CL_InputDevice joy = CL_Joystick::get_device(i);
-      slots.push_back(joy.sig_key_up().connect(this, &KeyboardManager::button_up));
-      slots.push_back(joy.sig_key_down().connect(this, &KeyboardManager::button_down));
+      for (int i = 0; i < CL_Joystick::get_device_count(); ++i)
+        {
+          CL_InputDevice joy = CL_Joystick::get_device(i);
+          slots.push_back(joy.sig_key_up().connect(this, &KeyboardManager::button_up));
+          slots.push_back(joy.sig_key_down().connect(this, &KeyboardManager::button_down));
+        }
     }
 }
 

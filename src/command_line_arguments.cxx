@@ -36,6 +36,7 @@ static struct argp_option options[] = {
   {"fps",        'f', "FPS",     0,  "Limit of frames per second" },
   {"music",      'm', 0,         0,  "Enable music" },
   {"sound",      's', 0,         0,  "Enable sound" },
+  {"joystick",   'j', "NUM",     0,  "Use Joystick number NUM, instead of keyboard" },
   {"geometry",   'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
   { 0 }
 };
@@ -64,6 +65,7 @@ CommandLineArguments::load_defaults()
 
   mission_file = "";
   fps          = 30.0f;
+  joystick     = -1;
   verbose      = true;
   datadir      = "";
   music_enabled = false;
@@ -130,6 +132,14 @@ CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
 
     case 'm':
       music_enabled = true;
+      break;
+
+    case 'j':
+      if (sscanf(arg, "%d", &joystick) != 1)
+        {
+          std::cout << "Argument to joystick must be a number" << std::endl;
+          exit(EXIT_FAILURE);
+        }
       break;
 
     case 's':
