@@ -16,6 +16,19 @@ AC_LANG(C++)
 
 dnl Checking for libraries
 
+dnl -------------------------
+dnl Check for Maintainer Mode
+dnl -------------------------
+AC_MSG_CHECKING(for maintainer mode)
+AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-maintainer-mode], [Enable maintainer mode]),, enable_maintainer_mode="no")
+
+if test "$enable_maintainer_mode" != "no"; then
+    CXXFLAGS="$CXXFLAGS -g -O0 -Wall -Werror"
+    AC_MSG_RESULT([enabled])
+else
+    AC_MSG_RESULT([disabled])
+fi
+
 AC_PATH_PROG([SWIG], [swig], [nothing-found])
 if test "x$SWIG" = "xnothing-found"; then
    AC_MSG_ERROR([You need Swig - http://www.swig.org to proceed.])
