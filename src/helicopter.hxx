@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.10 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.11 2003/06/04 21:07:54 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,8 +33,6 @@ private:
   CL_Sprite heli_shadow;
   CL_Sprite helidestroyed;
   int rotor_count;
-  float velocity;
-  float angle;
   float strafe;
   bool fireing;
   int reloading;
@@ -51,17 +49,6 @@ public:
 
   // Controllable impl
   virtual float get_turn_speed () { return 1.0; }
-
-  virtual void turn_left (float delta);
-  virtual void turn_right (float delta);
-
-  virtual void turn_left2 (float delta);
-  virtual void turn_right2 (float delta);
-
-  virtual void increase_velocity (float delta);
-  virtual void decrease_velocity (float delta);
-  virtual void start_fire ();
-  virtual void stop_fire ();
 
   virtual void drop_mine () {}
 

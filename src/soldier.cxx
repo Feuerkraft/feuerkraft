@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.10 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: soldier.cxx,v 1.11 2003/06/04 21:07:54 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "math.hxx"
 #include "view.hxx"
 #include "soldier.hxx"
 
@@ -62,16 +63,32 @@ Soldier::update_controlls(const InputEventLst& events)
 void 
 Soldier::draw (View& view)
 {
-  view.draw (sur, pos);
+  FloatVector2d velocity;
+
+  velocity.x = steering;
+  velocity.y = acceleration;
+
+  float orientation = velocity.get_orientation() + Math::pi_2;
+
+  if (velocity.x == 0 && velocity.y == 0)
+    {
+      orientation = last_orientation;
+      sur.set_frame(1);
+    }
+
+  view.draw(sur, pos, orientation);
+  last_orientation = orientation;
 }
 
 void 
 Soldier::update (float delta)
 {
+  sur.update(delta);
+
   FloatVector2d velocity;
 
-  velocity.y = acceleration;
   velocity.x = steering;
+  velocity.y = acceleration;
 
   pos += velocity * 250.0f * delta;
 }

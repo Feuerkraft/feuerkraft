@@ -213,7 +213,9 @@
     </sprite>
 
     <sprite name="soldier">
-      <image name="image1" file="images/soldier.png" />
+      <image name="image1" file="images/soldier1.png" delay="200" />
+      <image name="image2" file="images/soldier2.png" delay="200" />
+      <image name="image3" file="images/soldier3.png" delay="200" />
     </sprite>
 
     <sprite name="mine">

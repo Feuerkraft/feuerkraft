@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: view.hxx,v 1.12 2003/06/04 21:07:54 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -92,6 +92,7 @@ public:
   void set_updater(ViewUpdater* arg_updater);
   void update(float delta);
 
+  /** @param angle Angle in radian */
   void draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const FloatVector2d& pos);
   void draw (CL_Surface& sur, float x_pos, float y_pos);

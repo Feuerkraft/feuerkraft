@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.10 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: soldier.hxx,v 1.11 2003/06/04 21:07:54 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,8 @@ class Soldier : public Unit
 {
 private:
   CL_Sprite sur;
+
+  float last_orientation;
 
   // Controll variables
   float acceleration;

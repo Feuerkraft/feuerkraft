@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.8 2003/06/04 21:07:54 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,8 +28,6 @@ Helicopter::Helicopter(FloatVector2d arg_pos)
     heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
     helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
     rotor_count (0),
-    velocity (0.0),
-    angle (0.0),
     strafe (0.0),
     fireing (false),
     reloading (0),
@@ -38,6 +36,9 @@ Helicopter::Helicopter(FloatVector2d arg_pos)
 {
   pos.x = arg_pos.x;
   pos.y = arg_pos.y;
+
+  velocity = 0;
+  orientation = 0;
 }
 
 Helicopter::~Helicopter ()
@@ -50,9 +51,9 @@ Helicopter::draw (View& view)
   if (!destroyed)
     {
       view.draw (heli_shadow, FloatVector2d(pos.x + 25.0f, pos.y + 50.0f),
-		  angle);
+		  orientation);
 
-      view.draw (heli, pos, angle);
+      view.draw (heli, pos, orientation);
       /*
         view->draw (heli,
         pos.x - heli.get_width ()/2,
@@ -64,7 +65,7 @@ Helicopter::draw (View& view)
     }
   else
     {
-      view.draw (helidestroyed, pos, angle);
+      view.draw (helidestroyed, pos, orientation);
     }
 
   /*
@@ -79,6 +80,12 @@ Helicopter::draw (View& view)
 void 
 Helicopter::update (float delta)
 {
+  // Apply controlls
+  orientation += 3.0f * steering * delta;
+  velocity    += 15.0f * acceleration * delta;
+
+  steering = acceleration = 0;
+
   delta *= 50;
 
   rotor.update (delta);
@@ -91,20 +98,20 @@ Helicopter::update (float delta)
 
   FloatVector2d vel(velocity, 0.0);
 
-  vel.rotate(angle) * delta;
+  vel.rotate(orientation) * delta;
   pos += vel;
 
-  pos += FloatVector2d(0.0, strafe).rotate(angle) * delta;
+  pos += FloatVector2d(0.0, strafe).rotate(orientation) * delta;
 
   velocity /= 1.03f;
-  strafe /= 1.03f;
+  strafe   /= 1.03f;
 
   if (fireing && !reloading)
     {
-      float rot_angle = angle;
-      FloatVector2d dir = FloatVector2d (15.0, 0.0).rotate(rot_angle);
+      float rot_orientation = orientation;
+      FloatVector2d dir = FloatVector2d (15.0, 0.0).rotate(rot_orientation);
       GameWorld::current()->add (new Projectile(this, pos
-                                                + FloatVector2d (0.0, -5.0).rotate (rot_angle),
+                                                + FloatVector2d (0.0, -5.0).rotate (rot_orientation),
                                                 dir));
       reloading = 4;
     }
@@ -113,54 +120,6 @@ Helicopter::update (float delta)
 
   if (reloading)
     --reloading;
-}
-
-void 
-Helicopter::increase_velocity (float delta)
-{
-  velocity += 0.1f;
-}
-
-void 
-Helicopter::decrease_velocity (float delta)
-{
-  velocity -= 0.1f;
-}
-
-void
-Helicopter::turn_left (float )
-{
-  angle += 0.05f;
-}
-
-void 
-Helicopter::turn_right (float )
-{
-  angle -= 0.05f;
-}
-
-void 
-Helicopter::turn_left2 (float )
-{
-  strafe -= 0.1f;
-}
-
-void 
-Helicopter::turn_right2 (float )
-{
-  strafe += 0.1f;
-}
-
-void
-Helicopter::start_fire () 
-{
-  fireing = true;  
-}
-
-void 
-Helicopter::stop_fire () 
-{
-  fireing = false;
 }
 
 bool 

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.40 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.41 2003/06/04 21:07:54 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -211,7 +211,7 @@ Feuerkraft::main(int argc, char** argv)
       RobotTank* robot_tank = new RobotTank(660, 1245, 0, 100.0f);
       world->add(robot_tank);
 
-      Soldier* soldier = new Soldier(FloatVector2d (200, 200));
+      Soldier* soldier = new Soldier(FloatVector2d (500, 1100));
 
       Player the_player(soldier);
       player = &the_player;
@@ -222,6 +222,11 @@ Feuerkraft::main(int argc, char** argv)
       screen.add(new Radar(FloatVector2d(64, 64), player));
       screen.add(new VehicleStatus(current_vehicle));
 
+      world->add(new Helicopter(FloatVector2d(600, 1245)));
+
+      world->add(new Tank(FloatVector2d (450, 1245), 5, 
+                          "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2"));
+
       world->add(tank1);
       world->add(ai_vehicle);
 
@@ -229,11 +234,6 @@ Feuerkraft::main(int argc, char** argv)
       world->add(new Ambulance());
 
       world->add(soldier);
-      world->add(new Soldier(FloatVector2d (200, 200)));
-      world->add(new Soldier(FloatVector2d (300, 300)));
-      world->add(new Soldier(FloatVector2d (150, 400)));
-      world->add(new Soldier(FloatVector2d (550, 400)));
-      world->add(new Soldier(FloatVector2d (550, 100)));
 	
       /** 1/30sec = 1.0delta
        */
