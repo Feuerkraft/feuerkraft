@@ -94,8 +94,8 @@ system.cxx \
 system.hxx \
 tank.cxx \
 tank.hxx \
-timed_trigger_manager.hxx \
-timed_trigger_manager.cxx \
+trigger_manager.hxx \
+trigger_manager.cxx \
 tree.cxx \
 tree.hxx \
 tree_data.cxx \

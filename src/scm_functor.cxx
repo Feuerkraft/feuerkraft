@@ -1,4 +1,4 @@
-//  $Id: scm_functor.cxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: scm_functor.cxx,v 1.2 2003/05/02 16:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -56,8 +56,13 @@ SCMFunctor::operator= (const SCMFunctor& hook)
 void
 SCMFunctor::operator()()
 {
-  //std::cout << "SCMFunctor::call(): " << get_id() << std::endl;
   scm_call_0(func);
+}
+
+void
+SCMFunctor::operator()(SCM arg)
+{
+  scm_call_1(func, arg);
 }
 
 /* EOF */

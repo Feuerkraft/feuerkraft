@@ -1,4 +1,4 @@
-//  $Id: trigger_commands.cxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: trigger_commands.cxx,v 1.2 2003/05/02 16:20:46 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../timed_trigger_manager.hxx"
+#include "../trigger_manager.hxx"
 #include "../scm_functor.hxx"
 #include "trigger_commands.hxx"
 
@@ -26,12 +26,13 @@
 void
 trigger_add_timed(float seconds, SCM func)
 {
-  TimedTriggerManager::current()->add_trigger(seconds, SCMFunctor(func));
+  TriggerManager::current()->add_timed_trigger(seconds, SCMFunctor(func));
 }
 
 void
 trigger_add_tile(int x, int y, SCM func)
 {
+  TriggerManager::current()->add_tile_trigger(x, y, SCMFunctor(func));
 }
 
 void

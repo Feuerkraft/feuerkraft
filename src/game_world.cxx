@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.4 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: game_world.cxx,v 1.5 2003/05/02 16:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,15 +31,19 @@
 #include "game_obj_data.hxx"
 #include "game_obj_manager.hxx"
 #include "view.hxx"
-#include "timed_trigger_manager.hxx"
+#include "trigger_manager.hxx"
 #include "buildings/building_map.hxx"
+
+GameWorld* GameWorld::current_world = 0;
 
 GameWorld::GameWorld (const GameWorldData& data)
   : GameWorldData (data),
     game_obj_manager(new GameObjManager(this)),
-    timed_trigger_manager(new TimedTriggerManager()),
+    trigger_manager(new TriggerManager()),
     current_time (0.0f)
 {
+  current_world = this;
+  
   if (groundmap_data)
     groundmap = groundmap_data->create ();//this);
 
@@ -70,7 +74,7 @@ GameWorld::GameWorld (const GameWorldData& data)
 GameWorld::~GameWorld ()
 {
   delete game_obj_manager;
-  delete timed_trigger_manager;
+  delete trigger_manager;
   // FIXME: Memory Leak, we should clear the gameobj list here
 }
 
@@ -184,7 +188,7 @@ GameWorld::update (float delta)
 {
   current_time += delta;
 
-  timed_trigger_manager->update(delta);
+  trigger_manager->update(delta);
 
   game_obj_manager->get_objects().remove_if(is_removable ()); 
 

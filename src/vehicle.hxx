@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.3 2003/05/02 16:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,13 +35,13 @@ public:
   Vehicle (boost::dummy_ptr<GameWorld>  w);
   virtual ~Vehicle () {}
 
-  virtual CL_Vector get_pos () { return pos; }
-  virtual float get_angle () { return 0.0; }
-  virtual float get_ammo ();
-  virtual float get_fuel ();
-  virtual void  refuel (float delta);
-  virtual void  reload_ammo (float delta);
-  virtual float get_velocity () { return 0.0; };
+  virtual CL_Vector get_pos() { return pos; }
+  virtual float get_angle() { return 0.0; }
+  virtual float get_ammo();
+  virtual float get_fuel();
+  virtual void  refuel(float delta);
+  virtual void  reload_ammo(float delta);
+  virtual float get_velocity() { return 0.0; };
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: timed_trigger_manager.cxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: trigger_manager.cxx,v 1.1 2003/05/02 16:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,24 +19,24 @@
 
 #include <iostream>
 #include <algorithm>
-#include "timed_trigger_manager.hxx"
+#include "trigger_manager.hxx"
 
-TimedTriggerManager* TimedTriggerManager::current_ = 0;
+TriggerManager* TriggerManager::current_ = 0;
 
-TimedTriggerManager::TimedTriggerManager()
+TriggerManager::TriggerManager()
 {
   current_ = this;
 }
 
 struct TriggerIsRemovable
 {
-  bool operator()(TimedTriggerManager::TimedTrigger* trigger) {
+  bool operator()(TriggerManager::Trigger* trigger) {
     return trigger->removable;
   }
 };
 
 void
-TimedTriggerManager::update(float delta)
+TriggerManager::update(float delta)
 {
   // Keep iterators intact
   Triggers tmp_triggers = triggers;

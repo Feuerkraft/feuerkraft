@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.4 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: game_world.hxx,v 1.5 2003/05/02 16:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ class LevelMap;
 class GameObj;
 class GroundMap;
 class BuildingMap;
-class TimedTriggerManager;
+class TriggerManager;
 class GameObjManager;
 
 class GameWorld : public GameWorldData
@@ -36,7 +36,7 @@ class GameWorld : public GameWorldData
 private:
   GameObjManager* game_obj_manager;
 
-  TimedTriggerManager* timed_trigger_manager;
+  TriggerManager* trigger_manager;
 
   // FIXME: This is a ugly ugly hack...
   GameObj* buildingmap;
@@ -67,6 +67,11 @@ public:
   BuildingMap* get_buildingmap ();
   GroundMap*   get_groundmap ();
   GameObjManager* get_game_obj_manager();
+
+private:
+  static GameWorld* current_world;
+public:
+  static GameWorld* current() { return current_world; }
 };
 
 #endif
