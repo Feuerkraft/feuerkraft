@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.cxx,v 1.5 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: SpriteTile.cxx,v 1.6 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SPRITETILE_CXX
 #define SPRITETILE_CXX
 
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 #include "SpriteTile.hxx"
 #include "../ResourceManager.hxx"
 #include "../View.hxx"
@@ -29,7 +29,7 @@ SpriteTile::SpriteTile (const SpriteTileData& data)
   : SpriteTileData (data),
     sprite (resources->get_sprite (sprite_location.c_str ()))
 {
-  sprite.set_translation_hotspot (origin_top_left);
+  sprite.set_alignment (origin_top_left);
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.8 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: Tower.hxx,v 1.9 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef TOWER_HXX
 #define TOWER_HXX
 
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 #include "../Energie.hxx"
 #include "Building.hxx"
 #include "TowerData.hxx"

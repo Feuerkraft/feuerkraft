@@ -1,4 +1,4 @@
-//  $Id: StartScreen.hxx,v 1.2 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: StartScreen.hxx,v 1.3 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef STARTSCREEN_HXX
 #define STARTSCREEN_HXX
 
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 
 /** FIXME: Mega ugly peace of code, should be replaced with something better */
 class StartScreen

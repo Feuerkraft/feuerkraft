@@ -1,4 +1,4 @@
-//  $Id: ResourceManager.hxx,v 1.2 2002/04/07 17:19:34 grumbel Exp $
+//  $Id: ResourceManager.hxx,v 1.3 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 #include <string>
 #include <ClanLib/core.h>
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 
 /** lalala... ugly */
 class ResourceManager

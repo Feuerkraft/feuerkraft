@@ -1,4 +1,4 @@
-//  $Id: ResourceManager.cxx,v 1.3 2002/04/07 18:26:07 grumbel Exp $
+//  $Id: ResourceManager.cxx,v 1.4 2002/07/21 19:32:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include <ClanLib/Display2/Providers/png_provider.h>
+//#include <ClanLib/Display2/Providers/png_provider.h>
 #include "ResourceManager.hxx"
 
 ResourceManager* resources;

@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: Soldier.hxx,v 1.5 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SOLDIER_HH
 #define SOLDIER_HH
 
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 #include "Vehicle.hxx"
 #include "ResourceManager.hxx"
 

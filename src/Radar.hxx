@@ -1,4 +1,4 @@
-//  $Id: Radar.hxx,v 1.5 2002/04/02 15:42:14 grumbel Exp $
+//  $Id: Radar.hxx,v 1.6 2002/07/21 19:32:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define RADAR_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display2.h>
+#include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
 #include "GameWorld.hxx"
 #include "Vehicle.hxx"
