@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: game_world.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,9 @@
 
 #include <list>
 #include "boost/smart_ptr.hpp"
-#include "GameObj.hxx"
-#include "GameWorldData.hxx"
-#include "View.hxx"
+#include "game_obj.hxx"
+#include "game_world_data.hxx"
+#include "view.hxx"
 
 class View;
 class LevelMap;

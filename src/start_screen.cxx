@@ -1,4 +1,4 @@
-//  $Id: start_screen.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: start_screen.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
-#include "StartScreen.hxx"
-#include "ResourceManager.hxx"
+#include "start_screen.hxx"
+#include "resource_manager.hxx"
 
 StartScreen::StartScreen (CL_DisplayWindow* arg_display)
   : display (arg_display),

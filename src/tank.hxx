@@ -4,11 +4,11 @@
 #include <ClanLib/display.h>
 #include <deque>
 
-#include "Mine.hxx"
-#include "GameObj.hxx"
-#include "Controllable.hxx"
-#include "Energie.hxx"
-#include "Vehicle.hxx"
+#include "mine.hxx"
+#include "game_obj.hxx"
+#include "controllable.hxx"
+#include "energie.hxx"
+#include "vehicle.hxx"
 
 class Turret;
 

@@ -1,4 +1,4 @@
-//  $Id: headquarter.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: headquarter.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,10 +24,10 @@
 #include <ClanLib/display.h>
 
 #include "../boost/dummy_ptr.hpp"
-#include "../Energie.hxx"
-#include "Building.hxx"
-#include "HeadquarterData.hxx"
-#include "../Projectile.hxx"
+#include "../energie.hxx"
+#include "building.hxx"
+#include "headquarter_data.hxx"
+#include "../projectile.hxx"
 
 class Headquarter : public Building,
 		    public HeadquarterData

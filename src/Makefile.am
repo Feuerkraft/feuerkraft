@@ -24,8 +24,6 @@ explosion.cxx \
 explosion.hxx \
 feuerkraft.cxx \
 feuerkraft.hxx \
-feuerkraft_options.cxx \
-feuerkraft_options.hxx \
 field.hxx \
 flag.cxx \
 flag.hxx \
@@ -41,8 +39,6 @@ game_world.cxx \
 game_world.hxx \
 game_world_data.cxx \
 game_world_data.hxx \
-geometry.cxx \
-geometry.hxx \
 gui_obj.hxx \
 guile.cxx \
 guile.hxx \
@@ -50,8 +46,6 @@ helicopter.cxx \
 helicopter.hxx \
 jeep.cxx \
 jeep.hxx \
-joystick_controller.cxx \
-joystick_controller.hxx \
 keyboard_controller.cxx \
 keyboard_controller.hxx \
 level_map.cxx \

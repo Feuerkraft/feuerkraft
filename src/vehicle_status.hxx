@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: vehicle_status.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,8 @@
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
-#include "Vehicle.hxx"
-#include "GuiObj.hxx"
+#include "vehicle.hxx"
+#include "gui_obj.hxx"
 
 class VehicleStatus : public GuiObj
 {

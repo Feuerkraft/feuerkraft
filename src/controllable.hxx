@@ -1,7 +1,7 @@
 #ifndef CONTROLLABLE_HH
 #define CONTROLLABLE_HH
 
-#include "Controller.hxx"
+#include "controller.hxx"
 
 class Controller;
 

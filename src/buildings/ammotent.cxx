@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: ammotent.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <cmath>
-#include "../Radar.hxx"
-#include "Ammotent.hxx"
-#include "../Vehicle.hxx"
-#include "ResourceManager.hxx"
+#include "../radar.hxx"
+#include "ammotent.hxx"
+#include "../vehicle.hxx"
+#include "resource_manager.hxx"
 
 Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData& data)
   : Building (world),

@@ -1,4 +1,4 @@
-//  $Id: geometry.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: geometry.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef GEOMETRY_HH
 #define GEOMETRY_HH
 
-#include <cmath>
+#include <math.h>
 
 class Rectangle;
 class Line;

@@ -3,7 +3,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "game_obj.hxx"
 
 class Tank;
 

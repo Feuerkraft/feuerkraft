@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: projectile.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,12 +18,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "boost/smart_ptr.hpp"
-#include "Collideable.hxx"
-#include "Explosion.hxx"
-#include "buildings/Building.hxx"
-#include "buildings/BuildingMap.hxx"
-#include "Projectile.hxx"
-#include "ResourceManager.hxx"
+#include "collideable.hxx"
+#include "explosion.hxx"
+#include "buildings/building.hxx"
+#include "buildings/building_map.hxx"
+#include "projectile.hxx"
+#include "resource_manager.hxx"
 
 Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)

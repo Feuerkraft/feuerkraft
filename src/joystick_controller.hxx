@@ -1,4 +1,4 @@
-//  $Id: joystick_controller.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: joystick_controller.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 // 
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -21,7 +21,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "Controller.hxx"
+#include "controller.hxx"
 
 class JoystickController : public Controller
 {

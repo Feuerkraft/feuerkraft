@@ -1,4 +1,4 @@
-//  $Id: jeep.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: jeep.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/gl.h>
-#include "buildings/BuildingMap.hxx"
-#include "Jeep.hxx"
-#include "ResourceManager.hxx"
+#include "buildings/building_map.hxx"
+#include "jeep.hxx"
+#include "resource_manager.hxx"
 
 const float circle = 6.2831854f;
 

@@ -1,4 +1,4 @@
-//  $Id: game_world_data.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: game_world_data.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,13 +19,13 @@
 
 #include <iostream>
 #include "generic/ofstreamext.hxx"
-#include "GameWorld.hxx"
-#include "buildings/BuildingMapData.hxx"
-#include "groundmap/GroundMapData.hxx"
-#include "GameObjData.hxx"
-#include "groundmap/GroundMapDataFactory.hxx"
-#include "GameObjDataFactory.hxx"
-#include "GameWorldData.hxx"
+#include "game_world.hxx"
+#include "buildings/building_map_data.hxx"
+#include "groundmap/ground_map_data.hxx"
+#include "game_obj_data.hxx"
+#include "groundmap/ground_map_data_factory.hxx"
+#include "game_obj_data_factory.hxx"
+#include "game_world_data.hxx"
 
 GameWorldData::GameWorldData ()
   : needs_delete (false)

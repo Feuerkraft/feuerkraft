@@ -1,4 +1,4 @@
-//  $Id: ambulance.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: ambulance.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "game_obj.hxx"
 
 class Ambulance : public GameObj
 {

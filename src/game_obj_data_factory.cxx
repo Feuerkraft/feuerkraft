@@ -1,4 +1,4 @@
-//  $Id: game_obj_data_factory.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: game_obj_data_factory.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "TreeData.hxx"
-#include "GameObjDataFactory.hxx"
+#include "tree_data.hxx"
+#include "game_obj_data_factory.hxx"
 
 GameObjData*
 GameObjDataFactory::create (SCM symbol, SCM data)

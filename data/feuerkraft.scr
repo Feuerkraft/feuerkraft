@@ -6,26 +6,40 @@ section feuerkraft {
 	wall = (type=sprite, image1=images/wall.png);
 	wall_damaged = (type=sprite, image1=images/wall_damaged.png);
 	wall_destroyed = (type=sprite, image1=images/wall_destroyed.png);
-	tank = (type=sprite, image1=images/tank.png);
-	tank2 = (type=sprite, image1=images/tank2.png);
+	tank = (type=sprite, image1=images/tank.png, 
+        rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+
+	tank2 = (type=sprite, image1=images/tank2.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
 	tank2_shadow = (type=sprite, image1=images/tank2_shadow.png);
 	helicopter = (type=sprite, image1=images/helicopter.png);
 	helicopter_shadow = (type=sprite, image1=images/helicopter_shadow.png);
-	turret = (type=sprite, image1=images/turret.png);
+	turret = (type=sprite, image1=images/turret.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
 	turret2_shadow = (type=sprite, image1 = images/turret2_shadow.png);
 	radar_line = (type=sprite, image1=images/radar_line.png);
-	turret2 = (type=sprite,  image1 = images/turret2.png);
-	fire2 = (type=sprite, image1=images/fire2.png);
+
+	turret2 = (type=sprite,  image1 = images/turret2.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+
+	fire2 = (type=sprite, image1=images/fire2.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
 	fire = (type=sprite, image1=images/fire.png);
 	jeep = (type=sprite, image1=images/jeep.png);
 	towerbase = (type=sprite, image1=images/towerbase.png);
 	towerturret = (type=sprite, image1=images/towerturret.png);
 	projectile = (type=sprite, image1=images/projectile.png);
-	sandsmoke = (type=sprite, image1=images/sandsmoke.png);
-	grasssmoke = (type=sprite, image1=images/grasssmoke.png);
-	explosion = (type=sprite, image1=images/explosion.png);
-	smallexplo = (type=sprite, image1=images/smallexplo.png);
-	mediumexplo = (type=sprite, image1=images/mediumexplo.png);
+	sandsmoke = (type=sprite, image1=images/sandsmoke.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+	grasssmoke = (type=sprite, image1=images/grasssmoke.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+	explosion = (type=sprite, image1=images/explosion.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+	smallexplo = (type=sprite, image1=images/smallexplo.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
+	mediumexplo = (type=sprite, image1=images/mediumexplo.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
 	towerdamaged = (type=sprite, image1=images/towerdamaged.png);
 	towerdestroyed = (type=sprite, image1=images/towerdestroyed.png);
 	tree = (type=sprite, image1=images/tree.png);
@@ -55,7 +69,8 @@ section feuerkraft {
 	
 	blueflag = (type=sprite, image1=images/blueflag.png);
 	parking = (type=sprite, image1=images/parking.png);
-	radar = (type=sprite, image1=images/radar.png);
+	radar = (type=sprite, image1=images/radar.png,         rotation_hotspot = (center, 0, 0), 
+        translation_hotspot = (center, 0, 0));
 	
 	start = (type=sprite, image1=images/start.png);
 	headquarter = (type=sprite, image1=images/headquarter.png);

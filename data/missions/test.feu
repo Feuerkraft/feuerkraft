@@ -18,26 +18,22 @@
 	  (tree (pos 1959 3766))
 	  (tree (pos 1887 3717))
 
-(tree (pos 1617 3659))
-(tree (pos 1618 3565))
-(tree (pos 1665 3854))
-(tree (pos 1535 3821))
-(tree (pos 1492 3871))
-(tree (pos 1632 3943))
-(tree (pos 1786 3883))
-
-
-	  )
+          (tree (pos 1617 3659))
+          (tree (pos 1618 3565))
+          (tree (pos 1665 3854))
+          (tree (pos 1535 3821))
+          (tree (pos 1492 3871))
+          (tree (pos 1632 3943))
+          (tree (pos 1786 3883)))
 
  (buildingmap 
+  (tower (pos 61 242))
+  (tower (pos 49 242))
+  (ammotent (pos 158 192))
+  (fuelstation (pos   162 193))
 
-(tower (pos 61 242))
-(tower (pos 49 242))
-(ammotent (pos 158 192))
-(fuelstation (pos   162 193))
-
-(ammotent (pos 40 241))
-(fuelstation (pos  45 240))
+  (ammotent (pos 40 241))
+  (fuelstation (pos  45 240))
 
   (tower (pos 55 89))
   (tower (pos 50 95))
@@ -76,22 +72,22 @@
   (wall (pos 17 8))
 
 
-(wall (pos 12 23))
-(wall (pos 12 22))
-(wall (pos 12 21))
-(wall (pos 13 21))
-(wall (pos 14 21))
-(wall (pos 15 21))
-(wall (pos 16 21))
-(wall (pos 18 21))
-(wall (pos 17 21))
-(wall (pos 19 21))
-(wall (pos 20 21))
-(wall (pos 21 21))
-(wall (pos 22 21))
-(wall (pos 23 21))
-(wall (pos 24 21))
-(wall (pos 25 21))
+  (wall (pos 12 23))
+  (wall (pos 12 22))
+  (wall (pos 12 21))
+  (wall (pos 13 21))
+  (wall (pos 14 21))
+  (wall (pos 15 21))
+  (wall (pos 16 21))
+  (wall (pos 18 21))
+  (wall (pos 17 21))
+  (wall (pos 19 21))
+  (wall (pos 20 21))
+  (wall (pos 21 21))
+  (wall (pos 22 21))
+  (wall (pos 23 21))
+  (wall (pos 24 21))
+  (wall (pos 25 21))
 
   (headquarter (pos 13 9))
 
@@ -102,10 +98,10 @@
   (ammotent (pos 18 24))
   (fuelstation (pos 15 24))
 
-(walldoor (pos 0 0)
-	  (orientation horizontal))
-(walldoor (pos 0 1)
-	  (orientation vertical))
+  (walldoor (pos 0 0)
+            (orientation horizontal))
+  (walldoor (pos 0 1)
+            (orientation vertical))
 
   (wall (pos 10 10))
   (wall (pos 10 11))
@@ -129,8 +125,8 @@
   (base (pos 13 30))
   (headquarter (pos 16 3))
 
-(fuelstation (pos 33 90))
-(ammotent (pos 37 90))
+  (fuelstation (pos 33 90))
+  (ammotent (pos 37 90))
 
   (tower  (energie 70)
 	  (pos 16 6)
@@ -140,13 +136,9 @@
 	  (pos 30 20)
 	  (angle 65))
 
-  (headquarter (pos 24 31))
-  )
+  (headquarter (pos 24 31)))
 
  (groundmap 
-  (gridmap 	  (file "data/missions/foobar.png")))
-
-
- )
+  (gridmap 	  (file "data/missions/regional2.png"))))
 
 ;; EOF ;;

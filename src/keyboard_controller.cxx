@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: keyboard_controller.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,9 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "Tank.hxx"
-#include "Turret.hxx"
-#include "KeyboardController.hxx"
+#include "tank.hxx"
+#include "turret.hxx"
+#include "keyboard_controller.hxx"
 
 KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* obj)
   : Controller (obj) 

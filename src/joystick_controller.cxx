@@ -1,4 +1,4 @@
-//  $Id: joystick_controller.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: joystick_controller.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Tank.hxx"
-#include "Turret.hxx"
-#include "JoystickController.hxx"
+#include "tank.hxx"
+#include "turret.hxx"
+#include "joystick_controller.hxx"
 
 JoystickController::JoystickController (Controllable* obj) :
   Controller (obj),

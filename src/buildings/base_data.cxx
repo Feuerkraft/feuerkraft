@@ -1,4 +1,4 @@
-//  $Id: base_data.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: base_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../Guile.hxx"
-#include "Base.hxx"
-#include "BaseData.hxx"
+#include "../guile.hxx"
+#include "base.hxx"
+#include "base_data.hxx"
 
 BaseData::BaseData (SCM desc)
 {

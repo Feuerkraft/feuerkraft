@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Projectile.hxx"
-#include "Explosion.hxx"
-#include "Helicopter.hxx"
-#include "ResourceManager.hxx"
+#include "projectile.hxx"
+#include "explosion.hxx"
+#include "helicopter.hxx"
+#include "resource_manager.hxx"
 
 Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),

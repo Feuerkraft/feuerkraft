@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: wall.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,8 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "WallData.hxx"
-#include "Building.hxx"
+#include "wall_data.hxx"
+#include "building.hxx"
 
 class Wall : public Building,
 	     public WallData

@@ -1,4 +1,4 @@
-//  $Id: tile_data_factory.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: tile_data_factory.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,10 +19,10 @@
 
 #include <iostream>
 
-#include "TileData.hxx"
-#include "SpriteTileData.hxx"
-#include "SpriteTile.hxx"
-#include "TileDataFactory.hxx"
+#include "tile_data.hxx"
+#include "sprite_tile_data.hxx"
+#include "sprite_tile.hxx"
+#include "tile_data_factory.hxx"
 
 TileData*
 TileDataFactory::create (SCM desc)

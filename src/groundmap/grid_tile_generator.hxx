@@ -1,4 +1,4 @@
-//  $Id: grid_tile_generator.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: grid_tile_generator.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,8 +24,8 @@
 #include <map>
 #include <string>
 #include <guile/gh.h>
-#include "GroundType.hxx"
-#include "GridTileData.hxx"
+#include "ground_type.hxx"
+#include "grid_tile_data.hxx"
 
 class GridTile;
 

@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: building_map.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../View.hxx"
-#include "BuildingData.hxx"
-#include "BuildingMap.hxx"
-#include "Building.hxx"
+#include "../view.hxx"
+#include "building_data.hxx"
+#include "building_map.hxx"
+#include "building.hxx"
 
 BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& data)
   : BuildingMapData (data),

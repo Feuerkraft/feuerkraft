@@ -1,4 +1,4 @@
-//  $Id: grid_tile_generator.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: grid_tile_generator.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "GridTile.hxx"
-#include "GridTileGenerator.hxx"
+#include "grid_tile.hxx"
+#include "grid_tile_generator.hxx"
 
 GridTileGenerator::GridTileGenerator (std::string filename)
   : emptytile (new GridTile ("feuerkraft/emptytile"))

@@ -3,19 +3,19 @@
 #include <ClanLib/core.h>
 #include <ClanLib/gl.h>
 
-#include "Mine.hxx"
-#include "Turret.hxx"
-#include "Tank.hxx"
-#include "groundmap/GroundMap.hxx"
-#include "buildings/BuildingMap.hxx"
-#include "particles/SmokeParticle.hxx"
-#include "particles/GrassParticle.hxx"
-#include "ResourceManager.hxx"
+#include "mine.hxx"
+#include "turret.hxx"
+#include "tank.hxx"
+#include "groundmap/ground_map.hxx"
+#include "buildings/building_map.hxx"
+#include "particles/smoke_particle.hxx"
+#include "particles/grass_particle.hxx"
+#include "resource_manager.hxx"
 
 const float circle = 6.2831854f;
 
 // FIXME: Global variable hack, remove as soon as possible
-#include "VehicleView.hxx"
+#include "vehicle_view.hxx"
 extern VehicleView* vehicle_view;
 
 Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,

@@ -1,4 +1,4 @@
-//  $Id: ground_map_data_factory.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: ground_map_data_factory.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "TileMapData.hxx"
-#include "MultiGroundMap.hxx"
-#include "GridMapData.hxx"
-#include "GroundMapDataFactory.hxx"
+#include "tile_map_data.hxx"
+#include "multi_ground_map.hxx"
+#include "grid_map_data.hxx"
+#include "ground_map_data_factory.hxx"
 
 GroundMapData* 
 GroundMapDataFactory::create (SCM desc)

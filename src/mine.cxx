@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: mine.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,11 +18,11 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "boost/smart_ptr.hpp"
-#include "Tank.hxx"
-#include "Mine.hxx"
-#include "GameWorld.hxx"
-#include "groundmap/GroundMap.hxx"
-#include "ResourceManager.hxx"
+#include "tank.hxx"
+#include "mine.hxx"
+#include "game_world.hxx"
+#include "groundmap/ground_map.hxx"
+#include "resource_manager.hxx"
 
 Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
   : GameObj (w),
