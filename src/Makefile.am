@@ -48,6 +48,8 @@ game_obj.cxx \
 game_obj_manager.hxx \
 game_obj_manager.cxx \
 game_obj_data.hxx \
+game_obj_factory.cxx \
+game_obj_factory.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \
 world_builder.hxx \
@@ -121,8 +123,6 @@ trigger_manager.hxx \
 trigger_manager.cxx \
 tree.cxx \
 tree.hxx \
-tree_data.cxx \
-tree_data.hxx \
 turret.cxx \
 turret.hxx \
 vehicle.cxx \

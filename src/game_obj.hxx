@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.6 2003/05/11 17:06:10 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,10 +53,12 @@ public:
 
   PropertySet* get_properties() { return properties; }
 
+  virtual void properties_updated() {}
+
   /** Sync the GameObj with its GameObjData parent and return a
       pointer to the parent. The parent must not be deleted.
       0 is return if the function is unimplemented. */
-  virtual GameObjData* get_data () { return 0; }
+  virtual GameObjData* get_data() { return 0; }
 
   /** Draw the object onto the main view, which means the object will
       be drawn in normal game grafic */

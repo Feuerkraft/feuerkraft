@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.4 2003/05/11 11:57:52 grumbel Exp $
+//  $Id: alist.cxx,v 1.5 2003/05/11 17:06:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,6 +53,7 @@ AList::operator=(const AList& alist)
       if (i->second.type == AL_STRING)
         i->second.value.v_string = new std::string(*(i->second.value.v_string));
     }
+  return *this;
 }
 
 AList::~AList()

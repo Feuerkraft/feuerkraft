@@ -1,4 +1,4 @@
-//  $Id: property_set.hxx,v 1.1 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: property_set.hxx,v 1.2 2003/05/11 17:06:11 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,9 @@ private:
   typedef std::map<std::string, Property*>  Properties;
   Properties properties;
 public:
+  typedef Properties::iterator iterator;
+  typedef Properties::const_iterator const_iterator;
+
   PropertySet();
   ~PropertySet();
   
@@ -40,12 +43,18 @@ public:
   void register_float (const std::string& name, float* value_ptr);
   void register_string(const std::string& name, std::string* value_ptr);
 
-  void set_bool(const std::string& name, bool value);
-  void set_int(const std::string& name, int value);
-  void set_float(const std::string& name, float value);
+  void set_bool  (const std::string& name, bool value);
+  void set_int   (const std::string& name, int value);
+  void set_float (const std::string& name, float value);
   void set_string(const std::string& name, const std::string& value);
 
   Property* lookup(const std::string& name);
+
+  const_iterator begin() const { return properties.begin(); }
+  const_iterator end()   const { return properties.end(); }
+
+  iterator begin(){ return properties.begin(); }
+  iterator end()  { return properties.end(); }
 private:
   Property& create_property(const std::string& name);
 

@@ -1,4 +1,4 @@
-//  $Id: property_set.cxx,v 1.1 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: property_set.cxx,v 1.2 2003/05/11 17:06:11 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include "property.hxx"
 #include "property_set.hxx"
 
-PropertySet::PropertySet() 
+PropertySet::PropertySet()
 {
   
 }

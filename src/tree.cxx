@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: tree.cxx,v 1.5 2003/05/11 17:06:11 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,33 +17,36 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "property_set.hxx"
 #include "resource_manager.hxx"
 #include "tree.hxx"
 
-Tree::Tree (const TreeData& arg_data)
-  : data (arg_data),
-    sur (resources->get_sprite(data.name.c_str ())),
-    sur_shadow (resources->get_sprite((data.name + "_shadow").c_str ()))
+Tree::Tree()
 {
-  sur.set_alignment(origin_center);
-  sur_shadow.set_alignment(origin_top_left);
+  properties->register_string("sprite", &sprite_name);
+  properties->register_float("x-pos", &pos.x);
+  properties->register_float("y-pos", &pos.y);
 }
 
 Tree::~Tree ()
 {
 }
+
+void
+Tree::properties_updated()
+{
+  sur = resources->get_sprite(sprite_name);
+  sur_shadow = resources->get_sprite(sprite_name + "_shadow");
+  
+  sur.set_alignment(origin_center);
+  sur_shadow.set_alignment(origin_top_left);
+}
   
 void 
 Tree::draw (View* view)
 {
-  view->draw (sur_shadow, data.pos - CL_Vector(15,15));
-  view->draw (sur, data.pos);
-}
-
-GameObjData* 
-Tree::get_data ()
-{
-  return &data; 
+  view->draw(sur_shadow, pos - CL_Vector(15,15));
+  view->draw(sur, pos);
 }
 
 /* EOF */

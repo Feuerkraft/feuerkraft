@@ -1,4 +1,4 @@
-//  $Id: game_obj_data_factory.hxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: game_obj_data_factory.hxx,v 1.3 2003/05/11 17:06:11 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,8 @@
 #define GAMEOBJDATAFACTORY_HXX
 
 #include <libguile.h>
+
+class GameObjData;
 
 class GameObjDataFactory
 {

@@ -52,6 +52,9 @@
 
 #include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
+#include "game_obj_factory.hxx"
+#include "property_set.hxx"
+#include "property.hxx"
 
 #include "globals.hxx"
 #include "output_world_builder.hxx"
@@ -185,6 +188,46 @@ public:
 	//world, tank2);
 
         CollisionManager collision_mgr;
+
+        GameObj* tree = GameObjFactory::instance()->create(1, AList()
+                                                           .set_float("x-pos", 50.0f)
+                                                           .set_float("y-pos", 50.0f)
+                                                           .set_string("sprite", "feuerkraft/tree"));
+	world->add(tree);
+        
+        PropertySet* props = tree->get_properties();
+        if (props)
+          {
+            std::cout << "Tree Properties: " << std::endl;
+                  
+            for (PropertySet::iterator i = props->begin(); i != props->end(); ++i)
+              {
+                std::cout << "  " << i->first << ": "; 
+                switch(i->second->get_type())
+                  {
+                  case Property::T_BOOL:
+                    std::cout << i->second->get_bool() << std::endl;
+                    break;
+
+                  case Property::T_INT:
+                    std::cout << i->second->get_int() << std::endl;
+                    break;
+
+                  case Property::T_FLOAT:
+                    std::cout << i->second->get_float() << std::endl;
+                    break;                    
+                    
+                  case Property::T_STRING:
+                    std::cout << i->second->get_string() << std::endl;
+                    break;
+
+                  default:
+                    std::cout << "  <unhandled>" << std::endl;
+                    break;
+                  }
+              }
+            std::cout << "=================" << std::endl;
+          }
 
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 

@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.1 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: property.cxx,v 1.2 2003/05/11 17:06:11 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -62,8 +62,9 @@ Property::set_bool(bool value)
 void
 Property::set_int(int value)
 {
-  assert(type == T_INT);
+  assert(type == T_INT || type == T_EMPTY);
   *data.m_int = value;
+  type = T_INT;
 }
 
 void
