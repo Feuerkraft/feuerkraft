@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.4 2003/05/04 17:42:20 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include <ClanLib/Core/Math/cl_vector.h>
 #include <ClanLib/Display/sprite.h>
 
+#include "line_segments.hxx"
 #include "sequence_manager.hxx"
 #include "game_obj.hxx"
 
@@ -76,6 +77,9 @@ class AIVehicle : public GameObj
 {
 private:
   CL_Vector pos;
+  float length;
+  LineSegments line_segments;
+
   float orientation;
   float velocity;
 

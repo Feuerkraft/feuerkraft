@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.3 2003/05/04 15:45:34 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.4 2003/05/04 17:42:20 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,12 +57,15 @@ private:
   typedef std::vector<Segment> Segments;
   Segments segments;
   
+  float init_x, init_y, init_orientation;
+
   float calc_length(const Segment&);
   Segments::iterator get_segment(float l);
 
   /** @return the position on the line segment after having traveled
       \a l 'pixels' on it */
   CL_Vector get_pos(const Segment&, float l);
+  float     get_orientation(const Segment&, float l);
 
   bool calc_route(float start_x, float start_y, 
                   float dest_x, float dest_y, 
@@ -71,7 +74,7 @@ private:
                   float& px, float& py, float& qx, float& qy, 
                   float& angle_start, float& angle_final, float& length);
 public:
-  LineSegments();
+  LineSegments(float init_x, float init_y, float init_orientation);
 
   float     get_end_orientation();
   CL_Vector get_end_pos();

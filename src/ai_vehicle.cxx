@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.4 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.5 2003/05/04 17:42:20 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,9 @@
 
 AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
   : GameObj(w),
-    pos(arg_pos)
+    pos(arg_pos),
+    length(0.0f),
+    line_segments(pos.x, pos.y, 0.0f)
 {
   sprite = resources->get_sprite("feuerkraft/trooper");
   sprite.set_alignment(origin_center);
@@ -39,6 +41,7 @@ AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
 void
 AIVehicle::update(float delta)
 {
+#if 0
   if (current_order.type == AI_VO_NONE)
     {
       if (!orders.empty())
@@ -85,12 +88,18 @@ AIVehicle::update(float delta)
     default:
       break;
     }
+#else
+  length += 100.0f * delta;
+  pos = line_segments.get_pos(length);
+  orientation = line_segments.get_orientation(length);
+#endif
 }
 
 void
 AIVehicle::draw (View* view)
 {
   view->draw(sprite, pos, orientation + PI);
+  //line_segments.draw(view);
 }
 
 void
@@ -148,6 +157,9 @@ AIVehicle::clear_orders()
 void
 AIVehicle::drive_to(const CL_Vector& n_pos)
 {
+  line_segments.add_controll_point(n_pos.x, n_pos.y, 50.0f);
+
+#if 0
   AIVehicleOrder order;
 
   order.type = AI_VO_DRIVETO;
@@ -157,6 +169,7 @@ AIVehicle::drive_to(const CL_Vector& n_pos)
   order.drive_to.pos.y = n_pos.y;
   
   add_order(order);
+#endif
 }
 
 /* EOF */

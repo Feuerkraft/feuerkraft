@@ -228,7 +228,7 @@ public:
 
         CL_System::keep_alive();
 
-        LineSegments segments;
+        LineSegments segments(560, 1245, 3.14159f);
         CL_Vector last_pos(560, 1245);
         segments.add_straight_segment(last_pos.x, last_pos.y, last_pos.x, last_pos.y);
 
@@ -282,7 +282,7 @@ public:
                 ai_vehicle->drive_to(pos);
 
                 //segments.add_straight_segment(last_pos.x, last_pos.y, pos.x, pos.y);
-                segments.add_controll_point(pos.x, pos.y, 80);
+                segments.add_controll_point(pos.x, pos.y, 50);
                 last_pos = pos;
 	      }
 	    
