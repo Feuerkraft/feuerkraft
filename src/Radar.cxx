@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.4 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Radar.cxx,v 1.5 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -79,9 +79,10 @@ Radar::draw_blip (const CL_Vector& arg_pos, int size)
   diff -= vehicle->get_pos ();
   diff *= 1/20.0f;
 
-  float alpha = (1.0f - diff.norm () / 64.0);
-  alpha *= alpha;
-  
+  float alpha = (diff.norm () / 64.0);
+  alpha *= alpha * alpha;
+  alpha = 1.0f - alpha;
+
   if (diff.norm () < 64.0)
     {
       diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));

@@ -1,4 +1,4 @@
-//  $Id: TileMap.hxx,v 1.4 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: TileMap.hxx,v 1.5 2002/03/27 23:59:07 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,6 +47,7 @@ public:
 
   GroundType get_groundtype (float x, float y);
   void draw (View* view);
+  void draw_levelmap (LevelMap* levelmap);
   void update (float);
 };
 

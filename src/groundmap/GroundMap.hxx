@@ -1,4 +1,4 @@
-//  $Id: GroundMap.hxx,v 1.5 2002/03/15 10:01:26 grumbel Exp $
+//  $Id: GroundMap.hxx,v 1.6 2002/03/27 23:59:07 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef GROUNDMAP_HXX
 #define GROUNDMAP_HXX
 
+#include "../View.hxx"
 #include "../GameObj.hxx"
 #include "GroundType.hxx"
 

@@ -52,6 +52,13 @@ Tank::draw_energie (View* view)
 }
   
 void
+Tank::draw_levelmap (LevelMap* levelmap)
+{
+  CL_Display::fill_rect (int(pos.x / 40), int(pos.y / 40),
+			 int(pos.x / 40) + 4, int(pos.y / 40) + 4, 1.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void
 Tank::draw (View* view)
 {
   if (destroyed)

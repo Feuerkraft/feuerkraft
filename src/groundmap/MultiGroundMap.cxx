@@ -1,4 +1,4 @@
-//  $Id: MultiGroundMap.cxx,v 1.2 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: MultiGroundMap.cxx,v 1.3 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,6 +57,15 @@ MultiGroundMap::draw(View* view)
     {
       (*i)->draw (view);
     }
+}
+
+void
+MultiGroundMap::draw_levelmap (LevelMap* levelmap)
+{
+  for (std::vector<GroundMap*>::reverse_iterator i = maps.rbegin (); i != maps.rend (); ++i)
+    {
+      (*i)->draw_levelmap (levelmap);
+    } 
 }
 
 void

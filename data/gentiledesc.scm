@@ -6,8 +6,8 @@
 
 (define (get-images-lst)
   (filter (lambda (filename)
-	    (equal? (stat:type (stat (string-append "tiles/" filename))) 'regular))
-	  (directory->list "tiles/")))
+	    (equal? (stat:type (stat (string-append "images/tiles/" filename))) 'regular))
+	  (directory->list "images/tiles/")))
 
 (define (extract-tiledesc filename)
   (list (string->symbol (string (string-ref filename 0)))

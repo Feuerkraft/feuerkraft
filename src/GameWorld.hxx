@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hxx,v 1.5 2002/03/23 21:55:00 grumbel Exp $
+//  $Id: GameWorld.hxx,v 1.6 2002/03/27 23:59:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@
 #include "View.hxx"
 
 class View;
+class LevelMap;
 class GameObj;
 class GroundMap;
 class BuildingMap;
@@ -55,6 +56,7 @@ public:
 
   void draw (View* view);
   void draw_energie (View* view);
+  void draw_levelmap (LevelMap* levelmap);
   void update (float delta);
 
   BuildingMap* get_buildingmap ();

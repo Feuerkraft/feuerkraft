@@ -1,4 +1,4 @@
-//  $Id: MultiGroundMap.hxx,v 1.1 2002/03/24 15:44:00 grumbel Exp $
+//  $Id: MultiGroundMap.hxx,v 1.2 2002/03/27 23:59:07 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,7 @@ public:
   GroundType get_groundtype (float x, float y);
   
   void draw(View*);
+  void draw_levelmap (LevelMap* levelmap);
 
   void add (GroundMap* groundmap);
 };

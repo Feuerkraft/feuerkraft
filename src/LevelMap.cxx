@@ -1,5 +1,5 @@
-//  $Id: GridMapData.hxx,v 1.3 2002/03/27 23:59:07 grumbel Exp $
-// 
+//  $Id: LevelMap.cxx,v 1.1 2002/03/27 23:59:06 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,41 +12,32 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef GRIDMAPDATA_HXX
-#define GRIDMAPDATA_HXX
+#include "GameWorld.hxx"
+#include "LevelMap.hxx"
 
-#include <vector>
-#include <guile/gh.h>
-#include "GroundType.hxx"
-#include "GroundMapData.hxx"
-
-class CL_SurfaceProvider;
-
-class GridMapData : public GroundMapData
+LevelMap::LevelMap (boost::dummy_ptr<GameWorld> w)
+  : world (w)
 {
-protected:
-  int grid_width;
-  int grid_height;
+}
 
-  /** The data of the grid */
-  std::vector<GroundType> grid_data;
-  
-  CL_SurfaceProvider* provider;
-  
-public:
-  GridMapData (SCM desc);
-  virtual ~GridMapData ();
+LevelMap::~LevelMap ()
+{
+}
 
-  GroundMap* create ();
-private:
-  void parse_from_file (SCM desc);
-};
+void
+LevelMap::update (float delta)
+{
+}
 
-#endif
+void
+LevelMap::draw ()
+{
+  world->draw_levelmap (this);
+}
 
 /* EOF */

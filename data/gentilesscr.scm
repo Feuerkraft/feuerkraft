@@ -6,8 +6,8 @@
 
 (define (get-images-lst)
   (filter (lambda (filename)
-	    (equal? (stat:type (stat (string-append "tiles/" filename))) 'regular))
-	  (directory->list "tiles/")))
+	    (equal? (stat:type (stat (string-append "images/tiles/" filename))) 'regular))
+	  (directory->list "images/tiles/")))
 
 (define (main args)
   (println "section tiles {")

@@ -24,6 +24,7 @@ VehicleStatus.hxx  VehicleStatus.cxx \
 Background.hxx Background.cxx Stone.hxx Stone.cxx \
 Ambulance.hxx Ambulance.cxx \
 GameObjData.hxx GameWorldData.hxx GameWorldData.cxx \
-GameObjDataFactory.hxx GameObjDataFactory.cxx
+GameObjDataFactory.hxx GameObjDataFactory.cxx \
+LevelMap.hxx LevelMap.cxx
 
 # EOF #

@@ -50,6 +50,8 @@ public:
   
   void draw (View* view);
   void draw_energie (View* view);
+  void draw_levelmap (LevelMap* levelmap);
+
   void update (float);
 
   void explode ();

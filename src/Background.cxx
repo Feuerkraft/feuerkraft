@@ -1,4 +1,4 @@
-//  $Id: Background.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Background.cxx,v 1.2 2002/03/27 23:59:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,9 +31,12 @@ Background::Background (boost::dummy_ptr<GameWorld> w,
 void
 Background::draw (View* view)
 {
-  for (int y = -512 * 4; y < 512 * 4; y += 512)
-    for (int x = -512 * 4; x < 512 * 4; x += 512)
-      view->draw (sur, x, y);
+  // FIXME: We should take the view size into account
+  
+  for (int y = -1; y <= 1; ++y)
+    for (int x = -1; x <= 1; ++x)
+      sur.put_screen ((x * sur.get_width()) + view->get_x_offset () % sur.get_width (),
+		      (y * sur.get_height()) + view->get_y_offset () % sur.get_height ());
 }
 
 /* EOF */

@@ -29,6 +29,7 @@
 #include "Stone.hxx"
 #include "System.hxx"
 #include "Ambulance.hxx"
+#include "LevelMap.hxx"
 
 #include "groundmap/GroundMap.hxx"
 #include "groundmap/GroundMapData.hxx"
@@ -207,7 +208,7 @@ public:
 	VehicleView view (world, current_vehicle, 0, 0, 800, 600);
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
-	
+
 	//VehicleView view1 (world, heli, 0, 0, 399, 600);
 	//VehicleView view2 (world, current_vehicle, 400, 0, 800, 600);
 	
@@ -216,9 +217,14 @@ public:
 
 	CL_System::keep_alive();
 
+	int wannahavefps = 30;
+	int delta_wait = 1000/wannahavefps;
+
+	LevelMap levelmap (world);
+	
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
-	  {	
+	  {
 	    // Poor mans pause button
 	    if (CL_Keyboard::get_keycode(CL_KEY_SPACE))
 	      {
@@ -233,7 +239,11 @@ public:
 	      }
 
 	    CL_System::sleep (0);
-	    delta = ((CL_System::get_time () - last_time) / 1000.0f); // FIXME: Slow down
+
+	    /* Switch between hard and variable updates here */
+	    //delta = ((CL_System::get_time () - last_time) / 1000.0f);
+	    delta = delta_wait/1000.0f;
+
 	    last_time = CL_System::get_time ();
 	    world->update (delta);
 	    
@@ -262,9 +272,19 @@ public:
 	    
 	    controller.update (delta);
 	    kcontroller.update (delta);
+	    
+	    // Comment out for variable frame rate
+	    int sleep_time = (last_time + delta_wait) - CL_System::get_time();
+	    if (sleep_time > 0)
+	      CL_System::sleep (sleep_time);
+
+	    if (CL_Keyboard::get_keycode(CL_KEY_M))
+	      {
+		levelmap.draw ();
+	      }
 
 	    // Flip front and backbuffer. This makes the changes visible:
-	    CL_Display::flip_display();
+	    CL_Display::flip_display(true);
 	    ++frames;
 	    
 	    // Update keyboard input and handle system events:

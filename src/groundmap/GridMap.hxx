@@ -1,4 +1,4 @@
-//  $Id: GridMap.hxx,v 1.3 2002/03/26 10:42:46 grumbel Exp $
+//  $Id: GridMap.hxx,v 1.4 2002/03/27 23:59:07 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <map>
+#include "View.hxx"
 #include "GroundMap.hxx"
 #include "GridTileData.hxx"
 #include "GridMapData.hxx"
@@ -43,12 +44,15 @@ private:
   /** All real tiles are stored in this map, delete them here */
   GridTileGenerator tiles;
 
+  CL_Surface surface;
+
 public:
   GridMap (const GridMapData& data);
   virtual ~GridMap ();
 
   GroundType get_groundtype (float x, float y);
   void draw (View* view);
+  void draw_levelmap (LevelMap* levelmap);
   void update (float);
 };
 

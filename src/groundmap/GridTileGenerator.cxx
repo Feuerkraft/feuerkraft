@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.cxx,v 1.3 2002/03/27 13:40:13 grumbel Exp $
+//  $Id: GridTileGenerator.cxx,v 1.4 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -103,6 +103,10 @@ GridTileGenerator::symbol2GroundType (SCM symbol)
     {
       return GT_MUD;
     }
+  else if (gh_equal_p (gh_symbol2scm ("a"), symbol))
+    {
+      return GT_ASPHALT;
+    }
   else 
     {
       return GT_EMPTY;
@@ -129,6 +133,14 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
 GridTile*
 GridTileGenerator::create (const GridTileData& data)
 {
+  if (data.ur == GT_EMPTY || data.ul == GT_EMPTY || data.bl == GT_EMPTY || data.br == GT_EMPTY)
+    return 0;
+  
+  // We switch to transparent when the tile has the same 'color' as the base ground
+  // FIXME: ground color needs to be variable
+  if (data.ur == GT_SAND && data.ul == GT_SAND && data.bl == GT_SAND && data.br == GT_SAND)
+    return 0;
+
   TileTable::iterator i;
   for (i = tiles.begin (); i != tiles.end (); ++i)
     if (i->first == data)
@@ -141,13 +153,12 @@ GridTileGenerator::create (const GridTileData& data)
       else
 	{
 	  // The tile list is empty
-	  return emptytile;
+	  return 0;
 	}
     }
   else
     {
-      // We don't have a tiledesc entry for this tile
-      return emptytile;
+	return emptytile;
     }
 }
 

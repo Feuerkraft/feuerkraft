@@ -1,4 +1,4 @@
-//  $Id: GridMapData.cxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
+//  $Id: GridMapData.cxx,v 1.3 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include "GridMapData.hxx"
 
 GridMapData::GridMapData (SCM desc)
+  : provider (0)
 {
   grid_width  = -1;
   grid_height = -1;
@@ -52,31 +53,39 @@ GridMapData::GridMapData (SCM desc)
 
 GridMapData::~GridMapData ()
 {
+  // delete provider; FIXME: disabled cause it could lead to throuble with copy c'tor
 }
 
 void
 GridMapData::parse_from_file (SCM desc)
 {
+  /* GridMaps will always get a one pixel boarder with the base
+     enviroment */
   char* str = gh_scm2newstr(gh_car (desc), 0);
   std::cout << "Loading from: " << str << std::endl;
   std::string filename = str;
   free (str);
   
-  CL_PNGProvider provider(filename);
+  provider = new CL_PNGProvider (filename);
 
-  provider.lock ();
-  assert (provider.is_indexed ());
+  provider->lock ();
+  assert (provider->is_indexed ());
 
-  grid_width  = provider.get_width ();
-  grid_height = provider.get_height ();
+  grid_width  = provider->get_width () + 2;
+  grid_height = provider->get_height () + 2;
 
   grid_data.resize (grid_width * grid_height);
   
-  unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
-  for (int i = 0; i < grid_width * grid_height; ++i)
-    grid_data[i] = static_cast<GroundType>(buffer[i]);
+  for (int i = 0; i < grid_height * grid_width; ++i)
+    grid_data[i] = GT_SAND; // FIXME: should be variable not hardcoded!
 
-  provider.unlock (); 
+  unsigned char* buffer = static_cast<unsigned char*>(provider->get_data ());
+  for (unsigned int y = 0; y < provider->get_height (); ++y)
+    for (unsigned int x = 0; x < provider->get_width (); ++x)
+      grid_data[(x + 1) + ((y+1) * grid_width)] 
+	= static_cast<GroundType>(buffer[x + (provider->get_width () * y)]);
+
+  provider->unlock (); 
 }
 
 GroundMap*

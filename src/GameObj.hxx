@@ -1,4 +1,4 @@
-//  $Id: GameObj.hxx,v 1.2 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: GameObj.hxx,v 1.3 2002/03/27 23:59:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,9 @@
 #include "boost/dummy_ptr.hpp"
 #include "GameWorld.hxx"
 
+class Radar;
 class View;
+class LevelMap;
 class GameWorld;
 
 class GameObj
@@ -46,10 +48,20 @@ public:
     return world; 
   }
 
-  // Draw the object onto the screen
+  /** Draw the object onto the main view, which means the object will
+      be drawn in normal game grafic */
   virtual void draw (View* view) =0;
 
+  /** Draw the energie bar, this is done in a seperate function to
+      avoid rotation and scaling of the energie bar */
   virtual void draw_energie (View* view) {}
+
+  /** Draw the object to the radar */
+  virtual void draw_radar (Radar* radar) {}
+
+  /** Draw the object to the levelmap, the levelmap gives an overview
+      about the complete level */
+  virtual void draw_levelmap (LevelMap* view) {}
   
   // Update the object once a game loop
   virtual void update (float) {}

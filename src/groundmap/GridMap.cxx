@@ -1,4 +1,4 @@
-//  $Id: GridMap.cxx,v 1.4 2002/03/26 10:42:46 grumbel Exp $
+//  $Id: GridMap.cxx,v 1.5 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,14 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "View.hxx"
 #include "GridTile.hxx"
 #include "GridMap.hxx"
 
 GridMap::GridMap (const GridMapData& data)
   : GridMapData (data),
-    tiles ("data/tiles.scm")
+    tiles ("data/tiles.scm"),
+    surface (provider)
 {
   std::vector<GridTileData> tile_data;
   
@@ -91,6 +93,12 @@ void
 GridMap::update (float)
 {
   
+}
+
+void
+GridMap::draw_levelmap (LevelMap* levelmap)
+{
+  surface.put_screen (0, 0);
 }
 
 GroundType

@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.13 2002/03/24 23:26:41 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.14 2002/03/27 23:59:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -89,6 +89,11 @@ TileMap::draw (View* view)
 					   int(x * 40),
 					   int(y * 40));
     }
+}
+
+void
+TileMap::draw_levelmap (LevelMap* levelmap)
+{
 }
 
 void
