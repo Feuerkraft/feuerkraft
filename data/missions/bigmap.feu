@@ -41,6 +41,30 @@
           (tree (pos 1786 3883)))
 
  (buildings
+  (tower  (energie 100)
+          (x-pos 49)
+          (y-pos 110)
+          (angle 55))
+
+  (tower  (energie 100)
+          (x-pos 53)
+          (y-pos 110)
+          (angle 55))
+
+  (tower  (energie 100)
+          (x-pos 82)
+          (y-pos 87)
+          (angle 55))
+
+  (fuelstation (x-pos 69)
+               (y-pos 64))
+  (fuelstation (x-pos 65)
+               (y-pos 64))
+  (ammotent (x-pos 68)
+            (y-pos 80))
+  (ammotent (x-pos 74)
+            (y-pos 80))
+
   (tower (x-pos 61)
          (y-pos 242))
   (tower (x-pos 49)
@@ -185,29 +209,15 @@
   (wall (x-pos 13)
         (y-pos 13)
         (energie 50))
-  (tower  (energie 70)(x-pos 4)
-          (y-pos 14)
-          (angle 55))
-  (tower  (energie 70)(x-pos 4)
-          (y-pos 12)
-          (angle 65))
-  (tower  (energie 70)(x-pos 4)
-          (y-pos 10)
-          (angle 75))
-  (tower  (energie 70)
-          (x-pos 4)
-          (y-pos 16)
-          (angle 45))
-  (tower  (energie 70)(x-pos 10)
-          (y-pos 12)
-          (angle 85))
+  
+
+
   (base (x-pos 13)
         (y-pos 30))
   (headquarter (x-pos 16)
                (y-pos 3))
 
-  (fuelstation (x-pos 33)
-               (y-pos 90))
+
   (ammotent (x-pos 37)
             (y-pos 90))
 
