@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.5 2003/05/09 14:13:54 grumbel Exp $
+//  $Id: guile.cxx,v 1.6 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -88,6 +88,11 @@ std::string keyword2string(SCM keyword)
   std::string ret = str + 1; // skip the dash
   free(str);
   return ret;
+}
+
+std::string symbol2string(SCM symbol)
+{
+  
 }
 
 } // namespace Guile

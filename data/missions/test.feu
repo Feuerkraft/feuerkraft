@@ -1,5 +1,6 @@
 ;; -*- mode: scheme; -*-
-((objects (tree (pos 120 100))
+(feuerkraft-scenario
+ (objects (tree (pos 120 100))
 	  (tree (pos 200 200))
 	  (tree (pos 1100 1350))
 	  (tree (pos 1402 1440))
@@ -39,7 +40,7 @@
           (tree (pos 1632 3943))
           (tree (pos 1786 3883)))
 
- (buildingmap 
+ (buildings
   (tower (pos 61 242))
   (tower (pos 49 242))
   (ammotent (pos 158 192))
@@ -152,6 +153,9 @@
   (headquarter (pos 24 31)))
 
  (groundmap 
-  (gridmap 	  (file "data/missions/airport.png"))))
+  (gridmap 	  (file "data/missions/foobar.png")))
+
+ (scripts "data/missions/pathdata.scm"
+          "data/missions/test.scm"))
 
 ;; EOF ;;

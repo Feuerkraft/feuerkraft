@@ -1,4 +1,4 @@
-//  $Id: game_world_data.hxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: game_world_data.hxx,v 1.3 2003/05/09 23:38:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,8 @@
 #define GAMEWORLDDATA_HXX
 
 #include <libguile.h>
-#include <list>
+#include <vector>
+#include <string>
 
 class GameObjData;
 class GroundMapData;
@@ -32,7 +33,8 @@ class GameWorldData
 {
 protected:
   bool needs_delete;
-  std::list<GameObjData*> gameobj_data;
+  std::vector<GameObjData*> gameobj_data;
+  std::vector<std::string> scripts;
   GroundMapData* groundmap_data;
   BuildingMapData* buildingmap_data;
   
@@ -48,7 +50,8 @@ public:
   SCM dump_to_scm ();
   
 private:
-  void parse_objects (SCM desc);
+  void parse_objects(SCM desc);
+  void parse_scripts(SCM desc);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: grid_tile_generator.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: grid_tile_generator.cxx,v 1.3 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -107,6 +107,10 @@ GridTileGenerator::symbol2GroundType (SCM symbol)
     {
       return GT_ASPHALT;
     }
+  else if (gh_equal_p (gh_symbol2scm ("w"), symbol))
+    {
+      return GT_WETSAND;
+    }
   else 
     {
       return GT_EMPTY;
@@ -161,7 +165,7 @@ GridTileGenerator::create (const GridTileData& data)
     }
   else
     {
-	return emptytile;
+      return emptytile;
     }
 }
 

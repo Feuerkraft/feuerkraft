@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: radar.hxx,v 1.4 2003/05/09 23:38:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,8 +41,6 @@ private:
 
   float angle;
 
-  CL_Sprite radar_line;
-  
 public:
   Radar (const CL_Vector& arg_pos,  boost::dummy_ptr<GameWorld> w, boost::dummy_ptr<Vehicle> v);
   ~Radar ();

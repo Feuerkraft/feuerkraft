@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.6 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: game_world.cxx,v 1.7 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,9 +67,21 @@ GameWorld::GameWorld (const GameWorldData& data)
   game_obj_manager->add_object(groundmap);
   game_obj_manager->add_object(buildingmap);
 
-  for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+  for (std::vector<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
     {
       game_obj_manager->add_object((*i)->create (this));
+    }
+  
+  // FIXME: a little hacky
+  //world_module = scm_c_define_module("feuerkraft game-world", 0, 0);
+  //last_module  = scm_set_current_module(world_module);
+
+  // Load scripts
+  for(std::vector<std::string>::iterator i = scripts.begin(); i != scripts.end(); ++i)
+    {
+      std::cout << "### Loading Script: " << *i << std::endl;
+      scm_c_primitive_load(i->c_str());
+      std::cout << "### DONE: Loading Script: " << *i << std::endl;
     }
 }
 
@@ -79,6 +91,9 @@ GameWorld::~GameWorld ()
   delete building_manager;
   delete trigger_manager;
   // FIXME: Memory Leak, we should clear the gameobj list here
+
+  // Restore module FIXME: a little hacky
+  //scm_set_current_module(last_module);
 }
 
 void 
@@ -226,7 +241,7 @@ GameWorld::get_data ()
   if (needs_delete)
     {
       std::cout << "GameWorld: Deleting current data objects" << std::endl;
-      for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+      for (std::vector<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
 	delete *i;
       gameobj_data.clear ();
       needs_delete = false;

@@ -918,6 +918,38 @@
       <image name="image1" file="data/images/tiles/ssss7.png" />
     </sprite>
 
+    <sprite name="swsw1">
+      <image name="image1" file="data/images/tiles/swsw1.png" />
+    </sprite>
+
+    <sprite name="wsws1">
+      <image name="image1" file="data/images/tiles/wsws1.png" />
+    </sprite>
+
+    <sprite name="wwss1">
+      <image name="image1" file="data/images/tiles/wwss1.png" />
+    </sprite>
+
+    <sprite name="wwww1">
+      <image name="image1" file="data/images/tiles/wwww1.png" />
+    </sprite>
+
+    <sprite name="wwww2">
+      <image name="image1" file="data/images/tiles/wwww2.png" />
+    </sprite>
+
+
+    <sprite name="wssw1">
+      <image name="image1" file="data/images/tiles/wssw1.png" />
+    </sprite>
+
+    <sprite name="wwsw1">
+      <image name="image1" file="data/images/tiles/wwsw1.png" />
+    </sprite>
+
+    <sprite name="swws1">
+      <image name="image1" file="data/images/tiles/swws1.png" />
+    </sprite>
   </section>
 
 

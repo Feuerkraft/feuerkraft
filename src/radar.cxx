@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.4 2003/05/09 14:18:35 grumbel Exp $
+//  $Id: radar.cxx,v 1.5 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,7 +33,6 @@ Radar::Radar (const CL_Vector& arg_pos,
     pos (arg_pos),
     angle (0)
 {
-  radar_line = resources->get_sprite ("feuerkraft/radar_line");
 }
 
 Radar::~Radar ()
@@ -60,17 +59,13 @@ Radar::draw (CL_GraphicContext* gc)
 
   world->get_buildingmap ()->draw_radar (this);
 
-  radar_line.set_angle(Math::rad2deg(angle + 180.0f));
-  radar_line.draw (int(pos.x), int(pos.y), gc);
+  CL_Display::draw_line(int(pos.x), int(pos.y - 5),
+                        int(pos.x), int(pos.y + 5),
+                        CL_Color(0, 255, 0));
 
-  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
-			 CL_Color(255, 255, 0));
-  
-  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) + 45, int(pos.y) - 45,
-			 CL_Color(255, 255, 0));
-
-  CL_Display::draw_line (int(pos.x), int(pos.y), int(end.x), int(end.y),
-			 CL_Color(0, 255, 0));
+  CL_Display::draw_line(int(pos.x - 5), int(pos.y),
+                        int(pos.x + 5), int(pos.y),
+                        CL_Color(0, 255, 0));
 }
 
 void
@@ -89,7 +84,7 @@ Radar::draw_blip (const CL_Vector& arg_pos, int size,
 
   if (diff.norm () < 64.0)
     {
-      diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
+      //diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
 
       CL_Display::fill_rect (CL_Rect(int(pos.x + diff.x), int(pos.y + diff.y),
                                      int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),

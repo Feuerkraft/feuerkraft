@@ -126,11 +126,14 @@ public:
         
         BuildingTypeManager buildingtypemanager;
 
+        // Load helper functions
+        scm_c_primitive_load("src/scripting/feuerkraft.scm");
+
         // Deserialize the game world
 	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-	  SCM fdes = scm_open_file (scm_makfrom0str("data/missions/test.feu"), 
+	  SCM fdes = scm_open_file (scm_makfrom0str(args.mission_file.c_str()), 
                                     scm_makfrom0str("r"));
 	  SCM lst  = scm_read (fdes);
 
@@ -143,12 +146,6 @@ public:
 	}
 	// End: Test of parsing code
         
-        // Load helper functions
-        scm_c_primitive_load("src/scripting/feuerkraft.scm");
-
-        // Load game scripts 
-        scm_c_primitive_load("data/missions/test.scm");
-
 	Screen    screen;
 
 	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5,

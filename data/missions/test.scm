@@ -1,5 +1,4 @@
 (display "============== SCRIPT START ======================\n")
-(load "pathdata.scm")
 
 ;;(load-extension "/home/ingo/projects/feuerkraft/cvs/src/scripting/.libs/libguile-feuerkraft.so" 
 ;;                "SWIG_init")

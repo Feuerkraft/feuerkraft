@@ -1,4 +1,4 @@
-//  $Id: ground_type.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: ground_type.hxx,v 1.2 2003/05/09 23:38:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,10 @@
 /** The GroundType defines the type of the ground, it has influence on
     the speed and acceleration of vehicles. It has also influence on
     the detonation type of shells and rocket (splash instead of a big
-    explosion and such). */
+    explosion and such). 
+
+    FIXME: GroundType<->Palette relation is hardcoded
+*/
 enum GroundType 
 { 
   /** This GroundType is used to mark empty tiles, vehicles should not
@@ -51,7 +54,10 @@ enum GroundType
 
   /** Street and parking places have the GroundType GT_ASPHALT, wheel
       vehicles will be fast on here. */
-  GT_ASPHALT 
+  GT_ASPHALT, 
+
+  /** also known Dark sand */
+  GT_WETSAND
 };
 
 #endif

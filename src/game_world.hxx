@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.6 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: game_world.hxx,v 1.7 2003/05/09 23:38:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef GAMEWORLD_HH
 #define GAMEWORLD_HH
 
-#include <list>
 #include "game_world_data.hxx"
 
 class View;
@@ -44,7 +43,8 @@ private:
   
   GroundMap* groundmap;
   float current_time;
-
+  SCM world_module;
+  SCM last_module;
 public:
   GameWorld ();
   GameWorld (const GameWorldData& data);

@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.cxx,v 1.1 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: command_line_arguments.cxx,v 1.2 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,7 +53,7 @@ CommandLineArguments::CommandLineArguments(int argc, char** argv)
 void
 CommandLineArguments::load_defaults()
 {
-  mission_file = "";
+  mission_file = "data/missions/test.feu";
   fps          = 30.0f;
   verbose      = true;
   datadir      = "";

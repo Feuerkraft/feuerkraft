@@ -1,4 +1,4 @@
-//  $Id: game_world_data.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_world_data.cxx,v 1.3 2003/05/09 23:38:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "guile.hxx"
 #include "generic/ofstreamext.hxx"
 #include "game_world.hxx"
 #include "buildings/building_map_data.hxx"
@@ -35,6 +36,16 @@ GameWorldData::GameWorldData ()
 GameWorldData::GameWorldData (SCM desc)
   : needs_delete (true)
 {
+  assert(gh_pair_p(desc));
+
+  if (gh_equal_p (gh_symbol2scm ("feuerkraft-scenario"), gh_car(desc)))
+    desc = gh_cdr(desc);
+  else
+    {
+      std::cout << "File is not a feuerkraft scenario" << std::endl;
+      assert(false);
+    }
+
   while (gh_pair_p(desc))
     {
       if (gh_pair_p (gh_car (desc)))
@@ -48,13 +59,17 @@ GameWorldData::GameWorldData (SCM desc)
 		{
 		  groundmap_data = GroundMapDataFactory::create (data);
 		}
-	      else if (gh_equal_p (gh_symbol2scm ("buildingmap"), symbol)) 
+	      else if (gh_equal_p (gh_symbol2scm ("buildings"), symbol)) 
 		{
 		  buildingmap_data = new BuildingMapData (data);
 		}
 	      else if (gh_equal_p (gh_symbol2scm ("objects"), symbol))
 		{
-		  parse_objects (data);
+		  parse_objects(data);
+		}
+	      else if (gh_equal_p (gh_symbol2scm ("scripts"), symbol))
+		{
+		  parse_scripts(data);
 		}
 	      else
 		{
@@ -129,7 +144,7 @@ GameWorldData::dump_to_scm ()
   SCM world_lst = SCM_EOL;
 
   SCM objs = SCM_EOL;
-  for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+  for (std::vector<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
     {
       if (*i)
 	{
@@ -150,6 +165,19 @@ GameWorldData::dump_to_scm ()
   world_lst = SCM_BOOL_F; //scm_listify (gh_symbol2scm ("world"), world_lst, SCM_UNDEFINED);
 
   return world_lst;
+}
+
+void
+GameWorldData::parse_scripts(SCM desc)
+{
+  while(!gh_null_p(desc))
+    {
+      SCM script = gh_car(desc);
+
+      scripts.push_back(Guile::scm2string(script));
+      
+      desc = gh_cdr(desc);
+    }
 }
 
 /* EOF */
