@@ -71,7 +71,7 @@ public:
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
-	    CL_Display::clear_display (0.7, 0.7, 0.6);
+	    CL_Display::clear_display (0.7f, 0.7f, 0.6f);
 	    
 	    world.draw ();
 	    world.update ();

@@ -5,7 +5,7 @@
 
 extern CL_ResourceManager* resources;
 
-const float circle = 6.2831854;
+const float circle = 6.2831854f;
 
 Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire) :
   sur (surface.c_str (), resources),

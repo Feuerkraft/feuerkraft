@@ -1,4 +1,4 @@
-//  $Id: Explosion.cc,v 1.1 2001/02/18 15:27:24 grumbel Exp $
+//  $Id: Explosion.cc,v 1.2 2001/02/18 21:53:59 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include "Shockwave.hh"
 #include "Explosion.hh"
 
-Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL) : 
+Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size) : 
   is_drawn (false),
   pos (arg_pos),
   size (arg_size)

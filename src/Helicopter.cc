@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.1 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.2 2001/02/18 21:53:59 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,7 +46,7 @@ Helicopter::draw ()
 {
   if (!destroyed)
     {
-      const float circle = 6.2831854;
+      const float circle = 6.2831854f;
       int frame = (int(fmod(angle, circle) / circle * heli.get_num_frames ()) + 16) % 16;
       //std::cout << "angle: " << angle << std::endl;
   
@@ -79,8 +79,8 @@ Helicopter::update ()
   pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0));
   pos += CL_Vector (0.0, strafe, 0.0).rotate (angle, CL_Vector (0.0, 0.0, 1.0));
 
-  velocity /= 1.03;
-  strafe /= 1.03;
+  velocity /= 1.03f;
+  strafe /= 1.03f;
 
   if (fireing && !reloading)
     {
@@ -99,37 +99,37 @@ Helicopter::update ()
 void 
 Helicopter::increase_velocity ()
 {
-  velocity += 0.1;
+  velocity += 0.1f;
 }
 
 void 
 Helicopter::decrease_velocity ()
 {
-  velocity -= 0.1;
+  velocity -= 0.1f;
 }
 
 void
 Helicopter::turn_left ()
 {
-  angle += 0.04;
+  angle += 0.04f;
 }
 
 void 
 Helicopter::turn_right ()
 {
-  angle -= 0.04;
+  angle -= 0.04f;
 }
 
 void 
 Helicopter::turn_left2 ()
 {
-  strafe -= 0.1;
+  strafe -= 0.1f;
 }
 
 void 
 Helicopter::turn_right2 ()
 {
-  strafe += 0.1;
+  strafe += 0.1f;
 }
 
 void

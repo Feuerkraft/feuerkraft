@@ -92,7 +92,15 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\src\Controller.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Energie.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Explosion.cc
 # End Source File
 # Begin Source File
 
@@ -104,6 +112,10 @@ SOURCE=.\src\GameWorld.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Helicopter.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\JoystickController.cc
 # End Source File
 # Begin Source File
@@ -112,7 +124,15 @@ SOURCE=.\src\KeyboardController.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Mine.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Projectile.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Shockwave.cc
 # End Source File
 # Begin Source File
 
@@ -168,6 +188,10 @@ SOURCE=.\src\GameWorld.hh
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Helicopter.hh
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\JoystickController.hh
 # End Source File
 # Begin Source File
@@ -181,6 +205,10 @@ SOURCE=.\src\Mine.hh
 # Begin Source File
 
 SOURCE=.\src\Projectile.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Shockwave.hh
 # End Source File
 # Begin Source File
 
@@ -207,5 +235,9 @@ SOURCE=.\src\Turret.hh
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # End Group
+# Begin Source File
+
+SOURCE=.\src\Makefile.am
+# End Source File
 # End Target
 # End Project
