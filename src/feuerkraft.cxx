@@ -110,7 +110,14 @@ Feuerkraft::init()
   Fonts::init();
 
   KeyboardManager::instance();
-  InputManager::init();
+
+  if (args->playback_file.empty())
+    InputManager::init(args->controller_file);
+  else
+    InputManager::init_playback(args->playback_file);
+
+  if (!args->event_record_file.empty())
+    InputManager::setup_recorder(args->event_record_file);
 }
 
 void 
@@ -126,15 +133,15 @@ Feuerkraft::deinit()
 int
 Feuerkraft::main(int argc, char** argv)
 {
-  // Make arguments accessible for all member functions
-  args = new CommandLineArguments(argc, argv);
-
   // Create a console window for text-output if not available
   CL_ConsoleWindow console("Console");
   console.redirect_stdio();
   
   try
     {
+      // Make arguments accessible for all member functions
+      args = new CommandLineArguments(argc, argv);
+
       // Init all subsystems
       init();
       

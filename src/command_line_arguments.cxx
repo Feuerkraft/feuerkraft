@@ -20,28 +20,8 @@
 #include <config.h>
 #include <iostream>
 #include <stdlib.h>
-#include <argp.h>
+#include <ClanLib/Core/System/command_line.h>
 #include "command_line_arguments.hxx"
-
-const char *argp_program_version     = PACKAGE_STRING;
-const char *argp_program_bug_address = "Ingo Ruhnke <grumbel@gmx.de>";
-
-static char doc[] = "Feuerkraft is a tank battle game";
-
-static struct argp_option options[] = {
-  {"verbose",    'v', 0,         0,  "Produce verbose output" },
-  {"quiet",      'q', 0,         0,  "Produce no output" },
-  {"fullscreen", 'w', 0,         0,  "Switch to Fullscreen on startup" },
-  {"datadir",    'd', 0,         0,  "Set the path to search for gamedata" },
-  {"fps",        'f', "FPS",     0,  "Limit of frames per second" },
-  {"music",      'm', 0,         0,  "Enable music" },
-  {"sound",      's', 0,         0,  "Enable sound" },
-  {"controller", 'c', "FILE",    0,  "Use controller as defined in FILE" },
-  {"geometry",   'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
-  { 0 }
-};
-
-static struct argp argp = { options, CommandLineArguments::parse_option_static, "MISSIONFILE", doc, 0, 0 };
 
 CommandLineArguments::CommandLineArguments()
 {
@@ -75,90 +55,113 @@ CommandLineArguments::load_defaults()
 void
 CommandLineArguments::parse_arguments(int argc, char** argv)
 {
-  argp_parse(&argp, argc, argv, 0, 0, this);
-}
+  CL_CommandLine argp;
+    
+  argp.set_help_indent(22);
+  argp.add_usage ("[LEVELFILE]");
+  argp.add_doc   ("Feuerkraft is a tank battle game");
 
-error_t
-CommandLineArguments::parse_option_static(int key, char *arg, struct argp_state *state)
-{ // Dispatch to the CommandLineArguments object
-  return static_cast<CommandLineArguments*>(state->input)->parse_option(key, arg, state);
-}
+  argp.add_group("General Options:");
+  argp.add_option('v', "verbose", "",  "Produce verbose output");
+  argp.add_option('V', "version", "",  "Print the exact version of the game");
+  argp.add_option('q', "quiet",   "",  "Produce no output");
+  argp.add_option('h', "help",   "",   "Produce this help output");
+  argp.add_option('d', "datadir", "DATADIR", "Set the path to search for gamedata");
 
-error_t
-CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
-{
-  switch(key)
+  argp.add_group("Display Options:");
+  argp.add_option('g', "geometry",   "WIDTHxHEIGHT", "Set screen size");
+  argp.add_option('w', "fullscreen", "",    "Switch to Fullscreen on startup");
+  argp.add_option('f', "fps",        "FPS", "Limit of frames per second");
+
+  argp.add_group("Audio Options:");
+  argp.add_option('m', "music", "",  "Enable music");
+  argp.add_option('s', "sound", "",  "Enable sound");
+
+  argp.add_group("Input Options:");
+  argp.add_option('c', "controller", "FILE",   "Use controller as defined in FILE");
+
+  argp.add_group("Demo Recording/Playback Options:");
+  argp.add_option('r', "record",      "FILE", "Record input events to FILE");
+  argp.add_option('a', "record-video","DIR",  "Record a gameplay video to DIR");
+  argp.add_option('p', "play",        "FILE", "Playback input events from FILE");
+
+  argp.parse_args(argc, argv);
+
+  while (argp.next())
     {
-    case ARGP_KEY_ARGS:
-      break;
-    case ARGP_KEY_NO_ARGS:
-      break;
-    case ARGP_KEY_INIT:
-      break;
-    case ARGP_KEY_FINI:
-      break;
-    case ARGP_KEY_END:
-      break;
-    case ARGP_KEY_SUCCESS:
-      break;
-    case ARGP_KEY_ERROR:
-      std::cout << "ERROR" << std::endl;
-      break;
-      
-    case ARGP_KEY_ARG:
-      mission_file = arg;
-      break;
-
-    case 'f':
-      fps = strtof(arg, 0);
-      break;
-
-    case 'V':
-      std::cout << PACKAGE_STRING << std::endl;
-      exit(EXIT_SUCCESS);
-      break;
-
-    case 'v':
-      verbose = true;
-      break;
-
-    case 'd':
-      datadir = arg;
-      break;
-
-    case 'q':
-      verbose = false;
-      break;
-
-    case 'm':
-      music_enabled = true;
-      break;
-
-    case 'c':
-      controller_file = arg;
-      break;
-
-    case 's':
-      sound_enabled = true;
-      break;
-
-    case 'w':
-      fullscreen = true;
-      break;
-
-    case 'g':
-      if (sscanf(arg, "%dx%d", &screen_width, &screen_height) != 2)
+      switch(argp.get_key())
         {
-          std::cout << "Screen size value incorrect: '" << arg << "'" << std::endl;
-          exit(EXIT_FAILURE);
-        }
-      break;
+        case CL_CommandLine::REST_ARG:
+          mission_file = argp.get_argument();
+          break;
 
-    default: 
-      std::cout << "CommandLineArguments: Unhandled key: " << key << std::endl;
-      break;
+        case 'a':
+          video_record_directory = argp.get_argument();
+          break;
+
+        case 'r':
+          event_record_file = argp.get_argument();
+          break;
+
+        case 'h':
+          argp.print_help();
+          exit(EXIT_SUCCESS);
+          break;
+
+        case 'p':
+          playback_file = argp.get_argument();
+          break;
+
+        case 'f':
+          fps = strtof(argp.get_argument().c_str(), 0);
+          break;
+
+        case 'V':
+          std::cout << PACKAGE_STRING << std::endl;
+          exit(EXIT_SUCCESS);
+          break;
+
+        case 'v':
+          verbose = true;
+          break;
+
+        case 'd':
+          datadir = argp.get_argument();
+          break;
+
+        case 'q':
+          verbose = false;
+          break;
+
+        case 'm':
+          music_enabled = true;
+          break;
+
+        case 'c':
+          controller_file = argp.get_argument();
+          break;
+
+        case 's':
+          sound_enabled = true;
+          break;
+
+        case 'w':
+          fullscreen = true;
+          break;
+
+        case 'g':
+          if (sscanf(argp.get_argument().c_str(), "%dx%d", &screen_width, &screen_height) != 2)
+            {
+              std::cout << "Screen size value incorrect: '" << argp.get_argument() << "'" << std::endl;
+              exit(EXIT_FAILURE);
+            }
+          break;
+
+        default: 
+          std::cout << "CommandLineArguments: Unhandled key: " << argp.get_key() << std::endl;
+          break;
+        }
     }
-  return 0;
 }
 
 /* EOF */

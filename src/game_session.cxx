@@ -234,8 +234,16 @@ GameSession::update()
   // Flip front and backbuffer. This makes the changes visible:
   CL_Display::flip ();
 
-  if (0) // AVI
-    Screenshot::write_screenshot_pnm("/tmp/feuerkraft/" + to_string(frames));
+  if (!args->video_record_directory.empty())
+    {
+      std::stringstream filename;
+      filename << args->video_record_directory;
+      filename.width(8);
+      filename.fill('0');
+      filename << frames;
+      filename << ".ppm";
+      Screenshot::write_screenshot_pnm(filename.str());
+    }
 
   ++frames;
 	    
@@ -276,7 +284,7 @@ GameSession::update()
     {
     case MENU_CONTROL:
       if (DisplayManager::current()->get_menu())
-        DisplayManager::current()->get_menu()->process_events(InputManager::get_events());
+        DisplayManager::current()->get_menu()->process_events(InputManager::get_controller().get_events());
       else
         {
           std::cout << "Error: Menu not available, fallback to unit" << std::endl;

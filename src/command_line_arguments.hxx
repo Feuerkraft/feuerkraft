@@ -20,7 +20,6 @@
 #ifndef HEADER_FEUERKRAFT_COMMAND_LINE_ARGUMENTS_HXX
 #define HEADER_FEUERKRAFT_COMMAND_LINE_ARGUMENTS_HXX
 
-#include <argp.h>
 #include <string>
 
 /** */
@@ -36,6 +35,15 @@ public:
   /** Path to all the datafiles */
   std::string datadir;
   std::string controller_file;
+
+  /** File to which all input events should be logged */
+  std::string event_record_file;
+
+  /** Directory to which gameplay-video (aka screenshots) get saved */
+  std::string video_record_directory;
+
+  /** File from which recorded events will be played back */
+  std::string playback_file;
 
   /** number of fps to which the game should limit itself */
   float fps;
@@ -55,13 +63,6 @@ public:
 
   void load_defaults();
   void parse_arguments(int argc, char** argv);
-
-private:
-  error_t parse_option(int key, char *arg, struct argp_state *state);
-
-public:  
-  /** Dispatch dummy */
-  static error_t parse_option_static(int key, char *arg, struct argp_state *state);
 };
 
 #endif

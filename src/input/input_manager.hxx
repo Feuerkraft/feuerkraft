@@ -34,11 +34,17 @@ private:
   static InputManagerImpl* impl;
   static InputRecorder* recorder;
 public:
-  static void init(InputManagerImpl* arg_impl = 0);
+  /** Init the InputManager with the data found in \a filename */
+  static void init(const std::string& filename = std::string());
+
+  /** Init the playback of a previously recorded file */
+  static void init_playback(const std::string& filenam);
   static void deinit();
 
+  /** Record all input events to \a filename */
+  static void setup_recorder(const std::string& filename);
+
   static void update(float delta);
-  static InputEventLst get_events();
   static Controller get_controller();
   static void clear();
 private:

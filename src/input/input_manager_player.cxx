@@ -78,7 +78,7 @@ InputManagerPlayer::scm2event(SCM entry)
 void
 InputManagerPlayer::update(float delta)
 {
-  std::cout << "Got: " << entry_counter << " " << entries.front().entry_num << std::endl;
+  //std::cout << "Got: " << entry_counter << " " << entries.front().entry_num << std::endl;
   if (entries.front().entry_num == entry_counter)
     {
       events = entries.front().events;

@@ -34,76 +34,60 @@ InputManagerImpl* InputManager::impl = 0;
 InputRecorder* InputManager::recorder = 0;
 
 void
-InputManager::init(InputManagerImpl* arg_impl)
+InputManager::init_playback(const std::string& filename)
 {
-  if (impl)
-    {
-      delete impl;
-      impl = 0;
-    }
+  impl = new InputManagerPlayer(filename);
+}
 
-  if (recorder)
+void
+InputManager::init(const std::string& filename)
+{
+  if (!filename.empty())
     {
-      delete recorder;
-      recorder = 0;
-    }
+      std::cout << "Reading: " << args->controller_file << std::endl;
+      SCM port = scm_open_file(gh_str02scm(args->controller_file.c_str()),
+                               gh_str02scm("r"));
+      SCM lst  = scm_read(port);
 
-  if (0)
-    {
-      recorder = new InputRecorder("/tmp/feuerkraft.rec");
-    }
+      gh_call1(gh_lookup("display"), lst);
+      gh_call1(gh_lookup("display"), gh_car(lst));
+      gh_call1(gh_lookup("display"), gh_symbol2scm("feuerkraft-controller"));
 
-  if (arg_impl)
-    { 
-      impl = arg_impl;
-    }
-  else
-    {
-      if (!args->controller_file.empty())
+      if (gh_equal_p(gh_symbol2scm("feuerkraft-controller"), gh_car(lst)))
         {
-          std::cout << "Reading: " << args->controller_file << std::endl;
-          SCM port = scm_open_file(gh_str02scm(args->controller_file.c_str()),
-                                   gh_str02scm("r"));
-          SCM lst  = scm_read(port);
-
-          gh_call1(gh_lookup("display"), lst);
-          gh_call1(gh_lookup("display"), gh_car(lst));
-          gh_call1(gh_lookup("display"), gh_symbol2scm("feuerkraft-controller"));
-
-          if (gh_equal_p(gh_symbol2scm("feuerkraft-controller"), gh_car(lst)))
-            {
-              impl = new InputManagerCustom(gh_cdr(lst));
-            }
-          else
-            {
-              std::cout << "Error: not a valid controller file: " << args->controller_file << std::endl;
-            }
-          scm_close_port(port);
+          impl = new InputManagerCustom(gh_cdr(lst));
         }
-      
-      if (!impl)
-        { 
-          if (0)
-            { // AVI
-              impl = new InputManagerPlayer("/tmp/feuerkraft1.rec");
-            }
-          else
-            {
-              // FIXME: Default to keyboard would be better
-              // Set default configuration
-              impl = new InputManagerCustom
-                (gh_eval_str("'("
-                             "(primary-button   (joystick-button 1 9))"
-                             "(secondary-button (joystick-button 1 8))"
-                             "(use-button       (joystick-button 1 3))"
-                             "(menu-button      (joystick-button 1 2))"
-                             "(orientation-axis (joystick-axis 1 0))"
-                             "(accelerate-axis  (joystick-axis 1 1))"
-                             "(strafe-axis      (joystick-axis 1 2))"
-                             ")"));
-            }
-        }     
+      else
+        {
+          std::cout << "Error: not a valid controller file: " << args->controller_file << std::endl;
+        }
+      scm_close_port(port);
     }
+      
+  if (!impl)
+    { 
+      // FIXME: Default to keyboard would be better
+      // Set default configuration
+      impl = new InputManagerCustom
+        (gh_eval_str("'("
+                     "(primary-button   (joystick-button 1 9))"
+                     "(secondary-button (joystick-button 1 8))"
+                     "(use-button       (joystick-button 1 3))"
+                     "(menu-button      (joystick-button 1 2))"
+                     "(orientation-axis (joystick-axis 1 0))"
+                     "(accelerate-axis  (joystick-axis 1 1))"
+                     "(strafe-axis      (joystick-axis 1 2))"
+                     ")"));
+    }     
+}
+
+void
+InputManager::setup_recorder(const std::string& filename)
+{
+  if (recorder)
+    delete recorder;
+
+  recorder = new InputRecorder(filename);
 }
 
 void 
@@ -119,13 +103,6 @@ InputManager::update(float delta)
   impl->update(delta);
   if (recorder)
     recorder->record(get_controller());
-}
-
-InputEventLst
-InputManager::get_events()
-{
-  assert(impl);
-  return impl->get_events();
 }
 
 Controller
