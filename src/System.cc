@@ -1,4 +1,4 @@
-//  $Id: System.cc,v 1.3 2001/05/02 08:31:46 grumbel Exp $
+//  $Id: System.cc,v 1.4 2001/05/02 10:19:10 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,6 +29,7 @@
 #  pragma warning( disable : 4786)
 #  include <windows.h>
 #  include <fstream>
+#  include <direct.h>
 #endif
 
 #include <cstdio>
