@@ -10,6 +10,8 @@ libfeuerkraft_input_a_SOURCES = \
   input_manager_impl.cxx \
   input_manager_custom.hxx \
   input_manager_custom.cxx \
+  input_manager_player.hxx \
+  input_manager_player.cxx \
   input_button.hxx \
   input_axis.hxx \
   input_button_input_device.hxx \
@@ -21,6 +23,8 @@ libfeuerkraft_input_a_SOURCES = \
   button_factory.hxx \
   button_factory.cxx \
   axis_factory.hxx \
-  axis_factory.cxx
+  axis_factory.cxx \
+  input_recorder.hxx \
+  input_recorder.cxx
 
 # EOF #

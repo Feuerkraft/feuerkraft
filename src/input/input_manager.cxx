@@ -24,11 +24,14 @@
 #include <ClanLib/Display/joystick.h>
 #include "../command_line_arguments.hxx"
 #include "input_manager_custom.hxx"
+#include "input_manager_player.hxx"
 #include "input_manager_impl.hxx"
+#include "input_recorder.hxx"
 #include "input_manager.hxx"
 
 extern CommandLineArguments* args;
 InputManagerImpl* InputManager::impl = 0;
+InputRecorder* InputManager::recorder = 0;
 
 void
 InputManager::init(InputManagerImpl* arg_impl)
@@ -37,6 +40,17 @@ InputManager::init(InputManagerImpl* arg_impl)
     {
       delete impl;
       impl = 0;
+    }
+
+  if (recorder)
+    {
+      delete recorder;
+      recorder = 0;
+    }
+
+  if (!recorder)
+    {
+      recorder = new InputRecorder("/tmp/feuerkraft.rec");
     }
 
   if (arg_impl)
@@ -69,6 +83,9 @@ InputManager::init(InputManagerImpl* arg_impl)
       
       if (!impl)
         { 
+#if 1
+          impl = new InputManagerPlayer("/tmp/feuerkraft1.rec");
+#else
           // Set default configuration
           impl = new InputManagerCustom
             (gh_eval_str("'("
@@ -80,30 +97,9 @@ InputManager::init(InputManagerImpl* arg_impl)
                          "(accelerate-axis  (joystick-axis 1 1))"
                          "(strafe-axis      (joystick-axis 1 2))"
                          ")"));
+#endif
         }     
     }
-  /*
-    else if (args->joystick != -1)
-    {
-    if (args->joystick < CL_Joystick::get_device_count())
-    {
-    std::cout << "InputManager: Using joystick " << args->joystick << std::endl;
-    impl = new InputManagerJoystick();
-    }
-    else
-    {
-    std::ostringstream os;
-    os << "Feuerkraft: ClanLib doesn't have joystick number " << args->joystick
-    << ", only " << CL_Joystick::get_device_count() << " joysticks available" << std::endl;
-    throw std::runtime_error(os.str());
-    }
-    }
-    else 
-    {
-    std::cout << "InputManager: Using keyboard" << std::endl;
-    impl = new InputManagerKeyboard();
-    }
-  */
 }
 
 void 
@@ -117,6 +113,7 @@ InputManager::update(float delta)
 {
   assert(impl);
   impl->update(delta);
+  recorder->record(get_controller());
 }
 
 InputEventLst

@@ -127,6 +127,8 @@ satchel_charge.hxx \
 satchel_charge.cxx \
 screen.cxx \
 screen.hxx \
+screenshot.hxx \
+screenshot.cxx \
 scm_functor.hxx \
 scm_functor.cxx \
 scm_sequence_hook.hxx \

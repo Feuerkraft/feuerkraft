@@ -57,6 +57,8 @@
 #include "player.hxx"
 #include "path_manager.hxx"
 #include "command_line_arguments.hxx"
+#include "string_converter.hxx"
+#include "screenshot.hxx"
 #include "game_session.hxx"
 
 // FIXME: Replace this with a PlayerManager class or something similar
@@ -231,6 +233,7 @@ GameSession::update()
 
   // Flip front and backbuffer. This makes the changes visible:
   CL_Display::flip ();
+  Screenshot::write_screenshot_pnm("/tmp/feuerkraft/" + to_string(frames));
   ++frames;
 	    
   // Update keyboard input and handle system events:

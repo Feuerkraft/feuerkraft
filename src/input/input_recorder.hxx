@@ -1,4 +1,4 @@
-//  $Id: input_manager.hxx,v 1.3 2003/06/06 18:36:24 grumbel Exp $
+//  $Id$
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,33 +17,28 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_HXX
-#define HEADER_INPUT_MANAGER_HXX
+#ifndef HEADER_INPUT_RECORDER_HXX
+#define HEADER_INPUT_RECORDER_HXX
 
-#include <vector>
+#include <fstream>
 #include "controller.hxx"
-#include "input_event.hxx"
 
-class InputRecorder;
-class InputManagerImpl;
-
-/** */
-class InputManager
+/** The InputRecorder hooks into the InputManager and records all
+    input events to a file, thus allowing the later playback of the
+    events. */
+class InputRecorder
 {
 private:
-  static InputManagerImpl* impl;
-  static InputRecorder* recorder;
+  std::ofstream out;
+  int entry_counter;
 public:
-  static void init(InputManagerImpl* arg_impl = 0);
-  static void deinit();
+  InputRecorder(const std::string& filename);
+  ~InputRecorder();
 
-  static void update(float delta);
-  static InputEventLst get_events();
-  static Controller get_controller();
-  static void clear();
+  void record(const Controller& controller);
 private:
-  InputManager(const InputManager&);
-  InputManager& operator=(const InputManager&);
+  InputRecorder (const InputRecorder&);
+  InputRecorder& operator= (const InputRecorder&);
 };
 
 #endif
