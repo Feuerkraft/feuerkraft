@@ -2,7 +2,9 @@
   <sprite name="font_glyphs">
     <image name="image1" file="images/verdana11.png"><alpha /></image>
   </sprite>
-  <font name="font" glyphs="font_glyphs" letters="!_#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~" />
+  <font name="font">
+    <bitmap glyphs="font_glyphs" letters="!_#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~" />
+  </font>
 
   <section name="feuerkraft">
     <sprite name="logo">

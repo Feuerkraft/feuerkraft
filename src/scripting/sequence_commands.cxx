@@ -1,4 +1,4 @@
-//  $Id: sequence_commands.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sequence_commands.cxx,v 1.4 2003/09/15 20:23:53 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../scm_functor.hxx"
+#include "../sequence_manager.hxx"
 #include "sequence_commands.hxx"
 
 int  sequence_start()
