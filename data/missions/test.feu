@@ -11,9 +11,47 @@
 	  (tree (pos 1405 1354))
 	  (tree (pos 1203 1525))
 	  (tree (pos 1091 2120))
+
+	  (tree (pos 1840 3481))
+(tree (pos 1883 3378))
+(tree (pos 1972 3447))
+(tree (pos 2020 3318))
+(tree (pos 1920 3281))
+(tree (pos 2118 3366))
+(tree (pos 2161 3324))
+(tree (pos 2289 3451))
+(tree (pos 2184 3472))
+(tree (pos 2332 3545))
+(tree (pos 2435 3577))
+(tree (pos 2364 3638))
+(tree (pos 1959 3766))
+(tree (pos 1887 3717))
+(tree (pos 1935 3538))
+(tree (pos 1879 3589))
+
 	  )
 
- (buildingmap (tower (pos 10 1)
+ (buildingmap 
+
+(tower (pos 55 89))
+(tower (pos 50 95))
+
+(wall (pos 56 91))
+(wall (pos 56 92))
+(wall (pos 56 93))
+(wall (pos 56 94))
+(wall (pos 56 95))
+(wall (pos 55 95))
+(wall (pos 54 95))
+(wall (pos 52 95))
+(wall (pos 53 95))
+
+
+
+
+
+
+(tower (pos 10 1)
 		     (angle 102))
 	      (ammotent (pos 5 1))
 	      (fuelstation (pos 15 24))

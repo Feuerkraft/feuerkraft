@@ -251,8 +251,10 @@ public:
 		while (CL_Mouse::left_pressed ())
 		  CL_System::keep_alive ();
 		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
-		std::cout << "Mouse: " <<  pos << " "
-			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) << std::endl;
+		std::cout << "Mouse: " <<  pos << " | "
+			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 
+			  << " | " <<  int(pos.x) / 40  << " " << int(pos.y) / 40
+			  << std::endl;
 	      }
 	    
 	    controller.update (delta);
