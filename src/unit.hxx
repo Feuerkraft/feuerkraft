@@ -1,4 +1,4 @@
-//  $Id: unit.hxx,v 1.6 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: unit.hxx,v 1.7 2003/06/23 10:01:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,6 +40,8 @@ public:
   Unit();
   ~Unit();
   
+  void draw_radar(Radar& radar);
+
   /** Feed new input events into the unit, allowing it to move
       accordingly */
   virtual void update_controlls(const Controller& events) =0;

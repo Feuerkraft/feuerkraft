@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: radar.hxx,v 1.12 2003/06/23 10:01:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -54,9 +54,6 @@ public:
       3: large vehicle, 4: building) */
   void draw_blip(const FloatVector2d& pos, int size, 
 		  float red = 1.0f, float green = 0.0f, float blue = 0.0f);
-
-private:
-  void draw_vehicle(Vehicle& vehicle);
 };
 
 typedef Radar* RadarPtr;

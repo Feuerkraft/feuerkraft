@@ -1,4 +1,4 @@
-//  $Id: unit.cxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: unit.cxx,v 1.4 2003/06/23 10:01:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "property_set.hxx"
+#include "radar.hxx"
 #include "unit.hxx"
 
 Unit::Unit()
@@ -32,6 +33,12 @@ Unit::Unit()
 
 Unit::~Unit()
 {
+}
+
+void
+Unit::draw_radar(Radar& radar)
+{
+  radar.draw_blip(pos, 2, 1.0f, 0, 0);
 }
 
 void
