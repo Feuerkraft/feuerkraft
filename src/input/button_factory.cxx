@@ -35,7 +35,7 @@ ButtonFactory::create(SCM lst)
     }
   else if (gh_equal_p(sym, gh_symbol2scm("keyboard-button")))
     {
-      return create_joystick_button(gh_cdr(lst));
+      return create_keyboard_button(gh_cdr(lst));
     }
   else
     {
@@ -64,8 +64,10 @@ ButtonFactory::create_joystick_button(SCM lst)
 InputButton*
 ButtonFactory::create_keyboard_button(SCM lst)
 {
-  std::string key_str = Guile::symbol2string(gh_cadr(lst));
+  gh_display(lst);
+  std::string key_str = Guile::scm2string(gh_car(lst));
   int key_num = CL_Keyboard::get_device().keyid_to_string(key_str);
+
   // FIXME: No error checking
   return new InputButtonInputDevice(CL_Keyboard::get_device(), key_num);
 }
