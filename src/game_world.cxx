@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.14 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world.cxx,v 1.15 2003/06/04 14:46:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -175,7 +175,8 @@ GameWorld::draw (View& view)
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
-      (*i)->draw (view);
+      if (!(*i)->is_hidden())
+        (*i)->draw (view);
     }
 }
 
@@ -184,7 +185,10 @@ GameWorld::draw_energie (View& view)
 {
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    (*i)->draw_energie (view);
+    {
+      if (!(*i)->is_hidden())
+        (*i)->draw_energie (view);
+    }
 }
 
 void
@@ -194,7 +198,10 @@ GameWorld::draw_levelmap (LevelMap& levelmap)
 
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    (*i)->draw_levelmap (levelmap);
+    {
+      if (!(*i)->is_hidden())
+        (*i)->draw_levelmap(levelmap);
+    }
 }
 
 struct is_removable
@@ -216,7 +223,8 @@ GameWorld::update (float delta)
 
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    (*i)->update (delta);
+    if (!(*i)->is_hidden())
+      (*i)->update (delta);
 }
 
 BuildingMap*

@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.6 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.7 2003/06/04 14:46:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,6 @@ Vehicle::Vehicle ()
     fuel (1.0f)
 {
   acceleration = 0;
-  deceleration = 0;
   steering = 0;
 }
 
@@ -72,10 +71,6 @@ Vehicle::update_controlls(const InputEventLst& events)
             case ACCELERATE_AXIS:
               //std::cout << "Accelerate: " << i->axis.pos << std::endl;
               acceleration = i->axis.pos;
-              break;
-            case BREAK_AXIS:
-              //std::cout << "Break: " << i->axis.pos << std::endl;
-              deceleration = i->axis.pos;
               break;
             case ORIENTATION_AXIS:
               //std::cout << "Steering: " << i->axis.pos << std::endl;

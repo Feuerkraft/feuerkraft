@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.12 2003/06/04 14:46:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,7 @@ protected:
 
   int id;
 
+  bool hidden;
   bool remove_me;
 
   friend class GameObjManager;
@@ -78,11 +79,22 @@ public:
       about the complete level */
   virtual void draw_levelmap(LevelMap& view) {}
   
-  // Update the object once a game loop
+  /** Update the object once a game loop */
   virtual void update (float) {}
 
-  // Mark the object as removable
-  virtual void remove () { remove_me = true; }
+  /** Mark the object as removable */
+  void remove() { remove_me = true; }
+
+  /** Hides an object by removing it from the list of active word
+      objects. Hidden objects are not shown and not updated. You can
+      unhide an object by calling \a show(). */
+  void hide() { hidden = true; }
+
+  /** Shows a hidden object */
+  void show() { hidden = false; }
+
+  /** @return true if an object is hidden */
+  bool is_hidden() const { return hidden; }
 
   // @return true if the object can be removed from the world
   virtual bool removable () { return remove_me; }

@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.9 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.10 2003/06/04 14:46:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,6 @@ protected:
 
   // Controll variables
   float acceleration;
-  float deceleration;
   float steering;
 public:
   Vehicle ();

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.18 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: tank.cxx,v 1.19 2003/06/04 14:46:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -165,11 +165,10 @@ void
 Tank::update (float delta)
 {
   // Apply controlls
-  orientation += 2.0f * steering * delta;
+  orientation += 3.0f * steering * delta;
+  velocity    += 15.0f * acceleration * delta;
 
-  velocity += 10.0f * acceleration * delta;
-  velocity -= 10.0f * deceleration * delta;
-
+  steering = acceleration = 0;
 
   // FIXME: Ugly
   if (destroyed && destroy_time != -1 && destroy_time + 2000 < (int) CL_System::get_time ())

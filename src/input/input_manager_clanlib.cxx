@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.cxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: input_manager_clanlib.cxx,v 1.2 2003/06/04 14:46:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,22 +39,12 @@ InputManagerClanLib::update(float delta)
     accelerate_event.axis.name = ACCELERATE_AXIS;
     if (CL_Keyboard::get_keycode(CL_KEY_DOWN))
       accelerate_event.axis.pos = 1.0f;
+    else if (CL_Keyboard::get_keycode(CL_KEY_UP))
+      accelerate_event.axis.pos = -1.0f;
     else
       accelerate_event.axis.pos = 0.0f;
     
     events.push_back(accelerate_event);
-  }
-
-  {
-    InputEvent break_event;
-    break_event.type = AXIS_EVENT;
-    break_event.axis.name = BREAK_AXIS;
-    if (CL_Keyboard::get_keycode(CL_KEY_UP))
-      break_event.axis.pos = 1.0f;
-    else
-      break_event.axis.pos = 0.0f;
-    
-    events.push_back(break_event);
   }
 
   {

@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.9 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: soldier.cxx,v 1.10 2003/06/04 14:46:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,10 +45,6 @@ Soldier::update_controlls(const InputEventLst& events)
               //std::cout << "Accelerate: " << i->axis.pos << std::endl;
               acceleration = i->axis.pos;
               break;
-            case BREAK_AXIS:
-              //std::cout << "Break: " << i->axis.pos << std::endl;
-              deceleration = i->axis.pos;
-              break;
             case ORIENTATION_AXIS:
               //std::cout << "Steering: " << i->axis.pos << std::endl;
               steering = i->axis.pos;
@@ -74,19 +70,8 @@ Soldier::update (float delta)
 {
   FloatVector2d velocity;
 
-  if (acceleration != 0)
-    velocity.y = 1;
-  else if (deceleration != 0)
-    velocity.y = -1;
-  else
-    velocity.y = 0;
-
-  if (steering > 0)
-    velocity.x = 1;
-  else if (steering < 0)
-    velocity.x = -1;
-  else
-    velocity.x = 0;
+  velocity.y = acceleration;
+  velocity.x = steering;
 
   pos += velocity * 250.0f * delta;
 }
