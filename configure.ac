@@ -1,40 +1,37 @@
-AC_INIT( src/Feuerkraft.cxx )
-AM_CONFIG_HEADER( config.h )
+AC_INIT(Feuerkraft, 0.1.1)
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR(src/feuerkraft.hxx)
+AM_INIT_AUTOMAKE(dist-bzip2)
 
-PACKAGE=feuerkraft
-
-MAJOR_VERSION=0
-MINOR_VERSION=1
-PATCH_VERSION=0
-
-VERSION=${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
-
-# FIXME: I guess this is the wrong way to add an include directory...
-CXXFLAGS="-I.. -g -O2 -Wall"
-
-AC_DEFINE_UNQUOTED(MAJOR_VERSION, $MAJOR_VERSION)
-AC_DEFINE_UNQUOTED(MINOR_VERSION, $MINOR_VERSION)
-AC_DEFINE_UNQUOTED(PATCH_VERSION, $PATCH_VERSION)
-AC_DEFINE_UNQUOTED(VERSION_STRING, "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}")
-
-AM_INIT_AUTOMAKE( $PACKAGE, $VERSION )
+CXXFLAGS="$CXXFLAGS -I.."
+CXXFLAGS="$CXXFLAGS -g -O0 -Wall"
 
 AC_PROG_CXX
+AC_PROG_CC
 AC_PROG_INSTALL
+dnl AC_PROG_LIBTOOL
 AC_PROG_RANLIB
 AC_LANG(C++)
 
 dnl Checking for libraries
 
+AC_PATH_PROG([SWIG], [swig], [nothing-found])
+if test "x$SWIG" = "xnothing-found"; then
+   AC_MSG_ERROR([You need Swig - http://www.swig.org to proceed.])
+fi
+
 AC_CHECK_LIB(qthreads, main)
-AC_CHECK_LIB( guile,  scm_boot_guile,, [
-  echo "libguile is missing"
+AC_CHECK_LIB(guile, scm_boot_guile,, [
+  echo "libguile is missing, you need Guile 1.6.x to compile Feuerkraft"
   exit
   ])
 
 AC_CHECK_HEADER(guile/gh.h)
 
-AC_CHECK_LIB( clanCore,   main,, [
+dnl FIXME: this is a hack for my local machine...
+LIBS="$LIBS -L/usr/X11R6/lib/ -lXxf86vm"
+
+AC_CHECK_LIB(clanCore, main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
 	echo "the FAQ."
@@ -72,24 +69,6 @@ AC_CHECK_LIB( clanGL,   main,, [
 	exit
 	])
 
-dnl AC_CHECK_LIB( clanJPEG,   main,, [
-dnl 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
-dnl 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"
-dnl 	echo "or you need to run 'ldconfig'."
-dnl 	echo "If you think you have everything correctly installed have a look at"
-dnl 	echo "the file 'config.log' to see what went wrong"
-dnl 	exit
-dnl 	])
-dnl 
-dnl AC_CHECK_LIB( clanPNG,   main,, [
-dnl 	echo "ClanLib is installed, but clanPNG was not found. You probably"
-dnl 	echo "forgot to compile clanPNG, which is part of the ClanLib package"
-dnl 	echo "or you need to run 'ldconfig'."
-dnl 	echo "If you think you have everything correctly installed have a look at"
-dnl 	echo "the file 'config.log' to see what went wrong"
-dnl 	exit
-dnl 	])
-
 AC_OUTPUT( Makefile
            data/Makefile
            data/images/Makefile
@@ -98,7 +77,14 @@ AC_OUTPUT( Makefile
            src/Makefile
            src/groundmap/Makefile
            src/particles/Makefile
+           src/scripting/Makefile
            src/buildings/Makefile
            src/generic/Makefile
            src/boost/Makefile
            src/boost/detail/Makefile)
+
+dnl Local Variables:
+dnl compile-command: "./autogen.sh && ./configure"
+dnl End:
+
+dnl EOF
