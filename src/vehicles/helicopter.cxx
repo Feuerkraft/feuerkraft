@@ -27,11 +27,13 @@
 #include "helicopter.hxx"
 
 Helicopter::Helicopter(const AList& lst)
-  : rotor (resources->get_sprite ("feuerkraft/huey_rotor")),
+  : rotor (resources->get_sprite ("feuerkraft/huey_rotor2")),
+    rotor_halt (resources->get_sprite ("feuerkraft/huey_rotor")),
     heli (resources->get_sprite ("feuerkraft/huey")),
     heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
     helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
-    rotor_count (0),
+    rotor_speed(0),
+    rotor_pos(0),
     strafe (0.0),
     fireing (false),
     reloading (0),
@@ -69,7 +71,11 @@ Helicopter::draw (View& view)
         pos.y - heli.get_height ()/2,
         frame);*/
 
-      view.draw (rotor, pos, rotor_count);
+      if (state == LANDED)
+        view.draw (rotor_halt, pos, rotor_pos);
+      else
+        view.draw (rotor, pos, rotor_pos);
+
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
   else
@@ -111,14 +117,26 @@ Helicopter::update (float delta)
   // Apply controlls
   if (state != LANDED)
     {
-      orientation += 3.0f * steering * delta;
+      orientation += 3.0f  * steering * delta;
       velocity    -= 15.0f * acceleration * delta;
-      strafe      -= 3.0f * strafe_steering * delta;
+      strafe      -= 5.0f  * strafe_steering * delta;
     }
 
   strafe_steering = steering = acceleration = 0;
 
-  rotor_count -= 10 * delta;
+  if (state == LANDED)
+    {
+      rotor_pos   -= rotor_speed * delta;
+      rotor_speed -= 1.5f * delta;
+      if (rotor_speed < 0)
+        rotor_speed = 0;
+    }
+  else
+    {
+      rotor_speed  = 10.0f;
+      rotor_pos   -= rotor_speed * delta;
+    }
+  
   delta *= 50;
   rotor.update (delta);
 

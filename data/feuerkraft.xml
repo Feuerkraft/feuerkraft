@@ -276,6 +276,10 @@
     </sprite>
 
     <sprite name="huey_rotor">
+      <image file="images/vehicles/huey_rotor.png" />
+    </sprite>
+
+    <sprite name="huey_rotor2">
       <image file="images/vehicles/huey_rotor2.png" />
     </sprite>
 
