@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.3 2001/02/18 13:53:34 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.4 2001/02/18 15:27:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,8 @@ void
 GameWorld::add (GameObj* obj)
 {
   obj->set_world (this);
-
+  obj->init ();
+  
   objects.push_back (obj);
 }
 

@@ -1,4 +1,4 @@
-//  $Id: Explosion.hh,v 1.3 2001/02/18 15:27:25 grumbel Exp $
+//  $Id: Shockwave.hh,v 1.1 2001/02/18 15:27:25 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,33 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#ifndef SHOCKWAVE_HH
+#define SHOCKWAVE_HH
 
 #include <ClanLib/core.h>
 #include "GameObj.hh"
 
 extern CL_ResourceManager* resources;
 
-class Explosion : public GameObj
+class Shockwave : public GameObj
 {
 private:
-  bool is_drawn;
-  int lifetime;
-  CL_Surface explo;
   CL_Vector pos;
-  
-
+  CL_Surface sur;
+  int counter;
 public:
-  enum Size { SMALL, MEDIUM, LARGE } size;
-  
-  Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL);
-  void init ();
+  Shockwave (CL_Vector arg_pos);
+  virtual ~Shockwave ();
 
   void draw ();
   void update ();
-  bool removable ();
-  int get_z_pos ();
+  int  get_z_pos () { return -1; }
 };
 
 #endif

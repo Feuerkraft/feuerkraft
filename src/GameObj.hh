@@ -1,4 +1,4 @@
-//  $Id: GameObj.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: GameObj.hh,v 1.3 2001/02/18 15:27:25 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -59,6 +59,9 @@ public:
 
   //
   virtual int  get_z_pos () { return 0; }
+
+  // This is a pseudo constructor which is called when the world pointer is set
+  virtual void init () {}
 };
 
 #endif

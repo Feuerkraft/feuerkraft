@@ -4,6 +4,7 @@
 #include <ClanLib/core.h>
 #include <deque>
 
+#include "Mine.hh"
 #include "GameObj.hh"
 #include "Controllable.hh"
 #include "Collideable.hh"
@@ -25,6 +26,7 @@ private:
   int frame;
   CL_Surface sur;
   CL_Surface smod;
+  CL_Surface sur_destroyed;
   Turret* turret;
 
   std::deque<CL_Vector> smodpos;
@@ -32,6 +34,7 @@ private:
   int smod_step;
   int mine_reload_time;
   Energie energie;
+  bool destroyed;
 
 public:
   Tank (int reloading_speed, std::string tank, std::string turret, std::string fire);
@@ -67,11 +70,12 @@ public:
 
   void drop_mine ();
   
-  int get_z_pos () { return 50; }
+  int get_z_pos () { return destroyed ? 0 : 50; }
 
   bool is_colliding (CL_Vector obj_pos);
 
   void collide (Projectile*);
+  void collide (Mine*);
 };
 
 #endif // TANK_HH

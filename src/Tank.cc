@@ -18,10 +18,12 @@ Tank::Tank (int reloading_speed, std::string tank, std::string turret, std::stri
   inc_step (0),
   sur (tank.c_str (), resources),
   smod ("feuerkraft/smod", resources),
+  sur_destroyed ("feuerkraft/tank2destroyed", resources),
   turret (new Turret(this, reloading_speed, turret, fire)),
   smod_step (0),
   mine_reload_time (0),
-  energie (100)
+  energie (100),
+  destroyed (false)
 {
 }
 
@@ -33,27 +35,44 @@ Tank::~Tank ()
 void
 Tank::draw ()
 {
-  int frame = int(fmod (angle, circle) / circle * 16.0);
-  
-  for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
-       i != smodpos.end (); ++i)
+  if (destroyed)
     {
-      smod.put_screen (i->x - (smod.get_width ()/2),
-		       i->y - (smod.get_height ()/2), 
-		       int(fmod (i->z, circle) / circle * 16.0));
+      sur_destroyed.put_screen (pos.x - sur_destroyed.get_width ()/2,
+				pos.y - sur_destroyed.get_height ()/2);
     }
+  else
+    {
+      int frame = int(fmod (angle, circle) / circle * 16.0);
+  
+      for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
+	   i != smodpos.end (); ++i)
+	{
+	  smod.put_screen (i->x - (smod.get_width ()/2),
+			   i->y - (smod.get_height ()/2), 
+			   int(fmod (i->z, circle) / circle * 16.0));
+	}
 
-  sur.put_screen (int(pos.x) - (sur.get_width ()/2),
-		  int(pos.y) - (sur.get_height ()/2),
-		  frame);
-  turret->draw ();
+      sur.put_screen (int(pos.x) - (sur.get_width ()/2),
+		      int(pos.y) - (sur.get_height ()/2),
+		      frame);
+      turret->draw ();
 
-  energie.draw (pos.x, pos.y - 40);
+      energie.draw (pos.x, pos.y - 40);
+    }
 }
 
 void 
 Tank::update ()
 {
+  if (destroyed)
+    return;
+
+  if (energie <= 0)
+    {
+      world->add (new Explosion (pos, Explosion::MEDIUM));
+      destroyed = true;
+    }
+
   turret->set_world (world);
   turret->update ();
 
@@ -168,6 +187,12 @@ void
 Tank::collide (Projectile*)
 {
   energie -= 5;
+}
+
+void 
+Tank::collide (Mine*)
+{
+  energie -= 25;
 }
 
 // EOF //

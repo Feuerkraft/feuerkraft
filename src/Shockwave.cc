@@ -1,5 +1,5 @@
-//  $Id: Explosion.hh,v 1.3 2001/02/18 15:27:25 grumbel Exp $
-// 
+//  $Id: Shockwave.cc,v 1.1 2001/02/18 15:27:25 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,40 +12,47 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#include "Shockwave.hh"
 
-#include <ClanLib/core.h>
-#include "GameObj.hh"
-
-extern CL_ResourceManager* resources;
-
-class Explosion : public GameObj
+Shockwave::Shockwave (CL_Vector arg_pos) :
+  pos (arg_pos),
+  sur ("feuerkraft/shockwave", resources),
+  counter (0)
 {
-private:
-  bool is_drawn;
-  int lifetime;
-  CL_Surface explo;
-  CL_Vector pos;
-  
+}
 
-public:
-  enum Size { SMALL, MEDIUM, LARGE } size;
-  
-  Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL);
-  void init ();
+Shockwave::~Shockwave ()
+{
+}
 
-  void draw ();
-  void update ();
-  bool removable ();
-  int get_z_pos ();
-};
+template<class T> 
+T mid (T min, T some, T max)
+{
+  return std::min(std::max(min, some), max);
+}
 
-#endif
+void 
+Shockwave::draw ()
+{
+  float size = counter / 15.0 + 0.5;
+  int frame = mid(0, int((counter)/ (30/4.0)), 3);
+
+  sur.put_screen (pos.x - (sur.get_width () * size)/2,
+		  pos.y - (sur.get_height () * size)/2,
+		  size, size, frame);
+}
+
+void 
+Shockwave::update ()
+{
+  counter += 3;
+  if (counter >= 30)
+    remove ();
+}
 
 /* EOF */

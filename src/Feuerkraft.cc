@@ -41,7 +41,7 @@ public:
 	resources =  CL_ResourceManager::create("data/feuerkraft.scr", false);
 
 	GameWorld world;
-	Tank tank1 (35, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank tank1 (5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank tank2 (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 	Tower tower (100.0, 100.0);
 	JoystickController controller(&tank1);
