@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Tower.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,53 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef TOWER_HH
+#define TOWER_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
 #include "GameObj.hxx"
+#include "Controllable.hxx"
+#include "Vehicle.hxx"
+#include "Energie.hxx"
 
 extern CL_ResourceManager* resources;
 
-class Ambulance : public GameObj
+class Tower : public Controllable,
+	      public Vehicle
 {
 private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  CL_Surface towerbase;
+  CL_Surface towerdamaged;
+  CL_Surface towerdestroyed;
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+  CL_Surface turret;
+  
+  bool fireing;
+  int angle;
+  Energie energie;
+  bool destroyed;
+
+public:
+  Tower (boost::dummy_ptr<GameWorld>  w, float, float);
+  virtual ~Tower () 
+  {
+  }
+
+  virtual void draw (View* view);
+  virtual void update (float);
+
+  virtual void start_fire ();
+  virtual void stop_fire ();
+
+  virtual void turn_left (float delta) {}
+  virtual void turn_right (float delta) {}
+
+  virtual float get_turn_speed () { return 0.0; }
+  
+  virtual bool is_colliding (CL_Vector obj_pos);
+  virtual void collide (Projectile* projectile);
+
+  virtual float get_physical_size () { return 4.0; }
 };
 
 #endif

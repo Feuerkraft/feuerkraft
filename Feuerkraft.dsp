@@ -93,139 +93,139 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;cc;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=.\src\Ammotent.cc
+SOURCE=.\src\Ammotent.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Background.cc
+SOURCE=.\src\Background.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Basis.cc
+SOURCE=.\src\Basis.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Controller.cc
+SOURCE=.\src\Controller.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Energie.cc
+SOURCE=.\src\Energie.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Explosion.cc
+SOURCE=.\src\Explosion.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Feuerkraft.cc
+SOURCE=.\src\Feuerkraft.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Flag.cc
+SOURCE=.\src\Flag.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Fuelstation.cc
+SOURCE=.\src\Fuelstation.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\GameWorld.cc
+SOURCE=.\src\GameWorld.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Headquarter.cc
+SOURCE=.\src\Headquarter.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Helicopter.cc
+SOURCE=.\src\Helicopter.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Jeep.cc
+SOURCE=.\src\Jeep.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\JoystickController.cc
+SOURCE=.\src\JoystickController.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\KeyboardController.cc
+SOURCE=.\src\KeyboardController.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Mine.cc
+SOURCE=.\src\Mine.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Pathfinder.cc
+SOURCE=.\src\Pathfinder.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Playfield.cc
+SOURCE=.\src\Playfield.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Projectile.cc
+SOURCE=.\src\Projectile.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Radar.cc
+SOURCE=.\src\Radar.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Screen.cc
+SOURCE=.\src\Screen.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Shockwave.cc
+SOURCE=.\src\Shockwave.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Soldier.cc
+SOURCE=.\src\Soldier.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Stone.cc
+SOURCE=.\src\Stone.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\StringConverter.cc
+SOURCE=.\src\StringConverter.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\System.cc
+SOURCE=.\src\System.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tank.cc
+SOURCE=.\src\Tank.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tower.cc
+SOURCE=.\src\Tower.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tree.cc
+SOURCE=.\src\Tree.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Turret.cc
+SOURCE=.\src\Turret.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Vehicle.cc
+SOURCE=.\src\Vehicle.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\VehicleStatus.cc
+SOURCE=.\src\VehicleStatus.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\VehicleView.cc
+SOURCE=.\src\VehicleView.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\View.cc
+SOURCE=.\src\View.cxx
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -233,147 +233,147 @@ SOURCE=.\src\View.cc
 # PROP Default_Filter "h;hh;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\src\Basis.hh
+SOURCE=.\src\Basis.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Collideable.hh
+SOURCE=.\src\Collideable.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Controllable.hh
+SOURCE=.\src\Controllable.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Controller.hh
+SOURCE=.\src\Controller.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Energie.hh
+SOURCE=.\src\Energie.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Explosion.hh
+SOURCE=.\src\Explosion.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Feuerkraft.hh
+SOURCE=.\src\Feuerkraft.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Flag.hh
+SOURCE=.\src\Flag.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Fuelstation.hh
+SOURCE=.\src\Fuelstation.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\GameObj.hh
+SOURCE=.\src\GameObj.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\GameWorld.hh
+SOURCE=.\src\GameWorld.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\GuiObj.hh
+SOURCE=.\src\GuiObj.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Headquarter.hh
+SOURCE=.\src\Headquarter.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Helicopter.hh
+SOURCE=.\src\Helicopter.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Jeep.hh
+SOURCE=.\src\Jeep.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\JoystickController.hh
+SOURCE=.\src\JoystickController.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\KeyboardController.hh
+SOURCE=.\src\KeyboardController.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Mine.hh
+SOURCE=.\src\Mine.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\my_gettext.hh
+SOURCE=.\src\my_gettext.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Pathfinder.hh
+SOURCE=.\src\Pathfinder.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Playfield.hh
+SOURCE=.\src\Playfield.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Projectile.hh
+SOURCE=.\src\Projectile.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Radar.hh
+SOURCE=.\src\Radar.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Screen.hh
+SOURCE=.\src\Screen.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Shockwave.hh
+SOURCE=.\src\Shockwave.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Soldier.hh
+SOURCE=.\src\Soldier.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\StringConverter.hh
+SOURCE=.\src\StringConverter.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\System.hh
+SOURCE=.\src\System.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tank.hh
+SOURCE=.\src\Tank.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tower.hh
+SOURCE=.\src\Tower.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tree.hh
+SOURCE=.\src\Tree.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Turret.hh
+SOURCE=.\src\Turret.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Vehicle.hh
+SOURCE=.\src\Vehicle.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\VehicleStatus.hh
+SOURCE=.\src\VehicleStatus.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\VehicleView.hh
+SOURCE=.\src\VehicleView.hxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\View.hh
+SOURCE=.\src\View.hxx
 # End Source File
 # End Group
 # Begin Group "Resource Files"

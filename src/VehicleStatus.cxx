@@ -1,5 +1,5 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: VehicleStatus.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,32 +12,49 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
-
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "VehicleStatus.hxx"
 
 extern CL_ResourceManager* resources;
 
-class Ambulance : public GameObj
+VehicleStatus::VehicleStatus (boost::dummy_ptr<Vehicle> v)
+  : ammo ("feuerkraft/ammo", resources),
+    fuel ("feuerkraft/fuel", resources),
+    vehicle (v)
 {
-private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+}
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
-};
+VehicleStatus::~VehicleStatus ()
+{
+}
 
-#endif
+void 
+VehicleStatus::update (float delta)
+{
+}
+
+void 
+VehicleStatus::draw ()
+{
+  fuel.put_screen (8, 600 - 8 - 30);
+  draw_rect (38, 600 - 8 - 24, vehicle->get_fuel ());
+
+  ammo.put_screen (8, 600 - 40 - 30);
+  draw_rect (38, 600 - 40 - 24, vehicle->get_ammo ());
+}
+
+void
+VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
+{
+  CL_Display::fill_rect (x_pos, y_pos, x_pos + 100, y_pos + 14,
+			 0.0, 0.0, 0.0);
+  if (fill > 0.0)
+    CL_Display::fill_rect (x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12,
+			   1.0 - fill, fill, 0.0);
+}
 
 /* EOF */

@@ -1,5 +1,5 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: Flag.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,32 +12,50 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
-
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "Jeep.hxx"
+#include "Flag.hxx"
 
 extern CL_ResourceManager* resources;
 
-class Ambulance : public GameObj
+Flag::Flag (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
+  : GameObj (w),
+    sur ("feuerkraft/blueflag", resources),
+    pos (arg_pos)
 {
-private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+}
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
-};
+Flag::~Flag ()
+{
+}
 
-#endif
+void 
+Flag::draw (View* view)
+{
+  view->draw (sur, int(pos.x - 24), int(pos.y - 3));
+
+  //view->draw_circle ((int)pos.x, (int)pos.y, 5,
+		     //1.0f, 1.0f, 1.0f);
+}
+
+void
+Flag::update (float delta)
+{
+  for (std::list<boost::shared_ptr<GameObj> >::iterator 
+	 j = world->get_objects ().begin ();
+       j != world->get_objects ().end (); ++j)
+    {
+      Jeep* jeep = dynamic_cast<Jeep*>(j->get ());
+      if (jeep && (pos - jeep->get_pos ()).norm () < 20.0f)
+	{
+	  jeep->add_flag (this);
+	}
+    }
+
+}
 
 /* EOF */

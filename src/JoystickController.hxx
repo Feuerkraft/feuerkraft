@@ -1,6 +1,5 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: JoystickController.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,25 +16,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef JOYSTICKCONTROLLER_HH
+#define JOYSTICKCONTROLLER_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "Controller.hxx"
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+class JoystickController : public Controller
 {
 private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  CL_InputAxis* vel_axis;
+  CL_InputAxis* dir_axis;
+  
+  CL_InputButton* left_t;
+  CL_InputButton* right_t;
+  CL_InputButton* fire;
+  CL_InputButton* drop_mine;
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+public:
+  JoystickController (Controllable* obj);
+  virtual void update (float delta);
 };
 
 #endif

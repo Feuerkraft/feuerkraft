@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Field.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,40 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef FIELD_HXX
+#define FIELD_HXX
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include <vector>
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+template<class T>
+class Field
 {
 private:
-  CL_Surface sur;
+  int width;
+  int height;
+  std::vector<T> data;
 public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  Field (int arg_width, int arg_height)
+    : width (arg_width), height (arg_width)
+  {
+    data.resize (width * height);
+  }
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+  void resize (int arg_width, int arg_height) 
+  {
+    width  = arg_width;
+    height = arg_width;
+    data.resize (width * height);
+  }
+
+  T& operator () (int x, int y) {
+    if (x < 0 || x >= width || y < 0 || y >= height)
+      {
+	std::cout << "Field: out of region: " << x << " " << y << std::endl;
+      }
+
+    return data[width * y + x];
+  }
 };
 
 #endif

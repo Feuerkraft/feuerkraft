@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Vehicle.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,27 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef VEHICLE_HH
+#define VEHICLE_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "Mine.hxx"
+#include "Collideable.hxx"
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+/** FIXME: Wrong name for this kind of class, better rename it at some point */
+class Vehicle :
+  public Collideable
 {
-private:
-  CL_Surface sur;
+protected:
+  CL_Vector pos;
+  float ammo;
+  float fuel;
 public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  Vehicle (boost::dummy_ptr<GameWorld>  w);
+  virtual ~Vehicle () {}
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+  virtual CL_Vector get_pos () { return pos; }
+  virtual float get_angle () { return 0.0; }
+  virtual float get_ammo ();
+  virtual float get_fuel ();
+  virtual void  refuel (float delta);
+  virtual void  reload_ammo (float delta);
+  virtual float get_velocity () { return 0.0; };
 };
 
 #endif
 
 /* EOF */
+

@@ -4,19 +4,19 @@ bindir=$(prefix)/games
 
 bin_PROGRAMS = feuerkraft
 
-feuerkraft_SOURCES = Collideable.hh	 Energie.hh	GameWorld.cc	       KeyboardController.cc  Tank.cc	Turret.cc \
-Controllable.hh  Explosion.cc Explosion.hh	GameWorld.hh	       KeyboardController.hh  Tank.hh	Turret.hh \
-Controller.hh	 Feuerkraft.cc	JoystickController.cc  Projectile.cc	      Tower.cc \
-Energie.cc	 GameObj.hh	JoystickController.hh  Projectile.hh	      Tower.hh \
-Tree.cc Tree.hh Soldier.cc Soldier.hh Mine.hh  Mine.cc Shockwave.cc Shockwave.hh \
-Controller.cc Helicopter.cc Helicopter.hh Jeep.cc Jeep.hh Vehicle.hh Vehicle.cc \
-Flag.cc Flag.hh View.cc View.hh Playfield.cc Playfield.hh \
-VehicleView.cc VehicleView.hh Pathfinder.cc Pathfinder.hh Feuerkraft.hh \
-System.cc System.hh my_gettext.hh StringConverter.hh StringConverter.cc \
-Radar.hh Radar.cc GuiObj.hh Screen.hh Screen.cc \
-Basis.cc Basis.hh VehicleStatus.hh  VehicleStatus.cc Headquarter.hh Headquarter.cc \
-Fuelstation.hh Fuelstation.cc Ammotent.cc Ammotent.hh \
-Background.hh Background.cc Stone.hh Stone.cc \
+feuerkraft_SOURCES = Collideable.hxx	 Energie.hxx	GameWorld.cxx	       KeyboardController.cxx  Tank.cxx	Turret.cxx \
+Controllable.hxx  Explosion.cxx Explosion.hxx	GameWorld.hxx	       KeyboardController.hxx  Tank.hxx	Turret.hxx \
+Controller.hxx	 Feuerkraft.cxx	JoystickController.cxx  Projectile.cxx	      Tower.cxx \
+Energie.cxx	 GameObj.hxx	JoystickController.hxx  Projectile.hxx	      Tower.hxx \
+Tree.cxx Tree.hxx Soldier.cxx Soldier.hxx Mine.hxx  Mine.cxx Shockwave.cxx Shockwave.hxx \
+Controller.cxx Helicopter.cxx Helicopter.hxx Jeep.cxx Jeep.hxx Vehicle.hxx Vehicle.cxx \
+Flag.cxx Flag.hxx View.cxx View.hxx Playfield.cxx Playfield.hxx \
+VehicleView.cxx VehicleView.hxx Pathfinder.cxx Pathfinder.hxx Feuerkraft.hxx \
+System.cxx System.hxx my_gettext.hxx StringConverter.hxx StringConverter.cxx \
+Radar.hxx Radar.cxx GuiObj.hxx Screen.hxx Screen.cxx \
+Basis.cxx Basis.hxx VehicleStatus.hxx  VehicleStatus.cxx Headquarter.hxx Headquarter.cxx \
+Fuelstation.hxx Fuelstation.cxx Ammotent.cxx Ammotent.hxx \
+Background.hxx Background.cxx Stone.hxx Stone.cxx \
 Ambulance.hxx Ambulance.cxx
 
 # EOF #

@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Energie.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,44 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef ENERGIE_HH
+#define ENERGIE_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "boost/dummy_ptr.hpp"
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+class Energie
 {
 private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  int max_energie;
+  int energie;
+  unsigned int last_change;
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+public:
+  Energie (int arg_energie);
+
+  void draw (boost::dummy_ptr<View> view, int x_pos, int y_pos);
+  operator int () { return energie; }
+
+  void operator--() { 
+    --energie; 
+    last_change = CL_System::get_time ();
+  }
+
+  void operator++() {
+    ++energie; 
+    last_change = CL_System::get_time ();
+  }
+
+  void operator+=(int i) { 
+    energie += i; 
+    last_change = CL_System::get_time ();
+  }
+
+  void operator-=(int i) { 
+    energie -= i; 
+    last_change = CL_System::get_time ();
+  }
+
 };
 
 #endif

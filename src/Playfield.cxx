@@ -1,5 +1,5 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: Playfield.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,32 +12,27 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
-
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include "Playfield.hxx"
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+Playfield::Playfield (boost::dummy_ptr<GameWorld>  w)
+  : GameObj (w)
 {
-private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+}
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
-};
-
-#endif
+void 
+Playfield::draw (View* view)
+{
+  CL_Display::fill_rect (0, 0, 
+			 CL_Display::get_width (),
+			 CL_Display::get_height (),
+			 0.7f, 0.7f, 0.6f);
+}
 
 /* EOF */

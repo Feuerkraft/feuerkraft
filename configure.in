@@ -1,4 +1,4 @@
-AC_INIT( src/Feuerkraft.cc )
+AC_INIT( src/Feuerkraft.cxx )
 AM_CONFIG_HEADER( config.h )
 
 PACKAGE=feuerkraft

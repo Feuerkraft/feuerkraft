@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Explosion.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef EXPLOSION_HH
+#define EXPLOSION_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
@@ -26,16 +26,26 @@
 
 extern CL_ResourceManager* resources;
 
-class Ambulance : public GameObj
+class Explosion : public GameObj
 {
 private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  bool is_drawn;
+  int lifetime;
+  CL_Surface explo;
+  CL_Vector pos;
+  
 
-  // Draw the object onto the screen
+public:
+  enum Size { SMALL, MEDIUM, LARGE } size;
+  
+  Explosion (boost::dummy_ptr<GameWorld>  w, 
+	     const CL_Vector& arg_pos, Size arg_size = SMALL);
+  void init ();
+
   void draw (View* view);
-   
+  void update (float);
+  bool removable ();
+  int get_z_pos ();
 };
 
 #endif

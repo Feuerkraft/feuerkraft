@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Projectile.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,42 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef PROJECTILE_HH
+#define PROJECTILE_HH
 
-#include <ClanLib/core.h>
+//#include <ClanLib/Core/Display/surface.h>
 #include <ClanLib/display.h>
-#include "GameObj.hxx"
+#include <ClanLib/core.h>
+#include "boost/dummy_ptr.hpp"
+#include "Vehicle.hxx"
 
 extern CL_ResourceManager* resources;
 
-class Ambulance : public GameObj
+class Projectile : public Vehicle
 {
 private:
   CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  CL_Vector  tmp_pos;
+  CL_Vector  add;
+  int lifetime;
+  
+  /** Pointer back to the parent objects which created this
+      projectile. Its used to avoid friendly fire (aka shooting
+      yourself in the food). */
+  boost::dummy_ptr<GameObj> parent;
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+public:
+  Projectile (boost::dummy_ptr<GameWorld>  w,
+	      const CL_Vector& arg_pos, const CL_Vector& arg_add);
+  virtual ~Projectile ();
+
+  virtual CL_Vector get_pos () { return pos; }
+  virtual void draw (View* view);
+  virtual void update (float);
+  virtual bool removable ();
+
+  virtual void detonate ();
+  bool is_colliding(CL_Vector) { return false;}
 };
 
 #endif

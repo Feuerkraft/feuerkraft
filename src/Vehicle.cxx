@@ -1,5 +1,5 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: Vehicle.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,32 +12,48 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#include "Vehicle.hxx"
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
-
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+Vehicle::Vehicle (boost::dummy_ptr<GameWorld>  w)
+  : Collideable (w),
+    ammo (1.0f), 
+    fuel (1.0f)
 {
-private:
-  CL_Surface sur;
-public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+}
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
-};
+float 
+Vehicle::get_ammo ()
+{
+  return ammo;
+}
 
-#endif
+float 
+Vehicle::get_fuel ()
+{
+  return fuel;
+}
+
+void 
+Vehicle::refuel (float delta)
+{
+  fuel += 0.003 * delta;
+
+  if (fuel > 1.0f)
+    fuel = 1.0f;
+}
+
+void 
+Vehicle::reload_ammo (float delta)
+{
+  ammo += 0.003 * delta;
+
+  if (ammo > 1.0f)
+    ammo = 1.0f;
+}
 
 /* EOF */

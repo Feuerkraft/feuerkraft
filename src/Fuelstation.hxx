@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Fuelstation.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMBULANCE_HXX
-#define AMBULANCE_HXX
+#ifndef FUELSTATION_HH
+#define FUELSTATION_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include "boost/dummy_ptr.hpp"
+#include "View.hxx"
 #include "GameObj.hxx"
 
-extern CL_ResourceManager* resources;
-
-class Ambulance : public GameObj
+class Fuelstation : public GameObj
 {
 private:
-  CL_Surface sur;
+  CL_Surface fuelstation;
+  CL_Vector pos;
+  
 public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  Fuelstation (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
+  virtual ~Fuelstation ();
 
-  // Draw the object onto the screen
-  void draw (View* view);
-   
+  void draw (View* );
+  void update (float delta);
 };
 
 #endif
