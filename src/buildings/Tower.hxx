@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.2 2002/03/17 00:16:50 grumbel Exp $
+//  $Id: Tower.hxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,6 +50,12 @@ public:
 
   // Update the object once a game loop
   void update (float);
+  
+  int get_x_pos () { return x_pos; }
+  int get_y_pos () { return y_pos; }
+
+  int get_map_width ()  { return 2; }
+  int get_map_height () { return 2; }
 };
 
 #endif

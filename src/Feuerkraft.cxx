@@ -19,7 +19,6 @@
 #include "Flag.hxx"
 #include "Helicopter.hxx"
 #include "Turret.hxx"
-#include "Tower.hxx"
 #include "Playfield.hxx"
 #include "Soldier.hxx"
 #include "VehicleView.hxx"
@@ -38,6 +37,9 @@
 #include "groundmap/GroundMap.hxx"
 #include "groundmap/GroundMapData.hxx"
 #include "groundmap/GroundMapDataFactory.hxx"
+
+#include "buildings/BuildingMapData.hxx"
+#include "buildings/BuildingMap.hxx"
 
 #include <SphriteLib/sphritelibGL.h>
 
@@ -177,6 +179,7 @@ public:
 	world.add (new Soldier (&world, CL_Vector (550, 100)));
 
 	GroundMap* groundmap;
+	BuildingMap* buildingmap;
 	// Test of parsing code
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
@@ -188,10 +191,13 @@ public:
 	  gh_display (lst);
 	  gh_newline ();
 
-	  GroundMapData* groundmapdata = GroundMapDataFactory::create (lst);
+	  BuildingMapData* buildingmapdata = new BuildingMapData (gh_cdar(lst));
+	  GroundMapData* groundmapdata = GroundMapDataFactory::create (gh_cadr(lst));
+
 	  scm_close (fdes);
 	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 
+	  buildingmap = buildingmapdata->create ();
 	  groundmap = groundmapdata->create ();
 	}
 	// End: Test of parsing code

@@ -1,4 +1,4 @@
-//  $Id: TowerData.hxx,v 1.2 2002/03/17 00:16:50 grumbel Exp $
+//  $Id: TowerData.hxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,8 @@ class TowerData : public BuildingData
 protected:
   // Angle in degree
   double angle;
+  int x_pos;
+  int y_pos;
 
 public:
   /** Format:
@@ -37,9 +39,6 @@ public:
   Where 'desc' is only the cdr of the complete thing
   */
   TowerData (SCM desc);
-
-  int map_width ()  { return 2; }
-  int map_height () { return 2; }
 
   Building* create ();
 };

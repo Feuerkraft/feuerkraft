@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.2 2002/03/17 00:16:50 grumbel Exp $
+//  $Id: Building.hxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,14 @@
 #ifndef BUILDING_HXX
 #define BUILDING_HXX
 
+#include "../boost/dummy_ptr.hpp"
+#include "BuildingData.hxx"
+
 class View;
 class GameWorld;
 
 class Building
+
 {
 private:
   GameWorld* world;
@@ -37,6 +41,15 @@ public:
   
   // Update the object once a game loop
   virtual void update (float) =0;
+
+  virtual int get_x_pos () =0;
+  virtual int get_y_pos () =0;
+  
+  /** Returns the width which this building will take on the BuildingMap */
+  virtual int get_map_width () =0;
+
+  /** Returns the height which this building will take on the BuildingMap */
+  virtual int get_map_height () =0;
 
   GameWorld* get_world () { return world; }
 };

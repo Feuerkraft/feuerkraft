@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.hxx,v 1.1 2002/03/16 23:41:07 grumbel Exp $
+//  $Id: BuildingMapData.hxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,12 @@
 #ifndef BUILDINGMAPDATA_HXX
 #define BUILDINGMAPDATA_HXX
 
+#include <vector>
+#include <guile/gh.h>
+
+class BuildingData;
+class BuildingMap;
+
 /** The BuildingMap is something like a TileMap which holds pointers
     to all Buildings. It is used to hold the Building's instead of the
     GameWorld to make Collision Handling simpler and to guaranty that
@@ -27,12 +33,20 @@
 */
 class BuildingMapData
 {
-private:
+protected:
   /** A list with all the buildings */
   std::vector<BuildingData*> buildings_data;
 
 public:
+  /** Format:
+      (buildingmapdata (tower (angle 102)
+                              (pos 10 20)))
+
+      Where desc is only the cdr of the above thing.
+   */
+  BuildingMapData (SCM desc);
   
+  BuildingMap* create ();
 };
 
 #endif

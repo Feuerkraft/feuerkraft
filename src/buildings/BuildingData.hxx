@@ -1,4 +1,4 @@
-//  $Id: BuildingData.hxx,v 1.1 2002/03/16 23:41:07 grumbel Exp $
+//  $Id: BuildingData.hxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,23 +25,8 @@ class Building;
 class BuildingData
 {
 protected:
-  /** x-Position in the BuildingMap */
-  int x_pos;
-
-  /** y-Position in the BuildingMap */
-  int y_pos;
-
 public:
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
-  
-  /** Returns the width which this building will take on the BuildingMap */
-  virtual int map_width () =0;
-
-  /** Returns the height which this building will take on the BuildingMap */
-  virtual int map_height () =0;
-
-  virtual Building* create () =0;
+   virtual Building* create () =0;
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.hxx,v 1.1 2002/03/16 23:41:07 grumbel Exp $
+//  $Id: BuildingMap.hxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,20 +20,26 @@
 #ifndef BUILDINGMAP_HXX
 #define BUILDINGMAP_HXX
 
-class BuildingMap
+#include <vector>
+#include "BuildingMapData.hxx"
+
+class Building;
+class BuildingData;
+
+class BuildingMap : public BuildingMapData
 {
 private:
   /** A list with all the buildings in this map, the pointers here need to be deleted! */
-  std::vector<BuildingData*> buildings;
+  std::vector<Building*> buildings;
 
 
   /** This is a 'TileMap' with points to all buildings. Pointers in
       this list must not be deleted, they are only references to
       'buildings' */
-  std::vector<BuildingData*> building_map;
+  std::vector<Building*> building_map;
   
 public:
-  BuildingMap ();
+  BuildingMap (const BuildingMapData&);
 };
 
 #endif

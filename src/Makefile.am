@@ -1,4 +1,4 @@
-SUBDIRS = boost groundmap particles generic
+SUBDIRS = boost groundmap particles generic buildings
 
 bindir=$(prefix)/games
 
@@ -6,13 +6,13 @@ bin_PROGRAMS = feuerkraft
 
 LDADD = \
  groundmap/libfeuerkraft_groundmap.a \
+ buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a 
-# map/libfeuerkraft_particles.a 
 
 feuerkraft_SOURCES = Collideable.hxx	 Energie.hxx	GameWorld.cxx	       KeyboardController.cxx  Tank.cxx	Turret.cxx \
 Controllable.hxx  Explosion.cxx Explosion.hxx	GameWorld.hxx	       KeyboardController.hxx  Tank.hxx	Turret.hxx \
-Controller.hxx	 Feuerkraft.cxx	JoystickController.cxx  Projectile.cxx	      Tower.cxx \
-Energie.cxx	 GameObj.hxx	JoystickController.hxx  Projectile.hxx	      Tower.hxx \
+Controller.hxx	 Feuerkraft.cxx	JoystickController.cxx  Projectile.cxx	\
+Energie.cxx	 GameObj.hxx	JoystickController.hxx  Projectile.hxx	\
 Tree.cxx Tree.hxx Soldier.cxx Soldier.hxx Mine.hxx  Mine.cxx Shockwave.cxx Shockwave.hxx \
 Controller.cxx Helicopter.cxx Helicopter.hxx Jeep.cxx Jeep.hxx Vehicle.hxx Vehicle.cxx \
 Flag.cxx Flag.hxx View.cxx View.hxx Playfield.cxx Playfield.hxx \
