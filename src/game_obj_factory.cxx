@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.3 2003/05/19 10:52:47 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.4 2003/05/19 22:05:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -79,7 +79,12 @@ GameObjFactory::create(int type_id, const AList& alst)
 GameObj* 
 GameObjFactory::create_raw_object(int type_id)
 {
-  return new Tree();
+  switch (type_id)
+    {
+    case 1:
+    default:
+      return new Tree();
+    }
 }
 
 /* EOF */

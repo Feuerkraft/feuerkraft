@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: vehicle_status.hxx,v 1.5 2003/05/19 22:05:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,7 @@ public:
   VehicleStatus (VehiclePtr v);
   virtual ~VehicleStatus ();
   void update (float delta);
-  void draw (CL_GraphicContext* gc);
+  void draw (CL_GraphicContext& gc);
   void draw_rect (int x_pos, int y_pos, float fill);
 };
 

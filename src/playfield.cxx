@@ -1,4 +1,4 @@
-//  $Id: playfield.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: playfield.cxx,v 1.5 2003/05/19 22:05:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,20 +17,31 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "view.hxx"
 #include "playfield.hxx"
 
-Playfield::Playfield ()
+Playfield::Playfield (int x1, int y1, int x2, int y2)
 {
+  view = new View(x1, y1, x2, y2);
 }
 
-void 
-Playfield::draw (View* view)
+Playfield::~Playfield ();
+
+void
+Playfield::draw(CL_GraphicContext& gc)
 {
-  /*  CL_Display::fill_rect (0, 0, 
-			 CL_Display::get_width (),
-			 CL_Display::get_height (),
-			 0.7f, 0.7f, 0.6f);
-  */
+  gc.push_cliprect(CL_Rect(view->get_x1(),
+                           view->get_y1(),
+                           view->get_x2(),
+                           view->get_y2()));
+  view->draw();
+  gc.pop_cliprect();
+}
+
+void
+Playfield::update(float delta)
+{
+  view->update(delta)
 }
 
 /* EOF */

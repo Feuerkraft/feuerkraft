@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: vehicle_status.cxx,v 1.5 2003/05/19 22:05:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,12 +40,12 @@ VehicleStatus::update (float delta)
 }
 
 void 
-VehicleStatus::draw (CL_GraphicContext* gc)
+VehicleStatus::draw (CL_GraphicContext& gc)
 {
-  fuel.draw (8, 600 - 8 - 30, gc);
+  fuel.draw (8, 600 - 8 - 30);
   draw_rect (38, 600 - 8 - 24, vehicle->get_fuel ());
 
-  ammo.draw (8, 600 - 40 - 30, gc);
+  ammo.draw (8, 600 - 40 - 30);
   draw_rect (38, 600 - 40 - 24, vehicle->get_ammo ());
 }
 

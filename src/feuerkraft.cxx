@@ -269,7 +269,7 @@ public:
             //GameWorld::current()->draw_energie(view2);
 
 	    screen.update (delta);
-	    screen.draw(window.get_gc ());
+	    screen.draw(*window.get_gc ());
 
 	    if (CL_Mouse::get_keycode(CL_MOUSE_RIGHT))
               ai_vehicle->clear_orders();
@@ -298,7 +298,7 @@ public:
 
 	    if (window.get_ic()->get_keyboard().get_keycode(CL_KEY_M))
 	      {
-		levelmap.draw (window.get_gc ());
+		levelmap.draw (*window.get_gc ());
 	      }
 
 	    //start_screen.draw ();

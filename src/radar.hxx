@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.9 2003/05/19 21:46:21 grumbel Exp $
+//  $Id: radar.hxx,v 1.10 2003/05/19 22:05:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,7 +46,7 @@ public:
   Radar(const FloatVector2d& arg_pos, PlayerPtr v);
   ~Radar();
 
-  void draw(CL_GraphicContext* gc);
+  void draw(CL_GraphicContext& gc);
   void update(float delta);
 
   /** Draw a blip to the radar, where 'pos' is in world coordinates
