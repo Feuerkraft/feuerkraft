@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.11 2001/02/19 22:54:16 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.12 2001/02/19 22:59:54 mbn Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -56,7 +56,7 @@ static bool z_pos_sorter (boost::shared_ptr<GameObj> a,
   return (a->get_z_pos () < b->get_z_pos ());
 }*/
 
-
+/*
 struct z_pos_sorter : 
   //  public std:y_function<boost::shared_ptr<GameObj> a, boost::shared_ptr<GameObj> a, bool>
   //public std::binary_function<boost::shared_ptr<GameObj>, boost::shared_ptr<GameObj>, bool>
@@ -81,30 +81,21 @@ GameWorld::draw ()
       (*i)->draw ();
     }
 }
-
-/*static bool is_removable (boost::shared_ptr<GameObj> obj)
+*/
+struct is_removable
 {
-  return obj->removable ();
-}*/
-
-void my_remove_if (std::list<boost::shared_ptr<GameObj> >& lst)
-{
-  for (std::list<boost::shared_ptr<GameObj> >::iterator i = lst.begin ();
-       i != lst.end ();)
-    {
-      if ((*i)->removable ())
-	i = lst.erase (i);
-      else
-	++i;
-    }
-}
+  bool operator() (boost::shared_ptr<GameObj> obj)
+  {
+    return obj->removable ();
+  }
+};
 
 void 
 GameWorld::update ()
 {
   //std::cout << "Number of GameObj's: " << objects.size () << "\r          " << std::flush;
-  //objects.remove_if(is_removable ()); 
-  my_remove_if (objects);
+//  objects.remove_if(is_removable ()); 
+  std::remove_if(objects.begin(), objects.end(), is_removable());
   
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin ();
        i != objects.end (); ++i)
