@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Radar.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -88,7 +88,7 @@ Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
 void 
 Radar::update (float delta)
 {
-  angle += 0.1 * delta;
+  angle += 10.0f * delta;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: ExplosionParticle.hxx,v 1.4 2002/03/11 21:34:44 grumbel Exp $
+//  $Id: ExplosionParticle.hxx,v 1.5 2002/03/13 10:03:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -85,7 +85,7 @@ public:
       }
   }
 
-  int get_z_pos () { return 100; }
+  int get_z_pos () { return 200; }
 };
 
 #endif

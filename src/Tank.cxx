@@ -89,13 +89,13 @@ Tank::draw (View* view)
       CL_Vector y2 (30, 15);
 
       //std::cout << "Angle: " << angle << std::endl;
-      x1 = x1.rotate (angle - fmod(angle, circle/16.0),
+      x1 = x1.rotate (angle,// - fmod(angle, circle/16.0),
 		 CL_Vector (0.0, 0.0, 1.0));
-      y1 = y1.rotate (angle - fmod(angle, circle/16.0),
+      y1 = y1.rotate (angle,// - fmod(angle, circle/16.0),
 		 CL_Vector (0.0, 0.0, 1.0));
-      x2 = x2.rotate (angle - fmod(angle, circle/16.0),
+      x2 = x2.rotate (angle,// - fmod(angle, circle/16.0),
 		 CL_Vector (0.0, 0.0, 1.0));
-      y2 = y2.rotate (angle - fmod(angle, circle/16.0),
+      y2 = y2.rotate (angle, //- fmod(angle, circle/16.0),
 		 CL_Vector (0.0, 0.0, 1.0));      
 
       x1 += pos;
@@ -131,7 +131,13 @@ void
 Tank::update (float delta)
 {
   particle_release += fabs(velocity);
-  
+  //particle_release += fabs(increment) * 50.0f;
+
+  /*
+  std::cout << "fabs: " << fabs(velocity) << std::endl;
+  std::cout << "angle: " << fabs(increment) << std::endl; 
+  */
+
   if (particle_release > 20.0f)
     {
       world->add (new SmokeParticle (get_world (), pos));
@@ -245,7 +251,8 @@ Tank::drop_mine ()
 {
   if (mine_reload_time <= 0)
     {
-      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle - fmod(angle, circle/16.0), CL_Vector (0.0, 0.0, 1.0));
+      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle /*- fmod(angle, circle/16.0)*/,
+							 CL_Vector (0.0, 0.0, 1.0));
 
       world->add (new Mine (world, CL_Vector(pos.x, pos.y) + vel));
       mine_reload_time = 50;

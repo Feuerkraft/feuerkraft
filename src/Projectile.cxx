@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.3 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.4 2002/03/13 10:03:20 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,13 +22,14 @@
 #include "Explosion.hxx"
 #include "Projectile.hxx"
 
-Projectile::Projectile (boost::dummy_ptr<GameWorld>  w,
+Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_add)
   : Vehicle (w),
     sur ("feuerkraft/projectile", resources),
     tmp_pos (arg_pos),
     add (arg_add),
-    lifetime (20 + rand () % 20 )
+    lifetime (20 + rand () % 20 ),
+    parent (p)
 {
   //std::cout << "Add: " << add.x << " " << add.y << std::endl;
   pos  = arg_pos;

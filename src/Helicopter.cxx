@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
+//  $Id: Helicopter.cxx,v 1.3 2002/03/13 10:03:20 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -110,7 +110,7 @@ Helicopter::update (float delta)
     {
       float rot_angle = angle + 3.1415927;
       CL_Vector dir = CL_Vector (15.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
-      world->add (new Projectile (world, pos
+      world->add (new Projectile (world, this, pos
 				  + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				  dir));
       reloading = 4;

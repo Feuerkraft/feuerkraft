@@ -1,4 +1,4 @@
-//  $Id: Projectile.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Projectile.hxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,7 +42,7 @@ private:
   boost::dummy_ptr<GameObj> parent;
 
 public:
-  Projectile (boost::dummy_ptr<GameWorld>  w,
+  Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj>  p, 
 	      const CL_Vector& arg_pos, const CL_Vector& arg_add);
   virtual ~Projectile ();
 

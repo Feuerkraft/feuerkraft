@@ -55,19 +55,20 @@ Turret::update (float delta)
       tank->ammo -=  0.003 * delta;
 
       //std::cout << "Fireing..." << std::endl;
-      float rot_angle = tank->get_angle () + angle + 3.1415927 - fmod(angle, circle/16.0);
+      float rot_angle = tank->get_angle () + angle + 3.1415927; //- fmod(angle, circle/16.0)
       
       CL_Vector dir = CL_Vector (10.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
 
       if (floppy)
 	{
-	  world->add (new Projectile (world, tank->get_pos ()
+	  world->add (new Projectile (world, boost::dummy_ptr<GameObj>(tank.get()), 
+				      tank->get_pos ()
 				      + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				      dir));
 	}
       else
 	{
-	  world->add (new Projectile (world, tank->get_pos ()
+	  world->add (new Projectile (world, tank.get(), tank->get_pos ()
 				      + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				      dir));
 	}
@@ -79,14 +80,14 @@ void
 Turret::increase_angle (float delta)
 {
   angle += tank->get_increment () * delta;
-  angle = fmod (angle + circle, circle);
+  //angle = fmod (angle + circle, circle);
 }
 
 void
 Turret::decrease_angle (float delta)
 {
   angle -= tank->get_increment ();
-  angle = fmod (angle + circle, circle);
+  //angle = fmod (angle + circle, circle);
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: Energie.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Energie.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,19 +35,25 @@ Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
 {
   int time_diff = CL_System::get_time () - last_change ;
 
+  float ratio = energie / max_energie;
+  
+  std::cout << "Ratio: " << ratio << std::endl;
+
   if (time_diff < 1000
       && CL_System::get_time () > 2000)
     {
+      // Black border rectangle
       view->draw_fillrect (x_pos - 32, y_pos - 5,
-			    x_pos + 32, y_pos + 5,
-			    0.0f, 0.0f, 0.0f, (1000.0f - float(time_diff))/1000.0f * 0.8f);
+			   x_pos + 32, y_pos + 5,
+			   0.0f, 0.0f, 0.0f, (1000.0f - float(time_diff))/1000.0f * 0.8f);
+      
+      // Energie bar
       view->draw_fillrect (x_pos - 30, y_pos - 3,
-			    x_pos - 30 + (energie * 60 / max_energie)
-			    + view->get_x_offset (), y_pos + 3,
-			    1.0f - energie/float(max_energie),
-			    energie/float(max_energie),
-			    0.0f, 
-			    (1000.0f - float(time_diff)) / 1000.0f * 0.9f);
+			   x_pos - 30 + (ratio * 60) + view->get_x_offset (), y_pos + 3,
+			   1.0f - energie/float(max_energie),
+			   ratio,
+			   0.0f, 
+			   (1000.0f - float(time_diff)) / 1000.0f * 0.9f);
       //std::cout << "Alpha: " << float(time_diff) / 500.0 << std::endl;
     }
 }
