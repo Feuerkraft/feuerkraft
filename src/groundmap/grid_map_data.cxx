@@ -25,7 +25,6 @@
 #include "grid_map_data.hxx"
 
 GridMapData::GridMapData (SCM desc)
-  : provider (0)
 {
   grid_width  = -1;
   grid_height = -1;
@@ -70,26 +69,26 @@ GridMapData::parse_from_file (SCM desc)
   free (str);
 #endif
 
-  provider = new CL_PNGProvider (path_manager.complete("missions/" + filename));
+  provider = CL_PNGProvider (path_manager.complete("missions/" + filename));
 
-  provider->lock ();
-  //FIXME:Display2 assert (provider->is_indexed ());
+  provider.lock ();
+  //FIXME:Display2 assert (provider.is_indexed ());
 
-  grid_width  = provider->get_width () + 2;
-  grid_height = provider->get_height () + 2;
+  grid_width  = provider.get_width () + 2;
+  grid_height = provider.get_height () + 2;
 
   grid_data.resize (grid_width * grid_height);
   
   for (int i = 0; i < grid_height * grid_width; ++i)
     grid_data[i] = GT_SAND; // FIXME: should be variable not hardcoded!
 
-  unsigned char* buffer = static_cast<unsigned char*>(provider->get_data ());
-  for (int y = 0; y < provider->get_height (); ++y)
-    for (int x = 0; x < provider->get_width (); ++x)
+  unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
+  for (int y = 0; y < provider.get_height (); ++y)
+    for (int x = 0; x < provider.get_width (); ++x)
       grid_data[(x + 1) + ((y+1) * grid_width)] 
-	= static_cast<GroundType>(buffer[x + (provider->get_width () * y)]);
+	= static_cast<GroundType>(buffer[x + (provider.get_width () * y)]);
 
-  provider->unlock (); 
+  provider.unlock (); 
 }
 
 GroundMap*

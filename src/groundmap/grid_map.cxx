@@ -24,7 +24,7 @@
 GridMap::GridMap (const GridMapData& data)
   : GridMapData (data),
     tiles (path_manager.complete("tiles.scm")),
-    surface (provider)
+    surface(provider)
 {
   std::vector<GridTileData> tile_data;
   

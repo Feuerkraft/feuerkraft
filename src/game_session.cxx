@@ -23,6 +23,7 @@
 #include <ClanLib/Display/mouse.h>
 #include <ClanLib/Display/keyboard.h>
 #include <ClanLib/Display/keys.h>
+#include <sstream>
 #include <iostream>
 #include <assert.h>
 
@@ -57,7 +58,6 @@
 #include "player.hxx"
 #include "path_manager.hxx"
 #include "command_line_arguments.hxx"
-#include "string_converter.hxx"
 #include "screenshot.hxx"
 #include "game_session.hxx"
 
@@ -212,6 +212,7 @@ GameSession::update()
   GameWorld::current()->draw(*view);
   GameWorld::current()->draw_energie(*view);
   view->get_sc().render();
+  view->get_sc().light().fill_screen(CL_Color(50, 50, 100));
 
   if (draw_colmap)
     collision_mgr->draw(*view);

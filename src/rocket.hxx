@@ -28,6 +28,8 @@ class Rocket : public GameObj
 {
 private:
   CL_Sprite sprite;
+  CL_Sprite sprite_light;
+  CL_Sprite sprite_highlight;
   CL_Sprite smoke;
   FloatVector2d pos;
   float orientation;

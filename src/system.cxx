@@ -34,11 +34,10 @@
 
 #include <cstdio>
 #include <iostream>
-
+#include <ClanLib/Core/System/clanstring.h>
 #include "gettext.h"
 
 //#include "PingusError.hxx" 
-#include "string_converter.hxx"
 #include "system.hxx"
 
 int System::verbose;
@@ -344,7 +343,7 @@ System::checksum (std::string filename)
 
   fclose (in);
 
-  return to_string(checksum);
+  return CL_String::to(checksum);
 }
 
 /* EOF */

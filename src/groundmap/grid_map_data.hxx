@@ -23,6 +23,7 @@
 #include <vector>
 
 #include <guile/gh.h>
+#include <ClanLib/Display/pixel_buffer.h>
 #include "ground_type.hxx"
 #include "ground_map_data.hxx"
 
@@ -39,7 +40,7 @@ protected:
   /** The data of the grid */
   std::vector<GroundType> grid_data;
   
-  CL_PixelBuffer* provider;
+  CL_PixelBuffer provider;
   
 public:
   GridMapData (SCM desc);

@@ -32,6 +32,7 @@
 Projectile::Projectile (GameObj* p,
 			const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity)
   : sur (resources->get_sprite("feuerkraft/projectile")),
+    sur_light (resources->get_sprite("feuerkraft/projectile-light")),
     tmp_pos (arg_pos),
     velocity (arg_velocity),
     lifetime (45 + rand () % 5 ),
@@ -57,7 +58,9 @@ Projectile::draw (View& view)
 {
   if (lifetime > 0) {
     sur.set_angle(Math::rad2deg(velocity.get_orientation()));
+    sur_light.set_angle(Math::rad2deg(velocity.get_orientation()));
     view.get_sc().color().draw(sur, pos.x, pos.y);
+    view.get_sc().light().draw(sur_light, pos.x, pos.y);
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;

@@ -23,6 +23,14 @@
       <image file="images/rocket_smoke.png" />
     </sprite>
 
+    <sprite name="rocket-light">
+      <image file="images/rocket_light.png" />
+    </sprite>
+
+    <sprite name="rocket-highlight">
+      <image file="images/rocket-highlight.png" />
+    </sprite>
+
     <sprite name="rocket">
       <image file="images/rocket.png" />
       <image file="images/rocket1.png" />
@@ -189,6 +197,10 @@
     <sprite name="jeep">
       <image file="images/jeep.png" />
     </sprite>
+
+    <sprite name="projectile-light">
+      <image file="images/projectile-light.png" />
+    </sprite>
     
     <sprite name="projectile">
       <image file="images/projectile1.png" delay="10" />
@@ -208,6 +220,10 @@
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0"
         />
+    </sprite>
+
+    <sprite name="explosion-light">
+      <image file="images/explosion-light.png" />
     </sprite>
 
     <sprite name="explosion">

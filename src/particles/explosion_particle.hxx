@@ -31,6 +31,7 @@ class ExplosionParticle : public Particle
 private:
   float size;
   CL_Sprite sprite;
+  CL_Sprite sprite_light;
   float max_life_time;
   bool direction;
   float angle;
@@ -51,6 +52,7 @@ public:
 
     // FIXME: memory leak
     sprite = resources->get_sprite("feuerkraft/explosion");
+    sprite_light = resources->get_sprite("feuerkraft/explosion-light");
     sprite.rotate (angle);
     sprite.set_blend_func(blend_src_alpha, blend_one);
   
@@ -81,8 +83,12 @@ public:
 	sprite.set_scale (((1 - life_time/max_life_time)) * size,
                           ((1 - life_time/max_life_time)) * size);
 
+	sprite_light.set_scale (((1 - life_time/max_life_time)) * size * 2.0f,
+                                ((1 - life_time/max_life_time)) * size * 2.0f);
+
         sprite.set_angle(Math::rad2deg(angle));
 	view.get_sc().color().draw(sprite, pos.x, pos.y);
+	view.get_sc().light().draw(sprite_light, pos.x, pos.y);
       }
   }
 

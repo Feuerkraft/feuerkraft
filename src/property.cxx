@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <assert.h>
-#include "string_converter.hxx"
+#include <ClanLib/Core/System/clanstring.h>
 #include "property.hxx"
 
 Property::Property(const std::string& arg_name)
@@ -118,13 +118,13 @@ Property::to_string() const
   switch (type)
     {
     case Property::T_BOOL:
-      return ::to_string(get_bool());
+      return CL_String::to(get_bool());
 
     case Property::T_FLOAT:
-      return ::to_string(get_float());
+      return CL_String::to(get_float());
       
     case Property::T_INT:
-      return ::to_string(get_int());
+      return CL_String::to(get_int());
 
     case Property::T_STRING:
       return get_string();

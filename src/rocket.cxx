@@ -34,6 +34,10 @@ Rocket::Rocket(const FloatVector2d& pos, float orientation)
 {
   release_count = 0;
   sprite = resources->get_sprite("feuerkraft/rocket");
+
+  sprite_light     = resources->get_sprite("feuerkraft/rocket-light");
+  sprite_highlight = resources->get_sprite("feuerkraft/rocket-highlight");
+
   smoke  = resources->get_sprite("feuerkraft/rocket_smoke");
 }
 
@@ -45,7 +49,16 @@ void
 Rocket::draw(View& view)
 {
   sprite.set_angle(Math::rad2deg(orientation));
+  sprite_light.set_angle(Math::rad2deg(orientation));
+  sprite_highlight.set_angle(Math::rad2deg(orientation));
+
+  // Light flicker
+  sprite_light.set_alpha(Math::frand()*0.5f + 0.5f);
+  sprite_highlight.set_alpha(Math::frand()*0.5f + 0.5f);
+
   view.get_sc().color().draw(sprite, pos.x, pos.y);
+  view.get_sc().light().draw(sprite_light, pos.x, pos.y);
+  view.get_sc().highlight().draw(sprite_highlight, pos.x, pos.y);
 }
 
 void

@@ -152,8 +152,6 @@ start_screen.cxx \
 start_screen.hxx \
 globals.hxx \
 globals.cxx \
-string_converter.cxx \
-string_converter.hxx \
 system.cxx \
 system.hxx \
 trigger_manager.hxx \

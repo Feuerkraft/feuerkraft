@@ -29,6 +29,7 @@ class Projectile : public GameObj
 private:
   FloatVector2d pos;
   CL_Sprite sur;
+  CL_Sprite sur_light;
   FloatVector2d tmp_pos;
   FloatVector2d velocity;
   float lifetime;
