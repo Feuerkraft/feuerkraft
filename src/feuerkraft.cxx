@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.48 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.49 2003/06/06 18:36:24 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -364,6 +364,7 @@ Feuerkraft::main(int argc, char** argv)
             {
               player->get_current_unit()->update_controlls(InputManager::get_controller());
             }
+          InputManager::clear();
         }
       DisplayManager::deinit();
 

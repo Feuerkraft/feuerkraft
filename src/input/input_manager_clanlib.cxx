@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.cxx,v 1.4 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: input_manager_clanlib.cxx,v 1.5 2003/06/06 18:36:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -144,7 +144,6 @@ InputEventLst
 InputManagerClanLib::get_events()
 {
   InputEventLst old_events = events;
-  events.clear();
   return old_events;
 }
 
@@ -153,6 +152,12 @@ InputManagerClanLib::get_controller()
 {
   controller.events = events;
   return controller;
+}
+
+void
+InputManagerClanLib::clear()
+{
+  events.clear();
 }
 
 /* EOF */
