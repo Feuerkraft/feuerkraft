@@ -1,3 +1,5 @@
+pkgdatadir = $(datadir)/games/@PACKAGE@/images/tiles/
+
 EXTRA_DIST = aaaa1.png \
 aaaa2.png \
 aaaa3.png \
@@ -143,5 +145,7 @@ ssss4.png \
 ssss5.png \
 ssss6.png \
 ssss7.png
+
+pkgdata_DATA = $(EXTRA_DIST)
 
 # EOF #

@@ -1,79 +1,79 @@
 section feuerkraft {
 	logo = (type=sprite, image1=images/logo.jpg);
-	keys = (type=sprite, image1=images/keys.png);
+	keys = (type=sprite, image1=images/keys.tga);
 	endscreen = (type=sprite, image1=images/endscreen.jpg);
-	ambulance = (type=sprite, image1=images/ambulance.png);
-	wall = (type=sprite, image1=images/wall.png);
-	wall_damaged = (type=sprite, image1=images/wall_damaged.png);
-	wall_destroyed = (type=sprite, image1=images/wall_destroyed.png);
-	tank = (type=sprite, image1=images/tank.png);
-	tank2 = (type=sprite, image1=images/tank2.png);
-	tank2_shadow = (type=sprite, image1=images/tank2_shadow.png);
-	helicopter = (type=sprite, image1=images/helicopter.png);
-	helicopter_shadow = (type=sprite, image1=images/helicopter_shadow.png);
-	turret = (type=sprite, image1=images/turret.png);
-	turret2_shadow = (type=sprite, image1 = images/turret2_shadow.png);
-	radar_line = (type=sprite, image1=images/radar_line.png);
-	turret2 = (type=sprite,  image1 = images/turret2.png);
-	fire2 = (type=sprite, image1=images/fire2.png);
-	fire = (type=sprite, image1=images/fire.png);
-	jeep = (type=sprite, image1=images/jeep.png);
-	towerbase = (type=sprite, image1=images/towerbase.png);
-	towerturret = (type=sprite, image1=images/towerturret.png);
-	projectile = (type=sprite, image1=images/projectile.png);
-	sandsmoke = (type=sprite, image1=images/sandsmoke.png);
-	grasssmoke = (type=sprite, image1=images/grasssmoke.png);
-	explosion = (type=sprite, image1=images/explosion.png);
-	smallexplo = (type=sprite, image1=images/smallexplo.png);
-	mediumexplo = (type=sprite, image1=images/mediumexplo.png);
-	towerdamaged = (type=sprite, image1=images/towerdamaged.png);
-	towerdestroyed = (type=sprite, image1=images/towerdestroyed.png);
-	tree = (type=sprite, image1=images/tree.png);
-	tree_shadow = (type=sprite, image1=images/tree_shadow.png);
-	tree2 = (type=sprite, image1=images/tree2.png);
-	tree2_shadow = (type=sprite, image1=images/tree2_shadow.png);
-	soldier = (type=sprite, image1=images/soldier.png);
-	mine = (type=sprite, image1=images/mine.png);
-	mineactive = (type=sprite, image1=images/mineactive.png);
-	minewater = (type=sprite, image1=images/minewater.png);
-	minewateractive = (type=sprite, image1=images/minewateractive.png);
-	tank2destroyed = (type=sprite, image1=images/tank2destroyed.png);
-	shockwave = (type=sprite, image1=images/shockwave.png);
-	tankdestroyed = (type=sprite, image1=images/tankdestroyed.png); 
+	ambulance = (type=sprite, image1=images/ambulance.tga);
+	wall = (type=sprite, image1=images/wall.tga);
+	wall_damaged = (type=sprite, image1=images/wall_damaged.tga);
+	wall_destroyed = (type=sprite, image1=images/wall_destroyed.tga);
+	tank = (type=sprite, image1=images/tank.tga);
+	tank2 = (type=sprite, image1=images/tank2.tga);
+	tank2_shadow = (type=sprite, image1=images/tank2_shadow.tga);
+	helicopter = (type=sprite, image1=images/helicopter.tga);
+	helicopter_shadow = (type=sprite, image1=images/helicopter_shadow.tga);
+	turret = (type=sprite, image1=images/turret.tga);
+	turret2_shadow = (type=sprite, image1 = images/turret2_shadow.tga);
+	radar_line = (type=sprite, image1=images/radar_line.tga);
+	turret2 = (type=sprite,  image1 = images/turret2.tga);
+	fire2 = (type=sprite, image1=images/fire2.tga);
+	fire = (type=sprite, image1=images/fire.tga);
+	jeep = (type=sprite, image1=images/jeep.tga);
+	towerbase = (type=sprite, image1=images/towerbase.tga);
+	towerturret = (type=sprite, image1=images/towerturret.tga);
+	projectile = (type=sprite, image1=images/projectile.tga);
+	sandsmoke = (type=sprite, image1=images/sandsmoke.tga);
+	grasssmoke = (type=sprite, image1=images/grasssmoke.tga);
+	explosion = (type=sprite, image1=images/explosion.tga);
+	smallexplo = (type=sprite, image1=images/smallexplo.tga);
+	mediumexplo = (type=sprite, image1=images/mediumexplo.tga);
+	towerdamaged = (type=sprite, image1=images/towerdamaged.tga);
+	towerdestroyed = (type=sprite, image1=images/towerdestroyed.tga);
+	tree = (type=sprite, image1=images/tree.tga);
+	tree_shadow = (type=sprite, image1=images/tree_shadow.tga);
+	tree2 = (type=sprite, image1=images/tree2.tga);
+	tree2_shadow = (type=sprite, image1=images/tree2_shadow.tga);
+	soldier = (type=sprite, image1=images/soldier.tga);
+	mine = (type=sprite, image1=images/mine.tga);
+	mineactive = (type=sprite, image1=images/mineactive.tga);
+	minewater = (type=sprite, image1=images/minewater.tga);
+	minewateractive = (type=sprite, image1=images/minewateractive.tga);
+	tank2destroyed = (type=sprite, image1=images/tank2destroyed.tga);
+	shockwave = (type=sprite, image1=images/shockwave.tga);
+	tankdestroyed = (type=sprite, image1=images/tankdestroyed.tga); 
 
 	rotor = (
 		type=sprite,
-		image1=images/rotor1.png,
-		image2=images/rotor2.png
+		image1=images/rotor1.tga,
+		image2=images/rotor2.tga
 	);
 
-	hole = (type=sprite, image1=images/hole.png);
-	helidestroyed = (type=sprite, image1=images/helidestroyed.png);
+	hole = (type=sprite, image1=images/hole.tga);
+	helidestroyed = (type=sprite, image1=images/helidestroyed.tga);
 	
-	flagblue = (type=sprite, image1=images/flagblue.png);
-	flaggreen = (type=sprite, image1=images/flaggreen.png);
+	flagblue = (type=sprite, image1=images/flagblue.tga);
+	flaggreen = (type=sprite, image1=images/flaggreen.tga);
 	
-	blueflag = (type=sprite, image1=images/blueflag.png);
-	parking = (type=sprite, image1=images/parking.png);
-	radar = (type=sprite, image1=images/radar.png);
+	blueflag = (type=sprite, image1=images/blueflag.tga);
+	parking = (type=sprite, image1=images/parking.tga);
+	radar = (type=sprite, image1=images/radar.tga);
 	
-	start = (type=sprite, image1=images/start.png);
-	headquarter = (type=sprite, image1=images/headquarter.png);
-	headquarterdamaged = (type=sprite, image1=images/headquarterdamaged.png);
-	headquarterdestroyed = (type=sprite, image1=images/headquarterdestroyed.png);
+	start = (type=sprite, image1=images/start.tga);
+	headquarter = (type=sprite, image1=images/headquarter.tga);
+	headquarterdamaged = (type=sprite, image1=images/headquarterdamaged.tga);
+	headquarterdestroyed = (type=sprite, image1=images/headquarterdestroyed.tga);
 	
-	fuel = (type=sprite, image1=images/fuel.png);
-	ammo = (type=sprite, image1=images/ammo.png);
+	fuel = (type=sprite, image1=images/fuel.tga);
+	ammo = (type=sprite, image1=images/ammo.tga);
 	
-	fuelstation = (type=sprite, image1=images/fuelstation.png);
-	emptytile = (type = sprite, image1 = images/emptytile.png);
+	fuelstation = (type=sprite, image1=images/fuelstation.tga);
+	emptytile = (type = sprite, image1 = images/emptytile.tga);
 
-	ammotent = (type=sprite, image1=images/ammotent.png);
-	hdoor = (type=sprite, image1=images/hdoor.png);
-	vdoor = (type=sprite, image1=images/vdoor.png);
+	ammotent = (type=sprite, image1=images/ammotent.tga);
+	hdoor = (type=sprite, image1=images/hdoor.tga);
+	vdoor = (type=sprite, image1=images/vdoor.tga);
 
 	sand = (type=sprite, image1=images/sand.jpg);
-	stone = (type=sprite, image1=images/stone.png);
+	stone = (type=sprite, image1=images/stone.tga);
 }
 
 

@@ -1,4 +1,7 @@
+pkgdatadir = $(datadir)/games/@PACKAGE@/images/
+
 SUBDIRS = tiles
+
 EXTRA_DIST = ambulance.png \
 ammo.png \
 ammotent.png \
@@ -14,9 +17,9 @@ fuel.png \
 fuelstation.png \
 grasssmoke.png \
 hdoor.png \
-headquater.png \
-headquaterdamaged.png \
-headquaterdestroyed.png \
+headquarter.png \
+headquarterdamaged.png \
+headquarterdestroyed.png \
 helicopter.png \
 helicopter_shadow.png \
 helidestroyed.png \
@@ -86,5 +89,7 @@ wall.png \
 wall_damaged.png \
 wall_destroyed.png \
 waterdust.png
+
+pkgdata_DATA = $(EXTRA_DIST)
 
 # EOF #
