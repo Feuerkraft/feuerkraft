@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_CLANLIB_HXX
-#define HEADER_INPUT_MANAGER_CLANLIB_HXX
+#ifndef HEADER_INPUT_MANAGER_JOYSTICK_HXX
+#define HEADER_INPUT_MANAGER_JOYSTICK_HXX
 
 #include <ClanLib/Signals/slot.h>
 #include <ClanLib/Signals/slot_container.h>
@@ -29,7 +29,7 @@
 class CL_InputEvent;
 
 /** */
-class InputManagerClanLib : public InputManagerImpl
+class InputManagerJoystick : public InputManagerImpl
 {
 private:
   CL_InputDevice dev;
@@ -47,16 +47,16 @@ private:
   void add_button_event(ButtonName name, bool down);
 
 public:
-  InputManagerClanLib();
-  virtual ~InputManagerClanLib();
+  InputManagerJoystick();
+  virtual ~InputManagerJoystick();
 
   void update(float delta);
   InputEventLst get_events();
   Controller get_controller();
   void clear();
 private:
-  InputManagerClanLib (const InputManagerClanLib&);
-  InputManagerClanLib& operator= (const InputManagerClanLib&);
+  InputManagerJoystick (const InputManagerJoystick&);
+  InputManagerJoystick& operator= (const InputManagerJoystick&);
 };
 
 #endif

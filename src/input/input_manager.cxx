@@ -23,7 +23,7 @@
 #include <sstream>
 #include <ClanLib/Display/joystick.h>
 #include "../command_line_arguments.hxx"
-#include "input_manager_clanlib.hxx"
+#include "input_manager_joystick.hxx"
 #include "input_manager_keyboard.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
@@ -43,7 +43,7 @@ InputManager::init(InputManagerImpl* arg_impl)
       if (args->joystick < CL_Joystick::get_device_count())
         {
           std::cout << "InputManager: Using joystick " << args->joystick << std::endl;
-          impl = new InputManagerClanLib();
+          impl = new InputManagerJoystick();
         }
       else
         {

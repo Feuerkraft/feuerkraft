@@ -24,9 +24,9 @@
 #include <ClanLib/Display/display_iostream.h>
 #include <ClanLib/Display/keys.h>
 #include <ClanLib/Display/input_event.h>
-#include "input_manager_clanlib.hxx"
+#include "input_manager_joystick.hxx"
 
-InputManagerClanLib::InputManagerClanLib()
+InputManagerJoystick::InputManagerJoystick()
 {
   if (CL_Joystick::get_device_count() == 1)
     {
@@ -42,17 +42,17 @@ InputManagerClanLib::InputManagerClanLib()
       throw std::runtime_error("Feuerkraft: No joystick found");
     }
   
-  slots.connect(dev.sig_axis_move(),this, &InputManagerClanLib::on_axis_move);
-  slots.connect(dev.sig_key_down(), this, &InputManagerClanLib::on_button_down);
-  slots.connect(dev.sig_key_up(),   this, &InputManagerClanLib::on_button_up);
+  slots.connect(dev.sig_axis_move(),this, &InputManagerJoystick::on_axis_move);
+  slots.connect(dev.sig_key_down(), this, &InputManagerJoystick::on_button_down);
+  slots.connect(dev.sig_key_up(),   this, &InputManagerJoystick::on_button_up);
 }
 
-InputManagerClanLib::~InputManagerClanLib()
+InputManagerJoystick::~InputManagerJoystick()
 {
 }
 
 void
-InputManagerClanLib::on_axis_move(const CL_InputEvent& event)
+InputManagerJoystick::on_axis_move(const CL_InputEvent& event)
 {
   //std::cout << "Axis: " << event.id << " " << event.axis_pos << std::endl;
   if (event.id == 0)
@@ -64,7 +64,7 @@ InputManagerClanLib::on_axis_move(const CL_InputEvent& event)
 }
 
 void
-InputManagerClanLib::on_button_down(const CL_InputEvent& event)
+InputManagerJoystick::on_button_down(const CL_InputEvent& event)
 {
   switch (event.id)
     {
@@ -81,12 +81,12 @@ InputManagerClanLib::on_button_down(const CL_InputEvent& event)
 }
 
 void
-InputManagerClanLib::on_button_up(const CL_InputEvent& event)
+InputManagerJoystick::on_button_up(const CL_InputEvent& event)
 {
 }
 
 void
-InputManagerClanLib::add_axis_event(AxisName name, float pos)
+InputManagerJoystick::add_axis_event(AxisName name, float pos)
 {
   InputEvent event;
   event.type = AXIS_EVENT;
@@ -96,7 +96,7 @@ InputManagerClanLib::add_axis_event(AxisName name, float pos)
 }
 
 void
-InputManagerClanLib::add_button_event(ButtonName name, bool down)
+InputManagerJoystick::add_button_event(ButtonName name, bool down)
 {
   InputEvent event;
   event.type = BUTTON_EVENT;
@@ -106,7 +106,7 @@ InputManagerClanLib::add_button_event(ButtonName name, bool down)
 }
 
 void
-InputManagerClanLib::update(float delta)
+InputManagerJoystick::update(float delta)
 {
   CL_InputDevice dev = CL_Joystick::get_device(1);
 
@@ -123,21 +123,21 @@ InputManagerClanLib::update(float delta)
 }
 
 InputEventLst
-InputManagerClanLib::get_events()
+InputManagerJoystick::get_events()
 {
   InputEventLst old_events = events;
   return old_events;
 }
 
 Controller
-InputManagerClanLib::get_controller()
+InputManagerJoystick::get_controller()
 {
   controller.events = events;
   return controller;
 }
 
 void
-InputManagerClanLib::clear()
+InputManagerJoystick::clear()
 {
   events.clear();
 }
