@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.12 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: alist.cxx,v 1.13 2003/06/23 08:43:32 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -172,7 +172,7 @@ AList::get_value(const std::string& name, Type type) const
 }
 
 bool
-AList::get_int(const std::string& name, int& value) const
+AList::retrieve_int(const std::string& name, int& value) const
 {
   const Value* v = get_value(name, AL_INT);
 
@@ -186,7 +186,7 @@ AList::get_int(const std::string& name, int& value) const
 }
 
 bool
-AList::get_float(const std::string& name, float& value) const
+AList::retrieve_float(const std::string& name, float& value) const
 {
   const Value* v = get_value(name, AL_FLOAT);
   if (!v)
@@ -208,7 +208,7 @@ AList::get_float(const std::string& name, float& value) const
 }
 
 bool
-AList::get_bool(const std::string& name, bool& value) const
+AList::retrieve_bool(const std::string& name, bool& value) const
 {
   const Value* v = get_value(name, AL_BOOL);
   if (!v)
@@ -221,7 +221,7 @@ AList::get_bool(const std::string& name, bool& value) const
 }
 
 bool
-AList::get_string(const std::string& name, std::string& value) const
+AList::retrieve_string(const std::string& name, std::string& value) const
 {
   const Value* v = get_value(name, AL_STRING);
   if (v == 0)
@@ -234,7 +234,7 @@ AList::get_string(const std::string& name, std::string& value) const
 }
 
 bool
-AList::get_int_vector2d (const std::string& name, IntVector2d& value) const
+AList::retrieve_int_vector2d (const std::string& name, IntVector2d& value) const
 {
   const Value* v = get_value(name, AL_INTVECTOR2D);
   if (!v)
@@ -247,35 +247,43 @@ AList::get_int_vector2d (const std::string& name, IntVector2d& value) const
 }
 
 int
-AList::get_int(const std::string& str) const
+AList::get_int(const std::string& str, int def) const
 {
   int res;
-  get_int(str, res);
-  return res;
+  if (retrieve_int(str, res))
+    return res;
+  else
+    return def;
 }
 
 float
-AList::get_float(const std::string& str) const
+AList::get_float(const std::string& str, float def) const
 {
   float res;
-  get_float(str, res);
-  return res;
+  if (retrieve_float(str, res))
+    return res;
+  else
+    return def;
 }
 
 bool
-AList::get_bool(const std::string& str) const
+AList::get_bool(const std::string& str, bool def) const
 {
   bool res;
-  get_bool(str, res);
-  return res;
+  if (retrieve_bool(str, res))
+    return res;
+  else
+    return def;
 }
 
 std::string 
-AList::get_string(const std::string& str) const
+AList::get_string(const std::string& str, const std::string& def) const
 {
   std::string res;
-  get_string(str, res);
-  return res;
+  if (retrieve_string(str, res))
+    return res;
+  else
+    return def;
 }
 
 void
@@ -304,13 +312,34 @@ AList::merge(const AList& lst)
 
 std::ostream& operator<< (std::ostream& os, const AList& lst)
 {
-  os << "[AList:";
+  os << "[AList:]\n";
   for(AList::const_iterator i = lst.begin(); i != lst.end(); ++i)
     {
-      os << "  " << i->first << " -> " << std::endl;
+      os << "  " << i->first << " -> " << i->second << std::endl;
     }  
-  os << "]";
+  os << std::endl;
   return os;
+}
+
+std::ostream& operator<< (std::ostream& os, const AList::Value& value)
+{
+  switch (value.type)
+    {      
+    case AList::AL_INT:
+      return os << value.v_int;
+
+    case AList::AL_FLOAT:
+      return os << value.v_float;
+
+    case AList::AL_BOOL:
+      return os << value.v_bool;
+
+    case AList::AL_STRING:
+      return os << *value.v_string;
+
+    default:
+      return os << "<#unknown>>";
+    }
 }
 
 /* EOF */

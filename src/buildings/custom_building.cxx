@@ -1,4 +1,4 @@
-//  $Id: custom_building.cxx,v 1.8 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: custom_building.cxx,v 1.9 2003/06/23 08:43:32 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,10 +29,10 @@ CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
   width   = 2;
   height  = 2;
 
-  type.get_string("sprite",  sprite_str);
-  type.get_int   ("energie", i_energie);
-  type.get_int   ("width",   width);
-  type.get_int   ("height",  height);
+  type.retrieve_string("sprite",  sprite_str);
+  type.retrieve_int   ("energie", i_energie);
+  type.retrieve_int   ("width",   width);
+  type.retrieve_int   ("height",  height);
 
   energie.set_max_energie(i_energie);
 

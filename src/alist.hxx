@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.9 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: alist.hxx,v 1.10 2003/06/23 08:43:32 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,8 @@
 /** Simple associated list like class 
 
     FIXME: Looks pretty similar to PropertySet, except for the
-    pointers. */
+    pointers. Spliting of the Value struct into an own more generic
+    class would be a good idea. */
 class AList
 {
 public:
@@ -67,17 +68,17 @@ public:
   AList& set_string(const std::string& str, const std::string& value);
   AList& set_int_vector2d(const std::string& str, IntVector2d& value);
 
-  bool get_int      (const std::string& str, int& value) const;
-  bool get_float    (const std::string& str, float&value) const;
-  bool get_bool     (const std::string& str, bool& value) const;
-  bool get_string   (const std::string& str, std::string& value) const;
+  bool retrieve_int      (const std::string& str, int& value) const;
+  bool retrieve_float    (const std::string& str, float&value) const;
+  bool retrieve_bool     (const std::string& str, bool& value) const;
+  bool retrieve_string   (const std::string& str, std::string& value) const;
 
-  int    get_int      (const std::string& str) const;
-  float  get_float    (const std::string& str) const;
-  bool   get_bool     (const std::string& str) const;
-  std::string get_string   (const std::string& str) const;
+  int    get_int      (const std::string& str, int def = 0) const;
+  float  get_float    (const std::string& str, float def = 0) const;
+  bool   get_bool     (const std::string& str, bool def = false) const;
+  std::string get_string(const std::string& str, const std::string& ref = std::string()) const;
 
-  bool get_int_vector2d (const std::string& str, IntVector2d& value) const;
+  bool retrieve_int_vector2d (const std::string& str, IntVector2d& value) const;
 
   /** Merg lst into the current list, overwriting all values in *this
       that are also in lst */
@@ -91,6 +92,7 @@ public:
 };
 
 std::ostream& operator<< (std::ostream& os, const AList& lst);
+std::ostream& operator<< (std::ostream& os, const AList::Value& value);
 
 #endif
 
