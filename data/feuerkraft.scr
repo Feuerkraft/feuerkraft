@@ -1,0 +1,21 @@
+section feuerkraft {
+  tank   = data/images/tank.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
+  turret = data/images/turret.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
+  smod = data/images/smod.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
+
+  tank2   = data/images/tank2.png (type=surface, x=0, y=0, width=68, height=68, array=16x1);
+  turret2 = data/images/turret2.png (type=surface, x=0, y=0, width=43, height=44, array=16x1);
+  fire2 = data/images/fire2.png (type=surface, x=0, y=0, width=80, height=80, array=16x1);
+  fire  = data/images/fire.png (type=surface, x=0, y=0, width=150, height=150, array=16x1);
+
+  towerbase = data/images/towerbase.png (type=surface, x=0, y=0, width=83, height=80);
+  towerturret = data/images/towerturret.png (type=surface, x=0, y=0, width=70, height=70, array=16x1);
+
+ projectile = data/images/projectile.png (type=surface, x=0, y=0, width=5, height=6);
+
+ smallexplo = data/images/smallexplo.png (type=surface, x=0, y=0, width=32, height=32);
+  mediumexplo = data/images/mediumexplo.png (type=surface, x=0, y=0, width=134, height=126);
+
+}
+
+
