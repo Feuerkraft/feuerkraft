@@ -64,16 +64,16 @@ public:
 
 	Tank* tank1 = new Tank(5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-	Helicopter* heli = new Helicopter (CL_Vector (320, 200));
-	Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
+	//Helicopter* heli = new Helicopter (CL_Vector (320, 200));
+	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
-	JoystickController controller(tank1);
-	KeyboardController kcontroller (heli);
+	JoystickController controller(jeep);
+	KeyboardController kcontroller (tank1);
 	
 	world.add (jeep);
-	world.add (heli);
-	world.add (heli2);
+	//world.add (heli);
+	//world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
 	world.add (new Playfield ());
@@ -100,9 +100,14 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view1 (&world, heli, 0, 0, 399, 600);
-	VehicleView view2 (&world, tank1, 400, 0, 800, 600);
+	View view (&world, 0, 0, 800, 600);
+	view.set_view (400, 300);
+	//VehicleView view1 (&world, heli, 0, 0, 399, 600);
+	//VehicleView view2 (&world, tank1, 400, 0, 800, 600);
 	
+	  int start_time = CL_System::get_time ();
+	int frames = 0;
+
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
@@ -115,17 +120,19 @@ public:
 
 	    //CL_Display::clear_display ();
 	    
-	    view1.draw ();
-	    view2.draw ();
+	    view.draw ();
+	    //view1.draw ();
+	    //view2.draw ();
 
-	    view1.update ();
-	    view2.update ();
+	    //view1.update ();
+	    //view2.update ();
 	    
 	    controller.update (delta);
 	    kcontroller.update (delta);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    CL_Display::flip_display();
+	    ++frames;
 	    
 	    // Update keyboard input and handle system events:
 	    // Exits the loop if ClanLib requests shutdown - for instance if
@@ -134,6 +141,8 @@ public:
 	  }
 
 	std::cout << "Avarage delta: " << deltas/loops << std::endl;
+	std::cout << "Avarage fps:   " 
+		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
 	CL_SetupPNG::deinit ();
 	CL_SetupCore::deinit_display();

@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.1 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: View.hh,v 1.2 2001/02/25 19:48:17 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,7 @@ public:
   virtual ~View ();
 
   void draw ();
+  void set_view (int x_pos, int y_pos);
   virtual void update ();
   int get_x_offset ();
   int get_y_offset ();
