@@ -42,6 +42,7 @@
 
 SpriteProviderStorage* storage;
 CL_ResourceManager* resources;
+CL_ResourceManager* tile_resources;
 Pathfinder datafiles;
 
 void inner_main (void* closure, int argc, char* argv[]);
@@ -112,8 +113,10 @@ public:
 
 	std::cout << "Trying this:" << std::endl;
 	resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
+	tile_resources =  new CL_ResourceManager ("data/tiles.scr", false);
 	storage = new SpriteProviderStorage ();
 	storage->add(resources);
+	storage->add(tile_resources);
 	std::cout << "DoneTrying this:" << std::endl;
 
 	GameWorld* world;

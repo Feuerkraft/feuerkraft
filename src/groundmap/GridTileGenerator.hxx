@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.hxx,v 1.2 2002/03/26 12:51:33 grumbel Exp $
+//  $Id: GridTileGenerator.hxx,v 1.3 2002/03/27 13:40:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,8 @@
 #include "GroundType.hxx"
 #include "GridTileData.hxx"
 
+class GridTile;
+
 /** Creates/loads the tiles for a GridMap out of an description */
 class GridTileGenerator
 {
@@ -36,6 +38,8 @@ public:
   typedef std::pair<GridTileData, std::vector<GridTile*> > TileTableEntry;
   typedef std::vector<std::pair<GridTileData, std::vector<GridTile*> > > TileTable;
   TileTable tiles;
+
+  GridTile* emptytile;
 
   GridTileGenerator (std::string filename);
   ~GridTileGenerator ();

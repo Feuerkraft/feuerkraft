@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.cxx,v 1.2 2002/03/26 12:51:33 grumbel Exp $
+//  $Id: GridTileGenerator.cxx,v 1.3 2002/03/27 13:40:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 #include "GridTileGenerator.hxx"
 
 GridTileGenerator::GridTileGenerator (std::string filename)
+  : emptytile (new GridTile ("feuerkraft/emptytile"))
 {
   SCM fdes = scm_open_file (gh_str02scm(filename.c_str ()), 
 			    gh_str02scm("r"));
@@ -40,6 +41,7 @@ GridTileGenerator::GridTileGenerator (std::string filename)
 
 GridTileGenerator::~GridTileGenerator ()
 {
+  delete emptytile;
 }
 
 void
@@ -137,11 +139,15 @@ GridTileGenerator::create (const GridTileData& data)
       if (i->second.size () > 0)
 	return (i->second)[rand () % (i->second.size ())]; // Return a random tile
       else
-	return 0;
+	{
+	  // The tile list is empty
+	  return emptytile;
+	}
     }
   else
     {
-      return 0;
+      // We don't have a tiledesc entry for this tile
+      return emptytile;
     }
 }
 
