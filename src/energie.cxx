@@ -1,4 +1,4 @@
-//  $Id: energie.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: energie.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,7 +44,7 @@ Energie::Energie (int arg_energie) :
 }
 
 void
-Energie::draw (ViewPtr view, int x_pos, int y_pos)
+Energie::draw (View& view, int x_pos, int y_pos)
 {
   int time_diff = CL_System::get_time () - last_change ;
 
@@ -59,13 +59,13 @@ Energie::draw (ViewPtr view, int x_pos, int y_pos)
       && CL_System::get_time () > 2000)
     {
       // Black border rectangle
-      view->draw_fillrect (x_pos - 32, y_pos - 5,
+      view.draw_fillrect (x_pos - 32, y_pos - 5,
 			   x_pos + 32, y_pos + 5,
 			   Color(0.0f, 0.0f, 0.0f,
                                  (1000.0f - float(time_diff))/1000.0f * 0.8f));
       
       // Energie bar
-      view->draw_fillrect (x_pos - 30, y_pos - 3,
+      view.draw_fillrect (x_pos - 30, y_pos - 3,
 			   int(x_pos - 30 + (ratio * 60)),
 			   y_pos + 3,
 			   Color(1.0f - energie/float(max_energie),

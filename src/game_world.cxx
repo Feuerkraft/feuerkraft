@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.11 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: game_world.cxx,v 1.12 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -163,7 +163,7 @@ public:
 }*/
 
 void 
-GameWorld::draw (View* view)
+GameWorld::draw (View& view)
 {
   //objects.sort (z_pos_sorter ());
 #ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
@@ -181,7 +181,7 @@ GameWorld::draw (View* view)
 }
 
 void 
-GameWorld::draw_energie (View* view)
+GameWorld::draw_energie (View& view)
 {
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
@@ -189,7 +189,7 @@ GameWorld::draw_energie (View* view)
 }
 
 void
-GameWorld::draw_levelmap (LevelMap* levelmap)
+GameWorld::draw_levelmap (LevelMap& levelmap)
 {
   //groundmap->draw_levelmap (levelmap);
 

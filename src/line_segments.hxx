@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -94,7 +94,7 @@ public:
   void add_controll_point(float x, float y, float turn_radius);
 
   /** Some code to draw the path for debugging */
-  void draw(View* view);
+  void draw(View& view);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: sprite_tile.cxx,v 1.3 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: sprite_tile.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,9 +33,9 @@ SpriteTile::SpriteTile (const SpriteTileData& data)
 }
 
 void
-SpriteTile::draw (View* view, float x, float y)
+SpriteTile::draw(View& view, float x, float y)
 {
-  view->draw(sprite, FloatVector2d(x, y));
+  view.draw(sprite, FloatVector2d(x, y));
 }
 
 /** FIXME: 'float delta' should be replaced with GameDelta */

@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: radar.cxx,v 1.9 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,11 +22,13 @@
 #include "game_obj_manager.hxx"
 #include "radar.hxx"
 #include "math.hxx"
+#include "player.hxx"
+#include "vehicle.hxx"
 #include "resource_manager.hxx"
 
 Radar::Radar(const FloatVector2d& arg_pos, 
-	      VehiclePtr v)
-  : vehicle(v),
+             PlayerPtr p)
+  : player(p),
     background(resources->get_sprite("feuerkraft/radar")),
     pos(arg_pos),
     angle(0)
@@ -52,11 +54,11 @@ Radar::draw(CL_GraphicContext* gc)
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
-      if (vehicle && vehicle != this->vehicle)
-        draw_vehicle(vehicle);
+      if (vehicle)
+        draw_vehicle(*vehicle);
     }
 
-  GameWorld::current()->get_buildingmap()->draw_radar (this);
+  GameWorld::current()->get_buildingmap()->draw_radar(*this);
 
   CL_Display::draw_line(int(pos.x), int(pos.y - 5),
                         int(pos.x), int(pos.y + 5),
@@ -74,7 +76,7 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
   // Callculate the distance between 'pos' and the vehicle that holds
   // the radar
   FloatVector2d diff = arg_pos;
-  diff -= vehicle->get_pos();
+  diff -= player->get_current_vehicle()->get_pos();
   diff *= 1/30.0f;
 
   float alpha =(diff.get_length() / 64.0);
@@ -95,9 +97,9 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
 }
 
 void 
-Radar::draw_vehicle(VehiclePtr obj)
+Radar::draw_vehicle(Vehicle& obj)
 {
-  draw_blip(obj->get_pos(), int(obj->get_physical_size ()));
+  draw_blip(obj.get_pos(), int(obj.get_physical_size ()));
 }
 
 void 

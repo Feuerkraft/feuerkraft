@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: soldier.cxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ Soldier::~Soldier ()
 }
 
 void 
-Soldier::draw (View* view)
+Soldier::draw (View& view)
 {
   //view->draw (sur, pos);
 }

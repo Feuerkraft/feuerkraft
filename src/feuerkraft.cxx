@@ -21,7 +21,6 @@
 #include "fonts.hxx"
 #include "tree.hxx"
 #include "math.hxx"
-#include "flag.hxx"
 #include "helicopter.hxx"
 #include "turret.hxx"
 #include "soldier.hxx"
@@ -30,7 +29,6 @@
 #include "radar.hxx"
 #include "screen.hxx"
 #include "background.hxx"
-#include "stone.hxx"
 #include "system.hxx"
 #include "path_manager.hxx"
 #include "ambulance.hxx"
@@ -183,15 +181,19 @@ public:
                                                            .set_string("sprite", "feuerkraft/tree"));
 	world->add(tree);
         world->add(new RobotTank(660, 1245, 0, 100.0f));
-        
-        screen.add (new Radar (FloatVector2d(64, 64), current_vehicle));
+
+        Player the_player(tank1);
+        player = &the_player;
+	PlayerView view(0, 0, 800, 600,
+                        player);
+       
+        screen.add (new Radar(FloatVector2d(64, 64), player));
 	screen.add (new VehicleStatus (current_vehicle));
 
 	world->add (tank1);
 	world->add (ai_vehicle);
 
 	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
-	world->add (new Flag (FloatVector2d(200.0f, 200.f)));
 	world->add (new Ambulance());
 
 	world->add(new Soldier(FloatVector2d (200, 200)));
@@ -207,11 +209,6 @@ public:
 
 	int loops = 0;
 	float deltas = 0.0;
-
-        Player the_player(tank1);
-        player = &the_player;
-	PlayerView view(0, 0, 800, 600,
-                        player);
 
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
@@ -262,10 +259,10 @@ public:
 	    deltas += delta;
 	    ++loops;
 
-            GameWorld::current()->draw(&view);
-            GameWorld::current()->draw_energie (&view);
+            GameWorld::current()->draw(view);
+            GameWorld::current()->draw_energie(view);
 
-            collision_mgr.draw(&view);
+            collision_mgr.draw(view);
 
 	    screen.update (delta);
 	    screen.draw(window.get_gc ());

@@ -24,22 +24,22 @@ Turret::~Turret ()
 }
 
 void 
-Turret::draw (View* view)
+Turret::draw (View& view)
 {
   float absolute_orientation = tank->get_orientation () + orientation;
 
 #ifdef UGLY_SHADOWS_ENABLED  
-  view->draw(shadow, tank->get_pos () + FloatVector2d (10,10), absolute_orientation);
-  view->draw(shadow, tank->get_pos () + FloatVector2d (15,15), absolute_orientation);
-  view->draw(shadow, tank->get_pos () + FloatVector2d (20,20), absolute_orientation);
-  view->draw(shadow, tank->get_pos () + FloatVector2d (25,25), absolute_orientation);
+  view.draw(shadow, tank->get_pos () + FloatVector2d (10,10), absolute_orientation);
+  view.draw(shadow, tank->get_pos () + FloatVector2d (15,15), absolute_orientation);
+  view.draw(shadow, tank->get_pos () + FloatVector2d (20,20), absolute_orientation);
+  view.draw(shadow, tank->get_pos () + FloatVector2d (25,25), absolute_orientation);
 #endif 
 
-  view->draw(sur, tank->get_pos (), absolute_orientation + Math::pi);
+  view.draw(sur, tank->get_pos (), absolute_orientation + Math::pi);
 
   if (fireing && reloading == 0 && tank->ammo > 0.0)
     {
-      view->draw(fire_sur, tank->get_pos (), absolute_orientation + Math::pi);
+      view.draw(fire_sur, tank->get_pos (), absolute_orientation + Math::pi);
       fireing = false;
       reloading = reloading_speed;
     }

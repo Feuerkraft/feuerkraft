@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: soldier.hxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ public:
   ~Soldier();
 
   float get_angle () { return 0.0; }
-  void draw (View* view);
+  void draw (View& view);
   void update (float);
 
   bool is_colliding(FloatVector2d);

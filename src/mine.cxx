@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: mine.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,15 +76,15 @@ Mine::is_active ()
 }
 
 void 
-Mine::draw (View* view) 
+Mine::draw (View& view) 
 {
   if (!is_active ())
     {
-      view->draw (sur, pos);
+      view.draw (sur, pos);
     }
   else if (!detonated)
     {
-      view->draw (sur_active, pos);
+      view.draw (sur_active, pos);
     }
   else
     {

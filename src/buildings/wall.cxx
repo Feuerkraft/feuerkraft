@@ -1,4 +1,4 @@
-//  $Id: wall.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: wall.cxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,20 +39,20 @@ Wall::~Wall ()
 }
 
 void 
-Wall::draw (ViewPtr view)
+Wall::draw (View& view)
 {
   if (energie > 60)
-    view->draw (wall, pos);
+    view.draw (wall, pos);
   else if (energie > 0)
-    view->draw (wall_damaged, pos);
+    view.draw (wall_damaged, pos);
   else
-    view->draw (wall_destroyed, pos);
+    view.draw (wall_destroyed, pos);
 }
 
 void
-Wall::draw_radar (RadarPtr radar)
+Wall::draw_radar (Radar& radar)
 {
-  radar->draw_blip (pos, 2);
+  radar.draw_blip (pos, 2);
 }
 
 void

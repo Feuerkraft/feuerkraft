@@ -1,4 +1,4 @@
-//  $Id: base.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: base.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,15 +35,15 @@ Base::~Base ()
 }
 
 void
-Base::draw (ViewPtr view)
+Base::draw (View& view)
 {
-  view->draw (sprite, pos);
+  view.draw (sprite, pos);
 }
 
 void
-Base::draw_radar (RadarPtr radar)
+Base::draw_radar (Radar& radar)
 {
-  radar->draw_blip (pos, 4);
+  radar.draw_blip (pos, 4);
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: robot_tank.cxx,v 1.3 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: robot_tank.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -118,24 +118,24 @@ RobotTank::update_ai (float delta)
 }
 
 void
-RobotTank::draw (View* view)
+RobotTank::draw (View& view)
 {
   // FIXME: Orientation is wrong
-  view->draw(sprite, FloatVector2d(pos.x, pos.y), -orientation - Math::pi_2);
+  view.draw(sprite, FloatVector2d(pos.x, pos.y), -orientation - Math::pi_2);
 }
 
 void
-RobotTank::draw_energie (View* view)
+RobotTank::draw_energie (View& view)
 {
 }
 
 void
-RobotTank::draw_radar (Radar* radar)
+RobotTank::draw_radar (Radar& radar)
 {
 }
 
 void
-RobotTank::draw_levelmap (LevelMap* view)
+RobotTank::draw_levelmap (LevelMap& view)
 {
 }
 

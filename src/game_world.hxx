@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.9 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: game_world.hxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -59,13 +59,13 @@ public:
   float get_time() { return current_time; }
 
   /// Return a reference to the objects in the world
-  void add (GameObj*);
-  void add_front (GameObj*);
+  void add(GameObj*);
+  void add_front(GameObj*);
 
-  void draw (View* view);
-  void draw_energie (View* view);
-  void draw_levelmap (LevelMap* levelmap);
-  void update (float delta);
+  void draw(View& view);
+  void draw_energie(View& view);
+  void draw_levelmap(LevelMap& levelmap);
+  void update(float delta);
 
   BuildingMap* get_buildingmap ();
   GroundMap*   get_groundmap ();

@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.9 2003/05/19 10:52:47 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,6 @@ class LevelMap;
 class GameWorld;
 class GameObjData;
 class PropertySet;
-typedef View* ViewPtr;
 
 class GameObj
 {
@@ -66,18 +65,18 @@ public:
 
   /** Draw the object onto the main view, which means the object will
       be drawn in normal game grafic */
-  virtual void draw (ViewPtr view) =0;
+  virtual void draw(View& view) =0;
 
   /** Draw the energie bar, this is done in a seperate function to
       avoid rotation and scaling of the energie bar */
-  virtual void draw_energie (ViewPtr view) {}
+  virtual void draw_energie(View& view) {}
 
   /** Draw the object to the radar */
-  virtual void draw_radar (Radar* radar) {}
+  virtual void draw_radar (Radar& radar) {}
 
   /** Draw the object to the levelmap, the levelmap gives an overview
       about the complete level */
-  virtual void draw_levelmap (LevelMap* view) {}
+  virtual void draw_levelmap(LevelMap& view) {}
   
   // Update the object once a game loop
   virtual void update (float) {}
@@ -92,7 +91,7 @@ public:
   virtual void on_collision_with_building(Building* building);
 
   //
-  virtual int  get_z_pos () { return 0; }
+  virtual float get_z_pos () { return 0; }
 
   /* Stuff that is used for the radar and probally for physics later
      on */

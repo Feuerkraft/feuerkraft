@@ -1,4 +1,4 @@
-//  $Id: grid_tile.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: grid_tile.hxx,v 1.3 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,7 @@ private:
 public:
   GridTile (std::string filename);
  
-  void draw (View*, float x, float y);
+  void draw (View& view, float x, float y);
 };
 
 #endif

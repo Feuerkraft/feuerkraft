@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: building_map.cxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -71,7 +71,7 @@ BuildingMap::BuildingMap(const BuildingMapData& data)
 
 // Draw the object onto the screen
 void
-BuildingMap::draw (View* view)
+BuildingMap::draw (View& view)
 {
   for (std::vector<Building*>::iterator i = buildings.begin ();
        i != buildings.end ();
@@ -82,7 +82,7 @@ BuildingMap::draw (View* view)
 }
 
 void
-BuildingMap::draw_energie (View* view)
+BuildingMap::draw_energie (View& view)
 {
   for (std::vector<Building*>::iterator i = buildings.begin ();
        i != buildings.end ();
@@ -93,7 +93,7 @@ BuildingMap::draw_energie (View* view)
 }
 
 void
-BuildingMap::draw_radar (Radar* radar)
+BuildingMap::draw_radar (Radar& radar)
 {
   for (std::vector<Building*>::iterator i = buildings.begin ();
        i != buildings.end ();

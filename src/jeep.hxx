@@ -1,4 +1,4 @@
-//  $Id: jeep.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: jeep.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,6 @@
 #include "controllable.hxx"
 #include "energie.hxx"
 #include "game_obj.hxx"
-#include "flag.hxx"
 
 /** @ingroup units */
 class Jeep : public Controllable,
@@ -38,13 +37,13 @@ private:
   Energie energie;
   float velocity;
   float angle;
-  Flag* flag;
+
 public:
   Jeep (FloatVector2d arg_pos);
   virtual ~Jeep () {}
   
   void update (float delta);
-  void draw (View* view);
+  void draw (View& view);
 
   // Controllable
   virtual float get_turn_speed () { return 0.0; }
@@ -66,9 +65,8 @@ public:
   virtual void collide (Projectile*);
   virtual void collide (FloatVector2d force);
 
-  virtual int get_z_pos () { return 50; }
+  virtual float get_z_pos () { return 50; }
   
-  void add_flag (Flag* flag);
   virtual float get_physical_size () { return 2.0; }
 };
 

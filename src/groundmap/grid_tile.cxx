@@ -1,4 +1,4 @@
-//  $Id: grid_tile.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: grid_tile.cxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,9 +30,9 @@ GridTile::GridTile (std::string filename)
 }
 
 void
-GridTile::draw (View* view, float x, float y)
+GridTile::draw(View& view, float x, float y)
 {
-  view->draw(sprite, FloatVector2d(x, y));
+  view.draw(sprite, FloatVector2d(x, y));
 }
 
 /* EOF */

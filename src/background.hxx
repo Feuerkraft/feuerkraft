@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: background.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,10 +38,10 @@ public:
   Background(const CL_Sprite& sprite, float z_pos);
   virtual ~Background () {}
 
-  void draw (View* draw);
+  void draw (View& draw);
   void update (float delta) {}
 
-  virtual int  get_z_pos () { return static_cast<int>(z_pos); }
+  virtual float  get_z_pos () { return z_pos; }
 };
 
 #endif

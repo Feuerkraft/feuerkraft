@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: background.cxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,13 +30,13 @@ Background::Background (const CL_Sprite& arg_sprite,
 }
 
 void
-Background::draw (View* view)
+Background::draw (View& view)
 {
   // FIXME: We should take the view size and surface size into account
   for (int y = -1; y <= 2; ++y)
     for (int x = -1; x <= 2; ++x)
-      sur.draw(x * sur.get_width()  + (view->get_x_offset() % sur.get_width()),
-               y * sur.get_height() + (view->get_y_offset() % sur.get_height()));
+      sur.draw(x * sur.get_width()  + (view.get_x_offset() % sur.get_width()),
+               y * sur.get_height() + (view.get_y_offset() % sur.get_height()));
 }
 
 /* EOF */

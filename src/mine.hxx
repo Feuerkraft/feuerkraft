@@ -1,4 +1,4 @@
-//  $Id: mine.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: mine.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ public:
 
   FloatVector2d get_pos () { return pos; }
   void update (float);
-  void draw (View* view);
+  void draw (View& view);
   void detonate ();
   bool is_active ();
 

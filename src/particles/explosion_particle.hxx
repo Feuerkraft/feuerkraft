@@ -1,4 +1,4 @@
-//  $Id: explosion_particle.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: explosion_particle.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,7 +67,7 @@ public:
       }
   }
   
-  void draw (View* view) 
+  void draw (View& view) 
   {
     if (life_time > 0)
       {
@@ -77,11 +77,11 @@ public:
 
 	sprite.set_scale (((1 - life_time/max_life_time)) * size,
                           ((1 - life_time/max_life_time)) * size);
-	view->draw(sprite, pos, angle);
+	view.draw(sprite, pos, angle);
       }
   }
 
-  int get_z_pos () { return 200; }
+  float get_z_pos () { return 200; }
 };
 
 #endif

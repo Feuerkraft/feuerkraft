@@ -1,4 +1,4 @@
-//  $Id: multi_ground_map.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: multi_ground_map.hxx,v 1.3 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,8 +37,8 @@ public:
   /** Return the type of ground, x and y are in world coordinates */
   GroundType get_groundtype (float x, float y);
   
-  void draw(View*);
-  void draw_levelmap (LevelMap* levelmap);
+  void draw(View& view);
+  void draw_levelmap (LevelMap& levelmap);
 
   void add (GroundMap* groundmap);
 };

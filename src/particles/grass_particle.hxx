@@ -1,4 +1,4 @@
-//  $Id: grass_particle.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: grass_particle.hxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,15 +53,15 @@ public:
     life_time -= delta;
   }
 
-  void draw (View* view) 
+  void draw (View& view) 
   {    
     sprite.set_alpha ((life_time/max_life_time) * 0.4);
     sprite.set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
 		       0.8f + ((1 - life_time/max_life_time)) * 4.0f);
-    view->draw(sprite, pos, angle);
+    view.draw(sprite, pos, angle);
   }
 
-  int get_z_pos () { return 100; }
+  float get_z_pos () { return 100; }
 };
 
 #endif

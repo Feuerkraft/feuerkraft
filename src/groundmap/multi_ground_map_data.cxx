@@ -1,4 +1,4 @@
-//  $Id: multi_ground_map_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: multi_ground_map_data.cxx,v 1.3 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ MultiGroundMapData::add (GroundMapData* groundmapdata)
 GroundMap*
 MultiGroundMapData::create()
 {
-  return new MultiGroundMap (*this);
+  return new MultiGroundMap(*this);
 }
 
 /* EOF */

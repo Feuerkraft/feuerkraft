@@ -1,4 +1,4 @@
-//  $Id: building_map.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: building_map.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,9 +51,9 @@ public:
   int get_height () { return height; }
 
   // Draw the object onto the screen
-  virtual void draw (View* view);
-  virtual void draw_energie (View* view);
-  virtual void draw_radar (Radar* radar);
+  virtual void draw (View& view);
+  virtual void draw_energie (View& view);
+  virtual void draw_radar (Radar& radar);
   
   // Update the object once a game loop
   virtual void update (float);

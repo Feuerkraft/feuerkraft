@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.11 2003/05/19 10:52:47 grumbel Exp $
+//  $Id: tank.cxx,v 1.12 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -74,14 +74,14 @@ Tank::~Tank ()
 }
 
 void
-Tank::draw_energie (View* view)
+Tank::draw_energie (View& view)
 {
   energie.draw (view, 
 		int(pos.x), int(pos.y - 40));
 }
   
 void
-Tank::draw_levelmap (LevelMap* levelmap)
+Tank::draw_levelmap (LevelMap& levelmap)
 {
   CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
 				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
@@ -89,33 +89,33 @@ Tank::draw_levelmap (LevelMap* levelmap)
 }
 
 void
-Tank::draw (View* view)
+Tank::draw (View& view)
 {
   if (destroyed)
     {
-      view->draw(sur_destroyed, pos);
+      view.draw(sur_destroyed, pos);
     }
   else
     {
       for (std::deque<FloatVector2d>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
-	  /*view->draw (smod, 
+	  /*view.draw (smod, 
             int(i->x - (smod.get_width ()/2)),
             int(i->y - (smod.get_height ()/2)),
             int(fmod (i->z, circle) / circle * 16.0));*/
-	  //view->draw (smod, 
+	  //view.draw (smod, 
 	}
 
 #ifdef UGLY_SHADOWS_ENABLED
-      view->draw(shadow, pos + FloatVector2d (0,0), orientation);
-      view->draw(shadow, pos + FloatVector2d (5,5), orientation);
-      view->draw(shadow, pos + FloatVector2d (10,10), orientation);
-      view->draw(shadow, pos + FloatVector2d (15,15), orientation);
+      view.draw(shadow, pos + FloatVector2d (0,0), orientation);
+      view.draw(shadow, pos + FloatVector2d (5,5), orientation);
+      view.draw(shadow, pos + FloatVector2d (10,10), orientation);
+      view.draw(shadow, pos + FloatVector2d (15,15), orientation);
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
-      view->draw(sur, pos, orientation + Math::pi);
+      view.draw(sur, pos, orientation + Math::pi);
       turret->draw (view);
 
       // Draw Collision rect
@@ -134,10 +134,10 @@ Tank::draw (View* view)
       x2 += pos;
       y2 += pos;
 
-      /*view->draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-        view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
-        view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-        view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
+      /*view.draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+        view.draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
+        view.draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+        view.draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
     }
 }
 
@@ -160,7 +160,7 @@ Tank::respawn ()
     {
       get_controller ()->set_controllable (tank);
       tank->set_controller (get_controller ());
-      vehicle_view->set_vehicle (tank);
+      vehicle_view.set_vehicle (tank);
     }
   destroy_time = -1;
   */

@@ -1,4 +1,4 @@
-//  $Id: level_map.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: level_map.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,7 @@ LevelMap::update (float delta)
 void
 LevelMap::draw (CL_GraphicContext* gc)
 {
-  GameWorld::current()->draw_levelmap (this);
+  GameWorld::current()->draw_levelmap (*this);
 }
 
 /* EOF */

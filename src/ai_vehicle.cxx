@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.12 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.13 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -129,17 +129,17 @@ AIVehicle::update(float delta)
 }
 
 void
-AIVehicle::draw (View* view)
+AIVehicle::draw (View& view)
 {
   if (!destroyed)
-    view->draw(sprite, pos, orientation + PI);
+    view.draw(sprite, pos, orientation + PI);
   else
-    view->draw(destroyed_sprite, pos, orientation + PI);
+    view.draw(destroyed_sprite, pos, orientation + PI);
   //line_segments.draw(view);
 }
 
 void 
-AIVehicle::draw_levelmap (LevelMap* levelmap)
+AIVehicle::draw_levelmap (LevelMap& levelmap)
 {
   CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
 				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
@@ -199,7 +199,7 @@ AIVehicle::clear_orders()
 }
 
 void
-AIVehicle::draw_energie (View* view)
+AIVehicle::draw_energie (View& view)
 {
   energie.draw (view, 
 		int(pos.x), int(pos.y - 40));

@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.10 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.11 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -97,9 +97,9 @@ public:
   AIVehicle(const FloatVector2d& arg_pos);
 
   void update(float delta);
-  void draw (View* view);
-  void draw_energie (View* view);
-  void draw_levelmap (LevelMap* levelmap);
+  void draw (View& view);
+  void draw_energie (View& view);
+  void draw_levelmap (LevelMap& levelmap);
 
   void wait(float seconds);
   void drive_to(const FloatVector2d& pos);

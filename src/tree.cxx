@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.8 2003/05/19 10:52:48 grumbel Exp $
+//  $Id: tree.cxx,v 1.9 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,8 @@ Tree::Tree()
   properties->register_string("sprite", &sprite_name);
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
+  properties->register_float("z-pos", &z_pos);
+  z_pos = 10.0f;
 }
 
 Tree::~Tree ()
@@ -44,9 +46,9 @@ Tree::properties_updated()
 }
   
 void 
-Tree::draw (View* view)
+Tree::draw (View& view)
 {
-  view->draw(sur, pos);
+  view.draw(sur, pos);
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: ambulance.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: ambulance.hxx,v 1.5 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ public:
   Ambulance();
 
   // Draw the object onto the screen
-  void draw (View* view);
+  void draw (View& view);
    
 };
 

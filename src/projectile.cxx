@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: projectile.cxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,10 +53,10 @@ Projectile::~Projectile ()
 }
 
 void 
-Projectile::draw (ViewPtr view)
+Projectile::draw (View& view)
 {
   if (lifetime > 0) {
-    view->draw (sur, pos);
+    view.draw (sur, pos);
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;

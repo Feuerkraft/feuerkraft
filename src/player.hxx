@@ -1,4 +1,4 @@
-//  $Id: player.hxx,v 1.1 2003/05/19 10:55:05 grumbel Exp $
+//  $Id: player.hxx,v 1.2 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,8 @@ private:
   Player (const Player&);
   Player& operator= (const Player&);
 };
+
+typedef Player* PlayerPtr;
 
 #endif
 

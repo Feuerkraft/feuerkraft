@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -119,24 +119,24 @@ CollisionManager::run()
 }
 
 void
-CollisionManager::draw(View* view)
+CollisionManager::draw(View& view)
 {
   for(Shapes::iterator i = shapes.begin(); i != shapes.end(); ++i)
     {
       switch (i->type)
         {
         case SHAPE_CIRCLE:
-          view->draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
+          view.draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
                             Color(1.0f, .0f, .0f));
           break;
         case SHAPE_RECT:
           {
             Color color(1.0f, 0.0f , 0.0f);
             Math::Quad quad = rect2quad(i->rect);
-            view->draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
-            view->draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
-            view->draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
-            view->draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
+            view.draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
+            view.draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
+            view.draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
+            view.draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
           }
           break;
         default:

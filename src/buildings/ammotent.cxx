@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: ammotent.cxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,12 +38,12 @@ Ammotent::~Ammotent ()
 }
 
 void 
-Ammotent::draw (ViewPtr view)
+Ammotent::draw (View& view)
 {
-  view->draw (ammotent, pos);
+  view.draw (ammotent, pos);
   if (reloading)
     {
-      view->draw_fillrect(int(pos.x - 32), int (pos.y + 25),
+      view.draw_fillrect(int(pos.x - 32), int (pos.y + 25),
 			  int(pos.x + 31), int (pos.y + 57),
 			  Color(1.0f, 1.0f, 1.0f, 
                                 sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f));
@@ -51,9 +51,9 @@ Ammotent::draw (ViewPtr view)
 }
 
 void
-Ammotent::draw_radar (RadarPtr radar)
+Ammotent::draw_radar (Radar& radar)
 {
-  radar->draw_blip (pos, 4, 0, 0, 1.0f);
+  radar.draw_blip (pos, 4, 0, 0, 1.0f);
 }
 
 void 

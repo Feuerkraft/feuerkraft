@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,9 +48,9 @@ public:
   Helicopter(FloatVector2d);
   ~Helicopter();
 
-  void draw (View* view);
+  void draw (View& view);
   void update (float);
-  int get_z_pos () { return destroyed ? 0 : 150; }
+  float get_z_pos () { return destroyed ? 0 : 150; }
 
   // Controllable impl
   virtual float get_turn_speed () { return 1.0; }

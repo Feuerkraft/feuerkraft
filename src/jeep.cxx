@@ -1,4 +1,4 @@
-//  $Id: jeep.cxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: jeep.cxx,v 1.5 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,8 +28,7 @@ const float circle = 6.2831854f;
 Jeep::Jeep(FloatVector2d arg_pos) 
   : energie (50),
     velocity (0.0),
-    angle (0.0),
-    flag (0)
+    angle (0.0)
 {
   pos.x = arg_pos.x;
   pos.y = arg_pos.y;
@@ -63,20 +62,14 @@ Jeep::update (float delta)
 
 
   velocity /= 1.03f;
-
-  if (flag)
-    {
-      flag->set_pos (FloatVector2d(pos.x, pos.y)
-		     + FloatVector2d(14.0f, 0.0f).rotate(angle));
-    }
 }
 
 void 
-Jeep::draw (View* view)
+Jeep::draw (View& view)
 {
   const float circle = 6.2831854f;
   
-  view->draw(jeep, pos, angle/(circle/2.0)*180);
+  view.draw(jeep, pos, angle/(circle/2.0)*180);
   energie.draw (view, int(pos.x), int(pos.y - 30));
 }
 
@@ -150,12 +143,6 @@ Jeep::is_colliding (FloatVector2d obj_pos)
 
   return  (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
 	   && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);
-}
-
-void 
-Jeep::add_flag (Flag* f)
-{
-  flag = f;
 }
 
 /* EOF */

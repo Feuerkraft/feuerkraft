@@ -1,4 +1,4 @@
-//  $Id: ground_map.hxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: ground_map.hxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ public:
   /** Return the type of ground, x and y are in world coordinates */
   virtual GroundType get_groundtype (float x, float y) =0;
 
-  int get_z_pos () { return -5; }
+  float get_z_pos () { return -5; }
 };
 
 #endif

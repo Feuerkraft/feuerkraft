@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.8 2003/05/18 23:01:49 grumbel Exp $
+//  $Id: tank.hxx,v 1.9 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -77,9 +77,9 @@ public:
 	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
   
-  void draw (View* view);
-  void draw_energie (View* view);
-  void draw_levelmap (LevelMap* levelmap);
+  void draw (View& view);
+  void draw_energie (View& view);
+  void draw_levelmap (LevelMap& levelmap);
 
   void update (float);
 
@@ -113,7 +113,7 @@ public:
 
   void drop_mine ();
   
-  int get_z_pos () { return destroyed ? 0 : 50; }
+  float get_z_pos () { return destroyed ? 0 : 50; }
 
   bool is_colliding (FloatVector2d obj_pos);
 

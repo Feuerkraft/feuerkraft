@@ -1,4 +1,4 @@
-//  $Id: robot_tank.hxx,v 1.1 2003/05/14 08:48:48 grumbel Exp $
+//  $Id: robot_tank.hxx,v 1.2 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,10 +47,10 @@ public:
   void update (float delta);
   void update_ai (float delta);
 
-  void draw (View* view);
-  void draw_energie (View* view);
-  void draw_radar (Radar* radar);
-  void draw_levelmap (LevelMap* view);
+  void draw(View& view);
+  void draw_energie(View& view);
+  void draw_radar(Radar& radar);
+  void draw_levelmap(LevelMap& view);
 
 private:
   RobotTank (const RobotTank&);

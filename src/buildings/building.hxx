@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: building.hxx,v 1.8 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,11 +27,8 @@ class GameWorld;
 class Projectile;
 class Radar;
 class PropertySet;
-
 class View;
-typedef View* ViewPtr;
 class Radar;
-typedef Radar* RadarPtr;
 // End: Forward declarations
 
 class Building
@@ -58,11 +55,11 @@ public:
   virtual BuildingData* get_data () { return 0; }
 
   // Draw the object onto the screen
-  virtual void draw (ViewPtr view) =0;
+  virtual void draw (View& view) =0;
 
-  virtual void draw_energie (ViewPtr view) {}
+  virtual void draw_energie (View& view) {}
   
-  virtual void draw_radar (RadarPtr radar) {}
+  virtual void draw_radar (Radar& radar) {}
 
   // Update the object once a game loop
   virtual void update (float) =0;

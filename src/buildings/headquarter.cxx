@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: headquarter.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,6 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../radar.hxx"
-#include "../flag.hxx"
 #include "../explosion.hxx"
 #include "../resource_manager.hxx"
 #include "headquarter.hxx"
@@ -45,22 +44,21 @@ Headquarter::update (float delta)
   if (energie <= 0 && !destroyed)
     {
       GameWorld::current()->add(new Explosion (pos, Explosion::MEDIUM));
-      GameWorld::current()->add(new Flag (pos));
       destroyed = true;
     }
 }
 
 void 
-Headquarter::draw (ViewPtr view)
+Headquarter::draw (View& view)
 {
-  view->draw(*current_sur, pos);
+  view.draw(*current_sur, pos);
   energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 
 void
-Headquarter::draw_radar (RadarPtr radar)
+Headquarter::draw_radar (Radar& radar)
 {
-  radar->draw_blip (pos, 4);
+  radar.draw_blip (pos, 4);
 }
 
 bool 

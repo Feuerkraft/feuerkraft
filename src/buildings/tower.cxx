@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: tower.cxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,39 +45,39 @@ Tower::~Tower ()
 
 // Draw the object onto the screen
 void
-Tower::draw (ViewPtr view)
+Tower::draw (View& view)
 {
   //std::cout << "Tower::draw" << std::endl;
 
   if (energie > 50)
     {
-      view->draw (towerbase, pos);
+      view.draw (towerbase, pos);
     }
   else if (energie > 0)
     {
-      view->draw (towerdamaged, pos);
+      view.draw (towerdamaged, pos);
     }
   else
     {
-      view->draw (towerdestroyed, pos);
+      view.draw (towerdestroyed, pos);
     }
 
   if (energie > 0)
     {
-      view->draw (turret, pos, angle);
+      view.draw (turret, pos, angle);
     }
 }
   
 void
-Tower::draw_energie (ViewPtr view)
+Tower::draw_energie (View& view)
 {
   energie.draw (view, int(pos.x), int (pos.y) - 40);
 }
 
 void
-Tower::draw_radar (RadarPtr radar)
+Tower::draw_radar (Radar& radar)
 {
-  radar->draw_blip (pos, 4);
+  radar.draw_blip (pos, 4);
 }
 
 // Update the object once a game loop

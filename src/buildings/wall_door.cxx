@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.8 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,14 +49,14 @@ WallDoor::~WallDoor ()
 }
 
 void
-WallDoor::draw (ViewPtr view)
+WallDoor::draw (View& view)
 {
   if (status != S_OPENED)
-    view->draw(sprite, pos);
+    view.draw(sprite, pos);
 }
 
 void
-WallDoor::draw_radar (RadarPtr radar)
+WallDoor::draw_radar (Radar& radar)
 {
 }
 

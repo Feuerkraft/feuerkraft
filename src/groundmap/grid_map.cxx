@@ -1,4 +1,4 @@
-//  $Id: grid_map.cxx,v 1.3 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: grid_map.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,15 +57,15 @@ GridMap::~GridMap ()
 }
 
 void
-GridMap::draw (View* view)
+GridMap::draw (View& view)
 {
   //std::cout << "Drawing" << std::endl;
 
   /* FIXME: This code should be shared with TileMap */
-  int tile_x_offset = -(view->get_x_offset () / 40);
-  int tile_y_offset = -(view->get_y_offset () / 40);
-  int tile_width    = tile_x_offset + (view->get_width () / 40) + 1;
-  int tile_height   = tile_y_offset + (view->get_height () / 40) + 1; 
+  int tile_x_offset = -(view.get_x_offset () / 40);
+  int tile_y_offset = -(view.get_y_offset () / 40);
+  int tile_width    = tile_x_offset + (view.get_width () / 40) + 1;
+  int tile_height   = tile_y_offset + (view.get_height () / 40) + 1; 
   // FIXME: one tile more to avoid artefacts, hack, hack hack...
   
   for (int y = tile_y_offset; y < tile_height; ++y)
@@ -95,7 +95,7 @@ GridMap::update (float)
 }
 
 void
-GridMap::draw_levelmap (LevelMap* levelmap)
+GridMap::draw_levelmap (LevelMap& levelmap)
 {
   surface.draw (0, 0);
 }

@@ -1,4 +1,4 @@
-//  $Id: collision_manager.hxx,v 1.3 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: collision_manager.hxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -74,7 +74,7 @@ public:
   /** Runs the collision check */
   void run();
 
-  void draw(View* view);
+  void draw(View& view);
 
   /** */
   void add_point(int object_id, float x, float y);

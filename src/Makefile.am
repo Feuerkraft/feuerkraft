@@ -37,8 +37,6 @@ explosion.hxx \
 feuerkraft.cxx \
 feuerkraft.hxx \
 field.hxx \
-flag.cxx \
-flag.hxx \
 fonts.hxx \
 fonts.cxx \
 game_delta.cxx \
@@ -120,8 +118,6 @@ start_screen.cxx \
 start_screen.hxx \
 globals.hxx \
 globals.cxx \
-stone.cxx \
-stone.hxx \
 string_converter.cxx \
 string_converter.hxx \
 system.cxx \

@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.5 2003/05/18 22:47:54 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,26 +45,26 @@ Helicopter::~Helicopter ()
 }
 
 void 
-Helicopter::draw (View* view)
+Helicopter::draw (View& view)
 {
   if (!destroyed)
     {
-      view->draw (heli_shadow, FloatVector2d(pos.x + 25.0f, pos.y + 50.0f),
+      view.draw (heli_shadow, FloatVector2d(pos.x + 25.0f, pos.y + 50.0f),
 		  angle);
 
-      view->draw (heli, pos, angle);
+      view.draw (heli, pos, angle);
       /*
         view->draw (heli,
         pos.x - heli.get_width ()/2,
         pos.y - heli.get_height ()/2,
         frame);*/
 
-      view->draw (rotor, pos);
+      view.draw (rotor, pos);
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
   else
     {
-      view->draw (helidestroyed, pos, angle);
+      view.draw (helidestroyed, pos, angle);
     }
 
   /*

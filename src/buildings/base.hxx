@@ -1,4 +1,4 @@
-//  $Id: base.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: base.hxx,v 1.8 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,8 +36,8 @@ public:
   Base (const BaseData& data);
   virtual ~Base ();
 
-  void draw (ViewPtr v);
-  void draw_radar (RadarPtr radar);
+  void draw (View& v);
+  void draw_radar (Radar& radar);
 
   void update (float delta);
 
