@@ -1,4 +1,4 @@
-//  $Id: collision_manager.hxx,v 1.1 2003/05/07 16:30:26 grumbel Exp $
+//  $Id: collision_manager.hxx,v 1.2 2003/05/08 20:56:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define HEADER_FEUERKRAFT_COLLISION_MANAGER_HXX
 
 #include <vector>
+#include "math.hxx"
 
 class View;
 
@@ -56,6 +57,8 @@ private:
 
   typedef std::vector<Shape> Shapes;
   Shapes shapes;
+
+  Math::Quad rect2quad(const Rectangle& rect);
 
   void check_rect_rect_collision(const Rectangle& rect1, const Rectangle& rect2);
   void check_circle_rect_collision(const Circle& circle, const Rectangle& rect);

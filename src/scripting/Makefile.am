@@ -4,6 +4,8 @@ command_source = ai_vehicle_commands.cxx \
  ai_vehicle_commands.hxx \
  sequence_commands.hxx   \
  sequence_commands.cxx   \
+ building_commands.cxx   \
+ building_commands.hxx   \
  effect_commands.cxx     \
  effect_commands.hxx     \
  object_commands.hxx     \

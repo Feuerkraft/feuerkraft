@@ -5,10 +5,10 @@ bindir=$(prefix)/games
 bin_PROGRAMS = feuerkraft
 
 LDADD = \
+ scripting/libfeuerkraft_scripting.a \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a     \
- scripting/libfeuerkraft_scripting.a \
  sound/libpingus_sound.a
 
 feuerkraft_SOURCES = \
@@ -64,6 +64,7 @@ level_map.hxx \
 line_segments.hxx \
 line_segments.cxx \
 math.hxx \
+math.cxx \
 mine.cxx \
 mine.hxx \
 my_gettext.hxx \

@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: building_map.cxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -148,6 +148,25 @@ BuildingMap::get_data ()
 {
   // FIXME: No Sync
   return this;
+}
+
+void
+BuildingMap::add_building(Building* building, int x_pos, int y_pos)
+{
+  std::cout << "Adding building " << building << " at " << x_pos << ", " << y_pos << std::endl;
+
+  for (int x = x_pos; x < x_pos + building->get_map_width(); ++x)
+    {
+      for (int y = y_pos; y < y_pos + building->get_map_height(); ++y)
+        {
+          if (x >= 0 && x < width && y >= 0 && y < height)
+            building_map[(y * width) + x] = building;
+          else
+            std::cout << "BuildingMap: Error: building position out of range: " << x << ", " << y << std::endl;
+        }
+    }
+
+  buildings.push_back(building);
 }
 
 /* EOF */

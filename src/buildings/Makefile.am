@@ -14,6 +14,8 @@ building.hxx \
 building_data.hxx \
 building_map.cxx \
 building_map.hxx \
+building_manager.cxx \
+building_manager.hxx \
 building_map_data.cxx \
 building_map_data.hxx \
 fuelstation.cxx \

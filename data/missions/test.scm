@@ -1,7 +1,12 @@
+(display "============== SCRIPT START ======================\n")
 (load "pathdata.scm")
 
 ;;(load-extension "/home/ingo/projects/feuerkraft/cvs/src/scripting/.libs/libguile-feuerkraft.so" 
 ;;                "SWIG_init")
+
+(building-create 1 4 32)
+(building-create 1 4 33)
+(building-create 1 4 34)
 
 (define my-vehicle1 (ai-vehicle-create 233 1400))
 (define my-vehicle2 (ai-vehicle-create 233 2000))
@@ -105,5 +110,6 @@
   (sequence-add-hook (lambda ()
                        (trigger-add-timed 5 convoy-reverse))))
 
+(display "================ SCRIPT STOP ======================\n")
 
 ;; EOF ;;

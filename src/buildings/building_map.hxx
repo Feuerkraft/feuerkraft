@@ -1,4 +1,4 @@
-//  $Id: building_map.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: building_map.hxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,6 @@ private:
   /** A list with all the buildings in this map, the pointers here need to be deleted! */
   std::vector<Building*> buildings;
 
-
   /** This is a 'TileMap' with points to all buildings. Pointers in
       this list must not be deleted, they are only references to
       'buildings' */
@@ -56,6 +55,8 @@ public:
   
   // Update the object once a game loop
   virtual void update (float);
+
+  void add_building(Building* building, int x, int y);
 
   Building* get_building (const CL_Vector& pos);
   

@@ -1,5 +1,5 @@
-//  $Id: building_manager.cxx,v 1.2 2003/05/08 20:56:37 grumbel Exp $
-//
+//  $Id: vehicle_commands.hxx,v 1.1 2003/05/08 20:56:37 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,48 +12,20 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../game_world.hxx"
-#include "building_map.hxx"
-#include "building.hxx"
-#include "building_manager.hxx"
+#ifndef HEADER_VEHICLE_COMMANDS_HXX
+#define HEADER_VEHICLE_COMMANDS_HXX
 
-BuildingManager* BuildingManager::current_ = 0;
-int BuildingManager::next_id = 1;
+void vehicle_set_fuel(int fuel);
+int  vehicle_get_fuel();
 
-BuildingManager::BuildingManager()
-{
-  current_ = this;
-}
+/** @returns weapon_id */
+int  vehicle_get_weapon(int number);
 
-BuildingManager::~BuildingManager()
-{
-  
-}
-
-Building*
-BuildingManager::get_building_by_id(int handle)
-{
-  for(Buildings::iterator i = buildings.begin(); i != buildings.end(); ++i)
-    {
-      if ((*i)->get_id() == handle)
-        return *i;
-    }
-  return 0;
-}
-
-void
-BuildingManager::add_building(Building* building, int x, int y)
-{
-  buildings.push_back(building);
-  building->set_id(next_id);
-  ++next_id;
-
-  GameWorld::current()->get_buildingmap()->add_building(building, x, y);
-}
+#endif
 
 /* EOF */

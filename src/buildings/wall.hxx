@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: wall.hxx,v 1.4 2003/05/08 20:56:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef WALL_HXX
-#define WALL_HXX
+#ifndef HEADER_FEUERKRAFT_WALL_HXX
+#define HEADER_FEUERKRAFT_WALL_HXX
 
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Core/Math/cl_vector.h>

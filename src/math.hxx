@@ -1,4 +1,4 @@
-//  $Id: math.hxx,v 1.2 2003/05/04 12:12:54 grumbel Exp $
+//  $Id: math.hxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -88,6 +88,96 @@ float normalize_angle(float angle)
   else 
     return angle;
 }
+
+struct Point {
+  float x, y;
+};
+
+struct Triangle {
+  Point a;
+  Point b;
+  Point c;
+};
+
+struct Quad {
+  Point a;
+  Point b;
+  Point c;
+  Point d;
+};
+
+inline
+bool lines_intersect(float x1, float y1, float x2, float y2,
+                     float x3, float y3, float x4, float y4)
+{
+  float b_x = x2 - x1;
+  float b_y = y2 - y1;
+
+  float d_x = x4 - x3;
+  float d_y = y4 - x3;
+
+  // The lines are parallel
+  if ((b_y*d_x - b_x*d_y) == 0.0)
+    return false;
+  
+  float lambda = ((y3*d_x - x3*d_y) + (x1*d_y - y1*d_x)) / (b_y*d_x - b_x*d_y);
+  float mu;
+
+  if (d_x != 0.0)
+    mu = (x1 + (lambda * b_x) - x3) / d_x;
+  else
+    mu = (y1 + (lambda * b_y) - y3) / d_y;
+  
+  return (lambda >= 0 && lambda <= 1.0
+          && mu >= 0 && mu <= 1.0);
+}
+
+inline
+bool lines_intersect(const Point& a1, const Point& a2,
+                     const Point& b1, const Point& b2)
+{
+  return lines_intersect(a1.x, a1.y, a2.x, a2.y,
+                         b1.x, b1.y, b2.x, b2.y);
+}
+
+bool point_inside_triangle(float px, float py,
+                           float x1, float y1, float x2, float y2, float x3, float y3);
+
+inline
+bool point_inside_triangle(const Point p, const Triangle& triangle)
+{
+  return point_inside_triangle(p.x, p.y,
+                               triangle.a.x, triangle.a.y,
+                               triangle.b.x, triangle.b.y,
+                               triangle.c.x, triangle.c.y);
+}
+
+inline
+bool point_inside_triangle(float px, float py,
+                           float x1, float y1, float x2, float y2, float x3, float y3)
+{
+  float b0 =  (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1);
+  float b1 = ((x2 - px) * (y3 - py) - (x3 - px) * (y2 - py)) / b0;
+  float b2 = ((x3 - px) * (y1 - py) - (x1 - px) * (y3 - py)) / b0;
+  float b3 = ((x1 - px) * (y2 - py) - (x2 - px) * (y1 - py)) / b0;
+  
+  if(b1 > 0 && b2 > 0 && b3 > 0) // strictly inside
+    {
+      return true;
+    }
+  else if((b1>=0 && b2>=0 && b3>=0) && (b1+b2+b3) >= 0) // on edge.
+    {
+      return true;
+    }
+  else
+    {
+      return false;
+    }
+}
+
+bool point_inside_quad(const Point& p, const Quad& q);
+bool quad_collide(const Quad& a, const Quad& b);
+bool triangle_collide(const Triangle& a, const Triangle& b);
 
 } // namespace Math
 

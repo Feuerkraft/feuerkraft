@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.1 2003/05/08 20:06:34 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.2 2003/05/08 20:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,6 +53,11 @@ int  building_create(int type, int x, int y)
 
 void building_remove(int handle)
 {
+}
+
+int  building_get_tile(int x, int y)
+{
+  return 0;
 }
 
 int  building_get(int x, int y)

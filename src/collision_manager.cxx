@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.2 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -108,6 +108,9 @@ CollisionManager::run()
               }
           }
           break;
+        case SHAPE_RECT:
+          // fixme: not handled
+          break;
         default:
           std::cout << "Unhandled type: " << i->type << std::endl;
         }
@@ -124,6 +127,12 @@ CollisionManager::draw(View* view)
         case SHAPE_CIRCLE:
           view->draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
                             1.0f, .0f, .0f);
+          break;
+        case SHAPE_RECT:
+          {
+            //view->draw_circle(int(i->rect.x), int(i->rect.y), int(i->circle.width),
+            //                1.0f, .0f, .0f);            
+          }
           break;
         default:
           std::cout << "CollisionManager: unhandled type: " << i->type << std::endl;
@@ -176,10 +185,32 @@ CollisionManager::add_rect(int object_id, float x, float y, float width, float h
   shapes.push_back(shape);
 }
 
+Math::Quad
+CollisionManager::rect2quad(const Rectangle& rect)
+{
+  Math::Quad quad;
+
+  quad.a.x = rect.x - (rect.width/2);
+  quad.a.y = rect.y - (rect.height/2);
+
+  quad.b.x = rect.x + (rect.width/2);
+  quad.b.y = rect.y - (rect.height/2);
+
+  quad.c.x = rect.x + (rect.width/2);
+  quad.c.y = rect.y + (rect.height/2);
+
+  quad.d.x = rect.x - (rect.width/2);
+  quad.d.y = rect.y + (rect.height/2);
+
+  // FIXME: unfinished implementation
+
+  return quad;
+}
+
 void
 CollisionManager::check_rect_rect_collision(const Rectangle& rect1, const Rectangle& rect2)
 {
-  
+
 }
 
 void
