@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.1 2003/05/09 14:30:10 grumbel Exp $
+//  $Id: alist.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,11 +33,13 @@ public:
   typedef Content::iterator iterator;
   typedef Content::const_iterator const_iterator;
 
-  void set_int(const std::string& str, int);
-  void set_bool(const std::string& str, bool);
-  void set_string(const std::string& str, const std::string&);
+  AList& set_int(const std::string& str, int);
+  AList& set_float(const std::string& str, float);
+  AList& set_bool(const std::string& str, bool);
+  AList& set_string(const std::string& str, const std::string&);
 
   bool get_int(const std::string& str, int&) const;
+  bool get_float(const std::string& str, float&) const;
   bool get_bool(const std::string& str, bool&) const;
   bool get_string(const std::string& str, std::string&) const;
 };

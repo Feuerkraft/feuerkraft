@@ -1,4 +1,4 @@
-//  $Id: wall_data.hxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: wall_data.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,6 @@ class WallData : public BuildingData
 {
 public:
   float energie;
-  int x_pos;
-  int y_pos;
 
   WallData () {}
   /* Format: (wall (pos 12 12)

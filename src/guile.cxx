@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.6 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: guile.cxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -90,9 +90,59 @@ std::string keyword2string(SCM keyword)
   return ret;
 }
 
+AList scm2alist(SCM lst)
+{
+  AList alist;
+  while(!gh_null_p(lst))
+    {
+      SCM key  = gh_caar(lst);
+      SCM data = gh_cdar(lst);
+
+      if (!gh_symbol_p(key))
+        {
+          std::cout << "Guile: Error: key not a symbol" << std::endl;
+          gh_display(key);
+          gh_newline();
+        }
+      else
+        {
+          if (gh_string_p(data))
+            {
+              alist.set_string(Guile::scm2string(key), 
+                               Guile::scm2string(data));
+            }
+          else if (gh_exact_p(data))
+            {
+              alist.set_int(Guile::scm2string(key), 
+                            gh_scm2int(data));
+            }
+          else if (gh_inexact_p(data))
+            {
+              alist.set_float(Guile::scm2string(key), 
+                              gh_scm2double(data));
+            }
+          else if (gh_boolean_p(data))
+            {
+              alist.set_bool(Guile::scm2string(key), 
+                             gh_scm2bool(data));
+            }
+          else
+            {
+              std::cout << "Guile: Error: Couldn't handle data" << std::endl;
+              gh_display(data);
+              gh_newline();
+            }
+        }
+    }
+  return alist;
+}
+
 std::string symbol2string(SCM symbol)
 {
-  
+  char* c_str = gh_symbol2newstr(symbol, 0);
+  std::string str = c_str;
+  free(c_str);
+  return str;
 }
 
 } // namespace Guile

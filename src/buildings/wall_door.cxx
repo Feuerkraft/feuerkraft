@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,18 +24,17 @@
 #include "resource_manager.hxx"
 
 WallDoor::WallDoor (boost::dummy_ptr<GameWorld> world, const WallDoorData& data)
-  : Building (world),
-    WallDoorData (data)
+  : Building (world, data.x_pos, data.y_pos)
 {
-  switch (orientation)
+  switch (data.orientation)
     {
-    case O_VERTICAL:
+    case WallDoorData::O_VERTICAL:
       sprite = resources->get_sprite("feuerkraft/vdoor");
       pos = CL_Vector (x_pos * 40 + 20, y_pos * 40 + 60);
       map_width = 1;
       map_height = 3;
       break;
-    case O_HORIZONTAL:
+    case WallDoorData::O_HORIZONTAL:
     default:
       sprite = resources->get_sprite("feuerkraft/hdoor");
       pos = CL_Vector (x_pos * 40 + 60, y_pos * 40 + 20);

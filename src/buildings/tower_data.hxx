@@ -1,4 +1,4 @@
-//  $Id: tower_data.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: tower_data.hxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,14 +25,11 @@
 
 class TowerData : public BuildingData
 {
-protected:
+public:
   // Angle in degree
   double angle;
-  int x_pos;
-  int y_pos;
   double start_energie;
 
-public:
   /** Format:
 
   (tower (angle 23))

@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.6 2003/05/07 17:55:27 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,8 @@
 #include "line_segments.hxx"
 #include "sequence_manager.hxx"
 #include "game_obj.hxx"
+
+class LevelMap;
 
 struct Position
 {
@@ -97,6 +99,7 @@ public:
   void update(float delta);
   void draw (View* view);
   void draw_energie (View* view);
+  void draw_levelmap (LevelMap* levelmap);
 
   void wait(float seconds);
   void drive_to(const CL_Vector& pos);

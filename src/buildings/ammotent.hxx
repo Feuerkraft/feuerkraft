@@ -1,4 +1,4 @@
-//  $Id: ammotent.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: ammotent.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,7 @@
 #include "building.hxx"
 #include "ammotent_data.hxx"
 
-class Ammotent : public Building,
-		 public AmmotentData
+class Ammotent : public Building
 {
 private:
   CL_Sprite ammotent;
@@ -44,8 +43,6 @@ public:
 
   void update (float delta);  
 
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
   int get_map_width () { return 2; }
   int get_map_height () { return 2; }
 };

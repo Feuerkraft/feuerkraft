@@ -37,6 +37,8 @@ feuerkraft.hxx \
 field.hxx \
 flag.cxx \
 flag.hxx \
+fonts.hxx \
+fonts.cxx \
 game_delta.cxx \
 game_delta.hxx \
 game_mission.cxx \
@@ -48,6 +50,9 @@ game_obj_manager.cxx \
 game_obj_data.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \
+world_builder.hxx \
+game_world_builder.cxx \
+game_world_builder.hxx \
 game_world.cxx \
 game_world.hxx \
 game_world_data.cxx \
@@ -74,6 +79,8 @@ path_manager.cxx \
 path_manager.hxx \
 playfield.cxx \
 playfield.hxx \
+output_world_builder.hxx \
+output_world_builder.cxx \
 projectile.cxx \
 projectile.hxx \
 radar.cxx \
@@ -90,6 +97,8 @@ sequence_manager.hxx \
 sequence_manager.cxx \
 shockwave.cxx \
 shockwave.hxx \
+sexpr_world_reader.hxx \
+sexpr_world_reader.cxx \
 soldier.cxx \
 soldier.hxx \
 start_screen.cxx \

@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.4 2003/05/04 15:45:34 grumbel Exp $
+//  $Id: view.hxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -89,26 +89,26 @@ public:
   void draw (CL_Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
   void draw (CL_Sprite& sprite, const CL_Vector& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const CL_Vector& pos);
-  void draw (CL_Surface& sur, int x_pos, int y_pos);
-  void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);
-  void draw (CL_Surface& sur, int x_pos, int y_pos, 
+  void draw (CL_Surface& sur, float x_pos, float y_pos);
+  void draw (CL_Surface& sur, float x_pos, float y_pos, int frame);
+  void draw (CL_Surface& sur, float x_pos, float y_pos, 
 	     float size_x, float size_y, int frame);
 
 
-  void draw_line (int x1, int y1, int x2, int y2, 
+  void draw_line (float x1, float y1, float x2, float y2, 
 		  float r, float g, float b, float a = 1.0f);
-  void draw_fillrect (int x1, int y1, int x2, int y2, 
+  void draw_fillrect (float x1, float y1, float x2, float y2, 
 		      float r, float g, float b, float a = 1.0f);
-  void draw_rect (int x1, int y1, int x2, int y2, 
+  void draw_rect (float x1, float y1, float x2, float y2, 
 		  float r, float g, float b, float a = 1.0f);
-  void draw_pixel (int x_pos, int y_pos, 
+  void draw_pixel (float x_pos, float y_pos, 
 		   float r, float g, float b, float a = 1.0f);
-  void draw_circle (int x_pos, int y_pos, int radius,
+  void draw_circle (float x_pos, float y_pos, float radius,
 		   float r, float g, float b, float a = 1.0f);
 
   /** Draws an arc, starting from angle_start to angle_end in
       counterclockwise direction. Angles are taken in radian */
-  void draw_arc (int x_pos, int y_pos, int radius, float angle_start, float angle_end,
+  void draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_end,
                  float r, float g, float b, float a = 1.0f);
 
   bool get_property (ViewProperty p);

@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: wall_door.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,8 +31,7 @@ class View;
 class Radar;
 class Projectile;
 
-class WallDoor : public Building,
-		 public WallDoorData
+class WallDoor : public Building
 {
 private:
   CL_Sprite sprite;
@@ -51,9 +50,6 @@ public:
 
   void update(float);
   void collide (Projectile*);
-
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
 
   int get_map_width ()  { return map_width; }
   int get_map_height () { return map_height; }

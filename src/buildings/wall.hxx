@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.4 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: wall.hxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,15 +26,14 @@
 #include "wall_data.hxx"
 #include "building.hxx"
 
-class Wall : public Building,
-	     public WallData
+class Wall : public Building
 {
 private:
   CL_Vector pos;
   CL_Sprite wall;
   CL_Sprite wall_damaged;
   CL_Sprite wall_destroyed;
-
+  int energie;
 public:
   Wall (boost::dummy_ptr<GameWorld> world, const WallData&);
   virtual ~Wall ();
@@ -44,9 +43,6 @@ public:
 
   void update(float);
   void collide (Projectile*);
-
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
 
   int get_map_width ()  { return 1; }
   int get_map_height () { return 1; }

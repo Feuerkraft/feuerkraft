@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.4 2003/05/08 23:02:10 grumbel Exp $
+//  $Id: building.hxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,9 +34,12 @@ private:
   boost::dummy_ptr<GameWorld> world;
 
   int id;
+protected:
+  int x_pos;
+  int y_pos;
 public:
-  Building (boost::dummy_ptr<GameWorld> w)
-    : world (w)
+  Building (boost::dummy_ptr<GameWorld> w, int x, int y)
+    : world (w), x_pos(x), y_pos(y)
   {}
 
   Building ()
@@ -58,8 +61,8 @@ public:
   // Update the object once a game loop
   virtual void update (float) =0;
 
-  virtual int get_x_pos () =0;
-  virtual int get_y_pos () =0;
+  int get_x_pos () { return x_pos; }
+  int get_y_pos () { return y_pos; }
   
   /** Returns the width which this building will take on the BuildingMap */
   virtual int get_map_width () =0;

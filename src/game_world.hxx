@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.7 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: game_world.hxx,v 1.8 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,6 +34,8 @@ class BuildingManager;
 class GameWorld : public GameWorldData
 {
 private:
+  friend class GameWorldBuilder;
+
   GameObjManager*  game_obj_manager;
   BuildingManager* building_manager;
   TriggerManager*  trigger_manager;
@@ -45,8 +47,9 @@ private:
   float current_time;
   SCM world_module;
   SCM last_module;
-public:
+
   GameWorld ();
+public:
   GameWorld (const GameWorldData& data);
   ~GameWorld ();
 

@@ -1,4 +1,4 @@
-//  $Id: building_commands.hxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: game_world_builder.hxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,23 +17,36 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_BUILDING_COMMONDS_HXX
-#define HEADER_BUILDING_COMMONDS_HXX
+#ifndef HEADER_GAME_WORLD_BUILDER_HXX
+#define HEADER_GAME_WORLD_BUILDER_HXX
 
-/** Create a building from type \a type at the tile position x, y
-    @return a handler to the building */
-int  building_create(int type, int x, int y);
+#include "world_builder.hxx"
 
-/** Remove the given building */
-void building_remove(int handle);
+class GameWorld;
 
-/** @return the building at the given tile */
-int  building_get_tile(int x, int y);
+/** */
+class GameWorldBuilder
+  : public WorldBuilder
+{
+private:
+  GameWorld* world;
 
-/** @return the building at the given coordinates */
-int  building_get(int x, int y);
+public:
+  GameWorldBuilder();
+  ~GameWorldBuilder();
 
-int  building_create_type(const char* name, SCM lst);
+  void add_object(const std::string& type, const AList&);
+  void add_brush(const std::string& resname, const AList&);
+  void add_building(const std::string&, const AList&);
+  void add_groundmap(const std::string&, const AList&);
+  void add_script(const std::string& resname);
+
+  /** @return the created world, must only called once! */
+  GameWorld* get_world();
+private:
+  GameWorldBuilder (const GameWorldBuilder&);
+  GameWorldBuilder& operator= (const GameWorldBuilder&);
+};
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: tower.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,7 @@
 
 class GameWorld;
 
-class Tower : public Building,
-	      public TowerData
+class Tower : public Building
 {
 private:
   CL_Sprite towerbase;
@@ -36,6 +35,7 @@ private:
   CL_Sprite towerdestroyed;
   CL_Sprite turret;
   
+  float angle;
   Energie energie;
   bool destroyed;
 
@@ -54,9 +54,6 @@ public:
   // Update the object once a game loop
   void update (float);
   
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
-
   int get_map_width ()  { return 2; }
   int get_map_height () { return 2; }
 

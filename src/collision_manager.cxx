@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -130,8 +130,11 @@ CollisionManager::draw(View* view)
           break;
         case SHAPE_RECT:
           {
-            //view->draw_circle(int(i->rect.x), int(i->rect.y), int(i->circle.width),
-            //                1.0f, .0f, .0f);            
+            Math::Quad quad = rect2quad(i->rect);
+            view->draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, 1.0f, 0, 0);
+            view->draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, 1.0f, 0, 0);
+            view->draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, 1.0f, 0, 0);
+            view->draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, 1.0f, 0, 0);
           }
           break;
         default:
@@ -190,19 +193,22 @@ CollisionManager::rect2quad(const Rectangle& rect)
 {
   Math::Quad quad;
 
-  quad.a.x = rect.x - (rect.width/2);
-  quad.a.y = rect.y - (rect.height/2);
+  float dist = sqrt((rect.width/2) * (rect.width/2) + (rect.height/2) * (rect.height/2));
 
-  quad.b.x = rect.x + (rect.width/2);
-  quad.b.y = rect.y - (rect.height/2);
+  float angle = atan2(rect.height/2, rect.width/2);
 
-  quad.c.x = rect.x + (rect.width/2);
-  quad.c.y = rect.y + (rect.height/2);
-
-  quad.d.x = rect.x - (rect.width/2);
-  quad.d.y = rect.y + (rect.height/2);
-
-  // FIXME: unfinished implementation
+  // upper/left
+  quad.a.x = rect.x + dist * sin(angle - rect.orientation);
+  quad.a.y = rect.y + dist * cos(angle - rect.orientation);
+  // upper/right
+  quad.b.x = rect.x + dist * sin(-angle - rect.orientation);
+  quad.b.y = rect.y + dist * cos(-angle - rect.orientation);
+  // lower/right
+  quad.c.x = rect.x + dist * sin(angle - rect.orientation + Math::pi);
+  quad.c.y = rect.y + dist * cos(angle - rect.orientation + Math::pi);
+  // lower/left
+  quad.d.x = rect.x + dist * sin(-angle - rect.orientation + Math::pi);
+  quad.d.y = rect.y + dist * cos(-angle - rect.orientation + Math::pi);
 
   return quad;
 }
@@ -210,7 +216,17 @@ CollisionManager::rect2quad(const Rectangle& rect)
 void
 CollisionManager::check_rect_rect_collision(const Rectangle& rect1, const Rectangle& rect2)
 {
+  if (Math::quad_collide(rect2quad(rect1), rect2quad(rect2)))
+    {
+      GameObj* obj1 = GameObjManager::current()->get_object_by_id(rect1.object_id);
+      GameObj* obj2 = GameObjManager::current()->get_object_by_id(rect2.object_id);
 
+      assert(obj1);
+      assert(obj2);
+
+      obj1->on_collision(obj2);
+      obj2->on_collision(obj1);
+    }
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.hxx,v 1.1 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: vehicle_commands.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,9 @@ int  vehicle_get_fuel();
 
 /** @returns weapon_id */
 int  vehicle_get_weapon(int number);
+
+/** Set the given vehicle to the given x,y coordinates */
+void vehicle_set_position(int vehicle_handle, int x, int y);
 
 #endif
 

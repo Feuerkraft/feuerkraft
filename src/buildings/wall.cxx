@@ -1,4 +1,4 @@
-//  $Id: wall.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: wall.cxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,13 +23,13 @@
 #include "resource_manager.hxx"
 
 Wall::Wall (boost::dummy_ptr<GameWorld> world, const WallData& data)
-  : Building (world),
-    WallData (data),
+  : Building (world, data.x_pos, data.y_pos),
     pos (x_pos * 40 + 20, y_pos * 40 + 20),
     wall (resources->get_sprite("feuerkraft/wall")),
     wall_damaged (resources->get_sprite ("feuerkraft/wall_damaged")),
     wall_destroyed (resources->get_sprite ("feuerkraft/wall_destroyed"))
 {
+  energie = data.energie;
 }
 
 Wall::~Wall ()

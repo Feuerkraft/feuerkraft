@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.cxx,v 1.1 2003/05/08 23:02:10 grumbel Exp $
+//  $Id: building_type_manager.cxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,8 +47,37 @@ BuildingTypeManager::create_building(int type_id, const AList& params)
         }
     }
 
+  // FIXME: throw something here
   std::cout << "BuildingTypeManager: Invalid type handle: " << type_id << std::endl;
   return 0;
+}
+
+int
+BuildingTypeManager::name_to_id(const std::string& name)
+{
+ for (Factories::iterator i = factories.begin(); i != factories.end(); ++i)
+    {
+      if ((*i)->name == name)
+        {
+          return (*i)->id;
+        }
+    }
+ // FIXME: throw something here
+ return 0;
+}
+
+std::string
+BuildingTypeManager::id_to_name(int id)
+{
+ for (Factories::iterator i = factories.begin(); i != factories.end(); ++i)
+    {
+      if ((*i)->id == id)
+        {
+          return (*i)->name;
+        }
+    }
+ // FIXME: throw something here
+ return "invalid-id";
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: ammotent_data.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: ammotent_data.hxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,17 +25,11 @@
 
 class AmmotentData : public BuildingData
 {
-public: // FIXME: Should be protected
-  // FIXME: I know its redundant to have the position in every
-  // FIXME: BuildingData thing, but I don't know a better way. (virtual
-  // FIXME: inheritance might be one)
-  int x_pos;
-  int y_pos;
+public:
   float energie_value;
 
 public:
-  /** Format: (ammotent (pos 10 10) (energie 100))
-   */
+  /** Format: (ammotent (pos 10 10) (energie 100)) */
   AmmotentData (SCM desc);
 
   SCM dump_to_scm ();

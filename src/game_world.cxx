@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.7 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: game_world.cxx,v 1.8 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,6 +36,10 @@
 #include "buildings/building_map.hxx"
 
 GameWorld* GameWorld::current_world = 0;
+
+GameWorld::GameWorld()
+{
+}
 
 GameWorld::GameWorld (const GameWorldData& data)
   : GameWorldData (data),

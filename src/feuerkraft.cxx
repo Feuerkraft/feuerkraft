@@ -18,6 +18,7 @@
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
 #include "jeep.hxx"
+#include "fonts.hxx"
 #include "tree.hxx"
 #include "math.hxx"
 #include "flag.hxx"
@@ -51,6 +52,10 @@
 
 #include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
+
+#include "output_world_builder.hxx"
+#include "sexpr_world_reader.hxx"
+
 #include "guile.hxx"
 
 // FIXME: Ugly global variable, should be removed as soon as possible
@@ -114,12 +119,14 @@ public:
 	//CL_OpenGL::begin_2d();
 	CL_DisplayWindow window("Feuerkraft", 800, 600);
 
-	resources = new ResourceManager ();
-
 	CL_Display::set_current_window (&window);
 	global_gc = window.get_gc();
 	window.get_gc()->clear();
 
+	resources = new ResourceManager ();
+        
+        //Fonts::init();
+        
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
 	resources->get_sprite("feuerkraft/tank2_shadow");
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
@@ -136,6 +143,9 @@ public:
 	  SCM fdes = scm_open_file (scm_makfrom0str(args.mission_file.c_str()), 
                                     scm_makfrom0str("r"));
 	  SCM lst  = scm_read (fdes);
+
+          OutputWorldBuilder builder;
+          SexprWorldReader sexpr(lst, &builder);
 
 	  GameWorldData data(lst);
 	  world = new GameWorld (lst);
@@ -314,6 +324,8 @@ public:
 	    //start_screen.draw ();
 	    //start_screen.update (delta);
 
+            //Fonts::font.draw(10, 10, "Hello World");
+
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();
 	    //window.get_gc()->clear ();
@@ -329,6 +341,7 @@ public:
 	std::cout << "Avarage fps:   " 
 		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
+        //Fonts::deinit();
         PingusSound::deinit();
 	CL_SetupGL::deinit();
 	CL_SetupDisplay::deinit();

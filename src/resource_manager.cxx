@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.7 2003/05/09 14:58:12 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.8 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -65,7 +65,14 @@ ResourceManager::get_sprite (const std::string& location)
 CL_Font
 ResourceManager::get_font(const std::string& location)
 {
-  return CL_Font(location, resource_manager);
+  try {
+    CL_Font font(location, resource_manager);
+    return font;
+  } catch(CL_Error& err) {
+    std::cout << "Couldn't load font: " << location << std::endl;
+    assert(false);
+    return CL_Font();
+  }
 }
 
 /* EOF */

@@ -1,7 +1,7 @@
-//  $Id: base.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: output_world_builder.hxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,33 +17,28 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BASE_HH
-#define BASE_HH
+#ifndef HEADER_OUTPUT_WORLD_BUILDER_HXX
+#define HEADER_OUTPUT_WORLD_BUILDER_HXX
 
-#include <ClanLib/Display/sprite.h>
+#include <iostream>
+#include "world_builder.hxx"
 
-#include "../view.hxx"
-#include "../boost/dummy_ptr.hpp"
-#include "building.hxx"
-#include "base_data.hxx"
-
-class Base : public Building
+/** */
+class OutputWorldBuilder
+  : public WorldBuilder
 {
-private:
-  CL_Sprite sprite;
-  CL_Vector pos;
-
 public:
-  Base (boost::dummy_ptr<GameWorld>  w, const BaseData& data);
-  virtual ~Base ();
+  OutputWorldBuilder();
 
-  void draw (boost::dummy_ptr<View> v);
-  void draw_radar (boost::dummy_ptr<Radar> radar);
+  void add_object(const std::string& type, const AList&);
+  void add_brush(const std::string& resname, const AList&);
+  void add_building(const std::string&, const AList&);
+  void add_groundmap(const std::string&, const AList&);
+  void add_script(const std::string& resname);
 
-  void update (float delta);
-
-  int get_map_width ()  { return 0; }
-  int get_map_height () { return 0; }
+private:
+  OutputWorldBuilder (const OutputWorldBuilder&);
+  OutputWorldBuilder& operator= (const OutputWorldBuilder&);
 };
 
 #endif

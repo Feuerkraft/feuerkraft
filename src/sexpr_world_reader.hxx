@@ -1,7 +1,7 @@
-//  $Id: base.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: sexpr_world_reader.hxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,33 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BASE_HH
-#define BASE_HH
+#ifndef HEADER_SEXPR_WORLD_READER_HXX
+#define HEADER_SEXPR_WORLD_READER_HXX
 
-#include <ClanLib/Display/sprite.h>
+#include <guile/gh.h>
+#include <string>
 
-#include "../view.hxx"
-#include "../boost/dummy_ptr.hpp"
-#include "building.hxx"
-#include "base_data.hxx"
+class WorldBuilder;
 
-class Base : public Building
+/** */
+class SexprWorldReader
 {
 private:
-  CL_Sprite sprite;
-  CL_Vector pos;
-
+  WorldBuilder* builder;
 public:
-  Base (boost::dummy_ptr<GameWorld>  w, const BaseData& data);
-  virtual ~Base ();
+  SexprWorldReader(const std::string& arg_filename, WorldBuilder* arg_builder);
+  SexprWorldReader(SCM data, WorldBuilder* arg_builder);
 
-  void draw (boost::dummy_ptr<View> v);
-  void draw_radar (boost::dummy_ptr<Radar> radar);
+private:
+  void parse_file(SCM desc);
 
-  void update (float delta);
+  void parse_buildings(SCM data);
+  void parse_objects(SCM data);
+  void parse_brushes(SCM data);
+  void parse_groundmap(SCM data);
+  void parse_scripts(SCM data);
 
-  int get_map_width ()  { return 0; }
-  int get_map_height () { return 0; }
+  SexprWorldReader (const SexprWorldReader&);
+  SexprWorldReader& operator= (const SexprWorldReader&);
 };
 
 #endif

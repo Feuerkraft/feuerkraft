@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.8 2003/05/07 17:55:27 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.9 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/display.h>
 #include <math.h>
 #include "resource_manager.hxx"
 #include "game_world.hxx"
@@ -25,6 +26,7 @@
 #include "ai_vehicle.hxx"
 #include "projectile.hxx"
 #include "mine.hxx"
+#include "level_map.hxx"
 
 AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
   : GameObj(w),
@@ -129,6 +131,14 @@ AIVehicle::draw (View* view)
   else
     view->draw(destroyed_sprite, pos, orientation + PI);
   //line_segments.draw(view);
+}
+
+void 
+AIVehicle::draw_levelmap (LevelMap* levelmap)
+{
+  CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
+				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
+			 CL_Color(255, 0, 0, 255));
 }
 
 void

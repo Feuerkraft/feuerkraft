@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.4 2003/05/09 14:13:54 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,7 +76,7 @@ int  building_get(int x, int y)
   return 0;
 }
 
-int building_create_type(SCM lst)
+int building_create_type(const char* name, SCM lst)
 {
   AList alist;
   
@@ -117,7 +117,7 @@ int building_create_type(SCM lst)
       lst = gh_cddr(lst);
     }
 
-  return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(alist));
+  return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(name, alist));
 }
 
 /* EOF */

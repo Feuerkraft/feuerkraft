@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.5 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: guile.hxx,v 1.6 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,8 @@
 
 #include <ClanLib/Core/Math/cl_vector.h>
 
+#include "alist.hxx"
+
 /** A loose collection of Guile helper functions */
 namespace Guile {
 
@@ -51,6 +53,8 @@ SCM symbol2scm(const char* str);
 std::string keyword2string(SCM keyword);
 
 std::string symbol2string(SCM symbol);
+
+AList scm2alist(SCM lst);
 
 } // namespace Guile
 

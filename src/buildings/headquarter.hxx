@@ -1,4 +1,4 @@
-//  $Id: headquarter.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: headquarter.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,8 +26,7 @@
 #include "headquarter_data.hxx"
 #include "../projectile.hxx"
 
-class Headquarter : public Building,
-		    public HeadquarterData
+class Headquarter : public Building
 {
 private:
   CL_Vector pos;
@@ -49,9 +48,6 @@ public:
 
   bool is_colliding (CL_Vector obj_pos);
   void collide (Projectile*);
-
-  int get_x_pos () { return x_pos; }
-  int get_y_pos () { return y_pos; }
 
   int get_map_width ()  { return 2; }
   int get_map_height () { return 2; }

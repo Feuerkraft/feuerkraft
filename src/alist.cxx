@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.1 2003/05/09 14:30:10 grumbel Exp $
+//  $Id: alist.cxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,26 +20,49 @@
 #include "string_converter.hxx"
 #include "alist.hxx"
 
-void
+AList&
 AList::set_int(const std::string& name, int value)
 {
   content[name] = to_string(value);
+  return *this;
 }
 
-void
+AList&
+AList::set_float(const std::string& name, float value)
+{
+  content[name] = to_string(value);
+  return *this;
+}
+
+AList&
 AList::set_bool(const std::string& name, bool value)
 {
   content[name] = to_string(value);
+  return *this;
 }
 
-void
+AList&
 AList::set_string(const std::string& name, const std::string& value)
 {
   content[name] = value;
+  return *this;
 }
 
 bool
 AList::get_int(const std::string& name, int& value) const
+{
+  Content::const_iterator i = content.find(name);
+
+  if (i == content.end())
+    return false;
+  else
+    {
+      return from_string(i->second, value);
+    }
+}
+
+bool
+AList::get_float(const std::string& name, float& value) const
 {
   Content::const_iterator i = content.find(name);
 

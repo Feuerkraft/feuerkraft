@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.hxx,v 1.1 2003/05/08 23:02:10 grumbel Exp $
+//  $Id: building_type_manager.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,17 @@
 class Building;
 
 struct BuildingFactory {
+  /** The id by which the factory can be refered to */
   int id;
-  
+
+  /** A symbolic name for the factory, which is another way to refer
+      to the factory. It is used for serialisations for better
+      portability. */
+  std::string name;
+
+  BuildingFactory() {}
+  virtual ~BuildingFactory() {}
+
   virtual Building* create(const AList& lst) =0;
 };
 
@@ -36,9 +45,11 @@ struct CustomBuildingFactory
   : public BuildingFactory
 {
   AList prefs;
-  CustomBuildingFactory(const AList& arg_prefs)
+  CustomBuildingFactory(const std::string& arg_name, const AList& arg_prefs)
     : prefs(arg_prefs)
-  {}
+  {
+    name = arg_name;
+  }
 
   virtual ~CustomBuildingFactory() {}
 
@@ -51,6 +62,11 @@ template<class C>
 struct GenericBuildingFactory 
   : public BuildingFactory 
 {
+  GenericBuildingFactory(const std::string& arg_name) 
+  {
+    name = arg_name;
+  }
+  
   Building* create(const AList& lst) {
     return new C(lst);
   }
@@ -74,6 +90,9 @@ public:
   /** Register a building factory
       @return handle for this type of building */
   int register_factory(BuildingFactory* factory);
+
+  int name_to_id(const std::string& name);
+  std::string id_to_name(int id);
 
   Building* create_building(int type_id, const AList& params);
   

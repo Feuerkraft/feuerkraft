@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.6 2003/05/04 15:45:34 grumbel Exp $
+//  $Id: view.cxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -123,22 +123,23 @@ View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
 }
 
 void 
-View::draw (CL_Surface& sur, int x_pos, int y_pos)
+View::draw (CL_Surface& sur, float x_pos, float y_pos)
 {
-  sur.draw (x_pos + get_x_offset (),
-	    y_pos + get_y_offset (), gc);
+  sur.draw (static_cast<int>(x_pos + get_x_offset ()),
+	    static_cast<int>(y_pos + get_y_offset ()), 
+                             gc);
 }
 
 void 
-View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
+View::draw (CL_Surface& sur, float x_pos, float y_pos, int frame)
 {
   //FIXME:Display2: frame support removed 
-  sur.draw (x_pos + get_x_offset (),
-	    y_pos + get_y_offset (), gc);
+  sur.draw (static_cast<int>(x_pos + get_x_offset ()),
+            static_cast<int>(y_pos + get_y_offset ()), gc);
 }
 
 void 
-View::draw (CL_Surface& sur, int x_pos, int y_pos, 
+View::draw (CL_Surface& sur, float x_pos, float y_pos, 
 	    float size_x, float size_y, int frame)
 {
   //FIXME:Display2: frame support removed 
@@ -148,7 +149,7 @@ View::draw (CL_Surface& sur, int x_pos, int y_pos,
 }
 
 void 
-View::draw_line (int x1, int y1, int x2, int y2, 
+View::draw_line (float x1, float y1, float x2, float y2, 
 		float r, float g, float b, float a)
 {
   CL_Display::draw_line (int((x1 + get_x_offset ())),
@@ -162,7 +163,7 @@ View::draw_line (int x1, int y1, int x2, int y2,
 }
 
 void 
-View::draw_fillrect (int x1, int y1, int x2, int y2, 
+View::draw_fillrect (float x1, float y1, float x2, float y2, 
 		    float r, float g, float b, float a)
 {
   CL_Display::fill_rect (CL_Rect(int((x1 + get_x_offset ())),
@@ -176,26 +177,26 @@ View::draw_fillrect (int x1, int y1, int x2, int y2,
 }
 
 void 
-View::draw_rect (int x1, int y1, int x2, int y2, 
+View::draw_rect (float x1, float y1, float x2, float y2, 
 		 float r, float g, float b, float a)
 {
   CL_Color color(int(255*r), int(255*g), int(255*b), int(255*a));
-  CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (), 
-			 x1 + get_x_offset (), y2 + get_y_offset (),
+  CL_Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()), 
+			 int(x1 + get_x_offset ()), int(y2 + get_y_offset ()),
 			 color);
-  CL_Display::draw_line (x2 + get_x_offset (), y1 + get_y_offset (), 
-			 x2 + get_x_offset (), y2 + get_y_offset (),
+  CL_Display::draw_line (int(x2 + get_x_offset ()), int(y1 + get_y_offset ()), 
+			 int(x2 + get_x_offset ()), int(y2 + get_y_offset ()),
 			 color);
-  CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (), 
-			 x2 + get_x_offset (), y1 + get_y_offset (),
+  CL_Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()), 
+			 int(x2 + get_x_offset ()), int(y1 + get_y_offset ()),
 			 color);
-  CL_Display::draw_line (x1 + get_x_offset (), y2 + get_y_offset (), 
-			 x2 + get_x_offset (), y2 + get_y_offset (),
+  CL_Display::draw_line (int(x1 + get_x_offset ()), int(y2 + get_y_offset ()), 
+			 int(x2 + get_x_offset ()), int(y2 + get_y_offset ()),
 			 color);
 }
 
 void 
-View::draw_pixel (int x_pos, int y_pos, 
+View::draw_pixel (float x_pos, float y_pos, 
 		   float r, float g, float b, float a)
 {
   //CL_Display::put_pixel (x1 + get_x_offset (),
@@ -204,7 +205,7 @@ View::draw_pixel (int x_pos, int y_pos,
 }
 
 void 
-View::draw_circle (int x_pos, int y_pos, int radius,
+View::draw_circle (float x_pos, float y_pos, float radius,
 		   float r, float g, float b, float a)
 {
   // FIXME: Probally not the fast circle draw algo on this world...
@@ -224,7 +225,7 @@ View::draw_circle (int x_pos, int y_pos, int radius,
 }
 
 void
-View::draw_arc (int x_pos, int y_pos, int radius, float angle_start, float angle_stop,
+View::draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_stop,
                float r, float g, float b, float a)
 {
   const float steps = 16;
