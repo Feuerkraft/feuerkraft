@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.9 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: View.cxx,v 1.10 2002/03/25 15:32:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,8 +53,8 @@ View::draw ()
   glTranslated (400, 300, 0.0);
   glScaled (zoom, zoom, 1.0);
   glRotated (rotation, 0, 0, 1.0);
-  glTranslated (-400, -300, 0.0);
-  */
+  glTranslated (-400, -300, 0.0);*/
+  
   world->draw (this);
   world->draw_energie (this);
 

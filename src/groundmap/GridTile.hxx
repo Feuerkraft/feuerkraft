@@ -1,4 +1,4 @@
-//  $Id: GridTile.hxx,v 1.1 2002/03/25 09:57:11 grumbel Exp $
+//  $Id: GridTile.hxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,12 +20,21 @@
 #ifndef GRIDTILE_HXX
 #define GRIDTILE_HXX
 
-class GridTile : public GridTileData
+#include <string>
+#include <SphriteLib/sphritelib.h>
+#include "GridTileData.hxx"
+
+class View;
+
+class GridTile
 {
 private:
+  Sprite sprite;
 
 public:
-  GridTile (const GridTileData&);
+  GridTile (std::string filename);
+ 
+  void draw (View*, float x, float y);
 };
 
 #endif

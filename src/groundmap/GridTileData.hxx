@@ -1,4 +1,4 @@
-//  $Id: GridTileData.hxx,v 1.1 2002/03/25 09:57:11 grumbel Exp $
+//  $Id: GridTileData.hxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,13 +29,21 @@ class GridTile;
     Via the create() call a fitting Tile can be generated. */
 class GridTileData
 {
-protected:
+public:
   GroundType ul;
   GroundType ur;
   GroundType br;
   GroundType bl;
 
 public:
+  GridTileData ()
+  {
+    // FIXME: We could make this even more abstract and not use
+    // groundtype directly, so that we could apply theming support
+    // (night, day, winter)
+    ul = ur = br = bl = GT_SAND;
+  }
+
   GridTileData (GroundType arg_ul, GroundType arg_ur, GroundType arg_br, GroundType arg_bl)
     : ul (arg_ul), ur (arg_ur), br (arg_br), bl (arg_bl)
   {
@@ -43,6 +51,8 @@ public:
 
   GridTile* create ();
 };
+
+bool operator<(const GridTileData& a, const GridTileData& b);
 
 #endif
 

@@ -143,8 +143,8 @@ public:
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
 
-	JoystickController controller(heli);
-	KeyboardController kcontroller (current_controllable);
+	KeyboardController kcontroller (heli);
+	JoystickController controller(current_controllable);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
 	//world, tank1);

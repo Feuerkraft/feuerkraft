@@ -1,4 +1,4 @@
-//  $Id: GridMapData.hxx,v 1.1 2002/03/25 09:57:11 grumbel Exp $
+//  $Id: GridMapData.hxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,8 +28,8 @@
 class GridMapData : public GroundMapData
 {
 protected:
-  int width;
-  int height;
+  int grid_width;
+  int grid_height;
 
   /** The data of the grid */
   std::vector<GroundType> grid_data;

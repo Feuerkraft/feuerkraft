@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: JoystickController.cxx,v 1.2 2002/03/25 15:32:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,6 +50,8 @@ JoystickController::JoystickController (Controllable* obj) :
 void 
 JoystickController::update (float delta)
 {
+  delta *= 50.0f;
+
   if (CL_Input::joysticks.size () >= 1)
     {
       

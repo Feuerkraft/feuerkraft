@@ -1,4 +1,4 @@
-//  $Id: GridTile.cxx,v 1.1 2002/03/25 09:57:11 grumbel Exp $
+//  $Id: GridTile.cxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,22 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/core.h>
+#include "../View.hxx"
 #include "GridTile.hxx"
 
-GridTile::GridTile (const GridTileData& data)
-  : GridTileData (data)
+extern SpriteProviderStorage* storage;
+extern CL_ResourceManager* resources;
+
+GridTile::GridTile (std::string filename)
+  : sprite (storage->get (filename.c_str ()))
+{  
+}
+
+void
+GridTile::draw (View* view, float x, float y)
 {
-  
+  view->draw(sprite, CL_Vector (x, y));
 }
 
 /* EOF */
