@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.8 2001/11/30 17:07:02 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.9 2001/11/30 17:20:59 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@ VehicleView::VehicleView (boost::dummy_ptr<GameWorld> world,
   vehicle (arg_vehicle)
 {
   speed = 0.1f;
+  zoom_follower = 1.0f;
 }
 
 VehicleView::~VehicleView ()
@@ -34,19 +35,16 @@ VehicleView::~VehicleView ()
 }
 
 void 
-VehicleView::update (float time_delta)
+VehicleView::update (float delta)
 {
-  // x_offset = int(vehicle->get_pos ().x);
-  // y_offset = int(vehicle->get_pos ().y);
-
   CL_Vector target = vehicle->get_pos ();
-  set_zoom (1.0f);
-  // Stuff for zoom out on acceleration
  
-  float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0);
-  set_zoom (zoom*1.5f);
+  float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0) * 1.5f;
 
-  std::cout << "Vehicle: " << vehicle->get_velocity () << std::endl;
+  if (zoom_follower > zoom) zoom_follower -= 0.01 * delta;
+  if (zoom_follower < zoom) zoom_follower += 0.01 * delta;
+
+  set_zoom (zoom_follower);
 
   if (!(pos == target))
     {
@@ -59,7 +57,10 @@ VehicleView::update (float time_delta)
   x_offset = int(pos.x);
   y_offset = int(pos.y);
 
-  rotation = -(vehicle->get_angle ()/3.1415927*180.0) + 90;
+  float my_rotation = -(vehicle->get_angle ()/3.1415927*180.0) + 90;
+
+  if (rotation > my_rotation) rotation -= 2 * delta;
+  if (rotation < my_rotation) rotation += 2 * delta;
 }
 
 /* EOF */
