@@ -44,6 +44,7 @@ explosion.cxx \
 explosion.hxx \
 feuerkraft.cxx \
 feuerkraft.hxx \
+feuerkraft_error.hxx \
 field.hxx \
 fonts.hxx \
 fonts.cxx \

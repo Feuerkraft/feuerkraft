@@ -35,7 +35,7 @@ PathManager::~PathManager ()
 void
 PathManager::add_path (const std::string& path)
 {
-  std::cout << "PathManager: add_path: " << path << std::endl;
+  //std::cout << "PathManager: add_path: " << path << std::endl;
   path_list.push_back (path);
 }
 
@@ -43,7 +43,7 @@ std::string
 PathManager::complete (const std::string& relative_path)
 {
   std::string comp_path = base_path + "/" + relative_path;
-  std::cout << "PathManager: " << relative_path << " -> " << comp_path << std::endl;
+  //std::cout << "PathManager: " << relative_path << " -> " << comp_path << std::endl;
 
   return comp_path;
 }

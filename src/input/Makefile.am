@@ -1,11 +1,5 @@
 noinst_LIBRARIES = libfeuerkraft_input.a
 
-libfeuerkraft_input_a_LIBDADD = \
-  @WINDSTILLE_LIBS@
-
-libfeuerkraft_input_a_CPPFLAGS = \
-  @WINDSTILLE_CFLAGS@
-
 libfeuerkraft_input_a_SOURCES = \
   controller.hxx \
   controller.cxx \

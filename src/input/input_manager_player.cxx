@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../guile.hxx"
 #include "input_manager_player.hxx"
 
 InputManagerPlayer::InputManagerPlayer(const std::string& filename)
@@ -38,11 +39,8 @@ InputManagerPlayer::InputManagerPlayer(const std::string& filename)
           lst.push_back(scm2event(gh_car(entry)));
           entry = gh_cdr(entry);
         }
-      
-      std::cout << "Entry: " << entry_num << " events: " << lst.size() << std::endl;
       entries.push(Entry(entry_num, lst));
     }
-  //gh_display(entry);gh_newline();
   scm_close_port(port);
 }
 
@@ -67,10 +65,7 @@ InputManagerPlayer::scm2event(SCM entry)
     } 
   else 
     {
-      std::cout << "scm2event: Unknown sym: " << std::flush;
-      gh_display(sym);
-      scm_flush_all_ports();
-      std::cout << std::endl;
+      std::cout << "scm2event: Unknown sym: " << Guile::scm2string(sym) << std::endl;
     }
   return event;
 }
@@ -78,7 +73,6 @@ InputManagerPlayer::scm2event(SCM entry)
 void
 InputManagerPlayer::update(float delta)
 {
-  //std::cout << "Got: " << entry_counter << " " << entries.front().entry_num << std::endl;
   if (entries.front().entry_num == entry_counter)
     {
       events = entries.front().events;

@@ -46,7 +46,8 @@ InputManagerCustom::InputManagerCustom(SCM lst)
         }
       else
         {
-          std::cout << "Button " << i << " not configured" << std::endl;
+          std::cout << "# Warrning: Button '" << ControllerDef::button_id2name(i)
+                    << "' not configured and will not be usable" << std::endl;
         }
     }
 
@@ -58,7 +59,8 @@ InputManagerCustom::InputManagerCustom(SCM lst)
         }
       else
         {
-          std::cout << "Axis " << i << " not configured" << std::endl;
+          std::cout << "# Warrning: Axis '" << ControllerDef::axis_id2name(i)
+                    << "' not configured and will not be usable" << std::endl;
         }
     }
 }
@@ -69,15 +71,11 @@ InputManagerCustom::init(SCM lst)
   buttons.resize(ControllerDef::get_button_count());
   axes.resize(ControllerDef::get_axis_count());
   
-  std::cout << "InputManagerCustom::init" << std::endl;
   while (gh_pair_p(lst))
     {
-      //gh_display(gh_car(lst)); gh_newline();
       SCM sym  = gh_caar(lst);
       SCM data = gh_cadar(lst);
 
-      //gh_display(sym); gh_newline();
-      
       std::string name = Guile::symbol2string(sym);
 
       int id = ControllerDef::button_name2id(name);
@@ -94,7 +92,8 @@ InputManagerCustom::init(SCM lst)
             }
           else
             {
-              std::cout << "InputManagerCustom::init: Error unknown tag: " << Guile::symbol2string(sym) << std::endl;
+              std::cout << "# Warning: InputManagerCustom::init: Error unknown tag: " 
+                        << Guile::scm2string(sym) << std::endl;
             }
         }
 

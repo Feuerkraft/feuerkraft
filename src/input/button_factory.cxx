@@ -20,6 +20,7 @@
 #include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/keyboard.h>
 #include "../guile.hxx"
+#include "../feuerkraft_error.hxx"
 #include "input_button.hxx"
 #include "input_button_input_device.hxx"
 #include "button_factory.hxx"
@@ -39,9 +40,8 @@ ButtonFactory::create(SCM lst)
     }
   else
     {
-      std::cout << "ButtonFactory::create: parse error: " << std::flush;
-      scm_flush_all_ports();
-      gh_display(lst); std::cout << std::endl;
+      throw FeuerkraftError("ButtonFactory::create: parse error: "
+                            + Guile::scm2string(lst));
     }
       
   return 0;
@@ -57,17 +57,16 @@ ButtonFactory::create_joystick_button(SCM lst)
     return new InputButtonInputDevice(CL_Joystick::get_device(device_num), button_num);
   else
     {
-      std::cout << "Error: ButtonFactory::create_joystick_button(SCM lst)" << std::endl;
-      return 0;
+      throw FeuerkraftError("Error: ButtonFactory::create_joystick_button: "
+                            + Guile::scm2string(lst));
     }
 }
 
 InputButton*
 ButtonFactory::create_keyboard_button(SCM lst)
 {
-  //gh_display(lst);
   std::string key_str = Guile::scm2string(gh_car(lst));
-  int key_num = CL_Keyboard::get_device().keyid_to_string(key_str);
+  int key_num         = CL_Keyboard::get_device().keyid_to_string(key_str);
 
   // FIXME: No error checking
   return new InputButtonInputDevice(CL_Keyboard::get_device(), key_num);

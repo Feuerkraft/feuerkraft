@@ -112,9 +112,20 @@ Feuerkraft::init()
   KeyboardManager::instance();
 
   if (args->playback_file.empty())
-    InputManager::init(args->controller_file);
+    {
+      if (args->controller_file.empty())
+        {
+          InputManager::init(path_manager.complete("controller.scm"));
+        }
+      else
+        {
+          InputManager::init(args->controller_file);
+        }
+    }
   else
-    InputManager::init_playback(args->playback_file);
+    {
+      InputManager::init_playback(args->playback_file);
+    }
 
   if (!args->event_record_file.empty())
     InputManager::setup_recorder(args->event_record_file);
@@ -154,7 +165,7 @@ Feuerkraft::main(int argc, char** argv)
       // Shutdown everything
       deinit();
     }
-  catch (CL_Error err)
+  catch (CL_Error& err)
     {
       std::cout << "CL_Error: " << err.message.c_str() << std::endl;
     }

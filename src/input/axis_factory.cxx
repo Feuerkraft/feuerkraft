@@ -17,9 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
 #include <ClanLib/Display/joystick.h>
 #include "input_axis_input_device.hxx"
+#include "../feuerkraft_error.hxx"
+#include "../guile.hxx"
 #include "button_factory.hxx"
 #include "button_axis.hxx"
 #include "axis_factory.hxx"
@@ -42,7 +43,7 @@ AxisFactory::create(SCM lst)
         }
       else
         {
-          std::cout << "AxisFactory::create: parse error" << std::endl;
+          throw FeuerkraftError("AxisFactory::create: parse error");
         }
 
       lst = gh_cdr(lst);
@@ -60,7 +61,8 @@ AxisFactory::create_joystick_axis(SCM lst)
     return new InputAxisInputDevice(CL_Joystick::get_device(device_num), axis_num);
   else
     {
-      std::cout << "Error: AxisFactory::create_joystick_axis(SCM lst)" << std::endl;
+      throw FeuerkraftError("Error: AxisFactory::create_joystick_axis: " 
+                            + Guile::scm2string(lst));
       return 0;
     }
 }
