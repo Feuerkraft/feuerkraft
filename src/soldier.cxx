@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.12 2003/06/04 21:24:33 grumbel Exp $
+//  $Id: soldier.cxx,v 1.13 2003/06/04 21:38:35 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+
+#include "buildings/building_map.hxx"
 #include "math.hxx"
 #include "view.hxx"
 #include "property_set.hxx"
@@ -91,7 +93,11 @@ Soldier::update (float delta)
   velocity.x = steering;
   velocity.y = acceleration;
 
-  pos += velocity * 100.0f * delta;
+  FloatVector2d new_pos = pos + (velocity * 100.0f * delta);
+
+  BuildingMap* building_map = GameWorld::current()->get_buildingmap();
+  if (building_map->get_building(new_pos) == 0)
+    pos = new_pos;
 }
 
 bool 
