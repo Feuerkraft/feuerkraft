@@ -17,6 +17,7 @@ ground_map_data.hxx \
 ground_map_data_factory.cxx \
 ground_map_data_factory.hxx \
 ground_type.hxx \
+ground_type.cxx \
 multi_ground_map.cxx \
 multi_ground_map.hxx \
 multi_ground_map_data.cxx \

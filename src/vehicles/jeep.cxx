@@ -19,9 +19,9 @@
 
 #include <ClanLib/gl.h>
 #include <iostream>
-#include "buildings/building_map.hxx"
+#include "../buildings/building_map.hxx"
+#include "../resource_manager.hxx"
 #include "jeep.hxx"
-#include "resource_manager.hxx"
 
 const float circle = 6.2831854f;
 

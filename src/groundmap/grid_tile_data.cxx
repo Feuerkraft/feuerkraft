@@ -65,7 +65,12 @@ bool operator<(const GridTileData& a, const GridTileData& b)
 
 std::ostream& operator<<(std::ostream& s, const GridTileData& b)
 {
-  s << b.ul << b.ur << b.br << b.bl;
+  s << "#<GroundType "
+    << GroundType2string(b.ul) << ", "
+    << GroundType2string(b.ur) << ", "
+    << GroundType2string(b.br) << ", "
+    << GroundType2string(b.bl)
+    << ">";
   return s;
 }
 

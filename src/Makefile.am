@@ -1,4 +1,4 @@
-SUBDIRS = editor groundmap input particles generic buildings scripting sound
+SUBDIRS = editor groundmap input particles generic buildings scripting sound vehicles
 
 bindir=$(prefix)/games
 
@@ -9,6 +9,7 @@ LDADD = \
  editor/libfeuerkraft_editor.a \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
+ vehicles/libfeuerkraft_vehicles.a \
  generic/libfeuerkraft_generic.a     \
  input/libfeuerkraft_input.a     \
  particles/libfeuerkraft_particles.a \
@@ -77,12 +78,8 @@ goal_manager.cxx \
 gui_obj.hxx \
 guile.cxx \
 guile.hxx \
-helicopter.cxx \
-helicopter.hxx \
 keyboard_manager.hxx \
 keyboard_manager.cxx \
-jeep.cxx \
-jeep.hxx \
 level_map.cxx \
 level_map.hxx \
 line_segments.hxx \
@@ -148,14 +145,10 @@ string_converter.cxx \
 string_converter.hxx \
 system.cxx \
 system.hxx \
-tank.cxx \
-tank.hxx \
 trigger_manager.hxx \
 trigger_manager.cxx \
 tree.cxx \
 tree.hxx \
-turret.cxx \
-turret.hxx \
 unit.hxx \
 unit.cxx \
 vector2d.hxx \

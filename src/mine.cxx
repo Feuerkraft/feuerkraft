@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "alist.hxx"
-#include "tank.hxx"
+#include "vehicles/tank.hxx"
 #include "mine.hxx"
 #include "game_obj_manager.hxx"
 #include "game_world.hxx"

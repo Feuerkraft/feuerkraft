@@ -21,9 +21,8 @@
 #define HELICOPTER_HH
 
 #include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
-#include "energie.hxx"
-#include "vehicle.hxx"
+#include "../energie.hxx"
+#include "../vehicle.hxx"
 
 class VehicleAI;
 class AList;
@@ -39,7 +38,7 @@ private:
   CL_Sprite heli;
   CL_Sprite heli_shadow;
   CL_Sprite helidestroyed;
-  int rotor_count;
+  float rotor_count;
   float strafe;
   bool fireing;
   int reloading;

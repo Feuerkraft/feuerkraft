@@ -74,6 +74,7 @@ AC_OUTPUT( Makefile
            src/Makefile
            src/editor/Makefile
            src/groundmap/Makefile
+           src/vehicles/Makefile
            src/particles/Makefile
            src/scripting/Makefile
            src/input/Makefile

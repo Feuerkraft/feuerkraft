@@ -21,24 +21,25 @@
 #include <iostream>
 #include <string>
 
-#include "assert.hxx"
-#include "mine.hxx"
+#include "../assert.hxx"
+#include "../mine.hxx"
+#include "../alist.hxx"
+#include "../property_set.hxx"
+#include "../groundmap/ground_map.hxx"
+#include "../buildings/building_map.hxx"
+#include "../particles/smoke_particle.hxx"
+#include "../particles/sand_particle.hxx"
+#include "../particles/grass_particle.hxx"
+#include "../particles/smoke_emitter.hxx"
+#include "../resource_manager.hxx"
+#include "../property_set.hxx"
+#include "../alist.hxx"
+#include "../vehicle_ai.hxx"
+#include "../ai_manager.hxx"
+#include "../collision_manager.hxx"
+
 #include "turret.hxx"
 #include "tank.hxx"
-#include "alist.hxx"
-#include "property_set.hxx"
-#include "groundmap/ground_map.hxx"
-#include "buildings/building_map.hxx"
-#include "particles/smoke_particle.hxx"
-#include "particles/sand_particle.hxx"
-#include "particles/grass_particle.hxx"
-#include "particles/smoke_emitter.hxx"
-#include "resource_manager.hxx"
-#include "property_set.hxx"
-#include "alist.hxx"
-#include "vehicle_ai.hxx"
-#include "ai_manager.hxx"
-#include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
 

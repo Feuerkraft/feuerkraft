@@ -20,14 +20,13 @@
 #ifndef TANK_HH
 #define TANK_HH
 
-#include <ClanLib/Display/sprite.h>
-#include "vector2d.hxx"
 #include <deque>
+#include <ClanLib/Display/sprite.h>
+#include "../vector2d.hxx"
 
-#include "mine.hxx"
-#include "game_obj.hxx"
-#include "energie.hxx"
-#include "vehicle.hxx"
+#include "../mine.hxx"
+#include "../energie.hxx"
+#include "../vehicle.hxx"
 
 /** \defgroup units Units - Player Controllable GameObjs */
 

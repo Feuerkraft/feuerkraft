@@ -48,7 +48,9 @@ GridMap::GridMap (const GridMapData& data)
   // Resize the gridmap to the correct size and fill it with tiles
   gridmap.resize (tile_data.size ());
   for (unsigned int i = 0; i != tile_data.size (); ++i)
-    gridmap[i] = tiles.create(tile_data[i]);
+    {
+      gridmap[i] = tiles.create(tile_data[i]);
+    }
 
 }
 

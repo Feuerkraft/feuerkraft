@@ -21,12 +21,12 @@
 #include "property_set.hxx"
 
 // GameObjs
+#include "vehicles/tank.hxx"
+#include "vehicles/helicopter.hxx"
 #include "tree.hxx"
 #include "marker.hxx"
 #include "mine.hxx"
 #include "soldier.hxx"
-#include "tank.hxx"
-#include "helicopter.hxx"
 #include "satchel_charge.hxx"
 
 #include "game_obj.hxx"

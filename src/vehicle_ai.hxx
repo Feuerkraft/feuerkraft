@@ -23,8 +23,7 @@
 #include "line_segments.hxx"
 #include "input/controller.hxx"
 #include "ai.hxx"
-
-class Vehicle;
+#include "vehicle.hxx"
 
 /** class for AI driven vehicles */
 class VehicleAI : public AI

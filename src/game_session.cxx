@@ -34,8 +34,10 @@
 #include "input/input_manager.hxx"
 #include "soldier.hxx"
 #include "game_obj_factory.hxx"
-#include "tank.hxx"
-#include "helicopter.hxx"
+
+#include "vehicles/tank.hxx"
+#include "vehicles/helicopter.hxx"
+
 #include "background.hxx"
 #include "robot_tank.hxx"
 #include "view.hxx"

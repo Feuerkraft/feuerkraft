@@ -20,6 +20,8 @@
 #ifndef GROUNDTYPE_HXX
 #define GROUNDTYPE_HXX
 
+#include <string>
+
 /** The GroundType defines the type of the ground, it has influence on
     the speed and acceleration of vehicles. It has also influence on
     the detonation type of shells and rocket (splash instead of a big
@@ -59,6 +61,8 @@ enum GroundType
   /** also known Dark sand */
   GT_WETSAND
 };
+
+std::string GroundType2string(const GroundType& a);
 
 #endif
 

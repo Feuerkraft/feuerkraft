@@ -91,6 +91,14 @@
         />
     </sprite>
 
+    <sprite name="huey">
+      <image file="images/vehicles/huey.png"  />
+    </sprite>
+
+    <sprite name="huey_shadow">
+      <image file="images/vehicles/huey_shadow.png"  />
+    </sprite>
+
     <sprite name="tank">
       <image 
         file="images/vehicles/tank.png" 
@@ -264,7 +272,11 @@
 
     <sprite name="rotor">
       <image file="images/rotor1.png" />
-      <image name="image2" file="images/rotor2.png" />
+      <image file="images/rotor2.png" />
+    </sprite>
+
+    <sprite name="huey_rotor">
+      <image file="images/vehicles/huey_rotor2.png" />
     </sprite>
 
     <sprite name="hole">

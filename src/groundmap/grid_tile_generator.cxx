@@ -141,12 +141,16 @@ GridTile*
 GridTileGenerator::create (const GridTileData& data)
 {
   if (data.ur == GT_EMPTY || data.ul == GT_EMPTY || data.bl == GT_EMPTY || data.br == GT_EMPTY)
-    return 0;
+    {
+      return 0;
+    }
   
   // We switch to transparent when the tile has the same 'color' as the base ground
   // FIXME: ground color needs to be variable
   if (data.ur == GT_SAND && data.ul == GT_SAND && data.bl == GT_SAND && data.br == GT_SAND)
-    return 0;
+    {
+      return 0;
+    }
 
   TileTable::iterator i;
   for (i = tiles.begin (); i != tiles.end (); ++i)
@@ -159,12 +163,14 @@ GridTileGenerator::create (const GridTileData& data)
 	return (i->second)[rand () % (i->second.size ())]; // Return a random tile
       else
 	{
-	  // The tile list is empty
-	  return 0;
+	  // The tile list is empty, no tile available
+          std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
+          return 0;
 	}
     }
   else
     {
+      std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
       return emptytile;
     }
 }

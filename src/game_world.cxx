@@ -22,7 +22,7 @@
 #include <functional>
 
 #include "mine.hxx"
-#include "tank.hxx"
+#include "vehicles/tank.hxx"
 #include "projectile.hxx"
 #include "game_world.hxx"
 #include "groundmap/ground_map_data.hxx"

@@ -17,18 +17,19 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "alist.hxx"
-#include "projectile.hxx"
-#include "explosion.hxx"
+#include <iostream>
+#include "../alist.hxx"
+#include "../projectile.hxx"
+#include "../explosion.hxx"
+#include "../vehicle_ai.hxx"
+#include "../ai_manager.hxx"
+#include "../resource_manager.hxx"
 #include "helicopter.hxx"
-#include "vehicle_ai.hxx"
-#include "ai_manager.hxx"
-#include "resource_manager.hxx"
 
 Helicopter::Helicopter(const AList& lst)
-  : rotor (resources->get_sprite ("feuerkraft/rotor")),
-    heli (resources->get_sprite ("feuerkraft/helicopter")),
-    heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
+  : rotor (resources->get_sprite ("feuerkraft/huey_rotor")),
+    heli (resources->get_sprite ("feuerkraft/huey")),
+    heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
     helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
     rotor_count (0),
     strafe (0.0),
@@ -68,7 +69,7 @@ Helicopter::draw (View& view)
         pos.y - heli.get_height ()/2,
         frame);*/
 
-      view.draw (rotor, pos);
+      view.draw (rotor, pos, rotor_count);
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
   else
@@ -117,8 +118,8 @@ Helicopter::update (float delta)
 
   strafe_steering = steering = acceleration = 0;
 
+  rotor_count -= 10 * delta;
   delta *= 50;
-
   rotor.update (delta);
 
   if (energie <= 0 && !destroyed)
