@@ -1,4 +1,4 @@
-//  $Id: Stone.hxx,v 1.3 2002/04/07 16:24:01 grumbel Exp $
+//  $Id: Guile.hxx,v 1.1 2002/04/07 16:29:09 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,33 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef STONE_HH
-#define STONE_HH
+#ifndef GUILE_HXX
+#define GUILE_HXX
 
+#include <guile/gh.h>
 #include <ClanLib/core.h>
-#include <ClanLib/display2.h>
-#include "GameObj.hxx"
+#include <string>
 
-class Stone : public GameObj
+/** A loose collection of Guile helper functions */
+class Guile
 {
 private:
-  CL_Sprite sur;
-  CL_Vector pos;
 
 public:
-  Stone (boost::dummy_ptr<GameWorld> w, const CL_Vector& arg_pos);
-  ~Stone ();
-  
-  void draw (View*);
-  void update (float delta);
+  /** Convert a scheme string into a C++ std::string, converting other
+      non string SCM data isn't currently supported */
+  static std::string scm2string (SCM data);
+
+  /** Convert a CL_Vector into a SCM of the form (pos 12.2 40.912 234) */
+  static SCM vector2scm (const CL_Vector& vec);
+
+  /** Used in the BuildingMap: x,y => (pos x y) */
+  static SCM pos2scm (int x, int y);
+
+  static SCM symbol_value_pair (const std::string&, float);
+
+  /** Pretty print the object given by obj */
+  static void pretty_print (ostream& stream, SCM obj);
 };
 
 #endif

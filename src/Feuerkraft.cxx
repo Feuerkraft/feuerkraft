@@ -5,7 +5,7 @@
 //FIXME:Display2 #include <ClanLib/jpeg.h>
 //FIXME:Display2 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
-#include <ClanLib/application2.h>
+#include <ClanLib/application.h>
 //#include <ClanLib/sound.h>
 #include <guile/gh.h>
 
@@ -40,6 +40,7 @@
 #include "buildings/BuildingMap.hxx"
 #include "generic/ofstreamext.hxx"
 #include "ResourceManager.hxx"
+#include "Guile.hxx"
 
 Pathfinder datafiles;
 
@@ -58,7 +59,11 @@ public:
 
   virtual int main(int argc, char** argv)
   {
-    scm_boot_guile (argc, argv,::inner_main, 0);
+    try {
+      scm_boot_guile (argc, argv,::inner_main, 0);
+    } catch (...) {
+      std::cout << "Feuerkraft: catched something" << std::endl;
+    }
     return 0;
   }
 	
@@ -260,8 +265,7 @@ public:
 	*/
 
 	std::cout << ">>>>>>>>>>> The World <<<<<<<<<<<<<<" << std::endl;	
-	gh_display(world->get_data ()->dump_to_scm ());
-	gh_newline ();
+	Guile::pretty_print(cout, world->get_data ()->dump_to_scm ());
 	std::cout << "<<<<<<<<<<< END World >>>>>>>>>>>>>>" << std::endl;	
 
 	// Loop until the user hits escape:
@@ -332,10 +336,9 @@ public:
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();
+	    //window.get_gc()->clear ();
 	    ++frames;
 	    
-	    std::cout << "Looping" << std::endl;
-
 	    // Update keyboard input and handle system events:
 	    // Exits the loop if ClanLib requests shutdown - for instance if
 	    // someone closes the window.
@@ -354,6 +357,10 @@ public:
     catch (CL_Error err)
       {
 	std::cout << "CL_Error: " << err.message.c_str() << std::endl;
+      }
+    catch (...)
+      {
+	std::cout << "Something catched..." << std::endl;
       }
 
     // Display console close message and wait for a key

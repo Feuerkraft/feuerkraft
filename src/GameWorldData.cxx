@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.cxx,v 1.5 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: GameWorldData.cxx,v 1.6 2002/04/07 16:24:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -124,6 +124,8 @@ GameWorldData::create ()
 SCM
 GameWorldData::dump_to_scm ()
 {
+  std::cout << "GameWorldData::dump_to_scm()" << std::endl;
+
   SCM world_lst = SCM_EOL;
 
   SCM objs = SCM_EOL;

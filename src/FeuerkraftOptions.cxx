@@ -1,4 +1,4 @@
-//  $Id: Stone.cxx,v 1.2 2002/04/07 16:24:01 grumbel Exp $
+//  $Id: FeuerkraftOptions.cxx,v 1.1 2002/04/07 16:28:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,29 +17,61 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "ResourceManager.hxx"
-#include "Stone.hxx"
+#include "FeuerkraftOptions.hxx"
 
-Stone::Stone (boost::dummy_ptr<GameWorld> w, const CL_Vector& arg_pos)
-  : GameObj (w),
-    sur (resources->get_sprite("feuerkraft/stone")),
-    pos (arg_pos)
+FeuerkraftOptions::FeuerkraftOptions ()
+{
+  // Set defaults for all options
+  screen_width  = 800;
+  screen_height = 600;
+
+  // FIXME: This needs to be more flexible of course
+  config_file = "/home/ingo/.feuerkraft/config";
+}
+
+FeuerkraftOptions::~FeuerkraftOptions ()
 {
 }
 
-Stone::~Stone ()
+void
+FeuerkraftOptions::parse_args (int argc, char** argv)
+{
+  // add getopt_long parser here
+}
+
+void
+FeuerkraftOptions::parse_config_file (const std::string& filename)
 {
 }
 
-void 
-Stone::draw (View* view)
+bool
+FeuerkraftOptions::show_intro ()
 {
-  view->draw (sur, pos);
+  return false;
 }
 
-void 
-Stone::update (float delta)
+bool
+FeuerkraftOptions::show_outro ()
 {
+  return false;
+}
+
+int
+FeuerkraftOptions::get_screen_width ()
+{
+  return 800;
+}
+
+int
+FeuerkraftOptions::get_screen_height ()
+{
+  return 600;
+}
+  
+std::string
+Feuerkraft::get_config_file ()
+{
+  return config_file;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: Stone.hxx,v 1.3 2002/04/07 16:24:01 grumbel Exp $
+//  $Id: ResourceManager.hxx,v 1.1 2002/04/07 16:24:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,26 +17,30 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef STONE_HH
-#define STONE_HH
+#ifndef RESOURCEMANAGER_HXX
+#define RESOURCEMANAGER_HXX
 
+#include <string>
 #include <ClanLib/core.h>
 #include <ClanLib/display2.h>
-#include "GameObj.hxx"
 
-class Stone : public GameObj
+class ResourceManager
 {
 private:
-  CL_Sprite sur;
-  CL_Vector pos;
+  CL_ResourceManager* resource_manager;
 
 public:
-  Stone (boost::dummy_ptr<GameWorld> w, const CL_Vector& arg_pos);
-  ~Stone ();
-  
-  void draw (View*);
-  void update (float delta);
+  ResourceManager ();
+  ~ResourceManager ();
+
+  /** Load a CL_Sprite */
+  CL_Surface get_surface (const std::string& location);
+  CL_Sprite get_sprite (const std::string& location);
+  CL_Sprite* get_sprite_ptr (const std::string& location);
 };
+
+//extern CL_SpriteProviderStorage* storage;
+extern ResourceManager* resources;
 
 #endif
 

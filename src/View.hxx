@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.8 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: View.hxx,v 1.9 2002/04/07 16:24:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,6 +29,20 @@
 
 class GameWorld;
 
+/** A View provides a 'View' onto the world.
+    
+    A View is similar to a CL_GraphicContext, you can paint on it with
+    specific operations. It works basically by holding a pointer to
+    the world and passing a draw() call to the world in the event that
+    the View needs a draw. A pointer to the View class is passed as
+    argument to the Worlds draw call. 
+
+    FIXME: We need plugable modules for the View so that the zoom,
+    scale and rotation of the view will be automagically changed
+    acording to a plugin, possible plugins would be VehicleView,
+    BuildingView, FixedView, etc. How should clean translation between
+    plugins be provided? Should that be handled at plugin site?
+*/
 class View 
   : public GuiObj
 {

@@ -1,6 +1,7 @@
-/* config.h.in.  Generated automatically from configure.in by autoheader 2.13.  */
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
 #ifndef ADVENT_CONFIG_H
 #define ADVENT_CONFIG_H
+
 
 
 #undef MAJOR_VERSION
@@ -8,22 +9,20 @@
 #undef PATCH_VERSION
 #undef VERSION_STRING
 
-/* Define if you have the clanApp2 library (-lclanApp2).  */
-#undef HAVE_LIBCLANAPP2
 
-/* Define if you have the clanCore library (-lclanCore).  */
+/* Define if you have the `clanApp' library (-lclanApp). */
+#undef HAVE_LIBCLANAPP
+
+/* Define if you have the `clanCore' library (-lclanCore). */
 #undef HAVE_LIBCLANCORE
 
-/* Define if you have the clanDisplay2 library (-lclanDisplay2).  */
+/* Define if you have the `clanDisplay2' library (-lclanDisplay2). */
 #undef HAVE_LIBCLANDISPLAY2
 
-/* Define if you have the clanSound library (-lclanSound).  */
-#undef HAVE_LIBCLANSOUND
-
-/* Define if you have the guile library (-lguile).  */
+/* Define if you have the `guile' library (-lguile). */
 #undef HAVE_LIBGUILE
 
-/* Define if you have the qthreads library (-lqthreads).  */
+/* Define if you have the `qthreads' library (-lqthreads). */
 #undef HAVE_LIBQTHREADS
 
 /* Name of package */
@@ -31,6 +30,5 @@
 
 /* Version number of package */
 #undef VERSION
-
 
 #endif /* ADVENT_CONFIG_H */

@@ -1,4 +1,4 @@
-//  $Id: Stone.hxx,v 1.3 2002/04/07 16:24:01 grumbel Exp $
+//  $Id: ViewPlugin.hxx,v 1.1 2002/04/07 16:29:09 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,25 +17,29 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef STONE_HH
-#define STONE_HH
+#ifndef VIEWPLUGIN_HXX
+#define VIEWPLUGIN_HXX
 
-#include <ClanLib/core.h>
-#include <ClanLib/display2.h>
-#include "GameObj.hxx"
-
-class Stone : public GameObj
+/** A plugin for the View class. The View plugin provides information
+    on the position and rotation that the View class should take.
+    
+    Transition of on changes of get_pos() is done in the View class
+    itself (FIXME: should probally be placed in this class?!)
+ */
+class ViewPlugin
 {
 private:
-  CL_Sprite sur;
-  CL_Vector pos;
 
 public:
-  Stone (boost::dummy_ptr<GameWorld> w, const CL_Vector& arg_pos);
-  ~Stone ();
+  /** Return the rotation that the View should take */
+  virtual float get_rotation () =0;
   
-  void draw (View*);
-  void update (float delta);
+  /** Return the position that the View should take */
+  virtual CL_Vector get_pos () =0;
+
+  /** Return true if the View class should make a smooth translation
+      between changes of the View or should make hard changes. */
+  virtual bool smooth () { return true; }
 };
 
 #endif

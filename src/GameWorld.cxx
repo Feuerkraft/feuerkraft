@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.9 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.10 2002/04/07 16:24:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -207,16 +207,17 @@ GameWorld::get_groundmap ()
 GameWorldData*
 GameWorld::get_data ()
 {
+  std::cout << "GameWorld::get_data()" << std::endl;
   // Clear the current GameObjData data list
   if (needs_delete)
     {
+      std::cout << "GameWorld: Deleting current data objects" << std::endl;
       for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
 	delete *i;
       gameobj_data.clear ();
+      needs_delete = false;
     }
   
-  needs_delete = false;
-
   // Fill the data object with the current gameobj's and sync them
   for (ObjIter i = objects.begin (); i != objects.end (); ++i)
     {
