@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.13 2001/02/20 00:13:33 mbn Exp $
+//  $Id: GameWorld.cc,v 1.14 2001/02/20 09:17:56 mbn Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -94,7 +94,7 @@ void
 GameWorld::draw ()
 {
 #ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
-  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
+//  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
 #else
   objects.sort (z_pos_sorter ());
 #endif

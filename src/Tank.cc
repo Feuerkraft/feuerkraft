@@ -6,25 +6,26 @@
 #include "Turret.hh"
 #include "Tank.hh"
 
-const float circle = 6.2831854;
+const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
 
-Tank::Tank (int reloading_speed, std::string tank, std::string turret, std::string fire) : 
-  angle (0.0),
-  speed (0.0),
-  velocity (0.0),
+Tank::Tank (int reloading_speed, std::string tank, std::string str_turret, std::string fire) : 
+  angle (0.0f),
+  speed (0.0f),
+  velocity (0.0f),
   pos (rand () % 800, rand () % 600),
-  increment (0.06),
+  increment (0.06f),
   inc_step (0),
   sur (tank.c_str (), resources),
   smod ("feuerkraft/smod", resources),
   sur_destroyed ("feuerkraft/tankdestroyed", resources),
-  turret (new Turret(this, reloading_speed, turret, fire)),
+  turret (NULL),
   smod_step (0),
   mine_reload_time (0),
   energie (100),
   destroyed (false)
 {
+  turret = new Turret(this, reloading_speed, str_turret, fire);
 }
 
 Tank::~Tank ()
@@ -86,17 +87,17 @@ Tank::update ()
   if (mine_reload_time)
     --mine_reload_time;
 
-  if (velocity > 0.06)
-    velocity -= 0.05;
-  else if (velocity < -0.06)
-    velocity += 0.05;
+  if (velocity > 0.06f)
+    velocity -= 0.05f;
+  else if (velocity < -0.06f)
+    velocity += 0.05f;
   else
     velocity = 0;
 
   if (velocity > 2)
-    velocity = 2.0;
+    velocity = 2.0f;
   else if (velocity < -1)
-    velocity = -1.0;
+    velocity = -1.0f;
 
   CL_Vector vel (-velocity, 0.0);
   //std::cout << "Angle: " << angle 
@@ -148,13 +149,13 @@ Tank::set_angle (float arg_angle)
 void 
 Tank::increase_velocity ()
 {
-  velocity += 0.1;
+  velocity += 0.1f;
 }
 
 void
 Tank::decrease_velocity ()
 {
-  velocity -= 0.1;
+  velocity -= 0.1f;
 }
 
 void 
