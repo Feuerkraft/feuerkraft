@@ -93,6 +93,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;cc;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\src\Basis.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Controller.cc
 # End Source File
 # Begin Source File
@@ -113,7 +117,15 @@ SOURCE=.\src\Flag.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Fuelstation.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\GameWorld.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Headquarter.cc
 # End Source File
 # Begin Source File
 
@@ -189,6 +201,10 @@ SOURCE=.\src\Turret.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\VehicleStatus.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\VehicleView.cc
 # End Source File
 # Begin Source File
@@ -199,6 +215,10 @@ SOURCE=.\src\View.cc
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hh;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\src\Basis.hh
+# End Source File
 # Begin Source File
 
 SOURCE=.\src\Collideable.hh
@@ -229,6 +249,10 @@ SOURCE=.\src\Flag.hh
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Fuelstation.hh
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\GameObj.hh
 # End Source File
 # Begin Source File
@@ -238,6 +262,10 @@ SOURCE=.\src\GameWorld.hh
 # Begin Source File
 
 SOURCE=.\src\GuiObj.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Headquarter.hh
 # End Source File
 # Begin Source File
 
@@ -318,6 +346,10 @@ SOURCE=.\src\Turret.hh
 # Begin Source File
 
 SOURCE=.\src\Vehicle.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\VehicleStatus.hh
 # End Source File
 # Begin Source File
 

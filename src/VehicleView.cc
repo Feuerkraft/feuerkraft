@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.4 2001/05/04 17:11:08 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.5 2001/05/05 11:16:55 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@ VehicleView::VehicleView (boost::dummy_ptr<GameWorld> world,
 	-arg_vehicle->get_pos ().x, -arg_vehicle->get_pos ().y),
   vehicle (arg_vehicle)
 {
-  speed = 0.1;
+  speed = 0.1f;
 }
 
 VehicleView::~VehicleView ()

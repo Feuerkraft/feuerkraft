@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.8 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: View.cc,v 1.9 2001/05/05 11:16:56 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -142,10 +142,10 @@ View::draw_pixel (int x_pos, int y_pos,
 
 void 
 View::draw_circle (int x_pos, int y_pos, int radius,
-		   float r, float g, float b, float a = 1.0f)
+		   float r, float g, float b, float a)
 {
   // FIXME: Probally not the fast circle draw algo on this world...
-  const float pi = 3.1415927 * 2.0;
+  const float pi = 3.1415927f * 2.0f;
   const float steps = 8;
   CL_Vector current (radius, 0);
   CL_Vector next = current.rotate (pi/steps, CL_Vector (0, 0, 1.0f));
