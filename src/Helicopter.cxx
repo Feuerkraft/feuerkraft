@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cxx,v 1.4 2002/03/17 22:32:07 grumbel Exp $
+//  $Id: Helicopter.cxx,v 1.5 2002/03/24 14:00:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,12 +51,10 @@ Helicopter::draw (View* view)
 {
   if (!destroyed)
     {
-      const float circle = 6.2831854f;
-  
       view->draw (heli_shadow, CL_Vector(pos.x + 25.0f, pos.y + 50.0f),
-		  angle/(circle/2.0)*180);
+		  angle);
 
-      view->draw (heli, pos, angle/(circle/2.0)*180);
+      view->draw (heli, pos, angle);
   /*
       view->draw (heli,
 		  pos.x - heli.get_width ()/2,
@@ -68,8 +66,7 @@ Helicopter::draw (View* view)
     }
   else
     {
-      const float circle = 6.2831854f;
-      view->draw (helidestroyed, pos, angle/(circle/2.0)*180);
+      view->draw (helidestroyed, pos, angle);
     }
 
   /*
@@ -84,6 +81,8 @@ Helicopter::draw (View* view)
 void 
 Helicopter::update (float delta)
 {
+  delta *= 50;
+
   rotor.update (delta);
 
   if (energie <= 0 && !destroyed)
@@ -95,6 +94,7 @@ Helicopter::update (float delta)
   CL_Vector vel (-velocity, 0.0, 0.0);
 
   pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+
   pos += CL_Vector (0.0, strafe, 0.0).rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
 
   velocity /= 1.03f;
@@ -102,7 +102,7 @@ Helicopter::update (float delta)
 
   if (fireing && !reloading)
     {
-      float rot_angle = angle + 3.1415927;
+      float rot_angle = angle;
       CL_Vector dir = CL_Vector (15.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
       world->add (new Projectile (world, this, pos
 				  + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
@@ -131,13 +131,13 @@ Helicopter::decrease_velocity (float delta)
 void
 Helicopter::turn_left (float )
 {
-  angle += 0.1f;
+  angle += 0.05f;
 }
 
 void 
 Helicopter::turn_right (float )
 {
-  angle -= 0.1f;
+  angle -= 0.05f;
 }
 
 void 

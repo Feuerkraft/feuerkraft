@@ -1,4 +1,4 @@
-//  $Id: HeadquarterData.cxx,v 1.2 2002/03/24 14:00:40 grumbel Exp $
+//  $Id: WallData.cxx,v 1.1 2002/03/24 14:00:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,13 +17,14 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Headquarter.hxx"
-#include "HeadquarterData.hxx"
+#include "Wall.hxx"
+#include "WallData.hxx"
 
-HeadquarterData::HeadquarterData (SCM desc)
+WallData::WallData (SCM desc)
 {
+  energie = 100;
   // FIXME: No error handling
-  while (!gh_null_p (desc))
+  while (gh_pair_p (desc))
     {
       SCM symbol = gh_caar(desc);
       SCM data   = gh_cdar(desc);
@@ -33,9 +34,13 @@ HeadquarterData::HeadquarterData (SCM desc)
 	  x_pos = gh_scm2int(gh_car (data));
 	  y_pos = gh_scm2int(gh_cadr (data));
 	}
+      else if (gh_equal_p (gh_symbol2scm ("energie"), symbol))
+	{
+	  energie = gh_scm2double(gh_car (data));
+	}
       else
 	{
-	  std::cout << "HeadquarterData: Error: " << std::flush;
+	  std::cout << "WallData: Error: " << std::flush;
 	  gh_display(symbol);
 	  std::cout << std::endl;
 	}
@@ -44,10 +49,10 @@ HeadquarterData::HeadquarterData (SCM desc)
     }
 }
 
-Building* 
-HeadquarterData::create (boost::dummy_ptr<GameWorld> world)
+Building*
+WallData::create (boost::dummy_ptr<GameWorld> world)
 {
-  return new Headquarter (world, *this);
+  return new Wall (world, *this);
 }
 
 /* EOF */

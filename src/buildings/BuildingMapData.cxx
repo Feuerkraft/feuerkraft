@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.cxx,v 1.5 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: BuildingMapData.cxx,v 1.6 2002/03/24 14:00:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@
 #include "AmmotentData.hxx"
 #include "BaseData.hxx"
 #include "HeadquarterData.hxx"
+#include "Wall.hxx"
 
 BuildingMapData::BuildingMapData (SCM desc)
 {
@@ -50,6 +51,10 @@ BuildingMapData::BuildingMapData (SCM desc)
 	{
 	  //std::cout << "BuildingMapData: creating ammotent" << std::endl;
 	  buildings_data.push_back (new AmmotentData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("wall"), symbol))
+	{
+	  buildings_data.push_back (new WallData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("fuelstation"), symbol))
 	{

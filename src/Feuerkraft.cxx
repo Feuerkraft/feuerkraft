@@ -140,8 +140,11 @@ public:
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (world, CL_Vector (250, 250));
 
+	Vehicle* current_vehicle = tank1;
+	Controllable* current_controllable = tank1;
+
 	JoystickController controller(heli);
-	KeyboardController kcontroller (tank1);
+	KeyboardController kcontroller (current_controllable);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
 	//world, tank1);
@@ -151,9 +154,9 @@ public:
 	
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
-						 world, tank1));
+						 world, current_vehicle));
 	screen.add (radar);
-	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank1)));
+	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (current_vehicle)));
 	//View view (world, 10, 10, 790, 590);
 
 	world->add (jeep);
@@ -197,12 +200,12 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (world, tank1, 0, 0, 800, 600);
+	VehicleView view (world, current_vehicle, 0, 0, 800, 600);
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 	
 	//VehicleView view1 (world, heli, 0, 0, 399, 600);
-	//VehicleView view2 (world, tank1, 400, 0, 800, 600);
+	//VehicleView view2 (world, current_vehicle, 400, 0, 800, 600);
 	
 	int start_time = CL_System::get_time ();
 	int frames = 0;
@@ -226,7 +229,7 @@ public:
 	      }
 
 	    CL_System::sleep (0);
-	    delta = (CL_System::get_time () - last_time) / 1000.0f;
+	    delta = ((CL_System::get_time () - last_time) / 1000.0f) * 0.6f; // FIXME: Slow down
 	    last_time = CL_System::get_time ();
 	    world->update (delta);
 	    

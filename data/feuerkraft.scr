@@ -4,6 +4,18 @@ section feuerkraft {
 		frame1 = images/ambulance.png (type=surface);
 	}
 
+	section wall {
+		frame1 = images/wall.png (type = surface);
+	}
+
+	section wall_damaged {
+		frame1 = images/wall_damaged.png (type = surface);
+	}
+
+	section wall_destroyed {
+		frame1 = images/wall_destroyed.png (type = surface);
+	}
+
 	section tank {
 		frame1 = images/tank.png (type = surface);
 	}

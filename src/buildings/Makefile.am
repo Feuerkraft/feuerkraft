@@ -26,6 +26,10 @@ libfeuerkraft_buildings_a_SOURCES = \
   Headquarter.hxx \
   Headquarter.cxx \
   HeadquarterData.hxx \
-  HeadquarterData.cxx
+  HeadquarterData.cxx \
+  Wall.cxx \
+  Wall.hxx \
+  WallData.cxx \
+  WallData.hxx
 
 # EOF #

@@ -1,4 +1,4 @@
-//  $Id: Jeep.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
+//  $Id: Jeep.cxx,v 1.3 2002/03/24 14:00:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/gl.h>
+#include "buildings/BuildingMap.hxx"
 #include "Jeep.hxx"
 
 const float circle = 6.2831854f;
@@ -38,10 +39,31 @@ Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos)
 void 
 Jeep::update (float delta)
 {
+  delta *= 50;
+
   CL_Vector vel (-velocity, 0.0, 0.0);
   
-  pos += vel.rotate (angle - fmod(angle, circle/16.0),
-		     CL_Vector (0.0, 0.0, 1.0)) * delta;
+  
+  CL_Vector tmp_pos = pos + vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+
+  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+    {
+      pos.y = tmp_pos.y;
+    }
+  else
+    {
+      //velocity /= delta;
+    }
+
+  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+    {
+      pos.x = tmp_pos.x;
+    }
+  else
+    {
+      //velocity /= delta;
+    }
+
 
   velocity /= 1.03f;
 
@@ -57,7 +79,6 @@ void
 Jeep::draw (View* view)
 {
   const float circle = 6.2831854f;
-  //int frame = (int(fmod(angle, circle) / circle * jeep.get_num_frames ()) + 16) % 16;
   
   jeep->draw(int(view->get_x_offset () + pos.x),
 	     int(view->get_y_offset () + pos.y),

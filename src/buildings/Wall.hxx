@@ -1,5 +1,5 @@
-//  $Id: HeadquarterData.cxx,v 1.2 2002/03/24 14:00:40 grumbel Exp $
-//
+//  $Id: Wall.hxx,v 1.1 2002/03/24 14:00:40 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,42 +12,45 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Headquarter.hxx"
-#include "HeadquarterData.hxx"
+#ifndef WALL_HXX
+#define WALL_HXX
 
-HeadquarterData::HeadquarterData (SCM desc)
+#include <ClanLib/core.h>
+#include <SphriteLib/sphritelib.h>
+#include "WallData.hxx"
+#include "Building.hxx"
+
+class Wall : public Building,
+	     public WallData
 {
-  // FIXME: No error handling
-  while (!gh_null_p (desc))
-    {
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+private:
+  CL_Vector pos;
+  Sprite wall;
+  Sprite wall_damaged;
+  Sprite wall_destroyed;
 
-      if (gh_equal_p (gh_symbol2scm ("pos"), symbol))
-	{
-	  x_pos = gh_scm2int(gh_car (data));
-	  y_pos = gh_scm2int(gh_cadr (data));
-	}
-      else
-	{
-	  std::cout << "HeadquarterData: Error: " << std::flush;
-	  gh_display(symbol);
-	  std::cout << std::endl;
-	}
+public:
+  Wall (boost::dummy_ptr<GameWorld> world, const WallData&);
+  virtual ~Wall ();
 
-      desc = gh_cdr (desc);
-    }
-}
+  void draw (boost::dummy_ptr<View> view);
+  void update(float);
+  void collide (Projectile*);
 
-Building* 
-HeadquarterData::create (boost::dummy_ptr<GameWorld> world)
-{
-  return new Headquarter (world, *this);
-}
+  int get_x_pos () { return x_pos; }
+  int get_y_pos () { return y_pos; }
+
+  int get_map_width ()  { return 1; }
+  int get_map_height () { return 1; }
+
+  bool alive ();
+};
+
+#endif
 
 /* EOF */
