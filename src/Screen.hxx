@@ -1,4 +1,4 @@
-//  $Id: Screen.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Screen.hxx,v 1.2 2002/04/02 15:42:14 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ public:
   Screen ();
   virtual ~Screen ();
 
-  virtual void draw ();
+  virtual void draw (CL_GraphicContext* gc);
   virtual void update (float delta);
   virtual void add (boost::shared_ptr<GuiObj> obj);
 };

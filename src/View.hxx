@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.6 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: View.hxx,v 1.7 2002/04/02 15:42:14 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,7 @@ class View
   : public GuiObj
 {
 protected:
+  CL_GraphicContext* gc;
   boost::dummy_ptr<GameWorld> world;
   int x1, y1;
   int x2, y2;
@@ -43,10 +44,11 @@ protected:
 public:
   View (boost::dummy_ptr<GameWorld> world,
 	int x1, int y1, int x2, int y2,
-	int x_offset = 0, int y_offset = 0);
+	int x_offset = 0, int y_offset = 0,
+	CL_GraphicContext* arg_gc = 0);
   virtual ~View ();
 
-  void draw ();
+  void draw (CL_GraphicContext* gc);
   void set_view (int x_pos, int y_pos);
 
   /** Set the zoom of the current view, a zoom of 1.0 is normal, >1.0

@@ -46,6 +46,9 @@ Pathfinder datafiles;
 // FIXME: Ugly global variable, should be removed as soon as possible
 VehicleView* vehicle_view;
 
+//FIXME: Another ugly global variable, should be removed as soon as possible
+CL_GraphicContext* global_gc;
+
 void inner_main (void* closure, int argc, char* argv[]);
 
 class Feuerkraft : public CL_ClanApplication
@@ -132,7 +135,7 @@ public:
 	CL_DisplayWindow window("Feuerkraft", 640, 480);
 
 	CL_Display::set_current_window (&window);
-
+	global_gc = window.get_gc();
 	window.get_gc()->begin_2d();
 
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
@@ -214,7 +217,7 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (world, current_vehicle, 0, 0, 800, 600);
+	VehicleView view (world, current_vehicle, 0, 0, 800, 600, window.get_gc ());
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 
@@ -233,11 +236,17 @@ public:
 
 	LevelMap levelmap (world);
 	
+	/*
 	StartScreen start_screen (&window);
 	{
 	unsigned int last_time = CL_System::get_time ();
 	while (!start_screen.done())
 	  {
+	    if (window.get_keycode(CL_KEY_SPACE))
+	      {
+		std::cout << "Space pressed" << std::endl;
+	      }
+
 	    start_screen.update ((CL_System::get_time () - last_time) / 1000.0f);
 	    last_time = CL_System::get_time ();
 
@@ -247,10 +256,12 @@ public:
 	    CL_System::sleep (10);
 	  }
 	}
+	*/
 
 	// Loop until the user hits escape:
-	while (start_screen.logo_mode != StartScreen::S_QUIT)
+	while (true) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
+
 	    // Poor mans pause button
 	    if (window.get_keycode(CL_KEY_P))
 	      {
@@ -279,11 +290,11 @@ public:
 	    //glRotatef (angle, 0.0, 0.0, 1.0);
 	    //glTranslatef (-320,-200, 0);
 
-	    view.draw ();
+	    view.draw (window.get_gc ());
 	    view.update (delta);
 
 	    screen.update (delta);
-	    screen.draw ();
+	    screen.draw (window.get_gc ());
 
 		/*FIXME:Display2
 	    if (CL_Mouse::left_pressed ())
@@ -307,11 +318,11 @@ public:
 
 	    if (window.get_keycode(CL_KEY_M))
 	      {
-		levelmap.draw ();
+		levelmap.draw (window.get_gc ());
 	      }
 
-	    start_screen.draw ();
-	    start_screen.update (delta);
+	    //start_screen.draw ();
+	    //start_screen.update (delta);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();

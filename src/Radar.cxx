@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.7 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: Radar.cxx,v 1.8 2002/04/02 15:42:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ Radar::~Radar ()
 }
 
 void 
-Radar::draw ()
+Radar::draw (CL_GraphicContext* gc)
 {
   CL_Vector end (0.0f, 64.0f);
 
@@ -46,7 +46,7 @@ Radar::draw ()
 
   end += pos;
 
-  background.draw (int(pos.x), int(pos.y));
+  background.draw (int(pos.x), int(pos.y), gc);
   
   std::list<GameObj*>& objs = world->get_objects ();
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
@@ -58,7 +58,7 @@ Radar::draw ()
   world->get_buildingmap ()->draw_radar (this);
 
   radar_line.set_rotate (angle/3.1415927*180.0f + 180.0f);
-  radar_line.draw (int(pos.x), int(pos.y));
+  radar_line.draw (int(pos.x), int(pos.y), gc);
   //FIXME:Display2: frame support removed 
   /*
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,

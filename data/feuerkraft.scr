@@ -1,6 +1,3 @@
-pcxsprite = (	type = sprite, 
-		image1 = images/emptytile.pcx);
-
 section feuerkraft {
 	section logo {
 		frame1 = images/logo.jpg (type=surface);

@@ -1,4 +1,4 @@
-//  $Id: GuiObj.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: GuiObj.hxx,v 1.2 2002/04/02 15:42:14 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #ifndef GUIOBJ_HH
 #define GUIOBJ_HH
 
+class CL_GraphicContext;
+
 class GuiObj
 {
 private:
@@ -27,7 +29,7 @@ private:
 public:
   GuiObj() {}
   virtual ~GuiObj() {}
-  virtual void draw () =0;
+  virtual void draw (CL_GraphicContext* gc) =0;
   virtual void update (float delta) =0;
 };
 

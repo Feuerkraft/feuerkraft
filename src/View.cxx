@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.12 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: View.cxx,v 1.13 2002/04/02 15:42:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,8 +24,9 @@
 View::View (boost::dummy_ptr<GameWorld> arg_world, 
 	    int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
-	    int arg_x_offset, int arg_y_offset) :
-  world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
+	    int arg_x_offset, int arg_y_offset,
+	    CL_GraphicContext* arg_gc) :
+  gc (arg_gc), world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
   x_offset (-arg_x_offset), y_offset (-arg_y_offset)
 {
   x_offset -= x1;
@@ -45,7 +46,7 @@ View::update (float delta)
 }
 
 void 
-View::draw ()
+View::draw (CL_GraphicContext* gc)
 {
   //FIXME:Display2 CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
   /*glPushMatrix ();
@@ -85,8 +86,10 @@ View::set_zoom (float z)
 void 
 View::draw (CL_Surface& sur, const CL_Vector& pos)
 {
+  /* FIXME:Display2
   sur.draw (int(pos.x + get_x_offset ()),
-		  int(pos.y + get_y_offset ()));
+	    int(pos.y + get_y_offset ()),
+	    gc);*/
 }
 
 void
@@ -99,14 +102,16 @@ void
 View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
 {
   sprite->set_rotate(angle/3.1415927 * 180.0f);
-  sprite->draw(int(pos.x + get_x_offset ()), int(pos.y + get_y_offset ()));
+  sprite->draw(int(pos.x + get_x_offset ()), 
+	       int(pos.y + get_y_offset ()),
+	       gc);
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos)
 {
   sur.draw (x_pos + get_x_offset (),
-	    y_pos + get_y_offset ());
+	    y_pos + get_y_offset (), gc);
 }
 
 void 
@@ -114,7 +119,7 @@ View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
 {
   //FIXME:Display2: frame support removed 
   sur.draw (x_pos + get_x_offset (),
-	    y_pos + get_y_offset ());
+	    y_pos + get_y_offset (), gc);
 }
 
 void 

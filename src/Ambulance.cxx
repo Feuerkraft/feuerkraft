@@ -1,4 +1,4 @@
-//  $Id: Ambulance.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: Ambulance.cxx,v 1.4 2002/04/02 15:42:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "Ambulance.hxx"
 
 Ambulance::Ambulance (boost::dummy_ptr<GameWorld>  w)
-  : GameObj (w), sur(resources->get_sprite("feuerkraft/ambulance/frame1"))
+  : GameObj (w), sur(resources->get_sprite("feuerkraft/ambulance"))
 {
   
 }

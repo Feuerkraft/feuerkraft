@@ -1,4 +1,4 @@
-//  $Id: StartScreen.cxx,v 1.2 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: StartScreen.cxx,v 1.3 2002/04/02 15:42:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,7 +47,7 @@ StartScreen::draw ()
       //FIXME:Display2 CL_Display::clear_display ();    
       
       logo.draw (CL_Display::get_width ()/2,
-		 CL_Display::get_height ()/2
+		 CL_Display::get_height ()/2,
 		 display->get_gc ());
     }
   else if (logo_mode == S_FADETOGAME)
@@ -56,7 +56,8 @@ StartScreen::draw ()
 	{
 	  logo.set_alpha (1.0f - (display_time/1.5f));
 	  logo.draw (CL_Display::get_width ()/2,
-		     CL_Display::get_height ()/2);
+		     CL_Display::get_height ()/2,
+		     display->get_gc ());
 	}
       else
 	logo_mode = S_GAME;

@@ -1,4 +1,4 @@
-//  $Id: Screen.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Screen.cxx,v 1.2 2002/04/02 15:42:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,11 +28,11 @@ Screen::~Screen ()
 }
 
 void 
-Screen::draw ()
+Screen::draw (CL_GraphicContext* gc)
 {
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
     {
-      (*i)->draw ();
+      (*i)->draw (gc);
     }
 }
 
