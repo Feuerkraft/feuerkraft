@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.3 2003/04/27 23:00:30 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.4 2003/04/27 23:26:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,10 +42,12 @@ ResourceManager::get_surface (const std::string& location)
 CL_Sprite
 ResourceManager::get_sprite (const std::string& location)
 {
-  std::cout << "Loading: " << location << std::endl;
+  //std::cout << "Loading: " << location << std::endl;
   try 
     {
-      return CL_Sprite (location, resource_manager);
+      CL_Sprite sprite(location, resource_manager);
+      sprite.set_alignment(origin_center);
+      return sprite;
     } 
   catch (CL_Error& err) 
     {
@@ -63,7 +65,7 @@ ResourceManager::get_sprite (const std::string& location)
 CL_Sprite*
 ResourceManager::get_sprite_ptr (const std::string& location)
 {
-  std::cout << "ResourceManager::get_sprite_ptr: " << location << std::endl;
+  //std::cout << "ResourceManager::get_sprite_ptr: " << location << std::endl;
   return new CL_Sprite (get_sprite (location));
 }
 

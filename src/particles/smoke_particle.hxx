@@ -1,4 +1,4 @@
-//  $Id: smoke_particle.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: smoke_particle.hxx,v 1.3 2003/04/27 23:26:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@
 class SmokeParticle : public Particle
 {
 private:
-  CL_Sprite* sprite;
+  CL_Sprite sprite;
   float size;
   float angle;
   float max_life_time;
@@ -37,7 +37,7 @@ public:
     pos = arg_pos;
     size = 1;
     angle = rand () % 360;    
-    sprite = resources->get_sprite_ptr ("feuerkraft/sandsmoke");
+    sprite = resources->get_sprite("feuerkraft/sandsmoke");
     max_life_time = 10.0f;
     life_time = max_life_time;
     //velocity = CL_Vector (80.0f, 0.0f);
@@ -45,7 +45,6 @@ public:
 
   virtual ~SmokeParticle ()
   {
-    delete sprite;
   }
 
   void update (float delta) {
@@ -56,8 +55,8 @@ public:
 
   void draw (View* view) 
   {    
-    sprite->set_alpha ((life_time/max_life_time) * 0.3);
-    sprite->set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
+    sprite.set_alpha ((life_time/max_life_time) * 0.3);
+    sprite.set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
 		       0.8f + ((1 - life_time/max_life_time)) * 4.0f);
     view->draw(sprite, pos, angle);
   }
