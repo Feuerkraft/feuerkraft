@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.7 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.8 2002/03/23 12:20:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #include "boost/smart_ptr.hpp"
 #include "Collideable.hxx"
 #include "Explosion.hxx"
+#include "buildings/Building.hxx"
+#include "buildings/BuildingMap.hxx"
 #include "Projectile.hxx"
 
 Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
@@ -82,9 +84,18 @@ Projectile::update (float delta)
 		{
 		  collideable->collide (this);
 		  detonate ();
+		  return;
 		}
 	    }
 	}
+    }
+
+  Building* building = get_world ()->get_buildingmap ()->get_building (pos);
+  if (building)
+    {
+      building->collide (this);      
+      detonate ();
+      return;
     }
 }
 

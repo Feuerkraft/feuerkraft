@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.5 2002/03/18 10:46:32 sphair Exp $
+//  $Id: BuildingMap.cxx,v 1.6 2002/03/23 12:20:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,9 +39,6 @@ BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& d
       buildings.push_back ((*i2)->create (get_world ()));
     }
 
-  // FIXME: Where is the width and height?!
-  int width  = 100;
-  int height = 100;
   building_map.resize (width * height);
   
   // Clear all pointers in the building map
@@ -98,6 +95,32 @@ BuildingMap::update (float delta)
     {
       (*i)->update (delta);
     }
+}
+
+static int round (float a)
+{
+  if (a > 0)
+    return int(a + 0.5f);
+  else
+    return int(a - 0.5f);    
+}
+
+Building*
+BuildingMap::get_building (const CL_Vector& pos)
+{
+  int x = int(pos.x)/40;
+  int y = int(pos.y)/40;
+
+  if (pos.x < 0)
+    x -= 1;
+
+  if (pos.y < 0)
+    y -= 1;
+
+  if (x >= 0 && x < width && y >=0 && y < height)
+    return building_map[(y * width) + x];
+  else
+    return NULL;
 }
 
 /* EOF */

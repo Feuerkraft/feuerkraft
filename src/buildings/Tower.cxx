@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.6 2002/03/17 17:10:45 grumbel Exp $
+//  $Id: Tower.cxx,v 1.7 2002/03/23 12:20:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -84,5 +84,15 @@ Tower::update (float delta)
     }
 }
 
+void 
+Tower::collide (Projectile*)
+{
+  energie -= 5;   
+  if (!destroyed && !(energie > 0))
+    {
+      get_world()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
+      destroyed = true;
+    }
+}
 
 /* EOF */

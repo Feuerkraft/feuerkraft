@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.4 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: Tower.hxx,v 1.5 2002/03/23 12:20:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -56,6 +56,8 @@ public:
 
   int get_map_width ()  { return 2; }
   int get_map_height () { return 2; }
+
+  void collide (Projectile*);
 };
 
 #endif

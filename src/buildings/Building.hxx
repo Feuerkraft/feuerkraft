@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.4 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Building.hxx,v 1.5 2002/03/23 12:20:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,7 @@
 
 class View;
 class GameWorld;
+class Projectile;
 
 class Building
 {
@@ -52,6 +53,8 @@ public:
   virtual int get_map_height () =0;
 
   GameWorld* get_world () { return world.get(); }
+
+  virtual void collide (Projectile*) {}
 };
 
 #endif

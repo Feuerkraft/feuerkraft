@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: BuildingMapData.hxx,v 1.4 2002/03/23 12:20:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,8 @@ protected:
   /** A list with all the buildings */
   std::vector<BuildingData*> buildings_data;
 
+  int width;
+  int height;
 public:
   /** Format:
       (buildingmapdata (tower (angle 102)

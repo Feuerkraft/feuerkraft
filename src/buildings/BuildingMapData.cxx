@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.cxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: BuildingMapData.cxx,v 1.4 2002/03/23 12:20:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,9 @@
 BuildingMapData::BuildingMapData (SCM desc)
 {
   std::cout << "BuildingMapData: parsing: start" << std::endl;
+
+  width = 100;
+  height = 100;
 
   while (!gh_null_p (desc))
     {
