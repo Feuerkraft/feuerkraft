@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.16 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: tank.hxx,v 1.17 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,7 @@
 
 /** \defgroup units Units - Player Controllable GameObjs */
 
+class AList;
 class SmokeEmitter;
 class Projectile;
 class Turret;
@@ -80,6 +81,7 @@ private:
 public:
   friend class Turret;
 
+  Tank (const AList& lst);
   Tank (const FloatVector2d &arg_pos,
 	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();

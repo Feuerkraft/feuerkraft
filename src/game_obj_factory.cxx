@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.8 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.9 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,15 +58,18 @@ GameObjFactory::instance()
 GameObj*
 GameObjFactory::create(int type_id, const AList& alst)
 {
-  GameObj* obj = create_raw_object(type_id);
+  GameObj* obj = create_raw_object(type_id, alst);
 
   if (obj)
     {
+      // FIXME: All this should be no longer needed if objects get the AList
+      // as constructor
+#if 0      
       PropertySet* props = obj->get_properties();
-      
+
       for (AList::const_iterator i = alst.begin(); i != alst.end(); ++i)
         {
-          std::cout << ">>># " << i->second.type << std::endl;
+          //std::cout << ">>># " << i->second.type << std::endl;
           
           switch(i->second.type)
             {
@@ -88,18 +91,19 @@ GameObjFactory::create(int type_id, const AList& alst)
         }
 
       obj->properties_updated();
+#endif
     }
 
   return obj;
 }
 
 GameObj* 
-GameObjFactory::create_raw_object(int type_id)
+GameObjFactory::create_raw_object(int type_id, const AList& lst)
 {
   GameObjAbstractFactory* factory = get_factory(type_id);
 
   if (factory)
-    return factory->create();
+    return factory->create(lst);
   else
     return 0;
 }

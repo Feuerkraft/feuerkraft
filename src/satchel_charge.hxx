@@ -1,4 +1,4 @@
-//  $Id: satchel_charge.hxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: satchel_charge.hxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,8 @@
 #include <ClanLib/Display/sprite.h>
 #include "game_obj.hxx"
 
+class AList;
+
 /** A SatchelCharge is basically a remote controlled mine. FIXME:
     FIXME: Merging SatchelCharge and Mine into an own class might be a
     good idea */
@@ -32,7 +34,7 @@ private:
   FloatVector2d pos;
   CL_Sprite sprite;
 public:
-  SatchelCharge();
+  SatchelCharge(const AList& lst);
 
   void update (float);
   void draw (View& view);

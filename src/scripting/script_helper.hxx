@@ -1,4 +1,4 @@
-//  $Id: script_helper.hxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: script_helper.hxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,6 +41,12 @@ T* get_object(int object_id)
       std::cout  << "Scripting: no object given by id: " << object_id << std::endl;
       return 0;
     } 
+}
+
+template<>
+GameObj* get_object(int object_id)
+{
+  return GameObjManager::current()->get_object_by_id(object_id);
 }
 
 /** @return the AI for the given object or 0 if no AI is attached to

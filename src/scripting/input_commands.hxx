@@ -1,4 +1,4 @@
-//  $Id: input_commands.hxx,v 1.5 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: input_commands.hxx,v 1.6 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,13 +33,16 @@
  */
 void input_register_callback(const char* key, SCM func);
 
-/** @brief Return the current mouse x position */
+/** @brief Return the current mouse x position on the screen */
 int  input_get_mouse_x();
 
-/** @brief Return the current mouse y position */
+/** @brief Return the current mouse y position on the screen  */
 int  input_get_mouse_y();
 
-
+/** Return the current mouse x position on the world */
+float input_get_mouse_world_x();
+/** Return the current mouse y position on the world */
+float input_get_mouse_world_y();
 
 //@}
 

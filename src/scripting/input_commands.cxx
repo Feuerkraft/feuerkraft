@@ -1,4 +1,4 @@
-//  $Id: input_commands.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: input_commands.cxx,v 1.5 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #include <ClanLib/Display/mouse.h>
 #include "../scm_functor.hxx"
 #include "../keys.hxx"
+#include "../view.hxx"
 #include "../keyboard_manager.hxx"
 #include "input_commands.hxx"
 
@@ -39,6 +40,20 @@ int
 input_get_mouse_y()
 {
   return CL_Mouse::get_y();
+}
+
+float
+input_get_mouse_world_x()
+{
+  return View::current()->screen_to_world(FloatVector2d(CL_Mouse::get_x(),
+                                                        CL_Mouse::get_y())).x;  
+}
+
+float
+input_get_mouse_world_y()
+{
+  return View::current()->screen_to_world(FloatVector2d(CL_Mouse::get_x(),
+                                                        CL_Mouse::get_y())).y;
 }
 
 /* EOF */

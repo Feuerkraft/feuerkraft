@@ -1,4 +1,4 @@
-//  $Id: game_obj_manager.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_obj_manager.cxx,v 1.4 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "assert.hxx"
 #include "game_obj.hxx"
 #include "game_obj_manager.hxx"
 
@@ -32,6 +33,8 @@ GameObjManager::GameObjManager(GameWorld* world)
 int
 GameObjManager::add_object(GameObj* obj)
 {
+  AssertMsg(obj, "GameObjManager: No valid GameObj passed!");
+
   game_objs.push_back(obj);
   obj->set_id(next_obj_id);
   return next_obj_id++;

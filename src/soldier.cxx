@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.17 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: soldier.cxx,v 1.18 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,19 +20,25 @@
 #include <iostream>
 
 #include "buildings/building_map.hxx"
+#include "alist.hxx"
 #include "math.hxx"
 #include "view.hxx"
 #include "input/controller.hxx"
 #include "property_set.hxx"
+#include "ai_manager.hxx"
 #include "soldier.hxx"
 
-Soldier::Soldier() 
-  : sur (resources->get_sprite("feuerkraft/soldier"))
+Soldier::Soldier(const AList& lst) 
+  : ai(0),
+    sur (resources->get_sprite("feuerkraft/soldier"))
 {
+  pos.x = lst.get_float("x-pos");
+  pos.y = lst.get_float("y-pos");
 }
 
 Soldier::~Soldier ()
 {
+  delete ai;
 }
 
 void
@@ -75,16 +81,21 @@ Soldier::update (float delta)
   FloatVector2d new_pos = pos + (velocity * 100.0f * delta);
 
   BuildingMap* building_map = GameWorld::current()->get_buildingmap();
+
   if (building_map->get_building(new_pos) == 0)
     {
       pos = new_pos;
     }
   else
     {
-      // Soldier is stuck in a building, allow him to walk him so he
+      // Soldier is stuck in a building, allow him to walk so he
       // can unstuck himself
       if (building_map->get_building(pos) != 0)
         pos = new_pos;
+      else if (building_map->get_building(FloatVector2d(pos.x, new_pos.y)) == 0)
+        pos = FloatVector2d(pos.x, new_pos.y);
+      else if (building_map->get_building(FloatVector2d(new_pos.x, pos.y)) == 0)
+        pos = FloatVector2d(new_pos.x, pos.y);
     }
 }
 
@@ -96,6 +107,27 @@ Soldier::is_colliding(FloatVector2d obj_pos)
     return false;
   else
     return true;
+}
+
+void
+Soldier::attach_ai()
+{
+  if (ai == 0)
+    {
+      ai = new SoldierAI(this);
+      AIManager::instance()->add(ai);
+    }
+}
+
+void
+Soldier::deattach_ai()
+{
+  if (ai)
+    {
+      AIManager::instance()->remove(ai);
+      delete ai;
+      ai = 0;
+    }
 }
 
 /* EOF */

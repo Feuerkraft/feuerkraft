@@ -1,6 +1,6 @@
-//  $Id: marker.hxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: editor.hxx,v 1.1 2003/06/20 20:54:23 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,35 +17,19 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_MARKER_HXX
-#define HEADER_MARKER_HXX
+#ifndef HEADER_FEUERKRAFT_EDITOR_HXX
+#define HEADER_FEUERKRAFT_EDITOR_HXX
 
-#include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
-#include "vector2d.hxx"
-
-class AList;
-class View;
-
-/** A marker is a special guide for the player that gives visual
-    informations on the radar and on the map. */
-class Marker : public GameObj
+/** Editor Layer for Feuerkraft, its not a self standing editor, but
+    more an in-game plug-in to manipulate the currently running world */
+class Editor
 {
 private:
-  CL_Sprite sprite;
-  FloatVector2d pos;
-  float passed_time;
 public:
-  Marker(const AList& lst);
-  ~Marker();
-
-  void draw  (View& view);
-  void update(float delta);
-
-  float get_z_pos() { return 10000; }
+  Editor();
 private:
-  Marker (const Marker&);
-  Marker& operator= (const Marker&);
+  Editor (const Editor&);
+  Editor& operator= (const Editor&);
 };
 
 #endif

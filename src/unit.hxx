@@ -1,4 +1,4 @@
-//  $Id: unit.hxx,v 1.5 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: unit.hxx,v 1.6 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,6 +43,12 @@ public:
   /** Feed new input events into the unit, allowing it to move
       accordingly */
   virtual void update_controlls(const Controller& events) =0;
+  
+  /** Attach an AI to this object and let it act */
+  virtual void attach_ai() {}
+
+  /** Remove an AI from an object */
+  virtual void dettach_ai() {}
 
   FloatVector2d get_pos() { return pos; }
   float get_orientation() { return orientation; }
@@ -52,7 +58,7 @@ public:
 
   float get_orientation() const { return orientation; }
   FloatVector2d get_position() const { return pos; }
-  
+
 private:
   Unit (const Unit&);
   Unit& operator= (const Unit&);

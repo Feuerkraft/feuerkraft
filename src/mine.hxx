@@ -1,4 +1,4 @@
-//  $Id: mine.hxx,v 1.9 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: mine.hxx,v 1.10 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,8 @@
 #include "game_obj.hxx"
 #include "explosion.hxx"
 
+class AList;
+
 class Mine : public GameObj
 {
 private:
@@ -34,7 +36,7 @@ private:
   CL_Sprite sur_active;
   CL_Sprite hole;
 public:
-  Mine();
+  Mine(const AList& lst);
   virtual ~Mine() {}
 
   FloatVector2d get_pos () { return pos; }

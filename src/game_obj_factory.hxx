@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.hxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: game_obj_factory.hxx,v 1.4 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,14 +28,14 @@ class GameObj;
 class GameObjAbstractFactory
 {
 public:
-  virtual GameObj* create() =0;
+  virtual GameObj* create(const AList& lst) =0;
 };
 
 template<class T>
 class GameObjGenericFactory : public GameObjAbstractFactory
 {
 public:
-  GameObj* create() { return new T(); }
+  GameObj* create(const AList& lst) { return new T(lst); }
 };
 
 /** */
@@ -58,7 +58,7 @@ public:
   /** @return type_id of the newly registered type */
   int register_factory(GameObjAbstractFactory* factory);
 private:
-  GameObj* create_raw_object(int type_id);
+  GameObj* create_raw_object(int type_id, const AList& lst);
 
   GameObjFactory (const GameObjFactory&);
   GameObjFactory& operator= (const GameObjFactory&);

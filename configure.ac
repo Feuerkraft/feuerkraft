@@ -59,6 +59,7 @@ AC_OUTPUT( Makefile
            data/images/tiles/Makefile
            data/missions/Makefile
            src/Makefile
+           src/editor/Makefile
            src/groundmap/Makefile
            src/particles/Makefile
            src/scripting/Makefile

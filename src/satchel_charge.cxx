@@ -1,4 +1,4 @@
-//  $Id: satchel_charge.cxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: satchel_charge.cxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,17 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "view.hxx"
+#include "alist.hxx"
 #include "explosion.hxx"
 #include "property_set.hxx"
 #include "resource_manager.hxx"
 #include "satchel_charge.hxx"
 
-SatchelCharge::SatchelCharge()
+SatchelCharge::SatchelCharge(const AList& lst)
 {
+  pos.x = lst.get_float("x-pos");
+  pos.y = lst.get_float("y-pos");
+
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
 

@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: alist.cxx,v 1.10 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -121,14 +121,37 @@ AList::set_int_vector2d(const std::string& name, IntVector2d& value)
   v.v_int_vector2d = value;
   return *this;
 }
-/*
+
 AList&
-AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
+AList::set_value (const std::string& str, const Value& value)
 {
+  switch (value.type)
+    {      
+    case AL_INT:
+      return set_int(str, value.v_int);
+
+    case AL_FLOAT:
+      return set_float(str, value.v_float);
+
+    case AL_BOOL:
+      return set_bool(str, value.v_bool);
+
+    case AL_STRING:
+      return set_string(str, *value.v_string);
+
+    default:
+      return *this; 
+    }
+}
+
+/*
+  AList&
+  AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
+  {
   Value& v = ensure_free_cell(name, AL_FLOATVECTOR2D);
   v.v_float_vector2d = value;  
   return *this;
-}
+  }
 */
 const AList::Value*
 AList::get_value(const std::string& name, Type type) const
@@ -222,18 +245,60 @@ AList::get_int_vector2d (const std::string& name, IntVector2d& value) const
       return true;
     }
 }
-/*
-bool
-AList::get_float_vector2d (const std::string& name, FloatVector2d& value) const
+
+int
+AList::get_int(const std::string& str) const
 {
-  const Value* v = get_value(name, AL_FLOATVECTOR2D);
-  if (!v)
-    return false;
-  else
+  int res;
+  get_int(str, res);
+  return res;
+}
+
+float
+AList::get_float(const std::string& str) const
+{
+  float res;
+  get_float(str, res);
+  return res;
+}
+
+bool
+AList::get_bool(const std::string& str) const
+{
+  bool res;
+  get_bool(str, res);
+  return res;
+}
+
+std::string 
+AList::get_string(const std::string& str) const
+{
+  std::string res;
+  get_string(str, res);
+  return res;
+}
+
+void
+AList::merge(const AList& lst)
+{
+  for(Content::const_iterator i = lst.content.begin(); i != lst.content.end(); ++i)
     {
-      value = v->v_float_vector2d;
-      return true;
+      set_value(i->first, i->second);
     }
 }
+
+/*
+  bool
+  AList::get_float_vector2d (const std::string& name, FloatVector2d& value) const
+  {
+  const Value* v = get_value(name, AL_FLOATVECTOR2D);
+  if (!v)
+  return false;
+  else
+  {
+  value = v->v_float_vector2d;
+  return true;
+  }
+  }
 */
 /* EOF */

@@ -29,7 +29,8 @@
   (display ">>> Start: Game Units <<<\n")
   (for-each (lambda (obj)
               (cond ((gameobj-is-unit obj)
-                     (cond ((equal? (gameobj-get-type obj) type)
+                     (cond ((or (equal? (gameobj-get-type obj) type)
+                                (equal? type 'all))
                             (format #t "[~a]~%" (gameobj-get-type obj))
                             (for-each (lambda (prop)
                                         (format #t 
@@ -250,7 +251,7 @@
 ;; Other Stuff ;;
 ;;;;;;;;;;;;;;;;;
 (menu-add-item comm-menu "Help!" 
-               (lambda () 
+               (lambda ()
                  (comm-send-message 'player "I need help!")
 
                  (let* ((obj (player-get-current-unit))
@@ -286,5 +287,40 @@
 ;;(menu-add-item comm-menu "Back >>>" menu-hide)
 
 ;; End:   Interface definition
+
+(input-register-callback "mouse_right" 
+                         (lambda ()
+                           (let ((x (input-get-mouse-world-x))
+                                 (y (input-get-mouse-world-y)))
+                             (format #t "### Keyboard pressed: mouse: ~A ~A ~%" x y)
+                             )))
+
+
+(define editor-type-list (list tree-type
+                               marker-type
+                               mine-type
+                               satchel-type
+                               soldier-type))
+(list-cdr-set! editor-type-list (1- (length editor-type-list)) editor-type-list)
+
+(input-register-callback "mouse_left" 
+                         (lambda ()
+                           (let ((x (input-get-mouse-world-x))
+                                 (y (input-get-mouse-world-y)))
+                             
+                             (let ((obj (gameobj-create (car editor-type-list)
+                                                        `((x-pos ,x)
+                                                          (y-pos ,y)))))
+                               (ai-attach obj)))))
+  
+(input-register-callback "mouse_wheel_up" 
+                         (lambda ()
+                           (set! editor-type-list (cdr editor-type-list))
+                           (display "Wheel UP\n")))
+
+(input-register-callback "mouse_wheel_down" 
+                         (lambda ()
+                           (set! editor-type-list (cdr editor-type-list))
+                           (display "Wheel UP\n")))
 
 ;; EOF ;;

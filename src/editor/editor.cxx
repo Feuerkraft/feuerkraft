@@ -1,5 +1,5 @@
-//  $Id: marker.hxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
-// 
+//  $Id: editor.cxx,v 1.1 2003/06/20 20:54:23 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,42 +12,13 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_MARKER_HXX
-#define HEADER_MARKER_HXX
+#include "editor.hxx"
 
-#include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
-#include "vector2d.hxx"
 
-class AList;
-class View;
-
-/** A marker is a special guide for the player that gives visual
-    informations on the radar and on the map. */
-class Marker : public GameObj
-{
-private:
-  CL_Sprite sprite;
-  FloatVector2d pos;
-  float passed_time;
-public:
-  Marker(const AList& lst);
-  ~Marker();
-
-  void draw  (View& view);
-  void update(float delta);
-
-  float get_z_pos() { return 10000; }
-private:
-  Marker (const Marker&);
-  Marker& operator= (const Marker&);
-};
-
-#endif
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.24 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: tank.cxx,v 1.25 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,11 @@
 #include <iostream>
 #include <string>
 
+#include "assert.hxx"
 #include "mine.hxx"
 #include "turret.hxx"
 #include "tank.hxx"
+#include "alist.hxx"
 #include "property_set.hxx"
 #include "groundmap/ground_map.hxx"
 #include "buildings/building_map.hxx"
@@ -33,9 +35,34 @@
 #include "particles/smoke_emitter.hxx"
 #include "resource_manager.hxx"
 #include "property_set.hxx"
+#include "alist.hxx"
 #include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
+
+Tank::Tank(const AList& lst)
+{
+  AList def;
+
+  def.set_float ("x-pos", 0);
+  def.set_float ("y-pos", 0);
+  def.set_int   ("reloading_speed", 5);
+  
+  // Surfaces
+  def.set_string("tank",   "feuerkraft/tank");
+  def.set_string("turret", "feuerkraft/turret");
+  def.set_string("fire",   "feuerkraft/fire");    
+
+  def.merge(lst);
+
+  smod   = resources->get_sprite(def.get_string("tank"));
+  turret = new Turret(this, 
+                      def.get_int("reloading_speed"),
+                      def.get_string("turret"), 
+                      def.get_string("fire"));
+
+  Bailout("FIXME: Incomplete");
+}
 
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
@@ -274,7 +301,7 @@ Tank::drop_mine ()
     {
       FloatVector2d vel = FloatVector2d(25.0f, 0.0f).rotate (orientation);
 
-      Mine* mine = new Mine();
+      Mine* mine = new Mine(AList());
       mine->get_properties()->set_float("x-pos", pos.x + vel.x);
       mine->get_properties()->set_float("y-pos", pos.y + vel.y);
 

@@ -1,4 +1,4 @@
-//  $Id: ai_manager.cxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: ai_manager.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <algorithm>
 #include "ai.hxx"
 #include "ai_manager.hxx"
 
@@ -35,6 +36,12 @@ void
 AIManager::add(AI* ai)
 {
   ais.push_back(ai);
+}
+
+void
+AIManager::remove(AI* ai)
+{
+  ais.erase(std::remove(ais.begin(), ais.end(), ai));
 }
 
 void

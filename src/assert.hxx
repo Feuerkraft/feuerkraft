@@ -1,4 +1,4 @@
-//  $Id: assert.hxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: assert.hxx,v 1.4 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@
       << "Func: " << __PRETTY_FUNCTION__ << std::endl << "Msg:  " << message << std::endl; \
     exit(EXIT_FAILURE); \
   }
-#  define Bailout(message) AssertMsg(0, message)
+#  define Bailout(message) assert(!message)
 #endif
 
 #endif

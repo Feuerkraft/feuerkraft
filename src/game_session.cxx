@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.2 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: game_session.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -95,11 +95,11 @@ GameSession::init()
   // End: Test of parsing code
 
   // The all mighty soldier that the player controlls
-  Soldier* soldier = new Soldier();
+  Soldier* soldier = new Soldier(AList());
   soldier->set_position(FloatVector2d (500, 1100));
 
   {
-    Soldier* soldier = new Soldier();
+    Soldier* soldier = new Soldier(AList());
     soldier->set_position(FloatVector2d (1400, 1500));
     SoldierAI* ai = new SoldierAI(soldier);
     world->add(soldier);
@@ -107,7 +107,7 @@ GameSession::init()
   }
 
   {
-    Soldier* soldier = new Soldier();
+    Soldier* soldier = new Soldier(AList());
     soldier->set_position(FloatVector2d (1300, 1600));
     SoldierAI* ai = new SoldierAI(soldier);
     world->add(soldier);

@@ -1,4 +1,4 @@
-//  $Id: ai_manager.hxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: ai_manager.hxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,6 +42,7 @@ public:
 
   /** Add an AI object to the AIManager */
   void add(AI* ai);
+  void remove(AI* ai);
   void update(float delta);
 };
 

@@ -1,4 +1,4 @@
-//  $Id: tree.hxx,v 1.11 2003/06/04 22:51:52 grumbel Exp $
+//  $Id: tree.hxx,v 1.12 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,8 @@
 
 #include "game_obj.hxx"
 
+class AList;
+
 // FIXME: Rename this to 'Brush'
 class Tree : public GameObj
 {
@@ -36,7 +38,7 @@ private:
   CL_Sprite sur;
 
 public:
-  Tree ();
+  Tree (const AList& lst);
   ~Tree ();
   
   void properties_updated();

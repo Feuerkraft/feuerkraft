@@ -1,4 +1,4 @@
-SUBDIRS = groundmap input particles generic buildings scripting sound
+SUBDIRS = editor groundmap input particles generic buildings scripting sound
 
 bindir=$(prefix)/games
 
@@ -6,6 +6,7 @@ bin_PROGRAMS = feuerkraft
 
 LDADD = \
  scripting/libfeuerkraft_scripting.a \
+ editor/libfeuerkraft_editor.a \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a     \

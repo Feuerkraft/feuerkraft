@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.12 2003/06/04 21:07:54 grumbel Exp $
+//  $Id: view.hxx,v 1.13 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,9 +67,13 @@ protected:
   ViewState state;
   ViewUpdater* view_updater;
   ViewProperty properties;
+
+  static View* current_;
 public:
   View (int x1, int y1, int x2, int y2, ViewUpdater* arg_updater = 0);
   virtual ~View ();
+
+  static View* current() { return current_; }
 
   void set_view (int x_pos, int y_pos);
 

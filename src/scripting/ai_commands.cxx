@@ -1,4 +1,4 @@
-//  $Id: ai_commands.cxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: ai_commands.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../soldier.hxx"
-#include "script_helper.hxx"
 #include "../ai_manager.hxx"
+#include "script_helper.hxx"
 #include "ai_commands.hxx"
 
 void
@@ -52,6 +52,28 @@ ai_stop(int handle)
   SoldierAI* soldier_ai = Scripting::get_ai<SoldierAI>(handle);
   if (soldier_ai)
     soldier_ai->stop();
+}
+
+bool
+ai_has(int handle)
+{
+  AI* ai = AIManager::instance()->get_ai(Scripting::get_object<GameObj>(handle));
+  return ai;
+}
+
+void
+ai_attach(int handle)
+{
+  Unit* unit = Scripting::get_object<Unit>(handle);
+  if (unit)
+    unit->attach_ai();
+}
+
+void ai_dettach(int handle)
+{
+  Unit* unit = Scripting::get_object<Unit>(handle);
+  if (unit)
+    unit->dettach_ai();
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: mine.cxx,v 1.11 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "alist.hxx"
 #include "tank.hxx"
 #include "mine.hxx"
 #include "game_obj_manager.hxx"
@@ -26,7 +27,7 @@
 #include "property_set.hxx"
 #include "resource_manager.hxx"
 
-Mine::Mine ()
+Mine::Mine (const AList& lst)
   : pos (0, 0),
     active (2),
     detonated (false),
@@ -35,6 +36,9 @@ Mine::Mine ()
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
   
+  pos.x = lst.get_float("x-pos");
+  pos.y = lst.get_float("y-pos");
+
   GroundType type = GameWorld::current()->get_groundmap ()->get_groundtype (pos.x, pos.y);
   if (type == GT_FLATWATER)
     {

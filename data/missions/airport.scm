@@ -141,12 +141,6 @@
 
 (vehicles-start)
 
-(input-register-callback "mouse_right" 
-                         (lambda ()
-                           (format #t "### Keyboard pressed: mouse: ~A ~A ~%"
-                                   (input-get-mouse-x)
-                                   (input-get-mouse-y))))
-
 (input-register-callback "key_a"
                          (lambda ()
                            (display "### Keyboard pressed: a")

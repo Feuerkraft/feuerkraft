@@ -1,4 +1,4 @@
-//  $Id: ai_commands.hxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: ai_commands.hxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,16 @@
 
 void ai_goto(int handle, float x, float y);
 void ai_stop(int handle);
+
+/** Check if an object has an AI attached to it 
+    @return true if object has AI, false otherwise */
+bool ai_has(int handle);
+
+/** Attach an AI object to an GameObject if it doesn't already have an
+    AI */
+void ai_attach(int handle);
+
+void ai_dettach(int handle);
 
 #endif
 

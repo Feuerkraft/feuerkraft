@@ -1,4 +1,4 @@
-//  $Id: marker.cxx,v 1.1 2003/06/04 22:51:52 grumbel Exp $
+//  $Id: marker.cxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,13 +20,17 @@
 #include "property_set.hxx"
 #include "resource_manager.hxx"
 #include "marker.hxx"
+#include "alist.hxx"
 #include "view.hxx"
 
-Marker::Marker()
+Marker::Marker(const AList& lst)
 {
   passed_time = 0;
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
+
+  pos.x = lst.get_float("x-pos");
+  pos.y = lst.get_float("y-pos");
 
   sprite = resources->get_sprite("feuerkraft/marker");
   sprite.set_blend_func(blend_src_alpha, blend_one);

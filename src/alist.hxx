@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: alist.hxx,v 1.8 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -60,6 +60,7 @@ public:
 
   ~AList();
 
+  AList& set_value (const std::string& str, const Value& value);
   AList& set_int   (const std::string& str, int value);
   AList& set_float (const std::string& str, float value);
   AList& set_bool  (const std::string& str, bool value);
@@ -71,7 +72,16 @@ public:
   bool get_bool     (const std::string& str, bool& value) const;
   bool get_string   (const std::string& str, std::string& value) const;
 
+  int    get_int      (const std::string& str) const;
+  float  get_float    (const std::string& str) const;
+  bool   get_bool     (const std::string& str) const;
+  std::string get_string   (const std::string& str) const;
+
   bool get_int_vector2d (const std::string& str, IntVector2d& value) const;
+
+  /** Merg lst into the current list, overwriting all values in *this
+      that are also in lst */
+  void merge(const AList& lst);
 
   iterator begin() { return content.begin(); }
   iterator end() { return content.end(); }
