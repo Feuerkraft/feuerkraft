@@ -1,4 +1,4 @@
-//  $Id: game_mission.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: game_mission.hxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define GAMEMISSION_HXX
 
 #include <string>
-#include <guile/gh.h>
+#include <libguile.h>
 
 class GameWorld;
 

@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: mine.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "boost/smart_ptr.hpp"
 #include "tank.hxx"
 #include "mine.hxx"
+#include "game_obj_manager.hxx"
 #include "game_world.hxx"
 #include "groundmap/ground_map.hxx"
 #include "resource_manager.hxx"
@@ -59,16 +59,15 @@ Mine::update (float delta)
     }
   else if (!detonated)
     {
-      for (GameWorld::ObjIter j = world->get_objects ().begin ();
-	   j != world->get_objects ().end (); ++j)
-	{
-	  Vehicle* vehicle = dynamic_cast<Vehicle*>(*j);
-
+      GameObjManager* objs = get_world()->get_game_obj_manager();
+      for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
+        {
+          Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
 	  if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 30.0f)
 	    {
 	      detonate ();
 	    }
-	}
+        }
     }
 }
 
@@ -98,10 +97,10 @@ Mine::draw (View* view)
 void 
 Mine::detonate () 
 {
-  for (GameWorld::ObjIter j = world->get_objects ().begin ();
-       j != world->get_objects ().end (); ++j)
+  GameObjManager* objs = get_world()->get_game_obj_manager();
+  for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(*j);
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       
       // If distance to the mine is smaller than 100 apply a force
       if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 100.0)

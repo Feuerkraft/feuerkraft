@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: guile.hxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,33 +20,34 @@
 #ifndef GUILE_HXX
 #define GUILE_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 #include <ClanLib/core.h>
 #include <string>
 #include <iostream>
 
 /** A loose collection of Guile helper functions */
-class Guile
-{
-private:
+namespace Guile {
 
-public:
-  /** Convert a scheme string into a C++ std::string, converting other
-      non string SCM data isn't currently supported */
-  static std::string scm2string (SCM data);
+/** Convert a scheme string into a C++ std::string, converting other
+    non string SCM data isn't currently supported */
+std::string scm2string (SCM data);
 
-  /** Convert a CL_Vector into a SCM of the form (pos 12.2 40.912 234) */
-  static SCM vector2scm (const CL_Vector& vec);
+/** Convert a CL_Vector into a SCM of the form (pos 12.2 40.912 234) */
+SCM vector2scm (const CL_Vector& vec);
 
-  /** Used in the BuildingMap: x,y => (pos x y) */
-  static SCM pos2scm (int x, int y);
+/** Used in the BuildingMap: x,y => (pos x y) */
+SCM pos2scm (int x, int y);
 
-  static SCM symbol_value_pair (const std::string&, float);
+SCM symbol_value_pair (const std::string&, float);
 
-  /** Pretty print the object given by obj */
-  static void pretty_print (std::ostream& s, SCM obj);
+/** Pretty print the object given by obj */
+void pretty_print (std::ostream& s, SCM obj);
 
-};
+bool equal_p(SCM a, SCM b);
+
+SCM symbol2scm(const char* str);
+
+} // namespace Guile
 
 #endif
 

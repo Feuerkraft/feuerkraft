@@ -74,6 +74,8 @@ resource_manager.cxx \
 resource_manager.hxx \
 screen.cxx \
 screen.hxx \
+scm_functor.hxx \
+scm_functor.cxx \
 scm_sequence_hook.hxx \
 scm_sequence_hook.cxx \
 sequence_manager.hxx \
@@ -92,6 +94,8 @@ system.cxx \
 system.hxx \
 tank.cxx \
 tank.hxx \
+timed_trigger_manager.hxx \
+timed_trigger_manager.cxx \
 tree.cxx \
 tree.hxx \
 tree_data.cxx \

@@ -1,4 +1,4 @@
-//  $Id: fuelstation.cxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
+//  $Id: fuelstation.cxx,v 1.4 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <cmath>
 #include "fuelstation.hxx"
+#include "game_obj_manager.hxx"
 #include "../radar.hxx"
 #include "../vehicle.hxx"
 #include "resource_manager.hxx"
@@ -61,8 +62,8 @@ Fuelstation::update (float delta)
 
   refueling = false;
 
-  for (GameWorld::ObjIter i = get_world()->get_objects().begin (); 
-       i != get_world()->get_objects().end (); ++i)
+  GameObjManager* objs = get_world()->get_game_obj_manager();
+  for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle && (vehicle->get_pos ().x > pos.x - 40

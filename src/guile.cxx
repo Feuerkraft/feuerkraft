@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: guile.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,14 +17,16 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <guile/gh.h>
 #include "guile.hxx"
 
+namespace Guile {
 std::string
-Guile::scm2string (SCM data)
+scm2string (SCM data)
 {
-  cl_assert (gh_string_p (data));
+  cl_assert(SCM_STRINGP(data));
 
-  char* tmpstr = gh_scm2newstr(gh_cadr (data), 0);
+  char* tmpstr = gh_scm2newstr(SCM_CADR(data), 0);
   std::string str = tmpstr;
 
 #ifdef WIN32 // the free causes throuble on Win32, so we disable it
@@ -34,8 +36,7 @@ Guile::scm2string (SCM data)
   return str;
 }
 
-SCM
-Guile::vector2scm (const CL_Vector& vec)
+SCM vector2scm (const CL_Vector& vec)
 {
   /** If this causes throuble on WIN32, replace it with gh_cons() */
   return SCM_BOOL_F; /*scm_listify (gh_symbol2scm ("pos"),
@@ -45,8 +46,7 @@ Guile::vector2scm (const CL_Vector& vec)
                       SCM_UNDEFINED);*/
 }
 
-SCM
-Guile::pos2scm (int x, int y)
+SCM pos2scm (int x, int y)
 {
   return SCM_BOOL_F;/*scm_listify (gh_symbol2scm ("pos"),
                       gh_int2scm (x),
@@ -54,13 +54,25 @@ Guile::pos2scm (int x, int y)
                       SCM_UNDEFINED);*/
 }
 
-void
-Guile::pretty_print (std::ostream& stream, SCM obj)
+void pretty_print (std::ostream& stream, SCM obj)
 {
-  std::cout << "Guile::pretty_print" << std::endl;
+  std::cout << "pretty_print" << std::endl;
   // FIXME: ...lalala..
   gh_write (obj);
   gh_newline ();
+
 }
+
+bool equal_p(SCM a, SCM b)
+{
+  return SCM_NFALSEP(scm_equal_p(a, b));
+}
+
+SCM symbol2scm(const char* str)
+{
+  return scm_str2symbol(str);
+}
+
+} // namespace Guile
 
 /* EOF */

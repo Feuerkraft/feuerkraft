@@ -1,4 +1,4 @@
-//  $Id: game_obj_data_factory.cxx,v 1.3 2003/04/27 23:00:30 grumbel Exp $
+//  $Id: game_obj_data_factory.cxx,v 1.4 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,17 +17,19 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <guile/gh.h>
+#include "guile.hxx"
 #include "tree_data.hxx"
 #include "game_obj_data_factory.hxx"
 
 GameObjData*
 GameObjDataFactory::create (SCM symbol, SCM data)
 {
-  if (gh_equal_p (gh_symbol2scm ("tree"), symbol))
+  if (Guile::equal_p(scm_str2symbol("tree"), symbol))
     {
       return new TreeData (data);
     }
-  else if (gh_equal_p (gh_symbol2scm ("tank"), symbol))
+  else if (Guile::equal_p(scm_str2symbol("tank"), symbol))
     {
       std::cout << "GameObjDataFactory::create: not implemented" << std::endl;
     }

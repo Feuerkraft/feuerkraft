@@ -1,4 +1,4 @@
-//  $Id: game_mission.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_mission.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <guile/gh.h>
 #include <iostream>
 #include "guile.hxx"
 #include "game_mission.hxx"
@@ -26,15 +27,15 @@ GameMission::GameMission (SCM desc)
   : creation_time (0),
     world (0)    
 {
-  if (gh_null_p (desc))
+  if (SCM_NULLP(desc))
     {
       std::cout << "GameMission: SCM contains no data" << std::endl;
       // FIXME: Error handling
     }
 
-  SCM symbol = gh_caar(desc);
+  SCM symbol = SCM_CAAR(desc);
  
-  if (gh_equal_p (gh_symbol2scm ("feuerkraft-mission"), symbol))
+  if (Guile::equal_p(scm_str2symbol("feuerkraft-mission"), symbol))
     {
       std::cout << "GameMission: SCM is mission data" << std::endl;
     }
@@ -44,33 +45,33 @@ GameMission::GameMission (SCM desc)
       // FIXME: Error handling
     }
   
-  desc = gh_cdr (desc);
+  desc = SCM_CDR(desc);
 
-  while (!gh_null_p (desc))
+  while (!SCM_NULLP(desc))
     {
       // Current line
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+      SCM symbol = SCM_CAAR(desc);
+      SCM data   = SCM_CDAR(desc);
 
-      if (gh_equal_p (gh_symbol2scm ("author-name"), symbol))
+      if (Guile::equal_p(scm_str2symbol("author-name"), symbol))
 	{
-	  author_name = Guile::scm2string(gh_cadr (data));
+	  author_name = Guile::scm2string(SCM_CADR(data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("author-email"), symbol))
+      else if (Guile::equal_p(scm_str2symbol("author-email"), symbol))
 	{
-	  author_email = Guile::scm2string (gh_cadr (data));
+	  author_email = Guile::scm2string(SCM_CADR(data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("creation-time"), symbol))
+      else if (Guile::equal_p(scm_str2symbol("creation-time"), symbol))
 	{
-	  creation_time = gh_scm2int (gh_cadr (data));
+	  creation_time = gh_scm2int(SCM_CADR(data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("world"), symbol))
+      else if (Guile::equal_p(scm_str2symbol("world"), symbol))
 	{
 	  
 	}
       
       // Goto next line
-      desc = gh_cdr (desc);
+      desc = SCM_CDR(desc);
     }
 }
 

@@ -1,4 +1,4 @@
-//  $Id: sequence_commands.cxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: trigger_commands.cxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,22 +17,26 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../timed_trigger_manager.hxx"
 #include "../scm_functor.hxx"
-#include "sequence_commands.hxx"
+#include "trigger_commands.hxx"
 
-int  sequence_start()
+// FIXME: return handles to the triggers to allow removal of them
+
+void
+trigger_add_timed(float seconds, SCM func)
 {
-  return SequenceManager::current()->start_sequence();
+  TimedTriggerManager::current()->add_trigger(seconds, SCMFunctor(func));
 }
 
-void sequence_end(int id)
+void
+trigger_add_tile(int x, int y, SCM func)
 {
-  SequenceManager::current()->end_sequence(id);
 }
 
-void sequence_add_hook(SCM func)
+void
+trigger_add_region(int x1, int y1, int x2, int y2, SCM func)
 {
-  SequenceManager::current()->add_hook(new GenericSequenceHook<SCMFunctor>(SCMFunctor(func)));
 }
 
 /* EOF */

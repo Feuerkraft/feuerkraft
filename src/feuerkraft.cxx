@@ -7,11 +7,9 @@
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 //#include <ClanLib/sound.h>
-#include <guile/gh.h>
+#include <libguile.h>
 
-#ifdef WIN32
 #include <time.h>
-#endif
 
 #include "feuerkraft.hxx"
 #include "game_world.hxx"
@@ -122,8 +120,8 @@ public:
 	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-	  SCM fdes = scm_open_file (gh_str02scm("data/missions/test.feu"), 
-				    gh_str02scm("r"));
+	  SCM fdes = scm_open_file (scm_makfrom0str("data/missions/test.feu"), 
+                                    scm_makfrom0str("r"));
 	  SCM lst  = scm_read (fdes);
 
 	  GameWorldData data(lst);

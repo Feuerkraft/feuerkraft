@@ -1,4 +1,4 @@
-//  $Id: sequence_manager.hxx,v 1.1 2003/05/02 00:17:14 grumbel Exp $
+//  $Id: sequence_manager.hxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,22 @@ public:
   void set_id(int arg_id) { id = arg_id; }
 
   virtual void call() =0;
+};
+
+template<class Func>
+class GenericSequenceHook : public SequenceHook
+{
+private:
+  Func func;
+public:
+  GenericSequenceHook(Func arg_func) 
+    : func(arg_func)
+  {
+  }
+
+  virtual ~GenericSequenceHook() {}
+
+  void call() { func(); }
 };
 
 /** */

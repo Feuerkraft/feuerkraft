@@ -1,4 +1,4 @@
-//  $Id: tree_data.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: tree_data.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <guile/gh.h>
 #include "guile.hxx"
 #include "tree.hxx"
 #include "tree_data.hxx"
@@ -27,7 +28,7 @@ TreeData::TreeData (SCM desc)
 
   /* FIXME: This parsing code needs some abstraction, rewriting it
      over and over again is not good */
-  while (gh_pair_p (desc))
+  while (gh_pair_p(desc))
     {
       if (gh_pair_p (gh_car(desc)))
 	{

@@ -1,4 +1,4 @@
-//  $Id: sequence_commands.cxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: scm_functor.cxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,22 +17,47 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../scm_functor.hxx"
-#include "sequence_commands.hxx"
+#include <iostream>
+#include <libguile.h>
+#include "scm_functor.hxx"
 
-int  sequence_start()
+SCMFunctor::SCMFunctor(SCM arg_func)
 {
-  return SequenceManager::current()->start_sequence();
+  func = arg_func;
+  scm_gc_protect_object(func);
 }
 
-void sequence_end(int id)
+SCMFunctor::~SCMFunctor()
 {
-  SequenceManager::current()->end_sequence(id);
+  scm_gc_unprotect_object(func);
 }
 
-void sequence_add_hook(SCM func)
+SCMFunctor::SCMFunctor(const SCMFunctor& hook)
 {
-  SequenceManager::current()->add_hook(new GenericSequenceHook<SCMFunctor>(SCMFunctor(func)));
+  func = hook.func;
+
+  scm_gc_protect_object(func);
+}
+
+SCMFunctor& 
+SCMFunctor::operator= (const SCMFunctor& hook)
+{
+  if (this != &hook)
+    {
+      scm_gc_unprotect_object(func);
+
+      func = hook.func;
+
+      scm_gc_protect_object(func);
+    }
+  return *this;
+}
+
+void
+SCMFunctor::operator()()
+{
+  //std::cout << "SCMFunctor::call(): " << get_id() << std::endl;
+  scm_call_0(func);
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: radar.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "buildings/building_map.hxx"
+#include "game_obj_manager.hxx"
 #include "radar.hxx"
 #include "math.hxx"
 #include "resource_manager.hxx"
@@ -49,8 +50,8 @@ Radar::draw (CL_GraphicContext* gc)
 
   background.draw (int(pos.x), int(pos.y), gc);
   
-  std::list<GameObj*>& objs = world->get_objects ();
-  for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
+  GameObjManager* objs = world->get_game_obj_manager();
+  for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);

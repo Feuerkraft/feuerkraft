@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: keyboard_controller.hxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #ifndef KEYBOARDCONTROLLER_HH
 #define KEYBOARDCONTROLLER_HH
 
+#include <ClanLib/Display/input_event.h>
+#include <ClanLib/Display/display_window.h>
 #include "controller.hxx"
 
 class KeyboardController : public Controller
@@ -39,7 +41,7 @@ private:
 
   void input_down(const CL_InputEvent& key);
 public:
-  KeyboardController (CL_DisplayWindow* window, Controllable* obj);
+  KeyboardController(CL_DisplayWindow* window, Controllable* obj);
   
   void update (float delta);
 };

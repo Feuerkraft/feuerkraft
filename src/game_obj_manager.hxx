@@ -1,4 +1,4 @@
-//  $Id: game_obj_manager.hxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: game_obj_manager.hxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,6 +57,14 @@ public:
   iterator end()   { return game_objs.end(); }
 
   GameWorld* get_world() { return game_world; }
+
+  template<class Func>
+  void for_each_game_obj(Func func) {
+    for (GameObjs::iterator i = game_objs.begin(); i != game_objs.end(); ++i)
+      {
+        func(**i);
+      }
+  }
 private:
   GameObjManager (const GameObjManager&);
   GameObjManager& operator= (const GameObjManager&);

@@ -1,5 +1,5 @@
-//  $Id: sequence_commands.cxx,v 1.2 2003/05/02 14:28:26 grumbel Exp $
-//
+//  $Id: trigger_commands.hxx,v 1.1 2003/05/02 14:28:26 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,27 +12,18 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../scm_functor.hxx"
-#include "sequence_commands.hxx"
+#ifndef HEADER_TRIGGER_COMMANDS_HXX
+#define HEADER_TRIGGER_COMMANDS_HXX
 
-int  sequence_start()
-{
-  return SequenceManager::current()->start_sequence();
-}
+void trigger_add_timed(float seconds, SCM func);
+void trigger_add_tile(int x, int y, SCM func);
+void trigger_add_region(int x, int y, int x, int y, SCM func);
 
-void sequence_end(int id)
-{
-  SequenceManager::current()->end_sequence(id);
-}
-
-void sequence_add_hook(SCM func)
-{
-  SequenceManager::current()->add_hook(new GenericSequenceHook<SCMFunctor>(SCMFunctor(func)));
-}
+#endif
 
 /* EOF */
