@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.10 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: projectile.cxx,v 1.11 2003/05/30 22:44:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,6 @@
 
 #include <iostream>
 #include "property_set.hxx"
-#include "collideable.hxx"
 #include "view.hxx"
 #include "collision_manager.hxx"
 #include "explosion.hxx"
@@ -101,12 +100,8 @@ Projectile::on_collision(GameObj* obj)
 {
   if (Projectile::parent != obj)
     {
-      std::cout << "Projectile " << get_id() << " touched gameobj " << obj->get_id() << std::endl;
-      Collideable* collideable = dynamic_cast<Collideable*>(obj);
-      if (collideable)
-        {
-          collideable->collide (this);
-        }
+      //std::cout << "Projectile " << get_id() << " touched gameobj " << obj->get_id() << std::endl;
+      obj->collide(this);
       detonate();
     }
 }

@@ -223,7 +223,7 @@ public:
 
         CL_System::keep_alive();
 
-	// Loop until the user hits escape:
+        // Loop until the user hits escape:
 	while (!CL_Keyboard::get_keycode(CL_KEY_ESCAPE)) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
 	    // Poor mans pause button

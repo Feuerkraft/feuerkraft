@@ -24,7 +24,6 @@ command_line_arguments.hxx \
 command_line_arguments.cxx \
 color.hxx \
 color.cxx \
-collideable.hxx \
 collision_manager.hxx \
 collision_manager.cxx \
 controllable.hxx \
@@ -52,6 +51,8 @@ game_obj_factory.cxx \
 game_obj_factory.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \
+ipc.cxx \
+ipc.hxx \
 keys.hxx \
 keys.cxx \
 world_builder.hxx \

@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.12 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: game_world.cxx,v 1.13 2003/05/30 22:44:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,6 @@
 #include "mine.hxx"
 #include "tank.hxx"
 #include "projectile.hxx"
-#include "collideable.hxx"
 #include "game_world.hxx"
 #include "groundmap/ground_map_data.hxx"
 #include "groundmap/ground_map.hxx"

@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.7 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.8 2003/05/30 22:44:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,6 @@
 #define HELICOPTER_HH
 
 #include "game_obj.hxx"
-#include "collideable.hxx"
 #include "controllable.hxx"
 #include "energie.hxx"
 #include "vehicle.hxx"

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.13 2003/05/19 21:46:21 grumbel Exp $
+//  $Id: tank.cxx,v 1.14 2003/05/30 22:44:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -227,7 +227,7 @@ Tank::update (float delta)
 
   FloatVector2d tmp_pos = pos + (vel * delta);
 
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(pos.x, tmp_pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building(FloatVector2d(pos.x, tmp_pos.y))))
     {
       //pos = tmp_pos; // We collided with a building
       //velocity = 0;

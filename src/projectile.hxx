@@ -1,4 +1,4 @@
-//  $Id: projectile.hxx,v 1.9 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: projectile.hxx,v 1.10 2003/05/30 22:44:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,11 @@
 #ifndef PROJECTILE_HH
 #define PROJECTILE_HH
 
-#include "vehicle.hxx"
+#include "vector2d.hxx"
+#include "game_obj.hxx"
 #include "resource_manager.hxx"
 
-class Projectile : public Collideable
+class Projectile : public GameObj
 {
 private:
   FloatVector2d pos;
@@ -35,10 +36,10 @@ private:
   /** Pointer back to the parent objects which created this
       projectile. Its used to avoid friendly fire (aka shooting
       yourself in the food). */
-  GameObjPtr parent;
+  GameObj* parent;
 
 public:
-  Projectile(GameObjPtr p, const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity);
+  Projectile(GameObj* p, const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity);
   virtual ~Projectile();
 
   virtual FloatVector2d get_pos () { return pos; }
