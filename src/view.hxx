@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: view.hxx,v 1.10 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,23 @@ class CL_Sprite;
 class CL_Surface;
 class Color;
 
+/** ViewState represents the current configuration of a View, aka.
+    rotation, position, zoom, etc. It is passed to the plug-ins to be
+    changed. */
+struct ViewState
+{
+  float x_offset;
+  float y_offset;
+  float zoom;
+  float rotation;
+};
+
+class ViewUpdater
+{
+public:
+  virtual void update(float delta, ViewState& state) =0;
+};
+
 /** A View provides a 'View' onto the world.
     
 A View is similar to a CL_GraphicContext, you can paint on it with
@@ -46,13 +63,12 @@ class View
 protected:
   int x1, y1;
   int x2, y2;
-  int x_offset, y_offset;
-  float zoom;
-  float rotation;
+
+  ViewState state;
+  ViewUpdater* view_updater;
   ViewProperty properties;
 public:
-  View (int x1, int y1, int x2, int y2,
-	int x_offset = 0, int y_offset = 0);
+  View (int x1, int y1, int x2, int y2, ViewUpdater* arg_updater = 0);
   virtual ~View ();
 
   void set_view (int x_pos, int y_pos);
@@ -61,14 +77,20 @@ public:
       is enlarged */
   void set_zoom (float zoom);
 
-  int get_x_offset ();
-  int get_y_offset ();
+  float get_x_offset ();
+  float get_y_offset ();
+
   int get_width ();
   int get_height ();
   int get_x1 ();
   int get_x2 ();
   int get_y1 ();
   int get_y2 ();
+  
+  /** Set the ViewUpdater. \a arg_updater will get deleted once it is
+      no longer used */
+  void set_updater(ViewUpdater* arg_updater);
+  void update(float delta);
 
   void draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const FloatVector2d& pos);

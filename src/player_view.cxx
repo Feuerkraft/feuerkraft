@@ -1,4 +1,4 @@
-//  $Id: player_view.cxx,v 1.1 2003/05/19 10:55:05 grumbel Exp $
+//  $Id: player_view.cxx,v 1.2 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,18 +20,19 @@
 #include "player.hxx"
 #include "player_view.hxx"
 
-PlayerView::PlayerView(int x1, int y1, int x2, int y2, Player* arg_player)
-  : VehicleView(x1, y1, x2, y2, arg_player->get_current_vehicle()),
+PlayerViewUpdater::PlayerViewUpdater(Player* arg_player)
+  : VehicleViewUpdater(arg_player->get_current_vehicle()),
     player(arg_player)
 {
 }
 
 void
-PlayerView::update(float delta)
+PlayerViewUpdater::update(float delta, ViewState& state)
 {
   // FIXME: Polling considered evil, maybe CL_Signal will help
-  VehicleView::set_vehicle(player->get_current_vehicle());
-  VehicleView::update(delta);
+  set_vehicle(player->get_current_vehicle());
+
+  VehicleViewUpdater::update(delta, state);
 }
 
 /* EOF */

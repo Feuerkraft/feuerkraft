@@ -1,4 +1,4 @@
-//  $Id: robot_tank.hxx,v 1.2 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: robot_tank.hxx,v 1.3 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,16 +21,12 @@
 #define HEADER_ROBOT_TANK_HXX
 
 #include "vector2d.hxx"
-#include "game_obj.hxx"
+#include "vehicle.hxx"
 
 /** */
-class RobotTank : public GameObj
+class RobotTank : public Vehicle
 {
 private:
-  FloatVector2d pos;
-  float orientation;
-  float velocity;
-
   enum ThrottleState { T_ACCELERATE, T_BREAK, T_NEUTRAL, T_MAX };
   enum SteeringState { S_LEFT, S_RIGHT, S_NEUTRAL, S_MAX };
   ThrottleState throttle_state;
@@ -51,7 +47,7 @@ public:
   void draw_energie(View& view);
   void draw_radar(Radar& radar);
   void draw_levelmap(LevelMap& view);
-
+  bool is_colliding (FloatVector2d obj_pos) { return false; }
 private:
   RobotTank (const RobotTank&);
   RobotTank& operator= (const RobotTank&);

@@ -1,4 +1,4 @@
-//  $Id: tile_map.cxx,v 1.3 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: tile_map.cxx,v 1.4 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -72,8 +72,8 @@ TileMap::draw(View& view)
 {
   //std::cout << "Offset: " << view->get_x_offset () << std::endl;
 
-  int tile_x_offset = -(view.get_x_offset () / 40);
-  int tile_y_offset = -(view.get_y_offset () / 40);
+  int tile_x_offset = int(-(view.get_x_offset () / 40));
+  int tile_y_offset = int(-(view.get_y_offset () / 40));
   int tile_width    = tile_x_offset + (view.get_width () / 40) + 1;
   int tile_height   = tile_y_offset + (view.get_height () / 40) + 1; 
  // FIXME: one tile more to avoid artefacts, hack, hack hack...

@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.hxx,v 1.7 2003/05/19 10:52:48 grumbel Exp $
+//  $Id: vehicle_view.hxx,v 1.8 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,14 +17,13 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef VEHICLEVIEW_HH
-#define VEHICLEVIEW_HH
+#ifndef HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
+#define HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
 
 #include "vehicle.hxx"
 #include "view.hxx"
 
-class VehicleView 
-  : public View
+class VehicleViewUpdater : public ViewUpdater
 {
 private:
   VehiclePtr vehicle;
@@ -33,15 +32,12 @@ private:
   float speed;
   float zoom_follower;
 public:
-  VehicleView (int x1, int y1, int x2, int y2,
-               VehiclePtr arg_vehicle);
-  virtual ~VehicleView ();
+  VehicleViewUpdater (VehiclePtr arg_vehicle);
+  virtual ~VehicleViewUpdater ();
 
+  virtual void update (float delta, ViewState& state);
   void set_vehicle (VehiclePtr arg_vehicle);
-  virtual void update (float delta);
 };
-
-typedef VehicleView* VehicleViewPtr;
 
 #endif
 

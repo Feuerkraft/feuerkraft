@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.13 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.14 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,10 +32,13 @@
 AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
   : destroyed(false),
     energie(100),
-    pos(arg_pos),
     length(0.0f),
     line_segments(pos.x, pos.y, 0.0f)
 {
+  pos = arg_pos;
+  velocity = 100.0f;
+  orientation = 0.0f;
+
   sprite = resources->get_sprite("feuerkraft/trooper");
   sprite.set_alignment(origin_center);
 
@@ -44,9 +47,6 @@ AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
 
   current_order.type = AI_VO_NONE;
   
-  velocity = 100.0f;
-  orientation = 0.0f;
-
   properties->register_float("x-pos",       &pos.x);
   properties->register_float("y-pos",       &pos.y);
   properties->register_bool ("destroyed",   &destroyed);

@@ -1,4 +1,4 @@
-//  $Id: robot_tank.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: robot_tank.cxx,v 1.5 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,10 +24,12 @@
 #include "robot_tank.hxx"
 
 RobotTank::RobotTank(float x_, float y_, float orientation_, float velocity_)
-  : pos(x_, y_),
-    orientation(orientation_), 
-    velocity(velocity_)
 {
+  pos.x = x_;
+  pos.y = y_;
+  orientation = orientation_; 
+  velocity = velocity_;
+
   max_velocity = 150.0f;
   throttle_state = T_NEUTRAL;
   steering_state = S_NEUTRAL;

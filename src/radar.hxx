@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.8 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: radar.hxx,v 1.9 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,7 +33,7 @@ typedef Player* PlayerPtr;
 class Radar : public GuiObj
 {
 private:
-  PlayerPtr   player;
+  PlayerPtr player;
   
   CL_Sprite background;
 

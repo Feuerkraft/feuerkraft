@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.11 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: view.cxx,v 1.12 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,22 +29,35 @@
 
 View::View (int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
-	    int arg_x_offset, int arg_y_offset)
-  : x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
-    x_offset (-arg_x_offset), y_offset (-arg_y_offset)
+	    ViewUpdater* arg_updater)
+  : x1 (arg_x1), y1 (arg_y1),
+    x2 (arg_x2), y2 (arg_y2),
+    view_updater(arg_updater)
 {
-  x_offset -= x1;
-  y_offset -= y1;
-  zoom = 1.0;
-  rotation = 0;
+  state.x_offset -= x1;
+  state.y_offset -= y1;
+
+  state.zoom = 1.0;
+  state.rotation = 0;
 }
 
 View::~View ()
 {
+  delete view_updater;
 }
 
-int View::get_x_offset () { return x1 - x_offset + (x2 - x1)/2; }
-int View::get_y_offset () { return y1 - y_offset + (y2 - y1)/2; }
+float
+View::get_x_offset () 
+{
+  return x1 - state.x_offset + (x2 - x1)/2; 
+}
+
+float
+View::get_y_offset ()
+{
+  return y1 - state.y_offset + (y2 - y1)/2; 
+}
+
 int View::get_x1 () { return x1; }
 int View::get_x2 () { return x2; }
 int View::get_y1 () { return y1; }
@@ -53,14 +66,14 @@ int View::get_y2 () { return y2; }
 void 
 View::set_view (int x_pos, int y_pos)
 {
-  x_offset = x_pos;
-  y_offset = y_pos;
+  state.x_offset = x_pos;
+  state.y_offset = y_pos;
 }
 
 void 
 View::set_zoom (float z)
 {
-  zoom = z;
+  state.zoom = z;
 }
 
 void 
@@ -202,6 +215,20 @@ View::draw_arc (float x_pos, float y_pos, float radius, float angle_start, float
       last_x = x;
       last_y = y;
     }
+}
+
+void
+View::set_updater(ViewUpdater* arg_updater)
+{
+  delete view_updater;
+  view_updater = arg_updater;
+}
+
+void
+View::update(float delta)
+{
+  if (view_updater)
+    view_updater->update(delta, state);
 }
 
 bool

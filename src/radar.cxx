@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.9 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: radar.cxx,v 1.10 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -71,7 +71,7 @@ Radar::draw(CL_GraphicContext* gc)
 
 void
 Radar::draw_blip(const FloatVector2d& arg_pos, int size,
-		  float red, float green, float blue)
+                 float red, float green, float blue)
 {
   // Callculate the distance between 'pos' and the vehicle that holds
   // the radar
@@ -86,13 +86,13 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
   if (diff.get_length() < 64.0)
     {
       //diff = diff.rotate(-vehicle->get_angle () + (3.14159/2), FloatVector2d (0, 0, 1.0));
-
-      CL_Display::fill_rect(CL_Rect(int(pos.x + diff.x), int(pos.y + diff.y),
-                                     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
-			     CL_Color(int(255*red),
-                                      int(255*green),
-                                      int(255*blue), 
-                                      int(255*alpha)));
+      
+      CL_Display::fill_rect(CL_Rect(int(pos.x + diff.x) - size, int(pos.y + diff.y) - size,
+                                    int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
+                            CL_Color(int(255*red),
+                                     int(255*green),
+                                     int(255*blue), 
+                                     int(255*alpha)));
     }
 }
 

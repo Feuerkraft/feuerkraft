@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.11 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.12 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,7 @@
 #include "energie.hxx"
 #include "line_segments.hxx"
 #include "sequence_manager.hxx"
-#include "game_obj.hxx"
+#include "vehicle.hxx"
 
 class LevelMap;
 
@@ -76,17 +76,13 @@ struct AIVehicleOrder
 };
 
 /** */
-class AIVehicle : public GameObj
+class AIVehicle : public Vehicle
 {
 private:
   bool destroyed;
   Energie energie;
-  FloatVector2d pos;
   float length;
   LineSegments line_segments;
-
-  float orientation;
-  float velocity;
 
   CL_Sprite sprite;
   CL_Sprite destroyed_sprite;
@@ -110,6 +106,8 @@ public:
 
   void on_collision(GameObj* obj);
   void on_collision_with_building(Building* building);
+
+  bool is_colliding(FloatVector2d) { return false; }
 private:
   AIVehicle (const AIVehicle&);
   AIVehicle& operator= (const AIVehicle&);

@@ -1,4 +1,4 @@
-//  $Id: player_view.hxx,v 1.1 2003/05/19 10:55:05 grumbel Exp $
+//  $Id: player_view.hxx,v 1.2 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,19 +25,17 @@
 class Player;
 
 /** */
-class PlayerView 
-  : public VehicleView
+class PlayerViewUpdater : public VehicleViewUpdater
 {
 private:
   Player* player;
 public:
-  PlayerView(int x1, int y1, int x2, int y2, 
-             Player* arg_player);
+  PlayerViewUpdater(Player* arg_player);
 
-  void update(float delta);
+  void update(float delta, ViewState& state);
 private:
-  PlayerView (const PlayerView&);
-  PlayerView& operator= (const PlayerView&);
+  PlayerViewUpdater (const PlayerViewUpdater&);
+  PlayerViewUpdater& operator= (const PlayerViewUpdater&);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.7 2003/05/19 10:52:48 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.8 2003/05/19 21:46:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,22 +20,19 @@
 #include <math.h>
 #include "vehicle_view.hxx"
 
-VehicleView::VehicleView (int x1, int y1, int x2, int y2,
-                          VehiclePtr arg_vehicle)
-  : View (x1, y1, x2, y2,
-          int(-arg_vehicle->get_pos ().x), int(-arg_vehicle->get_pos ().y)),
-    vehicle (arg_vehicle)
+VehicleViewUpdater::VehicleViewUpdater (VehiclePtr arg_vehicle)
+  : vehicle (arg_vehicle)
 {
   speed = 0.1f;
   zoom_follower = 1.0f;
 }
 
-VehicleView::~VehicleView ()
+VehicleViewUpdater::~VehicleViewUpdater ()
 {
 }
 
 void 
-VehicleView::update (float delta)
+VehicleViewUpdater::update (float delta, ViewState& state)
 {
   delta *= 50.0f;
   FloatVector2d target = vehicle->get_pos ();
@@ -45,7 +42,7 @@ VehicleView::update (float delta)
   if (zoom_follower > zoom) zoom_follower -= 0.01 * delta;
   if (zoom_follower < zoom) zoom_follower += 0.01 * delta;
 
-  set_zoom(zoom_follower);
+  state.zoom = zoom_follower;
 
   if ((pos - target).get_length() > 1.0f)
     {
@@ -53,17 +50,20 @@ VehicleView::update (float delta)
       pos += direction * speed;
    }
   
-  x_offset = int(pos.x);
-  y_offset = int(pos.y);
+  state.x_offset = int(pos.x);
+  state.y_offset = int(pos.y);
 
   float my_rotation = -(vehicle->get_angle ()/3.1415927*180.0) + 90;
 
-  if (rotation > my_rotation) rotation -= 2 * delta;
-  if (rotation < my_rotation) rotation += 2 * delta;
+  if (state.rotation > my_rotation) 
+    state.rotation -= 2 * delta;
+  
+  if (state.rotation < my_rotation) 
+    state.rotation += 2 * delta;
 }
 
 void
-VehicleView::set_vehicle (VehiclePtr arg_vehicle)
+VehicleViewUpdater::set_vehicle (VehiclePtr arg_vehicle)
 {
   vehicle = arg_vehicle;
 }

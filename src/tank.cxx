@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.12 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: tank.cxx,v 1.13 2003/05/19 21:46:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,10 +33,6 @@
 #include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
-
-// FIXME: Global variable hack, remove as soon as possible
-#include "vehicle_view.hxx"
-extern VehicleView* vehicle_view;
 
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 

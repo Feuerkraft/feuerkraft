@@ -180,21 +180,22 @@ public:
                                                            .set_float("y-pos", 50.0f)
                                                            .set_string("sprite", "feuerkraft/tree"));
 	world->add(tree);
-        world->add(new RobotTank(660, 1245, 0, 100.0f));
+        RobotTank* robot_tank = new RobotTank(660, 1245, 0, 100.0f);
+        world->add(robot_tank);
 
         Player the_player(tank1);
         player = &the_player;
-	PlayerView view(0, 0, 800, 600,
-                        player);
+	View view(0, 0, 800, 600, new PlayerViewUpdater(player));
+	//View view2(400, 0, 800, 600, new VehicleViewUpdater(ai_vehicle));
        
-        screen.add (new Radar(FloatVector2d(64, 64), player));
-	screen.add (new VehicleStatus (current_vehicle));
+        screen.add(new Radar(FloatVector2d(64, 64), player));
+	screen.add(new VehicleStatus(current_vehicle));
 
-	world->add (tank1);
-	world->add (ai_vehicle);
+	world->add(tank1);
+	world->add(ai_vehicle);
 
-	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
-	world->add (new Ambulance());
+	world->add(new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
+	world->add(new Ambulance());
 
 	world->add(new Soldier(FloatVector2d (200, 200)));
 	world->add(new Soldier(FloatVector2d (300, 300)));
@@ -209,9 +210,6 @@ public:
 
 	int loops = 0;
 	float deltas = 0.0;
-
-	view.set_zoom (0.5f);
-	view.set_view (400, 300);
 
 	int start_time = CL_System::get_time ();
 	int frames = 0;
@@ -250,8 +248,6 @@ public:
 
 	    last_time = CL_System::get_time ();
 
-	    view.update (delta);
-
             collision_mgr.clear();
 	    world->update (delta);
             collision_mgr.run();
@@ -259,10 +255,18 @@ public:
 	    deltas += delta;
 	    ++loops;
 
+	    view.update(delta);
+	    //view2.update(delta);
+
+            // Clip Rectangle
+            //window.get_gc()->set_cliprect(CL_Rect(5, 5, 395, 595));
             GameWorld::current()->draw(view);
             GameWorld::current()->draw_energie(view);
-
             collision_mgr.draw(view);
+
+            //window.get_gc()->set_cliprect(CL_Rect(405, 5, 795, 595));
+            //GameWorld::current()->draw(view2);
+            //GameWorld::current()->draw_energie(view2);
 
 	    screen.update (delta);
 	    screen.draw(window.get_gc ());
