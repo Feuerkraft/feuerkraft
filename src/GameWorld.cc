@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.6 2001/02/19 21:37:54 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.7 2001/02/19 21:48:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <algorithm>
+#include <functional>
 #include "boost/smart_ptr.hpp"
 #include "Mine.hh"
 #include "Tank.hh"
@@ -56,14 +57,14 @@ static bool z_pos_sorter (boost::shared_ptr<GameObj> a,
 }*/
 
 
-struct z_pos_sorter //: 
+struct z_pos_sorter : 
   //  public std:y_function<boost::shared_ptr<GameObj> a, boost::shared_ptr<GameObj> a, bool>
-  //public std::binary_function<boost::shared_ptr<GameObj> a, boost::shared_ptr<GameObj> a, bool>
+  public std::binary_function<boost::shared_ptr<GameObj>, boost::shared_ptr<GameObj>, bool>
 {
   bool operator() (boost::shared_ptr<GameObj> a,
 		   boost::shared_ptr<GameObj> b)
   {
-      return a->get_z_pos () < b->get_z_pos ();
+    return a->get_z_pos () < b->get_z_pos ();
   }
 };
 
@@ -84,7 +85,8 @@ GameWorld::draw ()
   return obj->removable ();
 }*/
 
-struct is_removable
+struct is_removable :
+  public std::unary_function<boost::shared_ptr<GameObj>, bool>
 {
   bool operator() (boost::shared_ptr<GameObj> obj) 
   {
