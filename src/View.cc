@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.6 2001/05/04 17:11:08 grumbel Exp $
+//  $Id: View.cc,v 1.7 2001/05/04 17:40:11 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -120,6 +120,26 @@ View::draw_pixel (int x_pos, int y_pos,
   //CL_Display::put_pixel (x1 + get_x_offset (),
   //			 y1 + get_y_offset (), r, g, b, a);
   std::cout << "View::draw_pixel () not implemented" << std::endl;
+}
+
+void 
+View::draw_circle (int x_pos, int y_pos, int radius,
+		   float r, float g, float b, float a = 1.0f)
+{
+  // FIXME: Probally not the fast circle draw algo on this world...
+  const float pi = 3.1415927 * 2.0;
+  const float steps = 8;
+  CL_Vector current (radius, 0);
+  CL_Vector next = current.rotate (pi/steps, CL_Vector (0, 0, 1.0f));
+
+  for (int i = 0; i < steps; ++i)
+    {
+      draw_line (x_pos + current.x, y_pos + current.y,
+		 x_pos + next.x, y_pos + next.y,
+		 r, g, b, a);
+      current = next;
+      next = next.rotate (pi/8, CL_Vector (0, 0, 1.0f));
+    }
 }
 
 /* EOF */

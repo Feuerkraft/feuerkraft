@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.4 2001/05/04 17:11:08 grumbel Exp $
+//  $Id: View.hh,v 1.5 2001/05/04 17:40:11 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -63,6 +63,8 @@ public:
   void draw_rect (int x1, int y1, int x2, int y2, 
 		  float r, float g, float b, float a = 1.0f);
   void draw_pixel (int x_pos, int y_pos, 
+		   float r, float g, float b, float a = 1.0f);
+  void draw_circle (int x_pos, int y_pos, int radius,
 		   float r, float g, float b, float a = 1.0f);
 };
 
