@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cc,v 1.1 2001/02/17 20:02:10 grumbel Exp $
+//  $Id: KeyboardController.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,9 @@ KeyboardController::update ()
     controllable->increase_velocity ();
   else if (CL_Keyboard::get_keycode (CL_KEY_DOWN))
     controllable->decrease_velocity ();
+
+  if (CL_Keyboard::get_keycode (CL_KEY_ENTER))
+    controllable->drop_mine ();
 
   if (CL_Keyboard::get_keycode (CL_KEY_SPACE))
     controllable->start_fire ();

@@ -28,6 +28,7 @@ private:
   std::deque<CL_Vector> smodpos;
   float tmp_angle;
   int smod_step;
+  int mine_reload_time;
 
 public:
   Tank (int reloading_speed, std::string tank, std::string turret, std::string fire);
@@ -44,6 +45,7 @@ public:
   CL_Vector get_pos () { return CL_Vector(x_pos, y_pos); }
   float get_x_pos () { return x_pos; }
   float get_y_pos () { return y_pos; }
+
   float get_angle () { return angle; }
   float get_increment () { return increment; }
 
@@ -61,6 +63,12 @@ public:
   
   void start_fire ();
   void stop_fire ();
+
+  void drop_mine ();
+  
+  int get_z_pos () { return 50; }
+
+  
 };
 
 #endif // TANK_HH

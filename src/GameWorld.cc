@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.1 2001/02/17 20:02:10 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "Mine.hh"
+#include "Tank.hh"
 #include "Projectile.hh"
 #include "Collideable.hh"
 #include "GameWorld.hh"
@@ -37,9 +39,15 @@ GameWorld::add (GameObj* obj)
   objects.push_back (obj);
 }
 
+static bool z_pos_sorter (GameObj* a, GameObj* b)
+{
+  return (a->get_z_pos () < b->get_z_pos ());
+}
+
 void 
 GameWorld::draw ()
 {
+  objects.sort (z_pos_sorter);
   for (std::list<GameObj*>::iterator i = objects.begin (); 
        i != objects.end (); ++i)
     {
@@ -81,6 +89,20 @@ GameWorld::update ()
 		    }
 		}
 	    }
+	}
+
+      Mine* mine = dynamic_cast<Mine*>(*i);
+      if (mine)
+	{
+	  for (std::list<GameObj*>::iterator j = objects.begin ();
+	       j != objects.end (); ++j)
+	    {
+	      Tank* tank = dynamic_cast<Tank*>(*j);
+	      if (tank && (tank->get_pos () - mine->get_pos ()).norm () < 20.0)
+		{
+		  mine->detonate ();
+		}
+	    }	  
 	}
     }
 }

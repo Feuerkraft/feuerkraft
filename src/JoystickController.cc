@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cc,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: JoystickController.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,6 +43,9 @@ JoystickController::update ()
     controllable->start_fire ();
   else
     controllable->stop_fire ();    
+
+  if (drop_mine->is_pressed ())
+    controllable->drop_mine ();
 }
   
 

@@ -1,4 +1,4 @@
-//  $Id: GameObj.hh,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: GameObj.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,11 +51,14 @@ public:
   // Update the object once a game loop
   virtual void update () {}
 
-  
+  // Mark the object as removable
   virtual void remove () { remove_me = true; }
 
   // @return true if the object can be removed from the world
   virtual bool removable () { return remove_me; }
+
+  //
+  virtual int  get_z_pos () { return 0; }
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: JoystickController.hh,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: JoystickController.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 // 
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -30,6 +30,7 @@ private:
   CL_InputButton* left_t;
   CL_InputButton* right_t;
   CL_InputButton* fire;
+  CL_InputButton* drop_mine;
 
 public:
   JoystickController (Controllable* obj) : 
@@ -43,6 +44,7 @@ public:
 	left_t = CL_Input::joysticks[0]->get_button (7);
 	right_t = CL_Input::joysticks[0]->get_button (6);
 	fire = CL_Input::joysticks[0]->get_button (4);
+	drop_mine = CL_Input::joysticks[0]->get_button (1);
       }
   }
 

@@ -2,6 +2,7 @@
 #include <string>
 #include <ClanLib/core.h>
 
+#include "Mine.hh"
 #include "Turret.hh"
 #include "Tank.hh"
 
@@ -19,7 +20,8 @@ Tank::Tank (int reloading_speed, std::string tank, std::string turret, std::stri
   sur (tank.c_str (), resources),
   smod ("feuerkraft/smod", resources),
   turret (new Turret(this, reloading_speed, turret, fire)),
-  smod_step (0)
+  smod_step (0),
+  mine_reload_time (0)
 {
 }
 
@@ -53,6 +55,9 @@ Tank::update ()
   turret->set_world (world);
   turret->update ();
 
+  if (mine_reload_time)
+    --mine_reload_time;
+
   if (velocity > 0.06)
     velocity -= 0.05;
   else if (velocity < -0.06)
@@ -60,8 +65,8 @@ Tank::update ()
   else
     velocity = 0;
 
-  if (velocity > 1)
-    velocity = 1.0;
+  if (velocity > 2)
+    velocity = 2.0;
   else if (velocity < -1)
     velocity = -1.0;
 
@@ -137,6 +142,18 @@ void
 Tank::stop_fire ()
 {
   turret->stop_fire ();
+}
+
+void
+Tank::drop_mine ()
+{
+  if (mine_reload_time <= 0)
+    {
+      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle - fmod(angle, circle/16.0), CL_Vector (0.0, 0.0, 1.0));
+
+      world->add (new Mine (CL_Vector(x_pos, y_pos) + vel));
+      mine_reload_time = 50;
+    }
 }
 
 // EOF //

@@ -1,4 +1,4 @@
-//  $Id: Tree.hh,v 1.1 2001/02/17 22:41:37 grumbel Exp $
+//  $Id: Tree.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,6 +36,7 @@ public:
   ~Tree ();
   
   void draw ();
+  int get_z_pos () { return 100; }
 };
 
 #endif

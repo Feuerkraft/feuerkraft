@@ -19,6 +19,8 @@ public:
   virtual void decrease_velocity () {};
   virtual void start_fire () =0;
   virtual void stop_fire () =0;
+
+  virtual void drop_mine () {}
 };
 
 #endif 

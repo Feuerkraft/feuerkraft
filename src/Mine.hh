@@ -1,4 +1,4 @@
-//  $Id: Explosion.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: Mine.hh,v 1.1 2001/02/18 00:49:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,58 +17,38 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#ifndef MINE_HH
+#define MINE_HH
 
 #include <ClanLib/core.h>
 #include "GameObj.hh"
+#include "Explosion.hh"
 
 extern CL_ResourceManager* resources;
 
-class Explosion : public GameObj
+class Mine : public GameObj
 {
 private:
-  bool is_drawn;
-  int lifetime;
-  CL_Surface explo;
+  CL_Surface sur;
   CL_Vector pos;
 
 public:
-  enum Size { SMALL, MEDIUM, LARGE };
-  
-  Explosion (const CL_Vector& arg_pos, Size size = SMALL) : 
-    is_drawn (false),
+  Mine (const CL_Vector& arg_pos) :
+    sur ("feuerkraft/mine", resources),
     pos (arg_pos)
   {
-    switch (size)
-      {
-      case SMALL:
-      case LARGE:
-	explo = CL_Surface("feuerkraft/smallexplo", resources);
-	lifetime = 1;
-	break;
-      case MEDIUM:
-	explo = CL_Surface("feuerkraft/mediumexplo", resources);
-	lifetime = 5;
-	break;
-      }
-  };
+  }
+
+  CL_Vector get_pos () { return pos; }
 
   void draw () {
-    explo.put_screen (int(pos.x) - explo.get_width ()/2,
-		      int(pos.y) - explo.get_height ()/2);
-    is_drawn = true;
+    sur.put_screen (pos.x - sur.get_width ()/2,
+		    pos.y - sur.get_height ()/2);
   }
-  
-  void update () {
-    --lifetime;
+  void detonate () {
+    world->add (new Explosion (pos, Explosion::MEDIUM));
+    remove ();
   }
-
-  bool removable () {
-    return is_drawn && lifetime <= 0;
-  }
-
-  int get_z_pos () { return 115; }
 };
 
 #endif
