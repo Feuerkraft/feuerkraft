@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: radar.cxx,v 1.4 2003/05/09 14:18:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/display.h>
 #include "buildings/building_map.hxx"
 #include "game_obj_manager.hxx"
 #include "radar.hxx"
@@ -61,17 +62,15 @@ Radar::draw (CL_GraphicContext* gc)
 
   radar_line.set_angle(Math::rad2deg(angle + 180.0f));
   radar_line.draw (int(pos.x), int(pos.y), gc);
-  //FIXME:Display2: frame support removed 
-  /*
-  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
-			 1.0, 1.0, 0.0);
 
+  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
+			 CL_Color(255, 255, 0));
+  
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) + 45, int(pos.y) - 45,
-			 1.0, 1.0, 0.0);
+			 CL_Color(255, 255, 0));
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(end.x), int(end.y),
-			 0.0, 1.0, 0.0);
-  */
+			 CL_Color(0, 255, 0));
 }
 
 void
@@ -92,11 +91,12 @@ Radar::draw_blip (const CL_Vector& arg_pos, int size,
     {
       diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
 
-      //FIXME:Display2: frame support removed 
-      /*
-      CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
-			     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size,
-			     red, green, blue, alpha);*/
+      CL_Display::fill_rect (CL_Rect(int(pos.x + diff.x), int(pos.y + diff.y),
+                                     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
+			     CL_Color(int(255*red),
+                                      int(255*green),
+                                      int(255*blue), 
+                                      int(255*alpha)));
     }
 }
 
