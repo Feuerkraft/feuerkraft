@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.7 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: feuerkraft.hxx,v 1.8 2003/06/09 20:27:31 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,6 +78,10 @@ class CommandLineArguments;
    some_object.hxx file.
 */
 
+/** Command Line arguments in a parsed and easily accessible form,
+    no need to touch \a argc or \a argv */
+extern CommandLineArguments* args;
+
 /** Feuerkraft is wrapper class around main(), which itself is part of
     clanApp. */
 class Feuerkraft : public CL_ClanApplication
@@ -86,10 +90,6 @@ private:
   /** Pointer to the main display window of Feuerkraft. FIXME: Could
       probally be placed in a DisplayManager or something like that */
   CL_DisplayWindow*     window;
-
-  /** Command Line arguments in a parsed and easily accessible form,
-      no need to touch \a argc or \a argv */
-  CommandLineArguments* args;
 
 public:
   Feuerkraft();

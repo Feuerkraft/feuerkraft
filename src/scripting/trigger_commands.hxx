@@ -1,4 +1,4 @@
-//  $Id: trigger_commands.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: trigger_commands.hxx,v 1.4 2003/06/09 20:27:31 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ void trigger_add_timed(float seconds, SCM func);
  */
 void trigger_add_tile(int x, int y, SCM func);
 
-void trigger_add_region(int x, int y, int x, int y, SCM func);
+void trigger_add_region(int x1, int y1, int x2, int y2, SCM func);
 
 //@}
 

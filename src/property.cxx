@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: property.cxx,v 1.7 2003/06/09 20:27:31 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include <assert.h>
 #include "string_converter.hxx"
 #include "property.hxx"
 

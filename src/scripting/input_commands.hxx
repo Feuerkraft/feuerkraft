@@ -1,4 +1,4 @@
-//  $Id: input_commands.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: input_commands.hxx,v 1.5 2003/06/09 20:27:31 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,8 @@ int  input_get_mouse_x();
 
 /** @brief Return the current mouse y position */
 int  input_get_mouse_y();
+
+
 
 //@}
 

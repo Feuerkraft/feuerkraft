@@ -45,6 +45,8 @@ game_mission.cxx \
 game_mission.hxx \
 game_obj.hxx \
 game_obj.cxx \
+game_session.hxx \
+game_session.cxx \
 game_obj_manager.hxx \
 game_obj_manager.cxx \
 game_obj_data.hxx \

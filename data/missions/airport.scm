@@ -174,8 +174,24 @@
 
 ;; Begin: Interface definition
 (define comm-menu         (menu-create))
+(define comm-util-menu    (menu-create))
 (define comm-retreat-menu (menu-create))
 (define comm-attack-menu  (menu-create))
+
+;;;;;;;;;;;;;;;
+;; Util Menu ;;
+;;;;;;;;;;;;;;;
+(menu-add-submenu-item comm-menu "Utilities" comm-util-menu)
+
+(menu-add-item comm-util-menu "Show Levelmap" 
+               (lambda ()
+                 (if (display-levelmap-visible)
+                     (display-hide-levelmap)
+                     (display-show-levelmap))))
+
+(menu-add-item comm-util-menu "Load 'test.scm'"
+               (lambda ()
+                 (display "loading test not implemented\n")))
 
 ;;;;;;;;;;;;;;;;;;
 ;; Retreat Menu ;;

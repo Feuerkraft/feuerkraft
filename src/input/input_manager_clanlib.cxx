@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.cxx,v 1.5 2003/06/06 18:36:24 grumbel Exp $
+//  $Id: input_manager_clanlib.cxx,v 1.6 2003/06/09 20:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,11 +41,11 @@ InputManagerClanLib::on_key_event(const CL_InputEvent& event)
       switch (event.type)
       {
       case CL_InputEvent::released:
-        std::cout << "Release: " << event.id << std::endl;
+        //std::cout << "Release: " << event.id << std::endl;
         break;
 
       case CL_InputEvent::pressed:
-        std::cout << "Press: " << event.id << std::endl;
+        //std::cout << "Press: " << event.id << std::endl;
         switch (event.id)
           {
             // Steering

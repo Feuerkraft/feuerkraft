@@ -1,4 +1,4 @@
-//  $Id: smoke_emitter.cxx,v 1.1 2003/06/07 17:19:19 grumbel Exp $
+//  $Id: smoke_emitter.cxx,v 1.2 2003/06/09 20:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@
 SmokeEmitter::SmokeEmitter(const FloatVector2d& arg_pos)
   : pos(arg_pos)
 {
-  
+  last_particle = 0.0f;
 }
 
 void

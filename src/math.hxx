@@ -1,4 +1,4 @@
-//  $Id: math.hxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: math.hxx,v 1.6 2003/06/09 20:27:31 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -68,7 +68,7 @@ T max (const T& a, const T& b)
 template<class T> 
 T mid (const T& a, const T& b, const T& c) 
 {
-  return max((a), min((b), (c)));
+  return max<T>((a), min<T>((b), (c)));
 }
 
 inline
