@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.13 2003/06/04 21:38:35 grumbel Exp $
+//  $Id: soldier.cxx,v 1.14 2003/06/04 22:51:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -97,7 +97,16 @@ Soldier::update (float delta)
 
   BuildingMap* building_map = GameWorld::current()->get_buildingmap();
   if (building_map->get_building(new_pos) == 0)
-    pos = new_pos;
+    {
+      pos = new_pos;
+    }
+  else
+    {
+      // Soldier is stuck in a building, allow him to walk him so he
+      // can unstuck himself
+      if (building_map->get_building(pos) != 0)
+        pos = new_pos;
+    }
 }
 
 bool 

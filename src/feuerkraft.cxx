@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.41 2003/06/04 21:07:54 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.42 2003/06/04 22:51:52 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <config.h>
 #include <iostream>
+#include <ClanLib/gl.h>
 #include <ClanLib/GL/setupgl.h>
 #include <ClanLib/core.h>
 #include <libguile.h>
@@ -294,6 +295,7 @@ Feuerkraft::main(int argc, char** argv)
 
           // Clip Rectangle
           //window.get_gc()->set_cliprect(CL_Rect(5, 5, 395, 595));
+          
           GameWorld::current()->draw(view);
           GameWorld::current()->draw_energie(view);
           collision_mgr.draw(view);

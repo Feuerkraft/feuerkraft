@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.10 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tree.cxx,v 1.11 2003/06/04 22:51:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,9 +26,9 @@
 Tree::Tree()
 {
   properties->register_string("sprite", &sprite_name);
-  properties->register_float("x-pos", &pos.x);
-  properties->register_float("y-pos", &pos.y);
-  properties->register_float("z-pos", &z_pos);
+  properties->register_float ("x-pos", &pos.x);
+  properties->register_float ("y-pos", &pos.y);
+  properties->register_float ("z-pos", &z_pos);
   z_pos = 10.0f;
 }
 
@@ -41,7 +41,6 @@ Tree::properties_updated()
 {
   std::cout << "Loading Tree Sprites" << std::endl;
   sur = resources->get_sprite(sprite_name);
-  
   sur.set_alignment(origin_center);
 }
   

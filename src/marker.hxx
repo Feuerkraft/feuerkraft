@@ -1,7 +1,7 @@
-//  $Id: tree.hxx,v 1.11 2003/06/04 22:51:52 grumbel Exp $
+//  $Id: marker.hxx,v 1.1 2003/06/04 22:51:52 grumbel Exp $
 // 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,32 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef TREE_HH
-#define TREE_HH
+#ifndef HEADER_MARKER_HXX
+#define HEADER_MARKER_HXX
 
-#include <string>
-#include "vector2d.hxx"
 #include <ClanLib/Display/sprite.h>
-
 #include "game_obj.hxx"
+#include "vector2d.hxx"
 
-// FIXME: Rename this to 'Brush'
-class Tree : public GameObj
+class View;
+
+/** A marker is a special guide for the player that gives visual
+    informations on the radar and on the map. */
+class Marker : public GameObj
 {
 private:
-  std::string sprite_name;
+  CL_Sprite sprite;
   FloatVector2d pos;
-  float z_pos;
-  CL_Sprite sur;
-
+  float passed_time;
 public:
-  Tree ();
-  ~Tree ();
-  
-  void properties_updated();
+  Marker();
+  ~Marker();
 
-  void  draw (View& view);
-  float get_z_pos () { return z_pos; }
+  void draw  (View& view);
+  void update(float delta);
+
+  float get_z_pos() { return 10000; }
+private:
+  Marker (const Marker&);
+  Marker& operator= (const Marker&);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.6 2003/06/04 22:51:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #include <iostream>
 #include "property_set.hxx"
 #include "tree.hxx"
+#include "marker.hxx"
 #include "game_obj.hxx"
 #include "game_obj_factory.hxx"
 
@@ -81,6 +82,9 @@ GameObjFactory::create_raw_object(int type_id)
 {
   switch (type_id)
     {
+    case 2:
+      return new Marker();
+      break;
     case 1:
     default:
       return new Tree();

@@ -32,6 +32,10 @@
       <image name="image1" file="images/house2.png" />
     </sprite>
 
+    <sprite name="marker">
+      <image name="image1" file="images/marker.png" />
+    </sprite>
+
     <sprite name="generator">
       <image name="image1" file="images/generator.png" />
     </sprite>

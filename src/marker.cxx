@@ -1,7 +1,7 @@
-//  $Id: tree.hxx,v 1.11 2003/06/04 22:51:52 grumbel Exp $
-// 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  $Id: marker.cxx,v 1.1 2003/06/04 22:51:52 grumbel Exp $
+//
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,39 +12,41 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef TREE_HH
-#define TREE_HH
+#include "property_set.hxx"
+#include "resource_manager.hxx"
+#include "marker.hxx"
+#include "view.hxx"
 
-#include <string>
-#include "vector2d.hxx"
-#include <ClanLib/Display/sprite.h>
-
-#include "game_obj.hxx"
-
-// FIXME: Rename this to 'Brush'
-class Tree : public GameObj
+Marker::Marker()
 {
-private:
-  std::string sprite_name;
-  FloatVector2d pos;
-  float z_pos;
-  CL_Sprite sur;
+  passed_time = 0;
+  properties->register_float("x-pos", &pos.x);
+  properties->register_float("y-pos", &pos.y);
 
-public:
-  Tree ();
-  ~Tree ();
-  
-  void properties_updated();
+  sprite = resources->get_sprite("feuerkraft/marker");
+  sprite.set_blend_func(blend_src_alpha, blend_one);
+}
 
-  void  draw (View& view);
-  float get_z_pos () { return z_pos; }
-};
+Marker::~Marker()
+{
+}
 
-#endif
+void
+Marker::draw (View& view)
+{
+  view.draw(sprite, pos);
+}
+
+void
+Marker::update(float delta)
+{
+  passed_time += delta;
+  sprite.set_alpha(sin(passed_time * 7.0f) * .2 + .3);
+}
 
 /* EOF */

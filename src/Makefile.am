@@ -73,6 +73,8 @@ level_map.cxx \
 level_map.hxx \
 line_segments.hxx \
 line_segments.cxx \
+marker.hxx \
+marker.cxx \
 math.hxx \
 math.cxx \
 mine.cxx \
