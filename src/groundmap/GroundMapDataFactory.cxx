@@ -1,4 +1,4 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.2 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: GroundMapDataFactory.cxx,v 1.3 2002/03/24 15:44:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,33 +19,47 @@
 
 #include <iostream>
 #include "TileMapData.hxx"
+#include "MultiGroundMap.hxx"
 #include "GroundMapDataFactory.hxx"
 
 GroundMapData* 
 GroundMapDataFactory::create (SCM desc)
 {
-  SCM symbol = gh_caar (desc);
-  SCM data   = gh_cdar (desc);
+  MultiGroundMapData* multigroundmap = new MultiGroundMapData ();
 
-  std::cout << "GroundMapFactory: symbol: "<< std::flush;
-  gh_display (symbol);
+  std::cout << "GroundMapFactory: desc: "<< std::flush;
+  gh_display (desc);
   gh_newline ();
 
-  std::cout << "GroundMapFactory: data: "<< std::flush;
-  gh_display (data);
-  gh_newline ();
-
-  if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
+  while (gh_pair_p (desc))
     {
-      return new TileMapData (data);
-    }
-  else
-    {
-      std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
+      SCM symbol = gh_caar (desc);
+      SCM data   = gh_cdar (desc);
+      
+      std::cout << "GroundMapFactory: symbol: "<< std::flush;
       gh_display (symbol);
       gh_newline ();
-      return 0;
+      
+      std::cout << "GroundMapFactory: data: "<< std::flush;
+      gh_display (data);
+      gh_newline ();
+      
+      if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
+	{
+	  multigroundmap->add(new TileMapData (data));
+	}
+      else
+	{
+	  std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
+	  gh_display (symbol);
+	  gh_newline ();
+	  //return 0;
+	}
+
+      desc = gh_cdr (desc);
     }
+
+  return multigroundmap;
 }
 
 /* EOF */

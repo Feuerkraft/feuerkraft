@@ -1,4 +1,4 @@
-//  $Id: GroundType.hxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: GroundType.hxx,v 1.2 2002/03/24 15:44:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,14 @@
     the speed and acceleration of vehicles. It has also influence on
     the detonation type of shells and rocket (splash instead of a big
     explosion and such). */
-enum GroundType { 
+enum GroundType 
+{ 
+  /** This GroundType is used to mark empty tiles, vehicles should not
+      react and it and the Worlds groundmap must not return it,
+      instead it should fallback to the default value for the current
+      map. */
+  GT_EMPTY,
+  
   /** Wheel driven vehicles will be slower on this ground type, chain
       driven vehicles won't be much influenced by this */
   GT_SAND,

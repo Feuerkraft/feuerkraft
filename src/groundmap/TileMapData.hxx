@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.6 2002/03/18 22:23:57 sphair Exp $
+//  $Id: TileMapData.hxx,v 1.7 2002/03/24 15:44:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,12 +47,12 @@ public:
   /** Create a TileMapData out of an SCM description, the structure is
       like this:
       
-      ((width 100)
-       (height 100)
-       (tiles (spritetile ...)
-              (someothertiletype ...)
-              ...)
-       (map 1 2 3 4 5 2 3 11 2 3 ...))
+      (tilemap (width 100)
+               (height 100)
+               (tiles (spritetile ...)
+                      (someothertiletype ...)
+                       ...)
+               (map 1 2 3 4 5 2 3 11 2 3 ...))
    */
   TileMapData (SCM desc);
   virtual ~TileMapData ();

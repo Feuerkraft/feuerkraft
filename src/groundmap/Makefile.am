@@ -14,6 +14,10 @@ libfeuerkraft_groundmap_a_SOURCES = \
   GroundMapDataFactory.cxx \
   GroundMapDataFactory.hxx \
   TileMapData.cxx \
-  TileMapData.hxx
+  TileMapData.hxx \
+  MultiGroundMap.hxx \
+  MultiGroundMap.cxx \
+  MultiGroundMapData.hxx \
+  MultiGroundMapData.cxx
 
 # EOF #

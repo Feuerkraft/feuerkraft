@@ -229,7 +229,7 @@ public:
 	      }
 
 	    CL_System::sleep (0);
-	    delta = ((CL_System::get_time () - last_time) / 1000.0f) * 0.6f; // FIXME: Slow down
+	    delta = ((CL_System::get_time () - last_time) / 1000.0f) * 0.7f; // FIXME: Slow down
 	    last_time = CL_System::get_time ();
 	    world->update (delta);
 	    
