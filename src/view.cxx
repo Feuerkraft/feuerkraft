@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.13 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: view.cxx,v 1.14 2003/06/06 14:25:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,6 +36,14 @@ View::View (int arg_x1, int arg_y1,
 {
   state.x_offset -= x1;
   state.y_offset -= y1;
+
+  std::cout << "XXX View: "
+            << x1 << " "
+            << x2 << " "
+            << y1 << " "
+            << y2 << " "
+            << state.x_offset << " "
+            << state.y_offset << " " << std::endl;
 
   state.zoom = 1.0;
   state.rotation = 0;

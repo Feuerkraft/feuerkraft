@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.10 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.11 2003/06/06 14:25:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 VehicleViewUpdater::VehicleViewUpdater (Unit* arg_unit)
   : unit(arg_unit)
 {
+  pos = unit->get_pos();
   speed = 0.1f;
   zoom_follower = 1.0f;
 }

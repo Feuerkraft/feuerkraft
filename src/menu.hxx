@@ -1,4 +1,4 @@
-//  $Id: menu.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: menu.hxx,v 1.3 2003/06/06 14:25:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define HEADER_MENU_HXX
 
 #include <vector>
+#include "input/input_event.hxx"
 #include "gui_obj.hxx"
 
 class MenuItem;
@@ -45,6 +46,11 @@ public:
 
   /** Evaluate the current item */
   void call_current_item();
+
+  void hide();
+
+  /** */
+  void process_events(const InputEventLst& );
 private:
   Menu (const Menu&);
   Menu& operator= (const Menu&);

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.46 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.47 2003/06/06 14:25:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -356,13 +356,13 @@ Feuerkraft::main(int argc, char** argv)
           // FIXME: Add an input dispatcher here, depending on the
           // dispatcher state, input should go to the menu, to the
           // comm-dialog or to the players vehicle
-          player->get_current_unit()->update_controlls(InputManager::get_events());
-
           if (DisplayManager::current()->get_menu())
             {
-              DisplayManager::current()->get_menu()->next_item();
-              if (CL_Keyboard::get_keycode(CL_KEY_RETURN))
-                DisplayManager::current()->get_menu()->call_current_item();
+              DisplayManager::current()->get_menu()->process_events(InputManager::get_events());
+            }
+          else
+            {
+              player->get_current_unit()->update_controlls(InputManager::get_events());
             }
         }
       DisplayManager::deinit();

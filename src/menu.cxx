@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: menu.cxx,v 1.3 2003/06/06 14:25:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <ClanLib/Display/display.h>
 #include "assert.hxx"
+#include "display_manager.hxx"
 #include "fonts.hxx"
 #include "menu_item.hxx"
 #include "menu.hxx"
@@ -94,6 +95,46 @@ Menu::call_current_item()
   AssertMsg(items.size() > 0, "Menu is empty!");
 
   items[current_item]->call();
+}
+
+void
+Menu::hide()
+{
+  DisplayManager::current()->hide_menu();
+}
+
+void
+Menu::process_events(const InputEventLst& lst)
+{
+  for(InputEventLst::const_iterator i = lst.begin(); i != lst.end(); ++i)
+    {
+      switch(i->type)
+        {
+        case AXIS_EVENT:
+          switch (i->axis.name)
+            {
+            case ACCELERATE_AXIS:
+              if (i->axis.pos > 0)
+                next_item();
+              else if (i->axis.pos < 0)
+                previous_item();
+              break;
+            }
+          break;
+        case BUTTON_EVENT:
+          switch (i->button.name)
+            {
+            case PRIMARY_FIRE_BUTTON:
+              if (i->button.down)
+                {
+                  call_current_item();
+                  hide();
+                }
+              break;
+            }
+          break;
+        }
+    }
 }
 
 /* EOF */
