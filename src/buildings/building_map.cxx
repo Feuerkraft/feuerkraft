@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: building_map.cxx,v 1.8 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,20 +19,53 @@
 
 #include <iostream>
 #include "../view.hxx"
-#include "building_data.hxx"
 #include "building_map.hxx"
 #include "building.hxx"
+
+#include "tower.hxx"
+#include "fuelstation.hxx"
+#include "ammotent.hxx"
+#include "headquarter.hxx"
+#include "wall.hxx"
+#include "wall_door.hxx"
 
 BuildingMap::BuildingMap(const BuildingMapData& data)
   : BuildingMapData (data)
 {
-  for (std::vector<BuildingData*>::iterator i = buildings_data.begin ();
+  for (std::vector<BuildingData>::iterator i = buildings_data.begin ();
        i != buildings_data.end ();
        ++i)
     {
-      // FIXME: we need probally to pass the GameWorld pointer all
-      // FIXME: around
-      buildings.push_back((*i)->create ());
+      if (i->first == "tower")
+	{
+	  buildings.push_back(new Tower(i->second));
+	}
+      else if ("ammotent" == i->first)
+	{
+	  buildings.push_back(new Ammotent(i->second));
+	}
+      else if ("wall" == i->first)
+	{
+	  buildings.push_back(new Wall(i->second));
+	}
+      else if ("fuelstation" == i->first)
+	{
+	  //std::cout << "BuildingMapData: creating ammotent" << std::endl;
+	  buildings.push_back(new Fuelstation(i->second));
+	}
+      else if ("headquarter" == i->first)
+	{
+	  //std::cout << "BuildingMapData: creating headquarter" << std::endl;
+	  buildings.push_back(new Headquarter(i->second));
+	}
+      else if ("walldoor" == i->first)
+	{
+	  buildings.push_back(new WallDoor(i->second));
+	}
+      else
+	{
+	  std::cout << "BuildingMapData: Error: " << i->first << std::flush;
+	}
     }
 
   building_map.resize(width * height);

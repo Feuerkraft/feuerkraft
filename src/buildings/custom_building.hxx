@@ -1,4 +1,4 @@
-//  $Id: custom_building.hxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: custom_building.hxx,v 1.6 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,9 +36,6 @@ class CustomBuilding : public Building
 private:
   CL_Sprite sprite;
   Energie energie;
-  // FIXME: Position handling here is ugly
-  int x_pos;
-  int y_pos;
 
   int width;
   int height;

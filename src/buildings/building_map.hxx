@@ -1,4 +1,4 @@
-//  $Id: building_map.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: building_map.hxx,v 1.9 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,8 @@
 class FloatVector2d;
 class View;
 class Building;
-class BuildingData;
 class Radar;
+
 typedef Building* BuildingPtr;
 
 class BuildingMap : public BuildingMapData,

@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.11 2003/06/22 18:34:52 grumbel Exp $
+//  $Id: building.hxx,v 1.12 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,6 @@
 #define BUILDING_HXX
 
 #include "../alist.hxx"
-#include "building_data.hxx"
 
 // Begin: Forward declarations
 class GameWorld;
@@ -47,17 +46,13 @@ protected:
   int y_pos;
 
 public:
-  Building (int x, int y);
   Building (const AList& lst);
-  Building ();
   virtual ~Building ();
   
   PropertySet* get_properties() { return properties; }
 
   void set_id(int i) { id = i; }
   int  get_id() { return id; }
-
-  virtual BuildingData* get_data () { return 0; }
 
   // Draw the object onto the screen
   virtual void draw (View& view) =0;

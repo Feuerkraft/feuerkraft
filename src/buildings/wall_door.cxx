@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.10 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,24 +23,22 @@
 #include "../resource_manager.hxx"
 #include "wall_door.hxx"
 
-WallDoor::WallDoor(const WallDoorData& data)
-  : Building (data.x_pos, data.y_pos)
+WallDoor::WallDoor(const AList& lst)
+  : Building(lst)
 {
-  switch (data.orientation)
+  if (lst.get_string("orientation") == "vertical")
     {
-    case WallDoorData::O_VERTICAL:
       sprite = resources->get_sprite("feuerkraft/vdoor");
       pos = FloatVector2d(x_pos * 40 + 20, y_pos * 40 + 60);
       map_width = 1;
       map_height = 3;
-      break;
-    case WallDoorData::O_HORIZONTAL:
-    default:
+    }
+  else 
+    {
       sprite = resources->get_sprite("feuerkraft/hdoor");
       pos = FloatVector2d(x_pos * 40 + 60, y_pos * 40 + 20);
       map_width = 3;
       map_height = 1;
-      break;
     }
 }
 

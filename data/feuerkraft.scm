@@ -50,7 +50,7 @@
                                 (equal? type 'all))
                             (format #t "[~a]~%" (gameobj-get-type obj))
                             (for-each (lambda (prop)
-                                        (format #t 
+                                        (format #t
                                                 "  ~a = ~a~%"
                                                 prop
                                                 (gameobj-get-property obj prop)))
@@ -72,7 +72,7 @@
 
 (define (comm-send-message color . msg)
   (c:comm-send-message 0 ;; FIXME: color 'node
-                       (call-with-output-string 
+                       (call-with-output-string
                         (lambda (port)
                           (for-each (lambda (el)
                                       (display el port))
@@ -93,7 +93,7 @@
            (lambda ()
              (top-repl)
              (display "Feuerkraft Readline exited nicly.\n"))
-           (lambda args 
+           (lambda args
              (display "Error: ")
              (display args)(newline)))
     (set-repl-prompt! old-prompt)))
@@ -104,7 +104,7 @@
 (define (join-nearest-vehicle)
   (let ((obj (player-get-current-unit)))
     (cond ((gameobj-is-soldier obj)
-           (let ((vehicle (vehicle-find-nearest 
+           (let ((vehicle (vehicle-find-nearest
                            (gameobj-get-property obj "x-pos")
                            (gameobj-get-property obj "y-pos")
                            50)))
@@ -122,7 +122,7 @@
            (let* ((orientation (- (gameobj-get-property obj "orientation") (/ 3.1415927 2.0)))
                   (x (* (cos orientation) 25))
                   (y (* (sin orientation) 25)))
-             
+
              (gameobj-set-property (player-get-soldier)
                                    "x-pos" (+ (gameobj-get-property obj "x-pos") x))
              (gameobj-set-property (player-get-soldier)
@@ -144,7 +144,7 @@
                                        (display-hide-levelmap)
                                        (display-show-levelmap))))
 
-(input-register-callback "key_a" (lambda () 
+(input-register-callback "key_a" (lambda ()
                                    (format #t "Menu Visible: ~a~%" (menu-visible))
                                    (if (menu-visible)
                                        (menu-hide)
@@ -154,13 +154,13 @@
 (input-register-callback "key_p"      game-pause)
 
 (define (bomber-attack x-pos y-pos)
-  (trigger-add-timed 
+  (trigger-add-timed
    3
    (lambda ()
      (comm-send-message 'base "Roger that. Bomber attack will start in 5 seconds.")
      (comm-send-message 'base "Move away there now!")
 
-     (trigger-add-timed 
+     (trigger-add-timed
       5
       (lambda ()
         (comm-send-message 'bomber "Bombs away!")
@@ -206,7 +206,7 @@
 ;;;;;;;;;;;;;;;
 (menu-add-submenu-item comm-menu "Utilities" comm-util-menu)
 
-(menu-add-item comm-util-menu "Drop Mine" 
+(menu-add-item comm-util-menu "Drop Mine"
                (lambda ()
                  (gameobj-create mine-type
                                  #:x-pos (gameobj-get-property (player-get-current-unit) "x-pos")
@@ -220,7 +220,7 @@
                            *satchels*)
                  (set! *satchels* '())))
 
-(menu-add-item comm-util-menu "Drop Satchel" 
+(menu-add-item comm-util-menu "Drop Satchel"
                (lambda ()
                  (let* ((obj (gameobj-create satchel-type
                                              #:x-pos (gameobj-get-property (player-get-current-unit) "x-pos")
@@ -229,7 +229,7 @@
                    (set! *satchels* (cons obj *satchels*)))))
 
 
-(menu-add-item comm-util-menu "Show Levelmap" 
+(menu-add-item comm-util-menu "Show Levelmap"
                (lambda ()
                  (if (display-levelmap-visible)
                      (display-hide-levelmap)
@@ -240,11 +240,11 @@
 ;;;;;;;;;;;;;;;;;;
 (menu-add-submenu-item comm-menu "Retreat" comm-retreat-menu)
 
-(menu-add-item comm-retreat-menu "Back to base" 
+(menu-add-item comm-retreat-menu "Back to base"
                (lambda ()
                  (comm-send-message 'player "Everybody return to base!")))
 
-(menu-add-item comm-retreat-menu "Join at my pos" 
+(menu-add-item comm-retreat-menu "Join at my pos"
                (lambda ()
                  (comm-send-message 'player "Everybody join at my pos!")))
 
@@ -256,11 +256,11 @@
 (menu-add-submenu-item comm-menu "Attack" comm-attack-menu)
 
 (menu-add-item comm-attack-menu "Attack Tank"
-               (lambda () 
+               (lambda ()
                  (comm-send-message 'player "Attack Tank at 2 o'clock")))
 
 (menu-add-item comm-attack-menu "Fire at Will"
-               (lambda () 
+               (lambda ()
                  (comm-send-message 'player "Everybody fire at Will!")))
 
 ;;(menu-add-submenu-item comm-attack-menu "Back" comm-menu)
@@ -268,29 +268,29 @@
 ;;;;;;;;;;;;;;;;;
 ;; Other Stuff ;;
 ;;;;;;;;;;;;;;;;;
-(menu-add-item comm-menu "Help!" 
+(menu-add-item comm-menu "Help!"
                (lambda ()
                  (comm-send-message 'player "I need help!")
 
                  (let* ((obj (player-get-current-unit))
                         (target-x (+ (gameobj-get-property obj "x-pos") 100))
                         (target-y (+ (gameobj-get-property obj "y-pos") 100)))
-                   
+
                    (ai-goto 75 target-x target-y)
                    (ai-goto 76 target-x target-y)
 
                    (ai-vehicle-clear-orders wingman)
-                   (ai-vehicle-drive-to wingman 
+                   (ai-vehicle-drive-to wingman
                                         (inexact->exact target-x)
                                         (inexact->exact target-y))
 
-                   (comm-send-message 'wingman "On my way to " 
+                   (comm-send-message 'wingman "On my way to "
                                       (inexact->exact target-x)
                                       " "
                                       (inexact->exact target-y)))))
 
-(menu-add-item comm-menu "Bomb Attack!" 
-               (lambda () 
+(menu-add-item comm-menu "Bomb Attack!"
+               (lambda ()
                  (comm-send-message 'player "Request Bomber support!")
                  (let ((obj (player-get-current-unit)))
                    (bomber-attack (inexact->exact (gameobj-get-property obj "x-pos"))
@@ -306,7 +306,7 @@
 
 ;; End:   Interface definition
 
-(input-register-callback "mouse_right" 
+(input-register-callback "mouse_right"
                          (lambda ()
                            (let ((x (input-get-mouse-world-x))
                                  (y (input-get-mouse-world-y)))
@@ -326,7 +326,7 @@
 
 (list-cdr-set! editor-type-list (1- (length editor-type-list)) editor-type-list)
 
-(input-register-callback "mouse_left" 
+(input-register-callback "mouse_left"
                          (lambda ()
                            (let ((x (input-get-mouse-world-x))
                                  (y (input-get-mouse-world-y)))
@@ -337,16 +337,15 @@
                                    (else
                                     (let ((obj (gameobj-create (car editor-type-list)
                                                                #:x-pos x
-                                                        #:y-pos y
-                                                        )))
+                                                               #:y-pos y)))
                                       (ai-attach obj)))))))
-  
-(input-register-callback "mouse_wheel_up" 
+
+(input-register-callback "mouse_wheel_up"
                          (lambda ()
                            (set! editor-type-list (cdr editor-type-list))
                            (display "Wheel UP\n")))
 
-(input-register-callback "mouse_wheel_down" 
+(input-register-callback "mouse_wheel_down"
                          (lambda ()
                            (set! editor-type-list (cdr editor-type-list))
                            (display "Wheel UP\n")))

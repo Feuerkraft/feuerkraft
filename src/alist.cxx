@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.10 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: alist.cxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -301,4 +301,16 @@ AList::merge(const AList& lst)
   }
   }
 */
+
+std::ostream& operator<< (std::ostream& os, const AList& lst)
+{
+  os << "[AList:";
+  for(AList::const_iterator i = lst.begin(); i != lst.end(); ++i)
+    {
+      os << "  " << i->first << " -> " << std::endl;
+    }  
+  os << "]";
+  return os;
+}
+
 /* EOF */

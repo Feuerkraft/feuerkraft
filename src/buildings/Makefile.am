@@ -3,8 +3,6 @@ noinst_LIBRARIES = libfeuerkraft_buildings.a
 libfeuerkraft_buildings_a_SOURCES = \
 ammotent.cxx \
 ammotent.hxx \
-base.cxx \
-base.hxx \
 building.hxx \
 building.cxx \
 building_map.cxx \

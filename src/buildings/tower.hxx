@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: tower.hxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,6 @@
 #include <ClanLib/Display/sprite.h>
 #include "../energie.hxx"
 #include "building.hxx"
-#include "tower_data.hxx"
 
 class Controller;
 class GameWorld;
@@ -45,7 +44,7 @@ private:
       is due to the position in the building map */
   FloatVector2d pos;
 public:
-  Tower(const TowerData& data);
+  Tower(const AList& lst);
   virtual ~Tower();
   
   // Draw the object onto the screen

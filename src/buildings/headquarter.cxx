@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: headquarter.cxx,v 1.9 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,8 @@
 #include "../resource_manager.hxx"
 #include "headquarter.hxx"
 
-Headquarter::Headquarter (const HeadquarterData& data)
-  : Building (data.x_pos, data.y_pos),
+Headquarter::Headquarter (const AList& lst)
+  : Building (lst),
     pos (x_pos * 40 + 40, y_pos * 40 + 40),
     headquarter (resources->get_sprite("feuerkraft/headquarter")),
     headquarter_damaged (resources->get_sprite("feuerkraft/headquarterdamaged")),

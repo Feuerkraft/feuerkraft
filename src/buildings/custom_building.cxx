@@ -1,4 +1,4 @@
-//  $Id: custom_building.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: custom_building.cxx,v 1.8 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,23 +22,21 @@
 #include "custom_building.hxx"
 
 CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
+  : Building(lst)
 {
   std::string sprite_str = "feuerkraft/nobuilding";
   int         i_energie = 100;
   width   = 2;
   height  = 2;
 
-  type.get_string("sprite", sprite_str);
-  type.get_int("energie", i_energie);
-  type.get_int("width", width);
-  type.get_int("height", height);
+  type.get_string("sprite",  sprite_str);
+  type.get_int   ("energie", i_energie);
+  type.get_int   ("width",   width);
+  type.get_int   ("height",  height);
 
   energie.set_max_energie(i_energie);
 
   sprite = resources->get_sprite(sprite_str);
-
-  lst.get_int("x-pos", x_pos);
-  lst.get_int("y-pos", y_pos);
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: grid_map.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_map.hxx,v 1.7 2003/06/22 19:22:57 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,11 +32,20 @@
 
 class GridTile;
 
+/**
+   The GridMap works by having a grid of ground properties and
+   generating a tilemap of that data. The ground properties define
+   how a vehicle behaves on the ground, while the generated tiles are
+   really just there to make it look good.
+*/
 class GridMap : public GroundMap,
 		public GridMapData
 {
 private:
+  /** width of the map in tiles */
   int width;
+
+  /** height of the map in tiles */
   int height;
   
   /** This is the map, all tiles in this vector are just pointers to
@@ -46,13 +55,18 @@ private:
   /** All real tiles are stored in this map, delete them here */
   GridTileGenerator tiles;
 
+  /** A surface where each pixel-color represents a tile, used in the
+      draw_levelmap() function */ 
   CL_Surface surface;
 
 public:
   GridMap (const GridMapData& data);
   virtual ~GridMap ();
 
+  /** Return the type of the ground at the world coordinates \a x and
+      \a y */
   GroundType get_groundtype (float x, float y);
+
   void draw (View& view);
   void draw_levelmap (LevelMap& levelmap);
   void update (float);

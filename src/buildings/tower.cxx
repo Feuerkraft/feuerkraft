@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.9 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: tower.cxx,v 1.10 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,16 +25,16 @@
 #include "../explosion.hxx"
 #include "tower.hxx"
 
-Tower::Tower(const TowerData& data)
-  : Building(data.x_pos, data.y_pos),
+Tower::Tower(const AList& lst)
+  : Building(lst),
     towerbase(resources->get_sprite("feuerkraft/towerbase")),
     towerdamaged (resources->get_sprite("feuerkraft/towerdamaged")),
     towerdestroyed (resources->get_sprite("feuerkraft/towerdestroyed")),
     turret (resources->get_sprite("feuerkraft/towerturret")),
-    energie (int(data.start_energie)),
+    energie (lst.get_int("start-energie")),
     destroyed (false)
 {  
-  orientation = data.orientation;
+  orientation = lst.get_float("orientation");
   pos.x = x_pos * 40 + 40;
   pos.y = y_pos * 40 + 40;
 

@@ -1,4 +1,4 @@
-//  $Id: grid_map_data.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_map_data.hxx,v 1.5 2003/06/22 19:22:57 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,8 @@
 
 class CL_PixelBuffer;
 
+/**  
+ */
 class GridMapData : public GroundMapData
 {
 protected:

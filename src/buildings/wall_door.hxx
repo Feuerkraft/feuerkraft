@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: wall_door.hxx,v 1.10 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,9 +23,8 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Core/Math/cl_vector.h>
 
-#include "building.hxx"
 #include "../vector2d.hxx"
-#include "wall_door_data.hxx"
+#include "building.hxx"
 
 class View;
 class Radar;
@@ -44,7 +43,7 @@ private:
   FloatVector2d pos;
 
 public:
-  WallDoor(const WallDoorData&);
+  WallDoor(const AList& lst);
   virtual ~WallDoor();
 
   void draw (View& view);

@@ -1,4 +1,4 @@
-//  $Id: headquarter.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: headquarter.hxx,v 1.10 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,6 @@
 
 #include "../energie.hxx"
 #include "building.hxx"
-#include "headquarter_data.hxx"
 #include "../projectile.hxx"
 
 class Headquarter : public Building
@@ -37,7 +36,7 @@ private:
   bool destroyed;
   
 public:
-  Headquarter(const HeadquarterData&);
+  Headquarter(const AList& lst);
   virtual ~Headquarter();
 
   void draw(View&);

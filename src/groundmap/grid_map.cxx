@@ -1,4 +1,4 @@
-//  $Id: grid_map.cxx,v 1.9 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: grid_map.cxx,v 1.10 2003/06/22 19:22:57 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ GridMap::GridMap (const GridMapData& data)
 
   tile_data.resize (width * height);
 
-  /* Generated a temporary tile_data */
+  // Generated a temporary tile_data
   for (int y = 0; y < height; ++y)
     {
       for (int x = 0; x < width; ++x)
@@ -44,11 +44,11 @@ GridMap::GridMap (const GridMapData& data)
 	}
     }
 
+  // Resize the gridmap to the correct size and fill it with tiles
   gridmap.resize (tile_data.size ());
   for (unsigned int i = 0; i != tile_data.size (); ++i)
-    {
-      gridmap[i] = tiles.create(tile_data[i]);
-    }
+    gridmap[i] = tiles.create(tile_data[i]);
+
 }
 
 GridMap::~GridMap ()
@@ -105,7 +105,7 @@ GridMap::draw_levelmap (LevelMap& levelmap)
 GroundType
 GridMap::get_groundtype (float x, float y)
 {
-  // FIXME: This doesn't look right
+  // FIXME: This doesn't look right, tile size is hardcoded
   int ix = int((x + 20) / 40);
   int iy = int((y + 20) / 40);
 

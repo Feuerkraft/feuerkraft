@@ -1,4 +1,4 @@
-//  $Id: ammotent.hxx,v 1.10 2003/06/22 18:34:52 grumbel Exp $
+//  $Id: ammotent.hxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,9 +24,6 @@
 
 #include "../view.hxx"
 #include "building.hxx"
-#include "ammotent_data.hxx"
-
-class AList;
 
 class Ammotent : public Building
 {

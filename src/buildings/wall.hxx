@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.10 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: wall.hxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,6 @@
 #include <ClanLib/Display/sprite.h>
 #include "../vector2d.hxx"
 
-#include "wall_data.hxx"
 #include "building.hxx"
 
 class Wall : public Building
@@ -35,7 +34,7 @@ private:
   CL_Sprite wall_destroyed;
   int energie;
 public:
-  Wall(const WallData&);
+  Wall(const AList& lst);
   virtual ~Wall();
 
   void draw (View& view);
