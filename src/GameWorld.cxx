@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.7 2002/03/27 23:59:06 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.8 2002/03/31 20:43:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -135,11 +135,12 @@ GameWorld::draw (View* view)
   //objects.sort (z_pos_sorter ());
 #ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
 //  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
+  objects.sort (z_pos_sorter ());
 #else
   objects.sort (z_pos_sorter ());
 #endif
 
-  for (ObjIter::iterator i = objects.begin (); 
+  for (ObjIter i = objects.begin (); 
        i != objects.end (); ++i)
     (*i)->draw (view);
   //for_each (objects.begin (), objects.end (), bind2nd(mem_fun (&GameObj::draw), view));
@@ -148,7 +149,7 @@ GameWorld::draw (View* view)
 void 
 GameWorld::draw_energie (View* view)
 {
-  for (ObjIter::iterator i = objects.begin (); 
+  for (ObjIter i = objects.begin (); 
        i != objects.end (); ++i)
     (*i)->draw_energie (view);
 }
@@ -157,7 +158,7 @@ void
 GameWorld::draw_levelmap (LevelMap* levelmap)
 {
   //groundmap->draw_levelmap (levelmap);
-  for (ObjIter::iterator i = objects.begin (); 
+  for (ObjIter i = objects.begin (); 
        i != objects.end (); ++i)
     (*i)->draw_levelmap (levelmap);
 }

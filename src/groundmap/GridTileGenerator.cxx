@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.cxx,v 1.4 2002/03/27 23:59:07 grumbel Exp $
+//  $Id: GridTileGenerator.cxx,v 1.5 2002/03/31 20:43:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -123,7 +123,10 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
       char* str = gh_scm2newstr (gh_car (desc), 0);
       vec.push_back (new GridTile (str));
       
+#ifndef WIN32
       free (str);
+#endif
+
       desc = gh_cdr (desc);
     }
 
