@@ -32,48 +32,25 @@ AC_CHECK_HEADER(guile/gh.h)
 dnl FIXME: this is a hack for my local machine...
 LIBS="$LIBS -L/usr/X11R6/lib/ -lXxf86vm"
 
-AC_CHECK_LIB(clanCore, main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
+REQUIRED_CLANLIB_VERSION="0.7.3"
 
-AC_CHECK_LIB( clanApp,   main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
+PKG_CHECK_MODULES(FEUERKRAFT_DEPS,
+ [
+  clanCore    >= $REQUIRED_CLANLIB_VERSION
+  clanApp     >= $REQUIRED_CLANLIB_VERSION
+  clanDisplay >= $REQUIRED_CLANLIB_VERSION
+  clanGL      >= $REQUIRED_CLANLIB_VERSION
+  clanSound   >= $REQUIRED_CLANLIB_VERSION
+  clanMikMod  >= $REQUIRED_CLANLIB_VERSION
+  clanVorbis  >= $REQUIRED_CLANLIB_VERSION
+  ],
+ [CXXFLAGS="$CXXFLAGS $FEUERKRAFT_DEPS_CFLAGS"
+  LIBS="$LIBS $FEUERKRAFT_DEPS_LIBS"])
 
-dnl AC_CHECK_LIB( clanSound,   main,, [
-dnl 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
-dnl 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"
-dnl 	echo "or you need to run 'ldconfig'."
-dnl 	echo "If you think you have everything correctly installed have a look at"
-dnl 	echo "the file 'config.log' to see what went wrong"
-dnl 	exit
-dnl 	])
-
-AC_CHECK_LIB( clanDisplay,   main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
-
-
-AC_CHECK_LIB( clanGL,   main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
-
-AC_CHECK_LIB( clanSound,   main)
-
-AC_CHECK_LIB( clanMikMod,   main)
-AC_CHECK_LIB( clanVorbis,   main)
+dnl FIXME: Check for optional libraries is missing
+AC_DEFINE(HAVE_LIBCLANSOUND,  1, [clanSound is present])
+AC_DEFINE(HAVE_LIBCLANMIKMOD, 1, [clanMikMod is present])
+AC_DEFINE(HAVE_LIBCLANVORBIS, 1, [clanVorbis is present])
 
 AC_OUTPUT( Makefile
            doc/Makefile

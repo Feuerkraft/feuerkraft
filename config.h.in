@@ -3,25 +3,13 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
-/* Define to 1 if you have the `clanApp' library (-lclanApp). */
-#undef HAVE_LIBCLANAPP
-
-/* Define to 1 if you have the `clanCore' library (-lclanCore). */
-#undef HAVE_LIBCLANCORE
-
-/* Define to 1 if you have the `clanDisplay' library (-lclanDisplay). */
-#undef HAVE_LIBCLANDISPLAY
-
-/* Define to 1 if you have the `clanGL' library (-lclanGL). */
-#undef HAVE_LIBCLANGL
-
-/* Define to 1 if you have the `clanMikMod' library (-lclanMikMod). */
+/* clanMikMod is present */
 #undef HAVE_LIBCLANMIKMOD
 
-/* Define to 1 if you have the `clanSound' library (-lclanSound). */
+/* clanSound is present */
 #undef HAVE_LIBCLANSOUND
 
-/* Define to 1 if you have the `clanVorbis' library (-lclanVorbis). */
+/* clanVorbis is present */
 #undef HAVE_LIBCLANVORBIS
 
 /* Define to 1 if you have the `guile' library (-lguile). */

@@ -2,7 +2,6 @@
 #include "projectile.hxx"
 #include "tank.hxx"
 #include "turret.hxx"
-#include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
 
 const float circle = 6.2831854f;

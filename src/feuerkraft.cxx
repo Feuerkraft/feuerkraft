@@ -52,7 +52,6 @@
 #include "buildings/building_map.hxx"
 #include "buildings/building_type_manager.hxx"
 
-#include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
 #include "game_obj_factory.hxx"
 #include "property_set.hxx"

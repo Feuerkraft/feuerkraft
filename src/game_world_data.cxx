@@ -1,4 +1,4 @@
-//  $Id: game_world_data.cxx,v 1.3 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: game_world_data.cxx,v 1.4 2003/05/18 14:00:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,6 @@
 
 #include <iostream>
 #include "guile.hxx"
-#include "generic/ofstreamext.hxx"
 #include "game_world.hxx"
 #include "buildings/building_map_data.hxx"
 #include "groundmap/ground_map_data.hxx"
