@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.6 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: alist.cxx,v 1.7 2003/05/13 18:28:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ AList::AList(const AList& alist)
   for(Content::iterator i = content.begin(); i != content.end(); ++i)
     {
       if (i->second.type == AL_STRING)
-        i->second.value.v_string = new std::string(*(i->second.value.v_string));
+        i->second.v_string = new std::string(*(i->second.v_string));
     }
 }
 
@@ -42,7 +42,7 @@ AList::operator=(const AList& alist)
   for(Content::iterator i = content.begin(); i != content.end(); ++i)
     {
       if (i->second.type == AL_STRING)
-        delete i->second.value.v_string;
+        delete i->second.v_string;
     }
   content.clear();
 
@@ -51,7 +51,7 @@ AList::operator=(const AList& alist)
   for(Content::iterator i = content.begin(); i != content.end(); ++i)
     {
       if (i->second.type == AL_STRING)
-        i->second.value.v_string = new std::string(*(i->second.value.v_string));
+        i->second.v_string = new std::string(*(i->second.v_string));
     }
   return *this;
 }
@@ -61,7 +61,7 @@ AList::~AList()
   for(Content::iterator i = content.begin(); i != content.end(); ++i)
     {
       if (i->second.type == AL_STRING)
-        delete i->second.value.v_string;
+        delete i->second.v_string;
     }
 }
 
@@ -70,7 +70,7 @@ AList::ensure_free_cell(const std::string& name, Type type)
 {
   Value& value = content[name];
   if (value.type == AL_STRING)
-    delete value.value.v_string;
+    delete value.v_string;
   
   if (value.type != type && value.type != AL_NONE)
     {
@@ -85,7 +85,7 @@ AList::AList&
 AList::set_int(const std::string& name, int value)
 {
   Value& v = ensure_free_cell(name, AL_INT);
-  v.value.v_int = value;
+  v.v_int = value;
   return *this;
 }
 
@@ -93,7 +93,7 @@ AList&
 AList::set_float(const std::string& name, float value)
 {
   Value& v = ensure_free_cell(name, AL_FLOAT);
-  v.value.v_float = value;
+  v.v_float = value;
   return *this;
 }
 
@@ -101,7 +101,7 @@ AList&
 AList::set_bool(const std::string& name, bool value)
 {
   Value& v = ensure_free_cell(name, AL_BOOL);
-  v.value.v_bool = value;
+  v.v_bool = value;
   return *this;
 }
 
@@ -110,7 +110,7 @@ AList::set_string(const std::string& name, const std::string& value)
 {
   std::cout << "AList: " << name << " '" << value << "'" << std::endl;
   Value& v = ensure_free_cell(name, AL_STRING);
-  v.value.v_string = new std::string(value);
+  v.v_string = new std::string(value);
   return *this;
 }
 
@@ -118,7 +118,7 @@ AList&
 AList::set_int_vector2d(const std::string& name, IntVector2d& value)
 {
   Value& v = ensure_free_cell(name, AL_INTVECTOR2D);
-  v.value.v_int_vector2d = value;
+  v.v_int_vector2d = value;
   return *this;
 }
 
@@ -126,7 +126,7 @@ AList&
 AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
 {
   Value& v = ensure_free_cell(name, AL_FLOATVECTOR2D);
-  v.value.v_float_vector2d = value;  
+  v.v_float_vector2d = value;  
   return *this;
 }
 
@@ -157,7 +157,7 @@ AList::get_int(const std::string& name, int& value) const
     return false;
   else
     {
-      value = v->value.v_int;
+      value = v->v_int;
       return true;
     }
 }
@@ -171,7 +171,7 @@ AList::get_float(const std::string& name, float& value) const
       const Value* int_v = get_value(name, AL_INT);
       if (int_v)
         {
-          value = int_v->value.v_int;
+          value = int_v->v_int;
           return true;
         }
       else
@@ -179,7 +179,7 @@ AList::get_float(const std::string& name, float& value) const
     }
   else
     {
-      value = v->value.v_float;
+      value = v->v_float;
       return true;
     }
 }
@@ -192,7 +192,7 @@ AList::get_bool(const std::string& name, bool& value) const
     return false;
   else
     {
-      value = v->value.v_bool;
+      value = v->v_bool;
       return true;
     }
 }
@@ -205,7 +205,7 @@ AList::get_string(const std::string& name, std::string& value) const
     return false;
   else
     {
-      value = *(v->value.v_string);
+      value = *(v->v_string);
       return true;
     }
 }
@@ -218,7 +218,7 @@ AList::get_int_vector2d (const std::string& name, IntVector2d& value) const
     return false;
   else
     {
-      value = v->value.v_int_vector2d;
+      value = v->v_int_vector2d;
       return true;
     }
 }
@@ -231,7 +231,7 @@ AList::get_float_vector2d (const std::string& name, FloatVector2d& value) const
     return false;
   else
     {
-      value = v->value.v_float_vector2d;
+      value = v->v_float_vector2d;
       return true;
     }
 }

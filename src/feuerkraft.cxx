@@ -66,10 +66,8 @@
 // FIXME: Ugly global variable, should be removed as soon as possible
 VehicleView* vehicle_view;
 
-//FIXME: Another ugly global variable, should be removed as soon as possible
-CL_GraphicContext* global_gc;
-
-Controller* player_controller;
+// FIXME: Replace this with a PlayerManager class or something similar
+Controller*  player_controller;
 VehicleView* player_vehicle_view;
 
 //#define WITH_STATIC_READLINE 1
@@ -138,7 +136,6 @@ public:
 	CL_DisplayWindow window("Feuerkraft", 800, 600);
 
 	CL_Display::set_current_window (&window);
-	global_gc = window.get_gc();
 	window.get_gc()->clear();
 
 	resources = new ResourceManager ();

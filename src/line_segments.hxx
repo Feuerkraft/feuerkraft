@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.4 2003/05/04 17:42:20 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.5 2003/05/13 18:28:10 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,6 +44,7 @@ private:
     bool  turn_right;  ///< true if counterclockwise
   };
   
+  // FIXME: Replace me with OO
   struct Segment {
     int   type;   ///< type of the segment
     float length; ///< length of the segment, calculated from the segment
@@ -51,7 +52,7 @@ private:
     union {
       struct RadialSegment   radial;
       struct StraightSegment straight;
-    } data;
+    };
   };
 
   typedef std::vector<Segment> Segments;

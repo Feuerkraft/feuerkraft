@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.9 2003/05/13 18:28:10 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,7 +50,6 @@ struct AIVehicleOrderNone
 
 struct AIVehicleOrderDriveTo
 {
-  AIVehicleOrderType type;
   int sequence_id;
 
   Position pos;
@@ -58,7 +57,6 @@ struct AIVehicleOrderDriveTo
 
 struct AIVehicleOrderWait
 {
-  AIVehicleOrderType type;
   int sequence_id;
 
   /** Number of seconds to wait, -1 means forever, until next order is
@@ -66,13 +64,15 @@ struct AIVehicleOrderWait
   float seconds;
 };
 
-union AIVehicleOrder
+struct AIVehicleOrder
 {
   AIVehicleOrderType type;
 
-  AIVehicleOrderDriveTo  drive_to;
-  AIVehicleOrderWait     wait;
-  AIVehicleOrderNone     none;
+  union {
+    AIVehicleOrderDriveTo  drive_to;
+    AIVehicleOrderWait     wait;
+    AIVehicleOrderNone     none;
+  };
 };
 
 /** */

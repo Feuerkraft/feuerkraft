@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.4 2003/05/11 11:57:52 grumbel Exp $
+//  $Id: alist.hxx,v 1.5 2003/05/13 18:28:10 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ public:
       std::string*  v_string;
       IntVector2d   v_int_vector2d;
       FloatVector2d v_float_vector2d;
-    } value;
+    };
   };
 private:
   typedef std::map<std::string, Value> Content;

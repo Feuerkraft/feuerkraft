@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.3 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: property.cxx,v 1.4 2003/05/13 18:28:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "property.hxx"
 
 Property::Property(const std::string& arg_name)
@@ -107,6 +108,27 @@ Property::get_string() const
 {
   assert(type == T_STRING);
   return *data.m_string;
+}
+
+std::ostream& operator<<(std::ostream& s, const Property& property)
+{
+  switch (property.type)
+    {
+    case Property::T_BOOL:
+      return s << property.get_bool();
+
+    case Property::T_FLOAT:
+      return s << property.get_float();
+      
+    case Property::T_INT:
+      return s << property.get_int();
+
+    case Property::T_STRING:
+      return s << property.get_string();
+
+    default:
+      return s << "<empty>";
+    }
 }
 
 /* EOF */

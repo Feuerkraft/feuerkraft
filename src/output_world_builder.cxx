@@ -1,4 +1,4 @@
-//  $Id: output_world_builder.cxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: output_world_builder.cxx,v 1.3 2003/05/13 18:28:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -66,26 +66,26 @@ OutputWorldBuilder::print_alist(const AList& alist)
       switch(i->second.type)
         {
         case AList::AL_INT:
-          std::cout << i->second.value.v_int << std::endl;
+          std::cout << i->second.v_int << std::endl;
           break;
         case AList::AL_FLOAT:
-          std::cout << i->second.value.v_float << std::endl;
+          std::cout << i->second.v_float << std::endl;
           break;
         case AList::AL_BOOL:
-          std::cout << i->second.value.v_bool << std::endl;
+          std::cout << i->second.v_bool << std::endl;
           break;
         case AList::AL_STRING:
-          std::cout << *i->second.value.v_string << std::endl;
+          std::cout << *i->second.v_string << std::endl;
           break;
         case AList::AL_INTVECTOR2D:
-          std::cout << "[" << (*i).second.value.v_int_vector2d.x
-                    << ", " << (*i).second.value.v_int_vector2d.y
+          std::cout << "[" << (*i).second.v_int_vector2d.x
+                    << ", " << (*i).second.v_int_vector2d.y
                     << "]"
                     << std::endl;
           break;
         case AList::AL_FLOATVECTOR2D:
-          std::cout << "[" << (*i).second.value.v_float_vector2d.x
-                    << ", " << (*i).second.value.v_float_vector2d.y
+          std::cout << "[" << (*i).second.v_float_vector2d.x
+                    << ", " << (*i).second.v_float_vector2d.y
                     << "]"
                     << std::endl;
           break;
