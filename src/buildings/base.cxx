@@ -1,4 +1,4 @@
-//  $Id: base.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: base.cxx,v 1.9 2003/06/22 18:34:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #include "../resource_manager.hxx"
 #include "base.hxx"
 
-Base::Base (const BaseData& data)
-  : Building (data.x_pos, data.y_pos),
+Base::Base (const AList& lst)
+  : Building(lst),
     sprite (resources->get_sprite("feuerkraft/start")),
     pos (data.x_pos * 40 + 40, data.y_pos * 40 + 40) // FIXME: tilesize hardcoded
 {

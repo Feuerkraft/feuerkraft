@@ -1,4 +1,4 @@
-//  $Id: fuelstation.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: fuelstation.hxx,v 1.10 2003/06/22 18:34:52 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,10 @@
 #include <ClanLib/Display/sprite.h>
 
 #include "../view.hxx"
+#include "../alist.hxx"
 #include "fuelstation_data.hxx"
+
+class AList;
 
 class Fuelstation
   : public Building
@@ -37,7 +40,7 @@ private:
       indicate that to the user */
   bool refueling;
 public:
-  Fuelstation (const FuelstationData& data);
+  Fuelstation (const AList& lst);
   virtual ~Fuelstation ();
 
   void draw(View& view);

@@ -1,4 +1,4 @@
-//  $Id: fuelstation.cxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: fuelstation.cxx,v 1.12 2003/06/22 18:34:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,8 +25,8 @@
 #include "../resource_manager.hxx"
 #include "fuelstation.hxx"
 
-Fuelstation::Fuelstation(const FuelstationData& data)
-  : Building(data.x_pos, data.y_pos),
+Fuelstation::Fuelstation(const AList& lst)
+  : Building(lst),
     fuelstation (resources->get_sprite("feuerkraft/fuelstation")),
     pos (x_pos * 40 + 40, y_pos * 40 + 60), // FIXME: Hardcoded tilesize
     refueling (false)

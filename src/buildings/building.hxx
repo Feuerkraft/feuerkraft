@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: building.hxx,v 1.11 2003/06/22 18:34:52 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef BUILDING_HXX
 #define BUILDING_HXX
 
+#include "../alist.hxx"
 #include "building_data.hxx"
 
 // Begin: Forward declarations
@@ -44,8 +45,10 @@ protected:
   int x_pos;
   /** Position in units of tiles */
   int y_pos;
+
 public:
   Building (int x, int y);
+  Building (const AList& lst);
   Building ();
   virtual ~Building ();
   
