@@ -1,4 +1,4 @@
-//  $Id: Shockwave.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Shockwave.hxx,v 1.2 2002/03/10 23:55:59 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include <SphriteLib/sphritelibGL.h>
 #include "GameObj.hxx"
 
 extern CL_ResourceManager* resources;
@@ -30,8 +31,8 @@ class Shockwave : public GameObj
 {
 private:
   CL_Vector pos;
-  CL_Surface sur;
-  int counter;
+  Sprite* sprite;
+  float progress;
 public:
   Shockwave (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos);
   virtual ~Shockwave ();

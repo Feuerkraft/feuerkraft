@@ -86,7 +86,9 @@ section feuerkraft {
 	
 	tank2destroyed = images/tank2destroyed.png (type=surface);
 	
-	shockwave = images/shockwave.png (type=surface, x=0, y=0, width=100, height=100, array=4x1);
+	section	shockwave {
+		frame1 = images/shockwave.png (type=surface, x=0, y=0, width=100, height=100);
+	}
 	tankdestroyed = images/tankdestroyed.png (type=surface); 
 	
 	rotor = images/rotor.png (type=surface, x=0, y=0, width=121, height=118,array=2x1);

@@ -221,6 +221,19 @@ public:
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
+	    // Poor mans pause button
+	    if (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+	      {
+		while (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		  CL_System::keep_alive();
+		while (!CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		  CL_System::keep_alive();
+		while (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		  CL_System::keep_alive();
+
+		last_time = CL_System::get_time ();
+	      }
+
 	    CL_System::sleep (0);
 	    delta = (CL_System::get_time () - last_time) / 1000.0f;
 	    last_time = CL_System::get_time ();
