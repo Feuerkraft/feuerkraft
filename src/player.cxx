@@ -1,4 +1,4 @@
-//  $Id: player.cxx,v 1.4 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: player.cxx,v 1.5 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,21 @@
 
 Player::Player(Unit* arg_unit)
 {
+  soldier = arg_unit;
   set_current_unit(arg_unit);
+}
+
+Unit*
+Player::get_soldier()
+{
+  return soldier;
+}
+
+void
+Player::set_soldier(Unit* new_soldier)
+{
+  soldier = new_soldier;
+  set_current_unit(soldier);
 }
 
 void

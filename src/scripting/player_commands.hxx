@@ -1,4 +1,4 @@
-//  $Id: player_commands.hxx,v 1.3 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: player_commands.hxx,v 1.4 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,13 +20,19 @@
 #ifndef HEADER_PLAYER_COMMANDS_HXX
 #define HEADER_PLAYER_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 /** Sets the players control to the given vehicle */
 void player_set_current_unit(int handle);
 
 /** @return the vehicle that the player currently controlls */
 int  player_get_current_unit();
 
+int  player_get_soldier();
+void player_set_soldier(int handle);
 
+//@}
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: player.hxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: player.hxx,v 1.6 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,12 +27,23 @@ class Unit;
 class Player
 {
 private:
+  /** The soldier unit representing the player, after player death it
+      might change/respawn */
+  Unit* soldier;
+
+  /** The currently active units that gets input events (vehicle,
+      heli, soldier, etc.) */
   Unit* unit;
 
 public:
   Player(Unit* unit);
 
-  void     set_current_unit(Unit*);
+  Unit* get_soldier();
+  
+  /** Set the current soldier of the player */
+  void set_soldier(Unit* new_soldier);
+
+  void  set_current_unit(Unit*);
   Unit* get_current_unit();
 
 private:

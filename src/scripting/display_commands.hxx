@@ -1,4 +1,4 @@
-//  $Id: display_commands.hxx,v 1.3 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: display_commands.hxx,v 1.4 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,12 +20,17 @@
 #ifndef HEADER_DISPLAY_COMMANDS_HXX
 #define HEADER_DISPLAY_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 bool display_levelmap_visible();
 void display_show_levelmap();
 void display_hide_levelmap();
 
 void display_show_help();
 void display_hide_help();
+
+//@}
 
 #endif
 

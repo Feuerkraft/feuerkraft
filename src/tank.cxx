@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.22 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: tank.cxx,v 1.23 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,9 +28,11 @@
 #include "groundmap/ground_map.hxx"
 #include "buildings/building_map.hxx"
 #include "particles/smoke_particle.hxx"
+#include "particles/sand_particle.hxx"
 #include "particles/grass_particle.hxx"
 #include "particles/smoke_emitter.hxx"
 #include "resource_manager.hxx"
+#include "property_set.hxx"
 #include "collision_manager.hxx"
 
 const float circle = 6.2831854f;
@@ -39,6 +41,7 @@ Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : speed (0.0f),
     increment (0.06f),
+    burning(false),
     smod (resources->get_sprite (tank.c_str ())),
     sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
     sur (resources->get_sprite (tank.c_str ())),
@@ -170,8 +173,11 @@ Tank::respawn ()
 void 
 Tank::update (float delta)
 {
-  smoke_emitter->set_pos(pos + (FloatVector2d(-5.0f, 0.0f).rotate(orientation)));
-  smoke_emitter->update(delta);
+  if (burning)
+    {
+      smoke_emitter->set_pos(pos + (FloatVector2d(-5.0f, 0.0f).rotate(orientation)));
+      smoke_emitter->update(delta);
+    }
 
   // Apply controlls
   orientation += 3.0f * steering * delta;
@@ -197,7 +203,7 @@ Tank::update (float delta)
       GroundType type = GameWorld::current()->get_groundmap ()->get_groundtype (pos.x, pos.y);
 
       if (type == GT_SAND)
-	GameWorld::current()->add (new SmokeParticle(pos));
+	GameWorld::current()->add (new SandParticle(pos));
       else if (type == GT_GRASS)
 	GameWorld::current()->add (new GrassParticle(pos));
 
@@ -208,6 +214,9 @@ Tank::update (float delta)
 
   if (destroyed)
     return;
+
+  if (energie <= 25)
+    burning = true;
 
   if (energie <= 0)
     explode ();
@@ -274,7 +283,12 @@ Tank::drop_mine ()
   if (mine_reload_time <= 0)
     {
       FloatVector2d vel = FloatVector2d(25.0f, 0.0f).rotate (orientation);
-      GameWorld::current()->add(new Mine(FloatVector2d(pos.x, pos.y) + vel));
+
+      Mine* mine = new Mine();
+      mine->get_properties()->set_float("x-pos", pos.x + vel.x);
+      mine->get_properties()->set_float("y-pos", pos.y + vel.y);
+
+      GameWorld::current()->add(mine);
       mine_reload_time = 50;
     }
 }

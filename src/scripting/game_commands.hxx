@@ -1,4 +1,4 @@
-//  $Id: game_commands.hxx,v 1.1 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: game_commands.hxx,v 1.2 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,9 @@
 #ifndef HEADER_GAME_COMMANDS_HXX
 #define HEADER_GAME_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 /** Pause the currently running game */
 void game_pause();
 
@@ -32,6 +35,8 @@ void game_load(const char* filename);
 /** Dump the currently running game to filename (aka. creating a
     savegame) */
 void game_save(const char* filename);
+
+//@}
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_obj_factory.hxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,23 @@
 #ifndef HEADER_GAME_OBJ_FACTORY_HXX
 #define HEADER_GAME_OBJ_FACTORY_HXX
 
+#include <vector>
 #include "alist.hxx"
 
 class GameObj;
+
+class GameObjAbstractFactory
+{
+public:
+  virtual GameObj* create() =0;
+};
+
+template<class T>
+class GameObjGenericFactory : public GameObjAbstractFactory
+{
+public:
+  GameObj* create() { return new T(); }
+};
 
 /** */
 class GameObjFactory
@@ -33,7 +47,16 @@ private:
 public:
   static GameObjFactory* instance();
 
+private:
+  typedef std::vector<GameObjAbstractFactory*> Factories;
+  Factories factories;
+
+  GameObjAbstractFactory* get_factory(int type_id);
+public:
   GameObj* create(int type_id, const AList& alist);
+
+  /** @return type_id of the newly registered type */
+  int register_factory(GameObjAbstractFactory* factory);
 private:
   GameObj* create_raw_object(int type_id);
 

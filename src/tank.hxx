@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.14 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: tank.hxx,v 1.15 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,6 +51,7 @@ private:
   float speed;
   float increment;
   int frame;
+  bool burning;
 
   /*CL_Surface sur;*/
   CL_Sprite smod;

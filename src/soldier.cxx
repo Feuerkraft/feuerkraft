@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.16 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: soldier.cxx,v 1.17 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,10 +26,9 @@
 #include "property_set.hxx"
 #include "soldier.hxx"
 
-Soldier::Soldier(const FloatVector2d& arg_pos) 
+Soldier::Soldier() 
   : sur (resources->get_sprite("feuerkraft/soldier"))
 {
-  pos = arg_pos;
 }
 
 Soldier::~Soldier ()
@@ -41,36 +40,6 @@ Soldier::update_controlls(const Controller& controller)
 {
   acceleration = controller.get_axis_state(ACCELERATE_AXIS);
   steering     = controller.get_axis_state(ORIENTATION_AXIS);
-
-#if 0
-  const InputEventLst& events = controller.get_events();
-
-  for (InputEventLst::const_iterator i = events.begin(); i != events.end(); ++i)
-    {
-      switch (i->type)
-        {
-        case AXIS_EVENT:
-          switch (i->axis.name)
-            {
-            case ACCELERATE_AXIS:
-              //std::cout << "Accelerate: " << i->axis.pos << std::endl;
-              acceleration = i->axis.pos;
-              break;
-            case ORIENTATION_AXIS:
-              //std::cout << "Steering: " << i->axis.pos << std::endl;
-              steering = i->axis.pos;
-              break;
-            default:
-              std::cout << "Unknown axis: " << i->axis.name << std::endl;
-            }
-          break;
-        case BUTTON_EVENT:
-          break;
-        default:
-          std::cout << "Unknown event type: " << i->type << std::endl;
-        }
-    }
-#endif 
 }
 
 void 

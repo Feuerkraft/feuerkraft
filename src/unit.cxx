@@ -1,4 +1,4 @@
-//  $Id: unit.cxx,v 1.2 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: unit.cxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,12 +37,13 @@ Unit::~Unit()
 void
 Unit::set_position(const FloatVector2d& new_pos)
 {
-  
+  pos = new_pos;
 }
 
 void
 Unit::set_orientation(float new_orientation)
 {
+  orientation = new_orientation;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.hxx,v 1.5 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: gameobj_commands.hxx,v 1.6 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,9 @@
 
 #include <guile/gh.h>
 
+/** @addtogroup scripting */
+//@{
+
 SCM  gameobj_get_property(int handle, const char* name);
 void gameobj_set_property(int handle, const char* name, SCM value);
 
@@ -32,10 +35,17 @@ SCM gameobj_properties(int handle);
     @return handle to the GameObj */
 int gameobj_create(int type_id, SCM lst);
 
+/** @return a list of all gameobjects */
+SCM  gameobj_get_all();
+
 bool gameobj_is_helicopter(int handle);
 bool gameobj_is_vehicle(int handle);
 bool gameobj_is_unit(int handle);
 bool gameobj_is_soldier(int handle);
+
+void satchel_detonate(int handle);
+
+//@}
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.15 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: guile.cxx,v 1.16 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -260,8 +260,8 @@ void enable_readline()
   scm_init_readline();
 #endif
 
-  //gh_eval_str("(use-modules (ice-9 readline))"
-  //"(activate-readline)");
+  gh_eval_str("(use-modules (ice-9 readline))"
+              "(activate-readline)");
 }
 
 } // namespace Guile

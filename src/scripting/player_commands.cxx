@@ -1,4 +1,4 @@
-//  $Id: player_commands.cxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: player_commands.cxx,v 1.6 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,8 @@
 
 extern Player* player;
 
-void player_set_current_unit(int handle)
+void
+player_set_current_unit(int handle)
 {
   GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
   if (obj)
@@ -41,9 +42,33 @@ void player_set_current_unit(int handle)
     }
 }
 
-int  player_get_current_unit()
+int
+player_get_current_unit()
 {
   GameObj* game_obj = player->get_current_unit();
+  return game_obj->get_id();
+}
+
+void
+player_set_soldier(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  if (obj)
+    {
+      Unit* unit = dynamic_cast<Unit*>(obj);
+      if (unit)
+        player->set_soldier(unit);
+    }
+  else
+    {
+      std::cout << __FUNCTION__ << ": No such object: " << handle << std::endl;
+    }
+}
+
+int
+player_get_soldier()
+{
+  GameObj* game_obj = player->get_soldier();
   return game_obj->get_id();
 }
 

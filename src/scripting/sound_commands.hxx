@@ -1,4 +1,4 @@
-//  $Id: sound_commands.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound_commands.hxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,11 +20,16 @@
 #ifndef HEADER_SOUND_COMMANDS_HXX
 #define HEADER_SOUND_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 void sound_play_music(const char* name);
 void sound_stop_music();
 
 int  sound_play_sound(const char* name);
 void sound_stop_sound(int handle);
+
+//@}
 
 #endif
 

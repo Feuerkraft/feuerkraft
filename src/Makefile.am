@@ -69,6 +69,8 @@ game_world.cxx \
 game_world.hxx \
 game_world_data.cxx \
 game_world_data.hxx \
+goal_manager.hxx \
+goal_manager.cxx \
 gui_obj.hxx \
 guile.cxx \
 guile.hxx \
@@ -117,6 +119,8 @@ robot_tank.hxx \
 robot_tank.cxx \
 resource_manager.cxx \
 resource_manager.hxx \
+satchel_charge.hxx \
+satchel_charge.cxx \
 screen.cxx \
 screen.hxx \
 scm_functor.hxx \
@@ -212,6 +216,9 @@ feuerkraft.static.comp: feuerkraft.static
 	cp $< $@
 	strip -s $@
 	upx-ucl -q --best $@
+
+docs:
+	$(MAKE) -C ../doc/ docs
 
 BROWSE:
 	TMPFILE=`tempfile`; \

@@ -1,4 +1,4 @@
-//  $Id: menu_commands.hxx,v 1.3 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: menu_commands.hxx,v 1.4 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,9 @@
 
 #include <libguile.h>
 
+/** @addtogroup scripting */
+//@{
+
 /** Create an empty menu
     @return menu_id of the newly created menu */
 int menu_create();
@@ -44,6 +47,7 @@ int  menu_add_submenu_item(int menu_id, const char* label, int sub_menu_id);
 /** Remove an item from a menu */
 void menu_remove_item(int menu_id, int item_id);
 
+//@}
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.hxx,v 1.6 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: vehicle_commands.hxx,v 1.7 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,9 @@
 #ifndef HEADER_FEUERKRAFT_VEHICLE_COMMANDS_HXX
 #define HEADER_FEUERKRAFT_VEHICLE_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 #if 0
 void vehicle_set_fuel(int fuel);
 int  vehicle_get_fuel();
@@ -37,6 +40,8 @@ void vehicle_set_position(int vehicle_handle, int x, int y);
 int vehicle_find_nearest(float x, float y, float max_distance);
 
 void helicopter_start_or_land(int handle);
+
+//@}
 
 #endif
 

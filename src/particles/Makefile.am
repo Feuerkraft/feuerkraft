@@ -5,12 +5,13 @@ libfeuerkraft_particles_a_SOURCES = \
  particle.hxx           \
  particle_system.hxx    \
  smoke_particle.hxx     \
+ sand_particle.hxx      \
  grass_particle.hxx     \
  fire_particle.hxx     \
  fire_particle.cxx     \
  fire_emitter.hxx      \
  fire_emitter.cxx      \
- smoke_emitter.hxx      \
+ smoke_emitter.hxx     \
  smoke_emitter.cxx      
 
 # EOF #

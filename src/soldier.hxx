@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.13 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: soldier.hxx,v 1.14 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,14 +32,14 @@ private:
   float acceleration;
   float steering;
 public:
-  Soldier(const FloatVector2d& new_pos);
+  Soldier();
   ~Soldier();
 
   void update_controlls(const Controller& events);
 
   float get_angle () { return 0.0; }
-  void draw (View& view);
-  void update (float);
+  void  draw (View& view);
+  void  update (float);
 
   bool is_colliding(FloatVector2d);
   

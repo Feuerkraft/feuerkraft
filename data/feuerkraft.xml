@@ -25,6 +25,10 @@
       <image name="image1" file="images/wall.png" />
     </sprite>
 
+    <sprite name="satchel">
+      <image name="image1" file="images/satchel.png" />
+    </sprite>
+
     <sprite name="smoke">
       <image name="image1" file="images/smoke.png" />
     </sprite>

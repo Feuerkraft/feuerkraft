@@ -35,25 +35,33 @@
                         #:height 0))
 
 (display "#### ---------------------------------\n")
-(gameobj-create 1 '((x-pos 10.0)
-                    (y-pos 10.0)
-                    (sprite "feuerkraft/start")))
 
-(gameobj-create 1 '((x-pos 1.0)
-                    (y-pos 315.0)
-                    (sprite "feuerkraft/start")))
+(do ((x 0 (+ x 64)))
+    ((> x 500))
+  (do ((y 0 (+ y 64)))
+      ((> y 500))
+    (gameobj-create mine-type `((x-pos ,(+ 500.0 x))
+                                (y-pos ,(+ 2200.0 y))))))
 
-(gameobj-create 1 '((x-pos 59.0)
-                    (y-pos 465.0)
-                    (sprite "feuerkraft/start")))
+(gameobj-create tree-type '((x-pos 10.0)
+                            (y-pos 10.0)
+                            (sprite "feuerkraft/start")))
 
-(gameobj-create 1 '((x-pos -230.0)
-                    (y-pos 397.0)
-                    (sprite "feuerkraft/start")))
+(gameobj-create tree-type '((x-pos 1.0)
+                            (y-pos 315.0)
+                            (sprite "feuerkraft/start")))
 
-(gameobj-create 1 '((x-pos -250.0)
-                    (y-pos 13.0)
-                    (sprite "feuerkraft/start")))
+(gameobj-create tree-type '((x-pos 59.0)
+                            (y-pos 465.0)
+                            (sprite "feuerkraft/start")))
+
+(gameobj-create tree-type '((x-pos -230.0)
+                            (y-pos 397.0)
+                            (sprite "feuerkraft/start")))
+
+(gameobj-create tree-type '((x-pos -250.0)
+                            (y-pos 13.0)
+                            (sprite "feuerkraft/start")))
 
 (building-create building:parking-lot 8  33)
 (building-create building:parking-lot 11 33)
@@ -175,29 +183,44 @@
 ;; Begin: Interface definition
 (define comm-menu         (menu-create))
 (define comm-util-menu    (menu-create))
+(define comm-debug-menu   (menu-create))
 (define comm-retreat-menu (menu-create))
 (define comm-attack-menu  (menu-create))
+
+;;;;;;;;;;;;;;;;
+;; Debug Menu ;;
+;;;;;;;;;;;;;;;;
+(menu-add-submenu-item comm-menu "Debug" comm-debug-menu)
+
+(menu-add-item comm-debug-menu "Load 'test.feu'"
+               (lambda ()
+                 (game-load "missions/test.feu")))
+(menu-add-item comm-debug-menu "Load 'airport.feu'"
+               (lambda ()
+                 (game-load "missions/airport.feu")))
+
+(menu-add-item comm-debug-menu "Toggle Colmap"
+               (lambda ()
+                 (debug-set-flag "colmap" (not (debug-get-flag "colmap")))))
+
+(menu-add-item comm-debug-menu "Pause" (lambda () (game-pause)))
+(menu-add-item comm-debug-menu "Quit" (lambda () (game-quit)))
 
 ;;;;;;;;;;;;;;;
 ;; Util Menu ;;
 ;;;;;;;;;;;;;;;
 (menu-add-submenu-item comm-menu "Utilities" comm-util-menu)
 
+(menu-add-item comm-util-menu "Drop Mine" 
+               (lambda ()
+                 (gameobj-create mine-type `((x-pos ,(gameobj-get-property (player-get-current-unit) "x-pos"))
+                                             (y-pos ,(gameobj-get-property (player-get-current-unit) "y-pos"))))))
+
 (menu-add-item comm-util-menu "Show Levelmap" 
                (lambda ()
                  (if (display-levelmap-visible)
                      (display-hide-levelmap)
                      (display-show-levelmap))))
-
-(menu-add-item comm-util-menu "Load 'test.feu'"
-               (lambda ()
-                 (game-load "missions/test.feu")))
-(menu-add-item comm-util-menu "Load 'airport.feu'"
-               (lambda ()
-                 (game-load "missions/airport.feu")))
-
-(menu-add-item comm-util-menu "Pause" (lambda () (game-pause)))
-(menu-add-item comm-util-menu "Quit" (lambda () (game-quit)))
 
 ;;;;;;;;;;;;;;;;;;
 ;; Retreat Menu ;;

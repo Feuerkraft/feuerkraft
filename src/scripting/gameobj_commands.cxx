@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.6 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: gameobj_commands.cxx,v 1.7 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #include "../property_set.hxx"
 #include "../property.hxx"
 
+#include "../satchel_charge.hxx"
 #include "../soldier.hxx"
 #include "../vehicle.hxx"
 #include "../helicopter.hxx"
@@ -120,6 +121,33 @@ gameobj_is_helicopter(int handle)
 {
   GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
   return (obj && dynamic_cast<Helicopter*>(obj));
+}
+
+void
+satchel_detonate(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  if (obj)
+    {
+      SatchelCharge* satchel = dynamic_cast<SatchelCharge*>(obj);
+      if (satchel)
+        satchel->detonate();
+    }
+}
+
+SCM
+gameobj_get_all()
+{
+  SCM lst = SCM_EOL;
+
+  for (GameObjManager::iterator i = GameObjManager::current()->begin();
+       i != GameObjManager::current()->end();
+       ++i)
+    {
+      lst = gh_cons(scm_long2num((*i)->get_id()), lst);
+    }
+
+  return scm_reverse(lst);
 }
 
 /* EOF */

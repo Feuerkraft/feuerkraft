@@ -1,4 +1,4 @@
-//  $Id: grid_map.cxx,v 1.8 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: grid_map.cxx,v 1.9 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -97,7 +97,7 @@ GridMap::update (float)
 void
 GridMap::draw_levelmap (LevelMap& levelmap)
 {
-  surface.set_alpha(0.9f);
+  surface.set_alpha(0.95f);
   surface.draw (0, 0);
   surface.set_alpha(1.0f);
 }

@@ -1,4 +1,4 @@
-//  $Id: dialog_commands.hxx,v 1.1 2003/06/06 09:50:14 grumbel Exp $
+//  $Id: dialog_commands.hxx,v 1.2 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,12 +20,17 @@
 #ifndef HEADER_DIALOG_COMMANDS_HXX
 #define HEADER_DIALOG_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 /** Display a dialog window with \a text and call a callback once the
     dialog window was closed */
 int  dialog_create(const char* text);
 
 /** Add an answer choice to the dialog */
 void dialog_add_choice(int dialog_id, const char* text, SCM callback);
+
+//@}
 
 #endif
 

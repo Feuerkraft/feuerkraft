@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: mine.cxx,v 1.9 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,14 +23,18 @@
 #include "game_world.hxx"
 #include "groundmap/ground_map.hxx"
 #include "collision_manager.hxx"
+#include "property_set.hxx"
 #include "resource_manager.hxx"
 
-Mine::Mine (const FloatVector2d& arg_pos) 
-  : pos (arg_pos),
+Mine::Mine ()
+  : pos (0, 0),
     hole (resources->get_sprite ("feuerkraft/hole")),
     active (2),
     detonated (false)
 {
+  properties->register_float("x-pos", &pos.x);
+  properties->register_float("y-pos", &pos.y);
+  
   GroundType type = GameWorld::current()->get_groundmap ()->get_groundtype (pos.x, pos.y);
   if (type == GT_FLATWATER)
     {
@@ -109,7 +113,6 @@ Mine::detonate ()
 	  vehicle->collide(force);
 	}*/
     }
-
 
   GameWorld::current()->add (new Explosion(pos, Explosion::MEDIUM));
   detonated = true;

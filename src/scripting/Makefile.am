@@ -9,6 +9,8 @@ command_source = \
  comm_commands.hxx       \
  display_commands.hxx    \
  display_commands.cxx    \
+ debug_commands.hxx      \
+ debug_commands.cxx      \
  effect_commands.cxx     \
  effect_commands.hxx     \
  gameobj_commands.cxx    \

@@ -1,4 +1,4 @@
-//  $Id: globals.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: globals.cxx,v 1.3 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 
 bool music_enabled = true;
 bool sound_enabled = true;
+bool draw_colmap   = false;
 int  verbose = 1;
 
 /* EOF */
