@@ -18,6 +18,8 @@ libfeuerkraft_input_a_SOURCES = \
   input_button_input_device.cxx \
   input_axis_input_device.hxx \
   input_axis_input_device.cxx \
+  axis_button.hxx \
+  axis_button.cxx \
   button_axis.hxx \
   button_axis.cxx \
   button_factory.hxx \

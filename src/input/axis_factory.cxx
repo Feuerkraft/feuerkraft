@@ -72,6 +72,7 @@ AxisFactory::create_button_axis(SCM lst)
 {
   InputButton* left  = ButtonFactory::create(gh_car(lst));
   InputButton* right = ButtonFactory::create(gh_cadr(lst));
+
   return new ButtonAxis(left, right);
 }
 

@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include <assert.h>
 #include <stdexcept>
 #include <sstream>
@@ -41,6 +42,7 @@ InputManager::init_playback(const std::string& filename)
 void
 InputManager::init(const std::string& filename)
 {
+  std::cout << "InputManager::init(" << filename << ")" << std::endl;
   SCM port = scm_open_file(gh_str02scm(filename.c_str()),
                            gh_str02scm("r"));
   SCM lst  = scm_read(port);

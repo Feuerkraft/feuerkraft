@@ -23,7 +23,10 @@
 #include "../string_converter.hxx"
 #include "../feuerkraft_error.hxx"
 #include "input_button.hxx"
+#include "input_axis.hxx"
 #include "input_button_input_device.hxx"
+#include "axis_factory.hxx"
+#include "axis_button.hxx"
 #include "button_factory.hxx"
 
 InputButton* 
@@ -39,13 +42,27 @@ ButtonFactory::create(SCM lst)
     {
       return create_keyboard_button(gh_cdr(lst));
     }
+  else if (gh_equal_p(sym, gh_symbol2scm("axis-button")))
+    {
+      return create_axis_button(gh_cdr(lst));
+    }
   else
     {
-      throw FeuerkraftError("ButtonFactory::create: parse error: "
-                            + Guile::scm2string(lst));
+      throw FeuerkraftError("ButtonFactory::create: parse error: '"
+                            + Guile::scm2string(lst) + "'");
     }
       
   return 0;
+}
+
+InputButton*
+ButtonFactory::create_axis_button(SCM lst)
+{
+  std::cout << "ButtonFactory::create_axis_button: " << Guile::scm2string(lst) << std::endl;
+  InputAxis* axis = AxisFactory::create(gh_car(lst));
+  bool top = gh_scm2bool(gh_cadr(lst));
+  
+  return new AxisButton(axis, top);
 }
 
 InputButton*

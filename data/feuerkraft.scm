@@ -347,7 +347,7 @@
 (list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)
 
 ;; Core events
-(input-register-callback "key_k" join-nearest-vehicle)
+;;(input-register-callback "key_k" join-nearest-vehicle)
 
 ;; Support events, also reachable via menu
 (input-register-callback "mouse_right"
