@@ -95,7 +95,7 @@ public:
 	      }
 	  }
 
-	datafiles.add_sig_files ("data/feuerkraft.scr");
+	datafiles.add_sig_files ("data/feuerkraft.xml");
 	datafiles.add_back (".");
 	datafiles.add_back ("..");
 	datafiles.print ();
@@ -126,20 +126,15 @@ public:
 	//CL_Display::flip_display ();
 	//window.flip ();
 
-	std::cout << "Trying this:" << std::endl;
+	//std::cout << "Trying this:" << std::endl;
 	//FIXME:Display2 resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
 	//FIXME:Display2 tile_resources =  new CL_ResourceManager ("data/tiles.scr", false);
 	//FIXME:Display2 storage = new SpriteProviderStorage ();
 	//FIXME:Display2 storage->add(resources);
 	//FIXME:Display2 storage->add(tile_resources);
-	std::cout << "DoneTrying this:" << std::endl;
-
-
+	//std::cout << "DoneTrying this:" << std::endl;
+        
 	resources = new ResourceManager ();
-
-	CL_ResourceManager resource_manager; 
-	//resource_manager = CL_ResourceManager("data/feuerkraft.scr", false);
-	//CL_ResourceManager resource_manager ("data/feuerkraft.scr", false);
 
 	//CL_OpenGL::begin_2d();
 	CL_DisplayWindow window("Feuerkraft", 800, 600);
@@ -149,7 +144,7 @@ public:
 	window.get_gc()->clear();
 
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
-	//CL_Sprite ("Game/spr_ghost", &resource_manager);
+	resources->get_sprite("feuerkraft/tank2_shadow");
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
 
 	GameWorld* world;

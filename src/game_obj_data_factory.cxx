@@ -1,4 +1,4 @@
-//  $Id: game_obj_data_factory.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_obj_data_factory.cxx,v 1.3 2003/04/27 23:00:30 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,6 @@ GameObjDataFactory::create (SCM symbol, SCM data)
 {
   if (gh_equal_p (gh_symbol2scm ("tree"), symbol))
     {
-      std::cout << "!!!!!!!!!!!! Creating Tree !!!!!!!!!!!!!" << std::endl;
       return new TreeData (data);
     }
   else if (gh_equal_p (gh_symbol2scm ("tank"), symbol))

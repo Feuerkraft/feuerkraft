@@ -1,4 +1,4 @@
-//  $Id: grid_tile.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: grid_tile.cxx,v 1.3 2003/04/27 23:00:30 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,10 @@
 #include "../resource_manager.hxx"
 
 GridTile::GridTile (std::string filename)
-  : sprite (resources->get_sprite (filename))
 {  
+  std::cout << "Loading: " << filename << std::endl;
+  sprite = resources->get_sprite (filename);
+  std::cout << "Done: Loading: " << filename << std::endl;
 }
 
 void

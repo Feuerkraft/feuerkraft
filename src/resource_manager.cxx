@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.3 2003/04/27 23:00:30 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,8 +25,8 @@ ResourceManager* resources;
 
 ResourceManager::ResourceManager ()
 {
-  resource_manager = new CL_ResourceManager ("data/feuerkraft.scr", false);
-  resource_manager2 = new CL_ResourceManager ("data/tiles.scr", false);
+  resource_manager  = new CL_ResourceManager ("data/feuerkraft.xml", false);
+  resource_manager2 = new CL_ResourceManager ("data/tiles.xml", false);
 }
 
 ResourceManager::~ResourceManager ()
@@ -43,18 +43,21 @@ CL_Sprite
 ResourceManager::get_sprite (const std::string& location)
 {
   std::cout << "Loading: " << location << std::endl;
-  try {
-    return CL_Sprite (location, resource_manager);
-  } catch (CL_Error& err) {
-    std::cout << "Catch and Retry: " << err.message << std::endl;
-    try {
-      return CL_Sprite (location, resource_manager2);
-    } catch (CL_Error& err) {
-      std::cout << "Bailout: " << err.message << std::endl;
-      cl_assert (0);
-      return CL_Sprite ();
+  try 
+    {
+      return CL_Sprite (location, resource_manager);
+    } 
+  catch (CL_Error& err) 
+    {
+      std::cout << "Catch and Retry: " << err.message << std::endl;
+      try {
+        return CL_Sprite (location, resource_manager2);
+      } catch (CL_Error& err) {
+        std::cout << "Bailout: " << err.message << std::endl;
+        cl_assert (0);
+        return CL_Sprite ();
+      }
     }
-  }
 }
 
 CL_Sprite*
