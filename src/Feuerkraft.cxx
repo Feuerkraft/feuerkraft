@@ -159,7 +159,11 @@ public:
 
 	world.add (new Tree (&world, CL_Vector (100, 400), "feuerkraft/tree"));
 	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
-	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
+	world.add (new Tree (&world, CL_Vector (200, 440), "feuerkraft/tree"));
+
+	world.add (new Tree (&world, CL_Vector (150, 300), "feuerkraft/tree2"));
+	world.add (new Tree (&world, CL_Vector (450, 120), "feuerkraft/tree2"));
+	world.add (new Tree (&world, CL_Vector (250, 330), "feuerkraft/tree2"));
 
 	world.add (new Soldier (&world, CL_Vector (200, 200)));
 	world.add (new Soldier (&world, CL_Vector (300, 300)));

@@ -1,4 +1,4 @@
-//  $Id: TileMap.hxx,v 1.3 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: TileMap.hxx,v 1.4 2002/03/09 18:36:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,13 @@ class TileMap : public GroundMap,
 		protected TileMapData
 {
 private:
+  /** The real tiles are in this list  */
   std::vector<Tile*> tiles;
+  
+  /** The tiles in this list are just pointers to the tiles in the
+      'tiles' vector, so you shouldn't call non-constant operations on
+      them. */
+  std::vector<Tile*> tilemap;
 public:
   /** arg_width and arg_height give the number of tiles in each
       direction, they give *not* the width and height in world

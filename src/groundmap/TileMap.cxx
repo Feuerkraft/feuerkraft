@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.3 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.4 2002/03/09 18:36:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,15 +24,35 @@
 TileMap::TileMap (const TileMapData& data)
   : TileMapData (data)
 {
+  // Create the tiles from tiles_data
   for (std::vector<TileData*>::iterator i = tiles_data.begin ();
        i != tiles_data.end ();
        ++i)
     {
+      std::cout << "Tiles: " << *i << std::endl;
       if (*i)
 	tiles.push_back ((*i)->create_Tile ());
       else
 	tiles.push_back (NULL);
     }
+
+  // Create the tilemap out of tiles_data and tiles
+  tilemap.resize (tilemap_data.size ());
+  for (unsigned int i = 0; i < tilemap.size (); ++i)
+    {
+      if (tilemap_data[i] >= 0 && tilemap_data[i] < tiles.size())
+	{
+	  tilemap[i] = tiles[tilemap_data[i]];
+	  std::cout << "Tile: " << tilemap_data[i] << " " << tiles[tilemap_data[i]] << std::endl;
+	}
+      else
+	{
+	  std::cout << "Tile" << tiles.size() << ": " << tilemap_data[i] << std::endl;
+	}
+    }
+  
+  std::cout << "Tilemap: " << width << "x" << height << std::endl;
+
 }
 
 TileMap::~TileMap ()
@@ -55,8 +75,10 @@ TileMap::draw (View* view)
   for (std::vector<Tile*>::size_type y = 0; y < height; ++y)
     for (std::vector<Tile*>::size_type x = 0; x < width; ++x)
     {
-      if (tiles [(width * y) + x])
-	tiles [(width * y) + x]->draw (x * 32, y * 32);
+      if (tilemap [(width * y) + x])
+	tilemap [(width * y) + x]->draw (view , 
+					 int(x * 32)  - (int(width) * 16),
+					 int(y * 32)  - (int(height) * 16));
     }
 }
 

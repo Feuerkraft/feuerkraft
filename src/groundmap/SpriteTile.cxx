@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.cxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: SpriteTile.cxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <ClanLib/display.h>
 #include <SphriteLib/sphritelibGL.h>
 #include "SpriteTile.hxx"
+#include "../View.hxx"
 
 extern CL_ResourceManager* resources;
 
@@ -35,10 +36,11 @@ SpriteTile::SpriteTile (const SpriteTileData& data)
 }
 
 void
-SpriteTile::draw (float x, float y)
+SpriteTile::draw (View* view, float x, float y)
 {
   assert (sprite);
-  sprite->draw ((int) x, (int) y);
+  //sprite->draw ((int) x, (int) y);
+  view->draw(sprite, CL_Vector (x, y));
   //std::cout << "draw: " << sprite_location << std::endl;
 }
 

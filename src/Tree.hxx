@@ -1,4 +1,4 @@
-//  $Id: Tree.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Tree.hxx,v 1.2 2002/03/09 18:36:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,7 @@ class Tree : public GameObj
 private:
   CL_Vector pos;
   CL_Surface sur;
+  CL_Surface sur_shadow;
 public:
   Tree (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos, std::string name);
   ~Tree ();

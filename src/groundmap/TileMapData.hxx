@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,13 @@ class TileMapData : public GroundMapData
 public:
   int width;
   int height;
+
+  /** Data for creating Tile's */
   std::vector<TileData*> tiles_data;
+
+  /** Data for the tilemap, each 'int' here, refers to a position in
+      tiles_data */
+  std::vector<int> tilemap_data;
 
 public:
   /** Create a TileMapData out of an SCM description, the structure is
@@ -45,13 +51,15 @@ public:
        (height 100)
        (tiles (spritetile ...)
               (someothertiletype ...)
-              ...))
+              ...)
+       (map 1 2 3 4 5 2 3 11 2 3 ...))
    */
   TileMapData (SCM desc);
   virtual ~TileMapData ();
 
 private:
   void parse_tiles (SCM desc);
+  void parse_map (SCM desc);
 
 public:
   GroundMap* create ();

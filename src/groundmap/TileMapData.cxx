@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,16 +42,11 @@ TileMapData::TileMapData (SCM desc)
 	}
       else if (gh_equal_p (gh_symbol2scm ("tiles"), symbol))
 	{
-	  assert (width != -1);
-	  assert (height != -1);
-
-	  tiles_data.resize (width * height);
-
-	  for (std::vector<TileData*>::iterator i = tiles_data.begin ();
-	       i != tiles_data.end (); ++i)
-	    *i = NULL;
-
 	  parse_tiles (data);
+	}
+      else if (gh_equal_p (gh_symbol2scm ("map"), symbol))
+	{
+	  parse_map (data);
 	}
       else
 	{
@@ -72,21 +67,45 @@ TileMapData::~TileMapData ()
 }
 
 void
-TileMapData::parse_tiles (SCM desc)
+TileMapData::parse_map (SCM desc)
 {
+  assert (width != -1);
+  assert (height != -1);
+  tilemap_data.resize (width * height);
+  
+  // Init the map to '0'
+  for (std::vector<int>::iterator i = tilemap_data.begin ();
+       i != tilemap_data.end (); ++i)
+    *i = 0;
+  
+  std::cout << "Tilemap MapData: " << std::flush;
+  gh_display (desc);
+  gh_newline ();
+  
   int i = 0;
   while (!gh_null_p (desc))
     {
-      if (i < tiles_data.size ())
+      if (i < tilemap_data.size())
 	{
-	  tiles_data[i] = TileDataFactory::create (gh_car(desc));
+	  tilemap_data[i] = gh_scm2int (gh_car (desc));
 	  ++i;
 	}
       else
 	{
-	  std::cout << "To many tiles...." << std::endl;
+	  std::cout << "TileMapData: map to large" << std::endl;
 	}
       
+      desc = gh_cdr(desc);
+    }
+}
+
+void
+TileMapData::parse_tiles (SCM desc)
+{
+  //std::cout << "TileMapData::parse_tiles: " tiles_ << std::endl;
+  while (!gh_null_p (desc))
+    {
+      tiles_data.push_back (TileDataFactory::create (gh_car(desc)));
       desc = gh_cdr (desc);
     }
 }

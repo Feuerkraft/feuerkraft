@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.hxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: SpriteTile.hxx,v 1.2 2002/03/09 18:36:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,7 @@ private:
 public:
   SpriteTile (const SpriteTileData& data);
   
-  void draw (float x, float y);
+  void draw (View* view, float x, float y);
 
   /** FIXME: 'float delta' should be replaced with GameDelta */
   void update (float delta);

@@ -1,4 +1,4 @@
-//  $Id: Tree.cxx,v 1.2 2001/12/12 00:25:48 grumbel Exp $
+//  $Id: Tree.cxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,8 @@ Tree::Tree (boost::dummy_ptr<GameWorld>  w,
 	    CL_Vector arg_pos, std::string name) 
   : GameObj (w),
     pos (arg_pos),
-    sur (name.c_str (), resources)
+    sur (name.c_str (), resources),
+    sur_shadow ((name + "_shadow").c_str (), resources)
 {
 }
 
@@ -34,9 +35,12 @@ Tree::~Tree ()
 void 
 Tree::draw (View* view)
 {
+  view->draw (sur_shadow, pos.x - 15, pos.y - 15);
   view->draw (sur, 
 	      int(pos.x - sur.get_width ()/2), 
 	      int(pos.y - sur.get_height ()/2));
+
+
   //view->draw_circle (pos.x, pos.y, 7,
   //1.0f, 1.0f, 1.0f);
 }
