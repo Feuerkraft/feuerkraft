@@ -91,7 +91,8 @@ AC_CHECK_LIB( SphriteLibGL,   main,, [
 AC_OUTPUT( Makefile
            data/Makefile
            src/Makefile
-           src/map/Makefile
+           src/groundmap/Makefile
            src/particles/Makefile
+           src/buildings/Makefile
            src/generic/Makefile
            src/boost/Makefile)

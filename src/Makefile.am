@@ -1,11 +1,11 @@
-SUBDIRS = boost map particles generic
+SUBDIRS = boost groundmap particles generic
 
 bindir=$(prefix)/games
 
 bin_PROGRAMS = feuerkraft
 
 LDADD = \
- map/libfeuerkraft_map.a \
+ groundmap/libfeuerkraft_groundmap.a \
  generic/libfeuerkraft_generic.a 
 # map/libfeuerkraft_particles.a 
 

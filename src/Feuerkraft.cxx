@@ -35,9 +35,9 @@
 #include "System.hxx"
 #include "Ambulance.hxx"
 
-#include "map/GroundMap.hxx"
-#include "map/GroundMapData.hxx"
-#include "map/GroundMapDataFactory.hxx"
+#include "groundmap/GroundMap.hxx"
+#include "groundmap/GroundMapData.hxx"
+#include "groundmap/GroundMapDataFactory.hxx"
 
 #include <SphriteLib/sphritelibGL.h>
 

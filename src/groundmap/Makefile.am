@@ -1,6 +1,6 @@
-noinst_LIBRARIES = libfeuerkraft_map.a
+noinst_LIBRARIES = libfeuerkraft_groundmap.a
 
-libfeuerkraft_map_a_SOURCES = \
+libfeuerkraft_groundmap_a_SOURCES = \
   GroundMap.hxx                         \
   GroundMapData.hxx                     \
   TileMap.cxx        TileMap.hxx        \

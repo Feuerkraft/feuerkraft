@@ -1,4 +1,4 @@
-//  $Id: SmokeParticle.hxx,v 1.2 2002/03/13 10:03:21 grumbel Exp $
+//  $Id: SmokeParticle.hxx,v 1.3 2002/03/16 23:41:49 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,7 +58,7 @@ public:
 
   void draw (View* view) 
   {    
-    sprite->setAlpha ((life_time/max_life_time) * 0.4);
+    sprite->setAlpha ((life_time/max_life_time) * 0.3);
     sprite->setScale (0.8f + ((1 - life_time/max_life_time)) * 4.0f);
     view->draw(sprite, pos, angle);
   }
