@@ -1,4 +1,4 @@
-//  $Id: Vehicle.hh,v 1.3 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Vehicle.hh,v 1.4 2001/05/01 21:11:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,7 @@ public:
   virtual ~Vehicle () {}
 
   virtual CL_Vector get_pos () { return pos; }
+  virtual float get_angle () { return 0.0; }
 };
 
 #endif

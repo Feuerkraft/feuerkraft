@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.3 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: Screen.cc,v 1.1 2001/05/01 21:12:03 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,29 +17,38 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "VehicleView.hh"
+#include "Screen.hh"
 
-VehicleView::VehicleView (boost::dummy_ptr<GameWorld> world,
-			  boost::dummy_ptr<Vehicle> arg_vehicle, 
-			  int x1, int y1, int x2, int y2) :
-  View (world, x1, y1, x2, y2,
-	-arg_vehicle->get_pos ().x, -arg_vehicle->get_pos ().y),
-  vehicle (arg_vehicle)
+Screen::Screen ()
 {
-  
 }
 
-VehicleView::~VehicleView ()
+Screen::~Screen ()
 {
 }
 
 void 
-VehicleView::update ()
+Screen::draw ()
 {
-  x_offset = int(vehicle->get_pos ().x);
-  y_offset = int(vehicle->get_pos ().y);
+  for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
+    {
+      (*i)->draw ();
+    }
+}
 
-  //std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
+void 
+Screen::update (float delta)
+{
+  for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
+    {
+      (*i)->update (delta);
+    }
+}
+
+void 
+Screen::add (boost::shared_ptr<GuiObj> obj)
+{
+  gui_objs.push_back (obj);
 }
 
 /* EOF */

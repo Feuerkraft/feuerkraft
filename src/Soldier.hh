@@ -1,4 +1,4 @@
-//  $Id: Soldier.hh,v 1.5 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Soldier.hh,v 1.6 2001/05/01 21:11:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,7 @@ public:
   Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
   ~Soldier ();
 
+  float get_angle () { return 0.0; }
   void draw (View* view);
   void update (float);
 

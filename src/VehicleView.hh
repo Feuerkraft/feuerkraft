@@ -1,4 +1,4 @@
-//  $Id: VehicleView.hh,v 1.1 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: VehicleView.hh,v 1.2 2001/05/01 21:11:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,18 +20,20 @@
 #ifndef VEHICLEVIEW_HH
 #define VEHICLEVIEW_HH
 
+#include "boost/dummy_ptr.hpp"
 #include "Vehicle.hh"
 #include "View.hh"
 
 class VehicleView :
   public View
-
 {
 private:
-  Vehicle* vehicle;
+  boost::dummy_ptr<Vehicle> vehicle;
   
 public:
-  VehicleView (GameWorld* world, Vehicle* arg_vehicle, 
+  VehicleView (boost::dummy_ptr<GameWorld>
+ world, 
+	       boost::dummy_ptr<Vehicle> arg_vehicle, 
 	       int x1, int y1, int x2, int y2);
   virtual ~VehicleView ();
   

@@ -11,6 +11,6 @@ Controller.cc Helicopter.cc Helicopter.hh Jeep.cc Jeep.hh Vehicle.hh \
 Flag.cc Flag.hh View.cc View.hh Playfield.cc Playfield.hh \
 VehicleView.cc VehicleView.hh Pathfinder.cc Pathfinder.hh Feuerkraft.hh \
 System.cc System.hh my_gettext.hh StringConverter.hh StringConverter.cc \
-Radar.hh Radar.cc GuiObj.hh
+Radar.hh Radar.cc GuiObj.hh Screen.hh Screen.cc
 
 # EOF #

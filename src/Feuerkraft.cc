@@ -21,6 +21,7 @@
 #include "Soldier.hh"
 #include "VehicleView.hh"
 #include "Radar.hh"
+#include "Screen.hh"
 #include "System.hh"
 
 CL_ResourceManager* resources;
@@ -83,6 +84,7 @@ public:
 					     false);
 
 	GameWorld world;
+	Screen    screen;
 
 	Tank* tank1 = new Tank(&world, 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(&world, 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
@@ -93,12 +95,18 @@ public:
 	JoystickController controller(tank1);
 	KeyboardController kcontroller (tank2);
 
-	Radar radar1 (CL_Vector(800-64, 64), 
-		      &world, tank1);
+	//Radar radar1 (CL_Vector(800-64, 64), 
+		      //&world, tank1);
 
-	Radar radar2 (CL_Vector(64, 64), 
-		      &world, tank2);
+	//Radar radar2 (CL_Vector(64, 64), 
+		      //&world, tank2);
 	
+	boost::shared_ptr<GuiObj> radar 
+	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
+						 &world, tank2));
+	screen.add (radar);
+	//View view (&world, 10, 10, 790, 590);
+
 	world.add (jeep);
 	world.add (heli);
 	//world.add (heli2);
@@ -148,19 +156,12 @@ public:
 	    deltas += delta;
 	    ++loops;
 
-	    //CL_Display::clear_display ();
-	    
 	    view.draw ();
-	    //view1.draw ();
-	    //view2.draw ();
-	    //view1.update ();
-	    //view2.update ();
+	    view.update (delta);
 
-	    radar1.draw ();
-	    radar1.update (delta);
-	    radar2.draw ();
-	    radar2.update (delta);	    
-
+	    screen.update (delta);
+	    screen.draw ();
+	      
 	    controller.update (delta);
 	    kcontroller.update (delta);
 

@@ -1,4 +1,4 @@
-//  $Id: Radar.cc,v 1.2 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Radar.cc,v 1.3 2001/05/01 21:11:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -54,6 +54,12 @@ Radar::draw ()
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
 
+  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
+			 1.0, 1.0, 0.0);
+
+  CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) + 45, int(pos.y) - 45,
+			 1.0, 1.0, 0.0);
+
   CL_Display::draw_line (int(pos.x), int(pos.y), int(end.x), int(end.y),
 			 0.0, 1.0, 0.0);
 }
@@ -68,6 +74,8 @@ Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
  
   if (diff.norm () < 64.0)
     {
+      diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
+
       CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
 			     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size,
 			     1.0, 0.0, 0.0, 0.5);

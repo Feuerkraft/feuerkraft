@@ -72,7 +72,7 @@ Tank::draw (View* view)
       CL_Vector x2 (30, -15);
       CL_Vector y2 (30, 15);
 
-      std::cout << "Angle: " << angle << std::endl;
+      //std::cout << "Angle: " << angle << std::endl;
       x1 = x1.rotate (angle - fmod(angle, circle/16.0),
 		 CL_Vector (0.0, 0.0, 1.0));
       y1 = y1.rotate (angle - fmod(angle, circle/16.0),

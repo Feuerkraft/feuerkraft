@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.2 2001/02/25 19:48:17 grumbel Exp $
+//  $Id: View.hh,v 1.3 2001/05/01 21:11:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,26 +20,30 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
+#include "boost/dummy_ptr.hpp"
+#include "GuiObj.hh"
 #include "GameWorld.hh"
 
 class GameWorld;
 
-class View
+class View 
+  : public GuiObj
 {
 protected:
-  GameWorld* world;
+  boost::dummy_ptr<GameWorld> world;
   int x1, y1;
   int x2, y2;
   int x_offset, y_offset;
 
 public:
-  View (GameWorld* world, int x1, int y1, int x2, int y2,
+  View (boost::dummy_ptr<GameWorld> world,
+	int x1, int y1, int x2, int y2,
 	int x_offset = 0, int y_offset = 0);
   virtual ~View ();
 
   void draw ();
   void set_view (int x_pos, int y_pos);
-  virtual void update ();
+  virtual void update (float delta);
   int get_x_offset ();
   int get_y_offset ();
   int get_x1 ();

@@ -1,5 +1,5 @@
-//  $Id: VehicleView.cc,v 1.3 2001/05/01 21:11:27 grumbel Exp $
-//
+//  $Id: Screen.hh,v 1.1 2001/05/01 21:12:03 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,34 +12,37 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "VehicleView.hh"
+#ifndef SCREEN_HH
+#define SCREEN_HH
 
-VehicleView::VehicleView (boost::dummy_ptr<GameWorld> world,
-			  boost::dummy_ptr<Vehicle> arg_vehicle, 
-			  int x1, int y1, int x2, int y2) :
-  View (world, x1, y1, x2, y2,
-	-arg_vehicle->get_pos ().x, -arg_vehicle->get_pos ().y),
-  vehicle (arg_vehicle)
+#include <list>
+#include "boost/smart_ptr.hpp"
+#include "boost/dummy_ptr.hpp"
+#include "GuiObj.hh"
+
+/** A screen is a collection of gui objects, it basically represents a
+    complete screen. */
+class Screen
+  : public GuiObj
 {
+private:
+  std::list<boost::shared_ptr<GuiObj> > gui_objs;
+  typedef std::list<boost::shared_ptr<GuiObj> >::iterator GuiObjIter;
   
-}
+public:
+  Screen ();
+  virtual ~Screen ();
 
-VehicleView::~VehicleView ()
-{
-}
+  virtual void draw ();
+  virtual void update (float delta);
+  virtual void add (boost::shared_ptr<GuiObj> obj);
+};
 
-void 
-VehicleView::update ()
-{
-  x_offset = int(vehicle->get_pos ().x);
-  y_offset = int(vehicle->get_pos ().y);
-
-  //std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
-}
+#endif
 
 /* EOF */
