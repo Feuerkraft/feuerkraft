@@ -1,4 +1,4 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: GroundMapDataFactory.cxx,v 1.5 2002/03/25 09:57:11 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #include <iostream>
 #include "TileMapData.hxx"
 #include "MultiGroundMap.hxx"
+#include "GridMapData.hxx"
 #include "GroundMapDataFactory.hxx"
 
 GroundMapData* 
@@ -48,6 +49,10 @@ GroundMapDataFactory::create (SCM desc)
       if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
 	{
 	  multigroundmap->add(new TileMapData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("gridmap"), symbol))
+	{
+	  multigroundmap->add(new GridMapData (data));
 	}
       else
 	{

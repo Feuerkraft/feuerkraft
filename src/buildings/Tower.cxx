@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.9 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: Tower.cxx,v 1.10 2002/03/25 09:57:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
     towerdamaged (storage->get("feuerkraft/towerdamaged")),
     towerdestroyed (storage->get("feuerkraft/towerdestroyed")),
     turret (storage->get("feuerkraft/towerturret")),
-    energie (start_energie),
+    energie (int(start_energie)),
     destroyed (false)
 {  
   // FIXME: Hardcoded tilesize is ugly

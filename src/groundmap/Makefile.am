@@ -18,6 +18,11 @@ libfeuerkraft_groundmap_a_SOURCES = \
   MultiGroundMap.hxx \
   MultiGroundMap.cxx \
   MultiGroundMapData.hxx \
-  MultiGroundMapData.cxx
+  MultiGroundMapData.cxx \
+  GridMapData.hxx \
+  GridMapData.cxx \
+  GridMap.hxx \
+  GridMap.cxx \
+  GridTileData.hxx
 
 # EOF #
