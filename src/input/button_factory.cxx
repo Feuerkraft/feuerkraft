@@ -88,7 +88,7 @@ InputButton*
 ButtonFactory::create_keyboard_button(SCM lst)
 {
   std::string key_str = Guile::scm2string(gh_car(lst));
-  int key_num         = CL_Keyboard::get_device().keyid_to_string(key_str);
+  int key_num         = CL_Keyboard::get_device().string_to_keyid(key_str);
 
   // FIXME: No error checking
   return new InputButtonInputDevice(CL_Keyboard::get_device(), key_num);
