@@ -1,4 +1,4 @@
-//  $Id: Tower.hh,v 1.5 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Tower.hh,v 1.6 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,13 +23,13 @@
 #include <ClanLib/core.h>
 #include "GameObj.hh"
 #include "Controllable.hh"
-#include "Collideable.hh"
+#include "Vehicle.hh"
 #include "Energie.hh"
 
 extern CL_ResourceManager* resources;
 
 class Tower : public Controllable,
-	      public Collideable
+	      public Vehicle
 {
 private:
   CL_Surface towerbase;
@@ -38,14 +38,13 @@ private:
 
   CL_Surface turret;
   
-  CL_Vector pos;
   bool fireing;
   int angle;
   Energie energie;
   bool destroyed;
 
 public:
-  Tower (float, float);
+  Tower (boost::dummy_ptr<GameWorld>  w, float, float);
   virtual ~Tower () 
   {
   }
@@ -63,6 +62,8 @@ public:
   
   virtual bool is_colliding (CL_Vector obj_pos);
   virtual void collide (Projectile* projectile);
+
+  virtual float get_physical_size () { return 4.0; }
 };
 
 #endif

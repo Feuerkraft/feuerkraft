@@ -1,4 +1,4 @@
-//  $Id: Explosion.cc,v 1.4 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Explosion.cc,v 1.5 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,12 @@
 #include "Shockwave.hh"
 #include "Explosion.hh"
 
-Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size) : 
-  is_drawn (false),
-  pos (arg_pos),
-  size (arg_size)
+Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
+		      const CL_Vector& arg_pos, Size arg_size) 
+  : GameObj (w),
+    is_drawn (false),
+    pos (arg_pos),
+    size (arg_size)
 {
   switch (size)
     {
@@ -35,22 +37,10 @@ Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size) :
     case MEDIUM:
       explo = CL_Surface("feuerkraft/mediumexplo", resources);
       lifetime = 25;
+      world->add (new Shockwave (world, pos));
       break;
     }
 };
-
-void
-Explosion::init ()
-{
-  switch (size)
-    {
-    case MEDIUM:
-      world->add (new Shockwave (pos));
-      break;
-    default:
-      break;
-    }
-}
 
 void 
 Explosion::draw (View* view) 

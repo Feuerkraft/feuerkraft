@@ -1,4 +1,4 @@
-//  $Id: Projectile.cc,v 1.6 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Projectile.cc,v 1.7 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,14 +22,16 @@
 #include "Explosion.hh"
 #include "Projectile.hh"
 
-Projectile::Projectile (const CL_Vector& arg_pos, const CL_Vector& arg_add) :
-  sur ("feuerkraft/projectile", resources),
-  pos (arg_pos),
-  tmp_pos (arg_pos),
-  add (arg_add),
-  lifetime (20 + rand () % 20 )
+Projectile::Projectile (boost::dummy_ptr<GameWorld>  w,
+			const CL_Vector& arg_pos, const CL_Vector& arg_add)
+  : Vehicle (w),
+    sur ("feuerkraft/projectile", resources),
+    tmp_pos (arg_pos),
+    add (arg_add),
+    lifetime (20 + rand () % 20 )
 {
   //std::cout << "Add: " << add.x << " " << add.y << std::endl;
+  pos  = arg_pos;
 }
 
 Projectile::~Projectile ()
@@ -94,7 +96,7 @@ void
 Projectile::detonate ()
 {
   lifetime = -1;
-  world->add (boost::shared_ptr<GameObj>(new Explosion (pos)));
+  world->add (boost::shared_ptr<GameObj>(new Explosion (world, pos)));
 }
 
 /* EOF */

@@ -35,7 +35,8 @@ private:
   bool destroyed;
 
 public:
-  Tank (int reloading_speed, std::string tank, std::string turret, std::string fire);
+  Tank (boost::dummy_ptr<GameWorld>  w,
+	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
   
   void draw (View* view);
@@ -78,6 +79,8 @@ public:
   void collide (Projectile*);
   void collide (Mine*);
   virtual void collide (CL_Vector force);
+
+  virtual float get_physical_size () { return 3.0; }
 };
 
 #endif // TANK_HH

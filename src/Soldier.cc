@@ -1,4 +1,4 @@
-//  $Id: Soldier.cc,v 1.4 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Soldier.cc,v 1.5 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,11 +20,12 @@
 #include <ClanLib/core.h>
 #include "Soldier.hh"
 
-Soldier::Soldier (const CL_Vector& arg_pos) :
-  sur ("feuerkraft/soldier", resources),
-  pos (arg_pos),
-  frame (0)
+Soldier::Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
+  : Vehicle (w),
+    sur ("feuerkraft/soldier", resources),
+    frame (0)
 {
+  pos = arg_pos;
 }
 
 Soldier::~Soldier ()
@@ -48,6 +49,16 @@ Soldier::update (float delta)
     }
 
   pos += CL_Vector (0.0, -0.5, 0.0);
+}
+
+bool 
+Soldier::is_colliding(CL_Vector obj_pos)
+{
+  CL_Vector diff = obj_pos - pos;
+  if (diff.norm () > 5)
+    return false;
+  else
+    return true;
 }
 
 /* EOF */

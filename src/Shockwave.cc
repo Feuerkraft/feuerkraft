@@ -1,4 +1,4 @@
-//  $Id: Shockwave.cc,v 1.3 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Shockwave.cc,v 1.4 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,10 +19,11 @@
 
 #include "Shockwave.hh"
 
-Shockwave::Shockwave (CL_Vector arg_pos) :
-  pos (arg_pos),
-  sur ("feuerkraft/shockwave", resources),
-  counter (0)
+Shockwave::Shockwave (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
+  : GameObj (w),
+    pos (arg_pos),
+    sur ("feuerkraft/shockwave", resources),
+    counter (0)
 {
 }
 

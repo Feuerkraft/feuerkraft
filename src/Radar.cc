@@ -1,4 +1,4 @@
-//  $Id: Radar.cc,v 1.1 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Radar.cc,v 1.2 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,7 +51,7 @@ Radar::draw ()
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>((*i).get());
-      if (vehicle) draw_vehicle (vehicle);
+      if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(end.x), int(end.y),
@@ -63,11 +63,15 @@ Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
 {
   CL_Vector diff = obj->get_pos () - vehicle->get_pos ();
   diff *= 1/10.0;
+
+  int size = int(obj->get_physical_size ()) + 1;
  
   if (diff.norm () < 64.0)
-    CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
-			   int(pos.x + diff.x) + 3, int(pos.y + diff.y) + 3,
-			   1.0, 0.0, 0.0);
+    {
+      CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
+			     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size,
+			     1.0, 0.0, 0.0, 0.5);
+    }
 }
 
 void 

@@ -43,7 +43,7 @@ public:
       {
 	srand (time (0));
 
-	float sec_fraction = 30.0f;
+	float sec_fraction = 20.0f;
 	if (argc == 3)
 	  {
 	    if (strcmp (argv[1], "--speed") == 0
@@ -84,37 +84,41 @@ public:
 
 	GameWorld world;
 
-	Tank* tank1 = new Tank(5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank2 = new Tank(5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-	Helicopter* heli = new Helicopter (CL_Vector (320, 200));
+	Tank* tank1 = new Tank(&world, 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank2 = new Tank(&world, 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Helicopter* heli = new Helicopter (&world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
-	Jeep* jeep = new Jeep (CL_Vector (250, 250));
+	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
 
-	JoystickController controller(tank2);
-	KeyboardController kcontroller (tank1);
+	JoystickController controller(tank1);
+	KeyboardController kcontroller (tank2);
 
-	Radar radar (CL_Vector(128, 128), &world, tank1);
+	Radar radar1 (CL_Vector(800-64, 64), 
+		      &world, tank1);
+
+	Radar radar2 (CL_Vector(64, 64), 
+		      &world, tank2);
 	
 	world.add (jeep);
 	world.add (heli);
 	//world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
-	world.add (new Playfield ());
-	world.add (new Flag (CL_Vector(200.0f, 200.f)));
-	world.add (new Tower (400.0, 200.0));
-	world.add (new Tower (600.0, 400.0));
-	world.add (new Tower (600.0, 100.0));
+	world.add (new Playfield (&world));
+	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
+	world.add (new Tower (&world, 400.0, 200.0));
+	world.add (new Tower (&world, 600.0, 400.0));
+	world.add (new Tower (&world, 600.0, 100.0));
+	
+	world.add (new Tree (&world, CL_Vector (100, 400), "feuerkraft/tree"));
+	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
+	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
 
-	world.add (new Tree (CL_Vector (100, 400), "feuerkraft/tree"));
-	world.add (new Tree (CL_Vector (400, 440), "feuerkraft/tree"));
-	world.add (new Tree (CL_Vector (400, 440), "feuerkraft/tree"));
-
-	world.add (new Soldier (CL_Vector (200, 200)));
-	world.add (new Soldier (CL_Vector (300, 300)));
-	world.add (new Soldier (CL_Vector (150, 400)));
-	world.add (new Soldier (CL_Vector (550, 400)));
-	world.add (new Soldier (CL_Vector (550, 100)));
+	world.add (new Soldier (&world, CL_Vector (200, 200)));
+	world.add (new Soldier (&world, CL_Vector (300, 300)));
+	world.add (new Soldier (&world, CL_Vector (150, 400)));
+	world.add (new Soldier (&world, CL_Vector (550, 400)));
+	world.add (new Soldier (&world, CL_Vector (550, 100)));
 
 	/** 1/30sec = 1.0delta
 	 */
@@ -152,9 +156,11 @@ public:
 	    //view1.update ();
 	    //view2.update ();
 
-	    radar.draw ();
-	    radar.update (delta);
-	    
+	    radar1.draw ();
+	    radar1.update (delta);
+	    radar2.draw ();
+	    radar2.update (delta);	    
+
 	    controller.update (delta);
 	    kcontroller.update (delta);
 

@@ -1,4 +1,4 @@
-//  $Id: Explosion.hh,v 1.6 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Explosion.hh,v 1.7 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,8 @@ private:
 public:
   enum Size { SMALL, MEDIUM, LARGE } size;
   
-  Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL);
+  Explosion (boost::dummy_ptr<GameWorld>  w, 
+	     const CL_Vector& arg_pos, Size arg_size = SMALL);
   void init ();
 
   void draw (View* view);

@@ -1,4 +1,4 @@
-//  $Id: Tree.cc,v 1.2 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Tree.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,11 @@
 
 #include "Tree.hh"
 
-Tree::Tree (CL_Vector arg_pos, std::string name) :
-  pos (arg_pos),
-  sur (name.c_str (), resources)
+Tree::Tree (boost::dummy_ptr<GameWorld>  w,
+	    CL_Vector arg_pos, std::string name) 
+  : GameObj (w),
+    pos (arg_pos),
+    sur (name.c_str (), resources)
 {
 }
 

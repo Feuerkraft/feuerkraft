@@ -10,7 +10,7 @@ class Tank;
 class Turret : public GameObj
 {
 private:
-  Tank* tank;
+  boost::dummy_ptr<Tank> tank;
 
   CL_Surface sur;
   CL_Surface fire_sur;
@@ -23,7 +23,8 @@ private:
   int  reloading_speed;
 
 public:
-  Turret (Tank*, int reloading_speed, std::string, std::string);
+  Turret (boost::dummy_ptr<GameWorld>  w,
+	  Tank*, int reloading_speed, std::string, std::string);
   ~Turret ();
 
   void draw (View* view);

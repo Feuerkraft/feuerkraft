@@ -7,12 +7,14 @@ extern CL_ResourceManager* resources;
 
 const float circle = 6.2831854f;
 
-Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire) :
-  sur (surface.c_str (), resources),
-  fire_sur (fire.c_str (), resources),
-  fireing (false),
-  reloading (0),
-  reloading_speed (r_speed)
+Turret::Turret (boost::dummy_ptr<GameWorld>  w, 
+		Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
+  : GameObj (w),
+    sur (surface.c_str (), resources),
+    fire_sur (fire.c_str (), resources),
+    fireing (false),
+    reloading (0),
+    reloading_speed (r_speed)
 {
   tank = arg_tank;
 }
@@ -63,14 +65,14 @@ Turret::update (float delta)
 
       if (floppy)
 	{
-	  world->add (new Projectile (tank->get_pos ()
+	  world->add (new Projectile (world, tank->get_pos ()
 				      + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				      dir));
 	}
       else
 	{
-	  world->add (new Projectile (tank->get_pos ()
-				  + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
+	  world->add (new Projectile (world, tank->get_pos ()
+				      + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				      dir));
 	}
       floppy = !floppy;

@@ -1,4 +1,4 @@
-//  $Id: Vehicle.hh,v 1.2 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Vehicle.hh,v 1.3 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #define VEHICLE_HH
 
 #include "Mine.hh"
-#include "Projectile.hh"
 #include "Collideable.hh"
 
+/** FIXME: Wrong name for this kind of class, better rename it at some point */
 class Vehicle :
   public Collideable
 {
@@ -31,7 +31,7 @@ protected:
   CL_Vector pos;
   
 public:
-  Vehicle () {}
+  Vehicle (boost::dummy_ptr<GameWorld>  w) : Collideable (w) {}
   virtual ~Vehicle () {}
 
   virtual CL_Vector get_pos () { return pos; }

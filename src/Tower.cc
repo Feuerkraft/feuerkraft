@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.6 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Tower.cc,v 1.7 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,19 +21,20 @@
 #include "Projectile.hh"
 #include "Tower.hh"
 
-Tower::Tower (float arg_x_pos, float arg_y_pos) :
-  towerbase ("feuerkraft/towerbase", resources),
-  towerdamaged ("feuerkraft/towerdamaged", resources),
-  towerdestroyed ("feuerkraft/towerdestroyed", resources),
-  turret ("feuerkraft/towerturret", resources),
-  pos (arg_x_pos, arg_y_pos),
-  fireing (true),
-  angle (0),
-  energie (100),
-  destroyed (false)
+Tower::Tower (boost::dummy_ptr<GameWorld>  w,
+	      float arg_x_pos, float arg_y_pos) 
+  : Vehicle (w),
+    towerbase ("feuerkraft/towerbase", resources),
+    towerdamaged ("feuerkraft/towerdamaged", resources),
+    towerdestroyed ("feuerkraft/towerdestroyed", resources),
+    turret ("feuerkraft/towerturret", resources),
+    fireing (true),
+    angle (0),
+    energie (100),
+    destroyed (false)
 {
+  pos = CL_Vector (arg_x_pos, arg_y_pos);
 }
-
 
 void
 Tower::draw (View* view) 
@@ -88,7 +89,7 @@ Tower::update (float delta)
 
   if (energie <= 0)
     {
-      world->add (new Explosion (pos, Explosion::MEDIUM));
+      world->add (new Explosion (world, pos, Explosion::MEDIUM));
       destroyed = true;
     }
 }

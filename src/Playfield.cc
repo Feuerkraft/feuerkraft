@@ -1,4 +1,4 @@
-//  $Id: Playfield.cc,v 1.2 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Playfield.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,8 @@
 #include <ClanLib/display.h>
 #include "Playfield.hh"
 
-Playfield::Playfield ()
+Playfield::Playfield (boost::dummy_ptr<GameWorld>  w)
+  : GameObj (w)
 {
 }
 

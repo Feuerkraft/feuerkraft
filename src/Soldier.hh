@@ -1,4 +1,4 @@
-//  $Id: Soldier.hh,v 1.4 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Soldier.hh,v 1.5 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,23 +21,26 @@
 #define SOLDIER_HH
 
 #include <ClanLib/display.h>
-#include "GameObj.hh"
+#include "Vehicle.hh"
 
 extern CL_ResourceManager* resources;
 
-class Soldier : public GameObj
+class Soldier : public Vehicle
 {
 private:
   CL_Surface sur;
-  CL_Vector  pos;
   int frame;
   int step;
 public:
-  Soldier (const CL_Vector& arg_pos);
+  Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
   ~Soldier ();
 
   void draw (View* view);
   void update (float);
+
+  bool is_colliding(CL_Vector);
+  
+  float get_physical_size () { return 1.0; }
 };
 
 #endif

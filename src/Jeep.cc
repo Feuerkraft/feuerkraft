@@ -1,4 +1,4 @@
-//  $Id: Jeep.cc,v 1.2 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Jeep.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,12 +22,13 @@
 const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
 
-Jeep::Jeep (CL_Vector arg_pos) :
-  jeep ("feuerkraft/jeep", resources),
-  energie (50),
-  velocity (0.0),
-  angle (0.0),
-  flag (0)
+Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
+  : Vehicle (w),
+    jeep ("feuerkraft/jeep", resources),
+    energie (50),
+    velocity (0.0),
+    angle (0.0),
+    flag (0)
 {
   pos = arg_pos;
 }

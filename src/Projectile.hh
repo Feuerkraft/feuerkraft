@@ -1,4 +1,4 @@
-//  $Id: Projectile.hh,v 1.6 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Projectile.hh,v 1.7 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,15 +24,14 @@
 #include <ClanLib/display.h>
 #include <ClanLib/core.h>
 #include "boost/dummy_ptr.hpp"
-#include "GameObj.hh"
+#include "Vehicle.hh"
 
 extern CL_ResourceManager* resources;
 
-class Projectile : public GameObj
+class Projectile : public Vehicle
 {
 private:
   CL_Surface sur;
-  CL_Vector  pos;
   CL_Vector  tmp_pos;
   CL_Vector  add;
   int lifetime;
@@ -43,7 +42,8 @@ private:
   boost::dummy_ptr<GameObj> parent;
 
 public:
-  Projectile (const CL_Vector& arg_pos, const CL_Vector& arg_add);
+  Projectile (boost::dummy_ptr<GameWorld>  w,
+	      const CL_Vector& arg_pos, const CL_Vector& arg_add);
   virtual ~Projectile ();
 
   virtual CL_Vector get_pos () { return pos; }
@@ -52,6 +52,7 @@ public:
   virtual bool removable ();
 
   virtual void detonate ();
+  bool is_colliding(CL_Vector) { return false;}
 };
 
 #endif

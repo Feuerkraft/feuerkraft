@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.6 2001/02/24 21:32:04 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.7 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,23 +17,25 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "Projectile.hh"
 #include "Explosion.hh"
 #include "Helicopter.hh"
 
 extern CL_ResourceManager* resources;
 
-Helicopter::Helicopter (CL_Vector arg_pos) :
-  rotor ("feuerkraft/rotor", resources),
-  heli ("feuerkraft/helicopter", resources),
-  helidestroyed ("feuerkraft/helidestroyed", resources),
-  rotor_count (0),
-  velocity (0.0),
-  angle (0.0),
-  strafe (0.0),
-  fireing (false),
-  reloading (0),
-  energie (100),
-  destroyed (false)
+Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
+  : Vehicle (w),
+    rotor ("feuerkraft/rotor", resources),
+    heli ("feuerkraft/helicopter", resources),
+    helidestroyed ("feuerkraft/helidestroyed", resources),
+    rotor_count (0),
+    velocity (0.0),
+    angle (0.0),
+    strafe (0.0),
+    fireing (false),
+    reloading (0),
+    energie (100),
+    destroyed (false)
 {
   pos = arg_pos;
 }
@@ -77,7 +79,7 @@ Helicopter::update (float delta)
 {
   if (energie <= 0 && !destroyed)
     {
-      world->add (new Explosion (pos, Explosion::MEDIUM));
+      world->add (new Explosion (world, pos, Explosion::MEDIUM));
       destroyed = true;
     }
 
@@ -93,7 +95,7 @@ Helicopter::update (float delta)
     {
       float rot_angle = angle + 3.1415927;
       CL_Vector dir = CL_Vector (15.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
-      world->add (new Projectile (pos
+      world->add (new Projectile (world, pos
 				  + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
 				  dir));
       reloading = 4;

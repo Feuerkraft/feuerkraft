@@ -1,4 +1,4 @@
-//  $Id: Mine.cc,v 1.4 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Mine.cc,v 1.5 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,11 +21,12 @@
 #include "Tank.hh"
 #include "Mine.hh"
 
-Mine::Mine (const CL_Vector& arg_pos) :
-  sur ("feuerkraft/mine", resources),
-  sur_active ("feuerkraft/mineactive", resources),
-  pos (arg_pos),
-  active (50)
+Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
+  : GameObj (w),
+    sur ("feuerkraft/mine", resources),
+    sur_active ("feuerkraft/mineactive", resources),
+    pos (arg_pos),
+    active (50)
 {
 }
 
@@ -92,7 +93,7 @@ Mine::detonate ()
     }
 
 
-  world->add (boost::shared_ptr<GameObj>(new Explosion (pos, Explosion::MEDIUM)));
+  world->add (boost::shared_ptr<GameObj>(new Explosion (world, pos, Explosion::MEDIUM)));
   remove ();
 }
 

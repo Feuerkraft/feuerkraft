@@ -1,4 +1,4 @@
-//  $Id: Flag.cc,v 1.2 2001/04/27 19:43:15 grumbel Exp $
+//  $Id: Flag.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,10 @@
 
 extern CL_ResourceManager* resources;
 
-Flag::Flag (CL_Vector arg_pos) :
-  sur ("feuerkraft/blueflag", resources),
-  pos (arg_pos)
+Flag::Flag (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
+  : GameObj (w),
+    sur ("feuerkraft/blueflag", resources),
+    pos (arg_pos)
 {
 }
 

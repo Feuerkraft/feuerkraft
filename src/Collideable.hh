@@ -1,4 +1,4 @@
-//  $Id: Collideable.hh,v 1.4 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Collideable.hh,v 1.5 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,15 +20,18 @@
 #ifndef COLLIDEABLE_HH
 #define COLLIDEABLE_HH
 
+#include <ClanLib/core.h>
 #include "GameObj.hh"
-#include "Projectile.hh"
+//#include "Projectile.hh"
+
+class Projectile;
 
 class Collideable : public GameObj
 {
 private:
   
 public:
-  Collideable () {};
+  Collideable (boost::dummy_ptr<GameWorld>  w) : GameObj (w) {};
   virtual ~Collideable () {};
 
   /** Check if the collideable is colliding with a object at obj_pos */

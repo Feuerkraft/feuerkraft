@@ -9,22 +9,24 @@
 const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
 
-Tank::Tank (int reloading_speed, std::string tank, std::string str_turret, std::string fire) : 
-  angle (0.0f),
-  speed (0.0f),
-  velocity (0.0f),
-  increment (0.06f),
-  inc_step (0),
-  sur (tank.c_str (), resources),
-  smod ("feuerkraft/smod", resources),
-  sur_destroyed ("feuerkraft/tankdestroyed", resources),
-  turret (NULL),
-  smod_step (0),
-  mine_reload_time (0),
-  energie (100),
-  destroyed (false)
+Tank::Tank (boost::dummy_ptr<GameWorld>  w,
+	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
+  : Vehicle (w),
+    angle (0.0f),
+    speed (0.0f),
+    velocity (0.0f),
+    increment (0.06f),
+    inc_step (0),
+    sur (tank.c_str (), resources),
+    smod ("feuerkraft/smod", resources),
+    sur_destroyed ("feuerkraft/tankdestroyed", resources),
+    turret (NULL),
+    smod_step (0),
+    mine_reload_time (0),
+    energie (100),
+    destroyed (false)
 {
-  turret = new Turret(this, reloading_speed, str_turret, fire);
+  turret = new Turret(world, this, reloading_speed, str_turret, fire);
   pos = CL_Vector (rand () % 800, rand () % 600);
 }
 
@@ -99,9 +101,9 @@ Tank::draw (View* view)
 void 
 Tank::explode ()
 {
-  world->add (new Explosion (pos, Explosion::MEDIUM));
+  world->add (new Explosion (world, pos, Explosion::MEDIUM));
   destroyed = true;
-  Tank* tank = new Tank (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  Tank* tank = new Tank (world, 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   world->add (tank);
   if (get_controller ())
     {
@@ -119,7 +121,6 @@ Tank::update (float delta)
   if (energie <= 0)
     explode ();
   
-  turret->set_world (world);
   turret->update (delta);
 
   if (mine_reload_time)
@@ -219,7 +220,7 @@ Tank::drop_mine ()
     {
       CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle - fmod(angle, circle/16.0), CL_Vector (0.0, 0.0, 1.0));
 
-      world->add (new Mine (CL_Vector(pos.x, pos.y) + vel));
+      world->add (new Mine (world, CL_Vector(pos.x, pos.y) + vel));
       mine_reload_time = 50;
     }
 }

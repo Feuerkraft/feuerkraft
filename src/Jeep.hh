@@ -1,4 +1,4 @@
-//  $Id: Jeep.hh,v 1.1 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Jeep.hh,v 1.2 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ private:
   float angle;
   Flag* flag;
 public:
-  Jeep (CL_Vector arg_pos);
+  Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos);
   virtual ~Jeep () {}
   
   void update (float delta);
@@ -68,6 +68,7 @@ public:
   virtual int get_z_pos () { return 50; }
   
   void add_flag (Flag* flag);
+  virtual float get_physical_size () { return 2.0; }
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: Flag.hh,v 1.1 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Flag.hh,v 1.2 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ private:
   CL_Vector pos;
 
 public:
-  Flag (CL_Vector arg_pos);
+  Flag (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos);
   virtual ~Flag ();
 
   void draw (View* view);

@@ -1,4 +1,4 @@
-//  $Id: GameObj.hh,v 1.8 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: GameObj.hh,v 1.9 2001/05/01 15:06:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define GAMEOBJ_HH
 
 #include "View.hh"
+#include "boost/dummy_ptr.hpp"
 #include "GameWorld.hh"
 
 class View;
@@ -31,18 +32,17 @@ class GameObj
 protected:
   friend class GameWorld;
 
-  GameWorld* world;
+  boost::dummy_ptr<GameWorld> world;
   bool remove_me;
 public:
   
-  GameObj () : remove_me (false) {}
+  GameObj (boost::dummy_ptr<GameWorld>  w)
+    : world (w),
+      remove_me (false) {}
+
   virtual ~GameObj () {}
 
-  void set_world (GameWorld* w) { 
-    world = w; 
-  }
-  
-  GameWorld* get_world () {
+  boost::dummy_ptr<GameWorld> get_world () {
     return world; 
   }
 
@@ -65,9 +65,6 @@ public:
      on */
   virtual float get_physical_mass () { return 1.0; }
   virtual float get_physical_size () { return 1.0; }
-
-  // This is a pseudo constructor which is called when the world pointer is set
-  virtual void init () {}
 };
 
 #endif
