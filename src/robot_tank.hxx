@@ -21,7 +21,7 @@
 #define HEADER_ROBOT_TANK_HXX
 
 #include "vector2d.hxx"
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 
 /** */
 class RobotTank : public Vehicle

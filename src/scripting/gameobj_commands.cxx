@@ -23,7 +23,7 @@
 
 #include "../satchel_charge.hxx"
 #include "../soldier.hxx"
-#include "../vehicle.hxx"
+#include "../vehicles/vehicle.hxx"
 #include "../vehicles/helicopter.hxx"
 #include "../unit.hxx"
 

@@ -22,13 +22,15 @@
 #include "explosion.hxx"
 #include "particles/rocket_smoke_particle.hxx"
 #include "view.hxx"
+#include "buildings/building.hxx"
 #include "rocket.hxx"
 
 Rocket::Rocket(const FloatVector2d& pos, float orientation)
   : pos(pos),
     orientation(orientation),
     velocity(10.0f),
-    max_velocity(50.0f)
+    max_velocity(50.0f),
+    life_time(0)
 {
   sprite = resources->get_sprite("feuerkraft/rocket");
   smoke  = resources->get_sprite("feuerkraft/rocket_smoke");
@@ -56,11 +58,17 @@ Rocket::update(float delta)
   CollisionManager::current()->add_point(get_id(), pos.x, pos.y);
 
   GameWorld::current()->add(new RocketSmokeParticle(pos));
+  life_time += delta;
+  if (life_time > 2.0f)
+    {
+      detonate();
+    }
 }
 
 void
 Rocket::on_collision_with_building(Building* building)
 {
+  building->collide(35);
   detonate();
 }
 

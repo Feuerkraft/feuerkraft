@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../vehicle.hxx"
+#include "../vehicles/vehicle.hxx"
 #include "../view.hxx"
 #include "../game_obj_manager.hxx"
 #include "../resource_manager.hxx"

@@ -157,8 +157,6 @@ unit.hxx \
 unit.cxx \
 vector2d.hxx \
 vector2d.cxx \
-vehicle.cxx \
-vehicle.hxx \
 vehicle_ai.cxx \
 vehicle_ai.hxx \
 vehicle_status.cxx \

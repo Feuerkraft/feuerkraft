@@ -20,7 +20,7 @@
 #include <ClanLib/Display/display.h>
 #include "resource_manager.hxx"
 #include "player.hxx"
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 #include "vehicle_status.hxx"
 
 extern Player* player;

@@ -21,8 +21,8 @@
 #include "../color.hxx"
 #include "../game_obj_manager.hxx"
 #include "../radar.hxx"
-#include "../vehicle.hxx"
 #include "../resource_manager.hxx"
+#include "../vehicles/vehicle.hxx"
 #include "ammotent.hxx"
 
 Ammotent::Ammotent (const AList& lst)

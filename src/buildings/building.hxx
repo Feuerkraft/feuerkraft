@@ -75,6 +75,8 @@ public:
 
   virtual void collide (Projectile*) {}
 
+  virtual void collide (int energie) {}
+
   /** is_at() can be overwritten to provide a more detailed building
       'resolution', so that buildings can be subgrid large 
       FIXME: Looks a bit hack like and doesn't work at polygon level  */

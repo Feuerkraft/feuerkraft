@@ -20,7 +20,7 @@
 #ifndef HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
 #define HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
 
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 #include "view.hxx"
 
 // FIXME: Rename to UnitViewUpdater

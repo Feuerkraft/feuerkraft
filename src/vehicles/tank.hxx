@@ -26,7 +26,7 @@
 
 #include "../mine.hxx"
 #include "../energie.hxx"
-#include "../vehicle.hxx"
+#include "vehicle.hxx"
 
 /** \defgroup units Units - Player Controllable GameObjs */
 

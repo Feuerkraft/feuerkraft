@@ -111,13 +111,24 @@ Tower::update_controlls(const Controller& controller)
   steering = controller.get_axis_state(ORIENTATION_AXIS);
 }
 
+void
+Tower::collide (int hits)
+{
+  energie -= hits;
+  if (!destroyed && !(energie > 0))
+    {
+      GameWorld::current()->add (new Explosion (pos, Explosion::LARGE));
+      destroyed = true;
+    }
+}
+
 void 
 Tower::collide (Projectile*)
 {
   energie -= 5;   
   if (!destroyed && !(energie > 0))
     {
-      GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
+      GameWorld::current()->add (new Explosion (pos, Explosion::LARGE));
       destroyed = true;
     }
 }

@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../vehicles/helicopter.hxx"
-#include "../vehicle.hxx"
+#include "../vehicles/vehicle.hxx"
 #include "../game_obj_manager.hxx"
 #include "vehicle_commands.hxx"
 

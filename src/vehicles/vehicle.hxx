@@ -20,7 +20,7 @@
 #ifndef VEHICLE_HH
 #define VEHICLE_HH
 
-#include "unit.hxx"
+#include "../unit.hxx"
 
 class Controller;
 class Projectile;

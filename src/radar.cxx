@@ -23,7 +23,7 @@
 #include "radar.hxx"
 #include "math.hxx"
 #include "player.hxx"
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 #include "resource_manager.hxx"
 
 Radar::Radar(const FloatVector2d& arg_pos, 

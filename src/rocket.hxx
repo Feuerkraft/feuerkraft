@@ -33,6 +33,7 @@ private:
   float orientation;
   float velocity;
   float max_velocity;
+  float life_time;
 public:
   Rocket(const FloatVector2d& pos, float orientation);
   ~Rocket();

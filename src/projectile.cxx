@@ -26,7 +26,7 @@
 #include "buildings/building_map.hxx"
 #include "game_obj_manager.hxx"
 #include "projectile.hxx"
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 #include "resource_manager.hxx"
 
 Projectile::Projectile (GameObj* p,

@@ -22,7 +22,7 @@
 
 #include <ClanLib/Display/sprite.h>
 #include "../energie.hxx"
-#include "../vehicle.hxx"
+#include "vehicle.hxx"
 #include "rotor.hxx"
 
 class VehicleAI;

@@ -61,6 +61,7 @@ public:
   int get_map_height () { return 2; }
 
   void collide (Projectile*);
+  void collide (int energie);
 
   float get_orientation() const { return orientation; }
   bool alive ();

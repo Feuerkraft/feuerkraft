@@ -22,8 +22,8 @@
 
 #include <ClanLib/Display/sprite.h>
 
-#include "../vehicle.hxx"
 #include "../energie.hxx"
+#include "vehicle.hxx"
 
 class Projectile;
 

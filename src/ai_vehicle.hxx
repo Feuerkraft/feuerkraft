@@ -27,7 +27,7 @@
 #include "energie.hxx"
 #include "line_segments.hxx"
 #include "sequence_manager.hxx"
-#include "vehicle.hxx"
+#include "vehicles/vehicle.hxx"
 
 class SmokeEmitter;
 class LevelMap;

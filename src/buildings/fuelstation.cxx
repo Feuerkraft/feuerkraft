@@ -21,7 +21,7 @@
 #include "../game_obj_manager.hxx"
 #include "../color.hxx"
 #include "../radar.hxx"
-#include "../vehicle.hxx"
+#include "../vehicles/vehicle.hxx"
 #include "../resource_manager.hxx"
 #include "fuelstation.hxx"
 

@@ -5,6 +5,8 @@ libfeuerkraft_vehicles_a_SOURCES = \
   helicopter.cxx helicopter.hxx \
   jeep.cxx   jeep.hxx \
   turret.cxx turret.hxx \
-  rotor.cxx  rotor.hxx
+  rotor.cxx  rotor.hxx \
+  vehicle.cxx \
+  vehicle.hxx
 
 # EOF #
