@@ -1,4 +1,4 @@
-//  $Id: JoystickController.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: JoystickController.hh,v 1.3 2001/02/20 11:20:30 mbn Exp $
 // 
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -34,18 +34,24 @@ private:
 
 public:
   JoystickController (Controllable* obj) : 
-    Controller (obj)
+    Controller (obj),
+    vel_axis(NULL),
+    dir_axis(NULL),
+    left_t(NULL),
+    right_t(NULL),
+    fire(NULL),
+    drop_mine(NULL)
   {
     if (CL_Input::joysticks.size () >= 1)
-      {
-	vel_axis = CL_Input::joysticks[0]->get_axis (1);
-	dir_axis = CL_Input::joysticks[0]->get_axis (0);
+    {
+      vel_axis = CL_Input::joysticks[0]->get_axis (1);
+      dir_axis = CL_Input::joysticks[0]->get_axis (0);
     
-	left_t = CL_Input::joysticks[0]->get_button (7);
-	right_t = CL_Input::joysticks[0]->get_button (6);
-	fire = CL_Input::joysticks[0]->get_button (4);
-	drop_mine = CL_Input::joysticks[0]->get_button (1);
-      }
+      left_t = CL_Input::joysticks[0]->get_button (7);
+      right_t = CL_Input::joysticks[0]->get_button (6);
+      fire = CL_Input::joysticks[0]->get_button (4);
+      drop_mine = CL_Input::joysticks[0]->get_button (1);
+    }
   }
 
   virtual void update ();

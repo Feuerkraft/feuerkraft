@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: JoystickController.cc,v 1.4 2001/02/20 11:20:30 mbn Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,27 +24,27 @@
 void 
 JoystickController::update ()
 {
-  if (dir_axis->get_pos () > 0.5)
+  if (dir_axis && dir_axis->get_pos () > 0.5)
     controllable->turn_left ();
-  else if (dir_axis->get_pos () < -0.5)
+  else if (dir_axis && dir_axis->get_pos () < -0.5)
     controllable->turn_right ();
   
-  if (left_t->is_pressed ())
+  if (left_t && left_t->is_pressed ())
     controllable->turn_left2 ();
-  else if (right_t->is_pressed ())
+  else if (right_t && right_t->is_pressed ())
     controllable->turn_right2 ();
 
-  if (vel_axis->get_pos () < -0.5)
+  if (vel_axis && vel_axis->get_pos () < -0.5)
     controllable->increase_velocity ();
-  else if (vel_axis->get_pos () > 0.5)
+  else if (vel_axis && vel_axis->get_pos () > 0.5)
     controllable->decrease_velocity ();
 
-  if (fire->is_pressed ())
+  if (fire && fire->is_pressed ())
     controllable->start_fire ();
   else
     controllable->stop_fire ();    
 
-  if (drop_mine->is_pressed ())
+  if (drop_mine && drop_mine->is_pressed ())
     controllable->drop_mine ();
 }
   
