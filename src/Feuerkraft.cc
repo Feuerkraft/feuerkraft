@@ -6,6 +6,7 @@
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 
+#include "Feuerkraft.hh"
 #include "GameWorld.hh"
 #include "KeyboardController.hh"
 #include "JoystickController.hh"
@@ -19,8 +20,10 @@
 #include "Playfield.hh"
 #include "Soldier.hh"
 #include "VehicleView.hh"
+#include "System.hh"
 
 CL_ResourceManager* resources;
+Pathfinder datafiles;
 
 class Feuerkraft : public CL_ClanApplication
 {
@@ -47,6 +50,17 @@ public:
 	      }
 	  }
 
+	datafiles.add_sig_files ("data/feuerkraft.scr");
+	datafiles.add_back (".");
+	datafiles.add_back ("..");
+	datafiles.print ();
+
+	try {
+	  System::change_dir(datafiles.find_path ("data/feuerkraft.scr"));
+	} catch (Pathfinder::FileNotFound e) {
+	  std::cout << "Pathfinder:FileNotFound: " << e.filename << std::endl;
+	}
+
 	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
 		
 	CL_SetupCore::init();
@@ -58,7 +72,8 @@ public:
 	CL_Display::clear_display ();
 	CL_Display::flip_display ();
 		
-	resources =  CL_ResourceManager::create("data/feuerkraft.scr", false);
+	resources =  CL_ResourceManager::create(datafiles.find("data/feuerkraft.scr").c_str (),
+						false);
 
 	GameWorld world;
 
