@@ -1,4 +1,4 @@
-//  $Id: pathfinder.hxx,v 1.4 2003/04/29 16:34:45 grumbel Exp $
+//  $Id: pathfinder.hxx,v 1.5 2003/04/29 20:43:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,69 +20,33 @@
 #ifndef HEADER_PATHFINDER_HXX
 #define HEADER_PATHFINDER_HXX
 
-#include <list>
-#include "field.hxx"
+#include <math.h>
 
-enum { PARENT_NONE,
-       PARENT_GOAL,
-       PARENT_NORTH,
-       PARENT_SOUTH,
-       PARENT_EAST,
-       PARENT_WEST }; 
+// Datatypes shared by all the pathfinder 
 
-struct Node
+enum { PARENT_NONE,  //!< Parent isn't set
+       PARENT_GOAL,  //!< This is the goal node, it doesn't have a parent
+       PARENT_NORTH, //!< parent is in north direction
+       PARENT_SOUTH, //!< parent is in south direction
+       PARENT_EAST,  //!< parent is in east direction
+       PARENT_WEST   //!< parent is in west direction
+}; 
+
+/** A position on a Field */
+struct Pos 
 {
-  bool visited;
-  unsigned char parent;
-  unsigned int  cost;
+  Pos(short arg_x, short arg_y) : x(arg_x), y(arg_y) {}
+  Pos() {}
+ 
   short x;
   short y;
 };
 
-struct Pos {
-  Pos(int arg_x, int arg_y) : x(arg_x), y(arg_y) {}
-  Pos() {}
-  int x;
-  int y;
-};
-
-/** */
-class Pathfinder
+inline float PosDistance(const Pos& a, const Pos& b)
 {
-public:
-  enum State { WORKING,
-               NO_PATH_AVAILABLE, 
-               PATH_FOUND, 
-               ALREADY_ON_GOAL };
-private:
-  Field<int>& field;
-  Field<Node> node_field;
-  std::list<Node*> open_nodes;
-  Pos start;
-  Pos end;
-  std::vector<Pos> path;
-
-  State state;
-public:
-  Pathfinder(Field<int>* arg_field);
-  
-  void init(Pos& arg_start, Pos& arg_end);
-
-  bool finished();
-  bool is_path_node(int x, int y);
-
-  std::vector<Pos>& get_path() { return path; }
-
-  State get_state() { return state; }
-  void construct_path();
-  void make_neighbors_open(Node& cnode);
-  void process_one_open_node();
-  void add_to_open_nodes(Node& cnode);
-
-  Node& resolve_parent(Node& node);
-
-  void display();
-};
+  return sqrt((b.x - a.x) * (b.x - a.x)
+              + (b.y - a.y) * (b.y - a.y));
+}
 
 #endif
 

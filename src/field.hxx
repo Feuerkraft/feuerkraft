@@ -1,4 +1,4 @@
-//  $Id: field.hxx,v 1.2 2003/04/29 16:34:45 grumbel Exp $
+//  $Id: field.hxx,v 1.3 2003/04/29 20:43:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,7 @@ public:
   iterator end()   { return data.end(); }
 
   Field (int arg_width, int arg_height)
-    : width (arg_width), height (arg_width)
+    : width (arg_width), height (arg_height)
   {
     data.resize (width * height);
   }
@@ -44,7 +44,7 @@ public:
   void resize (int arg_width, int arg_height) 
   {
     width  = arg_width;
-    height = arg_width;
+    height = arg_height;
     data.resize (width * height);
   }
 

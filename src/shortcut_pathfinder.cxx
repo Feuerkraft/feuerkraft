@@ -1,4 +1,4 @@
-//  $Id: dijkstra_pathfinder.cxx,v 1.2 2003/04/29 20:43:36 grumbel Exp $
+//  $Id: shortcut_pathfinder.cxx,v 1.1 2003/04/29 20:43:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,16 +20,16 @@
 #include <ClanLib/core.h>
 #include <iostream>
 #include <unistd.h>
-#include "dijkstra_pathfinder.hxx"
+#include "shortcut_pathfinder.hxx"
 
-DijkstraPathfinder::DijkstraPathfinder(Field<int>* arg_field)
+ShortcutPathfinder::ShortcutPathfinder(Field<int>* arg_field)
   : field(*arg_field),
     node_field(field.get_width(), field.get_height())
 {
 }
 
 void
-DijkstraPathfinder::init(Pos& arg_start, Pos& arg_end)
+ShortcutPathfinder::init(Pos& arg_start, Pos& arg_end)
 {
   start = arg_start;
   end   = arg_end;
@@ -70,14 +70,14 @@ DijkstraPathfinder::init(Pos& arg_start, Pos& arg_end)
 }
 
 bool
-DijkstraPathfinder::finished()
+ShortcutPathfinder::finished()
 {
   return state != WORKING;
 }
 
 inline 
 void
-DijkstraPathfinder::process_one_open_node()
+ShortcutPathfinder::process_one_open_node()
 {
   if (open_nodes.empty())
     {
@@ -105,7 +105,7 @@ DijkstraPathfinder::process_one_open_node()
 }
 
 void
-DijkstraPathfinder::make_neighbors_open(Node& cnode)
+ShortcutPathfinder::make_neighbors_open(Node& cnode)
 {
   // FIXME: We don't handle neightbors with smaller cost here
   /*
@@ -167,14 +167,14 @@ DijkstraPathfinder::make_neighbors_open(Node& cnode)
 }
 
 inline void
-DijkstraPathfinder::add_to_open_nodes(Node& cnode)
+ShortcutPathfinder::add_to_open_nodes(Node& cnode)
 {
   assert(cnode.parent != PARENT_NONE);
   open_nodes.push(&cnode);
 }
 
 void
-DijkstraPathfinder::display()
+ShortcutPathfinder::display()
 {
   //std::cout << "c" << std::endl;
   for(int y = 0; y < node_field.get_height(); ++y)
@@ -217,7 +217,7 @@ DijkstraPathfinder::display()
 }
 
 bool
-DijkstraPathfinder::is_path_node(int x, int y)
+ShortcutPathfinder::is_path_node(int x, int y)
 {
   if (path.empty()) 
     return false;
@@ -232,8 +232,8 @@ DijkstraPathfinder::is_path_node(int x, int y)
     }
 }
 
-DijkstraPathfinder::Node&
-DijkstraPathfinder::resolve_parent(Node& node)
+ShortcutPathfinder::Node&
+ShortcutPathfinder::resolve_parent(Node& node)
 {
   if (node.parent == PARENT_NONE)
     {
@@ -259,7 +259,7 @@ DijkstraPathfinder::resolve_parent(Node& node)
 }
 
 void
-DijkstraPathfinder::construct_path()
+ShortcutPathfinder::construct_path()
 {
   //std::cout << "Construct path" << std::endl;
   // We construct the path reverse, so we start at the end
@@ -294,7 +294,7 @@ int main()
         field(x,y) = (rand()%100) > 40 ? 0 : 1;
       }
 
-  DijkstraPathfinder pathfinder(&field);
+  ShortcutPathfinder pathfinder(&field);
 
   Pos start;
   Pos end;
@@ -331,7 +331,7 @@ int main()
       //pathfinder.display();
       
       /*
-        if (pathfinder.get_state() != DijkstraPathfinder::PATH_FOUND)
+        if (pathfinder.get_state() != ShortcutPathfinder::PATH_FOUND)
         {
         std::cout << "No Path could be found" << std::endl;
         }
@@ -358,7 +358,7 @@ int main()
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 dijkstra_pathfinder.cxx  -o dijkstra_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 shortcut_pathfinder.cxx  -o shortcut_pathfinder -lclanCore"
 // End:
 
 /* EOF */
