@@ -1,5 +1,3 @@
-Bla
-
 //  $Id: level_map.cxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
