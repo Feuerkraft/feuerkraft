@@ -1,4 +1,4 @@
-//  $Id: wall.cxx,v 1.8 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: wall.cxx,v 1.9 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ Wall::Wall (const AList& lst)
     wall_damaged (resources->get_sprite ("feuerkraft/wall_damaged")),
     wall_destroyed (resources->get_sprite ("feuerkraft/wall_destroyed"))
 {
-  energie = static_cast<int>(lst.get_int("energie"));
+  energie = lst.get_int("energie", 100);
   properties->register_int("energie", &energie);
 }
 

@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.13 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: radar.cxx,v 1.14 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,6 +53,8 @@ Radar::draw(CL_GraphicContext& gc)
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
+      (*i)->draw_radar(*this);
+      // FIXME: Backward compability stuff, remove this 
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle)
         draw_vehicle(*vehicle);

@@ -16,6 +16,9 @@
 ;; Building Types
 (define building:fuelstation (building-get-type-from-name "fuelstation"))
 (define building:ammotent    (building-get-type-from-name "ammotent"))
+(define building:wall        (building-get-type-from-name "wall"))
+(define building:walldoor    (building-get-type-from-name "walldoor"))
+(define building:tower       (building-get-type-from-name "tower"))
 ;; End: Building Types
 
 (define (keywords2assoc lst)
@@ -353,6 +356,9 @@
                              (building-insert-func 'building:garage)
                              (building-insert-func 'building:fuelstation)
                              (building-insert-func 'building:ammotent)
+                             (building-insert-func 'building:walldoor)
+                             (building-insert-func 'building:wall)
+                             (building-insert-func 'building:tower)
                              ))
 ;; Make an endless list
 (list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)

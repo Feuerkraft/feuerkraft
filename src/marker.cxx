@@ -1,4 +1,4 @@
-//  $Id: marker.cxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: marker.cxx,v 1.3 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #include "resource_manager.hxx"
 #include "marker.hxx"
 #include "alist.hxx"
+#include "radar.hxx"
 #include "view.hxx"
 
 Marker::Marker(const AList& lst)
@@ -44,6 +45,12 @@ void
 Marker::draw (View& view)
 {
   view.draw(sprite, pos);
+}
+
+void
+Marker::draw_radar(Radar& radar)
+{
+  radar.draw_blip(pos, 3, 1.0f, 1.0f, 1.0f);
 }
 
 void

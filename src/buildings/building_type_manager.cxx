@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.cxx,v 1.4 2003/06/23 09:04:10 grumbel Exp $
+//  $Id: building_type_manager.cxx,v 1.5 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,13 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+
+#include "wall_door.hxx"
+#include "wall.hxx"
+#include "tower.hxx"
 #include "fuelstation.hxx"
 #include "ammotent.hxx"
+
 #include "building_type_manager.hxx"
 
 BuildingTypeManager* BuildingTypeManager::current_ = 0;
@@ -31,6 +36,9 @@ BuildingTypeManager::BuildingTypeManager()
 
   register_factory(new GenericBuildingFactory<Fuelstation>("fuelstation"));
   register_factory(new GenericBuildingFactory<Ammotent>("ammotent"));
+  register_factory(new GenericBuildingFactory<Wall>("wall"));
+  register_factory(new GenericBuildingFactory<WallDoor>("walldoor"));
+  register_factory(new GenericBuildingFactory<Tower>("tower"));
 }
 
 int
