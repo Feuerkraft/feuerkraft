@@ -1,4 +1,4 @@
-//  $Id: Mine.cxx,v 1.4 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: Mine.cxx,v 1.5 2002/03/25 19:30:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,19 +20,36 @@
 #include "boost/smart_ptr.hpp"
 #include "Tank.hxx"
 #include "Mine.hxx"
+#include "GameWorld.hxx"
+#include "groundmap/GroundMap.hxx"
 
 extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
 Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
   : GameObj (w),
-    sur ("feuerkraft/mine", resources),
-    sur_active ("feuerkraft/mineactive", resources),
     pos (arg_pos),
     hole (storage->get ("feuerkraft/hole")),
     active (2),
     detonated (false)
 {
+  GroundType type = get_world ()->get_groundmap ()->get_groundtype (pos.x, pos.y);
+  if (type == GT_FLATWATER)
+    {
+      sur = Sprite(storage->get ("feuerkraft/minewater"));
+      sur_active = Sprite(storage->get ("feuerkraft/minewateractive"));
+    }
+  else if (type == GT_DEEPWATER)
+    {
+      sur = Sprite(storage->get ("feuerkraft/minewater"));
+      sur_active = Sprite(storage->get ("feuerkraft/minewateractive"));
+      remove (); // Mines can't be placed in deepwater
+    }
+  else
+    {
+      sur = Sprite(storage->get ("feuerkraft/mine"));
+      sur_active = Sprite(storage->get ("feuerkraft/mineactive"));
+    }
 }
 
 void 
@@ -68,13 +85,11 @@ Mine::draw (View* view)
 {
   if (!is_active ())
     {
-      view->draw (sur, int(pos.x - sur.get_width ()/2),
-		  int(pos.y - sur.get_height ()/2));
+      view->draw (sur, pos);
     }
   else if (!detonated)
     {
-      view->draw (sur_active, int(pos.x - sur.get_width ()/2),
-		  int(pos.y - sur.get_height ()/2));
+      view->draw (sur_active, pos);
     }
   else
     {

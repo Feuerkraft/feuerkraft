@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.10 2002/03/25 15:32:57 grumbel Exp $
+//  $Id: View.cxx,v 1.11 2002/03/25 19:30:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -226,6 +226,20 @@ int
 View::get_height ()
 {
   return y2 - y1;// FIXME: Off by one?!
+}
+
+CL_Vector
+View::screen_to_world (const CL_Vector& pos)
+{
+  return CL_Vector (pos.x - get_x_offset (),
+		    pos.y - get_y_offset ());
+}
+
+CL_Vector
+View::world_to_screen (const CL_Vector& pos)
+{
+  return CL_Vector (pos.x + get_x_offset (),
+		    pos.y + get_y_offset ());
 }
 
 /* EOF */

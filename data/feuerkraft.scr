@@ -106,11 +106,19 @@ section feuerkraft {
 
 	soldier = images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
 
-	soldierdead = images/soldierdead.png (type=surface);
-	mine = images/mine.png (type=surface);
+	section mine {
+		frame1 = images/mine.png (type=surface);
+	}
+	section mineactive {
+		frame1 = images/mineactive.png (type=surface);
+	}	
+	section minewater {
+		frame1 = images/minewater.png (type=surface);
+	}
+	section minewateractive {
+		frame1 = images/minewateractive.png (type=surface);
+	}	
 
-	mineactive = images/mineactive.png (type=surface);
-	
 	tank2destroyed = images/tank2destroyed.png (type=surface);
 	
 	section	shockwave {

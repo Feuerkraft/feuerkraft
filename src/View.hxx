@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: View.hxx,v 1.5 2002/03/25 19:30:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -86,6 +86,9 @@ public:
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);
+
+  CL_Vector screen_to_world (const CL_Vector&);
+  CL_Vector world_to_screen (const CL_Vector&);
 };
 
 #endif

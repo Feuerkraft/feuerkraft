@@ -36,6 +36,7 @@
 
 #include "buildings/BuildingMapData.hxx"
 #include "buildings/BuildingMap.hxx"
+#include "generic/ofstreamext.hxx"
 
 #include <SphriteLib/sphritelibGL.h>
 
@@ -133,8 +134,8 @@ public:
 
 	Screen    screen;
 
-	Tank* tank2 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank1 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank1 = new Tank(world, CL_Vector (800, 600), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
@@ -143,8 +144,8 @@ public:
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
 
-	KeyboardController kcontroller (heli);
-	JoystickController controller(current_controllable);
+	KeyboardController kcontroller (current_controllable);
+	JoystickController controller(heli);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
 	//world, tank1);
@@ -245,6 +246,11 @@ public:
 	    screen.update (delta);
 	    screen.draw ();
 
+	    {
+	      CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
+	      std::cout << "Mouse: " <<  pos << " "
+			<< world->get_groundmap ()->get_groundtype (pos.x, pos.y) << std::endl;
+	    }
 	    controller.update (delta);
 	    kcontroller.update (delta);
 

@@ -6,6 +6,7 @@
 #include "Mine.hxx"
 #include "Turret.hxx"
 #include "Tank.hxx"
+#include "groundmap/GroundMap.hxx"
 #include "buildings/BuildingMap.hxx"
 #include "particles/SmokeParticle.hxx"
 #include "particles/GrassParticle.hxx"
@@ -131,7 +132,13 @@ Tank::update (float delta)
 
   if (particle_release > 20.0f && !destroyed)
     {
-      world->add (new SmokeParticle (get_world (), pos));
+      GroundType type = get_world ()->get_groundmap ()->get_groundtype (pos.x, pos.y);
+
+      if (type == GT_SAND)
+	world->add (new SmokeParticle (get_world (), pos));
+      else if (type == GT_GRASS)
+	world->add (new GrassParticle (get_world (), pos));
+
       particle_release = 0;
     }
   

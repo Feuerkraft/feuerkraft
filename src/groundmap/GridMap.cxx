@@ -1,4 +1,4 @@
-//  $Id: GridMap.cxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
+//  $Id: GridMap.cxx,v 1.3 2002/03/25 19:30:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -172,7 +172,7 @@ GridMap::~GridMap ()
 void
 GridMap::draw (View* view)
 {
-  std::cout << "Drawing" << std::endl;
+  //std::cout << "Drawing" << std::endl;
 
   /* FIXME: This code should be shared with TileMap */
   int tile_x_offset = -(view->get_x_offset () / 40);
@@ -190,8 +190,8 @@ GridMap::draw (View* view)
 	    if (gridmap [(width * y) + x]) // Tile is not empty
 	      {
 		gridmap [(width * y) + x]->draw (view , 
-						 int(x * 40), // FIXME: Map offset needs to be
-						 int(y * 40)); // FIXME: configurable;
+						 int(x * 40) + 20, // FIXME: Map offset needs to be
+						 int(y * 40) + 20); // FIXME: configurable;
 	      }
 	    else
 	      {
@@ -210,7 +210,14 @@ GridMap::update (float)
 GroundType
 GridMap::get_groundtype (float x, float y)
 {
-  return GT_EMPTY;
+  // FIXME: This doesn't look right
+  int ix = int((x + 20) / 40);
+  int iy = int((y + 20) / 40);
+
+  if (ix >= 0 && ix < grid_width && iy >= 0 && iy < grid_height)
+    return grid_data[ix + (iy * grid_width)];
+  else
+    return GT_EMPTY;
 }
 
 /* EOF */

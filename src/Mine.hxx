@@ -1,4 +1,4 @@
-//  $Id: Mine.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: Mine.hxx,v 1.3 2002/03/25 19:30:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,8 +28,8 @@
 class Mine : public GameObj
 {
 private:
-  CL_Surface sur;
-  CL_Surface sur_active;
+  Sprite sur;
+  Sprite sur_active;
   CL_Vector pos;
   Sprite hole;
   float active;
