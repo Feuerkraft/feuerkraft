@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.8 2001/11/28 17:17:27 grumbel Exp $
+//  $Id: View.hh,v 1.9 2001/11/29 20:43:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ protected:
   int x2, y2;
   int x_offset, y_offset;
   float zoom;
-
+  float rotation;
 public:
   View (boost::dummy_ptr<GameWorld> world,
 	int x1, int y1, int x2, int y2,

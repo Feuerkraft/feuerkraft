@@ -110,7 +110,7 @@ public:
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
 
-	JoystickController controller(heli);
+	JoystickController controller(tank2);
 	KeyboardController kcontroller (tank2);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
@@ -168,7 +168,7 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (&world, heli, 0, 0, 800, 600);
+	VehicleView view (&world, tank2, 0, 0, 800, 600);
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 	

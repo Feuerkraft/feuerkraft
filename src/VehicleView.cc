@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.6 2001/11/28 17:17:27 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.7 2001/11/29 20:43:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -56,6 +56,8 @@ VehicleView::update (float time_delta)
   
   x_offset = int(pos.x);
   y_offset = int(pos.y);
+
+  rotation = -(vehicle->get_angle ()/3.1415927*180.0) + 90;
 }
 
 /* EOF */

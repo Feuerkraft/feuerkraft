@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.10 2001/11/28 17:17:27 grumbel Exp $
+//  $Id: View.cc,v 1.11 2001/11/29 20:43:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,9 +46,15 @@ View::update (float delta)
 void 
 View::draw ()
 {
+  static double angle = 0;
   //std::cout << "Drawing: " << x_offset << " " << y_offset << std::endl;
   CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
+  glPushMatrix ();
+  glTranslated (400, 300, 0.0);
+  glRotated (rotation, 0, 0, 1.0);
+  glTranslated (-400, -300, 0.0);
   world->draw (this);
+  glPopMatrix ();
   CL_Display::pop_clip_rect ();
 }
 
