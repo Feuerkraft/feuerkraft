@@ -1,7 +1,8 @@
 section feuerkraft {
-  ambulance   = images/ambulance.png (type=surface, x=0, y=0, width=90, height=90);
-
-//  tank   = images/tank.png (type=surface, x=0, y=0, width=64, height=64, array=16x1);
+	
+	section ambulance {
+		frame1 = images/ambulance.png (type=surface);
+	}
 
 	section tank {
 		frame1 = images/tank.png (type = surface);
@@ -20,92 +21,79 @@ section feuerkraft {
 	}
 
 	section turret {
-	  frame1 = images/turret.png (type=surface);
+		frame1 = images/turret.png (type=surface);
 	}
 
 	section radar_line {
-	  frame1 = images/radar_line.png (type=surface);
+		frame1 = images/radar_line.png (type=surface);
 	}
 
 	section turret2 {
-	  frame1 = images/turret2.png (type=surface);
+		frame1 = images/turret2.png (type=surface);
 	}
 
 	section fire2 {
-	  frame1 = images/fire2.png (type=surface);
+		frame1 = images/fire2.png (type=surface);
 	}
 
 	section fire {
-	  frame1 = images/fire.png (type=surface);
+		frame1 = images/fire.png (type=surface);
 	}
 
-//    helicopter = images/helicopter.png (type=surface, x=0, y=0, width=186, height=186, array=16x1);
-//    helicopter_shadow = images/helicopter_shadow.png (type=surface, x=0, y=0, width=186, height=186, array=16x1);
-
-  smod = images/smod.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
-
-//  tank2   = images/tank2.png (type=surface, x=0, y=0, width=64, height=64, array=16x1);
-//  turret2 = images/turret2.png (type=surface, x=0, y=0, width=43, height=44, array=16x1);
-//  fire2 = images/fire2.png (type=surface, x=0, y=0, width=80, height=80, array=16x1);
-//  fire  = images/fire.png (type=surface, x=0, y=0, width=150, height=150, array=16x1);
-
-  towerbase = images/towerbase.png (type=surface, x=0, y=0, width=83, height=80);
-  towerturret = images/towerturret.png (type=surface, x=0, y=0, width=70, height=70);
-
- projectile = images/projectile.png (type=surface, x=0, y=0, width=5, height=6);
-
- smallexplo = images/smallexplo.png (type=surface, x=0, y=0, width=32, height=32);
-  mediumexplo = images/mediumexplo.png (type=surface, x=0, y=0, width=134, height=126);
-
-
- towerdamaged = images/towerdamaged.png (type=surface, x=0, y=0, width=83, height=80);
- towerdestroyed = images/towerdestroyed.png (type=surface, x=0, y=0, width=83, height=80);
-
- tree = images/tree.png (type=surface, x=0, y=0, width=63, height=59);
- soldier = images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
-
-soldierdead = images/soldierdead.png (type=surface, x=0, y=0, width=16, height=16);
-  mine = images/mine.png (type=surface, x=0, y=0, width=16, height=11);
-
- mineactive = images/mineactive.png (type=surface, x=0, y=0, width=16, height=11);
-
-  tank2destroyed = images/tank2destroyed.png (type=surface, x=0, y=0, width=70, height=67);
-
-  shockwave = images/shockwave.png (type=surface, x=0, y=0, width=100, height=100, array=4x1);
- tankdestroyed = images/tankdestroyed.png (type=surface, x=0, y=0, width=109, height=100);
-  
-//    helicopter = images/helicopter.png (type=surface, x=0, y=0, width=186, height=186, array=16x1);
-
-
-    rotor = images/rotor.png (type=surface, x=0, y=0, width=121, height=118,array=2x1);
-    helidestroyed = images/helidestroyed.png (type=surface, x=0, y=0, width=163, height=105);
-
-// jeep = images/jeep.png (type=surface, x=0, y=0, width=50, height=50, array=16x1);
 	section jeep {
 		frame1 = images/jeep.png (type = surface);
 	}
 
-    flagblue = images/flagblue.png (type=surface, x=0, y=0, width=27, height=38);
-    flaggreen = images/flaggreen.png (type=surface, x=0, y=0, width=27, height=38);
+	smod = images/smod.png (type=surface, x=0, y=0, width=100, height=100, array=16x1);
 
-    blueflag = images/blueflag.png (type=surface, x=0, y=0, width=29, height=23);
-    parking = images/parking.png (type=surface, x=0, y=0, width=96, height=56);
-    radar = images/radar.png (type=surface, x=0, y=0, width=128, height=128);
+	towerbase = images/towerbase.png (type=surface);
+	towerturret = images/towerturret.png (type=surface);
 
-    start = images/start.png (type=surface, x=0, y=0, width=100, height=100);
+	projectile = images/projectile.png (type=surface);
 
-	headquarter = images/headquater.png (type=surface, x=0, y=0, width=80, height=80);
-	headquarterdamaged = images/headquaterdamaged.png (type=surface, x=0, y=0, width=80, height=80);
-	headquarterdestroyed = images/headquaterdestroyed.png (type=surface, x=0, y=0, width=100, height=100);
+	smallexplo = images/smallexplo.png (type=surface);
+	mediumexplo = images/mediumexplo.png (type=surface);
+	
+	towerdamaged = images/towerdamaged.png (type=surface);
+	towerdestroyed = images/towerdestroyed.png (type=surface);
 
-	fuel = images/fuel.png (type=surface, x=0, y=0, width=24, height=24);
-	ammo = images/ammo.png (type=surface, x=0, y=0, width=24, height=24);
+	tree = images/tree.png (type=surface);
+	soldier = images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
 
-	fuelstation = images/fuelstation.png (type=surface, x=0, y=0, width=79, height=83);
-	ammotent = images/ammotent.png (type=surface, x=0, y=0, width=80, height=77);
+	soldierdead = images/soldierdead.png (type=surface);
+	mine = images/mine.png (type=surface);
 
-	sand = images/sand.jpg (type=surface, x=0, y=0, width=512, height=512);
-	stone = images/stone.png (type=surface, x=0, y=0, width=18, height=12);
+	mineactive = images/mineactive.png (type=surface);
+	
+	tank2destroyed = images/tank2destroyed.png (type=surface);
+	
+	shockwave = images/shockwave.png (type=surface, x=0, y=0, width=100, height=100, array=4x1);
+	tankdestroyed = images/tankdestroyed.png (type=surface); 
+	
+	rotor = images/rotor.png (type=surface, x=0, y=0, width=121, height=118,array=2x1);
+	helidestroyed = images/helidestroyed.png (type=surface);
+	
+	flagblue = images/flagblue.png (type=surface);
+	flaggreen = images/flaggreen.png (type=surface);
+	
+	blueflag = images/blueflag.png (type=surface);
+	parking = images/parking.png (type=surface);
+	radar = images/radar.png (type=surface);
+	
+	start = images/start.png (type=surface);
+	
+	headquarter = images/headquater.png (type=surface);
+	headquarterdamaged = images/headquaterdamaged.png (type=surface);
+	headquarterdestroyed = images/headquaterdestroyed.png (type=surface);
+	
+	fuel = images/fuel.png (type=surface);
+	ammo = images/ammo.png (type=surface);
+	
+	fuelstation = images/fuelstation.png (type=surface);
+	ammotent = images/ammotent.png (type=surface);
+	
+	sand = images/sand.jpg (type=surface);
+	stone = images/stone.png (type=surface);
 }
 
 // EOF //

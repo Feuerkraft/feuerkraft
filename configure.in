@@ -83,5 +83,4 @@ AC_CHECK_LIB( SphriteLibGL,   main,, [
 AC_OUTPUT( Makefile
            data/Makefile
            src/Makefile
-           src/caimagemanipulation/Makefile
            src/boost/Makefile)

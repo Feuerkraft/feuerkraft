@@ -1,4 +1,4 @@
-//  $Id: VehicleStatus.cc,v 1.2 2001/05/05 13:40:48 grumbel Exp $
+//  $Id: VehicleStatus.cc,v 1.3 2001/12/11 23:50:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,7 +53,7 @@ VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
   CL_Display::fill_rect (x_pos, y_pos, x_pos + 100, y_pos + 14,
 			 0.0, 0.0, 0.0);
   if (fill > 0.0)
-    CL_Display::fill_rect (x_pos + 2, y_pos + 2, x_pos + (98 * fill), y_pos + 12,
+    CL_Display::fill_rect (x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12,
 			   1.0 - fill, fill, 0.0);
 }
 

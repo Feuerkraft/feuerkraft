@@ -1,4 +1,4 @@
-//  $Id: Radar.cc,v 1.6 2001/11/28 17:17:27 grumbel Exp $
+//  $Id: Radar.cc,v 1.7 2001/12/11 23:50:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -55,7 +55,7 @@ Radar::draw ()
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
 
-  radar_line->draw (pos.x, pos.y, angle/3.1415927*180.0f + 180.0f);
+  radar_line->draw (int(pos.x), int(pos.y), angle/3.1415927*180.0f + 180.0f);
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
 			 1.0, 1.0, 0.0);

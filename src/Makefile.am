@@ -1,10 +1,8 @@
-SUBDIRS = caimagemanipulation boost
+SUBDIRS = boost
 
 bindir=$(prefix)/games
 
 bin_PROGRAMS = feuerkraft
-
-LDADD = caimagemanipulation/libcaimagemanipulation.a
 
 feuerkraft_SOURCES = Collideable.hh	 Energie.hh	GameWorld.cc	       KeyboardController.cc  Tank.cc	Turret.cc \
 Controllable.hh  Explosion.cc Explosion.hh	GameWorld.hh	       KeyboardController.hh  Tank.hh	Turret.hh \

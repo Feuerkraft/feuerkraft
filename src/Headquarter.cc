@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cc,v 1.3 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: Headquarter.cc,v 1.4 2001/12/11 23:50:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,8 +53,9 @@ Headquarter::update (float delta)
 void 
 Headquarter::draw (View* view)
 {
-  view->draw (*current_sur, pos.x - current_sur->get_width ()/2, pos.y - current_sur->get_height ()/2);
-  energie.draw (view, pos.x, pos.y - 40);
+  view->draw (*current_sur, int(pos.x - current_sur->get_width ()/2), 
+	      int(pos.y - current_sur->get_height ()/2));
+  energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 
 bool 

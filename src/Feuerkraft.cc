@@ -89,7 +89,7 @@ public:
 	CL_SetupJPEG::init ();
 
 	// Set mode: 320x200 16 bpp
-	CL_Display::set_videomode(800, 600, 16, false);
+	CL_Display::set_videomode(800, 600, 32, false, false);
 	CL_OpenGL::begin_2d();
 
 	//glAlphaFunc ( GL_GREATER, 0.1 ) ;
@@ -179,7 +179,7 @@ public:
 	int frames = 0;
 
 	CL_System::keep_alive();
-		    
+
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	

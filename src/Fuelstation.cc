@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cc,v 1.3 2001/09/23 16:10:13 japj Exp $
+//  $Id: Fuelstation.cc,v 1.4 2001/12/11 23:50:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,8 +38,8 @@ void
 Fuelstation::draw (View* view)
 {
   view->draw (fuelstation, 
-	      pos.x - 40,
-	      pos.y - 75);
+	      int(pos.x - 40),
+	      int(pos.y - 75));
 }
 
 void 
