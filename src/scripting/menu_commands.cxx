@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.3 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: menu_commands.cxx,v 1.4 2003/06/06 20:55:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -68,6 +68,12 @@ menu_add_submenu_item(int menu_id, const char* label, int sub_menu_id)
 void
 menu_remove_item(int menu_id, int item_id)
 {
+}
+
+bool
+menu_visible()
+{
+  return DisplayManager::current()->get_menu();
 }
 
 /* EOF */

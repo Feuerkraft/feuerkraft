@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.1 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: display_manager.cxx,v 1.2 2003/06/06 20:55:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,7 +46,7 @@ DisplayManager::deinit()
 DisplayManager::DisplayManager()
 {
   screen.add(message_buffer = new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
-  screen.add(help = new Help());
+  help = new Help();
   screen.add(radar = new Radar(FloatVector2d(64, 64), player));
   screen.add(vehicle_status = new VehicleStatus());
   menu = 0;

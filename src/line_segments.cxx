@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.12 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.13 2003/06/06 20:55:24 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -409,6 +409,12 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
 }
 
 void
+LineSegments::clear()
+{
+  segments.clear();  
+}
+
+void
 LineSegments::draw(View& view)
 {
 #if 0
@@ -485,6 +491,14 @@ LineSegments::draw(View& view)
           break;
         }
     }
+}
+
+void
+LineSegments::set_pos(float arg_init_x, float arg_init_y, float arg_init_orientation)
+{
+  init_x = arg_init_x;
+  init_y = arg_init_y;
+  init_orientation = arg_init_orientation;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.9 2003/06/06 20:55:24 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -85,6 +85,12 @@ public:
 
   /** @return length of all segments together */
   float get_length();
+  
+  /** Remove all segments */
+  void clear();
+
+  /** Set the position of the line segment */
+  void set_pos(float init_x, float init_y, float init_orientation);
 
   void add_straight_segment(float x1, float y1, float x2, float y2);
   void add_radial_segment(float x, float y, float radius, 

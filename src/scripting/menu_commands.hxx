@@ -1,4 +1,4 @@
-//  $Id: menu_commands.hxx,v 1.2 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: menu_commands.hxx,v 1.3 2003/06/06 20:55:24 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,8 @@ void menu_show(int menu_id);
 
 /** Hide the currently visible menu */
 void menu_hide();
+
+bool menu_visible();
 
 /** @return item_id */
 int  menu_add_item(int menu_id, const char* label, SCM func);
