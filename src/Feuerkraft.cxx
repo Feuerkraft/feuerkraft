@@ -110,7 +110,7 @@ public:
 	CL_Display::flip_display ();
 
 	std::cout << "Trying this:" << std::endl;
-	resources =  new CL_ResourceManager ("../data/feuerkraft.scr", false);
+	resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
 	storage = new SpriteProviderStorage ();
 	storage->add(resources);
 	std::cout << "DoneTrying this:" << std::endl;
@@ -178,7 +178,7 @@ public:
 	// Test of parsing code
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-	  SCM fdes = scm_open_file (gh_str02scm("../data/missions/test.feu"), 
+	  SCM fdes = scm_open_file (gh_str02scm("data/missions/test.feu"), 
 				    gh_str02scm("r"));
 	  SCM lst  = scm_read (fdes);
 
