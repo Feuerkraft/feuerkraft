@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.7 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.8 2003/05/07 17:55:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,7 @@
 
 AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
   : GameObj(w),
+    destroyed(false),
     energie(100),
     pos(arg_pos),
     length(0.0f),
@@ -35,6 +36,9 @@ AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
 {
   sprite = resources->get_sprite("feuerkraft/trooper");
   sprite.set_alignment(origin_center);
+
+  destroyed_sprite = resources->get_sprite("feuerkraft/trooper_destroyed");
+  destroyed_sprite.set_alignment(origin_center);
 
   current_order.type = AI_VO_NONE;
   
@@ -93,6 +97,9 @@ AIVehicle::update(float delta)
       break;
     }
 #else
+  if (destroyed)
+    return; 
+
   if (current_order.type != AI_VO_NONE)
     {
       length += 100.0f * delta;
@@ -106,7 +113,7 @@ AIVehicle::update(float delta)
   if (energie <= 0)
     {
       world->add(new Explosion (world, pos, Explosion::MEDIUM));
-      remove();
+      destroyed = true;
       return;
     }
 
@@ -117,7 +124,10 @@ AIVehicle::update(float delta)
 void
 AIVehicle::draw (View* view)
 {
-  view->draw(sprite, pos, orientation + PI);
+  if (!destroyed)
+    view->draw(sprite, pos, orientation + PI);
+  else
+    view->draw(destroyed_sprite, pos, orientation + PI);
   //line_segments.draw(view);
 }
 

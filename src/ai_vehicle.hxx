@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.5 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.6 2003/05/07 17:55:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -77,6 +77,7 @@ union AIVehicleOrder
 class AIVehicle : public GameObj
 {
 private:
+  bool destroyed;
   Energie energie;
   CL_Vector pos;
   float length;
@@ -86,6 +87,7 @@ private:
   float velocity;
 
   CL_Sprite sprite;
+  CL_Sprite destroyed_sprite;
   std::list<AIVehicleOrder> orders;
 
   AIVehicleOrder current_order;
