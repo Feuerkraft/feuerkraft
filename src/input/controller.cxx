@@ -26,7 +26,10 @@ Controller::Controller()
   accelerate_axis  = 0.0f;
   strafe_axis      = 0.0f;
   
-  primary_fire_button = false;
+  primary_fire_button   = false;
+  secondary_fire_button = false;
+  use_button  = false;
+  menu_button = false;
 }
 
 float
@@ -40,6 +43,7 @@ Controller::get_axis_state(AxisName name) const
       return accelerate_axis;
     case STRAFE_AXIS:
       return strafe_axis;
+     
     default:
       AssertMsg(0, "Controllor: Unknown AxisName");
       return 0;
@@ -55,6 +59,7 @@ Controller::get_button_state(ButtonName name) const
       return primary_fire_button;
     case SECONDARY_FIRE_BUTTON:
       return secondary_fire_button;
+
     default:
       AssertMsg(0, "Controller: Unknown ButtonName");
       return false;
@@ -92,6 +97,10 @@ Controller::set_button_state(ButtonName name, bool down)
       secondary_fire_button = down;
       break;
     case USE_BUTTON:
+      use_button = down;
+      break;
+    case MENU_BUTTON:
+      menu_button = down;
       break;
     default:
       AssertMsg(0, "Controller: Unknown ButtonName");

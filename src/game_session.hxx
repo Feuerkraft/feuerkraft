@@ -31,6 +31,8 @@ class View;
 class GameSession
 {
 private:
+  enum ControlState { UNIT_CONTROL, MENU_CONTROL } control_state; 
+
   std::string filename;
   bool  do_quit;
   bool  do_pause;
@@ -42,9 +44,9 @@ private:
   BuildingTypeManager* buildingtypemanager;
   CollisionManager*    collision_mgr;
   GameWorld* world;
-  View* view;
-public:
+  View*      view;
 
+public:
   GameSession(const std::string& arg_filename);
   
   void init();

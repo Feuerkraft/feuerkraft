@@ -142,12 +142,6 @@
              (player-set-current-unit (player-get-soldier))
              (gameobj-set-property (player-get-soldier) "hidden" #f))))))
 
-(input-register-callback "key_k" join-nearest-vehicle)
-(input-register-callback "joy_3" join-nearest-vehicle)
-
-(input-register-callback "key_f1" display-show-help)
-(input-register-callback "key_f2" display-hide-help)
-
 (define (toggle-levelmap)
   (if (display-levelmap-visible)
       (display-hide-levelmap)
@@ -158,14 +152,6 @@
   (if (menu-visible)
       (menu-hide)
       (menu-show 0)))
-  
-(input-register-callback "key_m" toggle-levelmap)
-(input-register-callback "joy_2" toggle-menu)
-
-(input-register-callback "key_a" toggle-menu)
-
-(input-register-callback "key_escape" game-quit)
-(input-register-callback "key_p"      game-pause)
 
 (define (bomber-attack x-pos y-pos)
   (trigger-add-timed
@@ -316,16 +302,7 @@
 
 (menu-add-item comm-menu "Mount Vehicle" join-nearest-vehicle)
 
-;;(menu-add-item comm-menu "Back >>>" menu-hide)
-
 ;; End:   Interface definition
-
-(input-register-callback "mouse_right"
-                         (lambda ()
-                           (let ((x (input-get-mouse-world-x))
-                                 (y (input-get-mouse-world-y)))
-                             (format #t "### Keyboard pressed: mouse: ~A ~A ~%" x y)
-                             )))
 
 (define (random-ref vec)
   (vector-ref vec (random (vector-length vec))))
@@ -368,6 +345,23 @@
                              ))
 ;; Make an endless list
 (list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)
+
+;; Core events
+(input-register-callback "key_k" join-nearest-vehicle)
+
+;; Support events, also reachable via menu
+(input-register-callback "mouse_right"
+                         (lambda ()
+                           (let ((x (input-get-mouse-world-x))
+                                 (y (input-get-mouse-world-y)))
+                             (format #t "### Keyboard pressed: mouse: ~A ~A ~%" x y)
+                             )))
+
+(input-register-callback "key_f1" display-show-help)
+(input-register-callback "key_f2" display-hide-help) 
+(input-register-callback "key_m" toggle-levelmap)
+(input-register-callback "key_escape" game-quit)
+(input-register-callback "key_p"      game-pause)
 
 (input-register-callback "mouse_left"
                          (lambda ()

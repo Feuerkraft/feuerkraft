@@ -30,7 +30,7 @@
 
 Soldier::Soldier(const AList& lst) 
   : ai(0),
-    sur (resources->get_sprite("feuerkraft/soldier"))
+    sur(resources->get_sprite("feuerkraft/soldier"))
 {
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
@@ -69,7 +69,7 @@ Soldier::draw (View& view)
 }
 
 void 
-Soldier::update (float delta)
+Soldier::update(float delta)
 {
   sur.update(delta);
 

@@ -38,10 +38,12 @@ InputManagerCustom::InputManagerCustom(SCM lst)
   slots.push_back(primary_button->on_key_down().connect  (this, &InputManagerCustom::on_button_down, PRIMARY_FIRE_BUTTON));
   slots.push_back(secondary_button->on_key_down().connect(this, &InputManagerCustom::on_button_down, SECONDARY_FIRE_BUTTON));
   slots.push_back(use_button->on_key_down().connect      (this, &InputManagerCustom::on_button_down, USE_BUTTON));
+  slots.push_back(menu_button->on_key_down().connect     (this, &InputManagerCustom::on_button_down, MENU_BUTTON));
 
   slots.push_back(primary_button->on_key_up().connect  (this, &InputManagerCustom::on_button_up, PRIMARY_FIRE_BUTTON));
   slots.push_back(secondary_button->on_key_up().connect(this, &InputManagerCustom::on_button_up, SECONDARY_FIRE_BUTTON));
   slots.push_back(use_button->on_key_up().connect      (this, &InputManagerCustom::on_button_up, USE_BUTTON));
+  slots.push_back(menu_button->on_key_up().connect     (this, &InputManagerCustom::on_button_up, MENU_BUTTON));
   
   slots.push_back(orientation_axis->on_move().connect(this, &InputManagerCustom::on_axis_move, ORIENTATION_AXIS));
   slots.push_back(accelerate_axis->on_move().connect(this, &InputManagerCustom::on_axis_move, ACCELERATE_AXIS));

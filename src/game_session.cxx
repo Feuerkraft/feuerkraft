@@ -44,6 +44,7 @@
 #include "display_manager.hxx"
 #include "buildings/building_type_manager.hxx"
 #include "scripting/clanlib_commands.hxx"
+#include "scripting/menu_commands.hxx"
 #include "collision_manager.hxx"
 #include "sexpr_world_reader.hxx"
 #include "guile.hxx"
@@ -63,7 +64,8 @@ Player*  player;
 extern CommandLineArguments* args;
 
 GameSession::GameSession(const std::string& arg_filename)
-  : filename(arg_filename),
+  : control_state(UNIT_CONTROL),
+    filename(arg_filename),
     do_quit(false),
     do_pause(false)
 {  
@@ -238,16 +240,52 @@ GameSession::update()
   clanlib_call_post_keep_alive_func();
   InputManager::update(delta);
 
-  // FIXME: Add an input dispatcher here, depending on the
-  // dispatcher state, input should go to the menu, to the
-  // comm-dialog or to the players vehicle
-  if (DisplayManager::current()->get_menu())
+  InputEventLst lst = InputManager::get_controller().get_events();
+  for(InputEventLst::iterator i = lst.begin(); i != lst.end(); ++i)
     {
-      DisplayManager::current()->get_menu()->process_events(InputManager::get_events());
+      if (i->type == BUTTON_EVENT)
+        {
+          if (i->button.name == MENU_BUTTON && i->button.is_down())
+            {
+              if (control_state == MENU_CONTROL)
+                {
+                  menu_hide();
+                  control_state = UNIT_CONTROL;
+                }
+              else 
+                {
+                  menu_show(0);
+                  control_state = MENU_CONTROL;
+                }
+            }
+          else if (i->button.name == USE_BUTTON && i->button.is_down())
+            {
+              // FIXME: Unclean hack
+              gh_call0(gh_lookup("join-nearest-vehicle"));
+            }
+        }
     }
-  else
+
+  switch (control_state)
     {
+    case MENU_CONTROL:
+      if (DisplayManager::current()->get_menu())
+        DisplayManager::current()->get_menu()->process_events(InputManager::get_events());
+      else
+        {
+          std::cout << "Error: Menu not available, fallback to unit" << std::endl;
+          control_state = UNIT_CONTROL;
+        }
+      break;
+
+    case UNIT_CONTROL:
       player->get_current_unit()->update_controlls(InputManager::get_controller());
+      break;
+      
+    default: 
+      std::cout << "Unknown ControlState, switching back to UNIT_CONTROL" << std::endl;
+      control_state = UNIT_CONTROL;
+      break;
     }
 
   InputManager::clear();

@@ -34,6 +34,8 @@ public:
 
   bool primary_fire_button;
   bool secondary_fire_button;
+  bool use_button;
+  bool menu_button;
 
   InputEventLst events;
 
