@@ -1,4 +1,4 @@
-//  $Id: System.cc,v 1.1 2001/03/26 09:24:07 grumbel Exp $
+//  $Id: System.cc,v 1.2 2001/05/01 22:48:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@
 #  include <unistd.h>
 #  include <errno.h>
 #else /* !WIN32 */
+#  pragma warning( disable : 4786)
 #  include <windows.h>
 #  include <fstream>
 #endif
@@ -167,7 +168,10 @@ System::create_dir(std::string directory)
 void
 System::change_dir (std::string dir)
 {
-  chdir (dir.c_str ());
+#ifdef WIN32
+#else
+  _chdir (dir.c_str ());
+#endif
 }
 
 void

@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 clanCore.lib clanApplication.lib clanPNG.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
+# ADD LINK32 clanCore.lib clanApp.lib clanPNG.lib clanDisplay.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 
 !ELSEIF  "$(CFG)" == "Feuerkraft - Win32 Debug"
 
@@ -69,7 +69,8 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /YX /FD /GZ /TP /c
+# ADD CPP /nologo /MTd /W3 /Gm /GR /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FD /GZ /TP /c
+# SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x414 /d "_DEBUG"
@@ -79,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 clanCored.lib clanApplicationd.lib clanPNGd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 clanCored.lib clanAppd.lib clanPNGd.lib clanDisplayd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 
 !ENDIF 
 
@@ -89,7 +90,7 @@ LINK32=link.exe
 # Name "Feuerkraft - Win32 Debug"
 # Begin Group "Source Files"
 
-# PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+# PROP Default_Filter "cpp;cc;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
 SOURCE=.\src\Controller.cc
@@ -108,11 +109,19 @@ SOURCE=.\src\Feuerkraft.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Flag.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\GameWorld.cc
 # End Source File
 # Begin Source File
 
 SOURCE=.\src\Helicopter.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Jeep.cc
 # End Source File
 # Begin Source File
 
@@ -128,7 +137,23 @@ SOURCE=.\src\Mine.cc
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Pathfinder.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Playfield.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Projectile.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Radar.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Screen.cc
 # End Source File
 # Begin Source File
 
@@ -137,6 +162,14 @@ SOURCE=.\src\Shockwave.cc
 # Begin Source File
 
 SOURCE=.\src\Soldier.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\StringConverter.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\System.cc
 # End Source File
 # Begin Source File
 
@@ -154,10 +187,18 @@ SOURCE=.\src\Tree.cc
 
 SOURCE=.\src\Turret.cc
 # End Source File
+# Begin Source File
+
+SOURCE=.\src\VehicleView.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\View.cc
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
-# PROP Default_Filter "h;hpp;hxx;hm;inl"
+# PROP Default_Filter "h;hh;hpp;hxx;hm;inl"
 # Begin Source File
 
 SOURCE=.\src\Collideable.hh
@@ -180,6 +221,14 @@ SOURCE=.\src\Explosion.hh
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\Feuerkraft.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Flag.hh
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\GameObj.hh
 # End Source File
 # Begin Source File
@@ -188,7 +237,15 @@ SOURCE=.\src\GameWorld.hh
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\GuiObj.hh
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Helicopter.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Jeep.hh
 # End Source File
 # Begin Source File
 
@@ -204,7 +261,27 @@ SOURCE=.\src\Mine.hh
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\my_gettext.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Pathfinder.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Playfield.hh
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Projectile.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Radar.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Screen.hh
 # End Source File
 # Begin Source File
 
@@ -213,6 +290,14 @@ SOURCE=.\src\Shockwave.hh
 # Begin Source File
 
 SOURCE=.\src\Soldier.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\StringConverter.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\System.hh
 # End Source File
 # Begin Source File
 
@@ -230,6 +315,18 @@ SOURCE=.\src\Tree.hh
 
 SOURCE=.\src\Turret.hh
 # End Source File
+# Begin Source File
+
+SOURCE=.\src\Vehicle.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\VehicleView.hh
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\View.hh
+# End Source File
 # End Group
 # Begin Group "Resource Files"
 
@@ -237,7 +334,7 @@ SOURCE=.\src\Turret.hh
 # End Group
 # Begin Source File
 
-SOURCE=.\src\Makefile.am
+SOURCE=.\data\feuerkraft.scr
 # End Source File
 # End Target
 # End Project

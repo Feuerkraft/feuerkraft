@@ -27,12 +27,12 @@
 CL_ResourceManager* resources;
 Pathfinder datafiles;
 
-CL_InputSourceProvider *
+/*CL_InputSourceProvider *
 CL_ResourceManager::get_resource_provider(void) const 
 {
   return 0;
 }
-
+*/
 class Feuerkraft : public CL_ClanApplication
 {
 public:

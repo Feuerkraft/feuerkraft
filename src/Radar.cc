@@ -1,4 +1,4 @@
-//  $Id: Radar.cc,v 1.3 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: Radar.cc,v 1.4 2001/05/01 22:48:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -68,7 +68,7 @@ void
 Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
 {
   CL_Vector diff = obj->get_pos () - vehicle->get_pos ();
-  diff *= 1/10.0;
+  diff *= 1/10.0f;
 
   int size = int(obj->get_physical_size ()) + 1;
  

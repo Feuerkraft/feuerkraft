@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cc,v 1.1 2001/02/24 20:33:47 grumbel Exp $
+//  $Id: Headquarter.cc,v 1.2 2001/05/01 22:48:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Headquarter.cc"
+#include "Headquarter.hh"
 
 
 

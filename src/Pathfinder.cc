@@ -1,4 +1,4 @@
-//  $Id: Pathfinder.cc,v 1.2 2001/04/27 19:43:15 grumbel Exp $
+//  $Id: Pathfinder.cc,v 1.3 2001/05/01 22:48:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,8 @@
 
 #ifndef WIN32
 #  include <unistd.h>
+#else
+#  pragma warning( disable : 4786)
 #endif 
 
 #include <iostream>

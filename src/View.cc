@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.4 2001/05/01 21:11:27 grumbel Exp $
+//  $Id: View.cc,v 1.5 2001/05/01 22:48:43 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 View::View (boost::dummy_ptr<GameWorld> arg_world, 
 	    int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
-	    int arg_x_offset = 0, int arg_y_offset = 0) :
+	    int arg_x_offset, int arg_y_offset) :
   world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
   x_offset (-arg_x_offset), y_offset (-arg_y_offset)
 {
