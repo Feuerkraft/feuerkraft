@@ -20,6 +20,7 @@
 #include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/keyboard.h>
 #include "../guile.hxx"
+#include "../string_converter.hxx"
 #include "../feuerkraft_error.hxx"
 #include "input_button.hxx"
 #include "input_button_input_device.hxx"
@@ -57,8 +58,8 @@ ButtonFactory::create_joystick_button(SCM lst)
     return new InputButtonInputDevice(CL_Joystick::get_device(device_num), button_num);
   else
     {
-      throw FeuerkraftError("Error: ButtonFactory::create_joystick_button: "
-                            + Guile::scm2string(lst));
+      throw FeuerkraftError("Error: ButtonFactory::create_joystick_button: device out of range"
+                            + to_string(device_num) + " " + Guile::scm2string(lst));
     }
 }
 

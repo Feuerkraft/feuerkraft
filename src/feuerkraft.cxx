@@ -27,6 +27,7 @@
 #include <libguile.h>
 #include <time.h>
 
+#include "feuerkraft_error.hxx"
 #include "fonts.hxx"
 #include "input/input_manager.hxx"
 #include "game_session_manager.hxx"
@@ -169,9 +170,17 @@ Feuerkraft::main(int argc, char** argv)
     {
       std::cout << "CL_Error: " << err.message.c_str() << std::endl;
     }
+  catch (FeuerkraftError& err)
+    {
+      std::cout << "FeuerkraftError: " << err.what() << std::endl;
+    }
   catch (std::exception& err)
     {
       std::cout << "Error: " << err.what() << std::endl;
+    }
+  catch (...)
+    {
+      std::cout << "Bug: Unknown exception catched, don't know what to do" << std::endl;
     }
 
   // Display console close message and wait for a key
