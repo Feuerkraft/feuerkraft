@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: vehicle_status.cxx,v 1.3 2003/05/09 14:24:04 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/display.h>
 #include "resource_manager.hxx"
 #include "vehicle_status.hxx"
 
@@ -25,6 +26,8 @@ VehicleStatus::VehicleStatus (boost::dummy_ptr<Vehicle> v)
     fuel (resources->get_sprite("feuerkraft/fuel")),
     vehicle (v)
 {
+  fuel.set_alignment(origin_top_left);
+  ammo.set_alignment(origin_top_left);
 }
 
 VehicleStatus::~VehicleStatus ()
@@ -49,14 +52,13 @@ VehicleStatus::draw (CL_GraphicContext* gc)
 void
 VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
 {
-  //FIXME:Display2: frame support removed 
-  /*
   CL_Display::fill_rect (CL_Rect(x_pos, y_pos, x_pos + 100, y_pos + 14),
 			 CL_Color(0, 0, 0));
   if (fill > 0.0)
-    CL_Display::fill_rect (x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12,
-			   1.0 - fill, fill, 0.0);
-  */
+    CL_Display::fill_rect (CL_Rect(x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12),
+			   CL_Color(int((1.0 - fill)*255), 
+                                    int(255*fill),
+                                    0));
 }
 
 /* EOF */
