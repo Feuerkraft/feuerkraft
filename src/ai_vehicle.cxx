@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.6 2003/05/07 16:30:26 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.7 2003/05/07 17:37:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,10 +21,14 @@
 #include "resource_manager.hxx"
 #include "game_world.hxx"
 #include "particles/smoke_particle.hxx"
+#include "collision_manager.hxx"
 #include "ai_vehicle.hxx"
+#include "projectile.hxx"
+#include "mine.hxx"
 
 AIVehicle::AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
   : GameObj(w),
+    energie(100),
     pos(arg_pos),
     length(0.0f),
     line_segments(pos.x, pos.y, 0.0f)
@@ -98,6 +102,15 @@ AIVehicle::update(float delta)
       if (line_segments.get_length() < length)
         current_order.type = AI_VO_NONE;
     }
+
+  if (energie <= 0)
+    {
+      world->add(new Explosion (world, pos, Explosion::MEDIUM));
+      remove();
+      return;
+    }
+
+  CollisionManager::current()->add_rect(get_id(), pos.x, pos.y, 38, 85, orientation);
 #endif
 }
 
@@ -161,6 +174,13 @@ AIVehicle::clear_orders()
 }
 
 void
+AIVehicle::draw_energie (View* view)
+{
+  energie.draw (view, 
+		int(pos.x), int(pos.y - 40));
+}
+  
+void
 AIVehicle::drive_to(const CL_Vector& n_pos)
 {
 #if 0
@@ -177,6 +197,29 @@ AIVehicle::drive_to(const CL_Vector& n_pos)
   current_order.type = AI_VO_DRIVETO;
   line_segments.add_controll_point(n_pos.x, n_pos.y, 50.0f);
 #endif
+}
+
+void
+AIVehicle::on_collision(GameObj* obj)
+{
+  Projectile* projectile = dynamic_cast<Projectile*>(obj);
+  if (projectile)
+    {
+      energie -= 5;
+    }
+  else
+    {
+      Mine* mine = dynamic_cast<Mine*>(obj);
+      if (mine)
+        {
+          energie -= 25;
+        }
+    }
+}
+
+void
+AIVehicle::on_collision_with_building(Building* building)
+{
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: explosion.cxx,v 1.4 2003/05/07 17:37:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,12 +37,12 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
     {
     case SMALL:
     case LARGE:
-      explo = resources->get_sprite ("feuerkraft/smallexplo");
+      explo = resources->get_sprite("feuerkraft/smallexplo");
       lifetime = .5;
       size = .6;
       break;
     case MEDIUM:
-      explo = resources->get_sprite ("feuerkraft/mediumexplo");
+      explo = resources->get_sprite("feuerkraft/mediumexplo");
       lifetime = 25;
       world->add (new Shockwave (world, pos));
       size = 2;

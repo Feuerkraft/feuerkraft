@@ -109,10 +109,10 @@ public:
 
         PingusSound::init();
         
-	resources = new ResourceManager ();
-
 	//CL_OpenGL::begin_2d();
 	CL_DisplayWindow window("Feuerkraft", 800, 600);
+
+	resources = new ResourceManager ();
 
 	CL_Display::set_current_window (&window);
 	global_gc = window.get_gc();

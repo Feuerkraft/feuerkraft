@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.1 2003/05/07 16:30:26 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.2 2003/05/07 17:37:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -123,7 +123,7 @@ CollisionManager::draw(View* view)
         {
         case SHAPE_CIRCLE:
           view->draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
-                            1.0f, 1.0f, 1.0f);
+                            1.0f, .0f, .0f);
           break;
         default:
           std::cout << "CollisionManager: unhandled type: " << i->type << std::endl;

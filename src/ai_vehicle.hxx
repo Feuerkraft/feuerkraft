@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.4 2003/05/04 17:42:20 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.5 2003/05/07 17:37:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include <ClanLib/Core/Math/cl_vector.h>
 #include <ClanLib/Display/sprite.h>
 
+#include "energie.hxx"
 #include "line_segments.hxx"
 #include "sequence_manager.hxx"
 #include "game_obj.hxx"
@@ -76,6 +77,7 @@ union AIVehicleOrder
 class AIVehicle : public GameObj
 {
 private:
+  Energie energie;
   CL_Vector pos;
   float length;
   LineSegments line_segments;
@@ -92,6 +94,7 @@ public:
 
   void update(float delta);
   void draw (View* view);
+  void draw_energie (View* view);
 
   void wait(float seconds);
   void drive_to(const CL_Vector& pos);
@@ -99,6 +102,9 @@ public:
   void add_order(AIVehicleOrder);
   void clear_orders();
   void next_order();
+
+  void on_collision(GameObj* obj);
+  void on_collision_with_building(Building* building);
 private:
   AIVehicle (const AIVehicle&);
   AIVehicle& operator= (const AIVehicle&);

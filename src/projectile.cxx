@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.4 2003/05/07 16:30:26 grumbel Exp $
+//  $Id: projectile.cxx,v 1.5 2003/05/07 17:37:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -98,8 +98,8 @@ Projectile::on_collision(GameObj* obj)
       if (collideable)
         {
           collideable->collide (this);
-          detonate ();
         }
+      detonate();
     }
 }
 
