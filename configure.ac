@@ -3,8 +3,6 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR(src/feuerkraft.hxx)
 AM_INIT_AUTOMAKE(dist-bzip2)
 
-CXXFLAGS="$CXXFLAGS -g -O0 -Wall -Werror"
-
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_INSTALL
