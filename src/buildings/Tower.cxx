@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: Tower.cxx,v 1.4 2002/03/17 12:50:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,31 +35,32 @@ Tower::Tower (GameWorld* w, const TowerData& data)
     destroyed (false)
 {  
   // FIXME: Hardcoded tilesize is ugly
-  pos.x = x_pos * 32;
-  pos.y = x_pos * 32;
+  pos.x = x_pos * 40;
+  pos.y = x_pos * 40;
 }
   
 // Draw the object onto the screen
 void
 Tower::draw (boost::dummy_ptr<View> view)
 {
+  std::cout << "Tower::draw" << std::endl;
+
   if (energie > 50)
     {
-      view->draw (&towerbase,
-		  int(pos.x), int (pos.y));
+      view->draw (&towerbase, pos);
     }
   else if (energie > 0)
     {
-      view->draw (&towerdamaged, int(pos.x), int(pos.y));
+      view->draw (&towerdamaged, pos);
     }
   else
     {
-      view->draw (&towerdestroyed, int(pos.x), int(pos.y));
+      view->draw (&towerdestroyed, pos);
     }
 
   if (energie > 0)
     {
-      view->draw (&turret, int(pos.x), int(pos.y));
+      view->draw (&turret, pos, angle);
       energie.draw (view, int(pos.x), int (pos.y) - 40);
     }
 }
@@ -68,19 +69,19 @@ Tower::draw (boost::dummy_ptr<View> view)
 void
 Tower::update (float delta)
 {
-  delta = delta * 50.0f;
-
   if (!(energie > 0))
     return;
 
-  if (++angle >= 160)
+  angle += 1 * delta;
+
+  if (angle >= 160)
     angle = 0;
 
-  if (!destroyed)
+  if (!destroyed && !(energie > 0))
     {
       get_world ()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
       destroyed = true;
-    } 
+    }
 }
 
 

@@ -202,6 +202,7 @@ public:
 	}
 	// End: Test of parsing code
 
+	world.add (buildingmap);
 	world.add (groundmap);
 	
 	/** 1/30sec = 1.0delta

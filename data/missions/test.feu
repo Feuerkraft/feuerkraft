@@ -1,7 +1,9 @@
 ;; -*- mode: scheme; -*-
 ((buildingmap (tower (angle 102)
-		     (pos 10 20)))
- (tilemap (width 20)
+		     (pos 10 20))
+	      (tower (angle 2)
+		     (pos 3 0)))
+ ((tilemap (width 20)
 	  (height 20)
 	  (tiles (spritetile (location "tiles/sand1"))
 		 (spritetile (location "tiles/sand2"))
@@ -49,6 +51,6 @@
 13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
 13 14 15 16 17 13 15 17 16 17 13 16 13 14 15 16 17 13 15 17 16 17 13 16
 13 14 15 16 17 13 15 17 16 17 13 16
-)))
+))))
 
 ;; EOF ;;

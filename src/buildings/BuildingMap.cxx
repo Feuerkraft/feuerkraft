@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.1 2002/03/17 12:03:22 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.2 2002/03/17 12:50:40 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,12 +18,14 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../View.hxx"
 #include "BuildingData.hxx"
 #include "BuildingMap.hxx"
 #include "Building.hxx"
 
 BuildingMap::BuildingMap(const BuildingMapData& data)
-  : BuildingMapData (data)
+  : BuildingMapData (data),
+    GameObj (0) // FIXME: Bug
 {
   for (std::vector<BuildingData*>::iterator i = buildings_data.begin ();
        i != buildings_data.end ();
@@ -68,6 +70,30 @@ BuildingMap::BuildingMap(const BuildingMapData& data)
 		std::cout << "BuildingMap: Error: building position out of range: " << x << ", " << y << std::endl;
 	    }
 	}
+    }
+}
+
+// Draw the object onto the screen
+void
+BuildingMap::draw (View* view)
+{
+  for (std::vector<Building*>::iterator i = buildings.begin ();
+       i != buildings.end ();
+       ++i)
+    {
+      (*i)->draw (view);
+    }
+}
+  
+// Update the object once a game loop
+void
+BuildingMap::update (float delta)
+{
+  for (std::vector<Building*>::iterator i = buildings.begin ();
+       i != buildings.end ();
+       ++i)
+    {
+      (*i)->update (delta);
     }
 }
 

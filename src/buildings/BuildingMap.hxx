@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.hxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: BuildingMap.hxx,v 1.3 2002/03/17 12:50:40 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,11 +22,14 @@
 
 #include <vector>
 #include "BuildingMapData.hxx"
+#include "../GameObj.hxx"
 
+class View;
 class Building;
 class BuildingData;
 
-class BuildingMap : public BuildingMapData
+class BuildingMap : public BuildingMapData,
+		    public GameObj
 {
 private:
   /** A list with all the buildings in this map, the pointers here need to be deleted! */
@@ -40,6 +43,13 @@ private:
   
 public:
   BuildingMap (const BuildingMapData&);
+  virtual ~BuildingMap () {}
+
+  // Draw the object onto the screen
+  virtual void draw (View* view);
+  
+  // Update the object once a game loop
+  virtual void update (float);
 };
 
 #endif
