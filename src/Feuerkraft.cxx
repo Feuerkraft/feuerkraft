@@ -9,6 +9,10 @@
 //#include <ClanLib/sound.h>
 #include <guile/gh.h>
 
+#ifdef WIN32
+#include <time.h>
+#endif
+
 #include "Feuerkraft.hxx"
 #include "GameWorld.hxx"
 #include "KeyboardController.hxx"

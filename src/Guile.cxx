@@ -1,4 +1,4 @@
-//  $Id: Guile.cxx,v 1.1 2002/04/07 16:29:09 grumbel Exp $
+//  $Id: Guile.cxx,v 1.2 2002/04/07 16:58:34 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 std::string
 Guile::scm2string (SCM data)
 {
-  assert (gh_string_p (data));
+  cl_assert (gh_string_p (data));
 
   char* tmpstr = gh_scm2newstr(gh_cadr (data), 0);
   std::string str = tmpstr;
