@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.4 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.5 2002/03/09 23:59:15 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,15 +43,15 @@ TileMap::TileMap (const TileMapData& data)
       if (tilemap_data[i] >= 0 && tilemap_data[i] < tiles.size())
 	{
 	  tilemap[i] = tiles[tilemap_data[i]];
-	  std::cout << "Tile: " << tilemap_data[i] << " " << tiles[tilemap_data[i]] << std::endl;
+	  //std::cout << "Tile: " << tilemap_data[i] << " " << tiles[tilemap_data[i]] << std::endl;
 	}
       else
 	{
-	  std::cout << "Tile" << tiles.size() << ": " << tilemap_data[i] << std::endl;
+	  //std::cout << "Tile" << tiles.size() << ": " << tilemap_data[i] << std::endl;
 	}
     }
   
-  std::cout << "Tilemap: " << width << "x" << height << std::endl;
+  //std::cout << "Tilemap: " << width << "x" << height << std::endl;
 
 }
 

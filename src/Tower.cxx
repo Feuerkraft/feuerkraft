@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Tower.cxx,v 1.2 2002/03/09 23:59:14 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,17 +17,20 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <SphriteLib/sphritelibGL.h>
 #include "Explosion.hxx"
 #include "Projectile.hxx"
 #include "Tower.hxx"
 
+extern SpriteProviderStorage* storage;
+
 Tower::Tower (boost::dummy_ptr<GameWorld>  w,
 	      float arg_x_pos, float arg_y_pos) 
   : Vehicle (w),
-    towerbase ("feuerkraft/towerbase", resources),
-    towerdamaged ("feuerkraft/towerdamaged", resources),
-    towerdestroyed ("feuerkraft/towerdestroyed", resources),
-    turret ("feuerkraft/towerturret", resources),
+    towerbase (storage->get("feuerkraft/towerbase")),
+    towerdamaged (storage->get("feuerkraft/towerdamaged")),
+    towerdestroyed (storage->get("feuerkraft/towerdestroyed")),
+    turret (storage->get("feuerkraft/towerturret")),
     fireing (true),
     angle (0),
     energie (100),
@@ -41,36 +44,23 @@ Tower::draw (View* view)
 {
   if (energie > 50)
     {
-      view->draw (towerbase,
-		  int(pos.x) - towerbase.get_width ()/2,
-		  int(pos.y) - towerbase.get_height ()/2);
+      view->draw (&towerbase,
+		  int(pos.x), int (pos.y));
     }
   else if (energie > 0)
     {
-      view->draw (towerdamaged,
-		  int(pos.x) - towerdamaged.get_width ()/2,
-		  int(pos.y) - towerdamaged.get_height ()/2);
+      view->draw (&towerdamaged, int(pos.x), int(pos.y));
     }
   else
     {
-      view->draw (towerdestroyed,
-		  int(pos.x) - towerdestroyed.get_width ()/2,
-		  int(pos.y) - towerdestroyed.get_height ()/2);
+      view->draw (&towerdestroyed, int(pos.x), int(pos.y));
     }
 
   if (!destroyed)
     {
-      view->draw (turret, 
-		  int(pos.x) - turret.get_width ()/2, 
-		  int(pos.y) - turret.get_height ()/2);
-      energie.draw (view,
-		    int(pos.x), int (pos.y) - 40);
+      view->draw (&turret, int(pos.x), int(pos.y));
+      energie.draw (view, int(pos.x), int (pos.y) - 40);
     }
-
-  /*
-  view->draw_rect (int(pos.x) - 40, int(pos.y) - 40, 
-		   int(pos.x) + 40, int(pos.y) + 40, 
-		   1.0f, 1.0f, 1.0f);*/
 }
 
 void

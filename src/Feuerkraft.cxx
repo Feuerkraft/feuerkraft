@@ -39,6 +39,9 @@
 #include "map/GroundMapData.hxx"
 #include "map/GroundMapDataFactory.hxx"
 
+#include <SphriteLib/sphritelibGL.h>
+
+SpriteProviderStorage* storage;
 CL_ResourceManager* resources;
 Pathfinder datafiles;
 
@@ -106,6 +109,8 @@ public:
 
 	std::cout << "Trying this:" << std::endl;
 	resources =  new CL_ResourceManager ("../data/feuerkraft.scr", false);
+	storage = new SpriteProviderStorage ();
+	storage->add(resources);
 	std::cout << "DoneTrying this:" << std::endl;
 
 	GameWorld world;
@@ -145,9 +150,9 @@ public:
 	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
 	world.add (new Fuelstation (&world, CL_Vector (-100.0f, 300.0f)));
 	world.add (new Ammotent (&world, CL_Vector (-200.0f, 300.0f)));
-	world.add (new Tower (&world, 400.0, 200.0));
-	world.add (new Tower (&world, 600.0, 400.0));
-	world.add (new Tower (&world, 600.0, 100.0));
+	//world.add (new Tower (&world, 400.0, 200.0));
+	//world.add (new Tower (&world, 500.0, 300.0));
+	//world.add (new Tower (&world, 300.0, 140.0));
 	world.add (new Ambulance (&world));
 	world.add (new Headquarter (&world, CL_Vector (-100.0, 0.0)));
 	

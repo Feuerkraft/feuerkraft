@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Tower.hxx,v 1.2 2002/03/09 23:59:14 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,11 +32,10 @@ class Tower : public Controllable,
 	      public Vehicle
 {
 private:
-  CL_Surface towerbase;
-  CL_Surface towerdamaged;
-  CL_Surface towerdestroyed;
-
-  CL_Surface turret;
+  Sprite towerbase;
+  Sprite towerdamaged;
+  Sprite towerdestroyed;
+  Sprite turret;
   
   bool fireing;
   int angle;
