@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.12 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: background.cxx,v 1.13 2003/10/20 20:58:40 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/display.h>
 #include "view.hxx"
 #include "background.hxx"
-
 
 Background::Background (const CL_Sprite& arg_sprite,
                         float arg_z_pos)
@@ -32,11 +32,13 @@ Background::Background (const CL_Sprite& arg_sprite,
 void
 Background::draw (View& view)
 {
+  CL_Display::flush();
   // FIXME: We should take the view size and surface size into account
   for (int y = -1; y <= 2; ++y)
     for (int x = -1; x <= 2; ++x)
       sur.draw(x * sur.get_width()  + (int(view.get_x_offset()) % sur.get_width()),
                y * sur.get_height() + (int(view.get_y_offset()) % sur.get_height()));
+  CL_Display::flush();
 }
 
 /* EOF */

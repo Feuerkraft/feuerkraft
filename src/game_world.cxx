@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.18 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: game_world.cxx,v 1.19 2003/10/20 20:58:40 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,7 @@
 #include "game_obj_data.hxx"
 #include "game_obj_manager.hxx"
 #include "view.hxx"
+#include "path_manager.hxx"
 #include "trigger_manager.hxx"
 #include "buildings/building_manager.hxx"
 #include "buildings/building_map.hxx"
@@ -82,7 +83,7 @@ GameWorld::GameWorld (SCM scm)
   for(std::vector<std::string>::iterator i = scripts.begin(); i != scripts.end(); ++i)
     {
       std::cout << "### Loading Script: " << *i << std::endl;
-      scm_c_primitive_load(i->c_str());
+      scm_c_primitive_load((path_manager.complete("missions/" + *i)).c_str());
       std::cout << "### DONE: Loading Script: " << *i << std::endl;
     }
 }
@@ -162,13 +163,7 @@ public:
 void 
 GameWorld::draw (View& view)
 {
-  //objects.sort (z_pos_sorter ());
-#ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
-//  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
-  objects.sort (z_pos_sorter ());
-#else
   game_obj_manager->get_objects().sort (z_pos_sorter ());
-#endif
 
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)

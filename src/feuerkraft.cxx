@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.53 2003/06/23 09:04:10 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.54 2003/10/20 20:58:40 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -86,18 +86,17 @@ Feuerkraft::init()
   srand (time (0));
 
   // Find the location of Feuerkrafts data files (images, sounds, etc.) 
-  if (args->datadir.empty())
+  if (!args->datadir.empty())
     {
+    }
+  else
+    {
+      path_manager.add_path(CL_System::get_exe_path() + "../data");
       path_manager.add_path("../data");
       path_manager.add_path("data");
       path_manager.add_path("share/games/feuerkraft");
       path_manager.add_path("../share/games/feuerkraft");
-            
-      path_manager.find_path("feuerkraft.xml");
-    }
-  else
-    {
-      path_manager.set_path(args->datadir);
+      path_manager.find_path("feuerkraft.xml");     
     }
 
   // Create the main window

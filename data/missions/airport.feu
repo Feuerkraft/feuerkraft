@@ -45,8 +45,8 @@
          (y-pos 242)))
 
  (groundmap 
-  (gridmap 	  (file "data/missions/airport.png")))
+  (gridmap 	  (file "airport.png")))
 
- (scripts "data/missions/airport.scm"))
+ (scripts "airport.scm"))
 
 ;; EOF ;;

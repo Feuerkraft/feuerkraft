@@ -1,4 +1,4 @@
-//  $Id: grid_map_data.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_map_data.cxx,v 1.5 2003/10/20 20:58:40 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #include <iostream>
 #include <ClanLib/Display/Providers/png_provider.h>
 
+#include "../path_manager.hxx"
 #include "grid_map.hxx"
 #include "grid_map_data.hxx"
 
@@ -69,7 +70,7 @@ GridMapData::parse_from_file (SCM desc)
   free (str);
 #endif
 
-  provider = new CL_PNGProvider (filename);
+  provider = new CL_PNGProvider (path_manager.complete("missions/" + filename));
 
   provider->lock ();
   //FIXME:Display2 assert (provider->is_indexed ());
