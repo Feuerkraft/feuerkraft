@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world.hxx,v 1.12 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef GAMEWORLD_HH
 #define GAMEWORLD_HH
 
+#include "vector2d.hxx"
 #include "game_world_data.hxx"
 
 class View;
@@ -48,6 +49,7 @@ private:
   
   GroundMap* groundmap;
   float current_time;
+  FloatVector2d wind;
   SCM world_module;
   SCM last_module;
 
@@ -57,6 +59,9 @@ public:
   ~GameWorld ();
 
   float get_time() { return current_time; }
+  
+  /** @return the current speed and direction of the wind */
+  FloatVector2d get_wind() const;
 
   /// Return a reference to the objects in the world
   void add(GameObj*);

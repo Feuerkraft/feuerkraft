@@ -1,4 +1,4 @@
-//  $Id: vector2d.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vector2d.cxx,v 1.5 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,8 +47,11 @@ FloatVector2d::set_orientation(float angle)
 FloatVector2d&
 FloatVector2d::rotate(float angle)
 {
-  x = cos(get_orientation() + angle) * get_length();
-  y = sin(get_orientation() + angle) * get_length();
+  float length = get_length();
+  float orientation = get_orientation();
+
+  x = cos(orientation + angle) * length;
+  y = sin(orientation + angle) * length;
   return *this;
 }
 

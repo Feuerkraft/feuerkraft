@@ -1,4 +1,4 @@
-//  $Id: menu.hxx,v 1.3 2003/06/06 14:25:47 grumbel Exp $
+//  $Id: menu.hxx,v 1.4 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,6 +47,7 @@ public:
   /** Evaluate the current item */
   void call_current_item();
 
+  /** Hide the current menu */
   void hide();
 
   /** */

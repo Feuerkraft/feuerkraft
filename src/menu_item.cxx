@@ -1,4 +1,4 @@
-//  $Id: menu_item.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: menu_item.cxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,19 @@
 
 #include <ClanLib/Display/display.h>
 #include "fonts.hxx"
+#include "display_manager.hxx"
 #include "menu_item.hxx"
+
+MenuItemSubMenuFunctor::MenuItemSubMenuFunctor(Menu* arg_submenu)
+  : submenu(arg_submenu)
+{
+}
+
+void
+MenuItemSubMenuFunctor::call()
+{ // FIXME: This could be implemented on the scheme site
+  DisplayManager::current()->show_menu(submenu);
+}
 
 MenuItem::MenuItem(const std::string& arg_label, MenuItemFunctor* arg_functor)
   : label(arg_label),

@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.4 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: menu_commands.cxx,v 1.5 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,7 +52,8 @@ menu_add_item(int menu_id, const char* label, SCM func)
   Menu* menu = menu_handle_mgr.lookup_by_handle(menu_id);
   if (menu)
     {
-      MenuItem* menu_item = menu_item_handle_mgr.create(label, new MenuItemGenericFunctor<SCMFunctor>(func));
+      MenuItem* menu_item = menu_item_handle_mgr.create("- " + std::string(label),
+                                                        new MenuItemGenericFunctor<SCMFunctor>(func));
       menu->add_item(menu_item);
       return menu_item_handle_mgr.lookup_by_object(menu_item);
     }
@@ -62,7 +63,20 @@ menu_add_item(int menu_id, const char* label, SCM func)
 int
 menu_add_submenu_item(int menu_id, const char* label, int sub_menu_id)
 {
-  return 0;
+  Menu* menu     = menu_handle_mgr.lookup_by_handle(menu_id);
+  Menu* sub_menu = menu_handle_mgr.lookup_by_handle(sub_menu_id);
+
+  if (menu && sub_menu)
+    {
+      MenuItem* menu_item = menu_item_handle_mgr.create("+ " + std::string(label), 
+                                                        new MenuItemSubMenuFunctor(sub_menu));
+      menu->add_item(menu_item);
+      return menu_item_handle_mgr.lookup_by_object(menu_item);
+    }
+  else
+    {
+      std::cout << __FUNCTION__ << ": Invalid menu id: " << menu_id << " " << sub_menu_id << std::endl;
+    }
 }
 
 void

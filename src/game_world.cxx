@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.15 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: game_world.cxx,v 1.16 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,7 @@
 #include "groundmap/ground_map_data.hxx"
 #include "groundmap/ground_map.hxx"
 #include "game_obj.hxx"
+#include "math.hxx"
 #include "game_obj_data.hxx"
 #include "game_obj_manager.hxx"
 #include "view.hxx"
@@ -46,7 +47,8 @@ GameWorld::GameWorld (const GameWorldData& data)
     game_obj_manager(new GameObjManager(this)),
     building_manager(new BuildingManager()),
     trigger_manager(new TriggerManager()),
-    current_time (0.0f)
+    current_time (0.0f),
+    wind(40.0f, 30.0f)
 {
   current_world = this;
   
@@ -217,6 +219,8 @@ GameWorld::update (float delta)
 {
   current_time += delta;
 
+  //wind = FloatVector2d(40.0f).rotate((Math::frand()-.5f) * 5.0f * delta);
+
   trigger_manager->update(delta);
 
   game_obj_manager->get_objects().remove_if(is_removable ()); 
@@ -244,6 +248,12 @@ GameObjManager*
 GameWorld::get_game_obj_manager()
 {
   return game_obj_manager;
+}
+
+FloatVector2d
+GameWorld::get_wind() const
+{
+  return wind;
 }
 
 /* EOF */

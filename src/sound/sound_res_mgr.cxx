@@ -1,4 +1,4 @@
-//  $Id: sound_res_mgr.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound_res_mgr.cxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,7 +33,7 @@ SoundResMgr::load(const std::string& name)
 
   if (i == sound_map.end())
     {
-      std::string filename = path_manager.complete("data/sounds/" + name + ".wav");
+      std::string filename = path_manager.complete("sounds/" + name + ".wav");
       CL_SoundBuffer* buffer = new CL_SoundBuffer(new CL_SoundProvider_Wave(filename, NULL), true);
       std::cout << "SoundResMgr: Loading sound from disk: "
                                  << name << " -> " << filename << std::endl;

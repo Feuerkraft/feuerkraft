@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.15 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: view.cxx,v 1.16 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,11 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-
 #include <ClanLib/Display/display.h>
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
 
+#include "assert.hxx"
 #include "color.hxx"
 #include "math.hxx"
 #include "view.hxx"
@@ -39,14 +38,6 @@ View::View (int arg_x1, int arg_y1,
 
   state.zoom = 1.0;
   state.rotation = 0;
-
-  std::cout << "XXX View: "
-            << x1 << " "
-            << x2 << " "
-            << y1 << " "
-            << y2 << " "
-            << state.x_offset << " "
-            << state.y_offset << " " << std::endl;
 }
 
 View::~View ()
@@ -174,7 +165,7 @@ View::draw_pixel (float x_pos, float y_pos,
 {
   //CL_Display::put_pixel (x1 + get_x_offset (),
   //			 y1 + get_y_offset (), r, g, b, a);
-  std::cout << "View::draw_pixel () not implemented" << std::endl;
+  AssertMsg(0, "View::draw_pixel () not implemented");
 }
 
 void 

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.20 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: tank.cxx,v 1.21 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,6 +29,7 @@
 #include "buildings/building_map.hxx"
 #include "particles/smoke_particle.hxx"
 #include "particles/grass_particle.hxx"
+#include "particles/smoke_emitter.hxx"
 #include "resource_manager.hxx"
 #include "collision_manager.hxx"
 
@@ -61,10 +62,13 @@ Tank::Tank (const FloatVector2d &arg_pos,
   
   properties->register_float("ammo",  &ammo);
   properties->register_float("fuel",  &fuel);
+  
+  smoke_emitter = new SmokeEmitter(pos);
 }
 
 Tank::~Tank ()
 {
+  delete smoke_emitter;
   delete turret;
 }
 
@@ -164,6 +168,9 @@ Tank::respawn ()
 void 
 Tank::update (float delta)
 {
+  smoke_emitter->set_pos(pos + (FloatVector2d(-5.0f, 0.0f).rotate(orientation)));
+  smoke_emitter->update(delta);
+
   // Apply controlls
   orientation += 3.0f * steering * delta;
   velocity    += 15.0f * acceleration * delta;

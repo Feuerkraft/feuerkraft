@@ -25,6 +25,10 @@
       <image name="image1" file="images/wall.png" />
     </sprite>
 
+    <sprite name="smoke">
+      <image name="image1" file="images/smoke.png" />
+    </sprite>
+
     <sprite name="nobuilding">
       <image name="image1" file="images/nobuilding.png" />
     </sprite>
@@ -140,6 +144,10 @@
     
     <sprite name="fire">
       <image name="image1" file="images/fire.png" />
+    </sprite>
+
+    <sprite name="firep">
+      <image name="image1" file="images/firep.png" />
     </sprite>
     
     <sprite name="jeep">

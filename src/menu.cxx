@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.3 2003/06/06 14:25:47 grumbel Exp $
+//  $Id: menu.cxx,v 1.4 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -100,7 +100,8 @@ Menu::call_current_item()
 void
 Menu::hide()
 {
-  DisplayManager::current()->hide_menu();
+  if (DisplayManager::current()->get_menu() == this)
+    DisplayManager::current()->hide_menu();
 }
 
 void

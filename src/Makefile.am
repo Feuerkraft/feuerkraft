@@ -10,6 +10,7 @@ LDADD = \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a     \
  input/libfeuerkraft_input.a     \
+ particles/libfeuerkraft_particles.a \
  sound/libpingus_sound.a
 
 feuerkraft_SOURCES = \

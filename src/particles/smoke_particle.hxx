@@ -1,4 +1,4 @@
-//  $Id: smoke_particle.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: smoke_particle.hxx,v 1.9 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define SMOKEPARTICLE_HXX
 
 #include "../view.hxx"
+#include "../resource_manager.hxx"
 #include "particle.hxx"
-#include "resource_manager.hxx"
 
 class SmokeParticle : public Particle
 {
@@ -37,7 +37,7 @@ public:
     pos = arg_pos;
     size = 1;
     angle = rand () % 360;    
-    sprite = resources->get_sprite("feuerkraft/sandsmoke");
+    sprite = resources->get_sprite("feuerkraft/smoke");
     max_life_time = 10.0f;
     life_time = max_life_time;
     //velocity = FloatVector2d (80.0f, 0.0f);
@@ -47,7 +47,10 @@ public:
   {
   }
 
-  void update (float delta) {
+  void update (float delta) 
+  {
+    pos += GameWorld::current()->get_wind() * delta;
+
     Particle::update (delta);
 
     life_time -= delta;
@@ -55,7 +58,7 @@ public:
 
   void draw (View& view) 
   {    
-    sprite.set_alpha ((life_time/max_life_time) * 0.3);
+    sprite.set_alpha ((life_time/max_life_time) * .3);
     sprite.set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
 		       0.8f + ((1 - life_time/max_life_time)) * 4.0f);
     view.draw(sprite, pos, angle);

@@ -1,4 +1,4 @@
-//  $Id: menu_item.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: menu_item.hxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,8 @@
 
 #include <string>
 
+class Menu;
+
 class MenuItemFunctor
 {
 public:
@@ -29,6 +31,15 @@ public:
   ~MenuItemFunctor() {}
   
   virtual void call() {}
+};
+
+class MenuItemSubMenuFunctor : public MenuItemFunctor
+{
+private:
+  Menu* submenu;
+public:
+  MenuItemSubMenuFunctor(Menu* arg_submenu);
+  void call();
 };
 
 template<class Func>
