@@ -1,4 +1,14 @@
 section feuerkraft {
+	section logo {
+		frame1 = images/logo.jpg (type=surface);
+	}
+	section keys {
+		frame1 = images/keys.png (type=surface);
+	}
+
+	section endlogo {
+		frame1 = images/endscreen.jpg (type=surface);
+	}
 	
 	section ambulance {
 		frame1 = images/ambulance.png (type=surface);

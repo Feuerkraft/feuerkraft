@@ -25,6 +25,7 @@ Background.hxx Background.cxx Stone.hxx Stone.cxx \
 Ambulance.hxx Ambulance.cxx \
 GameObjData.hxx GameWorldData.hxx GameWorldData.cxx \
 GameObjDataFactory.hxx GameObjDataFactory.cxx \
-LevelMap.hxx LevelMap.cxx
+LevelMap.hxx LevelMap.cxx \
+StartScreen.hxx StartScreen.cxx
 
 # EOF #

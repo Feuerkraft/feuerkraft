@@ -30,6 +30,7 @@
 #include "System.hxx"
 #include "Ambulance.hxx"
 #include "LevelMap.hxx"
+#include "StartScreen.hxx"
 
 #include "groundmap/GroundMap.hxx"
 #include "groundmap/GroundMapData.hxx"
@@ -123,6 +124,8 @@ public:
 	storage->add(tile_resources);
 	std::cout << "DoneTrying this:" << std::endl;
 
+
+
 	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
@@ -159,7 +162,11 @@ public:
 
 	//Radar radar2 (CL_Vector(64, 64), 
 	//world, tank2);
-	
+
+	Sprite keys (storage->get ("feuerkraft/keys"));
+	keys.setHotSpot (0,0);
+
+
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
 						 world, current_vehicle));
@@ -203,7 +210,7 @@ public:
 	/** 1/30sec = 1.0delta
 	 */
 	float delta;
-	int last_time = CL_System::get_time ();
+	unsigned int last_time = CL_System::get_time ();
 
 	int loops = 0;
 	float deltas = 0.0;
@@ -228,17 +235,32 @@ public:
 
 	LevelMap levelmap (world);
 	
+	StartScreen start_screen;
+	{
+	unsigned int last_time = CL_System::get_time ();
+	while (!start_screen.done())
+	  {
+	    start_screen.update ((CL_System::get_time () - last_time) / 1000.0f);
+	    last_time = CL_System::get_time ();
+
+	    start_screen.draw ();
+	    CL_Display::flip_display ();
+	    CL_System::keep_alive ();
+	    CL_System::sleep (10);
+	  }
+	}
+
 	// Loop until the user hits escape:
-	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
+	while (start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
 	    // Poor mans pause button
-	    if (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+	    if (CL_Keyboard::get_keycode(CL_KEY_P))
 	      {
-		while (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		while (CL_Keyboard::get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (!CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		while (!CL_Keyboard::get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (CL_Keyboard::get_keycode(CL_KEY_SPACE))
+		while (CL_Keyboard::get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
 
 		last_time = CL_System::get_time ();
@@ -288,6 +310,12 @@ public:
 	      {
 		levelmap.draw ();
 	      }
+
+	    keys.draw (CL_Display::get_width () - keys.getWidth (0),
+		       CL_Display::get_height () - keys.getHeight (0));
+
+	    start_screen.draw ();
+	    start_screen.update (delta);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    CL_Display::flip_display(true);
