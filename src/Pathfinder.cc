@@ -1,4 +1,4 @@
-//  $Id: Pathfinder.cc,v 1.1 2001/04/07 18:03:50 grumbel Exp $
+//  $Id: Pathfinder.cc,v 1.2 2001/04/27 19:43:15 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,9 @@
 #  include <unistd.h>
 #endif 
 
+#include <iostream>
+#include <string>
+
 #include "System.hh"
 #include "Pathfinder.hh"
 
@@ -38,7 +41,7 @@ Pathfinder::~Pathfinder ()
 }
   
 std::string
-Pathfinder::trim (string str)
+Pathfinder::trim (std::string str)
 {
   if (str.empty ())
     return "";

@@ -25,6 +25,12 @@
 CL_ResourceManager* resources;
 Pathfinder datafiles;
 
+CL_InputSourceProvider *
+CL_ResourceManager::get_resource_provider(void) const 
+{
+  return 0;
+}
+
 class Feuerkraft : public CL_ClanApplication
 {
 public:
@@ -72,8 +78,8 @@ public:
 	CL_Display::clear_display ();
 	CL_Display::flip_display ();
 		
-	resources =  CL_ResourceManager::create(datafiles.find("data/feuerkraft.scr").c_str (),
-						false);
+	resources =  new CL_ResourceManager (datafiles.find("data/feuerkraft.scr").c_str (),
+					     false);
 
 	GameWorld world;
 
@@ -83,7 +89,7 @@ public:
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
-	JoystickController controller(jeep);
+	JoystickController controller(tank2);
 	KeyboardController kcontroller (tank1);
 	
 	world.add (jeep);

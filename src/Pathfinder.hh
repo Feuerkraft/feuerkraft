@@ -1,4 +1,4 @@
-//  $Id: Pathfinder.hh,v 1.1 2001/04/07 18:03:50 grumbel Exp $
+//  $Id: Pathfinder.hh,v 1.2 2001/04/27 19:43:15 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef PATHFINDER_HH
 #define PATHFINDER_HH
 
+#include <iostream>
 #include <exception>
 #include <string>
 #include <list>
@@ -36,11 +37,13 @@ private:
   char path_seperator;
 
 public:
-  struct FileNotFound : public exception {
+  struct FileNotFound : public std::exception {
     std::string filename;
     
     FileNotFound (const std::string& str) 
       : filename (str) {}
+
+    virtual ~FileNotFound () throw () {}
   };
   
   Pathfinder ();

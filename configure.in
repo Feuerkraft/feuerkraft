@@ -22,15 +22,21 @@ AC_PROG_INSTALL
 
 dnl Checking for libraries
 
-
-AC_CHECK_LIB( clanDisplay,   main,, [
+AC_CHECK_LIB( clanCore,   main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
 	echo "the FAQ."
 	exit
 	])
 
-AC_CHECK_LIB( clanCore,   main,, [
+AC_CHECK_LIB( clanApp,   main,, [
+	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
+	echo "if that doesn't help have a look at the file config.log and look into"
+	echo "the FAQ."
+	exit
+	])
+
+AC_CHECK_LIB( clanDisplay,   main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
 	echo "the FAQ."
@@ -54,14 +60,6 @@ AC_CHECK_LIB( clanPNG,   main,, [
 	echo "the file 'config.log' to see what went wrong"
 	exit
 	])
-
-AC_CHECK_LIB( clanApp,   main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
-
 
 AC_OUTPUT( Makefile
            data/Makefile
