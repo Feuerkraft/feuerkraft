@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.5 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.6 2001/02/24 21:32:04 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,6 @@ Helicopter::Helicopter (CL_Vector arg_pos) :
   rotor ("feuerkraft/rotor", resources),
   heli ("feuerkraft/helicopter", resources),
   helidestroyed ("feuerkraft/helidestroyed", resources),
-  pos (arg_pos),
   rotor_count (0),
   velocity (0.0),
   angle (0.0),
@@ -36,6 +35,7 @@ Helicopter::Helicopter (CL_Vector arg_pos) :
   energie (100),
   destroyed (false)
 {
+  pos = arg_pos;
 }
 
 Helicopter::~Helicopter ()

@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.1 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.2 2001/02/24 21:32:04 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,7 +39,7 @@ VehicleView::update ()
   x_offset = int(vehicle->get_pos ().x);
   y_offset = int(vehicle->get_pos ().y);
 
-  std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
+  //std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
 }
 
 /* EOF */

@@ -68,8 +68,8 @@ public:
 	Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
-	JoystickController controller(tank2);
-	KeyboardController kcontroller (jeep);
+	JoystickController controller(tank1);
+	KeyboardController kcontroller (heli);
 	
 	world.add (jeep);
 	world.add (heli);
@@ -100,11 +100,8 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view1 (&world, heli, 0, 0, 399, 299);
-	VehicleView view2 (&world, tank1, 400, 300, 800, 600);
-	VehicleView view3 (&world, tank2, 0, 300, 399, 600);
-	VehicleView view4 (&world, jeep, 400, 0, 800, 299);
-	
+	VehicleView view1 (&world, heli, 0, 0, 399, 600);
+	VehicleView view2 (&world, tank1, 400, 0, 800, 600);
 	
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
@@ -120,13 +117,9 @@ public:
 	    
 	    view1.draw ();
 	    view2.draw ();
-	    view3.draw ();
-	    view4.draw ();
 
 	    view1.update ();
 	    view2.update ();
-	    view3.update ();
-	    view4.update ();
 	    
 	    controller.update (delta);
 	    kcontroller.update (delta);

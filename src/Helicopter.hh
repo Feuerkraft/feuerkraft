@@ -1,4 +1,4 @@
-//  $Id: Helicopter.hh,v 1.4 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Helicopter.hh,v 1.5 2001/02/24 21:32:04 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,6 @@ private:
   CL_Surface rotor;
   CL_Surface heli;
   CL_Surface helidestroyed;
-  CL_Vector pos;
   int rotor_count;
   float velocity;
   float angle;
