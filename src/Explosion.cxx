@@ -1,4 +1,4 @@
-//  $Id: Explosion.cxx,v 1.5 2002/03/11 21:34:42 grumbel Exp $
+//  $Id: Explosion.cxx,v 1.6 2002/03/13 10:13:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -74,7 +74,7 @@ Explosion::update (float delta)
       for (int i = 0; i < 1; ++i)
 	{     
 
-	  std::cout << "Random: " << Random::frand (.1, .3) << std::endl;
+	  //std::cout << "Random: " << Random::frand (.1, .3) << std::endl;
 	  world->add_front (new ExplosionParticle (get_world (),
 						   CL_Vector (pos.x + (rand()%10 - 5), 
 							      pos.y + (rand()%10 - 5)),

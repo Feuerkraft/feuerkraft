@@ -1,4 +1,4 @@
-//  $Id: Energie.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Energie.cxx,v 1.3 2002/03/13 10:13:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,7 +37,7 @@ Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
 
   float ratio = energie / max_energie;
   
-  std::cout << "Ratio: " << ratio << std::endl;
+  //  std::cout << "Ratio: " << ratio << std::endl;
 
   if (time_diff < 1000
       && CL_System::get_time () > 2000)
