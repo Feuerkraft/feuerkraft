@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.9 2001/05/05 11:16:56 sphair Exp $
+//  $Id: View.cc,v 1.10 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include <SphriteLib/sphritelibGL.h>
 #include "View.hh"
 
 View::View (boost::dummy_ptr<GameWorld> arg_world, 
@@ -66,24 +67,65 @@ View::set_view (int x_pos, int y_pos)
 }
 
 void 
+View::set_zoom (float z)
+{
+  zoom = z;
+}
+
+void 
 View::draw (CL_Surface& sur, const CL_Vector& pos)
 {
-  sur.put_screen (int(pos.x + get_x_offset ()),
-		  int(pos.y + get_y_offset ()));
+  if (zoom == 1.0)
+    {   
+      sur.put_screen (int(pos.x + get_x_offset ()),
+		      int(pos.y + get_y_offset ()));
+    }
+  else
+    {
+      sur.put_screen (int(pos.x + get_x_offset ()) * zoom,
+		      int(pos.y + get_y_offset ()) * zoom,
+		      zoom, zoom);
+    }
+}
+
+void 
+View::draw (Sprite* sprite, const CL_Vector& pos, float angle)
+{
+  sprite->draw(pos.x + get_x_offset (), pos.y + get_y_offset (),
+	       angle/3.1415927 * 180.0f);
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos)
 {
-  sur.put_screen (x_pos + get_x_offset (),
-		  y_pos + get_y_offset ());
+  if (zoom == 1.0)
+    {
+      sur.put_screen (x_pos + get_x_offset (),
+		      y_pos + get_y_offset ());
+    }
+  else
+    {
+      sur.put_screen ((x_pos + get_x_offset ()) * zoom,
+		      (y_pos + get_y_offset ()) * zoom,
+		      zoom, zoom);
+    }
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
 {
-  sur.put_screen (x_pos + get_x_offset (),
-		  y_pos + get_y_offset (), frame);  
+  if (zoom == 1.0)
+    {
+      sur.put_screen (x_pos + get_x_offset (),
+		      y_pos + get_y_offset (), frame);  
+    }
+  else
+    {
+      sur.put_screen ((x_pos + get_x_offset ()) * zoom,
+		      (y_pos + get_y_offset ()) * zoom,
+		      zoom, zoom,
+		      frame);  
+    }
 }
 
 void 
@@ -92,24 +134,37 @@ View::draw (CL_Surface& sur, int x_pos, int y_pos,
 {
   sur.put_screen (x_pos + get_x_offset (),
 		  y_pos + get_y_offset (),
-		  size_x, size_y, frame);  
+		  size_x * zoom, size_y * zoom, frame);  
 }
 
 void 
 View::draw_line (int x1, int y1, int x2, int y2, 
 		float r, float g, float b, float a)
 {
-  CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (),
-			 x2 + get_x_offset (), y2 + get_y_offset (),
-			 r, g, b, a);
+  if (zoom == 1.0)
+    {
+      CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (),
+			     x2 + get_x_offset (), y2 + get_y_offset (),
+			     r, g, b, a);
+    }
+  else
+    {
+      CL_Display::draw_line ((x1 + get_x_offset ()) * zoom,
+			     (y1 + get_y_offset ()) * zoom,
+			     (x2 + get_x_offset ()) * zoom,
+			     (y2 + get_y_offset ()) * zoom,
+			     r, g, b, a);
+    }
 }
 
 void 
 View::draw_fillrect (int x1, int y1, int x2, int y2, 
 		    float r, float g, float b, float a)
 {
-  CL_Display::fill_rect (x1 + get_x_offset (), y1 + get_y_offset (), 
-			 x2 + get_x_offset (), y2 + get_y_offset (),
+  CL_Display::fill_rect ((x1 + get_x_offset ()) * zoom,
+			 (y1 + get_y_offset ()) * zoom, 
+			 (x2 + get_x_offset ()) * zoom,
+			 (y2 + get_y_offset ()) * zoom,
 			 r, g, b, a);
 }
 

@@ -1,4 +1,4 @@
-//  $Id: Radar.cc,v 1.5 2001/05/05 22:16:28 grumbel Exp $
+//  $Id: Radar.cc,v 1.6 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,8 @@ Radar::Radar (const CL_Vector& arg_pos,
     pos (arg_pos),
     angle (0)
 {
-  
+  storage.add (new SpriteProvider ("feuerkraft/radar_line", resources));
+  radar_line = storage.create ("feuerkraft/radar_line");
 }
 
 Radar::~Radar ()
@@ -53,6 +54,8 @@ Radar::draw ()
       Vehicle* vehicle = dynamic_cast<Vehicle*>((*i).get());
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
+
+  radar_line->draw (pos.x, pos.y, angle/3.1415927*180.0f + 180.0f);
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
 			 1.0, 1.0, 0.0);

@@ -10,13 +10,16 @@ const float circle = 6.2831854f;
 Turret::Turret (boost::dummy_ptr<GameWorld>  w, 
 		Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
   : GameObj (w),
-    sur (surface.c_str (), resources),
-    fire_sur (fire.c_str (), resources),
     fireing (false),
     reloading (0),
     reloading_speed (r_speed)
 {
   tank = arg_tank;
+
+  storage.add (new SpriteProvider (surface.c_str (), resources));
+  storage.add (new SpriteProvider (fire.c_str (), resources));
+  sur = storage.create (surface.c_str ());
+  fire_sur = storage.create (fire.c_str ());
 }
 
 Turret::~Turret ()
@@ -27,21 +30,12 @@ void
 Turret::draw (View* view)
 {
   float absolute_angle = tank->get_angle () + angle;
-  int frame = int(fmod (absolute_angle, circle) / circle * 16.0);
   
-  sur.put_screen (int(view->get_x_offset () + 
-		      tank->get_pos ().x - (sur.get_width ()/2)), 
-		  int(view->get_y_offset () + 
-		      tank->get_pos ().y - (sur.get_height ()/2)),
-		  frame);
+  view->draw (sur, tank->get_pos (), absolute_angle);
 
   if (fireing && reloading == 0)
     {
-      fire_sur.put_screen (int(view->get_x_offset () + 
-			       tank->get_pos ().x - (fire_sur.get_width ()/2)), 
-			   int(view->get_y_offset () + 
-			       tank->get_pos ().y - (fire_sur.get_height ()/2)),
-			   frame);
+      view->draw (fire_sur, tank->get_pos (), absolute_angle);
       fireing = false;
       reloading = reloading_speed;
     }

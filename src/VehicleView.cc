@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.5 2001/05/05 11:16:55 sphair Exp $
+//  $Id: VehicleView.cc,v 1.6 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,8 +38,14 @@ VehicleView::update (float time_delta)
 {
   // x_offset = int(vehicle->get_pos ().x);
   // y_offset = int(vehicle->get_pos ().y);
+
   CL_Vector target = vehicle->get_pos ();
-  
+  set_zoom (1.0f);
+  /* Stuff for zoom out on acceleration
+ 
+  float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0);
+  set_zoom (zoom);
+  */
   if (!(pos == target))
     {
       CL_Vector direction = (target - pos);
@@ -47,7 +53,7 @@ VehicleView::update (float time_delta)
       
       pos += direction * speed;
    }
-
+  
   x_offset = int(pos.x);
   y_offset = int(pos.y);
 }

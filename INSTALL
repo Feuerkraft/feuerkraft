@@ -1,3 +1,39 @@
+Feuerkraft (GNU/Linux)
+~~~~~~~~~~~~~~~~~~~~~~
+
+Feuerkraft requires that you have a working ClanLib 0.5 installed, if
+you don't have one, you can get it at http://www.clanlib.org
+
+For compilation just type:
+
+ $ ./configure
+ $ make
+
+then type the following to start it:
+
+ $ cd src/
+ $ ./feuerkraft
+
+
+
+
+Feuerkraft (Win32)
+~~~~~~~~~~~~~~~~~~
+
+For compiling Feuerkraft under Win32, you first have to enable MSVC++
+to handle .cc file endings:
+
+ * http://support.microsoft.com/support/kb/articles/Q181/5/06.ASP
+
+Then you should be able to use the provided project files
+Feuerkraft.dsp and Feuerkraft.dsw.
+
+
+Last update: $Date: 2001/11/28 17:17:26 $
+
+
+
+
 Basic Installation
 ==================
 

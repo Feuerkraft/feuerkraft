@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.9 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.10 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,6 @@ extern CL_ResourceManager* resources;
 Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),
     rotor ("feuerkraft/rotor", resources),
-    heli ("feuerkraft/helicopter", resources),
     helidestroyed ("feuerkraft/helidestroyed", resources),
     rotor_count (0),
     velocity (0.0),
@@ -38,6 +37,10 @@ Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos)
     destroyed (false)
 {
   pos = arg_pos;
+  storage.add (new SpriteProvider ("feuerkraft/helicopter", resources));
+  storage.add (new SpriteProvider ("feuerkraft/helicopter_shadow", resources));
+  heli = storage.create ("feuerkraft/helicopter");
+  heli_shadow = storage.create ("feuerkraft/helicopter_shadow");
 }
 
 Helicopter::~Helicopter ()
@@ -50,26 +53,32 @@ Helicopter::draw (View* view)
   if (!destroyed)
     {
       const float circle = 6.2831854f;
-      int frame = (int(fmod(angle, circle) / circle * heli.get_num_frames ()) + 16) % 16;
+      int frame = (int(fmod(angle, circle) / circle * 16) + 16) % 16;
   
+      heli_shadow->draw(view->get_x_offset () + pos.x + 25.0f,
+			view->get_y_offset () + pos.y + 50.0f,
+			angle/(circle/2.0)*180);
+
+      heli->draw(view->get_x_offset () + pos.x,
+		 view->get_y_offset () + pos.y,
+		 angle/(circle/2.0)*180);
+  /*
       view->draw (heli,
 		  pos.x - heli.get_width ()/2,
 		  pos.y - heli.get_height ()/2,
-		  frame);
+		  frame);*/
 
-      rotor.put_screen (view->get_x_offset () + 
-			pos.x - rotor.get_width ()/2,
-			view->get_y_offset () + 
-			pos.y - rotor.get_height ()/2,
-			(rotor_count = (rotor_count + 1) % 2));
+      view->draw (rotor,
+		  pos.x - rotor.get_width ()/2,
+		  pos.y - rotor.get_height ()/2,
+		  (rotor_count = (rotor_count + 1) % 2));
       energie.draw (view, pos.x, pos.y - 40);
     }
   else
     {
-      helidestroyed.put_screen (view->get_x_offset () + 
-				pos.x - helidestroyed.get_width ()/2,
-				view->get_y_offset () + 
-				pos.y - helidestroyed.get_height ()/2);
+      view->draw (helidestroyed,
+		  pos.x - helidestroyed.get_width ()/2,
+		  pos.y - helidestroyed.get_height ()/2);
     }
 
   /*
@@ -129,13 +138,13 @@ Helicopter::decrease_velocity (float delta)
 void
 Helicopter::turn_left (float )
 {
-  angle += 0.04f;
+  angle += 0.1f;
 }
 
 void 
 Helicopter::turn_right (float )
 {
-  angle -= 0.04f;
+  angle -= 0.1f;
 }
 
 void 

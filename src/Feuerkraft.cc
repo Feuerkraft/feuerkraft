@@ -6,6 +6,7 @@
 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
+#include <ClanLib/gl.h>
 
 #include "Feuerkraft.hh"
 #include "GameWorld.hh"
@@ -31,6 +32,7 @@
 #include "Background.hh"
 #include "Stone.hh"
 #include "System.hh"
+#include "Ambulance.hxx"
 
 CL_ResourceManager* resources;
 Pathfinder datafiles;
@@ -66,31 +68,38 @@ public:
 	      }
 	  }
 
-	datafiles.add_sig_files ("data/feuerkraft.scr");
+	datafiles.add_sig_files ("../data/feuerkraft.scr");
 	datafiles.add_back (".");
 	datafiles.add_back ("..");
 	datafiles.print ();
 
+	/*
 	try {
 	  System::change_dir(datafiles.find_path ("data/feuerkraft.scr"));
 	} catch (Pathfinder::FileNotFound e) {
 	  std::cout << "Pathfinder:FileNotFound: " << e.filename << std::endl;
-	}
+	  }*/
 
 	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
 		
 	CL_SetupCore::init();
+	CL_SetupGL::init();
 	CL_SetupDisplay::init();
 	CL_SetupPNG::init ();
 	CL_SetupJPEG::init ();
 
 	// Set mode: 320x200 16 bpp
 	CL_Display::set_videomode(800, 600, 16, false);
+	CL_OpenGL::begin_2d();
+
+	//glAlphaFunc ( GL_GREATER, 0.1 ) ;
+
 	CL_Display::clear_display ();
 	CL_Display::flip_display ();
-		
-	resources =  new CL_ResourceManager (datafiles.find("data/feuerkraft.scr").c_str (),
-					     false);
+
+	std::cout << "Trying this:" << std::endl;
+	resources =  new CL_ResourceManager ("../data/feuerkraft.scr", false);
+	std::cout << "DoneTrying this:" << std::endl;
 
 	GameWorld world;
 	Screen    screen;
@@ -101,7 +110,7 @@ public:
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
 
-	JoystickController controller(tank1);
+	JoystickController controller(heli);
 	KeyboardController kcontroller (tank2);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
@@ -132,6 +141,7 @@ public:
 	world.add (new Tower (&world, 400.0, 200.0));
 	world.add (new Tower (&world, 600.0, 400.0));
 	world.add (new Tower (&world, 600.0, 100.0));
+	world.add (new Ambulance (&world));
 	world.add (new Headquarter (&world, CL_Vector (-100.0, 0.0)));
 	
 	for (int i = 0; i < 20; ++i)
@@ -158,7 +168,8 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (&world, tank2, 0, 0, 800, 600);
+	VehicleView view (&world, heli, 0, 0, 800, 600);
+	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 	
 	//VehicleView view1 (&world, heli, 0, 0, 399, 600);
@@ -167,11 +178,12 @@ public:
 	int start_time = CL_System::get_time ();
 	int frames = 0;
 
-	    CL_System::keep_alive();
+	CL_System::keep_alive();
+		    
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
-	    CL_System::sleep (50);
+	    CL_System::sleep (0);
 	    delta = (CL_System::get_time () - last_time) / sec_fraction;
 	    last_time = CL_System::get_time ();
 	    world.update (delta);
@@ -179,12 +191,15 @@ public:
 	    deltas += delta;
 	    ++loops;
 
+	    //glRotatef (angle, 0.0, 0.0, 1.0);
+	    //glTranslatef (-320,-200, 0);
+
 	    view.draw ();
 	    view.update (delta);
 
 	    screen.update (delta);
 	    screen.draw ();
-	      
+
 	    controller.update (delta);
 	    kcontroller.update (delta);
 

@@ -2,6 +2,7 @@
 #define TANK_HH
 
 #include <ClanLib/display.h>
+#include <SphriteLib/sphritelibGL.h>
 #include <deque>
 
 #include "Mine.hh"
@@ -16,15 +17,20 @@ class Tank : public Controllable,
 	     public Vehicle
 {
 private:
-  float angle;
+  float angle; //FIXME: Degree or Radian?
   float speed;
   float velocity;
   float increment;
   int   inc_step;
   int frame;
-  CL_Surface sur;
+
+  /*CL_Surface sur;*/
   CL_Surface smod;
   CL_Surface sur_destroyed;
+
+  SpriteProviderStorage storage;
+  Sprite* sur;
+
   Turret* turret;
 
   std::deque<CL_Vector> smodpos;

@@ -1,4 +1,4 @@
-//  $Id: Ammotent.cc,v 1.2 2001/09/23 16:10:13 japj Exp $
+//  $Id: Ammotent.cc,v 1.3 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include "Vehicle.hh"
 #include "Ammotent.hh"
+#include <cmath>
 
 extern CL_ResourceManager* resources;
 

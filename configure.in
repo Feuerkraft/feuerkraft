@@ -5,7 +5,7 @@ PACKAGE=feuerkraft
 
 MAJOR_VERSION=0
 MINOR_VERSION=0
-PATCH_VERSION=5
+PATCH_VERSION=3
 
 VERSION=${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
 
@@ -19,6 +19,7 @@ AM_INIT_AUTOMAKE( $PACKAGE, $VERSION )
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
+AC_PROG_RANLIB
 
 dnl Checking for libraries
 
@@ -43,6 +44,14 @@ AC_CHECK_LIB( clanDisplay,   main,, [
 	exit
 	])
 
+AC_CHECK_LIB( clanGL,   main,, [
+	echo "ClanLib installed, but -lclanGL not found, run 'ldconfig' and try again,"
+	echo "if that doesn't help have a look at the file config.log and look into"
+	echo "the FAQ."
+	exit
+	])
+
+
 AC_CHECK_LIB( clanJPEG,   main,, [
 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"
@@ -61,7 +70,18 @@ AC_CHECK_LIB( clanPNG,   main,, [
 	exit
 	])
 
+AC_CHECK_LIB( SphriteLibGL,   main,, [
+	echo "SphriteLibGL is not installed. You can get it from:"
+	echo
+	echo "  http://dark.x.dtu.dk/~sphair/SphriteLib/"
+	echo 
+	exit
+	])
+
+
+
 AC_OUTPUT( Makefile
            data/Makefile
            src/Makefile
+           src/caimagemanipulation/Makefile
            src/boost/Makefile)

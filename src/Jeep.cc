@@ -1,4 +1,4 @@
-//  $Id: Jeep.cc,v 1.3 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Jeep.cc,v 1.4 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/gl.h>
 #include "Jeep.hh"
 
 const float circle = 6.2831854f;
@@ -24,13 +25,14 @@ extern CL_ResourceManager* resources;
 
 Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),
-    jeep ("feuerkraft/jeep", resources),
     energie (50),
     velocity (0.0),
     angle (0.0),
     flag (0)
 {
   pos = arg_pos;
+  storage.add (new SpriteProvider ("feuerkraft/jeep", resources));
+  jeep = storage.create ("feuerkraft/jeep");
 }
 
 void 
@@ -55,13 +57,11 @@ void
 Jeep::draw (View* view)
 {
   const float circle = 6.2831854f;
-  int frame = (int(fmod(angle, circle) / circle * jeep.get_num_frames ()) + 16) % 16;
-
-  jeep.put_screen (view->get_x_offset () + 
-		   pos.x - jeep.get_width ()/2,
-		   view->get_y_offset () + 
-		   pos.y - jeep.get_height ()/2,
-		   frame);
+  //int frame = (int(fmod(angle, circle) / circle * jeep.get_num_frames ()) + 16) % 16;
+  
+  jeep->draw(view->get_x_offset () + pos.x,
+	     view->get_y_offset () + pos.y,
+	     angle/(circle/2.0)*180);
   energie.draw (view, pos.x, pos.y - 30);
 }
 

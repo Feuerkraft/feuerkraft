@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.17 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.18 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -87,6 +87,14 @@ Iterator partition(Container &A, Iterator p, Iterator r, Pred &pred)
 	}
 }
 
+/*
+template<class T, class Mem, class Arg>
+class my_mem_fun 
+{
+public:
+  void operator (T&) { }
+}*/
+
 void 
 GameWorld::draw (View* view)
 {
@@ -99,9 +107,8 @@ GameWorld::draw (View* view)
 
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin (); 
        i != objects.end (); ++i)
-    {
-      (*i)->draw (view);
-    }
+    (*i)->draw (view);
+  //for_each (objects.begin (), objects.end (), bind2nd(mem_fun (&GameObj::draw), view));
 }
 
 struct is_removable

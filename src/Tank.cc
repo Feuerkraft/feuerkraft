@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ClanLib/core.h>
+#include <ClanLib/gl.h>
 
 #include "Mine.hh"
 #include "Turret.hh"
@@ -17,7 +18,6 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
     velocity (0.0f),
     increment (0.06f),
     inc_step (0),
-    sur (tank.c_str (), resources),
     smod ("feuerkraft/smod", resources),
     sur_destroyed ("feuerkraft/tankdestroyed", resources),
     turret (NULL),
@@ -28,6 +28,9 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 {
   turret = new Turret(world, this, reloading_speed, str_turret, fire);
   pos = arg_pos;
+
+  storage.add (new SpriteProvider (tank.c_str (), resources));
+  sur = storage.create (tank.c_str ());
 }
 
 Tank::~Tank ()
@@ -51,17 +54,31 @@ Tank::draw (View* view)
       for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
-	  view->draw (smod, 
+	  /*view->draw (smod, 
 		      int(i->x - (smod.get_width ()/2)),
 		      int(i->y - (smod.get_height ()/2)),
-		      int(fmod (i->z, circle) / circle * 16.0));
+		      int(fmod (i->z, circle) / circle * 16.0));*/
+	  //view->draw (smod, 
 	}
 
-      sur.put_screen (view->get_x_offset () + 
-		      int(pos.x) - (sur.get_width ()/2),
-		      view->get_y_offset () + 
-		      int(pos.y) - (sur.get_height ()/2),
-		      frame);
+      /*view->draw (sur, int(pos.x) - (sur.get_width ()/2),
+		  int(pos.y) - (sur.get_height ()/2),
+		  frame);*/
+
+      /*view->draw (sur, int(pos.x) - (sur.get_width ()/2),
+	int(pos.y) - (sur.get_height ()/2));*/
+
+      /*glBegin (GL_LINES);
+      glVertex2f (view->get_x_offset () + pos.x,
+		  view->get_x_offset () + pos.y);
+      glVertex2f (view->get_x_offset () + pos.x + 100,
+		  view->get_x_offset () + pos.y);
+		  glEnd ();*/
+
+      sur->draw(view->get_x_offset () + pos.x,
+		view->get_y_offset () + pos.y,
+		angle/(circle/2.0)*180);
+
       turret->draw (view);
 
       // Draw Collision rect
@@ -137,7 +154,7 @@ Tank::update (float delta)
     velocity = -1.0f;
 
   CL_Vector vel (-velocity, 0.0);
-  vel = vel.rotate (angle - fmod(angle, circle/16.0), 
+  vel = vel.rotate (angle, // - fmod(angle, circle/16.0), 
 		    CL_Vector (0.0, 0.0, 1.0));
 
   if (velocity != 0.0 || tmp_angle != angle)
@@ -162,7 +179,7 @@ Tank::increase_angle (float delta)
     angle += increment * delta;
   else
     angle += increment * delta;
-  angle = fmod (angle + circle, circle);
+  //angle = fmod (angle + circle, circle);
 }
 
 void
@@ -172,7 +189,7 @@ Tank::decrease_angle (float delta)
     angle -= increment * delta;
   else
     angle -= increment * delta;
-  angle = fmod (angle + circle, circle);
+  //angle = fmod (angle + circle, circle);
 }
 
 void

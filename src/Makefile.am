@@ -1,8 +1,10 @@
+SUBDIRS = caimagemanipulation boost
+
 bindir=$(prefix)/games
 
 bin_PROGRAMS = feuerkraft
 
-SUBDIRS = boost
+LDADD = caimagemanipulation/libcaimagemanipulation.a
 
 feuerkraft_SOURCES = Collideable.hh	 Energie.hh	GameWorld.cc	       KeyboardController.cc  Tank.cc	Turret.cc \
 Controllable.hh  Explosion.cc Explosion.hh	GameWorld.hh	       KeyboardController.hh  Tank.hh	Turret.hh \
@@ -16,6 +18,7 @@ System.cc System.hh my_gettext.hh StringConverter.hh StringConverter.cc \
 Radar.hh Radar.cc GuiObj.hh Screen.hh Screen.cc \
 Basis.cc Basis.hh VehicleStatus.hh  VehicleStatus.cc Headquarter.hh Headquarter.cc \
 Fuelstation.hh Fuelstation.cc Ammotent.cc Ammotent.hh \
-Background.hh Background.cc Stone.hh Stone.cc
+Background.hh Background.cc Stone.hh Stone.cc \
+Ambulance.hxx Ambulance.cxx
 
 # EOF #

@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cc,v 1.7 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: JoystickController.cc,v 1.8 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,32 +50,34 @@ JoystickController::JoystickController (Controllable* obj) :
 void 
 JoystickController::update (float delta)
 {
-  if (dir_axis && dir_axis->get_pos () > 0.5)
-    controllable->turn_left (delta);
-  else if (dir_axis && dir_axis->get_pos () < -0.5)
-    controllable->turn_right (delta);
-  
-  if (left_t && left_t->is_pressed ())
-    controllable->turn_left2 (delta);
-  else if (right_t && right_t->is_pressed ())
-    controllable->turn_right2 (delta);
-
-  if (vel_axis && vel_axis->get_pos () < -0.5)
-    controllable->increase_velocity (delta);
-  else if (vel_axis && vel_axis->get_pos () > 0.5)
-    controllable->decrease_velocity (delta);
-
-  if (fire && fire->is_pressed ())
-    controllable->start_fire ();
-  else
+  if (CL_Input::joysticks.size () >= 1)
     {
-      controllable->stop_fire ();    
+      
+      if (dir_axis && dir_axis->get_pos () > 0.5)
+	controllable->turn_left (delta);
+      else if (dir_axis && dir_axis->get_pos () < -0.5)
+	controllable->turn_right (delta);
+  
+      if (left_t && left_t->is_pressed ())
+	controllable->turn_left2 (delta);
+      else if (right_t && right_t->is_pressed ())
+	controllable->turn_right2 (delta);
+
+      if (vel_axis && vel_axis->get_pos () < -0.5)
+	controllable->increase_velocity (delta);
+      else if (vel_axis && vel_axis->get_pos () > 0.5)
+	controllable->decrease_velocity (delta);
+
+      if (fire && fire->is_pressed ())
+	controllable->start_fire ();
+      else
+	{
+	  controllable->stop_fire ();    
+	}
+
+      if (drop_mine && drop_mine->is_pressed ())
+	controllable->drop_mine ();
     }
-
-
-
-  if (drop_mine && drop_mine->is_pressed ())
-    controllable->drop_mine ();
 }
   
 

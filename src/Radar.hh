@@ -1,4 +1,4 @@
-//  $Id: Radar.hh,v 1.1 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Radar.hh,v 1.2 2001/11/28 17:17:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
+#include <SphriteLib/sphritelibGL.h>
 #include "boost/dummy_ptr.hpp"
 #include "GameWorld.hh"
 #include "Vehicle.hh"
@@ -37,6 +38,9 @@ private:
   CL_Surface background;
   CL_Vector pos;
   float angle;
+
+  SpriteProviderStorage storage;
+  Sprite* radar_line;
   
 public:
   Radar (const CL_Vector& arg_pos,  boost::dummy_ptr<GameWorld> w, boost::dummy_ptr<Vehicle> v);

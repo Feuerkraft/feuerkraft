@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.8 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: Tower.cc,v 1.9 2001/11/28 17:17:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,30 +41,28 @@ Tower::draw (View* view)
 {
   if (energie > 50)
     {
-      towerbase.put_screen (view->get_x_offset () + 
-			    int(pos.x) - towerbase.get_width ()/2,
-			    view->get_y_offset () + 
-			    int(pos.y) - towerbase.get_height ()/2);
+      view->draw (towerbase,
+		  int(pos.x) - towerbase.get_width ()/2,
+		  int(pos.y) - towerbase.get_height ()/2);
     }
   else if (energie > 0)
     {
-      towerdamaged.put_screen (view->get_x_offset () + 
-			       int(pos.x) - towerdamaged.get_width ()/2,
-			       view->get_y_offset () + 
-			       int(pos.y) - towerdamaged.get_height ()/2);
+      view->draw (towerdamaged,
+		  int(pos.x) - towerdamaged.get_width ()/2,
+		  int(pos.y) - towerdamaged.get_height ()/2);
     }
   else
     {
-      towerdestroyed.put_screen (view->get_x_offset () + 
-				 int(pos.x) - towerdestroyed.get_width ()/2,
-				 view->get_y_offset () + 
-				 int(pos.y) - towerdestroyed.get_height ()/2);
+      view->draw (towerdestroyed,
+		  int(pos.x) - towerdestroyed.get_width ()/2,
+		  int(pos.y) - towerdestroyed.get_height ()/2);
     }
 
   if (!destroyed)
     {
-      turret.put_screen (view->get_x_offset () + int(pos.x) - turret.get_width ()/2, 
-			 view->get_y_offset () + int(pos.y) - turret.get_height ()/2, angle/10);
+      view->draw (turret, 
+		  int(pos.x) - turret.get_width ()/2, 
+		  int(pos.y) - turret.get_height ()/2);
       energie.draw (view,
 		    int(pos.x), int (pos.y) - 40);
     }

@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.7 2001/05/05 22:16:28 grumbel Exp $
+//  $Id: View.hh,v 1.8 2001/11/28 17:17:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@
 #include "GuiObj.hh"
 #include "GameWorld.hh"
 
+class Sprite;
 class GameWorld;
 
 class View 
@@ -36,6 +37,7 @@ protected:
   int x1, y1;
   int x2, y2;
   int x_offset, y_offset;
+  float zoom;
 
 public:
   View (boost::dummy_ptr<GameWorld> world,
@@ -45,6 +47,11 @@ public:
 
   void draw ();
   void set_view (int x_pos, int y_pos);
+
+  /** Set the zoom of the current view, a zoom of 1.0 is normal, >1.0
+      is enlarged */
+  void set_zoom (float zoom);
+
   virtual void update (float delta);
   int get_x_offset ();
   int get_y_offset ();
@@ -53,6 +60,7 @@ public:
   int get_y1 ();
   int get_y2 ();
 
+  void draw (Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const CL_Vector& pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);
