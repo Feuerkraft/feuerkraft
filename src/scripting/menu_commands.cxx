@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.2 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: menu_commands.cxx,v 1.3 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../scm_functor.hxx"
 #include "../menu_handle_mgr.hxx"
 #include "../display_manager.hxx"
 #include "menu_commands.hxx"
@@ -51,7 +52,7 @@ menu_add_item(int menu_id, const char* label, SCM func)
   Menu* menu = menu_handle_mgr.lookup_by_handle(menu_id);
   if (menu)
     {
-      MenuItem* menu_item = menu_item_handle_mgr.create(label, new MenuItemFunctor());
+      MenuItem* menu_item = menu_item_handle_mgr.create(label, new MenuItemGenericFunctor<SCMFunctor>(func));
       menu->add_item(menu_item);
       return menu_item_handle_mgr.lookup_by_object(menu_item);
     }

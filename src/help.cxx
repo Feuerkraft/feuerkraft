@@ -1,4 +1,4 @@
-//  $Id: help.cxx,v 1.1 2003/06/05 21:34:23 grumbel Exp $
+//  $Id: help.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ Help::draw(CL_GraphicContext& gc)
 
   CL_Display::fill_rect(CL_Rect(center_x - 200, center_y - 150,
                                 center_x + 200, center_y + 150),
-                        CL_Color(255, 255, 255, 230));
+                        CL_Color(100, 100, 0, 230));
   font.set_alignment(origin_top_left);
   font.draw(center_x - 190, center_y - 120, 
             "F1 - show/hide this help screen\n"

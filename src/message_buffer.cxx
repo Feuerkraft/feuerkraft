@@ -1,4 +1,4 @@
-//  $Id: message_buffer.cxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: message_buffer.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,7 +53,7 @@ MessageBuffer::draw(CL_GraphicContext& gc)
           Fonts::font.draw(x_pos, y, i->message);
           Fonts::font.set_alpha(1.0f);
         }
-      y -= 25;
+      y -= Fonts::font.get_height() + 2;
     }
 }
 

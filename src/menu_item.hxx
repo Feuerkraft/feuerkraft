@@ -1,4 +1,4 @@
-//  $Id: menu_item.hxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: menu_item.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,18 @@ public:
   virtual void call() {}
 };
 
+template<class Func>
+class MenuItemGenericFunctor : public MenuItemFunctor
+{
+private:
+  Func func;
+public:
+  MenuItemGenericFunctor(const Func& arg_func)
+    : func(arg_func) {}
+
+  void call() { func(); }
+};
+
 /** */
 class MenuItem
 {
@@ -44,6 +56,7 @@ public:
   void draw(int x, int y);
   void draw_highlight(int x, int y);
 
+  void call();
 private:
   MenuItem (const MenuItem&);
   MenuItem& operator= (const MenuItem&);

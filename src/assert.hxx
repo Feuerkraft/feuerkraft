@@ -1,4 +1,4 @@
-//  $Id: assert.hxx,v 1.1 2003/06/06 09:49:35 grumbel Exp $
+//  $Id: assert.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,8 @@
 
 #ifndef HEADER_ASSERT_HXX
 #define HEADER_ASSERT_HXX
+
+#include <assert.h>
 
 #ifdef NDEBUG
 #  define AssertMsg(assert, message)

@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: menu.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
+#include "assert.hxx"
+#include "fonts.hxx"
 #include "menu_item.hxx"
 #include "menu.hxx"
 
@@ -46,8 +48,9 @@ void
 Menu::draw(CL_GraphicContext& gc)
 {
   // Draw menu background 
-  CL_Display::fill_rect(CL_Rect(CL_Display::get_width() - 120, 0,
-                                CL_Display::get_width(), items.size() * 25 + 20),
+  CL_Display::fill_rect(CL_Rect(CL_Display::get_width() - 170, 0,
+                                CL_Display::get_width(), items.size() 
+                                * (Fonts::font.get_height() + 4) + 20),
                         CL_Color(0,0,0, 50));
 
   // Draw menu items
@@ -55,11 +58,42 @@ Menu::draw(CL_GraphicContext& gc)
   for(MenuItems::iterator i = items.begin(); i != items.end(); ++i)
     {
       if ((i - items.begin()) == current_item)
-        (*i)->draw_highlight(CL_Display::get_width() - 110, y);
+        (*i)->draw_highlight(CL_Display::get_width() - 160, y);
       else
-        (*i)->draw(CL_Display::get_width() - 110, y);
-      y += 25;
+        (*i)->draw(CL_Display::get_width() - 160, y);
+
+      y += (Fonts::font.get_height() + 4);
     }
+}
+
+void
+Menu::next_item()
+{
+  AssertMsg(items.size() > 0, "Menu is empty!");
+
+  if (current_item == items.size() - 1)
+    current_item = 0;
+  else
+    current_item += 1;
+}
+
+void
+Menu::previous_item()
+{
+  AssertMsg(items.size() > 0, "Menu is empty!");
+
+  if (current_item == 0)
+    current_item = items.size()-1;
+  else
+    current_item -= 1;
+}
+
+void
+Menu::call_current_item()
+{
+  AssertMsg(items.size() > 0, "Menu is empty!");
+
+  items[current_item]->call();
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: menu.hxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: menu.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,12 @@ public:
   void draw (CL_GraphicContext& gc);
   void update(float delta);
   void add_item(MenuItem*);
+  
+  void next_item();
+  void previous_item();
+
+  /** Evaluate the current item */
+  void call_current_item();
 private:
   Menu (const Menu&);
   Menu& operator= (const Menu&);

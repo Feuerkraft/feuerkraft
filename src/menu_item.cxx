@@ -1,4 +1,4 @@
-//  $Id: menu_item.cxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: menu_item.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,19 +36,25 @@ MenuItem::~MenuItem()
 void
 MenuItem::draw_highlight(int x, int y)
 {
-  CL_Display::fill_rect(CL_Rect(x, y, x + 100, y + 20),
-                        CL_Color(255, 255, 255, 200));
+  CL_Display::fill_rect(CL_Rect(x, y, x + 150, y + Fonts::font.get_height() + 2),
+                        CL_Color(255, 255, 255, 230));
   Fonts::font.set_alignment(origin_top_left);
-  Fonts::font.draw(x + 10, y, label);
+  Fonts::font.draw(x + 10, y + 1, label);
 }
 
 void
 MenuItem::draw(int x, int y)
 {
-  CL_Display::fill_rect(CL_Rect(x, y, x + 100, y + 20),
-                        CL_Color(150,150,150, 155));
+  CL_Display::fill_rect(CL_Rect(x, y, x + 150, y + Fonts::font.get_height() + 2),
+                        CL_Color(85,85,0, 230));
   Fonts::font.set_alignment(origin_top_left);
-  Fonts::font.draw(x + 10, y, label);
+  Fonts::font.draw(x + 10, y + 1, label);
+}
+
+void
+MenuItem::call()
+{
+  functor->call();
 }
 
 /* EOF */
