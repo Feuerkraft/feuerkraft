@@ -1,4 +1,4 @@
-//  $Id: field.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: field.hxx,v 1.2 2003/04/29 16:34:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,11 @@ private:
   int height;
   std::vector<T> data;
 public:
+  typedef typename std::vector<T>::iterator  iterator;
+
+  iterator begin() { return data.begin(); }
+  iterator end()   { return data.end(); }
+
   Field (int arg_width, int arg_height)
     : width (arg_width), height (arg_width)
   {
@@ -50,6 +55,14 @@ public:
       }
 
     return data[width * y + x];
+  }
+
+  int get_width() const {
+    return width;
+  }
+
+  int get_height() const {
+    return height;
   }
 };
 

@@ -1,4 +1,4 @@
-//  $Id: pathfinder.hxx,v 1.3 2003/04/29 11:46:06 grumbel Exp $
+//  $Id: pathfinder.hxx,v 1.4 2003/04/29 16:34:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include "field.hxx"
 
 enum { PARENT_NONE,
+       PARENT_GOAL,
        PARENT_NORTH,
        PARENT_SOUTH,
        PARENT_EAST,
@@ -31,15 +32,16 @@ enum { PARENT_NONE,
 
 struct Node
 {
-  unsigned int visited :  1;
-  unsigned int open    :  1;
-  unsigned int parent  :  3;
-  unsigned int cost    : 10;
-  unsigned int x       :  8;
-  unsigned int y       :  8;
+  bool visited;
+  unsigned char parent;
+  unsigned int  cost;
+  short x;
+  short y;
 };
 
 struct Pos {
+  Pos(int arg_x, int arg_y) : x(arg_x), y(arg_y) {}
+  Pos() {}
   int x;
   int y;
 };
@@ -58,6 +60,7 @@ private:
   std::list<Node*> open_nodes;
   Pos start;
   Pos end;
+  std::vector<Pos> path;
 
   State state;
 public:
@@ -66,14 +69,17 @@ public:
   void init(Pos& arg_start, Pos& arg_end);
 
   bool finished();
+  bool is_path_node(int x, int y);
 
-  std::vector<Pos> get_path();
+  std::vector<Pos>& get_path() { return path; }
 
   State get_state() { return state; }
   void construct_path();
   void make_neighbors_open(Node& cnode);
   void process_one_open_node();
   void add_to_open_nodes(Node& cnode);
+
+  Node& resolve_parent(Node& node);
 
   void display();
 };
