@@ -150,8 +150,8 @@
                                (player-set-current-unit 8)
                                (player-set-current-unit 6))))
 
-;(gameobj-create 2 '#:x-pos 470.0)
-;                    (y-pos 1134.0)))
+                                        ;(gameobj-create 2 '#:x-pos 470.0)
+                                        ;                    (y-pos 1134.0)))
 
 (define (bomber-attack x-pos y-pos)
   (trigger-add-timed 
@@ -300,15 +300,29 @@
 
 (define (airport:add-trigger x y proc)
   (let ((obj (gameobj-create marker-type
-                             #:x-pos (- (* x 40) 20)
-                             #:y-pos (- (* y 40) 20))))
-    (trigger-add-tile 8 33 (lambda (object) 
-                             (comm-send-message "Hello World")
-                             (gameobj-remove obj)
-                             (proc)))))
+                             #:x-pos (- (* (1+ x) 40) 20)
+                             #:y-pos (- (* (1+ y) 40) 20))))
 
-(airport:add-trigger 16 33 (lambda () #f))
-(airport:add-trigger 18 34 (lambda () #f))
-(airport:add-trigger 20 34 (lambda () #f))
+    (trigger-add-tile x y (lambda (object) 
+                            (gameobj-remove obj)
+                            (proc)))))
+
+(define *waypoints* '((15 . 30)
+                      (17 . 30)
+                      (19 . 30)
+                      (21 . 30)
+                      (23 . 30)
+                      (25 . 30)))
+
+(define (airport:add-waypoints lst)
+  (cond ((not (null? lst))
+         (airport:add-trigger (caar lst) (cdar lst) 
+                              (lambda ()
+                                (airport:add-waypoints (cdr lst))
+                                )))
+        (else
+         (comm-send-message 'player "Mission successfull"))))
+
+(airport:add-waypoints *waypoints*)
 
 ;; EOF ;;

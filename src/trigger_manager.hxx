@@ -1,4 +1,4 @@
-//  $Id: trigger_manager.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: trigger_manager.hxx,v 1.3 2003/06/22 22:23:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,14 @@
 #ifndef HEADER_TRIGGER_MANAGER_HXX
 #define HEADER_TRIGGER_MANAGER_HXX
 
+#include <iostream>
 #include <vector>
-#include "vehicle.hxx"
+#include "unit.hxx"
 #include "game_world.hxx"
+#include "player.hxx"
 #include "game_obj_manager.hxx"
+
+extern Player* player;
 
 /** */
 class TriggerManager
@@ -85,19 +89,16 @@ public:
 
     virtual ~TileTrigger() {}
 
-    void update(float delta) {
-      GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
-      for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
+    void update(float delta) 
+    {
+      Unit* unit = player->get_current_unit();
+      
+      if (unit)
         {
-          Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
-          if (vehicle)
+          if (int(unit->get_pos().x/40) == x && int(unit->get_pos().y/40) == y)
             {
-              if (int(vehicle->get_pos().x/40) == x
-                  && int(vehicle->get_pos().y/40) == y)
-                {
-                  func(SCM_MAKINUM(vehicle->get_id()));
-                  remove();
-                }
+              func(SCM_MAKINUM(unit->get_id()));
+              remove();
             }
         }
     }
