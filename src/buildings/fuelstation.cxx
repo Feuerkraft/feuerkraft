@@ -1,4 +1,4 @@
-//  $Id: fuelstation.cxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: fuelstation.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <cmath>
 #include "../game_obj_manager.hxx"
+#include "../color.hxx"
 #include "../radar.hxx"
 #include "../vehicle.hxx"
 #include "../resource_manager.hxx"
@@ -44,7 +45,8 @@ Fuelstation::draw (ViewPtr view)
     {
       view->draw_fillrect(int(pos.x - 32), int (pos.y + 25),
 			  int(pos.x + 31), int (pos.y + 57),
-			  1.0, 1.0, 1.0, sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f);
+			  Color(1.0, 1.0, 1.0,
+                                sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f));
     }
 }
 

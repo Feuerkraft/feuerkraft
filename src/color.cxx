@@ -1,7 +1,7 @@
-//  $Id: background.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: color.cxx,v 1.1 2003/05/19 09:01:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,26 +17,31 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "view.hxx"
-#include "background.hxx"
+#include "color.hxx"
 
-
-Background::Background (const CL_Sprite& arg_sprite,
-                        float arg_z_pos)
-  : sur (arg_sprite.get_frame_surface(0)),
-    z_pos(arg_z_pos)
+Color::Color()
 {
-  sur.set_alignment(origin_top_left);
+  red   = 1.0f;
+  green = 1.0f;
+  blue  = 1.0f;
+  alpha = 1.0f;
 }
 
-void
-Background::draw (View* view)
+Color::Color(float red_, float green_, float blue_, float alpha_)
 {
-  // FIXME: We should take the view size and surface size into account
-  for (int y = -1; y <= 2; ++y)
-    for (int x = -1; x <= 2; ++x)
-      sur.draw(x * sur.get_width()  + (view->get_x_offset() % sur.get_width()),
-               y * sur.get_height() + (view->get_y_offset() % sur.get_height()));
+  red   = red_;
+  green = green_;
+  blue  = blue_;
+  alpha = alpha_;
+}
+
+CL_Color
+Color::get_cl_color() const
+{
+  return CL_Color(static_cast<int>(255 * red),
+                  static_cast<int>(255 * green),
+                  static_cast<int>(255 * blue),
+                  static_cast<int>(255 * alpha));
 }
 
 /* EOF */

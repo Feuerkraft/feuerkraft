@@ -1,4 +1,4 @@
-//  $Id: energie.cxx,v 1.5 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: energie.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "color.hxx"
 #include "view.hxx"
 #include "energie.hxx"
 
@@ -60,16 +61,17 @@ Energie::draw (ViewPtr view, int x_pos, int y_pos)
       // Black border rectangle
       view->draw_fillrect (x_pos - 32, y_pos - 5,
 			   x_pos + 32, y_pos + 5,
-			   0.0f, 0.0f, 0.0f, (1000.0f - float(time_diff))/1000.0f * 0.8f);
+			   Color(0.0f, 0.0f, 0.0f,
+                                 (1000.0f - float(time_diff))/1000.0f * 0.8f));
       
       // Energie bar
       view->draw_fillrect (x_pos - 30, y_pos - 3,
 			   int(x_pos - 30 + (ratio * 60)),
 			   y_pos + 3,
-			   1.0f - energie/float(max_energie),
-			   ratio,
-			   0.0f, 
-			   (1000.0f - float(time_diff)) / 1000.0f * 0.9f);
+			   Color(1.0f - energie/float(max_energie),
+                                 ratio,
+                                 0.0f, 
+                                 (1000.0f - float(time_diff)) / 1000.0f * 0.9f));
       //std::cout << "Alpha: " << float(time_diff) / 500.0 << std::endl;
     }
 }

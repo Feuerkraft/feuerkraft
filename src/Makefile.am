@@ -22,6 +22,8 @@ background.cxx \
 background.hxx \
 command_line_arguments.hxx \
 command_line_arguments.cxx \
+color.hxx \
+color.cxx \
 collideable.hxx \
 collision_manager.hxx \
 collision_manager.cxx \

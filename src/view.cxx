@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.10 2003/05/18 22:47:54 grumbel Exp $
+//  $Id: view.cxx,v 1.11 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,14 +23,14 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
 
+#include "color.hxx"
 #include "math.hxx"
 #include "view.hxx"
 
 View::View (int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
-	    int arg_x_offset, int arg_y_offset,
-	    CL_GraphicContext* arg_gc)
-  : gc (arg_gc), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
+	    int arg_x_offset, int arg_y_offset)
+  : x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
     x_offset (-arg_x_offset), y_offset (-arg_y_offset)
 {
   x_offset -= x1;
@@ -41,30 +41,6 @@ View::View (int arg_x1, int arg_y1,
 
 View::~View ()
 {
-}
-
-void 
-View::update (float delta)
-{
-  // nothing to do
-}
-
-void 
-View::draw (CL_GraphicContext* gc)
-{
-  //FIXME:Display2 CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
-  /*glPushMatrix ();
-  glTranslated (400, 300, 0.0);
-  glScaled (zoom, zoom, 1.0);
-  glRotated (rotation, 0, 0, 1.0);
-  glTranslated (-400, -300, 0.0);*/
-  
-  GameWorld::current()->draw (this);
-  GameWorld::current()->draw_energie (this);
-
-  //glPopMatrix ();
-
-  //FIXME:Display2 CL_Display::pop_clip_rect ();
 }
 
 int View::get_x_offset () { return x1 - x_offset + (x2 - x1)/2; }
@@ -87,25 +63,13 @@ View::set_zoom (float z)
   zoom = z;
 }
 
-CL_GraphicContext*
-View::get_gc ()
-{
-  return gc;
-}
-
-void
-View::set_gc (CL_GraphicContext* arg_gc)
-{
-  gc = arg_gc;
-}
-
 void 
 View::draw (CL_Surface& sur, const FloatVector2d& pos)
 {
   /* FIXME:Display2
-  sur.draw (int(pos.x + get_x_offset ()),
-	    int(pos.y + get_y_offset ()),
-	    gc);*/
+     sur.draw (int(pos.x + get_x_offset ()),
+     int(pos.y + get_y_offset ()),
+     gc);*/
 }
 
 void
@@ -113,16 +77,14 @@ View::draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle)
 {
   sprite.set_angle(Math::rad2deg(angle));
   sprite.draw(int(pos.x + get_x_offset ()), 
-	       int(pos.y + get_y_offset ()),
-	       gc);
+              int(pos.y + get_y_offset ()));
 }
 
 void 
 View::draw (CL_Surface& sur, float x_pos, float y_pos)
 {
   sur.draw (static_cast<int>(x_pos + get_x_offset ()),
-	    static_cast<int>(y_pos + get_y_offset ()), 
-                             gc);
+	    static_cast<int>(y_pos + get_y_offset ()));
 }
 
 void 
@@ -130,7 +92,7 @@ View::draw (CL_Surface& sur, float x_pos, float y_pos, int frame)
 {
   //FIXME:Display2: frame support removed 
   sur.draw (static_cast<int>(x_pos + get_x_offset ()),
-            static_cast<int>(y_pos + get_y_offset ()), gc);
+            static_cast<int>(y_pos + get_y_offset ()));
 }
 
 void 
@@ -139,43 +101,38 @@ View::draw (CL_Surface& sur, float x_pos, float y_pos,
 {
   //FIXME:Display2: frame support removed 
   /*sur.draw (x_pos + get_x_offset (),
-		  y_pos + get_y_offset (),
-		  size_x * zoom, size_y * zoom, frame);  */
+    y_pos + get_y_offset (),
+    size_x * zoom, size_y * zoom, frame);  */
 }
 
 void 
 View::draw_line (float x1, float y1, float x2, float y2, 
-		float r, float g, float b, float a)
+                 const Color& color)
 {
-  CL_Display::draw_line (int((x1 + get_x_offset ())),
-                         int((y1 + get_y_offset ())),
-                         int((x2 + get_x_offset ())),
-                         int((y2 + get_y_offset ())),
-                         CL_Color(static_cast<int>(255*r),
-                                  static_cast<int>(255*g),
-                                  static_cast<int>(255*b), 
-                                  static_cast<int>(255*a)));
+  CL_Display::draw_line(int((x1 + get_x_offset ())),
+                        int((y1 + get_y_offset ())),
+                        int((x2 + get_x_offset ())),
+                        int((y2 + get_y_offset ())),
+                        color.get_cl_color());
 }
 
 void 
 View::draw_fillrect (float x1, float y1, float x2, float y2, 
-		    float r, float g, float b, float a)
+                     const Color& color)
 {
   CL_Display::fill_rect (CL_Rect(int((x1 + get_x_offset ())),
                                  int((y1 + get_y_offset ())), 
                                  int((x2 + get_x_offset ())),
                                  int((y2 + get_y_offset ()))),
-			 CL_Color(static_cast<int>(255*r),
-                                  static_cast<int>(255*g),
-                                  static_cast<int>(255*b),
-                                  static_cast<int>(255*a)));
+			 color.get_cl_color());
 }
 
 void
 View::draw_rect (float x1, float y1, float x2, float y2, 
-		 float r, float g, float b, float a)
+		 const Color& arg_color)
 {
-  CL_Color color(int(255*r), int(255*g), int(255*b), int(255*a));
+  const CL_Color& color = arg_color.get_cl_color();
+
   CL_Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()), 
 			 int(x1 + get_x_offset ()), int(y2 + get_y_offset ()),
 			 color);
@@ -192,7 +149,7 @@ View::draw_rect (float x1, float y1, float x2, float y2,
 
 void 
 View::draw_pixel (float x_pos, float y_pos, 
-		   float r, float g, float b, float a)
+                  const Color& color)
 {
   //CL_Display::put_pixel (x1 + get_x_offset (),
   //			 y1 + get_y_offset (), r, g, b, a);
@@ -201,7 +158,7 @@ View::draw_pixel (float x_pos, float y_pos,
 
 void 
 View::draw_circle (float x_pos, float y_pos, float radius,
-		   float r, float g, float b, float a)
+		   const Color& color)
 {
   // FIXME: Probally not the fast circle draw algo on this world...
   const float pi = 3.1415927f * 2.0f;
@@ -215,41 +172,36 @@ View::draw_circle (float x_pos, float y_pos, float radius,
       
       draw_line (int(x_pos + current.x), int(y_pos + current.y),
 		 int(x_pos + next.x), int(y_pos + next.y),
-		 r, g, b, a);
+		 color);
     }
 }
 
 void
 View::draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_stop,
-               float r, float g, float b, float a)
+                const Color& color)
 {
+  angle_start = Math::normalize_angle(angle_start);
+  angle_stop  = Math::normalize_angle(angle_stop);
+
   const float steps = 16;
+
+  float enclosed_angle = Math::normalize_angle(angle_stop - angle_start);
   
-  float angle = angle_stop - angle_start;
+  float x, y;
 
-  float x = radius * cos(angle_start);
-  float y = radius * sin(angle_start);
-
-  float nx, ny;
-
-  for (int i = 1; i < steps; ++i)
+  float last_x = x_pos + radius * cos(angle_start);
+  float last_y = y_pos + radius * sin(angle_start);
+  
+  for(int i = 1; i <= steps; ++i)
     {
-      nx = radius * cos(angle_start + i*angle/steps);
-      ny = radius * sin(angle_start + i*angle/steps);  
+      x = x_pos + radius * cos(angle_start + i*enclosed_angle/steps);
+      y = y_pos + radius * sin(angle_start + i*enclosed_angle/steps);
 
-      draw_line (int(x_pos + x), int(y_pos + y),
-		 int(x_pos + nx), int(y_pos + ny),
-		 r, g, b, a);
+      draw_line(last_x, last_y, x, y, color);
 
-      x = nx;
-      y = ny;
+      last_x = x;
+      last_y = y;
     }
-
-  nx = radius * cos(angle_stop);
-  ny = radius * sin(angle_stop);
-  draw_line (int(x_pos + x), int(y_pos + y),
-             int(x_pos + nx), int(y_pos + ny),
-             r, g, b, a); 
 }
 
 bool
@@ -280,14 +232,14 @@ FloatVector2d
 View::screen_to_world (const FloatVector2d& pos)
 {
   return FloatVector2d (pos.x - get_x_offset (),
-		    pos.y - get_y_offset ());
+                        pos.y - get_y_offset ());
 }
 
 FloatVector2d
 View::world_to_screen (const FloatVector2d& pos)
 {
   return FloatVector2d (pos.x + get_x_offset (),
-		    pos.y + get_y_offset ());
+                        pos.y + get_y_offset ());
 }
 
 /* EOF */

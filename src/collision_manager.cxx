@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #include <assert.h>
 #include <math.h>
 #include "math.hxx"
+#include "color.hxx"
 #include "view.hxx"
 #include "game_world.hxx"
 #include "buildings/building.hxx"
@@ -126,15 +127,16 @@ CollisionManager::draw(View* view)
         {
         case SHAPE_CIRCLE:
           view->draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
-                            1.0f, .0f, .0f);
+                            Color(1.0f, .0f, .0f));
           break;
         case SHAPE_RECT:
           {
+            Color color(1.0f, 0.0f , 0.0f);
             Math::Quad quad = rect2quad(i->rect);
-            view->draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, 1.0f, 0, 0);
-            view->draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, 1.0f, 0, 0);
-            view->draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, 1.0f, 0, 0);
-            view->draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, 1.0f, 0, 0);
+            view->draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
+            view->draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
+            view->draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
+            view->draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
           }
           break;
         default:

@@ -223,7 +223,7 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view(current_vehicle, 0, 0, 800, 600, window.get_gc ());
+	VehicleView view(current_vehicle, 0, 0, 800, 600);
 
         player_controller = &kcontroller;
         player_vehicle_view = &view;
@@ -283,7 +283,9 @@ public:
 	    deltas += delta;
 	    ++loops;
 
-	    view.draw (window.get_gc ());
+            GameWorld::current()->draw(&view);
+            GameWorld::current()->draw_energie (&view);
+
             segments.draw(&view);
             collision_mgr.draw(&view);
 

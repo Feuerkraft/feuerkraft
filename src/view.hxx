@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: view.hxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,38 +20,30 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
-#include "vector2d.hxx"
-
-#include "vector2d.hxx"
-#include "gui_obj.hxx"
-#include "game_world.hxx"
 #include "view_properties.hxx"
+#include "vector2d.hxx"
 
-class CL_GraphicContext;
 class CL_Sprite;
 class CL_Surface;
-
-class GameWorld;
+class Color;
 
 /** A View provides a 'View' onto the world.
     
-    A View is similar to a CL_GraphicContext, you can paint on it with
-    specific operations. It works basically by holding a pointer to
-    the world and passing a draw() call to the world in the event that
-    the View needs a draw. A pointer to the View class is passed as
-    argument to the Worlds draw call. 
+A View is similar to a CL_GraphicContext, you can paint on it with
+specific operations. It works basically by holding a pointer to
+the world and passing a draw() call to the world in the event that
+the View needs a draw. A pointer to the View class is passed as
+argument to the Worlds draw call. 
 
-    FIXME: We need plugable modules for the View so that the zoom,
-    scale and rotation of the view will be automagically changed
-    acording to a plugin, possible plugins would be VehicleView,
-    BuildingView, FixedView, etc. How should clean translation between
-    plugins be provided? Should that be handled at plugin site?
+FIXME: We need plugable modules for the View so that the zoom,
+scale and rotation of the view will be automagically changed
+acording to a plugin, possible plugins would be VehicleView,
+BuildingView, FixedView, etc. How should clean translation between
+plugins be provided? Should that be handled at plugin site?
 */
 class View 
-  : public GuiObj
 {
 protected:
-  CL_GraphicContext* gc;
   int x1, y1;
   int x2, y2;
   int x_offset, y_offset;
@@ -60,21 +52,15 @@ protected:
   ViewProperty properties;
 public:
   View (int x1, int y1, int x2, int y2,
-	int x_offset = 0, int y_offset = 0,
-	CL_GraphicContext* arg_gc = 0);
+	int x_offset = 0, int y_offset = 0);
   virtual ~View ();
 
-  CL_GraphicContext* get_gc ();
-  void set_gc (CL_GraphicContext* arg_gc);
-  
-  void draw (CL_GraphicContext* gc);
   void set_view (int x_pos, int y_pos);
 
   /** Set the zoom of the current view, a zoom of 1.0 is normal, >1.0
       is enlarged */
   void set_zoom (float zoom);
 
-  virtual void update (float delta);
   int get_x_offset ();
   int get_y_offset ();
   int get_width ();
@@ -93,20 +79,20 @@ public:
 
 
   void draw_line (float x1, float y1, float x2, float y2, 
-		  float r, float g, float b, float a = 1.0f);
+		  const Color& color);
   void draw_fillrect (float x1, float y1, float x2, float y2, 
-		      float r, float g, float b, float a = 1.0f);
+		      const Color& color);
   void draw_rect (float x1, float y1, float x2, float y2, 
-		  float r, float g, float b, float a = 1.0f);
+		  const Color& color);
   void draw_pixel (float x_pos, float y_pos, 
-		   float r, float g, float b, float a = 1.0f);
+		   const Color& color);
   void draw_circle (float x_pos, float y_pos, float radius,
-		   float r, float g, float b, float a = 1.0f);
+                    const Color& color);
 
   /** Draws an arc, starting from angle_start to angle_end in
       counterclockwise direction. Angles are taken in radian */
   void draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_end,
-                 float r, float g, float b, float a = 1.0f);
+                 const Color& color);
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);

@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #include <assert.h>
 #include <iostream>
 #include "math.hxx"
+#include "color.hxx"
 #include "view.hxx"
 #include "line_segments.hxx"
 
@@ -430,26 +431,26 @@ LineSegments::draw(View* view)
           //std::cout << "Radial: " << (int)i->radial.x << ", " <<(int)i->radial.y
           //        << " " << (int)i->radial.radius << std::endl;
           view->draw_circle((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
-                            1.0f, 1.0f, 1.0f, .3f);
+                            Color(1.0f, 1.0f, 1.0f, .3f));
 
 
           if (i->radial.turn_right)
             {
               view->draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
                              i->radial.start_angle, i->radial.end_angle, 
-                             1.0f, 1.0f, 1.0f);
+                             Color(1.0f, 1.0f, 1.0f));
               view->draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
                                   (int)i->radial.x+5, (int)i->radial.y+5,
-                                  0.0f, 0.0f, 1.0f); //blue
+                                  Color(0.0f, 0.0f, 1.0f)); //blue
             }
           else
             {
               view->draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
                              i->radial.end_angle, i->radial.start_angle, 
-                             1.0f, 1.0f, 1.0f);
+                             Color(1.0f, 1.0f, 1.0f));
               view->draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
                                   (int)i->radial.x+5, (int)i->radial.y+5,
-                                  1.0f, 0.0f, 0.0f); // red
+                                  Color(1.0f, 0.0f, 0.0f)); // red
             }
 
           {
@@ -457,7 +458,7 @@ LineSegments::draw(View* view)
             int y = int(i->radial.y + i->radial.radius * sin(i->radial.start_angle));
             view->draw_fillrect(x-5, y-5,
                                 x+5, y+5,
-                                0.0, 0.0f, 1.0f);
+                                Color(0.0, 0.0f, 1.0f));
           }
 
           {
@@ -465,14 +466,14 @@ LineSegments::draw(View* view)
             int y = int(i->radial.y + i->radial.radius * sin(i->radial.end_angle));
             view->draw_fillrect(x-5, y-5,
                                 x+5, y+5,
-                                1.0, 0.0f, 1.0f);
+                                Color(1.0, 0.0f, 1.0f));
           }
           break;
 
         case STRAIGHT:
           view->draw_line((int)i->straight.x1, (int)i->straight.y1,
                           (int)i->straight.x2, (int)i->straight.y2, 
-                          1.0f, 1.0f, 1.0f, 1.0f);
+                          Color(1.0f, 1.0f, 1.0f, 1.0f));
           break;
         default:
           std::cout << "Unhandled type: " << i->type << std::endl;

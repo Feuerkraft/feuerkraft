@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,11 +21,10 @@
 #include "vehicle_view.hxx"
 
 VehicleView::VehicleView (VehiclePtr arg_vehicle, 
-			  int x1, int y1, int x2, int y2, CL_GraphicContext* arg_gc) :
-  View (x1, y1, x2, y2,
-	int(-arg_vehicle->get_pos ().x), int(-arg_vehicle->get_pos ().y),
-	arg_gc),
-  vehicle (arg_vehicle)
+			  int x1, int y1, int x2, int y2)
+  : View (x1, y1, x2, y2,
+          int(-arg_vehicle->get_pos ().x), int(-arg_vehicle->get_pos ().y)),
+    vehicle (arg_vehicle)
 {
   speed = 0.1f;
   zoom_follower = 1.0f;

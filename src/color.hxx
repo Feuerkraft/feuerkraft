@@ -1,7 +1,7 @@
-//  $Id: background.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
-//
+//  $Id: color.hxx,v 1.1 2003/05/19 09:01:34 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,31 +12,36 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "view.hxx"
-#include "background.hxx"
+#ifndef HEADER_COLOR_HXX
+#define HEADER_COLOR_HXX
 
+#include <ClanLib/Display/color.h>
 
-Background::Background (const CL_Sprite& arg_sprite,
-                        float arg_z_pos)
-  : sur (arg_sprite.get_frame_surface(0)),
-    z_pos(arg_z_pos)
+/** */
+class Color
 {
-  sur.set_alignment(origin_top_left);
-}
+private:
+public:
+  float red;
+  float green;
+  float blue;
+  float alpha;
 
-void
-Background::draw (View* view)
-{
-  // FIXME: We should take the view size and surface size into account
-  for (int y = -1; y <= 2; ++y)
-    for (int x = -1; x <= 2; ++x)
-      sur.draw(x * sur.get_width()  + (view->get_x_offset() % sur.get_width()),
-               y * sur.get_height() + (view->get_y_offset() % sur.get_height()));
-}
+  /** Init the color to white */
+  Color();
+  
+  /** Set color to the given RGB value */
+  Color(float red_, float green_, float blue_, float alpha_ = 1.0f);
+
+  /** @return the CL_Color version of the same color */
+  CL_Color get_cl_color() const;
+};
+
+#endif
 
 /* EOF */
