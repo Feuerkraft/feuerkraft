@@ -2,6 +2,9 @@
 ;; make there handling easier on the scheme side, the C version is
 ;; still accessible via the 'c:' prefix.
 
+(use-modules (ice-9 readline))
+(activate-readline)
+
 (display "### Loading helper function...")(newline)
 
 (define c:comm-send-message comm-send-message)
@@ -20,5 +23,18 @@
   (display " -> ")
   (display args)(newline)
   (c:building-create-type name args))
+
+(define (feuerkraft:repl)
+  (display "### Feuerkraft repl, exit with (quit)\n")
+  (let ((old-prompt scm-repl-prompt))
+    (set-repl-prompt! "feuerkraft> ")
+    (catch #t
+           (lambda ()
+             (top-repl)
+             (display "Feuerkraft Readline exited nicly.\n"))
+           (lambda args 
+             (display "Error: ")
+             (display args)(newline)))
+    (set-repl-prompt! old-prompt)))
 
 ;; EOF ;;

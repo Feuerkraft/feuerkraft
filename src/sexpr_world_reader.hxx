@@ -1,4 +1,4 @@
-//  $Id: sexpr_world_reader.hxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: sexpr_world_reader.hxx,v 1.2 2003/05/11 17:40:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,10 +30,13 @@ class SexprWorldReader
 {
 private:
   WorldBuilder* builder;
+  SCM data;
+  
 public:
   SexprWorldReader(const std::string& arg_filename, WorldBuilder* arg_builder);
   SexprWorldReader(SCM data, WorldBuilder* arg_builder);
 
+  void run();
 private:
   void parse_file(SCM desc);
 

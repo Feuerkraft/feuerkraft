@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.9 2003/05/11 11:57:52 grumbel Exp $
+//  $Id: guile.cxx,v 1.10 2003/05/11 17:40:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -163,6 +163,19 @@ std::string symbol2string(SCM symbol)
   std::string str = c_str;
   free(c_str);
   return str;
+}
+
+void enter_repl()
+{
+  SCM func = gh_lookup("feuerkraft:repl");
+  if (func != SCM_BOOL_F)
+    {
+      scm_call_0(func);
+    }
+  else
+    {
+      std::cout << "### Error: feuerkraft.scm must be loaded to use the repl!" << std::endl;
+    }
 }
 
 } // namespace Guile

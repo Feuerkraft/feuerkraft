@@ -1,4 +1,4 @@
-//  $Id: sexpr_world_reader.cxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: sexpr_world_reader.cxx,v 1.3 2003/05/11 17:40:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,11 +29,19 @@ SexprWorldReader::SexprWorldReader(const std::string& arg_filename,
                             scm_makfrom0str("r"));
   SCM lst  = scm_read (fdes);
 
-  parse_file(lst);
+  data = lst;
+
+  scm_close(fdes);
 }
 
-SexprWorldReader::SexprWorldReader(SCM data, WorldBuilder* arg_builder)
-  : builder(arg_builder)
+SexprWorldReader::SexprWorldReader(SCM arg_data, WorldBuilder* arg_builder)
+  : builder(arg_builder),
+    data(arg_data)
+{
+}
+
+void
+SexprWorldReader::run()
 {
   parse_file(data);
 }

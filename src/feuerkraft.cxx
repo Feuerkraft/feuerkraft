@@ -153,6 +153,7 @@ public:
 
           OutputWorldBuilder builder;
           SexprWorldReader sexpr(lst, &builder);
+          sexpr.run();
 
 	  GameWorldData data(lst);
 	  world = new GameWorld (lst);
@@ -310,6 +311,9 @@ public:
 
 		last_time = CL_System::get_time ();
 	      }
+
+	    if (CL_Keyboard::get_keycode(CL_KEY_D))
+              Guile::enter_repl();
 
 	    /* Switch between hard and variable updates here */
 	    //delta = ((CL_System::get_time () - last_time) / 1000.0f);

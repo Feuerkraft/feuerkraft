@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.6 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: guile.hxx,v 1.7 2003/05/11 17:40:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,6 +53,9 @@ SCM symbol2scm(const char* str);
 std::string keyword2string(SCM keyword);
 
 std::string symbol2string(SCM symbol);
+
+/** Enters the read-eval-print-loop, which can be exited by (q) */
+void enter_repl();
 
 AList scm2alist(SCM lst);
 
