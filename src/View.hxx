@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.7 2002/04/02 15:42:14 grumbel Exp $
+//  $Id: View.hxx,v 1.8 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,6 +48,9 @@ public:
 	CL_GraphicContext* arg_gc = 0);
   virtual ~View ();
 
+  CL_GraphicContext* get_gc ();
+  void set_gc (CL_GraphicContext* arg_gc);
+  
   void draw (CL_GraphicContext* gc);
   void set_view (int x_pos, int y_pos);
 

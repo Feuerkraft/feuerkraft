@@ -1,4 +1,4 @@
-//  $Id: Soldier.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: Soldier.cxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,18 +35,12 @@ Soldier::~Soldier ()
 void 
 Soldier::draw (View* view)
 {
-  view->draw (sur, pos);
+  //view->draw (sur, pos);
 }
 
 void 
 Soldier::update (float delta)
 {
-  if (++step > 5)
-    {
-      step = 0;
-      frame = (frame + 1) % sur.get_frame_count ();
-    }
-
   pos += CL_Vector (0.0, -0.5, 0.0);
 }
 

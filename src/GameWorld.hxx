@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hxx,v 1.6 2002/03/27 23:59:06 grumbel Exp $
+//  $Id: GameWorld.hxx,v 1.7 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,10 @@ class GameWorld : public GameWorldData
 {
 private:
   std::list<GameObj*> objects;
-  BuildingMap* buildingmap;
+
+  // FIXME: This is a ugly ugly hack...
+  GameObj* buildingmap;
+  
   GroundMap* groundmap;
   float current_time;
 
@@ -46,6 +49,10 @@ public:
   GameWorld ();
   GameWorld (const GameWorldData& data);
   ~GameWorld ();
+
+  /** Sync the GameWorld with its GameWorldData parent, in the ideal case
+      this shouldn't be necessary, but sometimes it is required. */
+  GameWorldData* get_data ();
   
   float get_time () { return current_time; }
 

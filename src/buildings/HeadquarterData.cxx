@@ -1,4 +1,4 @@
-//  $Id: HeadquarterData.cxx,v 1.2 2002/03/24 14:00:40 grumbel Exp $
+//  $Id: HeadquarterData.cxx,v 1.3 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,6 +48,12 @@ Building*
 HeadquarterData::create (boost::dummy_ptr<GameWorld> world)
 {
   return new Headquarter (world, *this);
+}
+
+SCM
+HeadquarterData::dump_to_scm ()
+{
+  return SCM_BOOL_F;
 }
 
 /* EOF */

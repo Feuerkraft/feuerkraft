@@ -1,4 +1,4 @@
-//  $Id: AmmotentData.cxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: AmmotentData.cxx,v 1.3 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../Guile.hxx"
 #include "Ammotent.hxx"
 #include "AmmotentData.hxx"
 
@@ -52,6 +53,19 @@ Building*
 AmmotentData::create (boost::dummy_ptr<GameWorld> world)
 {
   return new Ammotent (world, *this);
+}
+
+SCM
+AmmotentData::dump_to_scm ()
+{
+  SCM ret = SCM_EOL;
+  
+  ret = gh_cons(gh_symbol2scm ("ammotent"),
+		gh_cons(Guile::pos2scm (x_pos, y_pos), ret));
+
+			//gh_cons(gh_list (gh_symbol2scm ("energie"), gh_double2scm (energie_value)),
+			///ret)));
+  return ret;
 }
 
 /* EOF */

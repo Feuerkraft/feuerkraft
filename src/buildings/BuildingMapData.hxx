@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.hxx,v 1.4 2002/03/23 12:20:43 grumbel Exp $
+//  $Id: BuildingMapData.hxx,v 1.5 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <vector>
 #include <guile/gh.h>
 #include "../boost/dummy_ptr.hpp"
+#include "../GameObjData.hxx"
 
 class BuildingData;
 class BuildingMap;
@@ -33,7 +34,7 @@ class GameWorld;
     GameWorld to make Collision Handling simpler and to guaranty that
     the buildings are correctly aligned.
 */
-class BuildingMapData
+class BuildingMapData : public GameObjData
 {
 protected:
   /** A list with all the buildings */
@@ -49,8 +50,13 @@ public:
       Where desc is only the cdr of the above thing.
    */
   BuildingMapData (SCM desc);
+  virtual ~BuildingMapData ();
   
-  BuildingMap* create (boost::dummy_ptr<GameWorld> world);
+  GameObj* create (boost::dummy_ptr<GameWorld> world);
+
+  /** Convert the data from a given data object into an SCM which can
+      be written to a save game file or similar things */
+  SCM dump_to_scm ();  
 };
 
 #endif

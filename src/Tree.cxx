@@ -1,4 +1,4 @@
-//  $Id: Tree.cxx,v 1.6 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: Tree.cxx,v 1.7 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,12 @@ Tree::draw (View* view)
 {
   view->draw (sur_shadow, int(pos.x - 15), int(pos.y - 15));
   view->draw (sur, pos);
+}
+
+GameObjData* 
+Tree::get_data ()
+{
+  return this; 
 }
 
 /* EOF */

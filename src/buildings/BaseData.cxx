@@ -1,4 +1,4 @@
-//  $Id: BaseData.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: BaseData.cxx,v 1.2 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../Guile.hxx"
 #include "Base.hxx"
 #include "BaseData.hxx"
 
@@ -47,6 +48,12 @@ Building*
 BaseData::create (boost::dummy_ptr<GameWorld> world)
 {
   return new Base (world, *this);
+}
+
+SCM
+BaseData::dump_to_scm ()
+{
+  return SCM_BOOL_F;
 }
 
 /* EOF */

@@ -6,7 +6,7 @@
 //FIXME:Display2 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application2.h>
-#include <ClanLib/sound.h>
+//#include <ClanLib/sound.h>
 #include <guile/gh.h>
 
 #include "Feuerkraft.hxx"
@@ -101,7 +101,7 @@ public:
 	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
 		
 	CL_SetupCore::init();
-	CL_SetupSound::init();
+	//CL_SetupSound::init();
 	CL_SetupDisplay::init();
 
 	//CL_SetupGL::init();
@@ -128,7 +128,7 @@ public:
 	resources = new ResourceManager ();
 
 	CL_ResourceManager resource_manager; 
-	resource_manager = CL_ResourceManager("pacman.scr", false);
+	//resource_manager = CL_ResourceManager("data/feuerkraft.scr", false);
 	//CL_ResourceManager resource_manager ("data/feuerkraft.scr", false);
 
 	//CL_OpenGL::begin_2d();
@@ -139,7 +139,7 @@ public:
 	window.get_gc()->begin_2d();
 
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
-	CL_Sprite ("Game/spr_ghost", &resource_manager);
+	//CL_Sprite ("Game/spr_ghost", &resource_manager);
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
 
 	GameWorld* world;
@@ -191,7 +191,7 @@ public:
 	//world->add (heli2);
 	world->add (tank1);
 	world->add (tank2);
-	//world->add (new Background (world, CL_Surface ("feuerkraft/sand", resources)));
+	world->add (new Background (world, resources->get_surface("feuerkraft/sand")));
 	world->add (new Playfield (world));
 	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
 
@@ -218,6 +218,7 @@ public:
 	float deltas = 0.0;
 
 	VehicleView view (world, current_vehicle, 0, 0, 800, 600, window.get_gc ());
+
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 
@@ -257,6 +258,11 @@ public:
 	  }
 	}
 	*/
+
+	std::cout << ">>>>>>>>>>> The World <<<<<<<<<<<<<<" << std::endl;	
+	gh_display(world->get_data ()->dump_to_scm ());
+	gh_newline ();
+	std::cout << "<<<<<<<<<<< END World >>>>>>>>>>>>>>" << std::endl;	
 
 	// Loop until the user hits escape:
 	while (true) //start_screen.logo_mode != StartScreen::S_QUIT)
@@ -328,6 +334,8 @@ public:
 	    window.flip ();
 	    ++frames;
 	    
+	    std::cout << "Looping" << std::endl;
+
 	    // Update keyboard input and handle system events:
 	    // Exits the loop if ClanLib requests shutdown - for instance if
 	    // someone closes the window.

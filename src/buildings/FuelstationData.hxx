@@ -1,4 +1,4 @@
-//  $Id: FuelstationData.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: FuelstationData.hxx,v 1.2 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,8 @@ protected:
 public:
   /** Format: (fuelstation (pos 12 12)) */
   FuelstationData (SCM desc);
+
+  SCM dump_to_scm ();
 
   Building* create (boost::dummy_ptr<GameWorld> world);
 };

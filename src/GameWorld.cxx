@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.8 2002/03/31 20:43:43 sphair Exp $
+//  $Id: GameWorld.cxx,v 1.9 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,6 +67,7 @@ GameWorld::GameWorld ()
 
 GameWorld::~GameWorld ()
 {
+  // FIXME: Memory Leak, we should clear the gameobj list here
 }
 
 void 
@@ -193,13 +194,40 @@ GameWorld::update (float delta)
 BuildingMap*
 GameWorld::get_buildingmap ()
 {
-  return buildingmap;
+  // FIXME: This is a ugly ugly hack...
+  return dynamic_cast<BuildingMap*>(buildingmap);
 }
 
 GroundMap*
 GameWorld::get_groundmap ()
 {
   return groundmap;
+}
+
+GameWorldData*
+GameWorld::get_data ()
+{
+  // Clear the current GameObjData data list
+  if (needs_delete)
+    {
+      for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+	delete *i;
+      gameobj_data.clear ();
+    }
+  
+  needs_delete = false;
+
+  // Fill the data object with the current gameobj's and sync them
+  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
+    {
+      gameobj_data.push_back ((*i)->get_data ());
+    }
+
+  // groundmap_data is constant => no sync required
+  
+  buildingmap_data =  dynamic_cast<BuildingMapData*>(buildingmap->get_data ());
+
+  return this;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: TreeData.hxx,v 1.1 2002/03/23 19:52:19 grumbel Exp $
+//  $Id: TreeData.hxx,v 1.2 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,7 @@ public:
   virtual ~TreeData ();
 
   GameObj* create (boost::dummy_ptr<GameWorld> world);
+  SCM dump_to_scm ();
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.10 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.11 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -141,6 +141,13 @@ BuildingMap::get_building (const CL_Vector& pos)
     }
   else
     return NULL;
+}
+
+GameObjData*
+BuildingMap::get_data ()
+{
+  // FIXME: No Sync
+  return this;
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.13 2002/04/02 15:42:14 grumbel Exp $
+//  $Id: View.cxx,v 1.14 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -81,6 +81,18 @@ void
 View::set_zoom (float z)
 {
   zoom = z;
+}
+
+CL_GraphicContext*
+View::get_gc ()
+{
+  return gc;
+}
+
+void
+View::set_gc (CL_GraphicContext* arg_gc)
+{
+  gc = arg_gc;
 }
 
 void 

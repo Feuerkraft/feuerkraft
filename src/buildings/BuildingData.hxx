@@ -1,4 +1,4 @@
-//  $Id: BuildingData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: BuildingData.hxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef BUILDINGDATA_HXX
 #define BUILDINGDATA_HXX
 
+#include <guile/gh.h>
 #include "../boost/dummy_ptr.hpp"
 
 class Building;
@@ -30,6 +31,8 @@ class BuildingData
 protected:
 public:
   virtual Building* create (boost::dummy_ptr<GameWorld> world) =0;
+
+  virtual SCM dump_to_scm () =0;
 };
 
 #endif

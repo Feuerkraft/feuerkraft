@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.hxx,v 1.4 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: GameWorldData.hxx,v 1.5 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,7 @@ class GameWorld;
 class GameWorldData
 {
 protected:
+  bool needs_delete;
   std::list<GameObjData*> gameobj_data;
   GroundMapData* groundmap_data;
   BuildingMapData* buildingmap_data;
@@ -39,8 +40,13 @@ public:
   GameWorldData ();
   GameWorldData (SCM desc);
   ~GameWorldData ();
-  
+ 
   GameWorld* create ();
+
+  /** Convert the data from a given data object into an SCM which can
+      be written to a save game file or similar things */
+  SCM dump_to_scm ();
+  
 private:
   void parse_objects (SCM desc);
 };

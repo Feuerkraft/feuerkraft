@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.cxx,v 1.4 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: GameWorldData.cxx,v 1.5 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,10 +28,12 @@
 #include "GameWorldData.hxx"
 
 GameWorldData::GameWorldData ()
+  : needs_delete (false)
 {
 }
 
 GameWorldData::GameWorldData (SCM desc)
+  : needs_delete (true)
 {
   while (gh_pair_p(desc))
     {
@@ -107,12 +109,45 @@ GameWorldData::parse_objects (SCM desc)
 
 GameWorldData::~GameWorldData ()
 {
+  if (needs_delete)
+    {
+      // FIXME: Memory Leak, we should clear the gameobj_data list here
+    }
 }
 
 GameWorld*
 GameWorldData::create ()
 {
   return new GameWorld (*this);
+}
+
+SCM
+GameWorldData::dump_to_scm ()
+{
+  SCM world_lst = SCM_EOL;
+
+  SCM objs = SCM_EOL;
+  for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+    {
+      if (*i)
+	{
+	  SCM obj = (*i)->dump_to_scm ();
+	  if (obj == SCM_BOOL_F)
+	    {
+	      std::cout << "GameWorldData: Error dumping: " << typeid(**i).name () << std::endl;
+	    }
+	  else // Object successfully dumped
+	    {
+	      objs = gh_cons (obj, objs);
+	    }
+	}
+    }
+  
+  world_lst = gh_cons (gh_symbol2scm ("objects"), gh_reverse(objs));
+
+  world_lst = gh_list (gh_symbol2scm ("world"), world_lst, SCM_UNDEFINED);
+
+  return world_lst;
 }
 
 /* EOF */

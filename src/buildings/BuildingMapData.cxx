@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.cxx,v 1.8 2002/03/29 12:15:22 grumbel Exp $
+//  $Id: BuildingMapData.cxx,v 1.9 2002/04/03 10:55:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -89,10 +89,38 @@ BuildingMapData::BuildingMapData (SCM desc)
   //std::cout << "BuildingMapData: parsing: stop" << std::endl;
 }
 
-BuildingMap*
+BuildingMapData::~BuildingMapData ()
+{
+}
+
+GameObj*
 BuildingMapData::create (boost::dummy_ptr<GameWorld> world)
 {
   return new BuildingMap (world, *this);
+}
+
+SCM
+BuildingMapData::dump_to_scm ()
+{
+  SCM building_map_scm = SCM_EOL;
+  for (std::vector<BuildingData*>::iterator i = buildings_data.begin ();
+       i != buildings_data.end (); ++i)
+    {
+      SCM obj = (*i)->dump_to_scm ();
+
+      if (obj == SCM_BOOL_F)
+	{
+	  std::cout << "BuildingMapData: Error dumping: " << typeid(**i).name () << std::endl;
+	}
+      else // dump successful
+	{
+	  building_map_scm = gh_cons (obj, building_map_scm);
+	}
+    }
+
+  building_map_scm = gh_cons (gh_symbol2scm ("buildingmap"), gh_reverse (building_map_scm));
+
+  return building_map_scm;
 }
 
 /* EOF */

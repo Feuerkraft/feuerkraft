@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.8 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Building.hxx,v 1.9 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,8 @@ public:
   Building (boost::dummy_ptr<GameWorld> w)
     : world (w)
   {}
+
+  virtual BuildingData* get_data () { return 0; }
 
   // Draw the object onto the screen
   virtual void draw (boost::dummy_ptr<View> view) =0;

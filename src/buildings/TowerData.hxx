@@ -1,4 +1,4 @@
-//  $Id: TowerData.hxx,v 1.5 2002/03/24 23:26:40 grumbel Exp $
+//  $Id: TowerData.hxx,v 1.6 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,6 +40,8 @@ public:
   Where 'desc' is only the cdr of the complete thing
   */
   TowerData (SCM desc);
+
+  SCM dump_to_scm ();
 
   Building* create (boost::dummy_ptr<GameWorld> world);
 };

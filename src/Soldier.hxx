@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: Soldier.hxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,6 @@ class Soldier : public Vehicle
 private:
   CL_Sprite sur;
   int frame;
-  int step;
 public:
   Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
   ~Soldier ();

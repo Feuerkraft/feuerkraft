@@ -1,4 +1,4 @@
-//  $Id: GameObj.hxx,v 1.3 2002/03/27 23:59:06 grumbel Exp $
+//  $Id: GameObj.hxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,7 @@ class Radar;
 class View;
 class LevelMap;
 class GameWorld;
+class GameObjData;
 
 class GameObj
 {
@@ -43,6 +44,11 @@ public:
       remove_me (false) {}
 
   virtual ~GameObj () {}
+
+  /** Sync the GameObj with its GameObjData parent and return a
+      pointer to the parent. The parent must not be deleted.
+      0 is return if the function is unimplemented. */
+  virtual GameObjData* get_data () { return 0; }
 
   boost::dummy_ptr<GameWorld> get_world () {
     return world; 

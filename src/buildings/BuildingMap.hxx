@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.hxx,v 1.7 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: BuildingMap.hxx,v 1.8 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,9 +58,11 @@ public:
   virtual void update (float);
 
   Building* get_building (const CL_Vector& pos);
-
+  
   /** FIXME: Not the cleanest API solution */
   std::vector<Building*>& get_buildings ();
+
+  GameObjData* get_data ();
 };
 
 #endif

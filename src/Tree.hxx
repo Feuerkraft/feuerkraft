@@ -1,4 +1,4 @@
-//  $Id: Tree.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
+//  $Id: Tree.hxx,v 1.5 2002/04/03 10:55:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,8 @@ private:
 public:
   Tree (boost::dummy_ptr<GameWorld>  w, const TreeData& data);
   ~Tree ();
+  
+  GameObjData* get_data ();
   
   void draw (View* view);
   int get_z_pos () { return 100; }
