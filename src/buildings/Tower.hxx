@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.7 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Tower.hxx,v 1.8 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef TOWER_HXX
 #define TOWER_HXX
 
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 #include "../Energie.hxx"
 #include "Building.hxx"
 #include "TowerData.hxx"
@@ -31,10 +31,10 @@ class Tower : public Building,
 	      public TowerData
 {
 private:
-  Sprite towerbase;
-  Sprite towerdamaged;
-  Sprite towerdestroyed;
-  Sprite turret;
+  CL_Sprite towerbase;
+  CL_Sprite towerdamaged;
+  CL_Sprite towerdestroyed;
+  CL_Sprite turret;
   
   Energie energie;
   bool destroyed;
@@ -44,6 +44,7 @@ private:
   CL_Vector pos;
 public:
   Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data);
+  virtual ~Tower ();
   
   // Draw the object onto the screen
   void draw (boost::dummy_ptr<View> view);

@@ -1,4 +1,4 @@
-//  $Id: GridMap.cxx,v 1.5 2002/03/27 23:59:07 grumbel Exp $
+//  $Id: GridMap.cxx,v 1.6 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -98,7 +98,7 @@ GridMap::update (float)
 void
 GridMap::draw_levelmap (LevelMap* levelmap)
 {
-  surface.put_screen (0, 0);
+  surface.draw (0, 0);
 }
 
 GroundType

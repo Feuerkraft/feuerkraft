@@ -8,26 +8,17 @@
 #undef PATCH_VERSION
 #undef VERSION_STRING
 
-/* Define if you have the SphriteLibGL library (-lSphriteLibGL).  */
-#undef HAVE_LIBSPHRITELIBGL
-
-/* Define if you have the clanApp library (-lclanApp).  */
-#undef HAVE_LIBCLANAPP
+/* Define if you have the clanApp2 library (-lclanApp2).  */
+#undef HAVE_LIBCLANAPP2
 
 /* Define if you have the clanCore library (-lclanCore).  */
 #undef HAVE_LIBCLANCORE
 
-/* Define if you have the clanDisplay library (-lclanDisplay).  */
-#undef HAVE_LIBCLANDISPLAY
+/* Define if you have the clanDisplay2 library (-lclanDisplay2).  */
+#undef HAVE_LIBCLANDISPLAY2
 
-/* Define if you have the clanGL library (-lclanGL).  */
-#undef HAVE_LIBCLANGL
-
-/* Define if you have the clanJPEG library (-lclanJPEG).  */
-#undef HAVE_LIBCLANJPEG
-
-/* Define if you have the clanPNG library (-lclanPNG).  */
-#undef HAVE_LIBCLANPNG
+/* Define if you have the clanSound library (-lclanSound).  */
+#undef HAVE_LIBCLANSOUND
 
 /* Define if you have the guile library (-lguile).  */
 #undef HAVE_LIBGUILE

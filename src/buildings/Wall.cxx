@@ -1,4 +1,4 @@
-//  $Id: Wall.cxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Wall.cxx,v 1.3 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,17 +20,15 @@
 #include "../Radar.hxx"
 #include "../View.hxx"
 #include "Wall.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Wall::Wall (boost::dummy_ptr<GameWorld> world, const WallData& data)
   : Building (world),
     WallData (data),
     pos (x_pos * 40 + 20, y_pos * 40 + 20),
-    wall (storage->get("feuerkraft/wall")),
-    wall_damaged (storage->get ("feuerkraft/wall_damaged")),
-    wall_destroyed (storage->get ("feuerkraft/wall_destroyed"))
+    wall (resources->get_sprite("feuerkraft/wall")),
+    wall_damaged (resources->get_sprite ("feuerkraft/wall_damaged")),
+    wall_destroyed (resources->get_sprite ("feuerkraft/wall_destroyed"))
 {
 }
 

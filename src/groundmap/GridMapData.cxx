@@ -1,4 +1,4 @@
-//  $Id: GridMapData.cxx,v 1.4 2002/03/31 20:43:43 sphair Exp $
+//  $Id: GridMapData.cxx,v 1.5 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include <ClanLib/png.h>
+#include <ClanLib/Display2/Providers/png_provider.h>
 #include "GridMap.hxx"
 #include "GridMapData.hxx"
 
@@ -34,18 +34,18 @@ GridMapData::GridMapData (SCM desc)
       SCM data   = gh_cdar(desc);
 
       if (gh_equal_p (gh_symbol2scm ("file"), symbol))
-	{
-	  parse_from_file (data);
-	}
+        {
+          parse_from_file (data);
+        }
       else
-	{
-	  std::cout << "GridMapData: Unknown data type: '" << std::flush;
-	  gh_display (symbol);
-	  std::cout << "' with data: " << std::flush;
-	  gh_display (data);
-	  std::cout << std::endl;
-	  return;
-	}
+        {
+          std::cout << "GridMapData: Unknown data type: '" << std::flush;
+          gh_display (symbol);
+          std::cout << "' with data: " << std::flush;
+          gh_display (data);
+          std::cout << std::endl;
+          return;
+        }
 
       desc = gh_cdr (desc);
     }
@@ -71,7 +71,7 @@ GridMapData::parse_from_file (SCM desc)
   provider = new CL_PNGProvider (filename);
 
   provider->lock ();
-  assert (provider->is_indexed ());
+  //FIXME:Display2 assert (provider->is_indexed ());
 
   grid_width  = provider->get_width () + 2;
   grid_height = provider->get_height () + 2;
@@ -82,8 +82,8 @@ GridMapData::parse_from_file (SCM desc)
     grid_data[i] = GT_SAND; // FIXME: should be variable not hardcoded!
 
   unsigned char* buffer = static_cast<unsigned char*>(provider->get_data ());
-  for (unsigned int y = 0; y < provider->get_height (); ++y)
-    for (unsigned int x = 0; x < provider->get_width (); ++x)
+  for (int y = 0; y < provider->get_height (); ++y)
+    for (int x = 0; x < provider->get_width (); ++x)
       grid_data[(x + 1) + ((y+1) * grid_width)] 
 	= static_cast<GroundType>(buffer[x + (provider->get_width () * y)]);
 

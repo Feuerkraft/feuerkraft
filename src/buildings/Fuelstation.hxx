@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Fuelstation.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define FUELSTATION_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 #include "../boost/dummy_ptr.hpp"
 #include "../View.hxx"
 #include "FuelstationData.hxx"
@@ -30,7 +30,7 @@ class Fuelstation : public Building,
 		    public FuelstationData
 {
 private:
-  Sprite fuelstation;
+  CL_Sprite fuelstation;
   CL_Vector pos;
   bool refueling;
 public:

@@ -1,4 +1,4 @@
-//  $Id: Ammotent.cxx,v 1.5 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Ammotent.cxx,v 1.6 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,14 +21,12 @@
 #include "../Radar.hxx"
 #include "Ammotent.hxx"
 #include "../Vehicle.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData& data)
   : Building (world),
     AmmotentData (data),
-    ammotent (storage->get("feuerkraft/ammotent")),
+    ammotent (resources->get_sprite("feuerkraft/ammotent")),
     pos (data.x_pos * 40 + 40, data.y_pos * 40 + 60), // FIXME: Hard coded tilesize again...
     reloading(false)
 {

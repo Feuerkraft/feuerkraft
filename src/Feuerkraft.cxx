@@ -2,17 +2,17 @@
 	Loads a single surface from a pcx file without using resource files.
 */
 
-#include <ClanLib/jpeg.h>
-#include <ClanLib/png.h>
+//FIXME:Display2 #include <ClanLib/jpeg.h>
+//FIXME:Display2 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
-#include <ClanLib/application.h>
-#include <ClanLib/gl.h>
+#include <ClanLib/application2.h>
+#include <ClanLib/sound.h>
 #include <guile/gh.h>
 
 #include "Feuerkraft.hxx"
 #include "GameWorld.hxx"
 #include "KeyboardController.hxx"
-#include "JoystickController.hxx"
+//#include "JoystickController.hxx"
 #include "Tank.hxx"
 #include "Jeep.hxx"
 #include "Tree.hxx"
@@ -39,12 +39,8 @@
 #include "buildings/BuildingMapData.hxx"
 #include "buildings/BuildingMap.hxx"
 #include "generic/ofstreamext.hxx"
+#include "ResourceManager.hxx"
 
-#include <SphriteLib/sphritelibGL.h>
-
-SpriteProviderStorage* storage;
-CL_ResourceManager* resources;
-CL_ResourceManager* tile_resources;
 Pathfinder datafiles;
 
 // FIXME: Ugly global variable, should be removed as soon as possible
@@ -55,7 +51,7 @@ void inner_main (void* closure, int argc, char* argv[]);
 class Feuerkraft : public CL_ClanApplication
 {
 public:
-  virtual char *get_title() { return "Surface application"; }
+  virtual char *get_title() { return "Feuerkraft 0.2.0"; }
 
   virtual int main(int argc, char** argv)
   {
@@ -102,29 +98,46 @@ public:
 	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
 		
 	CL_SetupCore::init();
-	CL_SetupGL::init();
+	CL_SetupSound::init();
 	CL_SetupDisplay::init();
-	CL_SetupPNG::init ();
-	CL_SetupJPEG::init ();
 
-	// Set mode: 320x200 16 bpp
-	CL_Display::set_videomode(800, 600, 32, false, false);
-	CL_OpenGL::begin_2d();
+	//CL_SetupGL::init();
+	//FIXME:Display2 CL_SetupPNG::init ();
+	//FIXME:Display2 CL_SetupJPEG::init ();
+
+		
 
 	//glAlphaFunc ( GL_GREATER, 0.1 ) ;
 
-	CL_Display::clear_display ();
-	CL_Display::flip_display ();
+	//CL_Display::clear_display ();
+	//CL_Display::flip_display ();
+	//window.flip ();
 
 	std::cout << "Trying this:" << std::endl;
-	resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
-	tile_resources =  new CL_ResourceManager ("data/tiles.scr", false);
-	storage = new SpriteProviderStorage ();
-	storage->add(resources);
-	storage->add(tile_resources);
+	//FIXME:Display2 resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
+	//FIXME:Display2 tile_resources =  new CL_ResourceManager ("data/tiles.scr", false);
+	//FIXME:Display2 storage = new SpriteProviderStorage ();
+	//FIXME:Display2 storage->add(resources);
+	//FIXME:Display2 storage->add(tile_resources);
 	std::cout << "DoneTrying this:" << std::endl;
 
 
+	resources = new ResourceManager ();
+
+	CL_ResourceManager resource_manager; 
+	resource_manager = CL_ResourceManager("pacman.scr", false);
+	//CL_ResourceManager resource_manager ("data/feuerkraft.scr", false);
+
+	//CL_OpenGL::begin_2d();
+	CL_DisplayWindow window("Feuerkraft", 640, 480);
+
+	CL_Display::set_current_window (&window);
+
+	window.get_gc()->begin_2d();
+
+	std::cout << "Trying load and destroy of a sprite" << std::endl;
+	CL_Sprite ("Game/spr_ghost", &resource_manager);
+	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
 
 	GameWorld* world;
 	{
@@ -155,17 +168,13 @@ public:
 	Controllable* current_controllable = tank1;
 
 	KeyboardController kcontroller (current_controllable);
-	JoystickController controller(heli);
+	//JoystickController controller(heli);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
 	//world, tank1);
 
 	//Radar radar2 (CL_Vector(64, 64), 
 	//world, tank2);
-
-	Sprite keys (storage->get ("feuerkraft/keys"));
-	keys.setHotSpot (0,0);
-
 
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
@@ -179,12 +188,10 @@ public:
 	//world->add (heli2);
 	world->add (tank1);
 	world->add (tank2);
-	world->add (new Background (world, CL_Surface ("feuerkraft/sand", resources)));
+	//world->add (new Background (world, CL_Surface ("feuerkraft/sand", resources)));
 	world->add (new Playfield (world));
 	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
-	//world->add (new Tower (world, 400.0, 200.0));
-	//world->add (new Tower (world, 500.0, 300.0));
-	//world->add (new Tower (world, 300.0, 140.0));
+
 	world->add (new Ambulance (world));
 	
 	for (int i = 0; i < 20; ++i)
@@ -193,14 +200,6 @@ public:
 						     rand () % 2048 - 1024)));
 	  }
 
-	/*byebye trees...world->add (new Tree (world, CL_Vector (100, 400), "feuerkraft/tree"));
-	world->add (new Tree (world, CL_Vector (400, 440), "feuerkraft/tree"));
-	world->add (new Tree (world, CL_Vector (200, 440), "feuerkraft/tree"));
-
-	world->add (new Tree (world, CL_Vector (150, 300), "feuerkraft/tree2"));
-	world->add (new Tree (world, CL_Vector (450, 120), "feuerkraft/tree2"));
-	world->add (new Tree (world, CL_Vector (250, 330), "feuerkraft/tree2"));
-	*/
 	world->add (new Soldier (world, CL_Vector (200, 200)));
 	world->add (new Soldier (world, CL_Vector (300, 300)));
 	world->add (new Soldier (world, CL_Vector (150, 400)));
@@ -221,7 +220,6 @@ public:
 
 	vehicle_view = &view;
 	
-
 	//VehicleView view1 (world, heli, 0, 0, 399, 600);
 	//VehicleView view2 (world, current_vehicle, 400, 0, 800, 600);
 	
@@ -235,7 +233,7 @@ public:
 
 	LevelMap levelmap (world);
 	
-	StartScreen start_screen;
+	StartScreen start_screen (&window);
 	{
 	unsigned int last_time = CL_System::get_time ();
 	while (!start_screen.done())
@@ -244,7 +242,7 @@ public:
 	    last_time = CL_System::get_time ();
 
 	    start_screen.draw ();
-	    CL_Display::flip_display ();
+	    window.flip ();
 	    CL_System::keep_alive ();
 	    CL_System::sleep (10);
 	  }
@@ -254,13 +252,13 @@ public:
 	while (start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
 	    // Poor mans pause button
-	    if (CL_Keyboard::get_keycode(CL_KEY_P))
+	    if (window.get_keycode(CL_KEY_P))
 	      {
-		while (CL_Keyboard::get_keycode(CL_KEY_P))
+		while (window.get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (!CL_Keyboard::get_keycode(CL_KEY_P))
+		while (!window.get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
-		while (CL_Keyboard::get_keycode(CL_KEY_P))
+		while (window.get_keycode(CL_KEY_P))
 		  CL_System::keep_alive();
 
 		last_time = CL_System::get_time ();
@@ -287,6 +285,7 @@ public:
 	    screen.update (delta);
 	    screen.draw ();
 
+		/*FIXME:Display2
 	    if (CL_Mouse::left_pressed ())
 	      {
 		while (CL_Mouse::left_pressed ())
@@ -296,9 +295,9 @@ public:
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 
 			  << " | " <<  int(pos.x) / 40  << " " << int(pos.y) / 40
 			  << std::endl;
-	      }
+	      }*/
 	    
-	    controller.update (delta);
+	    //controller.update (delta);
 	    kcontroller.update (delta);
 	    
 	    // Comment out for variable frame rate
@@ -306,19 +305,16 @@ public:
 	    if (sleep_time > 0)
 	      CL_System::sleep (sleep_time);
 
-	    if (CL_Keyboard::get_keycode(CL_KEY_M))
+	    if (window.get_keycode(CL_KEY_M))
 	      {
 		levelmap.draw ();
 	      }
-
-	    keys.draw (CL_Display::get_width () - keys.getWidth (0),
-		       CL_Display::get_height () - keys.getHeight (0));
 
 	    start_screen.draw ();
 	    start_screen.update (delta);
 
 	    // Flip front and backbuffer. This makes the changes visible:
-	    CL_Display::flip_display(true);
+	    window.flip ();
 	    ++frames;
 	    
 	    // Update keyboard input and handle system events:
@@ -331,8 +327,8 @@ public:
 	std::cout << "Avarage fps:   " 
 		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
-	CL_SetupJPEG::deinit ();
-	CL_SetupPNG::deinit ();
+	//FIXME:Display2 CL_SetupJPEG::deinit ();
+	//FIXME:Display2 CL_SetupPNG::deinit ();
 	CL_SetupDisplay::deinit();
 	CL_SetupCore::deinit();
       }

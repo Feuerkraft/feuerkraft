@@ -1,8 +1,7 @@
 #ifndef TANK_HH
 #define TANK_HH
 
-#include <ClanLib/display.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include <deque>
 
 #include "Mine.hxx"
@@ -21,15 +20,14 @@ private:
   float speed;
   float velocity;
   float increment;
-  int   inc_step;
   int frame;
 
   /*CL_Surface sur;*/
-  CL_Surface smod;
-  CL_Surface sur_destroyed;
+  CL_Sprite smod;
+  CL_Sprite sur_destroyed;
 
-  Sprite sur;
-  Sprite shadow;
+  CL_Sprite sur;
+  CL_Sprite shadow;
 
   Turret* turret;
 

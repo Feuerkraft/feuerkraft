@@ -1,4 +1,4 @@
-//  $Id: Soldier.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
+//  $Id: Soldier.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 Soldier::Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
   : Vehicle (w),
-    sur ("feuerkraft/soldier", resources),
+    sur (resources->get_sprite("feuerkraft/soldier")),
     frame (0)
 {
   pos = arg_pos;
@@ -35,8 +35,7 @@ Soldier::~Soldier ()
 void 
 Soldier::draw (View* view)
 {
-  view->draw (sur, int(pos.x), 
-	      int(pos.y), frame);
+  view->draw (sur, pos);
 }
 
 void 
@@ -45,7 +44,7 @@ Soldier::update (float delta)
   if (++step > 5)
     {
       step = 0;
-      frame = (frame + 1) % sur.get_num_frames ();
+      frame = (frame + 1) % sur.get_frame_count ();
     }
 
   pos += CL_Vector (0.0, -0.5, 0.0);

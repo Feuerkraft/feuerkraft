@@ -1,4 +1,4 @@
-//  $Id: ExplosionParticle.hxx,v 1.6 2002/03/15 10:01:27 grumbel Exp $
+//  $Id: ExplosionParticle.hxx,v 1.7 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,18 +20,15 @@
 #ifndef EXPLOSIONPARTICLE_HXX
 #define EXPLOSIONPARTICLE_HXX
 
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "Particle.hxx"
-
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "../ResourceManager.hxx"
 
 class ExplosionParticle : public Particle
 {
 private:
   float size;
-  Sprite* sprite;
+  CL_Sprite* sprite;
   float max_life_time;
   bool direction;
   float angle;
@@ -53,7 +50,7 @@ public:
     angle = rand () % 360;
 
     // FIXME: memory leak
-    sprite = storage->create ("feuerkraft/explosion");
+    sprite = resources->get_sprite_ptr ("feuerkraft/explosion");
     sprite->rotate (angle);
     //std::cout << "Angle: " << angle << std::endl;
   }
@@ -81,9 +78,10 @@ public:
 
 	float alpha = 1.0f - (life_time/max_life_time);
 
-	sprite->setAlpha (1.0f - (alpha * alpha));
+	sprite->set_alpha (1.0f - (alpha * alpha));
 
-	sprite->setScale (((1 - life_time/max_life_time)) * size);
+	sprite->set_scale (((1 - life_time/max_life_time)) * size,
+			   ((1 - life_time/max_life_time)) * size);
 	view->draw(sprite, pos, angle);
       }
   }

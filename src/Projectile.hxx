@@ -1,4 +1,4 @@
-//  $Id: Projectile.hxx,v 1.4 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Projectile.hxx,v 1.5 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,19 +20,17 @@
 #ifndef PROJECTILE_HH
 #define PROJECTILE_HH
 
-//#include <ClanLib/Core/Display/surface.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include <ClanLib/core.h>
 #include "boost/dummy_ptr.hpp"
 #include "Vehicle.hxx"
-
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 class Projectile : public Collideable
 {
 private:
   CL_Vector pos;
-  CL_Surface sur;
+  CL_Sprite sur;
   CL_Vector  tmp_pos;
   CL_Vector  velocity;
   float lifetime;

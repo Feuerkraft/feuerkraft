@@ -1,4 +1,4 @@
-//  $Id: Mine.hxx,v 1.3 2002/03/25 19:30:56 grumbel Exp $
+//  $Id: Mine.hxx,v 1.4 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,17 +21,17 @@
 #define MINE_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 #include "GameObj.hxx"
 #include "Explosion.hxx"
 
 class Mine : public GameObj
 {
 private:
-  Sprite sur;
-  Sprite sur_active;
+  CL_Sprite sur;
+  CL_Sprite sur_active;
   CL_Vector pos;
-  Sprite hole;
+  CL_Sprite hole;
   float active;
   bool detonated;
 public:

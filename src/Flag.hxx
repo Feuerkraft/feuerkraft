@@ -1,4 +1,4 @@
-//  $Id: Flag.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Flag.hxx,v 1.2 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@
 class Flag : public GameObj
 {
 private:
-  CL_Surface sur;
+  CL_Sprite sur;
   CL_Vector pos;
 
 public:

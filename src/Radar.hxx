@@ -1,4 +1,4 @@
-//  $Id: Radar.hxx,v 1.3 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Radar.hxx,v 1.4 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,14 +21,12 @@
 #define RADAR_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "boost/dummy_ptr.hpp"
 #include "GameWorld.hxx"
 #include "Vehicle.hxx"
 #include "GuiObj.hxx"
-
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 class Building;
 
@@ -38,15 +36,14 @@ private:
   boost::dummy_ptr<GameWorld> world;
   boost::dummy_ptr<Vehicle> vehicle;
   
-  CL_Surface background;
+  CL_Sprite background;
 
   /** Position of the radar on the screen */
   CL_Vector pos;
 
   float angle;
 
-  SpriteProviderStorage storage;
-  Sprite* radar_line;
+  CL_Sprite radar_line;
   
 public:
   Radar (const CL_Vector& arg_pos,  boost::dummy_ptr<GameWorld> w, boost::dummy_ptr<Vehicle> v);

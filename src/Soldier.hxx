@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: Soldier.hxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,16 +20,15 @@
 #ifndef SOLDIER_HH
 #define SOLDIER_HH
 
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "Vehicle.hxx"
-
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 /** FIXME: needs a complete rewrite */
 class Soldier : public Vehicle
 {
 private:
-  CL_Surface sur;
+  CL_Sprite sur;
   int frame;
   int step;
 public:

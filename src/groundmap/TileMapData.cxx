@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.7 2002/03/24 23:26:41 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.8 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include <ClanLib/png.h>
+#include <ClanLib/Display2/Providers/png_provider.h>
 #include "TileDataFactory.hxx"
 #include "TileMapData.hxx"
 #include "TileMap.hxx"
@@ -82,7 +82,7 @@ TileMapData::parse_from_file (SCM desc)
   CL_PNGProvider provider(filename);
 
   provider.lock ();
-  assert (provider.is_indexed ());
+  //FIXME:Display2 assert (provider.is_indexed ());
 
   width  = provider.get_width ();
   height = provider.get_height ();

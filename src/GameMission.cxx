@@ -1,4 +1,4 @@
-//  $Id: GameMission.cxx,v 1.1 2002/03/10 19:56:00 grumbel Exp $
+//  $Id: GameMission.cxx,v 1.2 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "Guile.hxx"
 #include "GameMission.hxx"
+#include "GameWorld.hxx"
 
 GameMission::GameMission (SCM desc)
   : creation_time (0),
@@ -52,15 +54,11 @@ GameMission::GameMission (SCM desc)
 
       if (gh_equal_p (gh_symbol2scm ("author-name"), symbol))
 	{
-	  char* str = gh_scm2newstr(gh_cadr (data), 0);
-	  author_name = str;
-	  free (str);
+	  author_name = Guile::scm2string(gh_cadr (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("author-email"), symbol))
 	{
-	  char* str = gh_scm2newstr(gh_cadr (data), 0);
-	  author_email = str;
-	  free (str);
+	  author_email = Guile::scm2string (gh_cadr (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("creation-time"), symbol))
 	{

@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: KeyboardController.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
+#include <ClanLib/display2.h>
 #include "Tank.hxx"
 #include "Turret.hxx"
 #include "KeyboardController.hxx"
@@ -27,25 +28,25 @@ KeyboardController::update (float delta)
 {
   delta = delta * 50.0f;
 
-  if (CL_Keyboard::get_keycode (CL_KEY_F))
+  if (display->get_keycode (CL_KEY_F))
     controllable->turn_left2 (delta);
-  else if (CL_Keyboard::get_keycode (CL_KEY_S))
+  else if (display->get_keycode (CL_KEY_S))
     controllable->turn_right2 (delta);
   
-  if (CL_Keyboard::get_keycode (CL_KEY_RIGHT))
+  if (display->get_keycode (CL_KEY_RIGHT))
     controllable->turn_left (delta);
-  else if (CL_Keyboard::get_keycode (CL_KEY_LEFT))
+  else if (display->get_keycode (CL_KEY_LEFT))
     controllable->turn_right (delta);
         
-  if (CL_Keyboard::get_keycode (CL_KEY_UP))
+  if (display->get_keycode (CL_KEY_UP))
     controllable->increase_velocity (delta);
-  else if (CL_Keyboard::get_keycode (CL_KEY_DOWN))
+  else if (display->get_keycode (CL_KEY_DOWN))
     controllable->decrease_velocity (delta);
 
-  if (CL_Keyboard::get_keycode (CL_KEY_E))
+  if (display->get_keycode (CL_KEY_E))
     controllable->drop_mine ();
 
-  if (CL_Keyboard::get_keycode (CL_KEY_D))
+  if (display->get_keycode (CL_KEY_D))
     controllable->start_fire ();
   else
     controllable->stop_fire ();

@@ -1,4 +1,4 @@
-//  $Id: StartScreen.cxx,v 1.1 2002/03/28 23:53:32 grumbel Exp $
+//  $Id: StartScreen.cxx,v 1.2 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,12 +19,12 @@
 
 #include <ClanLib/core.h>
 #include "StartScreen.hxx"
+#include "ResourceManager.hxx"
 
-extern SpriteProviderStorage* storage;
-
-StartScreen::StartScreen ()
-  : logo (storage->get ("feuerkraft/logo")),
-    endlogo (storage->get ("feuerkraft/endlogo")),
+StartScreen::StartScreen (CL_DisplayWindow* arg_display)
+  : display (arg_display),
+    logo (resources->get_sprite ("feuerkraft/logo")),
+    endlogo (resources->get_sprite ("feuerkraft/endlogo")),
     display_time (0),
     logo_mode (S_STARTLOGO)
 {
@@ -40,19 +40,21 @@ StartScreen::draw ()
   if (logo_mode == S_STARTLOGO)
     {
       if (display_time <= 2.0f)
-	logo.setAlpha ((display_time/2.0f));
+	logo.set_alpha ((display_time/2.0f));
       else
-	logo.setAlpha (1.0f);
+	logo.set_alpha (1.0f);
   
-      CL_Display::clear_display ();    
+      //FIXME:Display2 CL_Display::clear_display ();    
+      
       logo.draw (CL_Display::get_width ()/2,
-		 CL_Display::get_height ()/2);
+		 CL_Display::get_height ()/2
+		 display->get_gc ());
     }
   else if (logo_mode == S_FADETOGAME)
     {
       if (display_time <= 1.5f)
 	{
-	  logo.setAlpha (1.0f - (display_time/1.5f));
+	  logo.set_alpha (1.0f - (display_time/1.5f));
 	  logo.draw (CL_Display::get_width ()/2,
 		     CL_Display::get_height ()/2);
 	}
@@ -66,24 +68,21 @@ StartScreen::draw ()
   else if (logo_mode == S_ENDLOGO)
     {
       if (display_time <= 1.5f)
-	  endlogo.setAlpha ((display_time/1.5f));
+	  endlogo.set_alpha ((display_time/1.5f));
       else
-	  endlogo.setAlpha (1.0f);
+	  endlogo.set_alpha (1.0f);
 
       endlogo.draw (CL_Display::get_width ()/2,
 		    CL_Display::get_height ()/2);
     }
   else if (logo_mode == S_FADETOBLACK)
     {
-      endlogo.setAlpha (1.0f);
+      endlogo.set_alpha (1.0f);
       endlogo.draw (CL_Display::get_width ()/2,
 		    CL_Display::get_height ()/2);
 
-      CL_Display::fill_rect (0, 0,
-			     CL_Display::get_width (),
-			     CL_Display::get_height (),
-			     0, 0, 0,
-			     display_time/2.0f);
+      CL_Display::fill_rect (CL_Rect(0, 0, CL_Display::get_width (), CL_Display::get_height ()),
+			     CL_Color(0, 0, 0, int(255.0f * display_time/2.0f)));
       if (display_time >= 2.0f)
 	logo_mode = S_QUIT;
     }
@@ -94,33 +93,33 @@ StartScreen::update (float delta)
 {
   display_time += delta;
 
-  if (logo_mode == S_STARTLOGO && (CL_Keyboard::get_keycode (CL_KEY_ESCAPE)
-				   || CL_Keyboard::get_keycode (CL_KEY_SPACE)
-				   || CL_Keyboard::get_keycode (CL_KEY_ENTER)))
+  if (logo_mode == S_STARTLOGO && (display->get_keycode (CL_KEY_ESCAPE)
+				   || display->get_keycode (CL_KEY_SPACE)
+				   || display->get_keycode (CL_KEY_RETURN)))
     {
-      while (CL_Keyboard::get_keycode (CL_KEY_ENTER)
-	     || CL_Keyboard::get_keycode (CL_KEY_ESCAPE)
-	     || CL_Keyboard::get_keycode (CL_KEY_SPACE))
+      while (display->get_keycode (CL_KEY_RETURN)
+	     || display->get_keycode (CL_KEY_ESCAPE)
+	     || display->get_keycode (CL_KEY_SPACE))
 	CL_System::keep_alive ();
 
       logo_mode = S_FADETOGAME;
       display_time = 0;
     }
-  else if (logo_mode == S_GAME  && (CL_Keyboard::get_keycode (CL_KEY_ESCAPE)))
+  else if (logo_mode == S_GAME  && (display->get_keycode (CL_KEY_ESCAPE)))
     {
-      while (CL_Keyboard::get_keycode (CL_KEY_ESCAPE))
+      while (display->get_keycode (CL_KEY_ESCAPE))
 	CL_System::keep_alive ();
 
       display_time = 0;
       logo_mode = S_ENDLOGO;
     }
-  else if (logo_mode == S_ENDLOGO && (CL_Keyboard::get_keycode (CL_KEY_ESCAPE)
-				      || CL_Keyboard::get_keycode (CL_KEY_SPACE)
-				      || CL_Keyboard::get_keycode (CL_KEY_ENTER)))
+  else if (logo_mode == S_ENDLOGO && (display->get_keycode (CL_KEY_ESCAPE)
+				      || display->get_keycode (CL_KEY_SPACE)
+				      || display->get_keycode (CL_KEY_RETURN)))
     {
-      while (CL_Keyboard::get_keycode (CL_KEY_ENTER)
-	     || CL_Keyboard::get_keycode (CL_KEY_ESCAPE)
-	     || CL_Keyboard::get_keycode (CL_KEY_SPACE))
+      while (display->get_keycode (CL_KEY_RETURN)
+	     || display->get_keycode (CL_KEY_ESCAPE)
+	     || display->get_keycode (CL_KEY_SPACE))
 	CL_System::keep_alive ();
 
 

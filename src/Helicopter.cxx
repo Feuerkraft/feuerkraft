@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cxx,v 1.5 2002/03/24 14:00:39 grumbel Exp $
+//  $Id: Helicopter.cxx,v 1.6 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,16 +20,14 @@
 #include "Projectile.hxx"
 #include "Explosion.hxx"
 #include "Helicopter.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),
-    rotor (storage->get ("feuerkraft/rotor")),
-    heli (storage->get ("feuerkraft/helicopter")),
-    heli_shadow (storage->get ("feuerkraft/helicopter_shadow")),
-    helidestroyed (storage->get ("feuerkraft/helidestroyed")),
+    rotor (resources->get_sprite ("feuerkraft/rotor")),
+    heli (resources->get_sprite ("feuerkraft/helicopter")),
+    heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
+    helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
     rotor_count (0),
     velocity (0.0),
     angle (0.0),

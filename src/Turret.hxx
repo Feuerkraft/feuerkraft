@@ -2,7 +2,7 @@
 #define TURRET_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "GameObj.hxx"
 
 class Tank;
@@ -12,9 +12,9 @@ class Turret : public GameObj
 private:
   boost::dummy_ptr<Tank> tank;
 
-  Sprite fire_sur;
-  Sprite sur;
-  Sprite shadow;
+  CL_Sprite fire_sur;
+  CL_Sprite sur;
+  CL_Sprite shadow;
 
   // The angle of the turent relative to the tank in radians
   float angle;

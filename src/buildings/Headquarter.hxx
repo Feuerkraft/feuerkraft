@@ -1,4 +1,4 @@
-//  $Id: Headquarter.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Headquarter.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADQUARTER_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 
 #include "../boost/dummy_ptr.hpp"
 #include "../Energie.hxx"
@@ -34,10 +34,10 @@ class Headquarter : public Building,
 {
 private:
   CL_Vector pos;
-  Sprite headquarter;
-  Sprite headquarter_damaged;
-  Sprite headquarter_destroyed;
-  boost::dummy_ptr<Sprite> current_sur;
+  CL_Sprite headquarter;
+  CL_Sprite headquarter_damaged;
+  CL_Sprite headquarter_destroyed;
+  boost::dummy_ptr<CL_Sprite> current_sur;
   Energie energie;
   bool destroyed;
   

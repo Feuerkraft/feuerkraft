@@ -3,18 +3,16 @@
 #include "Tank.hxx"
 #include "Turret.hxx"
 #include "generic/ofstreamext.hxx"
-
-extern CL_ResourceManager* resources;
-extern SpriteProviderStorage* storage;
+#include "ResourceManager.hxx"
 
 const float circle = 6.2831854f;
 
 Turret::Turret (boost::dummy_ptr<GameWorld>  w, 
 		Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
   : GameObj (w),
-    fire_sur (storage->get (fire.c_str ())),
-    sur (storage->get (surface.c_str ())),
-    shadow (storage->get ("feuerkraft/turret2_shadow")),
+    fire_sur (resources->get_sprite (fire.c_str ())),
+    sur (resources->get_sprite (surface.c_str ())),
+    shadow (resources->get_sprite ("feuerkraft/turret2_shadow")),
     angle (0),
     fireing (false),
     reloading (0),

@@ -1,4 +1,4 @@
-//  $Id: Ammotent.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Ammotent.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define AMMOTENT_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 
 #include "../boost/dummy_ptr.hpp"
 #include "../View.hxx"
@@ -32,7 +32,7 @@ class Ammotent : public Building,
 		 public AmmotentData
 {
 private:
-  Sprite ammotent;
+  CL_Sprite ammotent;
   CL_Vector pos;
   bool reloading;
   

@@ -1,4 +1,4 @@
-//  $Id: Ambulance.hxx,v 1.2 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Ambulance.hxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,15 +21,13 @@
 #define AMBULANCE_HXX
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "GameObj.hxx"
-
-extern CL_ResourceManager* resources;
 
 class Ambulance : public GameObj
 {
 private:
-  CL_Surface sur;
+  CL_Sprite sur;
 public:
   Ambulance (boost::dummy_ptr<GameWorld>  w);
 

@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.hxx,v 1.3 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: SpriteTile.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SPRITETILE_HXX
 #define SPRITETILE_HXX
 
-#include <SphriteLib/sprite.h>
+#include <ClanLib/display2.h>
 #include "GroundType.hxx"
 #include "Tile.hxx"
 #include "SpriteTileData.hxx"
@@ -29,7 +29,7 @@ class SpriteTile : public Tile,
 		   public SpriteTileData
 {
 private:
-  Sprite sprite;
+  CL_Sprite sprite;
 
 public:
   SpriteTile (const SpriteTileData& data);

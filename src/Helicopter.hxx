@@ -1,4 +1,4 @@
-//  $Id: Helicopter.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: Helicopter.hxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HELICOPTER_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 
 #include "GameObj.hxx"
 #include "Collideable.hxx"
@@ -33,10 +33,10 @@ class Helicopter : public Controllable,
 		   public Vehicle
 {
 private:
-  Sprite rotor;
-  Sprite heli;
-  Sprite heli_shadow;
-  Sprite helidestroyed;
+  CL_Sprite rotor;
+  CL_Sprite heli;
+  CL_Sprite heli_shadow;
+  CL_Sprite helidestroyed;
   int rotor_count;
   float velocity;
   float angle;

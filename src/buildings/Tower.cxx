@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.11 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Tower.cxx,v 1.12 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,19 +19,16 @@
 
 #include "../Radar.hxx"
 #include "Tower.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
-
+#include "../ResourceManager.hxx"
 #include "../Explosion.hxx"
 
 Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
   : Building (w),
     TowerData (data),
-    towerbase (storage->get("feuerkraft/towerbase")),
-    towerdamaged (storage->get("feuerkraft/towerdamaged")),
-    towerdestroyed (storage->get("feuerkraft/towerdestroyed")),
-    turret (storage->get("feuerkraft/towerturret")),
+    towerbase (resources->get_sprite("feuerkraft/towerbase")),
+    towerdamaged (resources->get_sprite("feuerkraft/towerdamaged")),
+    towerdestroyed (resources->get_sprite("feuerkraft/towerdestroyed")),
+    turret (resources->get_sprite("feuerkraft/towerturret")),
     energie (int(start_energie)),
     destroyed (false)
 {  
@@ -40,6 +37,10 @@ Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
   pos.y = y_pos * 40 + 40;
 }
   
+Tower::~Tower ()
+{
+}
+
 // Draw the object onto the screen
 void
 Tower::draw (boost::dummy_ptr<View> view)

@@ -1,4 +1,4 @@
-//  $Id: Jeep.cxx,v 1.3 2002/03/24 14:00:39 grumbel Exp $
+//  $Id: Jeep.cxx,v 1.4 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #include <ClanLib/gl.h>
 #include "buildings/BuildingMap.hxx"
 #include "Jeep.hxx"
+#include "ResourceManager.hxx"
 
 const float circle = 6.2831854f;
-extern CL_ResourceManager* resources;
 
 Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),
@@ -32,8 +32,7 @@ Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos)
     flag (0)
 {
   pos = arg_pos;
-  storage.add (new SpriteProvider ("feuerkraft/jeep", resources));
-  jeep = storage.create ("feuerkraft/jeep");
+  jeep = resources->get_sprite ("feuerkraft/jeep");
 }
 
 void 
@@ -80,9 +79,7 @@ Jeep::draw (View* view)
 {
   const float circle = 6.2831854f;
   
-  jeep->draw(int(view->get_x_offset () + pos.x),
-	     int(view->get_y_offset () + pos.y),
-	     angle/(circle/2.0)*180);
+  view->draw(jeep, pos, angle/(circle/2.0)*180);
   energie.draw (view, int(pos.x), int(pos.y - 30));
 }
 

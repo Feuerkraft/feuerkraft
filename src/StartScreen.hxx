@@ -1,4 +1,4 @@
-//  $Id: StartScreen.hxx,v 1.1 2002/03/28 23:53:32 grumbel Exp $
+//  $Id: StartScreen.hxx,v 1.2 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,14 +20,15 @@
 #ifndef STARTSCREEN_HXX
 #define STARTSCREEN_HXX
 
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 
 /** FIXME: Mega ugly peace of code, should be replaced with something better */
 class StartScreen
 {
 private:
-  Sprite logo;
-  Sprite endlogo;
+  CL_DisplayWindow* display;
+  CL_Sprite logo;
+  CL_Sprite endlogo;
   float display_time;
 public:
   typedef enum { S_STARTLOGO, 
@@ -39,7 +40,7 @@ public:
   LogoMode logo_mode;
   
 public:
-  StartScreen ();
+  StartScreen (CL_DisplayWindow* arg_display);
   ~StartScreen ();
   
   void draw ();

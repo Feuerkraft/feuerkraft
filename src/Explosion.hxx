@@ -1,4 +1,4 @@
-//  $Id: Explosion.hxx,v 1.3 2002/03/10 23:26:51 grumbel Exp $
+//  $Id: Explosion.hxx,v 1.4 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,17 +21,16 @@
 #define EXPLOSION_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "GameObj.hxx"
-
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 class Explosion : public GameObj
 {
 private:
   bool is_drawn;
   float lifetime;
-  CL_Surface explo;
+  CL_Sprite explo;
   CL_Vector pos;
   float new_particle_time;
   float size;

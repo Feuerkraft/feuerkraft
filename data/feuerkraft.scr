@@ -1,3 +1,6 @@
+pcxsprite = (	type = sprite, 
+		image1 = images/emptytile.pcx);
+
 section feuerkraft {
 	section logo {
 		frame1 = images/logo.jpg (type=surface);
@@ -179,9 +182,7 @@ section feuerkraft {
 		frame1 = images/fuelstation.png (type=surface);
 	}
 
-	section	emptytile {
-		frame1 = images/emptytile.png (type=surface);
-	}
+	emptytile = (type = sprite, image1 = images/emptytile.png);
 
 	section	ammotent {
 		frame1 = images/ammotent.png (type=surface);

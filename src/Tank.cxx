@@ -10,10 +10,9 @@
 #include "buildings/BuildingMap.hxx"
 #include "particles/SmokeParticle.hxx"
 #include "particles/GrassParticle.hxx"
+#include "ResourceManager.hxx"
 
 const float circle = 6.2831854f;
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
 
 // FIXME: Global variable hack, remove as soon as possible
 #include "VehicleView.hxx"
@@ -26,11 +25,10 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
     speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
-    inc_step (0),
-    smod ("feuerkraft/smod", resources),
-    sur_destroyed ("feuerkraft/tankdestroyed", resources),
-    sur (storage->get (tank.c_str ())),
-    shadow (storage->get ("feuerkraft/tank2_shadow")),
+    smod (resources->get_sprite (tank.c_str ())),
+    sur_destroyed (resources->get_sprite (tank.c_str ())),
+    sur (resources->get_sprite (tank.c_str ())),
+    shadow (resources->get_sprite ("feuerkraft/tank2_shadow")),
     turret (NULL),
     smod_step (0),
     mine_reload_time (0),
@@ -58,8 +56,9 @@ Tank::draw_energie (View* view)
 void
 Tank::draw_levelmap (LevelMap* levelmap)
 {
-  CL_Display::fill_rect (int(pos.x / 40), int(pos.y / 40),
-			 int(pos.x / 40) + 4, int(pos.y / 40) + 4, 1.0f, 0.0f, 0.0f, 1.0f);
+  CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
+				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
+			 CL_Color(255, 0, 0, 255));
 }
 
 void
@@ -67,9 +66,7 @@ Tank::draw (View* view)
 {
   if (destroyed)
     {
-      view->draw (sur_destroyed, 
-		  int(pos.x - sur_destroyed.get_width ()/2),
-		  int(pos.y - sur_destroyed.get_height ()/2));
+      view->draw (sur_destroyed, pos);
     }
   else
     {
@@ -100,14 +97,13 @@ Tank::draw (View* view)
       CL_Vector x2 (30, -15);
       CL_Vector y2 (30, 15);
 
-      //std::cout << "Angle: " << angle << std::endl;
-      x1 = x1.rotate (angle,// - fmod(angle, circle/16.0),
+      x1 = x1.rotate (angle,
 		 CL_Vector (0.0, 0.0, 1.0));
-      y1 = y1.rotate (angle,// - fmod(angle, circle/16.0),
+      y1 = y1.rotate (angle,
 		 CL_Vector (0.0, 0.0, 1.0));
-      x2 = x2.rotate (angle,// - fmod(angle, circle/16.0),
+      x2 = x2.rotate (angle,
 		 CL_Vector (0.0, 0.0, 1.0));
-      y2 = y2.rotate (angle, //- fmod(angle, circle/16.0),
+      y2 = y2.rotate (angle,
 		 CL_Vector (0.0, 0.0, 1.0));      
 
       x1 += pos;
@@ -298,7 +294,7 @@ Tank::drop_mine ()
 {
   if (mine_reload_time <= 0)
     {
-      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle /*- fmod(angle, circle/16.0)*/,
+      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle,
 							 CL_Vector (0.0, 0.0, 1.0));
 
       world->add (new Mine (world, CL_Vector(pos.x, pos.y) + vel));

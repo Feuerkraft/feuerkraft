@@ -1,4 +1,4 @@
-//  $Id: Stone.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Stone.hxx,v 1.2 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define STONE_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "GameObj.hxx"
 
 class Stone : public GameObj

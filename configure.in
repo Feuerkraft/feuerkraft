@@ -41,29 +41,14 @@ AC_CHECK_LIB( clanCore,   main,, [
 	exit
 	])
 
-AC_CHECK_LIB( clanApp,   main,, [
+AC_CHECK_LIB( clanApp2,   main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
 	echo "the FAQ."
 	exit
 	])
 
-AC_CHECK_LIB( clanDisplay,   main,, [
-	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
-
-AC_CHECK_LIB( clanGL,   main,, [
-	echo "ClanLib installed, but -lclanGL not found, run 'ldconfig' and try again,"
-	echo "if that doesn't help have a look at the file config.log and look into"
-	echo "the FAQ."
-	exit
-	])
-
-
-AC_CHECK_LIB( clanJPEG,   main,, [
+AC_CHECK_LIB( clanSound,   main,, [
 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"
 	echo "or you need to run 'ldconfig'."
@@ -72,30 +57,40 @@ AC_CHECK_LIB( clanJPEG,   main,, [
 	exit
 	])
 
-AC_CHECK_LIB( clanPNG,   main,, [
-	echo "ClanLib is installed, but clanPNG was not found. You probably"
-	echo "forgot to compile clanPNG, which is part of the ClanLib package"
-	echo "or you need to run 'ldconfig'."
-	echo "If you think you have everything correctly installed have a look at"
-	echo "the file 'config.log' to see what went wrong"
+AC_CHECK_LIB( clanDisplay2,   main,, [
+	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
+	echo "if that doesn't help have a look at the file config.log and look into"
+	echo "the FAQ."
 	exit
 	])
 
-AC_CHECK_LIB( SphriteLibGL,   main,, [
-	echo "SphriteLibGL is not installed. You can get it from:"
-	echo
-	echo "  http://dark.x.dtu.dk/~sphair/SphriteLib/"
-	echo 
-	exit
-	])
-
-
+dnl AC_CHECK_LIB( clanJPEG,   main,, [
+dnl 	echo "ClanLib is installed, but clanJPEG was not found. You probably"
+dnl 	echo "forgot to compile clanJPEG, which is part of the ClanLib package"
+dnl 	echo "or you need to run 'ldconfig'."
+dnl 	echo "If you think you have everything correctly installed have a look at"
+dnl 	echo "the file 'config.log' to see what went wrong"
+dnl 	exit
+dnl 	])
+dnl 
+dnl AC_CHECK_LIB( clanPNG,   main,, [
+dnl 	echo "ClanLib is installed, but clanPNG was not found. You probably"
+dnl 	echo "forgot to compile clanPNG, which is part of the ClanLib package"
+dnl 	echo "or you need to run 'ldconfig'."
+dnl 	echo "If you think you have everything correctly installed have a look at"
+dnl 	echo "the file 'config.log' to see what went wrong"
+dnl 	exit
+dnl 	])
 
 AC_OUTPUT( Makefile
            data/Makefile
+           data/images/Makefile
+           data/images/tiles/Makefile
+           data/missions/Makefile
            src/Makefile
            src/groundmap/Makefile
            src/particles/Makefile
            src/buildings/Makefile
            src/generic/Makefile
-           src/boost/Makefile)
+           src/boost/Makefile
+           src/boost/detail/Makefile)

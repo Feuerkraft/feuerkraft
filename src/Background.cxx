@@ -1,4 +1,4 @@
-//  $Id: Background.cxx,v 1.2 2002/03/27 23:59:06 grumbel Exp $
+//  $Id: Background.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,11 +32,14 @@ void
 Background::draw (View* view)
 {
   // FIXME: We should take the view size into account
-  
+
+  //FIXME:Display2
+  /*  
   for (int y = -1; y <= 1; ++y)
     for (int x = -1; x <= 1; ++x)
       sur.put_screen ((x * sur.get_width()) + view->get_x_offset () % sur.get_width (),
 		      (y * sur.get_height()) + view->get_y_offset () % sur.get_height ());
+  */
 }
 
 /* EOF */

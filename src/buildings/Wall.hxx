@@ -1,4 +1,4 @@
-//  $Id: Wall.hxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Wall.hxx,v 1.3 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define WALL_HXX
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 #include "WallData.hxx"
 #include "Building.hxx"
 
@@ -30,9 +30,9 @@ class Wall : public Building,
 {
 private:
   CL_Vector pos;
-  Sprite wall;
-  Sprite wall_damaged;
-  Sprite wall_destroyed;
+  CL_Sprite wall;
+  CL_Sprite wall_damaged;
+  CL_Sprite wall_destroyed;
 
 public:
   Wall (boost::dummy_ptr<GameWorld> world, const WallData&);

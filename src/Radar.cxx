@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.6 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Radar.cxx,v 1.7 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,18 +19,18 @@
 
 #include "buildings/BuildingMap.hxx"
 #include "Radar.hxx"
+#include "ResourceManager.hxx"
 
 Radar::Radar (const CL_Vector& arg_pos, 
 	      boost::dummy_ptr<GameWorld> w,
 	      boost::dummy_ptr<Vehicle> v)
   : world (w),
     vehicle (v),
-    background ("feuerkraft/radar", resources),
+    background (resources->get_sprite("feuerkraft/radar")),
     pos (arg_pos),
     angle (0)
 {
-  storage.add (new SpriteProvider ("feuerkraft/radar_line", resources));
-  radar_line = storage.create ("feuerkraft/radar_line");
+  radar_line = resources->get_sprite ("feuerkraft/radar_line");
 }
 
 Radar::~Radar ()
@@ -46,8 +46,7 @@ Radar::draw ()
 
   end += pos;
 
-  background.put_screen (int(pos.x - (background.get_width ()/2)),
-			 int(pos.y - (background.get_height ()/2)));
+  background.draw (int(pos.x), int(pos.y));
   
   std::list<GameObj*>& objs = world->get_objects ();
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
@@ -58,8 +57,10 @@ Radar::draw ()
 
   world->get_buildingmap ()->draw_radar (this);
 
-  radar_line->draw (int(pos.x), int(pos.y), angle/3.1415927*180.0f + 180.0f);
-
+  radar_line.set_rotate (angle/3.1415927*180.0f + 180.0f);
+  radar_line.draw (int(pos.x), int(pos.y));
+  //FIXME:Display2: frame support removed 
+  /*
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
 			 1.0, 1.0, 0.0);
 
@@ -68,6 +69,7 @@ Radar::draw ()
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(end.x), int(end.y),
 			 0.0, 1.0, 0.0);
+  */
 }
 
 void
@@ -88,9 +90,11 @@ Radar::draw_blip (const CL_Vector& arg_pos, int size,
     {
       diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
 
+      //FIXME:Display2: frame support removed 
+      /*
       CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
 			     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size,
-			     red, green, blue, alpha);
+			     red, green, blue, alpha);*/
     }
 }
 

@@ -1,4 +1,4 @@
-//  $Id: GridMapData.hxx,v 1.3 2002/03/27 23:59:07 grumbel Exp $
+//  $Id: GridMapData.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,7 @@ protected:
   /** The data of the grid */
   std::vector<GroundType> grid_data;
   
-  CL_SurfaceProvider* provider;
+  CL_PixelBuffer* provider;
   
 public:
   GridMapData (SCM desc);

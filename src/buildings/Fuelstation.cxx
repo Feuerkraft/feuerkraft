@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.6 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Fuelstation.cxx,v 1.7 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,14 +21,12 @@
 #include "Fuelstation.hxx"
 #include "../Radar.hxx"
 #include "../Vehicle.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Fuelstation::Fuelstation (boost::dummy_ptr<GameWorld> world, const FuelstationData& data)
   : Building (world),
     FuelstationData (data),
-    fuelstation (storage->get("feuerkraft/fuelstation")),
+    fuelstation (resources->get_sprite("feuerkraft/fuelstation")),
     pos (x_pos * 40 + 40, y_pos * 40 + 60), // FIXME: Hardcoded tilesize
     refueling (false)
 {

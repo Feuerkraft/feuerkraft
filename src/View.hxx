@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.5 2002/03/25 19:30:56 grumbel Exp $
+//  $Id: View.hxx,v 1.6 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,13 +21,12 @@
 #define VIEW_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "boost/dummy_ptr.hpp"
 #include "GuiObj.hxx"
 #include "GameWorld.hxx"
 #include "ViewProperties.hxx"
 
-class Sprite;
 class GameWorld;
 
 class View 
@@ -64,8 +63,8 @@ public:
   int get_y1 ();
   int get_y2 ();
 
-  void draw (Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
-  void draw (Sprite& sprite, const CL_Vector& pos, float angle = 0.0);
+  void draw (CL_Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
+  void draw (CL_Sprite& sprite, const CL_Vector& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const CL_Vector& pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);

@@ -1,4 +1,4 @@
-//  $Id: Jeep.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Jeep.hxx,v 1.2 2002/04/02 09:52:56 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define JEEP_HH
 
 #include <ClanLib/core.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "Mine.hxx"
 #include "Vehicle.hxx"
 #include "Controllable.hxx"
@@ -33,8 +33,7 @@ class Jeep : public Controllable,
 	     public Vehicle
 {
 private:
-  SpriteProviderStorage storage;
-  Sprite* jeep;
+  CL_Sprite jeep;
 
   Energie energie;
   float velocity;

@@ -1,4 +1,4 @@
-//  $Id: Base.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Base.hxx,v 1.4 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,8 @@
 #define BASE_HH
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 
-#include <SphriteLib/sphritelib.h>
 #include "../View.hxx"
 #include "../boost/dummy_ptr.hpp"
 #include "Building.hxx"
@@ -33,7 +32,7 @@ class Base : public Building,
 	     public BaseData
 {
 private:
-  Sprite sprite;
+  CL_Sprite sprite;
   CL_Vector pos;
 
 public:

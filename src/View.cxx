@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.11 2002/03/25 19:30:56 grumbel Exp $
+//  $Id: View.cxx,v 1.12 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "View.hxx"
 
 View::View (boost::dummy_ptr<GameWorld> arg_world, 
@@ -48,7 +47,7 @@ View::update (float delta)
 void 
 View::draw ()
 {
-  CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
+  //FIXME:Display2 CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
   /*glPushMatrix ();
   glTranslated (400, 300, 0.0);
   glScaled (zoom, zoom, 1.0);
@@ -60,7 +59,7 @@ View::draw ()
 
   //glPopMatrix ();
 
-  CL_Display::pop_clip_rect ();
+  //FIXME:Display2 CL_Display::pop_clip_rect ();
 }
 
 int View::get_x_offset () { return x1 - x_offset + (x2 - x1)/2; }
@@ -86,50 +85,54 @@ View::set_zoom (float z)
 void 
 View::draw (CL_Surface& sur, const CL_Vector& pos)
 {
-  sur.put_screen (int(pos.x + get_x_offset ()),
+  sur.draw (int(pos.x + get_x_offset ()),
 		  int(pos.y + get_y_offset ()));
 }
 
 void
-View::draw (Sprite& sprite, const CL_Vector& pos, float angle)
+View::draw (CL_Sprite& sprite, const CL_Vector& pos, float angle)
 {
   draw (&sprite, pos, angle);
 }
 
 void 
-View::draw (Sprite* sprite, const CL_Vector& pos, float angle)
+View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
 {
-  sprite->draw(int(pos.x + get_x_offset ()), int(pos.y + get_y_offset ()),
-	       angle/3.1415927 * 180.0f);
+  sprite->set_rotate(angle/3.1415927 * 180.0f);
+  sprite->draw(int(pos.x + get_x_offset ()), int(pos.y + get_y_offset ()));
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos)
 {
-  sur.put_screen (x_pos + get_x_offset (),
-		  y_pos + get_y_offset ());
+  sur.draw (x_pos + get_x_offset (),
+	    y_pos + get_y_offset ());
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
 {
-  sur.put_screen (x_pos + get_x_offset (),
-		  y_pos + get_y_offset (), frame);  
+  //FIXME:Display2: frame support removed 
+  sur.draw (x_pos + get_x_offset (),
+	    y_pos + get_y_offset ());
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos, 
 	    float size_x, float size_y, int frame)
 {
-  sur.put_screen (x_pos + get_x_offset (),
+  //FIXME:Display2: frame support removed 
+  /*sur.draw (x_pos + get_x_offset (),
 		  y_pos + get_y_offset (),
-		  size_x * zoom, size_y * zoom, frame);  
+		  size_x * zoom, size_y * zoom, frame);  */
 }
 
 void 
 View::draw_line (int x1, int y1, int x2, int y2, 
 		float r, float g, float b, float a)
 {
+  //FIXME:Display2: frame support removed 
+  /*
   if (zoom == 1.0)
     {
       CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (),
@@ -144,23 +147,29 @@ View::draw_line (int x1, int y1, int x2, int y2,
 			     int((y2 + get_y_offset ())),
 			     r, g, b, a);
     }
+  */
 }
 
 void 
 View::draw_fillrect (int x1, int y1, int x2, int y2, 
 		    float r, float g, float b, float a)
 {
+  //FIXME:Display2: frame support removed 
+  /*
   CL_Display::fill_rect (int((x1 + get_x_offset ())),
 			 int((y1 + get_y_offset ())), 
 			 int((x2 + get_x_offset ())),
 			 int((y2 + get_y_offset ())),
 			 r, g, b, a);
+  */
 }
 
 void 
 View::draw_rect (int x1, int y1, int x2, int y2, 
 		 float r, float g, float b, float a)
 {
+  //FIXME:Display2: frame support removed 
+  /*
   CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (), 
 			 x1 + get_x_offset (), y2 + get_y_offset (),
 			 r, g, b, a);
@@ -173,6 +182,7 @@ View::draw_rect (int x1, int y1, int x2, int y2,
   CL_Display::draw_line (x1 + get_x_offset (), y2 + get_y_offset (), 
 			 x2 + get_x_offset (), y2 + get_y_offset (),
 			 r, g, b, a);
+  */
 }
 
 void 

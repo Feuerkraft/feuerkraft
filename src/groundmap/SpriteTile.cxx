@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.cxx,v 1.4 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: SpriteTile.cxx,v 1.5 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,19 +20,16 @@
 #ifndef SPRITETILE_CXX
 #define SPRITETILE_CXX
 
-#include <ClanLib/display.h>
-#include <SphriteLib/sphritelibGL.h>
+#include <ClanLib/display2.h>
 #include "SpriteTile.hxx"
+#include "../ResourceManager.hxx"
 #include "../View.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
 
 SpriteTile::SpriteTile (const SpriteTileData& data)
   : SpriteTileData (data),
-    sprite (storage->get (sprite_location.c_str ()))
+    sprite (resources->get_sprite (sprite_location.c_str ()))
 {
-  sprite.setHotSpot (0,0);
+  sprite.set_translation_hotspot (origin_top_left);
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: Mine.cxx,v 1.5 2002/03/25 19:30:56 grumbel Exp $
+//  $Id: Mine.cxx,v 1.6 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,33 +22,31 @@
 #include "Mine.hxx"
 #include "GameWorld.hxx"
 #include "groundmap/GroundMap.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
   : GameObj (w),
     pos (arg_pos),
-    hole (storage->get ("feuerkraft/hole")),
+    hole (resources->get_sprite ("feuerkraft/hole")),
     active (2),
     detonated (false)
 {
   GroundType type = get_world ()->get_groundmap ()->get_groundtype (pos.x, pos.y);
   if (type == GT_FLATWATER)
     {
-      sur = Sprite(storage->get ("feuerkraft/minewater"));
-      sur_active = Sprite(storage->get ("feuerkraft/minewateractive"));
+      sur = resources->get_sprite ("feuerkraft/minewater");
+      sur_active = resources->get_sprite ("feuerkraft/minewateractive");
     }
   else if (type == GT_DEEPWATER)
     {
-      sur = Sprite(storage->get ("feuerkraft/minewater"));
-      sur_active = Sprite(storage->get ("feuerkraft/minewateractive"));
+      sur = resources->get_sprite ("feuerkraft/minewater");
+      sur_active = resources->get_sprite ("feuerkraft/minewateractive");
       remove (); // Mines can't be placed in deepwater
     }
   else
     {
-      sur = Sprite(storage->get ("feuerkraft/mine"));
-      sur_active = Sprite(storage->get ("feuerkraft/mineactive"));
+      sur = resources->get_sprite ("feuerkraft/mine");
+      sur_active = resources->get_sprite ("feuerkraft/mineactive");
     }
 }
 

@@ -1,4 +1,4 @@
-//  $Id: WallDoor.hxx,v 1.2 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: WallDoor.hxx,v 1.3 2002/04/02 09:52:57 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef WALLDOOR_HXX
 #define WALLDOOR_HXX
 
-#include <SphriteLib/sphritelib.h>
+#include <ClanLib/display2.h>
 #include <ClanLib/core.h>
 #include "boost/dummy_ptr.hpp"
 #include "Building.hxx"
@@ -34,7 +34,7 @@ class WallDoor : public Building,
 		 public WallDoorData
 {
 private:
-  Sprite sprite;
+  CL_Sprite sprite;
   CL_Vector pos;
   int map_width;
   int map_height;

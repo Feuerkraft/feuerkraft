@@ -1,4 +1,4 @@
-//  $Id: Energie.cxx,v 1.5 2002/03/18 23:25:36 grumbel Exp $
+//  $Id: Energie.cxx,v 1.6 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/display2.h>
 #include "View.hxx"
 #include "Energie.hxx"
 

@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cxx,v 1.4 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Headquarter.cxx,v 1.5 2002/04/02 09:52:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,17 +21,15 @@
 #include "../Flag.hxx"
 #include "../Explosion.hxx"
 #include "Headquarter.hxx"
-
-extern SpriteProviderStorage* storage;
-extern CL_ResourceManager* resources;
+#include "ResourceManager.hxx"
 
 Headquarter::Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData& data)
   : Building (world),
     HeadquarterData (data),
     pos (x_pos * 40 + 40, y_pos * 40 + 40),
-    headquarter (storage->get("feuerkraft/headquarter")),
-    headquarter_damaged (storage->get("feuerkraft/headquarterdamaged")),
-    headquarter_destroyed (storage->get("feuerkraft/headquarterdestroyed")),
+    headquarter (resources->get_sprite("feuerkraft/headquarter")),
+    headquarter_damaged (resources->get_sprite("feuerkraft/headquarterdamaged")),
+    headquarter_destroyed (resources->get_sprite("feuerkraft/headquarterdestroyed")),
     energie (100),
     destroyed (false)
 {

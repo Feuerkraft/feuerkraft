@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.10 2002/03/28 21:27:31 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.11 2002/04/02 09:52:56 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,11 +23,12 @@
 #include "buildings/Building.hxx"
 #include "buildings/BuildingMap.hxx"
 #include "Projectile.hxx"
+#include "ResourceManager.hxx"
 
 Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
   : Collideable (w),
-    sur ("feuerkraft/projectile", resources),
+    sur (resources->get_sprite("feuerkraft/projectile")),
     tmp_pos (arg_pos),
     velocity (arg_velocity),
     lifetime (45 + rand () % 5 ),
@@ -46,9 +47,7 @@ void
 Projectile::draw (View* view)
 {
   if (lifetime > 0) {
-    view->draw (sur,
-		int(pos.x - sur.get_width ()/2),
-		int(pos.y - sur.get_height ()/2));
+    view->draw (sur, pos);
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;
