@@ -15,6 +15,10 @@
       <image file="images/keys.png" />
     </sprite>
 
+    <sprite name="dialogspike">
+      <image file="images/dialogspike.png" />
+    </sprite>
+
     <sprite name="rocket_smoke">
       <image file="images/rocket_smoke.png" />
     </sprite>

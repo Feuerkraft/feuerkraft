@@ -298,10 +298,10 @@
                                         (inexact->exact target-x)
                                         (inexact->exact target-y))
 
-                   (comm-send-message 'wingman "On my way to "
-                                      (inexact->exact target-x)
-                                      " "
-                                      (inexact->exact target-y)))))
+                   (comm-unit-message 75 
+                                      (format #f "On my way to ~a ~a"
+                                              (inexact->exact target-x)
+                                              (inexact->exact target-y))))))
 
 (menu-add-item comm-menu "Bomb Attack!"
                (lambda ()

@@ -21,6 +21,7 @@
 #define HEADER_COMMUNICATION_DIALOG_HXX
 
 #include <map>
+#include <ClanLib/Display/sprite.h>
 #include "gui_obj.hxx"
 
 /** */
@@ -35,6 +36,7 @@ private:
 
   typedef std::map<int, Message> Messages;
   Messages messages;
+  CL_Sprite spike;
 
   static CommunicationDialog* current_;
 public:

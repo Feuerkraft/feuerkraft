@@ -22,6 +22,7 @@
 #include "fonts.hxx"
 #include "unit.hxx"
 #include "view.hxx"
+#include "resource_manager.hxx"
 #include "game_obj_manager.hxx"
 #include "communication_dialog.hxx"
 
@@ -30,7 +31,7 @@ CommunicationDialog* CommunicationDialog::current_ = 0;
 CommunicationDialog::CommunicationDialog()
 {
   current_ = this;
-
+  spike = resources->get_sprite("feuerkraft/dialogspike");
 }
 
 CommunicationDialog::~CommunicationDialog()
@@ -49,25 +50,18 @@ CommunicationDialog::draw (CL_GraphicContext& gc)
           CL_Rect bbox = font.bounding_rect(0, 0, i->second.text);
 
           FloatVector2d unit_pos   = View::current()->world_to_screen(unit->get_pos());
-          FloatVector2d dialog_pos = unit_pos + FloatVector2d(0, - 50-bbox.get_height());
+          FloatVector2d dialog_pos = unit_pos + FloatVector2d(0, -60 - bbox.get_height());
 
-          CL_Display::draw_line((int)unit_pos.x,   (int)unit_pos.y-40,
-                                (int)dialog_pos.x, (int)dialog_pos.y+20,
-                                CL_Color(0,0,0, 100));
+          spike.draw((int)unit_pos.x-15, (int)unit_pos.y-40);
 
-          CL_Display::draw_line((int)unit_pos.x,   (int)unit_pos.y-40,
-                                (int)dialog_pos.x-20, (int)dialog_pos.y+20,
-                                CL_Color(0,0,0, 100));
-
-          CL_Display::fill_rect(CL_Rect(CL_Point(int(dialog_pos.x - bbox.get_width()/2),
-                                                 int(dialog_pos.y - bbox.get_height())),
+          CL_Display::fill_rect(CL_Rect(CL_Point(int(dialog_pos.x - bbox.get_width()/2 - 10),
+                                                 int(dialog_pos.y - 10)),
                                         CL_Size(bbox.get_width()  + 20, 
                                                 bbox.get_height() + 20)),
-                                //CL_Color(85,85,0, 230));
                                 CL_Color(0,0,0, 100));
 
-          font.set_alignment(origin_bottom_center);
-          font.draw(int(dialog_pos.x+10), int(dialog_pos.y+10), i->second.text);
+          font.set_alignment(origin_top_center);
+          font.draw(int(dialog_pos.x), int(dialog_pos.y), i->second.text);
         }
     }
 }
