@@ -132,6 +132,9 @@ public:
 	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 	}
 	// End: Test of parsing code
+        
+        // Load helper functions
+        scm_c_primitive_load("src/scripting/feuerkraft.scm");
 
         // Load game scripts 
         scm_c_primitive_load("data/missions/test.scm");
@@ -140,8 +143,8 @@ public:
 
 	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-
-        AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(378, 873));
+        
+        AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(342, 1241));
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));

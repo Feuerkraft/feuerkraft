@@ -8,8 +8,10 @@ command_source = ai_vehicle_commands.cxx \
  effect_commands.hxx     \
  object_commands.hxx     \
  object_commands.cxx     \
- trigger_commands.hxx     \
- trigger_commands.cxx
+ trigger_commands.hxx    \
+ trigger_commands.cxx    \
+ comm_commands.hxx       \
+ comm_commands.cxx
 
 libfeuerkraft_scripting_a_SOURCES = \
  $(command_source) \

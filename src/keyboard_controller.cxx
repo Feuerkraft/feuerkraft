@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: keyboard_controller.cxx,v 1.3 2003/05/02 19:10:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,6 +46,14 @@ KeyboardController::input_down (const CL_InputEvent& key)
     {
       switch (key.id)
         {
+        case CL_KEY_U:
+          left2_key = false;
+          break;
+
+        case CL_KEY_O:
+          right2_key = false;
+          break;
+
         case CL_KEY_UP: // up
           up_key   = false;
           break;
@@ -58,10 +66,10 @@ KeyboardController::input_down (const CL_InputEvent& key)
         case CL_KEY_RIGHT: // right
           right_key = false;
           break;
-        case CL_KEY_SPACE:
+        case CL_KEY_E:
           fire_key = false;
           break;
-        case CL_KEY_M:
+        case CL_KEY_I:
           mine_key = false;
           break;
         }
@@ -70,6 +78,14 @@ KeyboardController::input_down (const CL_InputEvent& key)
     {
       switch (key.id)
         {
+        case CL_KEY_U:
+          left2_key = true;
+          break;
+
+        case CL_KEY_O:
+          right2_key = true;
+          break;
+
         case CL_KEY_UP: // up
           up_key   = true;
           break;
@@ -82,10 +98,10 @@ KeyboardController::input_down (const CL_InputEvent& key)
         case CL_KEY_RIGHT: // right
           right_key = true;
           break;
-        case CL_KEY_SPACE:
+        case CL_KEY_E:
           fire_key = true;
           break;
-        case CL_KEY_M:
+        case CL_KEY_I:
           mine_key = true;
           break;
         }
