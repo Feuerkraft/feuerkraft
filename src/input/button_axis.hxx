@@ -17,24 +17,32 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_AXIS_HXX
-#define HEADER_INPUT_AXIS_HXX
+#ifndef HEADER_BUTTON_AXIS_HXX
+#define HEADER_BUTTON_AXIS_HXX
 
-#include <vector>
-#include <ClanLib/Signals/slot.h>
-#include <ClanLib/Signals/signal_v1.h>
+#include "input_axis.hxx"
 
-class InputAxis
+class InputButton;
+
+class ButtonAxis : public InputAxis
 {
-protected:
-  std::vector<CL_Slot> slots;
-  CL_Signal_v1<float> move;  
-public:
-  InputAxis() {}
-  virtual ~InputAxis() {}
+private:
+  InputButton* left;
+  InputButton* right;
 
-  virtual void update(float delta) {}
-  CL_Signal_v1<float>& on_move() { return move; }
+  bool left_state;
+  bool right_state;
+  
+  float pos;
+private:
+  void on_left_up();
+  void on_left_down();
+
+  void on_right_up();
+  void on_right_down();
+public:
+  ButtonAxis(InputButton* left, InputButton* right);
+  void update(float delta);
 };
 
 #endif

@@ -51,26 +51,30 @@ InputManagerCustom::InputManagerCustom(SCM lst)
 void 
 InputManagerCustom::init(SCM lst)
 {
+  std::cout << "InputManagerCustom::init" << std::endl;
   while (gh_pair_p(lst))
     {
+      gh_display(gh_car(lst)); gh_newline();
       SCM sym  = gh_caar(lst);
       SCM data = gh_cdar(lst);
 
+      gh_display(sym); gh_newline();
+
       if (gh_equal_p(sym, gh_symbol2scm("primary-button")))
         {
-          primary_button = ButtonFactory::create(data);
+          primary_button = ButtonFactory::create(gh_car(data));
         }
       else if (gh_equal_p(sym, gh_symbol2scm("secondary-button")))
         {
-          secondary_button =  ButtonFactory::create(data);
+          secondary_button =  ButtonFactory::create(gh_car(data));
         }
       else if (gh_equal_p(sym, gh_symbol2scm("use-button")))
         {
-          use_button = ButtonFactory::create(data);
+          use_button = ButtonFactory::create(gh_car(data));
         }
       else if (gh_equal_p(sym, gh_symbol2scm("menu-button")))
         {
-          menu_button = ButtonFactory::create(data);
+          menu_button = ButtonFactory::create(gh_car(data));
         }
       else if (gh_equal_p(sym, gh_symbol2scm("orientation-axis")))
         {
@@ -117,6 +121,14 @@ InputManagerCustom::on_button_down(ButtonName name)
 void
 InputManagerCustom::update(float delta)
 {
+  primary_button->update(delta);
+  secondary_button->update(delta);
+  use_button->update(delta);
+  menu_button->update(delta);
+
+  orientation_axis->update(delta);
+  accelerate_axis->update(delta);
+  strafe_axis->update(delta);
 }
 
 /* EOF */

@@ -35,6 +35,7 @@ public:
 
   /** Path to all the datafiles */
   std::string datadir;
+  std::string controller_file;
 
   /** number of fps to which the game should limit itself */
   float fps;

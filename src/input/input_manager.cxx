@@ -47,37 +47,63 @@ InputManager::init(InputManagerImpl* arg_impl)
     }
   else
     {
-      impl = new InputManagerCustom
-        (gh_eval_str("'("
-                     "(primary-button   (joystick-button 1 1))"
-                     "(secondary-button (joystick-button 1 2))"
-                     "(use-button       (joystick-button 1 3))"
-                     "(menu-button      (joystick-button 1 4))"
-                     "(orientation-axis (joystick-axis 1 2))"
-                     "(accelerate-axis  (joystick-axis 1 3))"
-                     "(strafe-axis      (joystick-axis 1 0))"
-                     ")"));
+      if (!args->controller_file.empty())
+        {
+          std::cout << "Reading: " << args->controller_file << std::endl;
+          SCM port = scm_open_file(gh_str02scm(args->controller_file.c_str()),
+                                   gh_str02scm("r"));
+          SCM lst  = scm_read(port);
+
+          gh_call1(gh_lookup("display"), lst);
+          gh_call1(gh_lookup("display"), gh_car(lst));
+          gh_call1(gh_lookup("display"), gh_symbol2scm("feuerkraft-controller"));
+
+          if (gh_equal_p(gh_symbol2scm("feuerkraft-controller"), gh_car(lst)))
+            {
+              impl = new InputManagerCustom(gh_cdr(lst));
+            }
+          else
+            {
+              std::cout << "Error: not a valid controller file: " << args->controller_file << std::endl;
+            }
+          scm_close_port(port);
+        }
+      
+      if (!impl)
+        { 
+          // Set default configuration
+          impl = new InputManagerCustom
+            (gh_eval_str("'("
+                         "(primary-button   (joystick-button 1 1))"
+                         "(secondary-button (joystick-button 1 0))"
+                         "(use-button       (joystick-button 1 3))"
+                         "(menu-button      (joystick-button 1 2))"
+                         "(orientation-axis (joystick-axis 1 0))"
+                         "(accelerate-axis  (joystick-axis 1 1))"
+                         "(strafe-axis      (joystick-axis 1 2))"
+                         ")"));
+        }     
     }
   /*
-  else if (args->joystick != -1)
+    else if (args->joystick != -1)
     {
-      if (args->joystick < CL_Joystick::get_device_count())
-        {
-          std::cout << "InputManager: Using joystick " << args->joystick << std::endl;
-          impl = new InputManagerJoystick();
-        }
-      else
-        {
-          std::ostringstream os;
-          os << "Feuerkraft: ClanLib doesn't have joystick number " << args->joystick
-             << ", only " << CL_Joystick::get_device_count() << " joysticks available" << std::endl;
-          throw std::runtime_error(os.str());
-        }
+    if (args->joystick < CL_Joystick::get_device_count())
+    {
+    std::cout << "InputManager: Using joystick " << args->joystick << std::endl;
+    impl = new InputManagerJoystick();
     }
-  else 
+    else
     {
-      std::cout << "InputManager: Using keyboard" << std::endl;
-      impl = new InputManagerKeyboard();
+    std::ostringstream os;
+    os << "Feuerkraft: ClanLib doesn't have joystick number " << args->joystick
+    << ", only " << CL_Joystick::get_device_count() << " joysticks available" << std::endl;
+    throw std::runtime_error(os.str());
+    }
+    }
+    else 
+    {
+    std::cout << "InputManager: Using keyboard" << std::endl;
+    impl = new InputManagerKeyboard();
     }
   */
 }

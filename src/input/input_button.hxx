@@ -33,8 +33,9 @@ protected:
 
 public:
   InputButton() {}
+  virtual ~InputButton() {}
   
-  void update(float delta) {}
+  virtual void update(float delta) {}
 
   CL_Signal_v0& on_key_down() { return button_down; }
   CL_Signal_v0& on_key_up()   { return button_up; }

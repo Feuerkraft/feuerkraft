@@ -30,6 +30,7 @@ public:
   static InputAxis* create(SCM lst);
 private:
   static InputAxis* create_joystick_axis(SCM lst);
+  static InputAxis* create_button_axis(SCM lst);
 };
 
 #endif

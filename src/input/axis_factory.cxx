@@ -20,6 +20,8 @@
 #include <iostream>
 #include <ClanLib/Display/joystick.h>
 #include "input_axis_input_device.hxx"
+#include "button_factory.hxx"
+#include "button_axis.hxx"
 #include "axis_factory.hxx"
 
 InputAxis* 
@@ -33,6 +35,10 @@ AxisFactory::create(SCM lst)
       if (gh_equal_p(sym, gh_symbol2scm("joystick-axis")))
         {
           return create_joystick_axis(data);
+        }
+      if (gh_equal_p(sym, gh_symbol2scm("button-axis")))
+        {
+          return create_button_axis(data);
         }
       else
         {
@@ -57,6 +63,14 @@ AxisFactory::create_joystick_axis(SCM lst)
       std::cout << "Error: AxisFactory::create_joystick_axis(SCM lst)" << std::endl;
       return 0;
     }
+}
+
+InputAxis*
+AxisFactory::create_button_axis(SCM lst)
+{
+  InputButton* left  = ButtonFactory::create(gh_car(lst));
+  InputButton* right = ButtonFactory::create(gh_cadr(lst));
+  return new ButtonAxis(left, right);
 }
 
 /* EOF */

@@ -36,7 +36,7 @@ static struct argp_option options[] = {
   {"fps",        'f', "FPS",     0,  "Limit of frames per second" },
   {"music",      'm', 0,         0,  "Enable music" },
   {"sound",      's', 0,         0,  "Enable sound" },
-  {"joystick",   'j', "NUM",     0,  "Use Joystick number NUM, instead of keyboard" },
+  {"controller", 'c', "FILE",    0,  "Use controller as defined in FILE" },
   {"geometry",   'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
   { 0 }
 };
@@ -134,12 +134,8 @@ CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
       music_enabled = true;
       break;
 
-    case 'j':
-      if (sscanf(arg, "%d", &joystick) != 1)
-        {
-          std::cout << "Argument to joystick must be a number" << std::endl;
-          exit(EXIT_FAILURE);
-        }
+    case 'c':
+      controller_file = arg;
       break;
 
     case 's':

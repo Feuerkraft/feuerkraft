@@ -27,25 +27,22 @@
 InputButton* 
 ButtonFactory::create(SCM lst)
 {
-  while (!gh_null_p(lst))
-    {
-      SCM sym = gh_caar(lst);
+  SCM sym = gh_car(lst);
 
-      if (gh_equal_p(sym, gh_symbol2scm("joystick-button")))
-        {
-          return create_joystick_button(gh_cdar(lst));
-        }
-      else if (gh_equal_p(sym, gh_symbol2scm("keyboard-button")))
-        {
-          return create_joystick_button(gh_cdar(lst));
-        }
-      else
-        {
-          std::cout << "ButtonFactory::create: parse error" << std::endl;
-        }
-      
-      lst = gh_cdr(lst);
+  if (gh_equal_p(sym, gh_symbol2scm("joystick-button")))
+    {
+      return create_joystick_button(gh_cdr(lst));
     }
+  else if (gh_equal_p(sym, gh_symbol2scm("keyboard-button")))
+    {
+      return create_joystick_button(gh_cdr(lst));
+    }
+  else
+    {
+      std::cout << "ButtonFactory::create: parse error: ";
+      gh_display(lst); std::cout << std::endl;
+    }
+      
   return 0;
 }
 
