@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: view.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,12 +20,16 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/Core/Math/cl_vector.h>
+
 #include "boost/dummy_ptr.hpp"
 #include "gui_obj.hxx"
 #include "game_world.hxx"
 #include "view_properties.hxx"
+
+class CL_GraphicContext;
+class CL_Sprite;
+class CL_Surface;
 
 class GameWorld;
 

@@ -1,4 +1,4 @@
-//  $Id: ammotent.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: ammotent.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,7 @@
 #ifndef AMMOTENT_HH
 #define AMMOTENT_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/Display/sprite.h>
 
 #include "../boost/dummy_ptr.hpp"
 #include "../view.hxx"

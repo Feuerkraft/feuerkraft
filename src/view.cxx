@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.3 2003/04/27 23:41:57 grumbel Exp $
+//  $Id: view.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/Display/display.h>
+#include <ClanLib/Display/sprite.h>
+#include <ClanLib/Display/surface.h>
+
 #include "math.hxx"
 #include "view.hxx"
 

@@ -1,7 +1,7 @@
-//  $Id: grid_map_data.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
-// 
+//  $Id: sound_commands.cxx,v 1.1 2003/05/03 16:21:35 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,42 +12,34 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef GRIDMAPDATA_HXX
-#define GRIDMAPDATA_HXX
+#include "../sound/sound.hxx"
+#include "sound_commands.hxx"
 
-#include <vector>
-
-#include <guile/gh.h>
-#include "ground_type.hxx"
-#include "ground_map_data.hxx"
-
-class CL_PixelBuffer;
-
-class GridMapData : public GroundMapData
+void
+sound_play_music(const char* name)
 {
-protected:
-  int grid_width;
-  int grid_height;
+}
 
-  /** The data of the grid */
-  std::vector<GroundType> grid_data;
-  
-  CL_PixelBuffer* provider;
-  
-public:
-  GridMapData (SCM desc);
-  virtual ~GridMapData ();
+void
+sound_stop_music()
+{
+}
 
-  GroundMap* create ();
-private:
-  void parse_from_file (SCM desc);
-};
+int
+sound_play_sound(const char* name)
+{
+  PingusSound::play_sound(name);
+  return 0; // Returning a handle is currently not supported 
+}
 
-#endif
+void
+sound_stop_sound(int handle)
+{
+}
 
 /* EOF */

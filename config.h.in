@@ -15,6 +15,15 @@
 /* Define to 1 if you have the `clanGL' library (-lclanGL). */
 #undef HAVE_LIBCLANGL
 
+/* Define to 1 if you have the `clanMikMod' library (-lclanMikMod). */
+#undef HAVE_LIBCLANMIKMOD
+
+/* Define to 1 if you have the `clanSound' library (-lclanSound). */
+#undef HAVE_LIBCLANSOUND
+
+/* Define to 1 if you have the `clanVorbis' library (-lclanVorbis). */
+#undef HAVE_LIBCLANVORBIS
+
 /* Define to 1 if you have the `guile' library (-lguile). */
 #undef HAVE_LIBGUILE
 

@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.4 2003/04/28 23:24:41 grumbel Exp $
+//  $Id: background.hxx,v 1.5 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,9 @@
 #ifndef FEUERKRAFT_BACKGROUND_HH
 #define FEUERKRAFT_BACKGROUND_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/Display/sprite.h>
+#include <ClanLib/Display/surface.h>
+
 #include "game_obj.hxx"
 
 /** should be moved to groundmaps/.. and renamed to BaseGroundMap or

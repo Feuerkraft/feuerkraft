@@ -1,8 +1,6 @@
 #ifndef TURRET_HH
 #define TURRET_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
 #include "game_obj.hxx"
 
 class Tank;

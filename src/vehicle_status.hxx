@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: vehicle_status.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,6 @@
 #ifndef VEHICLESTATUS_HH
 #define VEHICLESTATUS_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
 #include "vehicle.hxx"
 #include "gui_obj.hxx"

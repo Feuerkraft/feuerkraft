@@ -1,4 +1,4 @@
-SUBDIRS = boost groundmap particles generic buildings scripting
+SUBDIRS = boost groundmap particles generic buildings scripting sound
 
 bindir=$(prefix)/games
 
@@ -8,7 +8,8 @@ LDADD = \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a     \
- scripting/libfeuerkraft_scripting.a
+ scripting/libfeuerkraft_scripting.a \
+ sound/libpingus_sound.a
 
 feuerkraft_SOURCES = \
 ai_vehicle.hxx \
@@ -86,6 +87,8 @@ soldier.cxx \
 soldier.hxx \
 start_screen.cxx \
 start_screen.hxx \
+globals.hxx \
+globals.cxx \
 stone.cxx \
 stone.hxx \
 string_converter.cxx \

@@ -35,6 +35,7 @@
 #include "ambulance.hxx"
 #include "level_map.hxx"
 #include "start_screen.hxx"
+#include "sound/sound.hxx"
 #include "command_line_arguments.hxx"
 
 #include "groundmap/ground_map.hxx"
@@ -102,6 +103,8 @@ public:
 	//CL_SetupSound::init();
 	CL_SetupDisplay::init();
 	CL_SetupGL::init();
+
+        PingusSound::init();
         
 	resources = new ResourceManager ();
 
@@ -115,7 +118,7 @@ public:
 	std::cout << "Trying load and destroy of a sprite" << std::endl;
 	resources->get_sprite("feuerkraft/tank2_shadow");
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
-
+        
         // Deserialize the game world
 	GameWorld* world;
 	{
@@ -143,7 +146,6 @@ public:
 
 	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-        
         AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(342, 1241));
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
@@ -304,8 +306,8 @@ public:
 	std::cout << "Avarage fps:   " 
 		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
-	//FIXME:Display2 CL_SetupJPEG::deinit ();
-	//FIXME:Display2 CL_SetupPNG::deinit ();
+        PingusSound::deinit();
+	CL_SetupGL::deinit();
 	CL_SetupDisplay::deinit();
 	CL_SetupCore::deinit();
       }

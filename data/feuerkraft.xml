@@ -886,4 +886,12 @@
 
   </section>
 
+
+    <sprite name="arialfont14_glyphs">
+      <image name="image1" file="data/images/arialfont14.png" alpha="alpha" />
+      <image name="image2" file="data/images/arialfont14.png" alpha="alpha" />
+    </sprite>
+
+    <font name="arialfont14" glyphs="arialfont14_glyphs" letters="!|#$%|'()*+,-./0123456789:;|=|?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~" />
+
 </resources>

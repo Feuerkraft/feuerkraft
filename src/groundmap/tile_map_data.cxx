@@ -1,4 +1,4 @@
-//  $Id: tile_map_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: tile_map_data.cxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-//#include <ClanLib/Display2/Providers/png_provider.h>
+#include <ClanLib/Display/Providers/png_provider.h>
+
 #include "tile_data_factory.hxx"
 #include "tile_map_data.hxx"
 #include "tile_map.hxx"

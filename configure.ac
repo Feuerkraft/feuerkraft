@@ -69,6 +69,11 @@ AC_CHECK_LIB( clanGL,   main,, [
 	exit
 	])
 
+AC_CHECK_LIB( clanSound,   main)
+
+AC_CHECK_LIB( clanMikMod,   main)
+AC_CHECK_LIB( clanVorbis,   main)
+
 AC_OUTPUT( Makefile
            data/Makefile
            data/images/Makefile
@@ -79,6 +84,7 @@ AC_OUTPUT( Makefile
            src/particles/Makefile
            src/scripting/Makefile
            src/buildings/Makefile
+           src/sound/Makefile
            src/generic/Makefile
            src/boost/Makefile
            src/boost/detail/Makefile)

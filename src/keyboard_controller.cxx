@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.cxx,v 1.3 2003/05/02 19:10:24 grumbel Exp $
+//  $Id: keyboard_controller.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <ClanLib/Display/input_context.h>
+#include <ClanLib/Display/keys.h>
 #include "tank.hxx"
 #include "turret.hxx"
 #include "keyboard_controller.hxx"

@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: guile.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <guile/gh.h>
+#include <ClanLib/Core/System/cl_assert.h>
+
 #include "guile.hxx"
 
 namespace Guile {

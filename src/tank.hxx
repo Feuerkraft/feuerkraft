@@ -1,7 +1,8 @@
 #ifndef TANK_HH
 #define TANK_HH
 
-#include <ClanLib/display.h>
+#include <ClanLib/Display/sprite.h>
+#include <ClanLib/Core/Math/cl_vector.h>
 #include <deque>
 
 #include "mine.hxx"

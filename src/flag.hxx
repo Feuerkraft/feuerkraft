@@ -1,4 +1,4 @@
-//  $Id: flag.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: flag.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef FLAG_HH
 #define FLAG_HH
 
-#include <ClanLib/core.h>
+#include <ClanLib/Display/sprite.h>
 #include "game_obj.hxx"
 
 class Flag : public GameObj

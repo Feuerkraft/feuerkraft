@@ -6,6 +6,7 @@
 #include "object_commands.hxx"
 #include "trigger_commands.hxx"
 #include "comm_commands.hxx"
+#include "sound_commands.hxx"
 %}
 
 %include "ai_vehicle_commands.hxx"
@@ -14,5 +15,6 @@
 %include "object_commands.hxx"
 %include "trigger_commands.hxx"
 %include "comm_commands.hxx"
+%include "sound_commands.hxx"
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.5 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.6 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include <ClanLib/Display/surface.h>
+#include <ClanLib/Display/font.h>
+#include <ClanLib/Core/Resources/resource_manager.h>
+#include <ClanLib/Core/System/error.h>
+#include <ClanLib/Core/System/cl_assert.h>
+
 #include "path_manager.hxx"
 #include "resource_manager.hxx"
 
@@ -67,6 +73,13 @@ ResourceManager::get_sprite_ptr (const std::string& location)
 {
   //std::cout << "ResourceManager::get_sprite_ptr: " << location << std::endl;
   return new CL_Sprite (get_sprite (location));
+}
+
+CL_Font*
+ResourceManager::get_font(const std::string& location)
+{
+  // FIXME: MEMleak
+  return new CL_Font(location, resource_manager);
 }
 
 /* EOF */

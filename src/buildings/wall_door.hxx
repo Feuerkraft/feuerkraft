@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: wall_door.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,9 @@
 #ifndef WALLDOOR_HXX
 #define WALLDOOR_HXX
 
-#include <ClanLib/display.h>
-#include <ClanLib/core.h>
+#include <ClanLib/Display/sprite.h>
+#include <ClanLib/Core/Math/cl_vector.h>
+
 #include "boost/dummy_ptr.hpp"
 #include "building.hxx"
 #include "wall_door_data.hxx"

@@ -1,7 +1,6 @@
+#include <ClanLib/Display/display.h>
 #include <iostream>
 #include <string>
-#include <ClanLib/core.h>
-#include <ClanLib/gl.h>
 
 #include "mine.hxx"
 #include "turret.hxx"

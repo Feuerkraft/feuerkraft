@@ -1,4 +1,4 @@
-//  $Id: energie.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: energie.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,8 @@
 
 #ifndef ENERGIE_HH
 #define ENERGIE_HH
+
+#include <ClanLib/Core/System/system.h>
 
 #include "boost/dummy_ptr.hpp"
 #include "view.hxx"

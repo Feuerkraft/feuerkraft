@@ -1,4 +1,4 @@
-//  $Id: grid_map.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: grid_map.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,8 @@
 
 #include <vector>
 #include <map>
+#include <ClanLib/Display/surface.h>
+
 #include "view.hxx"
 #include "ground_map.hxx"
 #include "grid_tile_data.hxx"

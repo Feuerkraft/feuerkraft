@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: explosion.cxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #include "shockwave.hxx"
 #include "explosion.hxx"
 #include "generic/random.hxx"
+#include "sound/sound.hxx"
 #include "particles/explosion_particle.hxx"
 
 Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
@@ -45,12 +46,14 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
       lifetime = 25;
       world->add (new Shockwave (world, pos));
       size = 2;
+      PingusSound::play_sound("explosion");
       break;
     }
 
   lifetime = .5f;
 
   new_particle_time = 1.0f;
+
 };
 
 void 
