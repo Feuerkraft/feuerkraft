@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.6 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.7 2003/05/19 10:52:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #include <math.h>
 #include "vehicle_view.hxx"
 
-VehicleView::VehicleView (VehiclePtr arg_vehicle, 
-			  int x1, int y1, int x2, int y2)
+VehicleView::VehicleView (int x1, int y1, int x2, int y2,
+                          VehiclePtr arg_vehicle)
   : View (x1, y1, x2, y2,
           int(-arg_vehicle->get_pos ().x), int(-arg_vehicle->get_pos ().y)),
     vehicle (arg_vehicle)

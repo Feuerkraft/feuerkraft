@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: keyboard_controller.cxx,v 1.5 2003/05/19 10:52:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,13 +17,14 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/display.h>
 #include <ClanLib/Display/input_context.h>
 #include <ClanLib/Display/keys.h>
 #include "tank.hxx"
 #include "turret.hxx"
 #include "keyboard_controller.hxx"
 
-KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* obj)
+KeyboardController::KeyboardController (Controllable* obj)
   : Controller (obj) 
 {
   left_key = false;
@@ -35,9 +36,12 @@ KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* 
   up_key = false;
   down_key = false;
 
-  key_up_slot = window->get_ic()->get_keyboard().sig_key_up().connect (this, &KeyboardController::input_down);
-  key_down_slot = window->get_ic()->get_keyboard().sig_key_down().connect (this, &KeyboardController::input_down);
-}  
+  key_up_slot   = CL_Display::get_current_window()->get_ic()
+    ->get_keyboard().sig_key_up().connect (this, &KeyboardController::input_down);
+
+  key_down_slot = CL_Display::get_current_window()->get_ic()
+    ->get_keyboard().sig_key_down().connect (this, &KeyboardController::input_down);
+}
 
 void
 KeyboardController::input_down (const CL_InputEvent& key)

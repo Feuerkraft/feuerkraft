@@ -1,4 +1,4 @@
-//  $Id: tree.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: tree.hxx,v 1.8 2003/05/19 10:52:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,6 @@ private:
   std::string sprite_name;
   FloatVector2d pos;
   CL_Sprite sur;
-  CL_Sprite sur_shadow;
 
 public:
   Tree ();

@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.hxx,v 1.1 2003/05/11 19:14:43 grumbel Exp $
+//  $Id: gameobj_commands.hxx,v 1.2 2003/05/19 10:52:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,10 @@ void gameobj_set_property(int handle, const char* name, SCM value);
 
 /** @return a list of available properties */
 SCM gameobj_properties(int handle);
+
+/** Create a game object with the parameters given as \a lst 
+    @return handle to the GameObj */
+int gameobj_create(int type_id, SCM lst);
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.10 2003/05/18 22:47:54 grumbel Exp $
+//  $Id: tank.cxx,v 1.11 2003/05/19 10:52:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -152,7 +152,7 @@ Tank::explode ()
 void
 Tank::respawn ()
 {
-  /* FIXME: This respawn code is extremly ugly... */
+  /* FIXME: This respawn code is extremly ugly... 
   Tank* tank = new Tank(FloatVector2d (560, 1245), 5,
                         "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   GameWorld::current()->add (tank);
@@ -163,6 +163,7 @@ Tank::respawn ()
       vehicle_view->set_vehicle (tank);
     }
   destroy_time = -1;
+  */
 }
 
 void 

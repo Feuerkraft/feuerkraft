@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.3 2003/05/19 10:52:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,6 +49,8 @@ GameObjFactory::create(int type_id, const AList& alst)
       
       for (AList::const_iterator i = alst.begin(); i != alst.end(); ++i)
         {
+          std::cout << ">>># " << i->second.type << std::endl;
+          
           switch(i->second.type)
             {
             case AList::AL_INT:

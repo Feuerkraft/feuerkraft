@@ -25,7 +25,7 @@
 #include "helicopter.hxx"
 #include "turret.hxx"
 #include "soldier.hxx"
-#include "vehicle_view.hxx"
+#include "player_view.hxx"
 #include "vehicle_status.hxx"
 #include "radar.hxx"
 #include "screen.hxx"
@@ -56,15 +56,11 @@
 #include "globals.hxx"
 #include "output_world_builder.hxx"
 #include "sexpr_world_reader.hxx"
-
+#include "player.hxx"
 #include "guile.hxx"
 
-// FIXME: Ugly global variable, should be removed as soon as possible
-VehicleView* vehicle_view;
-
 // FIXME: Replace this with a PlayerManager class or something similar
-Controller*  player_controller;
-VehicleView* player_vehicle_view;
+Player*  player;
 
 //#define WITH_STATIC_READLINE 1
 
@@ -147,7 +143,6 @@ public:
         BuildingTypeManager buildingtypemanager;
         Screen    screen;
 
-	//JoystickController controller(heli);
         CollisionManager collision_mgr;
 
         // Deserialize the game world
@@ -180,7 +175,7 @@ public:
 
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
-	KeyboardController kcontroller (&window, current_controllable);
+	KeyboardController kcontroller(current_controllable);
 
         GameObj* tree = GameObjFactory::instance()->create(1, AList()
                                                            .set_float("x-pos", 50.0f)
@@ -213,16 +208,14 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view(current_vehicle, 0, 0, 800, 600);
-
-        player_controller = &kcontroller;
-        player_vehicle_view = &view;
+        Player the_player(tank1);
+        player = &the_player;
+	PlayerView view(0, 0, 800, 600,
+                        player);
 
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 
-	vehicle_view = &view;
-	
 	int start_time = CL_System::get_time ();
 	int frames = 0;
 
@@ -295,7 +288,6 @@ public:
                 ai_vehicle->drive_to(pos);
 	      }
 	    
-	    //controller.update (delta);
 	    kcontroller.update (delta);
 	    
 	    // Comment out for variable frame rate

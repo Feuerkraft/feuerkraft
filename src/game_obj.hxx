@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.8 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.9 2003/05/19 10:52:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,7 +48,10 @@ public:
   GameObj();
   virtual ~GameObj ();
 
-  int get_id() const { return id; }
+  /** @return the id of the GameObj, this must only be called after
+      the GameObj has been added to a GameWorld/GameObjManager,
+      calling it before will raise an assertion. */
+  int get_id() const { assert(id != -1); return id; }
 
   PropertySet* get_properties() { return properties; }
 

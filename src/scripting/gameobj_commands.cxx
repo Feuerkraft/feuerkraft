@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.2 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: gameobj_commands.cxx,v 1.3 2003/05/19 10:52:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 #include "../property.hxx"
 #include "../game_obj.hxx"
 #include "../game_obj_manager.hxx"
+#include "../game_obj_factory.hxx"
 #include "gameobj_commands.hxx"
 
 SCM
@@ -78,6 +79,13 @@ gameobj_properties(int handle)
       return gh_reverse(lst);
     }
   return SCM_BOOL_F;
+}
+
+int
+gameobj_create(int type_id, SCM lst)
+{
+  GameObj* obj = GameObjFactory::instance()->create(type_id, Guile::scm2alist(lst));
+  return GameObjManager::current()->add_object(obj);
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: tree.cxx,v 1.8 2003/05/19 10:52:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "view.hxx"
 #include "property_set.hxx"
 #include "resource_manager.hxx"
@@ -36,17 +37,15 @@ Tree::~Tree ()
 void
 Tree::properties_updated()
 {
+  std::cout << "Loading Tree Sprites" << std::endl;
   sur = resources->get_sprite(sprite_name);
-  sur_shadow = resources->get_sprite(sprite_name + "_shadow");
   
   sur.set_alignment(origin_center);
-  sur_shadow.set_alignment(origin_top_left);
 }
   
 void 
 Tree::draw (View* view)
 {
-  view->draw(sur_shadow, pos - FloatVector2d(15,15));
   view->draw(sur, pos);
 }
 

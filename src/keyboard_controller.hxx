@@ -1,4 +1,4 @@
-//  $Id: keyboard_controller.hxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: keyboard_controller.hxx,v 1.4 2003/05/19 10:52:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@ private:
 
   void input_down(const CL_InputEvent& key);
 public:
-  KeyboardController(CL_DisplayWindow* window, Controllable* obj);
+  KeyboardController(Controllable* obj);
   
   void update (float delta);
 };

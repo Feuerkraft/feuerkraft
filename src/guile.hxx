@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.10 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: guile.hxx,v 1.11 2003/05/19 10:52:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -66,6 +66,9 @@ void scm2property(PropertySet& properties, const char* name, SCM value);
 /** Converts a given property class to a SCM */
 SCM  property2scm(const Property& property);
 
+/** Convert a SCM of the form '((symbol value) ...) to an AList, types
+    are automatically converted.
+    FIXME: support for keywords instead of simples is missing */
 AList scm2alist(SCM lst);
 
 /** Switches on debugging for Guile, causing line numbers and
