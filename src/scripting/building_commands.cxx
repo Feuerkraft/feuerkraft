@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.2 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.3 2003/05/08 23:02:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,9 @@
 #include <iostream>
 #include "../game_world.hxx"
 #include "buildings/building.hxx"
+#include "buildings/custom_building.hxx"
 #include "buildings/wall_data.hxx"
+#include "buildings/building_type_manager.hxx"
 #include "buildings/building_manager.hxx"
 #include "building_commands.hxx"
 
@@ -37,6 +39,13 @@ int  building_create(int type, int x, int y)
       data.y_pos = y;
 
       building = data.create(GameWorld::current());
+    }
+  else
+    {
+      AList props;
+      props.set_int("x-pos", x);
+      props.set_int("y-pos", y);
+      building = BuildingTypeManager::current()->create_building(type, props);
     }
 
   if (building)
@@ -63,6 +72,11 @@ int  building_get_tile(int x, int y)
 int  building_get(int x, int y)
 {
   return 0;
+}
+
+int building_create_type(SCM lst)
+{
+  return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(AList()));
 }
 
 /* EOF */

@@ -18,10 +18,14 @@ building_manager.cxx \
 building_manager.hxx \
 building_map_data.cxx \
 building_map_data.hxx \
+building_type_manager.hxx \
+building_type_manager.cxx \
 fuelstation.cxx \
 fuelstation.hxx \
 fuelstation_data.cxx \
 fuelstation_data.hxx \
+custom_building.hxx \
+custom_building.cxx \
 headquarter.cxx \
 headquarter.hxx \
 headquarter_data.cxx \

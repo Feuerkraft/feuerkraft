@@ -1,5 +1,5 @@
-//  $Id: building_commands.hxx,v 1.2 2003/05/08 23:02:10 grumbel Exp $
-// 
+//  $Id: custom_building.cxx,v 1.1 2003/05/08 23:02:10 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,29 +12,44 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_BUILDING_COMMONDS_HXX
-#define HEADER_BUILDING_COMMONDS_HXX
+#include "../alist.hxx"
+#include "../resource_manager.hxx"
+#include "custom_building.hxx"
 
-/** Create a building from type \a type at the tile position x, y
-    @return a handler to the building */
-int  building_create(int type, int x, int y);
+CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
+{
+  std::string sprite_str = "feuerkraft/nobuilding";
+  int         i_energie = 100;
+  width   = 2;
+  height  = 2;
 
-/** Remove the given building */
-void building_remove(int handle);
+  type.get_string("sprite", sprite_str);
+  type.get_int("energie", i_energie);
+  type.get_int("width", width);
+  type.get_int("height", height);
 
-/** @return the building at the given tile */
-int  building_get_tile(int x, int y);
+  energie.set_max_energie(i_energie);
 
-/** @return the building at the given coordinates */
-int  building_get(int x, int y);
+  sprite = resources->get_sprite(sprite_str);
 
-int building_create_type(SCM lst);
+  lst.get_int("x-pos", x_pos);
+  lst.get_int("y-pos", y_pos);
+}
 
-#endif
+void
+CustomBuilding::draw(boost::dummy_ptr<View> view)
+{
+  view->draw(sprite, CL_Vector(x_pos * 40, y_pos * 40)); // FIXME: Hardcoded tilesize
+}
+
+void
+CustomBuilding::update(float)
+{
+}
 
 /* EOF */

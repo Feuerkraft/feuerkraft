@@ -1,4 +1,4 @@
-//  $Id: energie.cxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: energie.cxx,v 1.4 2003/05/08 23:02:09 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,20 @@
 
 #include "view.hxx"
 #include "energie.hxx"
+
+Energie::Energie ()
+{
+  max_energie = 100.0f;
+  energie = max_energie;
+  last_change = 0;
+}
+
+void
+Energie::set_max_energie(float arg_max_energie)
+{
+  max_energie = arg_max_energie;
+  energie = max_energie;
+}
 
 Energie::Energie (int arg_energie) :
   max_energie (arg_energie),

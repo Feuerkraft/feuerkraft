@@ -1,4 +1,4 @@
-//  $Id: energie.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: energie.hxx,v 1.4 2003/05/08 23:02:09 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,7 +33,10 @@ private:
   unsigned int last_change;
 
 public:
+  Energie ();
   Energie (int arg_energie);
+
+  void set_max_energie(float max_energie);
 
   void draw (boost::dummy_ptr<View> view, int x_pos, int y_pos);
   operator int () { return int(energie); }

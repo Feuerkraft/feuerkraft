@@ -1,4 +1,4 @@
-//  $Id: string_converter.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: string_converter.cxx,v 1.3 2003/05/08 23:02:09 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,46 +17,21 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <cstdio>
+#include <algorithm>
 #include "string_converter.hxx"
-//#include "PingusError.hxx"
 
-int 
-StringConverter::to_int(const std::string& str)
+std::string string_upcase (const std::string& str)
 {
-  int i;
-  if (sscanf(str.c_str(), "%d", &i) != 1)
-    {
-      throw Error("StringConverter: Couldn't convert: \"" + str + "\" to int");
-    }
-  return i;
+  std::string name = str;
+  std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+  return name;
 }
 
-float
-StringConverter::to_float(const std::string& str)
+std::string string_downcase (const std::string& str)
 {
-  float i;
-  if (sscanf(str.c_str(), "%f", &i) != 1)
-    {
-      throw Error("StringConverter: Couldn't convert: \"" + str + "\" to float");
-    }
-  return i;
-}
-
-std::string 
-StringConverter::to_string (int i)
-{
-  char buffer[64];
-  sprintf (buffer, "%d", i);
-  return buffer;
-}
-
-std::string 
-StringConverter::to_string (float i)
-{
-  char buffer[256];
-  sprintf (buffer, "%f", i);
-  return buffer;
+  std::string name = str;
+  std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+  return name;
 }
 
 /* EOF */

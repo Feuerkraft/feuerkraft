@@ -47,6 +47,8 @@
 
 #include "buildings/building_map_data.hxx"
 #include "buildings/building_map.hxx"
+#include "buildings/building_type_manager.hxx"
+
 #include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
 #include "guile.hxx"
@@ -122,6 +124,8 @@ public:
 	resources->get_sprite("feuerkraft/tank2_shadow");
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
         
+        BuildingTypeManager buildingtypemanager;
+
         // Deserialize the game world
 	GameWorld* world;
 	{

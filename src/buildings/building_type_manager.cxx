@@ -1,5 +1,5 @@
-//  $Id: building_commands.hxx,v 1.2 2003/05/08 23:02:10 grumbel Exp $
-// 
+//  $Id: building_type_manager.cxx,v 1.1 2003/05/08 23:02:10 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,29 +12,43 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_BUILDING_COMMONDS_HXX
-#define HEADER_BUILDING_COMMONDS_HXX
+#include <iostream>
+#include "building_type_manager.hxx"
 
-/** Create a building from type \a type at the tile position x, y
-    @return a handler to the building */
-int  building_create(int type, int x, int y);
+BuildingTypeManager* BuildingTypeManager::current_ = 0;
 
-/** Remove the given building */
-void building_remove(int handle);
+BuildingTypeManager::BuildingTypeManager()
+{
+  next_id = 2;
+  current_ = this;
+}
 
-/** @return the building at the given tile */
-int  building_get_tile(int x, int y);
+int
+BuildingTypeManager::register_factory(BuildingFactory* factory)
+{
+  factories.push_back(factory);
+  factory->id = next_id;
+  return next_id++;
+}
 
-/** @return the building at the given coordinates */
-int  building_get(int x, int y);
+Building*
+BuildingTypeManager::create_building(int type_id, const AList& params)
+{
+  for (Factories::iterator i = factories.begin(); i != factories.end(); ++i)
+    {
+      if ((*i)->id == type_id)
+        {
+          return (*i)->create(params);
+        }
+    }
 
-int building_create_type(SCM lst);
-
-#endif
+  std::cout << "BuildingTypeManager: Invalid type handle: " << type_id << std::endl;
+  return 0;
+}
 
 /* EOF */
