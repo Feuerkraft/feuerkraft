@@ -1,4 +1,4 @@
-//  $Id: Energie.hh,v 1.3 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: VehicleView.hh,v 1.1 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,42 +17,25 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef ENERGIE_HH
-#define ENERGIE_HH
+#ifndef VEHICLEVIEW_HH
+#define VEHICLEVIEW_HH
 
-class Energie
+#include "Vehicle.hh"
+#include "View.hh"
+
+class VehicleView :
+  public View
+
 {
 private:
-  int max_energie;
-  int energie;
-  unsigned int last_change;
-
+  Vehicle* vehicle;
+  
 public:
-  Energie (int arg_energie);
-
-  void draw (View* view, int x_pos, int y_pos);
-  operator int () { return energie; }
-
-  void operator--() { 
-    --energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator++() {
-    ++energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator+=(int i) { 
-    energie += i; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator-=(int i) { 
-    energie -= i; 
-    last_change = CL_System::get_time ();
-  }
-
+  VehicleView (GameWorld* world, Vehicle* arg_vehicle, 
+	       int x1, int y1, int x2, int y2);
+  virtual ~VehicleView ();
+  
+  void update ();
 };
 
 #endif

@@ -22,18 +22,22 @@ Turret::~Turret ()
 }
 
 void 
-Turret::draw ()
+Turret::draw (View* view)
 {
   float absolute_angle = tank->get_angle () + angle;
   int frame = int(fmod (absolute_angle, circle) / circle * 16.0);
   
-  sur.put_screen (tank->get_pos ().x - (sur.get_width ()/2), 
+  sur.put_screen (view->get_x_offset () + 
+		  tank->get_pos ().x - (sur.get_width ()/2), 
+		  view->get_y_offset () + 
 		  tank->get_pos ().y - (sur.get_height ()/2),
 		  frame);
 
   if (fireing && reloading == 0)
     {
-      fire_sur.put_screen (tank->get_pos ().x - (fire_sur.get_width ()/2), 
+      fire_sur.put_screen (view->get_x_offset () + 
+			   tank->get_pos ().x - (fire_sur.get_width ()/2), 
+			   view->get_y_offset () + 
 			   tank->get_pos ().y - (fire_sur.get_height ()/2),
 			   frame);
       fireing = false;

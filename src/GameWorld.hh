@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hh,v 1.4 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: GameWorld.hh,v 1.5 2001/02/24 20:32:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,9 @@
 #include <list>
 #include "boost/smart_ptr.hpp"
 #include "GameObj.hh"
+#include "View.hh"
 
+class View;
 class GameObj;
 
 class GameWorld
@@ -40,7 +42,7 @@ public:
   void add (boost::shared_ptr<GameObj>);
   void add (GameObj*);
 
-  void draw ();
+  void draw (View* view);
   void update (float delta);
 };
 

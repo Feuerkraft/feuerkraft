@@ -1,4 +1,4 @@
-//  $Id: Mine.hh,v 1.3 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Mine.hh,v 1.4 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ public:
 
   CL_Vector get_pos () { return pos; }
   void update (float);
-  void draw ();
+  void draw (View* view);
   void detonate ();
   bool is_active ();
 };

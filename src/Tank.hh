@@ -7,20 +7,18 @@
 #include "Mine.hh"
 #include "GameObj.hh"
 #include "Controllable.hh"
-#include "Collideable.hh"
 #include "Energie.hh"
+#include "Vehicle.hh"
 
 class Turret;
 
 class Tank : public Controllable,
-	     public GameObj,
-	     public Collideable
+	     public Vehicle
 {
 private:
   float angle;
   float speed;
   float velocity;
-  CL_Vector pos;
   float increment;
   int   inc_step;
   int frame;
@@ -40,15 +38,13 @@ public:
   Tank (int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
   
-  void draw ();
+  void draw (View* view);
   void update (float);
 
   void increase_angle (float delta);
   void decrease_angle (float delta);
   void set_angle (float);
   Turret* get_turret () { return turret; }
-
-  CL_Vector get_pos () { return pos; }
 
   float get_angle () { return angle; }
   float get_increment () { return increment; }
@@ -79,6 +75,7 @@ public:
 
   void collide (Projectile*);
   void collide (Mine*);
+  virtual void collide (CL_Vector force);
 };
 
 #endif // TANK_HH

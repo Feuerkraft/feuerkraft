@@ -1,4 +1,4 @@
-//  $Id: Energie.cc,v 1.3 2001/02/18 15:38:34 grumbel Exp $
+//  $Id: Energie.cc,v 1.4 2001/02/24 20:32:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
+#include "View.hh"
 #include "Energie.hh"
 
 Energie::Energie (int arg_energie) :
@@ -29,7 +30,7 @@ Energie::Energie (int arg_energie) :
 }
 
 void
-Energie::draw (int x_pos, int y_pos)
+Energie::draw (View* view, int x_pos, int y_pos)
 {
   int time_diff = CL_System::get_time () - last_change ;
 

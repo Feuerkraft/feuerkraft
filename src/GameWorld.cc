@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.15 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.16 2001/02/24 20:32:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -91,7 +91,7 @@ Iterator partition(Container &A, Iterator p, Iterator r, Pred &pred)
 }
 
 void 
-GameWorld::draw ()
+GameWorld::draw (View* view)
 {
   //objects.sort (z_pos_sorter ());
 #ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
@@ -103,7 +103,7 @@ GameWorld::draw ()
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin (); 
        i != objects.end (); ++i)
     {
-      (*i)->draw ();
+      (*i)->draw (view);
     }
 }
 

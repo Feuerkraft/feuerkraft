@@ -1,4 +1,4 @@
-//  $Id: Collideable.hh,v 1.3 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: Collideable.hh,v 1.4 2001/02/24 20:32:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,10 @@
 #ifndef COLLIDEABLE_HH
 #define COLLIDEABLE_HH
 
+#include "GameObj.hh"
 #include "Projectile.hh"
 
-class Collideable
+class Collideable : public GameObj
 {
 private:
   
@@ -35,6 +36,8 @@ public:
 
   /** Let the object collide with a Projectile, probally not usefull */
   virtual void collide (Projectile*) {}
+
+  virtual void collide (CL_Vector force) {}
 };
 
 #endif

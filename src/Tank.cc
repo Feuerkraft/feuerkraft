@@ -13,7 +13,6 @@ Tank::Tank (int reloading_speed, std::string tank, std::string str_turret, std::
   angle (0.0f),
   speed (0.0f),
   velocity (0.0f),
-  pos (rand () % 800, rand () % 600),
   increment (0.06f),
   inc_step (0),
   sur (tank.c_str (), resources),
@@ -26,6 +25,7 @@ Tank::Tank (int reloading_speed, std::string tank, std::string str_turret, std::
   destroyed (false)
 {
   turret = new Turret(this, reloading_speed, str_turret, fire);
+  pos = CL_Vector (rand () % 800, rand () % 600);
 }
 
 Tank::~Tank ()
@@ -34,12 +34,14 @@ Tank::~Tank ()
 }
   
 void
-Tank::draw ()
+Tank::draw (View* view)
 {
   if (destroyed)
     {
-      sur_destroyed.put_screen (pos.x - sur_destroyed.get_width ()/2,
-				pos.y - sur_destroyed.get_height ()/2);
+      sur_destroyed.put_screen (view->get_x_offset ()
+				+ pos.x - sur_destroyed.get_width ()/2,
+				view->get_y_offset () 
+				+ pos.y - sur_destroyed.get_height ()/2);
     }
   else
     {
@@ -48,17 +50,23 @@ Tank::draw ()
       for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
-	  smod.put_screen (i->x - (smod.get_width ()/2),
+	  smod.put_screen (view->get_x_offset () + 
+			   i->x - (smod.get_width ()/2),
+			   view->get_y_offset () + 
 			   i->y - (smod.get_height ()/2), 
 			   int(fmod (i->z, circle) / circle * 16.0));
 	}
 
-      sur.put_screen (int(pos.x) - (sur.get_width ()/2),
+      sur.put_screen (view->get_x_offset () + 
+		      int(pos.x) - (sur.get_width ()/2),
+		      view->get_y_offset () + 
 		      int(pos.y) - (sur.get_height ()/2),
 		      frame);
-      turret->draw ();
+      turret->draw (view);
 
-      energie.draw (pos.x, pos.y - 40);
+      energie.draw (view, 
+		    view->get_x_offset () + pos.x,
+		    view->get_y_offset () + pos.y - 40);
     }
 }
 
@@ -206,6 +214,15 @@ Tank::collide (Mine*)
 {
   energie -= 25;
 }
+
+void 
+Tank::collide (CL_Vector force)
+{
+  energie -= int(force.norm ());
+  
+  std::cout << "Tank: Got force: " << force.norm () << std::endl;
+}
+
 
 // EOF //
 

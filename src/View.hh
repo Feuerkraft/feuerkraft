@@ -1,4 +1,4 @@
-//  $Id: Energie.hh,v 1.3 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: View.hh,v 1.1 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,42 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef ENERGIE_HH
-#define ENERGIE_HH
+#ifndef VIEW_HH
+#define VIEW_HH
 
-class Energie
+#include "GameWorld.hh"
+
+class GameWorld;
+
+class View
 {
-private:
-  int max_energie;
-  int energie;
-  unsigned int last_change;
+protected:
+  GameWorld* world;
+  int x1, y1;
+  int x2, y2;
+  int x_offset, y_offset;
 
 public:
-  Energie (int arg_energie);
+  View (GameWorld* world, int x1, int y1, int x2, int y2,
+	int x_offset = 0, int y_offset = 0);
+  virtual ~View ();
 
-  void draw (View* view, int x_pos, int y_pos);
-  operator int () { return energie; }
-
-  void operator--() { 
-    --energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator++() {
-    ++energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator+=(int i) { 
-    energie += i; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator-=(int i) { 
-    energie -= i; 
-    last_change = CL_System::get_time ();
-  }
-
+  void draw ();
+  virtual void update ();
+  int get_x_offset ();
+  int get_y_offset ();
+  int get_x1 ();
+  int get_x2 ();
+  int get_y1 ();
+  int get_y2 ();
 };
 
 #endif

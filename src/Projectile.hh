@@ -1,4 +1,4 @@
-//  $Id: Projectile.hh,v 1.3 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Projectile.hh,v 1.4 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@ public:
   virtual ~Projectile ();
 
   virtual CL_Vector get_pos () { return pos; }
-  virtual void draw ();
+  virtual void draw (View* view);
   virtual void update (float);
   virtual bool removable ();
 

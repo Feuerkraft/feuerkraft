@@ -26,7 +26,7 @@ public:
   Turret (Tank*, int reloading_speed, std::string, std::string);
   ~Turret ();
 
-  void draw ();
+  void draw (View* view);
   void update (float);
 
   void increase_angle (float delta);

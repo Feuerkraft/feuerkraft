@@ -1,4 +1,4 @@
-//  $Id: Explosion.hh,v 1.4 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Explosion.hh,v 1.5 2001/02/24 20:32:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ public:
   Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL);
   void init ();
 
-  void draw ();
+  void draw (View* view);
   void update (float);
   bool removable ();
   int get_z_pos ();

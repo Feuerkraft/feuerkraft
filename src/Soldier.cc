@@ -1,4 +1,4 @@
-//  $Id: Soldier.cc,v 1.2 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Soldier.cc,v 1.3 2001/02/24 20:32:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,9 +31,10 @@ Soldier::~Soldier ()
 }
 
 void 
-Soldier::draw ()
+Soldier::draw (View* view)
 {
-  sur.put_screen (pos.x, pos.y, frame);
+  sur.put_screen (view->get_x_offset () + pos.x, 
+		  view->get_y_offset () + pos.y, frame);
 }
 
 void 

@@ -1,4 +1,4 @@
-//  $Id: Shockwave.cc,v 1.2 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Shockwave.cc,v 1.3 2001/02/24 20:32:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,7 +37,7 @@ T mid (T min, T some, T max)
 }
 
 void 
-Shockwave::draw ()
+Shockwave::draw (View* view)
 {
   float size = counter / 15.0 + 0.5;
   int frame = mid(0, int((counter)/ (30/4.0)), 3);

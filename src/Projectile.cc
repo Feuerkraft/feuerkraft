@@ -1,4 +1,4 @@
-//  $Id: Projectile.cc,v 1.4 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Projectile.cc,v 1.5 2001/02/24 20:32:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,10 +39,12 @@ Projectile::~Projectile ()
 }
 
 void 
-Projectile::draw ()
+Projectile::draw (View* view)
 {
   if (lifetime > 0) {
-    sur.put_screen (pos.x - sur.get_width ()/2,
+    sur.put_screen (view->get_x_offset () + 
+		    pos.x - sur.get_width ()/2,
+		    view->get_y_offset () + 
 		    pos.y - sur.get_height ()/2);
   }
 

@@ -1,4 +1,4 @@
-//  $Id: Helicopter.hh,v 1.3 2001/02/21 07:54:33 grumbel Exp $
+//  $Id: Helicopter.hh,v 1.4 2001/02/24 20:32:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,10 +25,10 @@
 #include "Collideable.hh"
 #include "Controllable.hh"
 #include "Energie.hh"
+#include "Vehicle.hh"
 
-class Helicopter : public GameObj,
-		   public Controllable,
-		   public Collideable
+class Helicopter : public Controllable,
+		   public Vehicle
 {
 private:
   CL_Surface rotor;
@@ -48,7 +48,7 @@ public:
   Helicopter (CL_Vector);
   ~Helicopter ();
 
-  void draw ();
+  void draw (View* view);
   void update (float);
   int get_z_pos () { return destroyed ? 0 : 150; }
 

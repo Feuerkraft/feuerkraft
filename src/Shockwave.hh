@@ -1,4 +1,4 @@
-//  $Id: Shockwave.hh,v 1.2 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Shockwave.hh,v 1.3 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ public:
   Shockwave (CL_Vector arg_pos);
   virtual ~Shockwave ();
 
-  void draw ();
+  void draw (View* view);
   void update (float);
   int  get_z_pos () { return -1; }
 };

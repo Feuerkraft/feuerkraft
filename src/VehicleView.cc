@@ -1,5 +1,5 @@
-//  $Id: Energie.hh,v 1.3 2001/02/24 20:32:12 grumbel Exp $
-// 
+//  $Id: VehicleView.cc,v 1.1 2001/02/24 20:32:13 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,49 +12,34 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef ENERGIE_HH
-#define ENERGIE_HH
+#include "VehicleView.hh"
 
-class Energie
+VehicleView::VehicleView (GameWorld* world,
+			  Vehicle* arg_vehicle, 
+			  int x1, int y1, int x2, int y2) :
+  View (world, x1, y1, x2, y2,
+	-arg_vehicle->get_pos ().x, -arg_vehicle->get_pos ().y),
+  vehicle (arg_vehicle)
 {
-private:
-  int max_energie;
-  int energie;
-  unsigned int last_change;
+  
+}
 
-public:
-  Energie (int arg_energie);
+VehicleView::~VehicleView ()
+{
+}
 
-  void draw (View* view, int x_pos, int y_pos);
-  operator int () { return energie; }
+void 
+VehicleView::update ()
+{
+  x_offset = int(vehicle->get_pos ().x);
+  y_offset = int(vehicle->get_pos ().y);
 
-  void operator--() { 
-    --energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator++() {
-    ++energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator+=(int i) { 
-    energie += i; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator-=(int i) { 
-    energie -= i; 
-    last_change = CL_System::get_time ();
-  }
-
-};
-
-#endif
+  std::cout << "Offset: " << x_offset << " " << y_offset << std::endl;
+}
 
 /* EOF */

@@ -10,11 +10,15 @@
 #include "KeyboardController.hh"
 #include "JoystickController.hh"
 #include "Tank.hh"
+#include "Jeep.hh"
 #include "Tree.hh"
+#include "Flag.hh"
 #include "Helicopter.hh"
 #include "Turret.hh"
 #include "Tower.hh"
+#include "Playfield.hh"
 #include "Soldier.hh"
+#include "VehicleView.hh"
 
 CL_ResourceManager* resources;
 
@@ -23,18 +27,13 @@ class Feuerkraft : public CL_ClanApplication
 public:
   virtual char *get_title() { return "Surface application"; }
 	
-  CL_Surface load_surface()
-  {
-    return CL_Surface(new CL_PCXProvider("survivor.pcx", NULL), true);
-  }
-	
   virtual int main(int argc, char** argv)
   {
     try
       {
 	srand (time (0));
 
-	float sec_fraction = 33.0;
+	float sec_fraction = 30.0f;
 	if (argc == 3)
 	  {
 	    if (strcmp (argv[1], "--speed") == 0
@@ -48,15 +47,15 @@ public:
 	      }
 	  }
 
-		std::cout << "New Fraction Time: " << sec_fraction << std::endl;
-
+	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
+		
 	CL_SetupCore::init();
 	CL_SetupCore::init_display();
 	CL_SetupPNG::init ();
 
 	// Set mode: 320x200 16 bpp
 	CL_Display::set_videomode(800, 600, 16, false);
-	CL_Display::clear_display (0.7f, 0.7f, 0.6f);
+	CL_Display::clear_display ();
 	CL_Display::flip_display ();
 		
 	resources =  CL_ResourceManager::create("data/feuerkraft.scr", false);
@@ -66,13 +65,19 @@ public:
 	Tank* tank1 = new Tank(5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 	Helicopter* heli = new Helicopter (CL_Vector (320, 200));
+	Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
+	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
-	JoystickController controller(heli);
-	KeyboardController kcontroller (tank2);
-
+	JoystickController controller(tank2);
+	KeyboardController kcontroller (jeep);
+	
+	world.add (jeep);
 	world.add (heli);
+	world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
+	world.add (new Playfield ());
+	world.add (new Flag (CL_Vector(200.0f, 200.f)));
 	world.add (new Tower (400.0, 200.0));
 	world.add (new Tower (600.0, 400.0));
 	world.add (new Tower (600.0, 100.0));
@@ -94,6 +99,12 @@ public:
 
 	int loops = 0;
 	float deltas = 0.0;
+
+	VehicleView view1 (&world, heli, 0, 0, 399, 299);
+	VehicleView view2 (&world, tank1, 400, 300, 800, 600);
+	VehicleView view3 (&world, tank2, 0, 300, 399, 600);
+	VehicleView view4 (&world, jeep, 400, 0, 800, 299);
+	
 	
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
@@ -105,9 +116,17 @@ public:
 	    deltas += delta;
 	    ++loops;
 
-	    CL_Display::clear_display (0.7f, 0.7f, 0.6f);
+	    //CL_Display::clear_display ();
 	    
-	    world.draw ();
+	    view1.draw ();
+	    view2.draw ();
+	    view3.draw ();
+	    view4.draw ();
+
+	    view1.update ();
+	    view2.update ();
+	    view3.update ();
+	    view4.update ();
 	    
 	    controller.update (delta);
 	    kcontroller.update (delta);

@@ -1,4 +1,4 @@
-//  $Id: Tower.hh,v 1.5 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Jeep.hh,v 1.1 2001/02/24 20:32:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,52 +17,57 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef TOWER_HH
-#define TOWER_HH
+#ifndef JEEP_HH
+#define JEEP_HH
 
 #include <ClanLib/core.h>
-#include "GameObj.hh"
+#include "Mine.hh"
+#include "Vehicle.hh"
 #include "Controllable.hh"
-#include "Collideable.hh"
 #include "Energie.hh"
+#include "GameObj.hh"
+#include "Flag.hh"
 
-extern CL_ResourceManager* resources;
-
-class Tower : public Controllable,
-	      public Collideable
+class Jeep : public Controllable,
+	     public Vehicle
 {
 private:
-  CL_Surface towerbase;
-  CL_Surface towerdamaged;
-  CL_Surface towerdestroyed;
-
-  CL_Surface turret;
-  
-  CL_Vector pos;
-  bool fireing;
-  int angle;
+  CL_Surface jeep;
   Energie energie;
-  bool destroyed;
-
+  float velocity;
+  float angle;
+  Flag* flag;
 public:
-  Tower (float, float);
-  virtual ~Tower () 
-  {
-  }
+  Jeep (CL_Vector arg_pos);
+  virtual ~Jeep () {}
+  
+  void update (float delta);
+  void draw (View* view);
 
-  virtual void draw (View* view);
-  virtual void update (float);
+  // Controllable
+  virtual float get_turn_speed () { return 0.0; }
 
+  virtual void turn_left (float delta);
+  virtual void turn_right (float delta); 
+
+  virtual void turn_left2 (float delta);
+  virtual void turn_right2 (float delta);
+
+  virtual void increase_velocity (float delta);
+  virtual void decrease_velocity (float delta);
   virtual void start_fire ();
   virtual void stop_fire ();
 
-  virtual void turn_left (float delta) {}
-  virtual void turn_right (float delta) {}
+  virtual void drop_mine ();
 
-  virtual float get_turn_speed () { return 0.0; }
-  
   virtual bool is_colliding (CL_Vector obj_pos);
-  virtual void collide (Projectile* projectile);
+  virtual void collide (Mine*);
+  virtual void collide (Projectile*);
+  virtual void collide (CL_Vector force);
+
+  virtual int get_z_pos () { return 50; }
+  
+  void add_flag (Flag* flag);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: Tree.cc,v 1.1 2001/02/17 22:41:37 grumbel Exp $
+//  $Id: Tree.cc,v 1.2 2001/02/24 20:32:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,9 +30,11 @@ Tree::~Tree ()
 }
   
 void 
-Tree::draw ()
+Tree::draw (View* view)
 {
-  sur.put_screen (pos.x - sur.get_width ()/2, 
+  sur.put_screen (view->get_x_offset () + 
+		  pos.x - sur.get_width ()/2, 
+		  view->get_y_offset () + 
 		  pos.y - sur.get_height ()/2);
 }
 

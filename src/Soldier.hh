@@ -1,4 +1,4 @@
-//  $Id: Soldier.hh,v 1.2 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Soldier.hh,v 1.3 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,7 +36,7 @@ public:
   Soldier (const CL_Vector& arg_pos);
   ~Soldier ();
 
-  void draw ();
+  void draw (View* view);
   void update (float);
 };
 

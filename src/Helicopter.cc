@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.4 2001/02/21 07:54:33 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.5 2001/02/24 20:32:12 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,7 @@ Helicopter::Helicopter (CL_Vector arg_pos) :
   angle (0.0),
   strafe (0.0),
   fireing (false),
+  reloading (0),
   energie (100),
   destroyed (false)
 {
@@ -42,25 +43,31 @@ Helicopter::~Helicopter ()
 }
 
 void 
-Helicopter::draw ()
+Helicopter::draw (View* view)
 {
   if (!destroyed)
     {
       const float circle = 6.2831854f;
       int frame = (int(fmod(angle, circle) / circle * heli.get_num_frames ()) + 16) % 16;
-      //std::cout << "angle: " << angle << std::endl;
   
-      heli.put_screen (pos.x - heli.get_width ()/2,
+      heli.put_screen (view->get_x_offset () + 
+		       pos.x - heli.get_width ()/2,
+		       view->get_y_offset () + 
 		       pos.y - heli.get_height ()/2,
 		       frame);
-      rotor.put_screen (pos.x - rotor.get_width ()/2,
+
+      rotor.put_screen (view->get_x_offset () + 
+			pos.x - rotor.get_width ()/2,
+			view->get_y_offset () + 
 			pos.y - rotor.get_height ()/2,
 			(rotor_count = (rotor_count + 1) % 2));
-      energie.draw (pos.x, pos.y - 40);
+      energie.draw (view, pos.x, pos.y - 40);
     }
   else
     {
-      helidestroyed.put_screen (pos.x - helidestroyed.get_width ()/2,
+      helidestroyed.put_screen (view->get_x_offset () + 
+				pos.x - helidestroyed.get_width ()/2,
+				view->get_y_offset () + 
 				pos.y - helidestroyed.get_height ()/2);
     }
 }
@@ -91,6 +98,8 @@ Helicopter::update (float delta)
 				  dir));
       reloading = 4;
     }
+
+  //std::cout << "Fireing: " << fireing << " " << reloading << std::endl;
 
   if (reloading)
     --reloading;

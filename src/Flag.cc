@@ -1,5 +1,5 @@
-//  $Id: Energie.hh,v 1.3 2001/02/24 20:32:12 grumbel Exp $
-// 
+//  $Id: Flag.cc,v 1.1 2001/02/24 20:32:12 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,49 +12,46 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef ENERGIE_HH
-#define ENERGIE_HH
+#include "Jeep.hh"
+#include "Flag.hh"
 
-class Energie
+extern CL_ResourceManager* resources;
+
+Flag::Flag (CL_Vector arg_pos) :
+  sur ("feuerkraft/blueflag", resources),
+  pos (arg_pos)
 {
-private:
-  int max_energie;
-  int energie;
-  unsigned int last_change;
+}
 
-public:
-  Energie (int arg_energie);
+Flag::~Flag ()
+{
+}
 
-  void draw (View* view, int x_pos, int y_pos);
-  operator int () { return energie; }
+void 
+Flag::draw (View* view)
+{
+  sur.put_screen (pos.x - 24,
+		  pos.y - 3);
+}
 
-  void operator--() { 
-    --energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator++() {
-    ++energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator+=(int i) { 
-    energie += i; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator-=(int i) { 
-    energie -= i; 
-    last_change = CL_System::get_time ();
-  }
-
-};
-
-#endif
+void
+Flag::update (float delta)
+{
+  for (std::list<boost::shared_ptr<GameObj> >::iterator 
+	 j = world->get_objects ().begin ();
+       j != world->get_objects ().end (); ++j)
+    {
+      Jeep* jeep = dynamic_cast<Jeep*>(j->get ());
+      if (jeep && (pos - jeep->get_pos ()).norm () < 20.0f)
+	{
+	  jeep->add_flag (this);
+	}
+    }
+}
 
 /* EOF */

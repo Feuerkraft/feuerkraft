@@ -1,4 +1,4 @@
-//  $Id: Tree.hh,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: Tree.hh,v 1.3 2001/02/24 20:32:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ public:
   Tree (CL_Vector arg_pos, std::string name);
   ~Tree ();
   
-  void draw ();
+  void draw (View* view);
   int get_z_pos () { return 100; }
 };
 

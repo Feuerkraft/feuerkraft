@@ -1,4 +1,4 @@
-//  $Id: Mine.cc,v 1.3 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Mine.cc,v 1.4 2001/02/24 20:32:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,10 +42,10 @@ Mine::update (float delta)
 	     j = world->get_objects ().begin ();
 	   j != world->get_objects ().end (); ++j)
 	{
-	  Tank* tank = dynamic_cast<Tank*>(j->get());
-	  if (tank && (tank->get_pos () - get_pos ()).norm () < 30.0)
+	  Vehicle* vehicle = dynamic_cast<Vehicle*>(j->get());
+
+	  if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 30.0f)
 	    {
-	      tank->collide (this);
 	      detonate ();
 	    }
 	}
@@ -59,7 +59,7 @@ Mine::is_active ()
 }
 
 void 
-Mine::draw () 
+Mine::draw (View* view) 
 {
   if (!is_active ())
     {
@@ -76,6 +76,22 @@ Mine::draw ()
 void 
 Mine::detonate () 
 {
+  for (std::list<boost::shared_ptr<GameObj> >::iterator 
+	 j = world->get_objects ().begin ();
+       j != world->get_objects ().end (); ++j)
+    {
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(j->get());
+      
+      // If distance to the mine is smaller than 100 apply a force
+      if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 100.0)
+	{
+	  CL_Vector force(pos - vehicle->get_pos ());
+	  force = (100.0f) * (pos - vehicle->get_pos ()).norm ();
+	  vehicle->collide (force);
+	}
+    }
+
+
   world->add (boost::shared_ptr<GameObj>(new Explosion (pos, Explosion::MEDIUM)));
   remove ();
 }
