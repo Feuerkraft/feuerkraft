@@ -1,4 +1,4 @@
-//  $Id: resource_manager.hxx,v 1.2 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: resource_manager.hxx,v 1.3 2003/05/09 14:58:12 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <string>
 #include <ClanLib/Display/surface.h>
 #include <ClanLib/Display/sprite.h>
+#include <ClanLib/Display/font.h>
 
 class CL_Font;
 class CL_ResourceManager;
@@ -32,7 +33,6 @@ class ResourceManager
 {
 private:
   CL_ResourceManager* resource_manager;
-  CL_ResourceManager* resource_manager2;
 
 public:
   ResourceManager ();
@@ -41,8 +41,7 @@ public:
   /** Load a CL_Sprite */
   CL_Surface get_surface(const std::string& location);
   CL_Sprite  get_sprite(const std::string& location);
-  CL_Sprite* get_sprite_ptr(const std::string& location);
-  CL_Font*   get_font(const std::string& location);
+  CL_Font    get_font(const std::string& location);
 };
 
 //extern CL_SpriteProviderStorage* storage;

@@ -44,6 +44,10 @@
       <image name="image1" file="data/images/house.png" />
     </sprite>
 
+    <sprite name="garage">
+      <image name="image1" file="data/images/garage.png" />
+    </sprite>
+
     <sprite name="house1">
       <image name="image1" file="data/images/house1.png" />
     </sprite>
