@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: View.hxx,v 1.3 2002/03/18 20:36:15 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,7 @@
 #include "boost/dummy_ptr.hpp"
 #include "GuiObj.hxx"
 #include "GameWorld.hxx"
+#include "ViewProperties.hxx"
 
 class Sprite;
 class GameWorld;
@@ -39,6 +40,7 @@ protected:
   int x_offset, y_offset;
   float zoom;
   float rotation;
+  ViewProperty properties;
 public:
   View (boost::dummy_ptr<GameWorld> world,
 	int x1, int y1, int x2, int y2,
@@ -79,6 +81,9 @@ public:
 		   float r, float g, float b, float a = 1.0f);
   void draw_circle (int x_pos, int y_pos, int radius,
 		   float r, float g, float b, float a = 1.0f);
+
+  bool get_property (ViewProperty p);
+  void set_property (ViewProperty p);
 };
 
 #endif

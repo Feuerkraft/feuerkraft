@@ -4,22 +4,21 @@
 #include "Turret.hxx"
 
 extern CL_ResourceManager* resources;
+extern SpriteProviderStorage* storage;
 
 const float circle = 6.2831854f;
 
 Turret::Turret (boost::dummy_ptr<GameWorld>  w, 
 		Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
   : GameObj (w),
+    fire_sur (storage->get (fire.c_str ())),
+    sur (storage->get (surface.c_str ())),
+    shadow (storage->get ("feuerkraft/turret2_shadow")),
     fireing (false),
     reloading (0),
     reloading_speed (r_speed)
 {
   tank = arg_tank;
-
-  storage.add (new SpriteProvider (surface.c_str (), resources));
-  storage.add (new SpriteProvider (fire.c_str (), resources));
-  sur = storage.create (surface.c_str ());
-  fire_sur = storage.create (fire.c_str ());
 }
 
 Turret::~Turret ()
@@ -31,6 +30,11 @@ Turret::draw (View* view)
 {
   float absolute_angle = tank->get_angle () + angle;
   
+  view->draw(shadow, tank->get_pos () + CL_Vector (10,10), absolute_angle);
+  view->draw(shadow, tank->get_pos () + CL_Vector (15,15), absolute_angle);
+  view->draw(shadow, tank->get_pos () + CL_Vector (20,20), absolute_angle);
+  view->draw(shadow, tank->get_pos () + CL_Vector (25,25), absolute_angle);
+
   view->draw (sur, tank->get_pos (), absolute_angle);
 
   if (fireing && reloading == 0 && tank->ammo > 0.0)

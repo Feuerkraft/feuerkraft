@@ -12,6 +12,10 @@ section feuerkraft {
 		frame1 = images/tank2.png (type = surface);
 	}
 
+	section tank2_shadow {
+		frame1 = images/tank2_shadow.png (type = surface);
+	}
+
 	section helicopter {
 		frame1 = images/helicopter.png (type = surface);
 	}
@@ -22,6 +26,10 @@ section feuerkraft {
 
 	section turret {
 		frame1 = images/turret.png (type=surface);
+	}
+
+	section turret2_shadow {
+		frame1 = images/turret2_shadow.png (type=surface);
 	}
 
 	section radar_line {

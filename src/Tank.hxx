@@ -28,8 +28,8 @@ private:
   CL_Surface smod;
   CL_Surface sur_destroyed;
 
-  SpriteProviderStorage storage;
-  Sprite* sur;
+  Sprite sur;
+  Sprite shadow;
 
   Turret* turret;
 

@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.6 2002/03/18 10:46:32 sphair Exp $
+//  $Id: View.cxx,v 1.7 2002/03/18 20:36:15 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -201,6 +201,18 @@ View::draw_circle (int x_pos, int y_pos, int radius,
       current = next;
       next = next.rotate (pi/8, CL_Vector (0, 0, 1.0f));
     }
+}
+
+bool
+View::get_property (ViewProperty p)
+{
+  return properties & p;
+}
+
+void
+View::set_property (ViewProperty p)
+{
+  properties |= p;
 }
 
 /* EOF */

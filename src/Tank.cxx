@@ -10,6 +10,7 @@
 #include "particles/GrassParticle.hxx"
 
 const float circle = 6.2831854f;
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
 Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
@@ -22,6 +23,8 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
     inc_step (0),
     smod ("feuerkraft/smod", resources),
     sur_destroyed ("feuerkraft/tankdestroyed", resources),
+    sur (storage->get (tank.c_str ())),
+    shadow (storage->get ("feuerkraft/tank2_shadow")),
     turret (NULL),
     smod_step (0),
     mine_reload_time (0),
@@ -30,9 +33,6 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 {
   turret = new Turret(world, this, reloading_speed, str_turret, fire);
   pos = arg_pos;
-
-  storage.add (new SpriteProvider (tank.c_str (), resources));
-  sur = storage.create (tank.c_str ());
 
   particle_release = 0.0f;
 }
@@ -77,9 +77,11 @@ Tank::draw (View* view)
 		  view->get_x_offset () + pos.y);
 		  glEnd ();*/
 
-      sur->draw(int(view->get_x_offset () + pos.x),
-		int(view->get_y_offset () + pos.y),
-		angle/(circle/2.0)*180);
+      view->draw(shadow, pos + CL_Vector (0,0), angle);
+      view->draw(shadow, pos + CL_Vector (5,5), angle);
+      view->draw(shadow, pos + CL_Vector (10,10), angle);
+      view->draw(shadow, pos + CL_Vector (15,15), angle);
+      view->draw(sur, pos, angle);
 
       turret->draw (view);
 

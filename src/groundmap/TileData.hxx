@@ -1,4 +1,4 @@
-//  $Id: TileData.hxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
+//  $Id: TileData.hxx,v 1.3 2002/03/18 20:36:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,9 @@
 
 class Tile;
 
-struct TileData
+class TileData
 {
+public:
   virtual Tile* create_Tile () =0;
 };
 

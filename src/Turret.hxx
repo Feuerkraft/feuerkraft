@@ -12,12 +12,9 @@ class Turret : public GameObj
 private:
   boost::dummy_ptr<Tank> tank;
 
-  //CL_Surface sur;
-  //CL_Surface fire_sur;
-
-  SpriteProviderStorage storage;
-  Sprite* fire_sur;
-  Sprite* sur;
+  Sprite fire_sur;
+  Sprite sur;
+  Sprite shadow;
 
   // The angle of the turent relative to the tank in radians
   float angle;
