@@ -25,6 +25,7 @@
 #include "../command_line_arguments.hxx"
 #include "input_manager_joystick.hxx"
 #include "input_manager_keyboard.hxx"
+#include "input_manager_custom.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
 
@@ -44,6 +45,11 @@ InputManager::init(InputManagerImpl* arg_impl)
     { 
       impl = arg_impl;
     }
+  else
+    {
+      impl = new InputManagerCustom();
+    }
+  /*
   else if (args->joystick != -1)
     {
       if (args->joystick < CL_Joystick::get_device_count())
@@ -64,6 +70,7 @@ InputManager::init(InputManagerImpl* arg_impl)
       std::cout << "InputManager: Using keyboard" << std::endl;
       impl = new InputManagerKeyboard();
     }
+  */
 }
 
 void 

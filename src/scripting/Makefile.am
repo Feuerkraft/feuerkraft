@@ -7,6 +7,8 @@ command_source = \
  ai_vehicle_commands.hxx \
  building_commands.cxx   \
  building_commands.hxx   \
+ clanlib_commands.hxx    \
+ clanlib_commands.cxx    \
  comm_commands.cxx       \
  comm_commands.hxx       \
  display_commands.hxx    \

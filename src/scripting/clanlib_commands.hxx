@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.hxx,v 1.5 2003/10/31 23:24:41 grumbel Exp $
+//  $Id$
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,36 +17,14 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_KEYBOARD_HXX
-#define HEADER_INPUT_MANAGER_KEYBOARD_HXX
+#ifndef HEADER_CLANLIB_COMMANDS_HXX
+#define HEADER_CLANLIB_COMMANDS_HXX
 
-#include <ClanLib/Signals/slot.h>
-#include <ClanLib/Signals/slot_container.h>
-#include "controller.hxx"
-#include "input_manager_impl.hxx"
+#include <guile/gh.h>
 
-class CL_InputEvent;
-
-/** */
-class InputManagerKeyboard : public InputManagerImpl
-{
-private:
-  CL_SlotContainer slots;
-  
-  void on_key_event(const CL_InputEvent& event);
-
-  void add_axis_event(AxisName name, float pos);
-  void add_button_event(ButtonName name, bool down);
-
-public:
-  InputManagerKeyboard();
-  virtual ~InputManagerKeyboard();
-
-  void update(float delta);
-private:
-  InputManagerKeyboard (const InputManagerKeyboard&);
-  InputManagerKeyboard& operator= (const InputManagerKeyboard&);
-};
+SCM  clanlib_get_post_keep_alive_func();
+void clanlib_set_post_keep_alive_func(SCM func);
+void clanlib_call_post_keep_alive_func();
 
 #endif
 

@@ -46,6 +46,9 @@ public:
   void  set_axis_state(AxisName name, float pos);
   void  set_button_state(ButtonName name, bool down);
 
+  void add_axis_event(AxisName name, float pos);
+  void add_button_event(ButtonName name, bool down);
+
   InputEventLst get_events() const;
 };
 

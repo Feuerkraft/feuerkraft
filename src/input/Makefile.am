@@ -7,6 +7,9 @@ libfeuerkraft_input_a_SOURCES = \
   input_manager.hxx \
   input_manager.cxx \
   input_manager_impl.hxx \
+  input_manager_impl.cxx \
+  input_manager_custom.hxx \
+  input_manager_custom.cxx \
   input_manager_joystick.hxx \
   input_manager_joystick.cxx \
   input_manager_keyboard.hxx \

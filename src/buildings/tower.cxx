@@ -47,7 +47,7 @@ Tower::Tower(const AList& lst)
 
   steering = 0;
 
-  properties->register_float("orientation", &orientation);
+  Building::properties->register_float("orientation", &orientation);
 }
   
 Tower::~Tower ()

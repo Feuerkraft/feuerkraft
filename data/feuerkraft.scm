@@ -371,10 +371,14 @@
 
 (input-register-callback "key_f2"
                          (lambda ()
-                           (input-use-keyboard)))
+                           (clanlib-set-post-keep-alive-func (lambda ()
+                                                               (display "Updating to keyboard\n")
+                                                               (input-use-keyboard)))))
 (input-register-callback "key_f3"
                          (lambda ()
-                           (input-use-joystick)))
+                           (clanlib-set-post-keep-alive-func (lambda ()
+                                                               (display "Updating to joystick\n")
+                                                               (input-use-joystick)))))
 
 (input-register-callback "mouse_left"
                          (lambda ()

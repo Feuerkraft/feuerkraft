@@ -49,7 +49,7 @@ TowerAI::update(float delta)
       
       //      float angle = Math::normalize_angle(tower->get_orientation() - diff.get_orientation());
       
-      tower->get_properties()->set_float("orientation", diff.get_orientation() + Math::pi);
+      tower->Building::get_properties()->set_float("orientation", diff.get_orientation() + Math::pi);
 
       /*if (angle > 0)        controller.set_axis_state(ORIENTATION_AXIS, -1.0f);
       else

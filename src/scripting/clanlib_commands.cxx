@@ -1,5 +1,5 @@
-//  $Id: input_manager_clanlib.hxx,v 1.5 2003/10/31 23:24:41 grumbel Exp $
-// 
+//  $Id$
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,42 +12,38 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_KEYBOARD_HXX
-#define HEADER_INPUT_MANAGER_KEYBOARD_HXX
+#include "clanlib_commands.hxx"
 
-#include <ClanLib/Signals/slot.h>
-#include <ClanLib/Signals/slot_container.h>
-#include "controller.hxx"
-#include "input_manager_impl.hxx"
+SCM post_keep_alive_func = SCM_BOOL_F;
 
-class CL_InputEvent;
-
-/** */
-class InputManagerKeyboard : public InputManagerImpl
+SCM  clanlib_get_post_keep_alive_func()
 {
-private:
-  CL_SlotContainer slots;
-  
-  void on_key_event(const CL_InputEvent& event);
+  return post_keep_alive_func;
+}
 
-  void add_axis_event(AxisName name, float pos);
-  void add_button_event(ButtonName name, bool down);
+void clanlib_set_post_keep_alive_func(SCM func)
+{
+  if (post_keep_alive_func != func)
+    {
+      if (post_keep_alive_func != SCM_BOOL_F)
+        scm_gc_unprotect_object(post_keep_alive_func);
 
-public:
-  InputManagerKeyboard();
-  virtual ~InputManagerKeyboard();
+      post_keep_alive_func = func;
+      scm_gc_protect_object(post_keep_alive_func);
+    }  
+}
 
-  void update(float delta);
-private:
-  InputManagerKeyboard (const InputManagerKeyboard&);
-  InputManagerKeyboard& operator= (const InputManagerKeyboard&);
-};
-
-#endif
+void clanlib_call_post_keep_alive_func()
+{
+  if (post_keep_alive_func != SCM_BOOL_F)
+    {
+      gh_call0(post_keep_alive_func);
+    }
+}
 
 /* EOF */

@@ -34,9 +34,6 @@ class InputManagerJoystick : public InputManagerImpl
 private:
   CL_InputDevice dev;
 
-  Controller controller;
-  InputEventLst events;
-
   CL_SlotContainer slots;
   
   void on_axis_move(const CL_InputEvent& event);
@@ -51,9 +48,7 @@ public:
   virtual ~InputManagerJoystick();
 
   void update(float delta);
-  InputEventLst get_events();
-  Controller get_controller();
-  void clear();
+
 private:
   InputManagerJoystick (const InputManagerJoystick&);
   InputManagerJoystick& operator= (const InputManagerJoystick&);

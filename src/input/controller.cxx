@@ -98,6 +98,26 @@ Controller::set_button_state(ButtonName name, bool down)
     }  
 }
 
+void
+Controller::add_axis_event(AxisName name, float pos)
+{
+  InputEvent event;
+  event.type = AXIS_EVENT;
+  event.axis.name = name;
+  event.axis.pos  = pos;
+  events.push_back(event);
+}
+
+void
+Controller::add_button_event(ButtonName name, bool down)
+{
+  InputEvent event;
+  event.type = BUTTON_EVENT;
+  event.button.name = name;
+  event.button.down = down;
+  events.push_back(event);
+}
+
 InputEventLst
 Controller::get_events() const
 {

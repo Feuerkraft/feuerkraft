@@ -122,24 +122,4 @@ InputManagerJoystick::update(float delta)
                               dev.get_keycode(3));
 }
 
-InputEventLst
-InputManagerJoystick::get_events()
-{
-  InputEventLst old_events = events;
-  return old_events;
-}
-
-Controller
-InputManagerJoystick::get_controller()
-{
-  controller.events = events;
-  return controller;
-}
-
-void
-InputManagerJoystick::clear()
-{
-  events.clear();
-}
-
 /* EOF */

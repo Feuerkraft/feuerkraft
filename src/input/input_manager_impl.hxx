@@ -20,18 +20,28 @@
 #ifndef HEADER_INPUT_MANAGER_IMPL_HXX
 #define HEADER_INPUT_MANAGER_IMPL_HXX
 
+#include "controller.hxx"
 #include "input_event.hxx"
 
 /** */
 class InputManagerImpl
 {
+protected:
+  Controller controller;
+  InputEventLst events;
+
 public:
   InputManagerImpl() {}
+  virtual ~InputManagerImpl() {}
 
   virtual void update(float delta) =0;
-  virtual InputEventLst get_events() =0;
-  virtual Controller get_controller() =0;
-  virtual void clear() =0;
+  
+  InputEventLst get_events();
+  Controller get_controller();
+  void clear();
+
+  void add_axis_event(AxisName name, float pos);
+  void add_button_event(ButtonName name, bool down);
 private:
   InputManagerImpl(const InputManagerImpl&);
   InputManagerImpl& operator=(const InputManagerImpl&);

@@ -17,6 +17,7 @@
 #include "vehicle_commands.hxx"
 #include "game_commands.hxx"
 #include "debug_commands.hxx"
+#include "clanlib_commands.hxx"
 %}
 
 %include "ai_vehicle_commands.hxx"
@@ -36,5 +37,6 @@
 %include "vehicle_commands.hxx"
 %include "game_commands.hxx"
 %include "debug_commands.hxx"
+%include "clanlib_commands.hxx"
 
 /* EOF */

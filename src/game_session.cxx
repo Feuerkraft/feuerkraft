@@ -43,6 +43,7 @@
 #include "view.hxx"
 #include "display_manager.hxx"
 #include "buildings/building_type_manager.hxx"
+#include "scripting/clanlib_commands.hxx"
 #include "collision_manager.hxx"
 #include "sexpr_world_reader.hxx"
 #include "guile.hxx"
@@ -234,6 +235,7 @@ GameSession::update()
   // Exits the loop if ClanLib requests shutdown - for instance if
   // someone closes the window.
   CL_System::keep_alive();
+  clanlib_call_post_keep_alive_func();
   InputManager::update(delta);
 
   // FIXME: Add an input dispatcher here, depending on the

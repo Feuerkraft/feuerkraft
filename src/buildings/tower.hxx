@@ -22,12 +22,14 @@
 
 #include <ClanLib/Display/sprite.h>
 #include "../energie.hxx"
+#include "../unit.hxx"
 #include "building.hxx"
 
 class Controller;
 class GameWorld;
 
-class Tower : public Building
+class Tower : public Building,
+              public Unit
 {
 private:
   CL_Sprite towerbase;

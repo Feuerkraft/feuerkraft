@@ -147,24 +147,4 @@ InputManagerKeyboard::update(float delta)
                               CL_Keyboard::get_keycode(CL_KEY_E));
 }
 
-InputEventLst
-InputManagerKeyboard::get_events()
-{
-  InputEventLst old_events = events;
-  return old_events;
-}
-
-Controller
-InputManagerKeyboard::get_controller()
-{
-  controller.events = events;
-  return controller;
-}
-
-void
-InputManagerKeyboard::clear()
-{
-  events.clear();
-}
-
 /* EOF */
