@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: view.hxx,v 1.4 2003/05/04 15:45:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -105,6 +105,11 @@ public:
 		   float r, float g, float b, float a = 1.0f);
   void draw_circle (int x_pos, int y_pos, int radius,
 		   float r, float g, float b, float a = 1.0f);
+
+  /** Draws an arc, starting from angle_start to angle_end in
+      counterclockwise direction. Angles are taken in radian */
+  void draw_arc (int x_pos, int y_pos, int radius, float angle_start, float angle_end,
+                 float r, float g, float b, float a = 1.0f);
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);

@@ -303,6 +303,14 @@ public:
 	    //start_screen.update (delta);
 
             segments.draw(&view);
+            view.draw_arc(560, 1245, 100, 0.0f, Math::pi_2,
+                          1.0f, .0f, .0f);
+
+            view.draw_arc(360, 1245, 100, Math::pi_2, Math::pi_2*3,
+                          1.0f, .0f, .0f);
+
+            view.draw_arc(360, 1345, 100, 2., Math::pi,
+                          .0f, .0f, 1.0f);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();

@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.2 2003/05/04 12:12:54 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.3 2003/05/04 15:45:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,17 +32,11 @@ private:
   enum { STRAIGHT, RADIAL };
 
   struct StraightSegment {
-    int type;
-    float length;
-
     float x1, y1; ///< start
     float x2, y2; ///< goal
   };
 
   struct RadialSegment {
-    int type;
-    float length;
-
     float x, y;        ///< position of the circle
     float radius;      ///< radius of the circle
     float start_angle; ///< start angle in radians
@@ -50,12 +44,14 @@ private:
     bool  turn_right;  ///< true if counterclockwise
   };
   
-  union Segment {
-    int type;     ///< type of the segment
+  struct Segment {
+    int   type;   ///< type of the segment
     float length; ///< length of the segment, calculated from the segment
-
-    struct RadialSegment   radial;
-    struct StraightSegment straight;
+    
+    union {
+      struct RadialSegment   radial;
+      struct StraightSegment straight;
+    } data;
   };
 
   typedef std::vector<Segment> Segments;

@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.5 2003/05/04 12:12:54 grumbel Exp $
+//  $Id: view.cxx,v 1.6 2003/05/04 15:45:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -179,21 +179,19 @@ void
 View::draw_rect (int x1, int y1, int x2, int y2, 
 		 float r, float g, float b, float a)
 {
-  //FIXME:Display2: frame support removed 
-  /*
+  CL_Color color(int(255*r), int(255*g), int(255*b), int(255*a));
   CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (), 
 			 x1 + get_x_offset (), y2 + get_y_offset (),
-			 r, g, b, a);
+			 color);
   CL_Display::draw_line (x2 + get_x_offset (), y1 + get_y_offset (), 
 			 x2 + get_x_offset (), y2 + get_y_offset (),
-			 r, g, b, a);
+			 color);
   CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (), 
 			 x2 + get_x_offset (), y1 + get_y_offset (),
-			 r, g, b, a);
+			 color);
   CL_Display::draw_line (x1 + get_x_offset (), y2 + get_y_offset (), 
 			 x2 + get_x_offset (), y2 + get_y_offset (),
-			 r, g, b, a);
-  */
+			 color);
 }
 
 void 
@@ -223,6 +221,39 @@ View::draw_circle (int x_pos, int y_pos, int radius,
       current = next;
       next = next.rotate (pi/float(steps), CL_Vector (0, 0, 1.0f));
     }
+}
+
+void
+View::draw_arc (int x_pos, int y_pos, int radius, float angle_start, float angle_stop,
+               float r, float g, float b, float a)
+{
+  const float steps = 16;
+  
+  float angle = angle_stop - angle_start;
+
+  float x = radius * cos(angle_start);
+  float y = radius * sin(angle_start);
+
+  float nx, ny;
+
+  for (int i = 1; i < steps; ++i)
+    {
+      nx = radius * cos(angle_start + i*angle/steps);
+      ny = radius * sin(angle_start + i*angle/steps);  
+
+      draw_line (int(x_pos + x), int(y_pos + y),
+		 int(x_pos + nx), int(y_pos + ny),
+		 r, g, b, a);
+
+      x = nx;
+      y = ny;
+    }
+
+  nx = radius * cos(angle_stop);
+  ny = radius * sin(angle_stop);
+  draw_line (int(x_pos + x), int(y_pos + y),
+             int(x_pos + nx), int(y_pos + ny),
+             r, g, b, a); 
 }
 
 bool

@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.2 2003/05/04 12:12:54 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.3 2003/05/04 15:45:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,12 +33,20 @@ LineSegments::calc_length(const Segment& segment)
 {
   switch(segment.type)
     {
-    case STRAIGHT:
-      return 0;
     case RADIAL:
-      float xlen = segment.straight.x2 - segment.straight.x1;
-      float ylen = segment.straight.y2 - segment.straight.y1;
-      return sqrt(xlen*xlen + ylen*ylen);
+      return 100.0f;
+      break;
+
+    case STRAIGHT:
+      {
+        float xlen = segment.data.straight.x2 - segment.data.straight.x1;
+        float ylen = segment.data.straight.y2 - segment.data.straight.y1;
+        return sqrt(xlen*xlen + ylen*ylen);
+      }
+      break;
+
+    default:
+      assert(false);
     }
   return 0;
 }
@@ -62,20 +70,24 @@ LineSegments::get_segment(float l)
 CL_Vector
 LineSegments::get_pos(float l)
 {
-  float len = 0.0f;
+  float len = 0.0f; 
   
-  Segments::iterator seg = segments.end();
-  for(Segments::iterator i = segments.begin(); i != segments.end(); ++i)
+  Segments::iterator seg = segments.begin();
+  while(seg != segments.end())
     {
-      if (len < l)
-        seg = i;
-      else
+      len += seg->length;
+      if (len > l)
         break;
+      ++seg;
     }
 
-  assert(seg != segments.end());
-  
-  return get_pos(*seg, seg->length - (len - l));
+  if (seg == segments.end())
+    {
+      std::cout << "trying to access bejoint last segment: " << l << " " << get_length() << std::endl;
+      return get_end_pos();
+    }
+  else
+    return get_pos(*seg, seg->length - (len - l));
 }
 
 float
@@ -88,8 +100,9 @@ LineSegments::get_end_orientation()
   switch (segment.type)
     {
     case STRAIGHT:
-      return atan2(segment.straight.y2 - segment.straight.y1,
-                   segment.straight.x2 - segment.straight.x1);
+      return atan2(segment.data.straight.y2 - segment.data.straight.y1,
+                   segment.data.straight.x2 - segment.data.straight.x1);
+      break;
 
     case RADIAL:
       
@@ -107,8 +120,8 @@ LineSegments::get_end_pos()
   switch (segment.type)
     {
     case STRAIGHT:
-      return CL_Vector(segment.straight.x2,
-                       segment.straight.y2);
+      return CL_Vector(segment.data.straight.x2,
+                       segment.data.straight.y2);
     case RADIAL:
       break;
     }
@@ -131,18 +144,36 @@ LineSegments::get_pos(const Segment& segment, float len)
 {
   switch(segment.type)
     {
-    case STRAIGHT:
-      return CL_Vector();
     case RADIAL:
       {
-        // relative position on the segment
-        float rel_pos = calc_length(segment);
-        float xlen = segment.straight.x2 - segment.straight.x1;
-        float ylen = segment.straight.y2 - segment.straight.y1;
+        const float& start_angle = segment.data.radial.start_angle;
+        const float& end_angle   = segment.data.radial.end_angle;
+        const float& radius      = segment.data.radial.radius;
+        
+        float angle;
+        if (segment.data.radial.turn_right)
+          angle = Math::normalize_angle(start_angle - end_angle);
+        else
+          angle = Math::normalize_angle(end_angle - start_angle);
 
-        return CL_Vector(segment.straight.x1 + (xlen * rel_pos),
-                         segment.straight.y1 + (ylen * rel_pos));
+        float relative = len / (segment.data.radial.radius * angle);
+        angle = angle * relative;
+        
+        return CL_Vector(segment.data.radial.x + cos(angle+start_angle)*radius,
+                         segment.data.radial.y + sin(angle+start_angle)*radius);
       }
+      break;
+    case STRAIGHT:
+      {
+        // relative position on the segment
+        float rel_pos = len/calc_length(segment);
+        float xlen    = segment.data.straight.x2 - segment.data.straight.x1;
+        float ylen    = segment.data.straight.y2 - segment.data.straight.y1;
+
+        return CL_Vector(segment.data.straight.x1 + (xlen * rel_pos),
+                         segment.data.straight.y1 + (ylen * rel_pos));
+      }
+      break;
     }
   return CL_Vector();
 }
@@ -152,13 +183,15 @@ LineSegments::add_straight_segment(float x1, float y1, float x2, float y2)
 {
   Segment segment;
 
-  segment.straight.x1 = x1;
-  segment.straight.y1 = y1;
-  segment.straight.x2 = x2;
-  segment.straight.y2 = y2;
+  segment.data.straight.x1 = x1;
+  segment.data.straight.y1 = y1;
+  segment.data.straight.x2 = x2;
+  segment.data.straight.y2 = y2;
 
-  segment.straight.type   = STRAIGHT;
-  segment.straight.length = calc_length(segment);
+  segment.type   = STRAIGHT;
+  segment.length = calc_length(segment);
+  
+  std::cout << "Line length: " << segment.length << std::endl;
 
   segments.push_back(segment);
 }
@@ -169,15 +202,15 @@ LineSegments::add_radial_segment(float x, float y, float radius,
 {
   Segment segment;
 
-  segment.radial.x = x;
-  segment.radial.y = y;
-  segment.radial.radius = radius;
-  segment.radial.start_angle = start_angle;
-  segment.radial.end_angle   = stop_angle;
-  segment.radial.turn_right  = turn_right;
+  segment.data.radial.x = x;
+  segment.data.radial.y = y;
+  segment.data.radial.radius = radius;
+  segment.data.radial.start_angle = start_angle;
+  segment.data.radial.end_angle   = stop_angle;
+  segment.data.radial.turn_right  = turn_right;
 
-  segment.radial.type   = RADIAL;
-  segment.radial.length = calc_length(segment);
+  segment.type   = RADIAL;
+  segment.length = calc_length(segment);
 
   segments.push_back(segment);
 }
@@ -208,11 +241,11 @@ bool LineSegments::calc_route(float start_x, float start_y,
   
   float phi = atan2(dy, dx);
 
-  angle_final = turn_right ? phi + theta : phi - theta;
+  angle_final = Math::normalize_angle(turn_right ? phi + theta : phi - theta);
   qx = px + radius * cos(angle_final);
   qy = py + radius * sin(angle_final);
   
-  angle_start = angle_to_p + Math::pi;
+  angle_start = Math::normalize_angle(angle_to_p + Math::pi);
 
   float total_curve = turn_right ? angle_start - angle_final : angle_final - angle_start;
 
@@ -257,7 +290,7 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
         }
       else
         {
-          add_radial_segment(r_px, r_py, radius, r_angle_start, r_angle_final, false);
+          add_radial_segment(r_px, r_py, radius, r_angle_start, r_angle_final, true);
           add_straight_segment(r_qx, r_qy, dest_x, dest_y); 
         }
     }
@@ -268,7 +301,7 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
     }
   else if (r_possible)
     {
-      add_radial_segment(r_px, r_py, radius, r_angle_start, r_angle_final, false);
+      add_radial_segment(r_px, r_py, radius, r_angle_start, r_angle_final, true);
       add_straight_segment(r_qx, r_qy, dest_x, dest_y);
     }
   else
@@ -287,19 +320,65 @@ LineSegments::draw(View* view)
         {
         case RADIAL:
           //std::cout << "Radial: " << (int)i->radial.x << ", " <<(int)i->radial.y
-            //        << " " << (int)i->radial.radius << std::endl;
-          view->draw_circle((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
-                            1.0f, 1.0f, 1.0f, 1.0f);
+          //        << " " << (int)i->radial.radius << std::endl;
+          view->draw_circle((int)i->data.radial.x, (int)i->data.radial.y, (int)i->data.radial.radius,
+                            1.0f, 1.0f, 1.0f, .3f);
+
+          {
+            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.start_angle));
+            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.start_angle));
+            view->draw_fillrect(x-5, y-5,
+                                x+5, y+5,
+                                0.0, 0.0f, 1.0f);
+          }
+
+          {
+            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.end_angle));
+            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.end_angle));
+            view->draw_fillrect(x-5, y-5,
+                                x+5, y+5,
+                                1.0, 0.0f, 1.0f);
+          }
+
+
+          if (i->data.radial.turn_right)
+            {
+              view->draw_arc((int)i->data.radial.x, (int)i->data.radial.y, (int)i->data.radial.radius,
+                             i->data.radial.start_angle, i->data.radial.end_angle, 
+                             1.0f, 1.0f, 1.0f);
+              view->draw_fillrect((int)i->data.radial.x-5, (int)i->data.radial.y-5,
+                                  (int)i->data.radial.x+5, (int)i->data.radial.y+5,
+                                  0.0f, 0.0f, 1.0f); //blue
+            }
+          else
+            {
+              view->draw_arc((int)i->data.radial.x, (int)i->data.radial.y, (int)i->data.radial.radius,
+                             i->data.radial.end_angle, i->data.radial.start_angle, 
+                             1.0f, 1.0f, 1.0f);
+              view->draw_fillrect((int)i->data.radial.x-5, (int)i->data.radial.y-5,
+                                  (int)i->data.radial.x+5, (int)i->data.radial.y+5,
+                                  1.0f, 0.0f, 0.0f); // red
+            }
           break;
+
         case STRAIGHT:
-          view->draw_line((int)i->straight.x1, (int)i->straight.y1,
-                          (int)i->straight.x2, (int)i->straight.y2, 
+          view->draw_line((int)i->data.straight.x1, (int)i->data.straight.y1,
+                          (int)i->data.straight.x2, (int)i->data.straight.y2, 
                           1.0f, 1.0f, 1.0f, 1.0f);
           break;
         default:
           std::cout << "Unhandled type: " << i->type << std::endl;
           break;
         }
+    }
+
+  for(float i = 0; i < get_length(); i += 15)
+    {
+      CL_Vector pos = get_pos(i);
+      //std::cout << "Pos: " << pos << std::endl;
+      view->draw_fillrect(int(pos.x-5), int(pos.y-5),
+                          int(pos.x+5), int(pos.y+5),
+                          1.0f, 0.0f, 0.0f, .5f); // red      
     }
 }
 
