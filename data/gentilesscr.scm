@@ -10,12 +10,16 @@
 	  (directory->list "images/tiles/")))
 
 (define (main args)
-  (println "section tiles {")
+  (println "<resources>")
+  (println "<section name=\"tiles\">")
   (for-each (lambda (filename)
-	      (println "	" (substring filename 0 (- (string-length filename) 4)) 
-		       " = (type=sprite, image1=images/tiles/" filename ");"))
+	      (println "	<sprite name=\"" (substring filename 0 (- (string-length filename) 4)) "\">\n" 
+		       "  <image name=\"image1\" file=\"images/tiles/" filename "\" />"
+                       " </sprite>\n")
+              )
 	    (sort (get-images-lst) string<=?))
-  (println "}")
+  (println "</section>\n"
+           " </resources>\n")
   (newline))
 
 ;; EOF ;;

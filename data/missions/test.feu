@@ -139,6 +139,6 @@
   (headquarter (pos 24 31)))
 
  (groundmap 
-  (gridmap 	  (file "data/missions/regional2.png"))))
+  (gridmap 	  (file "data/missions/foobar.png"))))
 
 ;; EOF ;;

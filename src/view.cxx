@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: view.cxx,v 1.3 2003/04/27 23:41:57 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -149,37 +149,28 @@ void
 View::draw_line (int x1, int y1, int x2, int y2, 
 		float r, float g, float b, float a)
 {
-  //FIXME:Display2: frame support removed 
-  /*
-  if (zoom == 1.0)
-    {
-      CL_Display::draw_line (x1 + get_x_offset (), y1 + get_y_offset (),
-			     x2 + get_x_offset (), y2 + get_y_offset (),
-			     r, g, b, a);
-    }
-  else
-    {
-      CL_Display::draw_line (int((x1 + get_x_offset ())),
-			     int((y1 + get_y_offset ())),
-			     int((x2 + get_x_offset ())),
-			     int((y2 + get_y_offset ())),
-			     r, g, b, a);
-    }
-  */
+  CL_Display::draw_line (int((x1 + get_x_offset ())),
+                         int((y1 + get_y_offset ())),
+                         int((x2 + get_x_offset ())),
+                         int((y2 + get_y_offset ())),
+                         CL_Color(static_cast<int>(255*r),
+                                  static_cast<int>(255*g),
+                                  static_cast<int>(255* b), 
+                                  static_cast<int>(255*a)));
 }
 
 void 
 View::draw_fillrect (int x1, int y1, int x2, int y2, 
 		    float r, float g, float b, float a)
 {
-  //FIXME:Display2: frame support removed 
-  /*
-  CL_Display::fill_rect (int((x1 + get_x_offset ())),
-			 int((y1 + get_y_offset ())), 
-			 int((x2 + get_x_offset ())),
-			 int((y2 + get_y_offset ())),
-			 r, g, b, a);
-  */
+  CL_Display::fill_rect (CL_Rect(int((x1 + get_x_offset ())),
+                                 int((y1 + get_y_offset ())), 
+                                 int((x2 + get_x_offset ())),
+                                 int((y2 + get_y_offset ()))),
+			 CL_Color(static_cast<int>(255*r),
+                                  static_cast<int>(255*g),
+                                  static_cast<int>(255*b),
+                                  static_cast<int>(255*a)));
 }
 
 void 

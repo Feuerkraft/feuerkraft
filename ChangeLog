@@ -1,2 +1,1533 @@
-No ChangeLog available use "cvs log" to get one.
+2003-04-20 01:17  grumbel
+
+	* data/feuerkraft.scr, data/images/turret.png,
+	data/images/turret2.png, data/missions/test.feu, src/Makefile.am,
+	src/ambulance.cxx, src/ambulance.hxx, src/background.cxx,
+	src/background.hxx, src/collideable.hxx, src/controllable.hxx,
+	src/controller.cxx, src/controller.hxx, src/energie.cxx,
+	src/energie.hxx, src/explosion.cxx, src/explosion.hxx,
+	src/feuerkraft.cxx, src/feuerkraft.hxx, src/feuerkraft_options.cxx,
+	src/flag.cxx, src/flag.hxx, src/game_delta.cxx,
+	src/game_mission.cxx, src/game_obj.hxx,
+	src/game_obj_data_factory.cxx, src/game_world.cxx,
+	src/game_world.hxx, src/game_world_data.cxx, src/geometry.cxx,
+	src/geometry.hxx, src/guile.cxx, src/helicopter.cxx,
+	src/helicopter.hxx, src/jeep.cxx, src/jeep.hxx,
+	src/joystick_controller.cxx, src/joystick_controller.hxx,
+	src/keyboard_controller.cxx, src/keyboard_controller.hxx,
+	src/level_map.cxx, src/level_map.hxx, src/mine.cxx, src/mine.hxx,
+	src/pathfinder.cxx, src/playfield.cxx, src/playfield.hxx,
+	src/projectile.cxx, src/projectile.hxx, src/radar.cxx,
+	src/radar.hxx, src/resource_manager.cxx, src/screen.cxx,
+	src/screen.hxx, src/shockwave.cxx, src/shockwave.hxx,
+	src/soldier.cxx, src/soldier.hxx, src/start_screen.cxx,
+	src/stone.cxx, src/stone.hxx, src/string_converter.cxx,
+	src/system.cxx, src/tank.cxx, src/tank.hxx, src/tree.cxx,
+	src/tree.hxx, src/tree_data.cxx, src/tree_data.hxx, src/turret.cxx,
+	src/turret.hxx, src/vehicle.cxx, src/vehicle.hxx,
+	src/vehicle_status.cxx, src/vehicle_status.hxx,
+	src/vehicle_view.cxx, src/vehicle_view.hxx, src/view.cxx,
+	src/view.hxx, src/buildings/ammotent.cxx,
+	src/buildings/ammotent.hxx, src/buildings/ammotent_data.cxx,
+	src/buildings/ammotent_data.hxx, src/buildings/base.cxx,
+	src/buildings/base.hxx, src/buildings/base_data.cxx,
+	src/buildings/base_data.hxx, src/buildings/basis_data.hxx,
+	src/buildings/building.hxx, src/buildings/building_map.cxx,
+	src/buildings/building_map.hxx,
+	src/buildings/building_map_data.cxx,
+	src/buildings/building_map_data.hxx, src/buildings/fuelstation.cxx,
+	src/buildings/fuelstation.hxx, src/buildings/fuelstation_data.cxx,
+	src/buildings/fuelstation_data.hxx, src/buildings/headquarter.cxx,
+	src/buildings/headquarter.hxx, src/buildings/headquarter_data.cxx,
+	src/buildings/headquarter_data.hxx, src/buildings/tower.cxx,
+	src/buildings/tower.hxx, src/buildings/tower_data.cxx,
+	src/buildings/tower_data.hxx, src/buildings/wall.cxx,
+	src/buildings/wall.hxx, src/buildings/wall_data.cxx,
+	src/buildings/wall_data.hxx, src/buildings/wall_door.cxx,
+	src/buildings/wall_door.hxx, src/buildings/wall_door_data.cxx,
+	src/buildings/wall_door_data.hxx, src/generic/random.cxx,
+	src/groundmap/grid_map.cxx, src/groundmap/grid_map.hxx,
+	src/groundmap/grid_map_data.cxx, src/groundmap/grid_map_data.hxx,
+	src/groundmap/grid_tile.cxx, src/groundmap/grid_tile.hxx,
+	src/groundmap/grid_tile_data.cxx, src/groundmap/grid_tile_data.hxx,
+	src/groundmap/grid_tile_generator.cxx,
+	src/groundmap/grid_tile_generator.hxx,
+	src/groundmap/ground_map.hxx, src/groundmap/ground_map_data.cxx,
+	src/groundmap/ground_map_data_factory.cxx,
+	src/groundmap/multi_ground_map.cxx,
+	src/groundmap/multi_ground_map.hxx,
+	src/groundmap/multi_ground_map_data.cxx,
+	src/groundmap/multi_ground_map_data.hxx,
+	src/groundmap/sprite_tile.cxx, src/groundmap/sprite_tile.hxx,
+	src/groundmap/sprite_tile_data.cxx,
+	src/groundmap/sprite_tile_data.hxx,
+	src/groundmap/tile_data_factory.cxx, src/groundmap/tile_map.cxx,
+	src/groundmap/tile_map.hxx, src/groundmap/tile_map_data.cxx,
+	src/groundmap/tile_map_data.hxx,
+	src/particles/explosion_particle.hxx,
+	src/particles/grass_particle.hxx, src/particles/particle.hxx,
+	src/particles/smoke_particle.hxx, src/vehicles/car_data.hxx,
+	src/vehicles/fox_tank.cxx, src/vehicles/huey_helicopter_data.hxx,
+	src/vehicles/tank.cxx, src/vehicles/vehicle.hxx: all files to
+	lowercase
+
+2003-04-20 00:39  grumbel
+
+	* src/: Ambulance.cxx, Ambulance.hxx, Background.cxx,
+	Background.hxx, Collideable.hxx, Controllable.hxx, Controller.cxx,
+	Controller.hxx, Energie.cxx, Energie.hxx, Explosion.cxx,
+	Explosion.hxx, Feuerkraft.cxx, Feuerkraft.hxx,
+	FeuerkraftOptions.cxx, FeuerkraftOptions.hxx, Field.hxx, Flag.cxx,
+	Flag.hxx, GameDelta.cxx, GameDelta.hxx, GameMission.cxx,
+	GameMission.hxx, GameObj.hxx, GameObjData.hxx,
+	GameObjDataFactory.cxx, GameObjDataFactory.hxx, GameWorld.cxx,
+	GameWorld.hxx, GameWorldData.cxx, GameWorldData.hxx, Geometry.cxx,
+	Geometry.hxx, GuiObj.hxx, Guile.cxx, Guile.hxx, Helicopter.cxx,
+	Helicopter.hxx, Jeep.cxx, Jeep.hxx, JoystickController.cxx,
+	JoystickController.hxx, KeyboardController.cxx,
+	KeyboardController.hxx, LevelMap.cxx, LevelMap.hxx, Makefile.am,
+	Mine.cxx, Mine.hxx, Pathfinder.cxx, Pathfinder.hxx, Playfield.cxx,
+	Playfield.hxx, Projectile.cxx, Projectile.hxx, Radar.cxx,
+	Radar.hxx, ResourceManager.cxx, ResourceManager.hxx, Screen.cxx,
+	Screen.hxx, Shockwave.cxx, Shockwave.hxx, Soldier.cxx, Soldier.hxx,
+	StartScreen.cxx, StartScreen.hxx, Stone.cxx, Stone.hxx,
+	StringConverter.cxx, StringConverter.hxx, System.cxx, System.hxx,
+	Tank.cxx, Tank.hxx, Tree.cxx, Tree.hxx, TreeData.cxx, TreeData.hxx,
+	Turret.cxx, Turret.hxx, Vehicle.cxx, Vehicle.hxx,
+	VehicleStatus.cxx, VehicleStatus.hxx, VehicleView.cxx,
+	VehicleView.hxx, View.cxx, View.hxx, ViewPlugin.hxx,
+	ViewProperties.hxx, ambulance.cxx, ambulance.hxx, background.cxx,
+	background.hxx, collideable.hxx, controllable.hxx, controller.cxx,
+	controller.hxx, energie.cxx, energie.hxx, explosion.cxx,
+	explosion.hxx, feuerkraft.cxx, feuerkraft.hxx,
+	feuerkraft_options.cxx, feuerkraft_options.hxx, field.hxx,
+	flag.cxx, flag.hxx, game_delta.cxx, game_delta.hxx,
+	game_mission.cxx, game_mission.hxx, game_obj.hxx,
+	game_obj_data.hxx, game_obj_data_factory.cxx,
+	game_obj_data_factory.hxx, game_world.cxx, game_world.hxx,
+	game_world_data.cxx, game_world_data.hxx, geometry.cxx,
+	geometry.hxx, gui_obj.hxx, guile.cxx, guile.hxx, helicopter.cxx,
+	helicopter.hxx, jeep.cxx, jeep.hxx, joystick_controller.cxx,
+	joystick_controller.hxx, keyboard_controller.cxx,
+	keyboard_controller.hxx, level_map.cxx, level_map.hxx, mine.cxx,
+	mine.hxx, pathfinder.cxx, pathfinder.hxx, playfield.cxx,
+	playfield.hxx, projectile.cxx, projectile.hxx, radar.cxx,
+	radar.hxx, resource_manager.cxx, resource_manager.hxx, screen.cxx,
+	screen.hxx, shockwave.cxx, shockwave.hxx, soldier.cxx, soldier.hxx,
+	start_screen.cxx, start_screen.hxx, stone.cxx, stone.hxx,
+	string_converter.cxx, string_converter.hxx, system.cxx, system.hxx,
+	tank.cxx, tank.hxx, tree.cxx, tree.hxx, tree_data.cxx,
+	tree_data.hxx, turret.cxx, turret.hxx, vehicle.cxx, vehicle.hxx,
+	vehicle_status.cxx, vehicle_status.hxx, vehicle_view.cxx,
+	vehicle_view.hxx, view.cxx, view.hxx, view_plugin.hxx,
+	view_properties.hxx, z_pos_layers.hxx, buildings/Ammotent.cxx,
+	buildings/Ammotent.hxx, buildings/AmmotentData.cxx,
+	buildings/AmmotentData.hxx, buildings/Base.cxx, buildings/Base.hxx,
+	buildings/BaseData.cxx, buildings/BaseData.hxx,
+	buildings/BasisData.hxx, buildings/Building.hxx,
+	buildings/BuildingData.hxx, buildings/BuildingMap.cxx,
+	buildings/BuildingMap.hxx, buildings/BuildingMapData.cxx,
+	buildings/BuildingMapData.hxx, buildings/Fuelstation.cxx,
+	buildings/Fuelstation.hxx, buildings/FuelstationData.cxx,
+	buildings/FuelstationData.hxx, buildings/Headquarter.cxx,
+	buildings/Headquarter.hxx, buildings/HeadquarterData.cxx,
+	buildings/HeadquarterData.hxx, buildings/Makefile.am,
+	buildings/Tower.cxx, buildings/Tower.hxx, buildings/TowerData.cxx,
+	buildings/TowerData.hxx, buildings/Wall.cxx, buildings/Wall.hxx,
+	buildings/WallData.cxx, buildings/WallData.hxx,
+	buildings/WallDoor.cxx, buildings/WallDoor.hxx,
+	buildings/WallDoorData.cxx, buildings/WallDoorData.hxx,
+	buildings/ammotent.cxx, buildings/ammotent.hxx,
+	buildings/ammotent_data.cxx, buildings/ammotent_data.hxx,
+	buildings/base.cxx, buildings/base.hxx, buildings/base_data.cxx,
+	buildings/base_data.hxx, buildings/basis_data.hxx,
+	buildings/building.hxx, buildings/building_data.hxx,
+	buildings/building_map.cxx, buildings/building_map.hxx,
+	buildings/building_map_data.cxx, buildings/building_map_data.hxx,
+	buildings/fuelstation.cxx, buildings/fuelstation.hxx,
+	buildings/fuelstation_data.cxx, buildings/fuelstation_data.hxx,
+	buildings/headquarter.cxx, buildings/headquarter.hxx,
+	buildings/headquarter_data.cxx, buildings/headquarter_data.hxx,
+	buildings/tower.cxx, buildings/tower.hxx, buildings/tower_data.cxx,
+	buildings/tower_data.hxx, buildings/wall.cxx, buildings/wall.hxx,
+	buildings/wall_data.cxx, buildings/wall_data.hxx,
+	buildings/wall_door.cxx, buildings/wall_door.hxx,
+	buildings/wall_door_data.cxx, buildings/wall_door_data.hxx,
+	generic/Makefile.am, generic/Random.cxx, generic/Random.hxx,
+	generic/random.cxx, generic/random.hxx, groundmap/GridMap.cxx,
+	groundmap/GridMap.hxx, groundmap/GridMapData.cxx,
+	groundmap/GridMapData.hxx, groundmap/GridTile.cxx,
+	groundmap/GridTile.hxx, groundmap/GridTileData.cxx,
+	groundmap/GridTileData.hxx, groundmap/GridTileGenerator.cxx,
+	groundmap/GridTileGenerator.hxx, groundmap/GroundMap.hxx,
+	groundmap/GroundMapData.cxx, groundmap/GroundMapData.hxx,
+	groundmap/GroundMapDataFactory.cxx,
+	groundmap/GroundMapDataFactory.hxx, groundmap/GroundType.hxx,
+	groundmap/Makefile.am, groundmap/MultiGroundMap.cxx,
+	groundmap/MultiGroundMap.hxx, groundmap/MultiGroundMapData.cxx,
+	groundmap/MultiGroundMapData.hxx, groundmap/SpriteTile.cxx,
+	groundmap/SpriteTile.hxx, groundmap/SpriteTileData.cxx,
+	groundmap/SpriteTileData.hxx, groundmap/Tile.hxx,
+	groundmap/TileData.hxx, groundmap/TileDataFactory.cxx,
+	groundmap/TileDataFactory.hxx, groundmap/TileMap.cxx,
+	groundmap/TileMap.hxx, groundmap/TileMapData.cxx,
+	groundmap/TileMapData.hxx, groundmap/grid_map.cxx,
+	groundmap/grid_map.hxx, groundmap/grid_map_data.cxx,
+	groundmap/grid_map_data.hxx, groundmap/grid_tile.cxx,
+	groundmap/grid_tile.hxx, groundmap/grid_tile_data.cxx,
+	groundmap/grid_tile_data.hxx, groundmap/grid_tile_generator.cxx,
+	groundmap/grid_tile_generator.hxx, groundmap/ground_map.hxx,
+	groundmap/ground_map_data.cxx, groundmap/ground_map_data.hxx,
+	groundmap/ground_map_data_factory.cxx,
+	groundmap/ground_map_data_factory.hxx, groundmap/ground_type.hxx,
+	groundmap/multi_ground_map.cxx, groundmap/multi_ground_map.hxx,
+	groundmap/multi_ground_map_data.cxx,
+	groundmap/multi_ground_map_data.hxx, groundmap/sprite_tile.cxx,
+	groundmap/sprite_tile.hxx, groundmap/sprite_tile_data.cxx,
+	groundmap/sprite_tile_data.hxx, groundmap/tile.hxx,
+	groundmap/tile_data.hxx, groundmap/tile_data_factory.cxx,
+	groundmap/tile_data_factory.hxx, groundmap/tile_map.cxx,
+	groundmap/tile_map.hxx, groundmap/tile_map_data.cxx,
+	groundmap/tile_map_data.hxx, particles/ExplosionParticle.hxx,
+	particles/GrassParticle.hxx, particles/Makefile.am,
+	particles/Particle.hxx, particles/ParticleSystem.hxx,
+	particles/SmokeParticle.hxx, particles/explosion_particle.hxx,
+	particles/grass_particle.hxx, particles/particle.hxx,
+	particles/particle_system.hxx, particles/smoke_particle.hxx,
+	vehicles/Ambulance.hxx, vehicles/AmbulanceData.hxx,
+	vehicles/Car.hxx, vehicles/CarData.hxx, vehicles/FoxTank.cxx,
+	vehicles/FoxTank.hxx, vehicles/HawkHelicopter.hxx,
+	vehicles/Helicopter.hxx, vehicles/HueyHelicopter.hxx,
+	vehicles/HueyHelicopterData.hxx, vehicles/MammutTank.hxx,
+	vehicles/Tank.hxx, vehicles/Vehicle.hxx, vehicles/ambulance.hxx,
+	vehicles/ambulance_data.hxx, vehicles/car.hxx,
+	vehicles/car_data.hxx, vehicles/fox_tank.cxx,
+	vehicles/fox_tank.hxx, vehicles/hawk_helicopter.hxx,
+	vehicles/helicopter.hxx, vehicles/huey_helicopter.hxx,
+	vehicles/huey_helicopter_data.hxx, vehicles/mammut_tank.hxx,
+	vehicles/tank.cxx, vehicles/tank.hxx, vehicles/tank_data.hxx,
+	vehicles/vehicle.hxx: renamed files to lowercase
+
+2003-04-05 01:03  grumbel
+
+	* src/: Feuerkraft.cxx, KeyboardController.cxx,
+	KeyboardController.hxx, Makefile.am, Radar.cxx, Tank.cxx, Tank.hxx,
+	View.cxx: - some small fixes to get Feuerkraft in a more or less
+	usable state again
+
+2003-01-02 18:07  grumbel
+
+	* aclocal.m4, missing, src/Feuerkraft.cxx, src/GameWorldData.cxx,
+	src/Guile.cxx, src/KeyboardController.cxx,
+	src/KeyboardController.hxx, src/Radar.cxx, src/StartScreen.cxx,
+	src/TreeData.cxx, src/View.cxx, src/buildings/FuelstationData.cxx:
+	ported game to current Clanlib 0.7, not really working, but at
+	least compilable and runable
+
+2002-07-21 21:32  grumbel
+
+	* config.h.in, src/Ambulance.hxx, src/Background.hxx,
+	src/Energie.cxx, src/Explosion.hxx, src/Helicopter.hxx,
+	src/Jeep.hxx, src/JoystickController.hxx,
+	src/KeyboardController.cxx, src/Mine.hxx, src/Playfield.cxx,
+	src/Projectile.hxx, src/Radar.hxx, src/ResourceManager.cxx,
+	src/ResourceManager.hxx, src/Shockwave.hxx, src/Soldier.hxx,
+	src/StartScreen.hxx, src/Stone.hxx, src/Tank.hxx, src/Tree.hxx,
+	src/Turret.hxx, src/VehicleStatus.hxx, src/View.cxx, src/View.hxx,
+	src/buildings/Ammotent.hxx, src/buildings/Base.hxx,
+	src/buildings/Fuelstation.hxx, src/buildings/Headquarter.hxx,
+	src/buildings/Tower.hxx, src/buildings/Wall.hxx,
+	src/buildings/WallDoor.hxx, src/groundmap/GridMapData.cxx,
+	src/groundmap/GridTile.hxx, src/groundmap/SpriteTile.cxx,
+	src/groundmap/SpriteTile.hxx, src/groundmap/TileMapData.cxx,
+	src/particles/ExplosionParticle.hxx: include fixes for ClanLib-0.7
+
+2002-07-04 11:50  grumbel
+
+	* config.h.in, configure.in, src/GameObj.hxx, src/GameWorld.cxx,
+	src/Tree.cxx, src/Tree.hxx, src/TreeData.hxx,
+	src/vehicles/Tank.hxx: some makefile fixes for clanLib0.7 (still
+	fails at linking time)
+
+2002-05-18 18:44  grumbel
+
+	* .cvsignore, config.h.in, configure.in, data/feuerkraft.scr,
+	src/Feuerkraft.cxx, src/Guile.cxx, src/Guile.hxx: some micro fixes
+	to be compileable with current clanlib CVS
+
+2002-04-12 22:54  grumbel
+
+	* data/: Makefile.am, feuerkraft.scr, images/Makefile.am,
+	images/tiles/Makefile.am, missions/Makefile.am: misc updates to the
+	makefiles
+
+2002-04-08 23:10  grumbel
+
+	* src/: Feuerkraft.cxx, KeyboardController.cxx,
+	KeyboardController.hxx: - fixed keyboard controller support (well,
+	not a fix, just a workaround
+
+2002-04-07 20:26  grumbel
+
+	* src/: Background.cxx, Background.hxx, Feuerkraft.cxx,
+	ResourceManager.cxx: fixes
+
+2002-04-07 19:19  grumbel
+
+	* data/feuerkraft.scr, data/gentilesscr.scm, data/tiles.scr,
+	src/ResourceManager.cxx, src/ResourceManager.hxx: Changed back to
+	use the resource system
+
+2002-04-07 18:58  sphair
+
+	* src/: Feuerkraft.cxx, Guile.cxx, VehicleView.cxx: Minor compile
+	fixes
+
+2002-04-07 18:32  grumbel
+
+	* data/: images/Makefile.am, images/tiles/Makefile.am,
+	missions/Makefile.am: misc stuff... don't remember
+
+2002-04-07 18:28  grumbel
+
+	* src/: FeuerkraftOptions.cxx, FeuerkraftOptions.hxx, Guile.cxx,
+	Guile.hxx, ViewPlugin.hxx, boost/detail/Makefile.am: misc stuff...
+	don't remember
+
+2002-04-07 18:24  grumbel
+
+	* aclocal.m4, config.h.in, configure.in, data/feuerkraft.scr,
+	src/Feuerkraft.cxx, src/GameWorld.cxx, src/GameWorldData.cxx,
+	src/ResourceManager.cxx, src/ResourceManager.hxx, src/Stone.cxx,
+	src/Stone.hxx, src/View.hxx, data/images/headquarter.png,
+	data/images/headquarterdamaged.png,
+	data/images/headquarterdestroyed.png, data/images/headquater.png,
+	data/images/headquaterdamaged.png,
+	data/images/headquaterdestroyed.png: misc stuff... don't remember
+
+2002-04-03 12:55  grumbel
+
+	* configure.in, data/images/tank2.png, src/Background.cxx,
+	src/Feuerkraft.cxx, src/GameObj.hxx, src/GameObjData.hxx,
+	src/GameWorld.cxx, src/GameWorld.hxx, src/GameWorldData.cxx,
+	src/GameWorldData.hxx, src/Soldier.cxx, src/Soldier.hxx,
+	src/Tree.cxx, src/Tree.hxx, src/TreeData.cxx, src/TreeData.hxx,
+	src/View.cxx, src/View.hxx, src/buildings/AmmotentData.cxx,
+	src/buildings/AmmotentData.hxx, src/buildings/BaseData.cxx,
+	src/buildings/BaseData.hxx, src/buildings/Building.hxx,
+	src/buildings/BuildingData.hxx, src/buildings/BuildingMap.cxx,
+	src/buildings/BuildingMap.hxx, src/buildings/BuildingMapData.cxx,
+	src/buildings/BuildingMapData.hxx,
+	src/buildings/FuelstationData.cxx,
+	src/buildings/FuelstationData.hxx,
+	src/buildings/HeadquarterData.cxx,
+	src/buildings/HeadquarterData.hxx, src/buildings/TowerData.cxx,
+	src/buildings/TowerData.hxx, src/buildings/WallData.cxx,
+	src/buildings/WallData.hxx, src/buildings/WallDoorData.cxx,
+	src/buildings/WallDoorData.hxx, src/groundmap/GridTile.cxx: - added
+	framework for dumping the gamestate into a file (aka savegame
+	support)
+
+2002-04-02 17:42  grumbel
+
+	* data/feuerkraft.scr, src/Ambulance.cxx, src/Feuerkraft.cxx,
+	src/GuiObj.hxx, src/LevelMap.cxx, src/LevelMap.hxx, src/Radar.cxx,
+	src/Radar.hxx, src/Screen.cxx, src/Screen.hxx, src/StartScreen.cxx,
+	src/VehicleStatus.cxx, src/VehicleStatus.hxx, src/VehicleView.cxx,
+	src/VehicleView.hxx, src/View.cxx, src/View.hxx: Some more fixes
+	for ClanDisp2, feuerkraft works now mostly
+
+2002-04-02 11:52  grumbel
+
+	* config.h.in, configure.in, data/Makefile.am, data/feuerkraft.scr,
+	src/Ambulance.cxx, src/Ambulance.hxx, src/Background.cxx,
+	src/Background.hxx, src/Energie.cxx, src/Explosion.cxx,
+	src/Explosion.hxx, src/Feuerkraft.cxx, src/Flag.cxx, src/Flag.hxx,
+	src/GameMission.cxx, src/Helicopter.cxx, src/Helicopter.hxx,
+	src/Jeep.cxx, src/Jeep.hxx, src/JoystickController.hxx,
+	src/KeyboardController.cxx, src/KeyboardController.hxx,
+	src/Makefile.am, src/Mine.cxx, src/Mine.hxx, src/Playfield.cxx,
+	src/Projectile.cxx, src/Projectile.hxx, src/Radar.cxx,
+	src/Radar.hxx, src/Shockwave.cxx, src/Shockwave.hxx,
+	src/Soldier.cxx, src/Soldier.hxx, src/StartScreen.cxx,
+	src/StartScreen.hxx, src/Stone.hxx, src/Tank.cxx, src/Tank.hxx,
+	src/Tree.cxx, src/Tree.hxx, src/Turret.cxx, src/Turret.hxx,
+	src/VehicleStatus.cxx, src/VehicleStatus.hxx, src/View.cxx,
+	src/View.hxx, src/boost/Makefile.am, src/buildings/Ammotent.cxx,
+	src/buildings/Ammotent.hxx, src/buildings/Base.cxx,
+	src/buildings/Base.hxx, src/buildings/Fuelstation.cxx,
+	src/buildings/Fuelstation.hxx, src/buildings/Headquarter.cxx,
+	src/buildings/Headquarter.hxx, src/buildings/Tower.cxx,
+	src/buildings/Tower.hxx, src/buildings/Wall.cxx,
+	src/buildings/Wall.hxx, src/buildings/WallDoor.cxx,
+	src/buildings/WallDoor.hxx, src/groundmap/GridMap.cxx,
+	src/groundmap/GridMapData.cxx, src/groundmap/GridMapData.hxx,
+	src/groundmap/GridTile.cxx, src/groundmap/GridTile.hxx,
+	src/groundmap/SpriteTile.cxx, src/groundmap/SpriteTile.hxx,
+	src/groundmap/TileMapData.cxx, src/particles/ExplosionParticle.hxx,
+	src/particles/GrassParticle.hxx, src/particles/SmokeParticle.hxx:
+	Updated Feuerkraft to use ClanDisp2, its not working, but at least
+	compiles fine.
+
+2002-03-31 22:43  sphair
+
+	* src/: GameWorld.cxx, groundmap/GridMapData.cxx,
+	groundmap/GridTileGenerator.cxx: Ported to Win32
+
+2002-03-29 14:07  grumbel
+
+	* src/makestatic.sh: - some last changes for 0.1.0 release
+
+2002-03-29 14:06  grumbel
+
+	* data/tiles.scr: - added missing files
+
+2002-03-29 13:16  grumbel
+
+	* src/makestatic.sh: - added non-working script to build a static
+	binary
+
+2002-03-29 13:15  grumbel
+
+	* data/images/endscreen.jpg, data/images/keys.png,
+	data/images/logo.jpg, data/missions/test.feu,
+	src/buildings/BuildingMapData.cxx: - small release changes
+
+2002-03-29 00:53  grumbel
+
+	* data/feuerkraft.scr, data/images/endscreen.jpg,
+	data/images/keys.png, data/images/logo.jpg, src/Feuerkraft.cxx,
+	src/Makefile.am, src/StartScreen.cxx, src/StartScreen.hxx: - more
+	release related things - added ugly hucks for nice fade-in/out -
+	added start and end screens
+
+2002-03-28 22:44  grumbel
+
+	* data/images/tiles/: ssss11.png, ssss2.png, ssss8.png, ssss9.png:
+	- removed some not very good looking sand tiles
+
+2002-03-28 22:27  grumbel
+
+	* data/images/tiles/fffs.png, data/images/tiles/ffss.png,
+	data/images/tiles/sffs.png, data/images/tiles/sffs1.png,
+	data/images/tiles/sfsf.png, data/images/tiles/sfss.png,
+	data/images/tiles/ssfs.png, data/missions/foobar.png,
+	data/missions/test.feu, src/Feuerkraft.cxx, src/Projectile.cxx,
+	src/Projectile.hxx, src/Radar.cxx, src/Radar.hxx, src/Tank.cxx,
+	src/Tank.hxx, src/VehicleView.cxx, src/VehicleView.hxx,
+	src/buildings/Ammotent.cxx, src/buildings/Building.hxx,
+	src/buildings/BuildingMap.cxx, src/buildings/Fuelstation.cxx,
+	src/buildings/WallDoor.cxx, src/buildings/WallDoor.hxx: - some
+	preparantions for the 0.1.0 release - more objects on the map -
+	respawning hack - map cleanup - door is now kind of working
+
+2002-03-28 11:52  grumbel
+
+	* data/: tiles.scm, images/tiles/aadd1.png, images/tiles/aadf1.png,
+	images/tiles/aafd1.png, images/tiles/aaff1.png,
+	images/tiles/aafs1.png, images/tiles/aasf1.png,
+	images/tiles/asas.png, images/tiles/asas1.png,
+	images/tiles/ddaa1.png, images/tiles/dfaa1.png,
+	images/tiles/fdaa1.png, images/tiles/ffaa1.png,
+	images/tiles/fsaa.png, images/tiles/sasa1.png,
+	images/tiles/sfaa.png, missions/foobar.png: - added more street
+	tiles
+
+2002-03-28 02:52  grumbel
+
+	* data/helper.scm: Added missing file
+
+2002-03-28 02:50  grumbel
+
+	* data/feuerkraft.scr, data/tiles.scm, data/images/emptytile.png,
+	data/images/hdoor.png, data/images/vdoor.png,
+	data/images/tiles/aaaa2.png, data/images/tiles/aaaa3.png,
+	data/images/tiles/aaas1.png, data/images/tiles/aasa1.png,
+	data/images/tiles/aass1.png, data/images/tiles/asaa1.png,
+	data/images/tiles/assa1.png, data/images/tiles/asss1.png,
+	data/images/tiles/saaa1.png, data/images/tiles/saas1.png,
+	data/images/tiles/sass1.png, data/images/tiles/ssaa1.png,
+	data/images/tiles/ssas1.png, data/images/tiles/sssa1.png,
+	data/missions/foobar.png, data/missions/test.feu,
+	src/Projectile.cxx, src/buildings/BuildingMapData.cxx,
+	src/buildings/Makefile.am, src/buildings/WallDoor.cxx,
+	src/buildings/WallDoor.hxx, src/buildings/WallDoorData.cxx,
+	src/buildings/WallDoorData.hxx: - added WallDoors (not working at
+	the moment) - fixed up the street tiles to look like a street
+
+2002-03-28 00:59  grumbel
+
+	* data/gentiledesc.scm, data/gentilesscr.scm, data/tiles.scm,
+	data/images/tiles/aaaa1.png, data/images/tiles/aass1.png,
+	data/images/tiles/assa1.png, data/images/tiles/asss1.png,
+	data/images/tiles/fsff.png, data/images/tiles/fsfs.png,
+	data/images/tiles/fssf.png, data/images/tiles/fsss.png,
+	data/images/tiles/fsss1.png, data/images/tiles/gssm1.png,
+	data/images/tiles/mssg1.png, data/images/tiles/saas1.png,
+	data/images/tiles/sass1.png, data/images/tiles/sfff.png,
+	data/images/tiles/sffs.png, data/images/tiles/sgms1.png,
+	data/images/tiles/smgs1.png, data/images/tiles/ssaa1.png,
+	data/images/tiles/ssas1.png, data/images/tiles/ssff.png,
+	data/images/tiles/ssff1.png, data/images/tiles/ssfs2.png,
+	data/images/tiles/sssa1.png, data/images/tiles/sssf.png,
+	data/images/tiles/sssf1.png, data/images/tiles/ssss12.png,
+	data/images/tiles/ssss4.png, data/images/tiles/ssss5.png,
+	data/images/tiles/ssss6.png, data/missions/foobar.png,
+	src/Background.cxx, src/Background.hxx, src/Feuerkraft.cxx,
+	src/GameObj.hxx, src/GameWorld.cxx, src/GameWorld.hxx,
+	src/LevelMap.cxx, src/LevelMap.hxx, src/Makefile.am, src/Radar.cxx,
+	src/Tank.cxx, src/Tank.hxx, src/groundmap/GridMap.cxx,
+	src/groundmap/GridMap.hxx, src/groundmap/GridMapData.cxx,
+	src/groundmap/GridMapData.hxx, src/groundmap/GridTileGenerator.cxx,
+	src/groundmap/GroundMap.hxx, src/groundmap/MultiGroundMap.cxx,
+	src/groundmap/MultiGroundMap.hxx, src/groundmap/TileMap.cxx,
+	src/groundmap/TileMap.hxx: - added levelmap - added asphalt
+	(doesn't really look good enough for a street) - added automagic
+	transformation from tiles to 'backgrounds' (a bit unflexible at the
+	moment) - some more tile cleanups
+
+2002-03-27 14:40  grumbel
+
+	* data/feuerkraft.scr, data/gentiledesc.scm, data/gentilesscr.scm,
+	data/tiles.scm, data/images/start.png, data/missions/foobar.png,
+	data/missions/test.feu, src/Feuerkraft.cxx,
+	src/groundmap/GridTileGenerator.cxx,
+	src/groundmap/GridTileGenerator.hxx: - added some scripts to
+	automagically generate the tile data
+
+2002-03-27 14:37  grumbel
+
+	* data/images/tiles/: dddd1.png, dddf.png, fffd.png, ffff1.png,
+	ffff2.png, ffff3.png, fsss1.png, gggg1.png, gggg2.png, gggg3.png,
+	gggg4.png, gggg5.png, gggm2.png, gggs1.png, ggmg2.png, ggmm1.png,
+	ggsg1.png, ggss.png, gmgg1.png, gmgm1.png, gmmg1.png, gmmm1.png,
+	gsgg2.png, gssg1.png, gsss1.png, mggg1.png, mggm1.png, mgmg1.png,
+	mgmm1.png, mmgg1.png, mmgm1.png, mmmg1.png, mmmm1.png, mmmm2.png,
+	mmmm3.png, mmmm4.png, mmms1.png, mmms2.png, mmsm1.png, mmsm2.png,
+	msmm1.png, msmm2.png, mssm.png, mssm1.png, mssm2.png, mssm3.png,
+	msss1.png, msss2.png, mud1.png, sffs1.png, sfss1.png, sggg1.png,
+	sggs1.png, sgss1.png, smms.png, smms1.png, smss1.png, smss2.png,
+	ssff1.png, ssfs2.png, ssgg1.png, ssgs1.png, sssf1.png, sssm2.png,
+	ssss1.png, ssss10.png, ssss11.png, ssss12.png, ssss2.png,
+	ssss3.png, ssss4.png, ssss5.png, ssss6.png, ssss7.png, ssss8.png,
+	ssss9.png, wall_block.png, wall_v.png, wallb_h.png, water1.png,
+	water2.png, water3.png, deepwater1.png, grass1.png, grass2.png,
+	grass3.png, grass4.png, grass5.png, mud2.png, mud3.png, mud4.png,
+	sand1.png, sand10.png, sand11.png, sand12.png, sand2.png,
+	sand3.png, sand4.png, sand5.png, sand6.png, sand7.png, sand8.png,
+	sand9.png, sandgrass1.png, sandgrass10.png, sandgrass11.png,
+	sandgrass2.png, sandgrass3.png, sandgrass4.png, sandgrass5.png,
+	sandgrass6.png, sandgrass7.png, sandgrass8.png, sandgrass9.png,
+	sandwater.png, sandwater1.png, sandwater2.png, sandwater3.png,
+	sandwater4.png, sandwater5.png, wall_h.png, wall_shadow.png: - some
+	more tiles and some renames
+
+2002-03-26 18:48  grumbel
+
+	* data/images/tiles/gsgg1.png, data/images/tiles/gsgs1.png,
+	data/images/tiles/msms1.png, data/images/tiles/sgsg1.png,
+	data/images/tiles/smsm1.png, data/missions/test.feu,
+	src/Feuerkraft.cxx: - some more objects for the demo level
+
+2002-03-26 17:46  grumbel
+
+	* data/feuerkraft.scr, data/tiles.scm,
+	data/images/tiles/sandwater.png, data/images/tiles/sandwater1.png,
+	data/missions/foobar.png, data/missions/test.feu,
+	src/Feuerkraft.cxx, src/Radar.cxx, src/Radar.hxx,
+	src/buildings/Ammotent.cxx, src/buildings/Ammotent.hxx,
+	src/buildings/Base.cxx, src/buildings/Base.hxx,
+	src/buildings/Building.hxx, src/buildings/BuildingMap.cxx,
+	src/buildings/BuildingMap.hxx, src/buildings/Fuelstation.cxx,
+	src/buildings/Fuelstation.hxx, src/buildings/Headquarter.cxx,
+	src/buildings/Headquarter.hxx, src/buildings/Tower.cxx,
+	src/buildings/Tower.hxx, src/buildings/Wall.cxx,
+	src/buildings/Wall.hxx: - fixes Radar API - added buildings back to
+	the radar
+
+2002-03-26 13:51  grumbel
+
+	* data/feuerkraft.scr, data/tiles.scm, data/images/tiles/ddff.png,
+	data/images/tiles/ffdd.png, data/images/tiles/mmms1.png,
+	data/images/tiles/mmsm1.png, data/images/tiles/mmss1.png,
+	data/images/tiles/mmss2.png, data/images/tiles/msmm1.png,
+	data/images/tiles/mssm.png, data/images/tiles/msss1.png,
+	data/images/tiles/sand11.png, data/images/tiles/sand12.png,
+	data/images/tiles/sand4.png, data/images/tiles/sand9.png,
+	data/images/tiles/sandwater2.png, data/images/tiles/sandwater3.png,
+	data/images/tiles/sandwater4.png, data/images/tiles/sandwater5.png,
+	data/images/tiles/smmm.png, data/images/tiles/smmm1.png,
+	data/images/tiles/smms.png, data/images/tiles/smss1.png,
+	data/images/tiles/ssmm1.png, data/images/tiles/ssmm2.png,
+	data/images/tiles/ssmm3.png, data/images/tiles/ssms1.png,
+	data/images/tiles/ssms2.png, data/images/tiles/sssm1.png,
+	data/images/tiles/sssm2.png, data/missions/foobar.png,
+	src/Feuerkraft.cxx, src/groundmap/GridTileData.cxx,
+	src/groundmap/GridTileData.hxx,
+	src/groundmap/GridTileGenerator.cxx,
+	src/groundmap/GridTileGenerator.hxx: Some more tiles and some small
+	fixes
+
+2002-03-26 11:42  grumbel
+
+	* data/feuerkraft.scr, data/tiles.scm, data/images/tiles/sand2.png,
+	data/images/tiles/sand5.png, data/images/tiles/sand6.png,
+	data/images/tiles/sand7.png, data/images/tiles/sand8.png,
+	data/missions/foobar.png, src/groundmap/GridMap.cxx,
+	src/groundmap/GridMap.hxx, src/groundmap/GridTileGenerator.cxx,
+	src/groundmap/GridTileGenerator.hxx, src/groundmap/Makefile.am: -
+	added a seperate tile lookup file
+
+2002-03-25 20:31  grumbel
+
+	* data/images/: minewater.png, minewateractive.png: - added
+	under-water mines
+
+2002-03-25 20:30  grumbel
+
+	* data/feuerkraft.scr, data/images/tiles/sand1.png,
+	data/missions/foobar.png, data/missions/test.feu,
+	src/Feuerkraft.cxx, src/Mine.cxx, src/Mine.hxx, src/Tank.cxx,
+	src/View.cxx, src/View.hxx, src/groundmap/GridMap.cxx: * fixed
+	get_groundtype()
+
+2002-03-25 16:32  grumbel
+
+	* data/feuerkraft.scr, data/images/tiles/dddf.png,
+	data/images/tiles/deepwater1.png, data/images/tiles/dfdd.png,
+	data/images/tiles/dffd.png, data/images/tiles/dfff.png,
+	data/images/tiles/fddd.png, data/images/tiles/fddf.png,
+	data/images/tiles/fdfd.png, data/images/tiles/fdff.png,
+	data/images/tiles/ffdd.png, data/images/tiles/ffdf.png,
+	data/images/tiles/fffd.png, data/images/tiles/fffs.png,
+	data/images/tiles/ffsf.png, data/images/tiles/ffss.png,
+	data/images/tiles/fsff.png, data/images/tiles/fsfs.png,
+	data/images/tiles/fssf.png, data/images/tiles/fsss.png,
+	data/images/tiles/mud1.png, data/images/tiles/mud2.png,
+	data/images/tiles/mud3.png, data/images/tiles/mud4.png,
+	data/images/tiles/sand10.png, data/images/tiles/sandgrass1.png,
+	data/images/tiles/sandgrass10.png,
+	data/images/tiles/sandgrass11.png,
+	data/images/tiles/sandgrass2.png, data/images/tiles/sandgrass3.png,
+	data/images/tiles/sandgrass4.png, data/images/tiles/sandgrass5.png,
+	data/images/tiles/sandgrass6.png, data/images/tiles/sandgrass7.png,
+	data/images/tiles/sandgrass8.png, data/images/tiles/sandgrass9.png,
+	data/images/tiles/sfff.png, data/images/tiles/sffs.png,
+	data/images/tiles/sfsf.png, data/images/tiles/sfss.png,
+	data/images/tiles/ssff.png, data/images/tiles/ssfs.png,
+	data/images/tiles/sssf.png, data/images/tiles/sssg.png,
+	data/missions/foobar.png, data/missions/test.feu,
+	src/Feuerkraft.cxx, src/JoystickController.cxx, src/View.cxx,
+	src/groundmap/GridMap.cxx, src/groundmap/GridMap.hxx,
+	src/groundmap/GridMapData.cxx, src/groundmap/GridMapData.hxx,
+	src/groundmap/GridTile.cxx, src/groundmap/GridTile.hxx,
+	src/groundmap/GridTileData.cxx, src/groundmap/GridTileData.hxx,
+	src/groundmap/Makefile.am: - fixed up GridMap, its now working
+	basicall
+
+2002-03-25 10:57  grumbel
+
+	* src/: buildings/Tower.cxx, groundmap/GridMap.cxx,
+	groundmap/GridMap.hxx, groundmap/GridMapData.cxx,
+	groundmap/GridMapData.hxx, groundmap/GridTile.cxx,
+	groundmap/GridTile.hxx, groundmap/GridTileData.cxx,
+	groundmap/GridTileData.hxx, groundmap/GroundMapDataFactory.cxx,
+	groundmap/GroundType.hxx, groundmap/Makefile.am: - added framework
+	for gridmap, nothing useable so far
+
+2002-03-25 00:26  grumbel
+
+	* data/missions/foobar.png, data/missions/test.feu,
+	src/Feuerkraft.cxx, src/GameWorldData.cxx, src/View.cxx,
+	src/View.hxx, src/buildings/Tower.cxx, src/buildings/TowerData.cxx,
+	src/buildings/TowerData.hxx,
+	src/groundmap/GroundMapDataFactory.cxx,
+	src/groundmap/MultiGroundMap.cxx,
+	src/groundmap/TileDataFactory.cxx, src/groundmap/TileMap.cxx,
+	src/groundmap/TileMapData.cxx, src/groundmap/TileMapData.hxx: -
+	added support for loading tilemaps from a .png file - clip away
+	tiles which are out-of-screen
+
+2002-03-24 16:43  grumbel
+
+	* src/Feuerkraft.cxx, src/groundmap/GroundMapDataFactory.cxx,
+	src/groundmap/GroundType.hxx, src/groundmap/Makefile.am,
+	src/groundmap/MultiGroundMap.cxx, src/groundmap/MultiGroundMap.hxx,
+	src/groundmap/MultiGroundMapData.cxx,
+	src/groundmap/MultiGroundMapData.hxx,
+	src/groundmap/TileMapData.hxx, data/missions/test.feu: Added
+	support for multi-layer tileamaps
+
+2002-03-24 15:00  grumbel
+
+	* data/feuerkraft.scr, data/images/wall.png,
+	data/images/wall_damaged.png, data/images/wall_destroyed.png,
+	data/missions/test.feu, src/Feuerkraft.cxx, src/Helicopter.cxx,
+	src/Jeep.cxx, src/buildings/BuildingMapData.cxx,
+	src/buildings/HeadquarterData.cxx, src/buildings/Makefile.am,
+	src/buildings/Wall.cxx, src/buildings/Wall.hxx,
+	src/buildings/WallData.cxx, src/buildings/WallData.hxx: - added
+	walls - some minimal fixes to heli and jeep
+
+2002-03-23 22:55  grumbel
+
+	* src/: Explosion.cxx, Feuerkraft.cxx, GameWorld.cxx,
+	GameWorld.hxx, buildings/Ammotent.cxx, buildings/Ammotent.hxx,
+	buildings/Fuelstation.cxx, buildings/Fuelstation.hxx: - added
+	blink-signals to the refuel stations (not perfekt, but working)
+
+2002-03-23 20:51  grumbel
+
+	* data/missions/test.feu, src/Feuerkraft.cxx, src/GameObjData.hxx,
+	src/GameWorld.cxx, src/GameWorldData.cxx, src/GameWorldData.hxx,
+	src/Makefile.am, src/Tree.cxx, src/Tree.hxx,
+	src/buildings/BuildingMap.cxx, src/buildings/BuildingMapData.cxx,
+	src/groundmap/GroundMapDataFactory.cxx,
+	src/groundmap/TileDataFactory.cxx, src/groundmap/TileMapData.cxx,
+	src/GameObjDataFactory.cxx, src/GameObjDataFactory.hxx,
+	src/TreeData.cxx, src/TreeData.hxx: - added support for GameObj's
+	in the level file
+
+2002-03-23 17:10  grumbel
+
+	* data/missions/test.feu, src/GameObj.hxx, src/GameWorld.cxx,
+	src/GameWorld.hxx, src/Tank.cxx, src/Tank.hxx, src/View.cxx,
+	src/buildings/Building.hxx, src/buildings/BuildingMap.cxx,
+	src/buildings/BuildingMap.hxx, src/buildings/Headquarter.cxx,
+	src/buildings/Headquarter.hxx, src/buildings/Tower.cxx,
+	src/buildings/Tower.hxx: - seperated the energiebar drawing from
+	the world drawing - added interface to 'disable' buildings
+
+2002-03-23 16:20  grumbel
+
+	* src/Tank.cxx: - added tank<->building collision, looks extremly
+	ugly, but kindof works
+
+2002-03-23 13:20  grumbel
+
+	* src/: Projectile.cxx, buildings/Base.hxx, buildings/Building.hxx,
+	buildings/BuildingMap.cxx, buildings/BuildingMap.hxx,
+	buildings/BuildingMapData.cxx, buildings/BuildingMapData.hxx,
+	buildings/Tower.cxx, buildings/Tower.hxx: - added
+	Projectile-Building collision
+
+2002-03-23 11:16  grumbel
+
+	* INSTALL, README, data/images/fire.png, data/images/turret.png,
+	data/missions/test.feu, src/Feuerkraft.cxx, src/Flag.cxx,
+	src/GameWorld.cxx, src/GameWorld.hxx, src/GameWorldData.cxx,
+	src/GameWorldData.hxx, src/Makefile.am, src/Mine.cxx,
+	src/Projectile.cxx, src/Radar.cxx, src/buildings/Ammotent.cxx,
+	src/buildings/Fuelstation.cxx, src/generic/ofstreamext.cxx,
+	src/generic/ofstreamext.hxx, src/groundmap/TileMap.cxx,
+	src/groundmap/TileMapData.cxx: Some map parsing reorganisation
+
+2002-03-19 00:25  grumbel
+
+	* configure.in, data/images/turret.png, src/Energie.cxx,
+	src/Feuerkraft.cxx, src/Tank.cxx, src/Tree.cxx, src/Turret.cxx,
+	src/VehicleView.cxx, src/generic/Makefile.am,
+	src/generic/ofstreamext.cxx, src/generic/ofstreamext.hxx: - small
+	cleanups - initing a non inited variable - ofstream stuff for
+	CL_Vector and SCM
+
+2002-03-18 23:23  sphair
+
+	* src/: GameDelta.cxx, GameWorldData.hxx, Geometry.cxx,
+	groundmap/TileDataFactory.hxx, groundmap/TileMapData.hxx: Misc
+	warnings fixed
+
+2002-03-18 23:16  grumbel
+
+	* src/ViewProperties.hxx: missing file
+
+2002-03-18 21:36  grumbel
+
+	* configure.in, data/feuerkraft.scr,
+	data/images/turret2_shadow.png, src/Tank.cxx, src/Tank.hxx,
+	src/Turret.cxx, src/Turret.hxx, src/View.cxx, src/View.hxx,
+	src/boost/assert.hpp, src/boost/checked_delete.hpp,
+	src/boost/scoped_array.hpp, src/boost/scoped_ptr.hpp,
+	src/boost/shared_array.hpp, src/boost/shared_ptr.hpp,
+	src/boost/smart_ptr.hpp, src/boost/detail/atomic_count.hpp,
+	src/boost/detail/shared_array_nmt.hpp,
+	src/boost/detail/shared_ptr_nmt.hpp,
+	src/groundmap/SpriteTileData.hxx, src/groundmap/TileData.hxx: -
+	updated to new boost - some ugly shadow experiments - small cleanup
+
+2002-03-18 12:49  sphair
+
+	* src/groundmap/TileDataFactory.cxx: Wee - I got visuals!
+
+2002-03-18 12:37  grumbel
+
+	* data/images/: grasssmoke.png, waterdust.png, tank2_shadow.png:
+	Some missing, but not really usefull images
+
+2002-03-18 12:29  grumbel
+
+	* src/Feuerkraft.cxx: Make it run from root dir
+
+2002-03-18 11:46  sphair
+
+	* Feuerkraft.dsp, src/Feuerkraft.cxx, src/View.cxx,
+	src/buildings/BuildingMap.cxx, src/groundmap/GroundMapData.cxx,
+	src/groundmap/TileDataFactory.hxx, src/groundmap/TileMap.cxx,
+	src/groundmap/TileMapData.cxx, src/groundmap/TileMapData.hxx: Now
+	compiles under win32
+
+2002-03-17 23:51  grumbel
+
+	* data/images/: rotor1.png, rotor2.png: - just some small graphical
+	improvments
+
+2002-03-17 23:32  grumbel
+
+	* data/feuerkraft.scr, data/images/helidestroyed.png,
+	data/images/hole.png, data/images/street_cross.png,
+	data/images/street_h1.png, data/images/street_h2.png,
+	data/images/street_h3.png, data/images/street_t1.png,
+	data/images/street_t2.png, data/images/street_t3.png,
+	data/images/street_t4.png, data/images/street_v1.png,
+	data/images/street_v2.png, data/images/street_v3.png,
+	src/Feuerkraft.cxx, src/Helicopter.cxx, src/Helicopter.hxx,
+	src/Mine.cxx, src/Mine.hxx, src/Tank.cxx, src/View.cxx,
+	src/View.hxx, src/buildings/AmmotentData.cxx,
+	src/buildings/AmmotentData.hxx, src/buildings/BuildingMap.cxx,
+	src/groundmap/SpriteTile.cxx, src/groundmap/SpriteTile.hxx,
+	src/groundmap/TileMap.cxx: - just some small graphical improvments
+
+2002-03-17 18:32  grumbel
+
+	* src/: Tower.cxx, Tower.hxx: removing obsolete stuff
+
+2002-03-17 18:10  grumbel
+
+	* data/missions/test.feu, src/Feuerkraft.cxx,
+	src/buildings/Base.cxx, src/buildings/Fuelstation.cxx,
+	src/buildings/Headquarter.cxx, src/buildings/Tower.cxx,
+	src/groundmap/TileMap.cxx: - fixed position handling in some
+	buildings
+
+2002-03-17 17:42  grumbel
+
+	* data/feuerkraft.scr, data/images/ammotent.png,
+	data/images/fuelstation.png, data/images/headquaterdestroyed.png,
+	data/images/horizwall.png, data/images/hospital.png,
+	data/images/tiles/grass1.png, data/images/tiles/grass2.png,
+	data/images/tiles/grass3.png, data/images/tiles/grass4.png,
+	data/images/tiles/grass5.png, data/images/tiles/sand3.png,
+	data/images/tiles/water1.png, data/images/tiles/water2.png,
+	data/images/tiles/water3.png, data/missions/test.feu,
+	src/Ammotent.cxx, src/Ammotent.hxx, src/Basis.cxx, src/Basis.hxx,
+	src/Feuerkraft.cxx, src/Fuelstation.cxx, src/Fuelstation.hxx,
+	src/Headquarter.cxx, src/Headquarter.hxx, src/Makefile.am,
+	src/buildings/Ammotent.cxx, src/buildings/Ammotent.hxx,
+	src/buildings/Building.hxx, src/buildings/BuildingData.hxx,
+	src/buildings/BuildingMap.cxx, src/buildings/BuildingMap.hxx,
+	src/buildings/BuildingMapData.cxx,
+	src/buildings/BuildingMapData.hxx, src/buildings/Fuelstation.cxx,
+	src/buildings/Fuelstation.hxx, src/buildings/Tower.cxx,
+	src/buildings/Tower.hxx, src/buildings/TowerData.cxx,
+	src/buildings/TowerData.hxx, src/groundmap/TileMap.cxx,
+	src/buildings/AmmotentData.cxx, src/buildings/AmmotentData.hxx,
+	src/buildings/Base.cxx, src/buildings/Base.hxx,
+	src/buildings/BaseData.cxx, src/buildings/BaseData.hxx,
+	src/buildings/BasisData.hxx, src/buildings/FuelstationData.cxx,
+	src/buildings/FuelstationData.hxx, src/buildings/Headquarter.cxx,
+	src/buildings/Headquarter.hxx, src/buildings/HeadquarterData.cxx,
+	src/buildings/HeadquarterData.hxx, src/buildings/Makefile.am: -
+	some more BuildingMap code and some restructuring of old code
+
+2002-03-17 14:11  grumbel
+
+	* data/images/towerbase.png: resize to 80x80
+
+2002-03-17 13:50  grumbel
+
+	* data/missions/test.feu, src/Feuerkraft.cxx,
+	src/buildings/BuildingMap.cxx, src/buildings/BuildingMap.hxx,
+	src/buildings/Tower.cxx: - some more changes/fixes to the building
+	map, drawing now working
+
+2002-03-17 13:01  grumbel
+
+	* src/: Feuerkraft.cxx, Makefile.am, buildings/Building.hxx,
+	buildings/BuildingData.hxx, buildings/BuildingMap.hxx,
+	buildings/BuildingMapData.cxx, buildings/BuildingMapData.hxx,
+	buildings/Tower.cxx, buildings/Tower.hxx, buildings/TowerData.cxx,
+	buildings/TowerData.hxx, buildings/BuildingMap.cxx,
+	particles/GrassParticle.hxx: - some parsing code for the
+	BuildingMap
+
+2002-03-17 01:16  grumbel
+
+	* src/buildings/: Building.hxx, Tower.cxx, Tower.hxx,
+	TowerData.cxx, TowerData.hxx: Some changes to make it compilable
+
+2002-03-17 00:41  grumbel
+
+	* src/Energie.hxx, src/Feuerkraft.cxx, src/Makefile.am,
+	src/Tank.cxx, src/groundmap/Makefile.am,
+	src/particles/SmokeParticle.hxx, configure.in, data/feuerkraft.scr,
+	data/images/headquaterdestroyed.png, data/images/towerbase.png,
+	data/missions/test.feu: - renamed 'map/' to 'groundmap/'
+
+2002-03-17 00:41  grumbel
+
+	* src/buildings/: Building.hxx, BuildingData.hxx, BuildingMap.hxx,
+	BuildingMapData.cxx, BuildingMapData.hxx, Tower.cxx, Tower.hxx,
+	TowerData.cxx, TowerData.hxx: - some framework code for buildings
+
+2002-03-15 11:32  grumbel
+
+	* src/: Projectile.cxx, Projectile.hxx, Turret.cxx: - fixed
+	projectile speed
+
+2002-03-15 11:01  grumbel
+
+	* src/: Energie.cxx, Explosion.cxx, Playfield.cxx, Projectile.cxx,
+	Tank.cxx, Turret.cxx, View.cxx, groundmap/GroundMap.hxx,
+	groundmap/TileMap.cxx, particles/ExplosionParticle.hxx,
+	particles/Makefile.am: - some explosion tuning - fixed the energie
+	bars
+
+2002-03-13 11:13  grumbel
+
+	* src/: Energie.cxx, Explosion.cxx: removed some debugging
+
+2002-03-13 11:03  grumbel
+
+	* src/: Ammotent.cxx, Energie.cxx, Energie.hxx, Fuelstation.cxx,
+	Helicopter.cxx, Projectile.cxx, Projectile.hxx, Radar.cxx,
+	Tank.cxx, Turret.cxx, particles/ExplosionParticle.hxx,
+	particles/SmokeParticle.hxx: - some small bug fixes - removed
+	friendly-fire
+
+2002-03-11 22:36  grumbel
+
+	* src/groundmap/: TileFactory.cxx, TileFactory.hxx: [no log
+	message]
+
+2002-03-11 22:34  grumbel
+
+	* configure.in, data/feuerkraft.scr, data/images/sandsmoke.png,
+	src/Explosion.cxx, src/Tank.cxx, src/Tank.hxx, src/View.cxx,
+	src/groundmap/TileMapData.hxx, src/particles/ExplosionParticle.hxx,
+	src/particles/Makefile.am, src/particles/SmokeParticle.hxx: Added
+	smoke tails
+
+2002-03-11 00:55  grumbel
+
+	* data/feuerkraft.scr, data/images/shockwave.png,
+	src/Feuerkraft.cxx, src/Shockwave.cxx, src/Shockwave.hxx: some
+	visual improvements to the shockwave
+
+2002-03-11 00:26  grumbel
+
+	* configure.in, data/images/explosion.png,
+	data/images/tree_shadow.png, src/Explosion.cxx, src/Explosion.hxx,
+	src/Makefile.am, src/generic/Makefile.am, src/generic/Random.cxx,
+	src/generic/Random.hxx, src/particles/ExplosionParticle.hxx: Some
+	small visual improvments to the explo
+
+2002-03-10 20:56  grumbel
+
+	* src/: GameDelta.cxx, GameDelta.hxx, GameMission.cxx,
+	GameMission.hxx, GameObjData.hxx, GameWorldData.cxx,
+	GameWorldData.hxx, groundmap/Makefile.am, particles/Makefile.am,
+	vehicles/Ambulance.hxx, vehicles/AmbulanceData.hxx,
+	vehicles/Car.hxx, vehicles/CarData.hxx, vehicles/FoxTank.cxx,
+	vehicles/FoxTank.hxx, vehicles/HawkHelicopter.hxx,
+	vehicles/Helicopter.hxx, vehicles/HueyHelicopter.hxx,
+	vehicles/HueyHelicopterData.hxx, vehicles/MammutTank.hxx,
+	vehicles/Tank.hxx, vehicles/Vehicle.hxx: - added some more files
+	(only framework, nothing working)
+
+2002-03-10 20:51  grumbel
+
+	* src/Explosion.cxx, src/Explosion.hxx, src/Feuerkraft.cxx,
+	src/GameWorld.cxx, src/GameWorld.hxx, src/KeyboardController.cxx,
+	src/Makefile.am, src/Projectile.cxx, src/Tank.cxx, src/Tower.cxx,
+	src/VehicleView.cxx, src/View.cxx,
+	src/particles/ExplosionParticle.hxx, configure.in,
+	data/feuerkraft.scr, data/images/explosion.png,
+	data/images/fuelstation.png, data/images/helicopter_shadow.png,
+	data/images/towerturret.png, data/images/tree2_shadow.png,
+	data/images/tiles/grass1.png, data/images/tiles/grass2.png,
+	data/images/tiles/grass3.png, data/images/tiles/grass4.png,
+	data/images/tiles/grass5.png, data/images/tiles/sand1.png,
+	data/images/tiles/sand10.png, data/images/tiles/sand11.png,
+	data/images/tiles/sand12.png, data/images/tiles/sand2.png,
+	data/images/tiles/sand3.png, data/images/tiles/sand4.png,
+	data/images/tiles/sand5.png, data/images/tiles/sand6.png,
+	data/images/tiles/sand7.png, data/images/tiles/sand8.png,
+	data/images/tiles/sand9.png, data/images/tiles/sandgrass1.png,
+	data/images/tiles/sandgrass2.png, data/images/tiles/sandgrass3.png,
+	data/images/tiles/sandgrass4.png, data/images/tiles/sandgrass5.png,
+	data/images/tiles/sandgrass6.png, data/images/tiles/sandwater.png,
+	data/images/tiles/sandwater1.png, data/images/tiles/sandwater2.png,
+	data/images/tiles/sandwater3.png, data/images/tiles/sandwater4.png,
+	data/images/tiles/sandwater5.png, data/images/tiles/wall_block.png,
+	data/images/tiles/wall_h.png, data/images/tiles/wall_shadow.png,
+	data/images/tiles/wall_v.png, data/images/tiles/wallb_h.png,
+	data/images/tiles/water1.png, data/images/tiles/water2.png,
+	data/images/tiles/water3.png, data/missions/test.feu: - changed
+	'delta' to be in seconds - added some explosion stuff
+
+2002-03-10 18:00  grumbel
+
+	* src/: Explosion.cxx, groundmap/TileMap.cxx,
+	particles/ExplosionParticle.hxx, particles/Particle.hxx,
+	particles/ParticleSystem.hxx: - added some particle stuff
+
+2002-03-10 00:59  grumbel
+
+	* src/: Feuerkraft.cxx, Tower.cxx, Tower.hxx,
+	groundmap/TileMap.cxx: CL_Surface -> Sprite change
+
+2002-03-09 19:36  grumbel
+
+	* src/: Feuerkraft.cxx, Tree.cxx, Tree.hxx,
+	groundmap/GroundMap.hxx, groundmap/SpriteTile.cxx,
+	groundmap/SpriteTile.hxx, groundmap/Tile.hxx,
+	groundmap/TileMap.cxx, groundmap/TileMap.hxx,
+	groundmap/TileMapData.cxx, groundmap/TileMapData.hxx: Rewrote the
+	tilemap handling to be a bit more memory friendly
+
+2002-03-09 15:53  grumbel
+
+	* aclocal.m4, autogen.sh, config.h.in, configure.in,
+	data/feuerkraft.scr, data/images/sand.jpg, src/Feuerkraft.cxx,
+	src/groundmap/GroundMap.hxx, src/groundmap/SpriteTile.cxx,
+	src/groundmap/SpriteTileData.cxx, src/groundmap/SpriteTileData.hxx,
+	src/groundmap/Tile.hxx, src/groundmap/TileData.hxx,
+	src/groundmap/TileMap.cxx, src/groundmap/TileMap.hxx,
+	src/groundmap/TileMapData.cxx, src/groundmap/TileMapData.hxx: map
+	parsing code is now working, map drawing not really
+
+2002-03-09 14:48  grumbel
+
+	* src/: Controller.hxx, Feuerkraft.cxx, Makefile.am, Soldier.hxx,
+	groundmap/GroundMap.hxx, groundmap/GroundMapData.cxx,
+	groundmap/GroundMapData.hxx, groundmap/GroundMapDataFactory.cxx,
+	groundmap/GroundMapDataFactory.hxx, groundmap/SpriteTileData.cxx,
+	groundmap/SpriteTileData.hxx, groundmap/TileDataFactory.cxx,
+	groundmap/TileDataFactory.hxx, groundmap/TileMap.cxx,
+	groundmap/TileMap.hxx, groundmap/TileMapData.cxx,
+	groundmap/TileMapData.hxx: some more fixes for the map parsing code
+
+2002-03-06 22:50  grumbel
+
+	* src/groundmap/: GroundMap.hxx, GroundType.hxx, SpriteTile.cxx,
+	SpriteTile.hxx, SpriteTileData.hxx, Tile.hxx, TileData.hxx,
+	TileFactory.cxx, TileFactory.hxx, TileMap.cxx, TileMap.hxx: Some
+	map parsing code
+
+2001-12-12 01:25  grumbel
+
+	* src/: Tank.cxx, Tree.cxx: Removed some warnings
+
+2001-12-12 01:25  grumbel
+
+	* src/: Helicopter.cxx, Jeep.cxx, Mine.cxx, Projectile.cxx,
+	Shockwave.cxx, Soldier.cxx: Removed some warrings
+
+2001-12-12 01:00  grumbel
+
+	* Feuerkraft.dsp, configure.in, src/Ambulance.hxx, src/Ammotent.cc,
+	src/Ammotent.cxx, src/Ammotent.hh, src/Ammotent.hxx,
+	src/Background.cc, src/Background.cxx, src/Background.hh,
+	src/Background.hxx, src/Basis.cc, src/Basis.cxx, src/Basis.hh,
+	src/Basis.hxx, src/Collideable.hh, src/Collideable.hxx,
+	src/Controllable.hh, src/Controllable.hxx, src/Controller.cc,
+	src/Controller.cxx, src/Controller.hh, src/Controller.hxx,
+	src/Energie.cc, src/Energie.cxx, src/Energie.hh, src/Energie.hxx,
+	src/Explosion.cc, src/Explosion.cxx, src/Explosion.hh,
+	src/Explosion.hxx, src/Feuerkraft.cc, src/Feuerkraft.cxx,
+	src/Feuerkraft.hh, src/Feuerkraft.hxx, src/Field.hxx, src/Flag.cc,
+	src/Flag.cxx, src/Flag.hh, src/Flag.hxx, src/Fuelstation.cc,
+	src/Fuelstation.cxx, src/Fuelstation.hh, src/Fuelstation.hxx,
+	src/GameObj.hh, src/GameObj.hxx, src/GameWorld.cc,
+	src/GameWorld.cxx, src/GameWorld.hh, src/GameWorld.hxx,
+	src/Geometry.cxx, src/Geometry.hxx, src/GuiObj.hh, src/GuiObj.hxx,
+	src/Headquarter.cc, src/Headquarter.cxx, src/Headquarter.hh,
+	src/Headquarter.hxx, src/Helicopter.cc, src/Helicopter.cxx,
+	src/Helicopter.hh, src/Helicopter.hxx, src/Jeep.cc, src/Jeep.cxx,
+	src/Jeep.hh, src/Jeep.hxx, src/JoystickController.cc,
+	src/JoystickController.cxx, src/JoystickController.hh,
+	src/JoystickController.hxx, src/KeyboardController.cc,
+	src/KeyboardController.cxx, src/KeyboardController.hh,
+	src/KeyboardController.hxx, src/Makefile.am, src/Mine.cc,
+	src/Mine.cxx, src/Mine.hh, src/Mine.hxx, src/Pathfinder.cc,
+	src/Pathfinder.cxx, src/Pathfinder.hh, src/Pathfinder.hxx,
+	src/Playfield.cc, src/Playfield.cxx, src/Playfield.hh,
+	src/Playfield.hxx, src/Projectile.cc, src/Projectile.cxx,
+	src/Projectile.hh, src/Projectile.hxx, src/Radar.cc, src/Radar.cxx,
+	src/Radar.hh, src/Radar.hxx, src/Screen.cc, src/Screen.cxx,
+	src/Screen.hh, src/Screen.hxx, src/Shockwave.cc, src/Shockwave.cxx,
+	src/Shockwave.hh, src/Shockwave.hxx, src/Soldier.cc,
+	src/Soldier.cxx, src/Soldier.hh, src/Soldier.hxx, src/Stone.cc,
+	src/Stone.cxx, src/Stone.hh, src/Stone.hxx, src/StringConverter.cc,
+	src/StringConverter.cxx, src/StringConverter.hh,
+	src/StringConverter.hxx, src/System.cc, src/System.cxx,
+	src/System.hh, src/System.hxx, src/Tank.cc, src/Tank.cxx,
+	src/Tank.hh, src/Tank.hxx, src/Tower.cc, src/Tower.cxx,
+	src/Tower.hh, src/Tower.hxx, src/Tree.cc, src/Tree.cxx,
+	src/Tree.hh, src/Tree.hxx, src/Turret.cc, src/Turret.cxx,
+	src/Turret.hh, src/Turret.hxx, src/Vehicle.cc, src/Vehicle.cxx,
+	src/Vehicle.hh, src/Vehicle.hxx, src/VehicleStatus.cc,
+	src/VehicleStatus.cxx, src/VehicleStatus.hh, src/VehicleStatus.hxx,
+	src/VehicleView.cc, src/VehicleView.cxx, src/VehicleView.hh,
+	src/VehicleView.hxx, src/View.cc, src/View.cxx, src/View.hh,
+	src/View.hxx, src/my_gettext.hh, src/my_gettext.hxx: Renamed
+	.cc/.hh to .cxx/.hxx... don't try this at home...
+
+2001-12-12 00:50  grumbel
+
+	* Makefile.am, configure.in, data/feuerkraft.scr,
+	data/images/ammotent.png, data/images/fuelstation.png,
+	data/images/headquater.png, data/images/mine.png,
+	data/images/mineactive.png, src/Ambulance.cxx, src/Ammotent.cc,
+	src/Feuerkraft.cc, src/Fuelstation.cc, src/Headquarter.cc,
+	src/Makefile.am, src/Radar.cc, src/VehicleStatus.cc: Repainted some
+	images from iso to top-down
+
+2001-11-30 18:20  grumbel
+
+	* src/: VehicleView.cc, VehicleView.hh: Now with seasick-mode...
+
+2001-11-30 18:07  grumbel
+
+	* src/: Tank.cc, VehicleView.cc, View.cc: - added zoom support
+
+2001-11-29 21:43  grumbel
+
+	* src/: Feuerkraft.cc, Tank.cc, VehicleView.cc, View.cc, View.hh:
+	Just some fun with a rotating playfield...
+
+2001-11-29 12:36  grumbel
+
+	* src/: Ambulance.cxx, Ambulance.hxx: Adding some missing files
+
+2001-11-28 18:18  grumbel
+
+	* data/images/: ambulance.png, helicopter_shadow.png, hole.png,
+	hospital.png, hovercraft.png, krater.png, mgun.png, street.png,
+	street_cross.png, street_curve.png, street_h1.png, street_h2.png,
+	street_h3.png, street_t1.png, street_t2.png, street_t3.png,
+	street_t4.png, street_v1.png, street_v2.png, street_v3.png,
+	tree2.png, tree2_shadow.png: Some more images
+
+2001-11-28 18:17  grumbel
+
+	* INSTALL, README, aclocal.m4, config.h.in, configure.in,
+	data/feuerkraft.scr, data/images/fire.png, data/images/fire2.png,
+	data/images/helicopter.png, data/images/jeep.png,
+	data/images/radar_line.png, data/images/tank.png,
+	data/images/tank2.png, data/images/turret.png,
+	data/images/turret2.png, src/Ammotent.cc, src/Energie.cc,
+	src/Feuerkraft.cc, src/GameWorld.cc, src/Helicopter.cc,
+	src/Helicopter.hh, src/Jeep.cc, src/Jeep.hh,
+	src/JoystickController.cc, src/Makefile.am, src/Projectile.cc,
+	src/Radar.cc, src/Radar.hh, src/Soldier.cc, src/Tank.cc,
+	src/Tank.hh, src/Tower.cc, src/Turret.cc, src/Turret.hh,
+	src/VehicleView.cc, src/View.cc, src/View.hh,
+	src/boost/Makefile.am: Added SphriteLib support and fixed most of
+	the sprites
+
+2001-09-23 18:10  japj
+
+	* Feuerkraft.dsp, src/Ammotent.cc, src/Fuelstation.cc: small fixes
+	to windows compilation
+
+2001-05-09 19:34  grumbel
+
+	* Makefile.am, README, configure.in, data/Makefile.am,
+	src/Makefile.am: Some 'make dist' fixes
+
+2001-05-06 00:16  grumbel
+
+	* data/feuerkraft.scr, data/images/sand.jpg, data/images/smod.png,
+	data/images/stone.png, src/Background.cc, src/Background.hh,
+	src/Feuerkraft.cc, src/Makefile.am, src/Playfield.hh, src/Radar.cc,
+	src/Stone.cc, src/Stone.hh, src/Tank.cc, src/View.hh: Just some gfx
+	improvements (a sand background and some stones)
+
+2001-05-05 15:57  japj
+
+	* Feuerkraft.dsp: update dsp to include added files
+
+2001-05-05 15:40  grumbel
+
+	* data/feuerkraft.scr, data/images/ammotent.png, src/Ammotent.cc,
+	src/Ammotent.hh, src/Feuerkraft.cc, src/Fuelstation.cc,
+	src/Makefile.am, src/Tank.cc, src/Tank.hh, src/Turret.cc,
+	src/Vehicle.hh, src/VehicleStatus.cc, src/VehicleStatus.hh,
+	src/Vehicle.cc: Added ammotent for reloading the ammunition
+
+2001-05-05 13:16  sphair
+
+	* Feuerkraft.dsp, src/VehicleView.cc, src/View.cc: Updates on
+	Windows port
+
+2001-05-05 11:04  grumbel
+
+	* README, data/feuerkraft.scr, data/images/fuelstation.png,
+	data/images/headquater.png, data/images/headquaterdamaged.png,
+	data/images/headquaterdestroyed.png, data/images/helicopter.png,
+	data/images/jeep.png, src/Feuerkraft.cc, src/Flag.cc,
+	src/Fuelstation.cc, src/Fuelstation.hh, src/Headquarter.cc,
+	src/Headquarter.hh, src/Helicopter.cc, src/Makefile.am,
+	src/Mine.cc, src/Shockwave.cc, src/Tank.cc, src/Tank.hh,
+	src/Tower.cc, src/Tree.cc, src/View.cc, src/View.hh,
+	data/images/ammo.png, data/images/fuel.png, data/images/start.png,
+	src/Basis.cc, src/Basis.hh, src/VehicleStatus.cc,
+	src/VehicleStatus.hh: Added headquarter and fuelstation
+
+2001-05-04 19:40  grumbel
+
+	* src/: Tree.cc, View.cc, View.hh: Added a stupid-braindead circle
+	draw function
+
+2001-05-04 19:11  grumbel
+
+	* data/images/smod.png, src/Energie.cc, src/Energie.hh,
+	src/Explosion.cc, src/Feuerkraft.cc, src/Flag.cc,
+	src/Helicopter.cc, src/Tank.cc, src/VehicleView.cc,
+	src/VehicleView.hh, src/View.cc, src/View.hh: Some better
+	abstraction for drawing to a View Some speed enhancements to the
+	rut
+
+2001-05-02 12:19  sphair
+
+	* src/System.cc: Fix for the chdir
+
+2001-05-02 10:33  grumbel
+
+	* src/Feuerkraft.cc: Some radar fixes and scrolling is now default
+
+2001-05-02 10:31  grumbel
+
+	* src/System.cc: Corrected a little typo
+
+2001-05-02 00:48  sphair
+
+	* Feuerkraft.dsp, src/Feuerkraft.cc, src/Headquarter.cc,
+	src/Pathfinder.cc, src/Radar.cc, src/System.cc, src/View.cc:
+	Feuerkraft now compiles under Windows
+
+2001-05-01 23:11  grumbel
+
+	* src/: Feuerkraft.cc, Makefile.am, Radar.cc, Soldier.hh, Tank.cc,
+	Vehicle.hh, VehicleView.cc, VehicleView.hh, View.cc, View.hh,
+	Screen.cc, Screen.hh: Made the radar relativ to the tank's
+	orientation
+
+2001-05-01 17:06  grumbel
+
+	* Makefile.am, src/Collideable.hh, src/Explosion.cc,
+	src/Explosion.hh, src/Feuerkraft.cc, src/Flag.cc, src/Flag.hh,
+	src/GameObj.hh, src/GameWorld.cc, src/Helicopter.cc,
+	src/Helicopter.hh, src/Jeep.cc, src/Jeep.hh, src/Mine.cc,
+	src/Mine.hh, src/Playfield.cc, src/Playfield.hh, src/Projectile.cc,
+	src/Projectile.hh, src/Radar.cc, src/Shockwave.cc,
+	src/Shockwave.hh, src/Soldier.cc, src/Soldier.hh, src/Tank.cc,
+	src/Tank.hh, src/Tower.cc, src/Tower.hh, src/Tree.cc, src/Tree.hh,
+	src/Turret.cc, src/Turret.hh, src/Vehicle.hh: Some enhachements to
+	the radar
+
+2001-05-01 12:44  grumbel
+
+	* data/feuerkraft.scr, src/Feuerkraft.cc, src/GameObj.hh,
+	src/GameWorld.hh, src/Jeep.cc, src/JoystickController.cc,
+	src/JoystickController.hh, src/Makefile.am, src/Projectile.cc,
+	src/Projectile.hh, src/Radar.cc, src/Radar.hh, src/Tank.cc,
+	src/Tank.hh, src/Vehicle.hh, data/images/radar.png, src/GuiObj.hh,
+	src/boost/dummy_ptr.hpp: Added a radar
+
+2001-04-27 21:43  grumbel
+
+	* configure.in, src/Feuerkraft.cc, src/Flag.cc, src/Pathfinder.cc,
+	src/Pathfinder.hh, src/Turret.cc: Some updates for current ClanLib
+	CVS and for g++-3.0
+
+2001-04-07 20:03  grumbel
+
+	* data/Makefile.am, src/GameObj.hh, src/Pathfinder.cc,
+	src/Pathfinder.hh: Well, stupid name for that class... have to
+	think of a better one
+
+2001-04-07 20:00  grumbel
+
+	* src/Feuerkraft.hh: One missing file...
+
+2001-03-26 11:24  grumbel
+
+	* src/: Feuerkraft.cc, Makefile.am, StringConverter.cc,
+	StringConverter.hh, System.cc, System.hh, my_gettext.hh: Some
+	support for finding the datafiles in different locations
+
+2001-03-16 21:36  grumbel
+
+	* config.h.in, configure.in, src/Energie.cc, src/Explosion.hh,
+	src/Feuerkraft.cc, src/JoystickController.hh, src/Playfield.cc,
+	src/Projectile.hh, src/Shockwave.hh, src/Soldier.cc,
+	src/Soldier.hh, src/Tank.hh, src/Tree.hh, src/View.cc: Ported
+	Feuerkraft to the current ClanLib-0.5 CVS
+
+2001-02-25 20:48  grumbel
+
+	* data/images/jeep.png, data/images/rotor.png, src/Feuerkraft.cc,
+	src/View.cc, src/View.hh: Installed a new kernel and the framerate
+	droped from 70 to 10 :-(
+
+2001-02-24 22:32  grumbel
+
+	* src/: Feuerkraft.cc, Helicopter.cc, Helicopter.hh,
+	VehicleView.cc: Splitscreen makes me seasick...
+
+2001-02-24 21:37  grumbel
+
+	* doc/classes.dia, src/Vehicle.hh: Added a little diagram about the
+	classes
+
+2001-02-24 21:33  grumbel
+
+	* data/images/blueflag.png, data/images/parking.png,
+	src/Headquarter.cc, src/Headquarter.hh, src/Playfield.cc,
+	src/Playfield.hh: Some more files
+
+2001-02-24 21:32  grumbel
+
+	* data/feuerkraft.scr, data/images/jeep.png, src/Collideable.hh,
+	src/Energie.cc, src/Energie.hh, src/Explosion.cc, src/Explosion.hh,
+	src/Feuerkraft.cc, src/Flag.cc, src/Flag.hh, src/GameObj.hh,
+	src/GameWorld.cc, src/GameWorld.hh, src/Helicopter.cc,
+	src/Helicopter.hh, src/Jeep.cc, src/Jeep.hh,
+	src/JoystickController.cc, src/Makefile.am, src/Mine.cc,
+	src/Mine.hh, src/Projectile.cc, src/Projectile.hh,
+	src/Shockwave.cc, src/Shockwave.hh, src/Soldier.cc, src/Soldier.hh,
+	src/Tank.cc, src/Tank.hh, src/Tower.cc, src/Tower.hh, src/Tree.cc,
+	src/Tree.hh, src/Turret.cc, src/Turret.hh, src/VehicleView.cc,
+	src/VehicleView.hh, src/View.cc, src/View.hh: * added support for
+	split-screen * added flag for "capture-the-flag" mode * new jeep
+	image
+
+2001-02-21 22:59  japj
+
+	* src/Feuerkraft.cc: according to clanapp.h, it's actually a
+	virtual int main(int argc, char** argv)
+
+2001-02-21 09:13  grumbel
+
+	* src/: Feuerkraft.cc, Tank.cc: Even more delta support
+
+2001-02-21 08:54  grumbel
+
+	* config.h.in, configure.in, src/Controllable.hh,
+	src/Controller.hh, src/Feuerkraft.cc, src/Helicopter.cc,
+	src/Helicopter.hh, src/JoystickController.cc,
+	src/JoystickController.hh, src/KeyboardController.cc,
+	src/KeyboardController.hh, src/Tank.cc, src/Tank.hh, src/Tower.hh,
+	src/Turret.cc, src/Turret.hh: Removed check for guile in the
+	configure script... more tdelta support
+
+2001-02-20 23:49  grumbel
+
+	* src/: Explosion.cc, Explosion.hh, Feuerkraft.cc, GameObj.hh,
+	GameWorld.cc, GameWorld.hh, Helicopter.cc, Helicopter.hh, Mine.cc,
+	Mine.hh, Projectile.cc, Projectile.hh, Shockwave.cc, Shockwave.hh,
+	Soldier.cc, Soldier.hh, Tank.cc, Tank.hh, Tower.cc, Tower.hh,
+	Turret.cc, Turret.hh: Replaced update(void) with update(floate
+	delta) so we can have a constant game speed on all machines
+
+2001-02-20 22:30  grumbel
+
+	* autogen.sh: [no log message]
+
+2001-02-20 12:20  mbn
+
+	* src/: JoystickController.cc, JoystickController.hh: - Fixed
+	uninitalized stuff in joystick controller.  - Checks if axes and
+	buttons are available before usage in joystick controller.
+
+2001-02-20 10:17  mbn
+
+	* src/: GameWorld.cc, Tank.cc: - Removed some compiler warnings.  -
+	Disabled objects sort for win32.
+
+2001-02-20 01:13  mbn
+
+	* src/GameWorld.cc: - Added manual quicksort implementation.   
+	(*SIGH* MSVC++'s STL is a disaster!)
+	
+	It is not finished, need to modify it so it doesnt do q < r on
+	iterators.  Anyone wanna do this? :)
+
+2001-02-19 23:59  mbn
+
+	* src/GameWorld.cc: - Spooky STL stuff.
+
+2001-02-19 23:54  grumbel
+
+	* src/GameWorld.cc: Yet another try...
+
+2001-02-19 23:45  grumbel
+
+	* src/GameWorld.cc: Yet another try...
+
+2001-02-19 23:02  grumbel
+
+	* src/GameWorld.cc: Yet another try...
+
+2001-02-19 22:54  grumbel
+
+	* src/GameWorld.cc: Yet another try...
+
+2001-02-19 22:48  grumbel
+
+	* src/GameWorld.cc: Fun with the stl... again.....
+
+2001-02-19 22:37  grumbel
+
+	* Makefile.am, src/GameWorld.cc: Fun with the stl...
+
+2001-02-19 22:33  mbn
+
+	* .cvsignore: - Ignore more MSVC++ directory spam.
+
+2001-02-19 22:32  mbn
+
+	* .cvsignore: - Go away stupid meaningless .html compile log thing.
+	   (what the heck does microsoft want you to use this file for? And
+	why	can't it be disabled!?)
+
+2001-02-19 22:31  mbn
+
+	* Feuerkraft.dsp: - Enabled RTTI support in project settings.
+
+2001-02-18 22:53  sphair
+
+	* Feuerkraft.dsp, src/Explosion.cc, src/Feuerkraft.cc,
+	src/Helicopter.cc, src/Turret.cc: - Updated workspace - Fixed some
+	float warnings - Fixed a compile-error on Windows
+
+2001-02-18 21:20  grumbel
+
+	* data/images/tankdestroyed.png, src/boost/config.hpp,
+	src/boost/smart_ptr.hpp, src/boost/utility.hpp, src/Controller.cc:
+	Added helicopter, controll is a bit lousy but works
+
+2001-02-18 21:16  grumbel
+
+	* data/feuerkraft.scr, data/images/helicopter.png,
+	data/images/helidestroyed.png, data/images/rotor.png,
+	src/Collideable.hh, src/Controllable.hh, src/Controller.hh,
+	src/Feuerkraft.cc, src/GameObj.hh, src/GameWorld.cc,
+	src/GameWorld.hh, src/Helicopter.cc, src/Helicopter.hh,
+	src/JoystickController.cc, src/KeyboardController.cc,
+	src/Makefile.am, src/Mine.cc, src/Projectile.cc, src/Tank.cc,
+	src/Tank.hh: Added helicopter, controll is a bit lousy but works
+
+2001-02-18 16:38  grumbel
+
+	* src/Energie.cc: Added some more color to the energie bar
+
+2001-02-18 16:27  grumbel
+
+	* README, data/feuerkraft.scr, data/images/horizwall.png,
+	data/images/shockwave.png, data/images/tank2destroyed.png,
+	data/images/towerwall-e.png, src/Explosion.cc, src/Explosion.hh,
+	src/Feuerkraft.cc, src/GameObj.hh, src/GameWorld.cc,
+	src/Makefile.am, src/Shockwave.cc, src/Shockwave.hh, src/Tank.cc,
+	src/Tank.hh, src/Mine.cc: Added a shockwave effect, but it looks
+	ugly...
+
+2001-02-18 15:18  sphair
+
+	* .cvsignore, Feuerkraft.dsp, Feuerkraft.dsw: DevStudio workspace
+
+2001-02-18 14:53  grumbel
+
+	* data/feuerkraft.scr, src/Collideable.hh, src/GameWorld.cc,
+	src/GameWorld.hh, src/Makefile.am, src/Mine.hh, src/Projectile.cc,
+	src/Projectile.hh, src/Tank.cc, src/Tank.hh, src/Tower.cc,
+	src/Turret.cc, data/images/mineactive.png: added some braindead
+	tank<->particle collision detection
+
+2001-02-18 01:52  grumbel
+
+	* .cvsignore, data/.cvsignore, src/.cvsignore: ignore files...
+	ignore them...
+
+2001-02-18 01:51  grumbel
+
+	* data/: feuerkraft.scr, images/flagblue.png, images/flaggreen.png,
+	images/headquater.png, images/headquaterdamaged.png,
+	images/headquaterdestroyed.png, images/mine.png: some more images
+
+2001-02-18 01:49  grumbel
+
+	* src/: Controllable.hh, Explosion.hh, GameObj.hh, GameWorld.cc,
+	JoystickController.cc, JoystickController.hh,
+	KeyboardController.cc, Makefile.am, Mine.hh, Tank.cc, Tank.hh,
+	Tower.cc, Tree.hh: Added mine dropping support
+
+2001-02-17 23:41  grumbel
+
+	* AUTHORS, ChangeLog, NEWS, README, data/feuerkraft.scr,
+	data/images/soldier.png, data/images/soldierdead.png,
+	data/images/towerdamaged.png, data/images/towerdestroyed.png,
+	data/images/tree.png, src/Energie.cc, src/Energie.hh,
+	src/Feuerkraft.cc, src/Makefile.am, src/Soldier.cc, src/Soldier.hh,
+	src/Tank.cc, src/Tower.cc, src/Tower.hh, src/Tree.cc, src/Tree.hh:
+	Added tower damage and some small running soldiers... and some
+	trees...
+
+2001-02-17 21:07  grumbel
+
+	* Makefile.in, configure, data/Makefile.in, src/Makefile.in: When
+	will I finally learn to *not* commit autogenerated files...
+
+2001-02-17 21:02  grumbel
+
+	* AUTHORS, Makefile.in, README, stamp-h.in, COPYING, ChangeLog,
+	INSTALL, Makefile.am, NEWS, acconfig.h, aclocal.m4, config.h.in,
+	configure, configure.in, install-sh, missing, mkinstalldirs,
+	src/Collideable.hh, src/Energie.hh, src/Makefile.am,
+	src/Makefile.in, src/Controllable.hh, src/Explosion.hh,
+	src/GameWorld.cc, src/GameWorld.hh, src/KeyboardController.cc,
+	src/Tank.cc, src/Turret.cc, src/Controller.hh, src/Energie.cc,
+	src/Feuerkraft.cc, src/GameObj.hh, src/JoystickController.cc,
+	src/JoystickController.hh, src/KeyboardController.hh,
+	src/Projectile.cc, src/Projectile.hh, src/Tank.hh, src/Tower.cc,
+	src/Turret.hh, data/Makefile.am, data/Makefile.in,
+	data/feuerkraft.scr, src/Tower.hh, data/images/fire.png,
+	data/images/fire2.png, data/images/mediumexplo.png,
+	data/images/projectile.png, data/images/smallexplo.png,
+	data/images/smod.png, data/images/tank.png, data/images/tank2.png,
+	data/images/towerbase.png, data/images/towerturret.png,
+	data/images/turret.png, data/images/turret2.png: Initial
+	checking... lets kill some tanks...
+
+2001-02-17 21:02  grumbel
+
+	* AUTHORS, Makefile.in, README, stamp-h.in, COPYING, ChangeLog,
+	INSTALL, Makefile.am, NEWS, acconfig.h, aclocal.m4, config.h.in,
+	configure, configure.in, install-sh, missing, mkinstalldirs,
+	src/Collideable.hh, src/Energie.hh, src/Makefile.am,
+	src/Makefile.in, src/Controllable.hh, src/Explosion.hh,
+	src/GameWorld.cc, src/GameWorld.hh, src/KeyboardController.cc,
+	src/Tank.cc, src/Turret.cc, src/Controller.hh, src/Energie.cc,
+	src/Feuerkraft.cc, src/GameObj.hh, src/JoystickController.cc,
+	src/JoystickController.hh, src/KeyboardController.hh,
+	src/Projectile.cc, src/Projectile.hh, src/Tank.hh, src/Tower.cc,
+	src/Turret.hh, data/Makefile.am, data/Makefile.in,
+	data/feuerkraft.scr, src/Tower.hh, data/images/fire.png,
+	data/images/fire2.png, data/images/mediumexplo.png,
+	data/images/projectile.png, data/images/smallexplo.png,
+	data/images/smod.png, data/images/tank.png, data/images/tank2.png,
+	data/images/towerbase.png, data/images/towerturret.png,
+	data/images/turret.png, data/images/turret2.png: Initial revision
 
