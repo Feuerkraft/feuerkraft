@@ -11,7 +11,9 @@ libfeuerkraft_particles_a_SOURCES = \
  fire_particle.cxx     \
  fire_emitter.hxx      \
  fire_emitter.cxx      \
+ rocket_smoke_particle.hxx     \
+ rocket_smoke_particle.cxx     \
  smoke_emitter.hxx     \
- smoke_emitter.cxx      
+ smoke_emitter.cxx     
 
 # EOF #

@@ -17,39 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_COMMUNICATION_DIALOG_HXX
-#define HEADER_COMMUNICATION_DIALOG_HXX
+#ifndef HEADER_ROCKET_HXX
+#define HEADER_ROCKET_HXX
 
-#include <map>
-#include "gui_obj.hxx"
+#include "vector2d.hxx"
+#include "game_obj.hxx"
 
 /** */
-class CommunicationDialog : public GuiObj
+class Rocket : public GameObj
 {
 private:
-  class Message {
-  public:
-    unsigned int time;
-    std::string  text;
-  };
-
-  typedef std::map<int, Message> Messages;
-  Messages messages;
-
-  static CommunicationDialog* current_;
+  CL_Sprite sprite;
+  CL_Sprite smoke;
+  FloatVector2d pos;
+  float orientation;
+  float velocity;
+  float max_velocity;
 public:
-  static CommunicationDialog* current() { return current_; }
+  Rocket(const FloatVector2d& pos, float orientation);
+  ~Rocket();
 
-  CommunicationDialog();
-  ~CommunicationDialog();
+  void draw(View& view);
+  void update(float delta);
 
-  void send(int id, const std::string& message);
-
-  void draw (CL_GraphicContext& gc);
-  void update (float delta);
+  void detonate();
+  void on_collision_with_building(Building* building);
 private:
-  CommunicationDialog (const CommunicationDialog&);
-  CommunicationDialog& operator= (const CommunicationDialog&);
+  Rocket (const Rocket&);
+  Rocket& operator= (const Rocket&);
 };
 
 #endif

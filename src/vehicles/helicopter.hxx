@@ -43,7 +43,6 @@ private:
   CL_Sprite helidestroyed;
 
   float strafe;
-  bool  fireing;
   int   reloading;
   Energie energie;
   bool destroyed;

@@ -17,39 +17,30 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_COMMUNICATION_DIALOG_HXX
-#define HEADER_COMMUNICATION_DIALOG_HXX
+#ifndef HEADER_ROCKET_SMOKE_PARTICLE_HXX
+#define HEADER_ROCKET_SMOKE_PARTICLE_HXX
 
-#include <map>
-#include "gui_obj.hxx"
+#include "particle.hxx"
 
 /** */
-class CommunicationDialog : public GuiObj
+class RocketSmokeParticle : public Particle
 {
 private:
-  class Message {
-  public:
-    unsigned int time;
-    std::string  text;
-  };
-
-  typedef std::map<int, Message> Messages;
-  Messages messages;
-
-  static CommunicationDialog* current_;
+  float max_life_time;
+  float size;
+  float angle;
+  CL_Sprite sprite;
+  
 public:
-  static CommunicationDialog* current() { return current_; }
-
-  CommunicationDialog();
-  ~CommunicationDialog();
-
-  void send(int id, const std::string& message);
-
-  void draw (CL_GraphicContext& gc);
-  void update (float delta);
+  RocketSmokeParticle(const FloatVector2d& arg_pos);
+  ~RocketSmokeParticle();
 private:
-  CommunicationDialog (const CommunicationDialog&);
-  CommunicationDialog& operator= (const CommunicationDialog&);
+  RocketSmokeParticle (const RocketSmokeParticle&);
+  RocketSmokeParticle& operator= (const RocketSmokeParticle&);
+
+  void update (float delta);
+  void draw (View& view);
+  float get_z_pos ();
 };
 
 #endif

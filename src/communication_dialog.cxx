@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
+#include <ClanLib/Core/System/system.h>
 #include "fonts.hxx"
 #include "unit.hxx"
 #include "view.hxx"
@@ -45,7 +46,7 @@ CommunicationDialog::draw (CL_GraphicContext& gc)
       if (unit)
         {
           CL_Font font = Fonts::font;
-          CL_Rect bbox = font.bounding_rect(0, 0, i->second);
+          CL_Rect bbox = font.bounding_rect(0, 0, i->second.text);
 
           FloatVector2d unit_pos   = View::current()->world_to_screen(unit->get_pos());
           FloatVector2d dialog_pos = unit_pos + FloatVector2d(0, - 50-bbox.get_height());
@@ -66,21 +67,33 @@ CommunicationDialog::draw (CL_GraphicContext& gc)
                                 CL_Color(0,0,0, 100));
 
           font.set_alignment(origin_bottom_center);
-          font.draw(int(dialog_pos.x+10), int(dialog_pos.y+10), i->second);
+          font.draw(int(dialog_pos.x+10), int(dialog_pos.y+10), i->second.text);
         }
     }
 }
 
 void
-CommunicationDialog::send(int unit_id, const std::string& message)
+CommunicationDialog::send(int unit_id, const std::string& text)
 {
+  Message message;
+
+  message.time = CL_System::get_time();
+  message.text = text;
+
   messages[unit_id] = message;
 }
 
 void
 CommunicationDialog::update (float delta)
 {
-  
+  // Remove old messages from the display
+  for (Messages::iterator i = messages.begin(); i != messages.end(); ++i)
+    {
+      if (i->second.time + 2000 < CL_System::get_time())
+        {
+          messages.erase(i);
+        }
+    }
 }
 
 /* EOF */

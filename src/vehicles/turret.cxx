@@ -2,6 +2,7 @@
 #include "../projectile.hxx"
 #include "../math.hxx"
 #include "../resource_manager.hxx"
+#include "../rocket.hxx"
 #include "tank.hxx"
 #include "turret.hxx"
 

@@ -284,7 +284,7 @@
 ;;;;;;;;;;;;;;;;;
 (menu-add-item comm-menu "Help!"
                (lambda ()
-                 (comm-send-message 'player "I need help!")
+                 (comm-unit-message (player-get-current-unit) "I need help!")
 
                  (let* ((obj (player-get-current-unit))
                         (target-x (+ (gameobj-get-property obj "x-pos") 100))
@@ -305,7 +305,7 @@
 
 (menu-add-item comm-menu "Bomb Attack!"
                (lambda ()
-                 (comm-send-message 'player "Request Bomber support!")
+                 (comm-unit-message (player-get-current-unit) "Request Bomber support!")
                  (let ((obj (player-get-current-unit)))
                    (bomber-attack (inexact->exact (gameobj-get-property obj "x-pos"))
                                   (inexact->exact (gameobj-get-property obj "y-pos"))))))

@@ -119,6 +119,8 @@ radar.cxx \
 radar.hxx \
 robot_tank.hxx \
 robot_tank.cxx \
+rocket.hxx \
+rocket.cxx \
 resource_manager.cxx \
 resource_manager.hxx \
 satchel_charge.hxx \

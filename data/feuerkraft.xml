@@ -15,6 +15,15 @@
       <image file="images/keys.png" />
     </sprite>
 
+    <sprite name="rocket_smoke">
+      <image file="images/rocket_smoke.png" />
+    </sprite>
+
+    <sprite name="rocket">
+      <image file="images/rocket.png" />
+      <image file="images/rocket1.png" />
+    </sprite>
+
     <sprite name="endscreen">
       <image file="images/endscreen.jpg" />
     </sprite>

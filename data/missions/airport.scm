@@ -271,7 +271,7 @@
 
 (menu-add-item comm-menu "Bomb Attack!" 
                (lambda () 
-                 (comm-send-message 'player "Request Bomber support!")
+                 (comm-unit-message (player-get-current-unit) "Request Bomber support!")
                  (let ((obj (player-get-current-unit)))
                    (bomber-attack (inexact->exact (gameobj-get-property obj "x-pos"))
                                   (inexact->exact (gameobj-get-property obj "y-pos"))))))

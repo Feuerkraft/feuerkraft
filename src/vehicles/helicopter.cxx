@@ -23,12 +23,12 @@
 #include "../explosion.hxx"
 #include "../vehicle_ai.hxx"
 #include "../ai_manager.hxx"
+#include "../rocket.hxx"
 #include "../resource_manager.hxx"
 #include "helicopter.hxx"
 
 Helicopter::Helicopter(const AList& lst)
   : strafe (0.0),
-    fireing (false),
     reloading (0),
     energie (100),
     destroyed (false),
@@ -178,17 +178,12 @@ Helicopter::update (float delta)
   velocity /= 1.03f;
   strafe   /= 1.03f;
 
-  if (fireing && !reloading)
+  if (firing && !reloading)
     {
-      float rot_orientation = orientation;
-      FloatVector2d dir = FloatVector2d (15.0, 0.0).rotate(rot_orientation);
-      GameWorld::current()->add (new Projectile(this, pos
-                                                + FloatVector2d (0.0, -5.0).rotate (rot_orientation),
-                                                dir));
-      reloading = 4;
+      GameWorld::current()->add(new Rocket(get_pos(), orientation + 3.1415927f));
+      reloading = 10;
     }
 
-  //std::cout << "Fireing: " << fireing << " " << reloading << std::endl;
 
   if (reloading)
     --reloading;

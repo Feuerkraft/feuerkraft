@@ -93,7 +93,7 @@ void
 Projectile::detonate ()
 {
   lifetime = -1;
-  GameWorld::current()->add_front (new Explosion(pos));
+  GameWorld::current()->add_front(new Explosion(pos));
 }
 
 void

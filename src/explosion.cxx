@@ -33,11 +33,14 @@ Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size)
   switch (en_size)
     {
     case SMALL:
-    case LARGE:
       lifetime = .5;
       size = .6;
       break;
     case MEDIUM:
+      lifetime = .5;
+      size = 1.0f;
+      break;
+    case LARGE:
       lifetime = 25;
       GameWorld::current()->add(new Shockwave(pos));
       size = 2;
@@ -69,7 +72,7 @@ Explosion::update (float delta)
 	{     
 	  switch (en_size)
 	    {
-	    case MEDIUM:
+	    case LARGE:
 	      GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%40 - 20), 
                                                                           pos.y + (rand()%40 - 20)),
                                                                FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
@@ -79,6 +82,13 @@ Explosion::update (float delta)
                                                                FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
                                                                Random::frand(size) + 1.0)); 
 	      break;
+
+            case MEDIUM:
+              GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%10 - 5), 
+                                                                          pos.y + (rand()%10 - 5)),
+                                                               FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               Random::frand(size) + .5)); 
+              break;
 
 	    default:
               GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%10 - 5), 
