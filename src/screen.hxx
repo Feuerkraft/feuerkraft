@@ -1,4 +1,4 @@
-//  $Id: screen.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: screen.hxx,v 1.7 2003/06/05 21:17:11 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,8 +38,10 @@ public:
 
   virtual void draw (CL_GraphicContext& gc);
   virtual void update (float delta);
-
+  
+  /** FIXME: Who takes controll over the allocated object? Currently nobody... -> MEMLEAK*/
   virtual void add (GuiObj* obj);
+  virtual void remove (GuiObj* obj);
 };
 
 #endif

@@ -1,6 +1,6 @@
-//  $Id: comm_commands.cxx,v 1.3 2003/06/05 21:17:11 grumbel Exp $
-//
-//  Feuerkraft - A Tank Battle Game
+//  $Id: menu_item.hxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+// 
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -12,23 +12,43 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include <sstream>
-#include "../message_buffer.hxx"
-#include "comm_commands.hxx"
+#ifndef HEADER_MENU_ITEM_HXX
+#define HEADER_MENU_ITEM_HXX
 
-void
-comm_send_message(int color, const char* str) 
+#include <string>
+
+class MenuItemFunctor
 {
-  std::stringstream s;
-  s << color << ": '" << str << "'" << std::endl;
-  std::cout << "### " << str << std::endl;
-  MessageBuffer::current()->add(s.str());
-}
+public:
+  MenuItemFunctor() {}
+  ~MenuItemFunctor() {}
+  
+  virtual void call() {}
+};
+
+/** */
+class MenuItem
+{
+private:
+  std::string label;
+  MenuItemFunctor* functor;
+public:
+  MenuItem(const std::string& arg_label, MenuItemFunctor* arg_functor);
+  ~MenuItem();
+
+  void draw(int x, int y);
+  void draw_highlight(int x, int y);
+
+private:
+  MenuItem (const MenuItem&);
+  MenuItem& operator= (const MenuItem&);
+};
+
+#endif
 
 /* EOF */

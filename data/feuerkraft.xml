@@ -1,4 +1,12 @@
 <resources>
+    <sprite name="font_glyphs" file="images/font.tga">
+      <image name="image1" file="images/font.tga">
+        <alpha />
+      </image>
+    </sprite>
+
+    <font name="font" glyphs="font_glyphs" letters="!!#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~" />
+
   <section name="feuerkraft">
     <sprite name="logo">
       <image name="image1" file="images/logo.jpg" />
@@ -957,16 +965,4 @@
       <image name="image1" file="images/tiles/swws1.png" />
     </sprite>
   </section>
-
-  <sprite name="Font_glyphs" method="alpha">
-    <image name="image1" file="images/font1.tga" alpha="alpha" >
-      <alpha />
-    </image>
-    <image name="image2" file="images/font2.tga" alpha="alpha" >
-      <alpha />
-    </image>
-  </sprite>
-
-  <font name="font" glyphs="Font_glyphs" letters="!~#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^`abcdefghijklmnopqrstuvwxyz{|}" />
-
 </resources>

@@ -1,4 +1,4 @@
-//  $Id: screen.cxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: screen.cxx,v 1.6 2003/06/05 21:17:11 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,6 +49,19 @@ void
 Screen::add (GuiObj* obj)
 {
   gui_objs.push_back (obj);
+}
+
+void 
+Screen::remove (GuiObj* obj)
+{
+  for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
+    {
+      if (*i == obj)
+        {
+          gui_objs.erase(i);
+          return;
+        }
+    }
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.8 2003/06/04 21:07:54 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.9 2003/06/05 21:17:11 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -97,10 +97,10 @@ Helicopter::update (float delta)
     }
 
   FloatVector2d vel(velocity, 0.0);
+ 
+  pos += vel.rotate(orientation);
 
-  vel.rotate(orientation) * delta;
-  pos += vel;
-
+  // Let the heli strafe
   pos += FloatVector2d(0.0, strafe).rotate(orientation) * delta;
 
   velocity /= 1.03f;

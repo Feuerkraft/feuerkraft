@@ -12,6 +12,7 @@
 #include "player_commands.hxx"
 #include "vehicle_commands.hxx"
 #include "input_commands.hxx"
+#include "menu_commands.hxx"
 %}
 
 %include "ai_vehicle_commands.hxx"
@@ -26,5 +27,6 @@
 %include "player_commands.hxx"
 %include "vehicle_commands.hxx"
 %include "input_commands.hxx"
+%include "menu_commands.hxx"
 
 /* EOF */

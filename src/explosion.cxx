@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: explosion.cxx,v 1.9 2003/06/05 21:17:11 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,6 +47,8 @@ Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size)
       PingusSound::play_sound("explosion");
       break;
     }
+
+  explo.set_blend_func(blend_src_alpha, blend_one);
 
   lifetime = .5f;
 

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.42 2003/06/04 22:51:52 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.43 2003/06/05 21:17:11 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,9 +45,13 @@
 #include "screen.hxx"
 #include "background.hxx"
 #include "system.hxx"
+#include "message_buffer.hxx"
 #include "path_manager.hxx"
 #include "ambulance.hxx"
 #include "level_map.hxx"
+#include "menu.hxx"
+#include "handle_manager.hxx"
+#include "menu_item.hxx"
 #include "start_screen.hxx"
 #include "sound/sound.hxx"
 #include "collision_manager.hxx"
@@ -135,7 +139,7 @@ Feuerkraft::init()
   CL_Display::clear();
 
   resources = new ResourceManager ();
-  //Fonts::init();
+  Fonts::init();
 
   // Load helper functions
   scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
@@ -171,6 +175,7 @@ Feuerkraft::main(int argc, char** argv)
     {
       BuildingTypeManager buildingtypemanager;
       Screen    screen;
+      screen.add(new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
 
       CollisionManager collision_mgr;
 
@@ -219,7 +224,17 @@ Feuerkraft::main(int argc, char** argv)
       View view(0, 0, CL_Display::get_width(), CL_Display::get_height(),
                 new PlayerViewUpdater(player));
       //View view2(400, 0, 800, 600, new VehicleViewUpdater(ai_vehicle));
-       
+
+      HandleManager<Menu>     menu_handle_mgr;
+      HandleManager<MenuItem> menu_item_handle_mgr;
+      
+      Menu* menu = menu_handle_mgr.create();
+
+      menu->add_item(menu_item_handle_mgr.create("Group ->", new MenuItemFunctor()));
+      menu->add_item(menu_item_handle_mgr.create("Enemy ->", new MenuItemFunctor()));
+      menu->add_item(menu_item_handle_mgr.create("Base  ->", new MenuItemFunctor()));
+
+      screen.add(menu);
       screen.add(new Radar(FloatVector2d(64, 64), player));
       screen.add(new VehicleStatus(current_vehicle));
 
@@ -343,8 +358,6 @@ Feuerkraft::main(int argc, char** argv)
           //start_screen.draw ();
           //start_screen.update (delta);
 
-          //Fonts::font.draw(10, 10, "Hello World");
-
           // Flip front and backbuffer. This makes the changes visible:
           CL_Display::flip ();
           //window.get_gc()->clear ();
@@ -362,7 +375,7 @@ Feuerkraft::main(int argc, char** argv)
       std::cout << "Avarage fps:   " 
                 << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
-      //Fonts::deinit();
+      Fonts::deinit();
       PingusSound::deinit();
       CL_SetupGL::deinit();
       CL_SetupDisplay::deinit();

@@ -77,6 +77,13 @@ marker.hxx \
 marker.cxx \
 math.hxx \
 math.cxx \
+message_buffer.hxx \
+message_buffer.cxx \
+menu.hxx \
+menu.cxx \
+menu_item.hxx \
+menu_item.cxx \
+handle_manager.hxx \
 mine.cxx \
 mine.hxx \
 path_manager.cxx \

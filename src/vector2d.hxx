@@ -1,4 +1,4 @@
-//  $Id: vector2d.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vector2d.hxx,v 1.5 2003/06/05 21:17:11 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,7 +50,7 @@ public:
   void set_orientation(float angle);
 
   /** 
-   * Rotate a vector
+   * Rotate a vector by modifing it
    * 
    * @param angle in radian
    */

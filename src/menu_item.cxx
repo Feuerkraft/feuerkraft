@@ -1,6 +1,6 @@
-//  $Id: fonts.cxx,v 1.3 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: menu_item.cxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
 //
-//  Feuerkraft - A Tank Battle Game
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,22 +17,38 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "resource_manager.hxx"
+#include <ClanLib/Display/display.h>
 #include "fonts.hxx"
+#include "menu_item.hxx"
 
-namespace Fonts {
-
-CL_Font font;
-
-void init()
+MenuItem::MenuItem(const std::string& arg_label, MenuItemFunctor* arg_functor)
+  : label(arg_label),
+    functor(arg_functor)
 {
-  font = resources->get_font("font");
+  
 }
 
-void deinit(){
-  // nothing to do
+MenuItem::~MenuItem()
+{
+  delete functor;
 }
 
-} // namespace Fonts
+void
+MenuItem::draw_highlight(int x, int y)
+{
+  CL_Display::fill_rect(CL_Rect(x, y, x + 100, y + 20),
+                        CL_Color(255, 255, 255, 200));
+  Fonts::font.set_alignment(origin_top_left);
+  Fonts::font.draw(x + 10, y, label);
+}
+
+void
+MenuItem::draw(int x, int y)
+{
+  CL_Display::fill_rect(CL_Rect(x, y, x + 100, y + 20),
+                        CL_Color(150,150,150, 155));
+  Fonts::font.set_alignment(origin_top_left);
+  Fonts::font.draw(x + 10, y, label);
+}
 
 /* EOF */

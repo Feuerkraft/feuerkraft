@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.10 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.11 2003/06/05 21:17:11 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -70,6 +70,7 @@ ResourceManager::get_font(const std::string& location)
     return font;
   } catch(CL_Error& err) {
     std::cout << "Couldn't load font: " << location << std::endl;
+    std::cout << "CL_Error: " << err.message << std::endl;
     assert(false);
     return CL_Font();
   }
