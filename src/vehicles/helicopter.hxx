@@ -23,6 +23,7 @@
 #include <ClanLib/Display/sprite.h>
 #include "../energie.hxx"
 #include "../vehicle.hxx"
+#include "rotor.hxx"
 
 class VehicleAI;
 class AList;
@@ -34,19 +35,15 @@ private:
   enum { FLYING, STARTING, LANDING, LANDED } state;
   float height;
 
-  CL_Sprite rotor_halt;
-  CL_Sprite rotor;
+  Rotor rotor;
 
   CL_Sprite heli;
   CL_Sprite heli_shadow;
   CL_Sprite helidestroyed;
 
-  float rotor_speed;
-  float rotor_pos;
-
   float strafe;
-  bool fireing;
-  int reloading;
+  bool  fireing;
+  int   reloading;
   Energie energie;
   bool destroyed;
   VehicleAI* ai;

@@ -27,19 +27,22 @@
 #include "helicopter.hxx"
 
 Helicopter::Helicopter(const AList& lst)
-  : rotor (resources->get_sprite ("feuerkraft/huey_rotor2")),
-    rotor_halt (resources->get_sprite ("feuerkraft/huey_rotor")),
-    heli (resources->get_sprite ("feuerkraft/huey")),
-    heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
-    helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
-    rotor_speed(0),
-    rotor_pos(0),
-    strafe (0.0),
-    fireing (false),
-    reloading (0),
-    energie (100),
-    destroyed (false),
-    ai(0)
+  : 
+  //rotor("feuerkraft/huey_rotor", 
+  //      "feuerkraft/huey_rotor2"),
+  //heli (resources->get_sprite ("feuerkraft/chuey")),
+  //heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
+  rotor("feuerkraft/chinook_rotor", 
+        "feuerkraft/chinook_rotor2"),
+  heli (resources->get_sprite ("feuerkraft/chinook")),
+  heli_shadow (resources->get_sprite ("feuerkraft/chinook_shadow")),
+  helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
+  strafe (0.0),
+  fireing (false),
+  reloading (0),
+  energie (100),
+  destroyed (false),
+  ai(0)
 {
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
@@ -47,9 +50,8 @@ Helicopter::Helicopter(const AList& lst)
   velocity = 0;
   orientation = 0;
 
-  height = 50.0f;
-
-  state = FLYING;
+  height = 0;
+  state = LANDED;
 }
 
 Helicopter::~Helicopter ()
@@ -64,17 +66,10 @@ Helicopter::draw (View& view)
       view.draw (heli_shadow, FloatVector2d(pos.x + height/2.0f, pos.y + height),
                  orientation);
 
-      view.draw (heli, pos, orientation);
-      /*
-        view->draw (heli,
-        pos.x - heli.get_width ()/2,
-        pos.y - heli.get_height ()/2,
-        frame);*/
+      view.draw(heli, pos, orientation);
 
-      if (state == LANDED)
-        view.draw (rotor_halt, pos, rotor_pos);
-      else
-        view.draw (rotor, pos, rotor_pos);
+      rotor.draw(view, pos + FloatVector2d(-40.0f, 0).rotate(orientation), orientation);
+      rotor.draw(view, pos + FloatVector2d(+40.0f, 0).rotate(orientation), orientation);
 
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
@@ -82,19 +77,13 @@ Helicopter::draw (View& view)
     {
       view.draw (helidestroyed, pos, orientation);
     }
-
-  /*
-    view->draw_rect (int(pos.x) - 40, int(pos.y) - 10, 
-    int(pos.x) + 30, int(pos.y) + 10, 
-    1.0f, 1.0f, 1.0f);
-    view->draw_rect (int(pos.x) - 15, int(pos.y) - 20, 
-    int(pos.x) + 5, int(pos.y) + 20, 
-    1.0f, 1.0f, 1.0f);*/
 }
 
 void 
 Helicopter::update (float delta)
 {
+  rotor.update(delta);
+
   if (state == LANDING)
     {
       height -= 20.0f * delta;
@@ -102,20 +91,24 @@ Helicopter::update (float delta)
         {
           height = 0;
           state = LANDED;
+          rotor.stop();
         }
     }
   else if (state == STARTING)
     {
-      height += 20.0f * delta;
-      if (height > 50.0f)
+      if (rotor.is_running())
         {
-          height = 50;
-          state = FLYING;
+          height += 20.0f * delta;
+          if (height > 50.0f)
+            {
+              height = 50;
+              state = FLYING;
+            }
         }
     }
     
   // Apply controlls
-  if (state != LANDED)
+  if (state != LANDED && height > 0)
     {
       orientation += 3.0f  * steering * delta;
       velocity    -= 15.0f * acceleration * delta;
@@ -123,22 +116,8 @@ Helicopter::update (float delta)
     }
 
   strafe_steering = steering = acceleration = 0;
-
-  if (state == LANDED)
-    {
-      rotor_pos   -= rotor_speed * delta;
-      rotor_speed -= 1.5f * delta;
-      if (rotor_speed < 0)
-        rotor_speed = 0;
-    }
-  else
-    {
-      rotor_speed  = 10.0f;
-      rotor_pos   -= rotor_speed * delta;
-    }
-  
+ 
   delta *= 50;
-  rotor.update (delta);
 
   if (energie <= 0 && !destroyed)
     {
@@ -176,9 +155,14 @@ void
 Helicopter::land_or_start()
 {
   if (state == FLYING || state == STARTING)
-    state = LANDING;
+    {
+      state = LANDING;
+    }
   else if (state == LANDED || state == LANDING)
-    state = STARTING;
+    {
+      state = STARTING;
+      rotor.start();
+    }
 }
 
 bool 

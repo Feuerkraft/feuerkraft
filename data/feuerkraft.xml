@@ -283,6 +283,22 @@
       <image file="images/vehicles/huey_rotor2.png" />
     </sprite>
 
+    <sprite name="chinook">
+      <image file="images/vehicles/chinook.png" />
+    </sprite>
+
+    <sprite name="chinook_shadow">
+      <image file="images/vehicles/chinook_shadow.png" />
+    </sprite>
+
+    <sprite name="chinook_rotor">
+      <image file="images/vehicles/chinook_rotor.png" />
+    </sprite>
+
+    <sprite name="chinook_rotor2">
+      <image file="images/vehicles/chinook_rotor2.png" />
+    </sprite>
+
     <sprite name="hole">
       <image file="images/hole.png" />
     </sprite>
