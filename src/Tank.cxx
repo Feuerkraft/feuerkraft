@@ -63,26 +63,15 @@ Tank::draw (View* view)
 	  //view->draw (smod, 
 	}
 
-      /*view->draw (sur, int(pos.x) - (sur.get_width ()/2),
-		  int(pos.y) - (sur.get_height ()/2),
-		  frame);*/
-
-      /*view->draw (sur, int(pos.x) - (sur.get_width ()/2),
-	int(pos.y) - (sur.get_height ()/2));*/
-
-      /*glBegin (GL_LINES);
-      glVertex2f (view->get_x_offset () + pos.x,
-		  view->get_x_offset () + pos.y);
-      glVertex2f (view->get_x_offset () + pos.x + 100,
-		  view->get_x_offset () + pos.y);
-		  glEnd ();*/
-
+#ifdef UGLY_SHADOWS_ENABLED
       view->draw(shadow, pos + CL_Vector (0,0), angle);
       view->draw(shadow, pos + CL_Vector (5,5), angle);
       view->draw(shadow, pos + CL_Vector (10,10), angle);
       view->draw(shadow, pos + CL_Vector (15,15), angle);
-      view->draw(sur, pos, angle);
+#endif /* UGLY_SHADOWS_ENABLED */
 
+      // Draw the tank
+      view->draw(sur, pos, angle);
       turret->draw (view);
 
       // Draw Collision rect

@@ -1,4 +1,4 @@
-//  $Id: Energie.cxx,v 1.4 2002/03/15 10:01:25 grumbel Exp $
+//  $Id: Energie.cxx,v 1.5 2002/03/18 23:25:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,7 +52,7 @@ Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
       
       // Energie bar
       view->draw_fillrect (x_pos - 30, y_pos - 3,
-			   x_pos - 30 + (ratio * 60),
+			   int(x_pos - 30 + (ratio * 60)),
 			   y_pos + 3,
 			   1.0f - energie/float(max_energie),
 			   ratio,

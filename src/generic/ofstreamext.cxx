@@ -1,4 +1,4 @@
-//  $Id: Tree.cxx,v 1.4 2002/03/18 23:25:36 grumbel Exp $
+//  $Id: ofstreamext.cxx,v 1.1 2002/03/18 23:25:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,32 +17,20 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Tree.hxx"
+#include "ofstreamext.hxx"
 
-Tree::Tree (boost::dummy_ptr<GameWorld>  w,
-	    CL_Vector arg_pos, std::string name) 
-  : GameObj (w),
-    pos (arg_pos),
-    sur (name.c_str (), resources),
-    sur_shadow ((name + "_shadow").c_str (), resources)
+std::ostream& operator<<(std::ostream& s, const CL_Vector& pos)
 {
+  return (s << "(pos: " << pos.x << ", " << pos.y << ", " << pos.z << ")");
 }
 
-Tree::~Tree ()
+std::ostream& operator<<(std::ostream& s, SCM desc)
 {
-}
-  
-void 
-Tree::draw (View* view)
-{
-  view->draw (sur_shadow, int(pos.x - 15), int(pos.y - 15));
-  view->draw (sur, 
-	      int(pos.x - sur.get_width ()/2), 
-	      int(pos.y - sur.get_height ()/2));
+  //FIXME: This is for guile1.5
+  //SCM str = scm_object_to_string (desc); // FIXME: Will this gets garbage collected?
 
-
-  //view->draw_circle (pos.x, pos.y, 7,
-  //1.0f, 1.0f, 1.0f);
+  SCM str = scm_strprint_obj (desc);
+  return (s << SCM_CHARS(str));
 }
 
 /* EOF */

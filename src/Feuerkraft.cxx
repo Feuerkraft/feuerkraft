@@ -120,12 +120,13 @@ public:
 
 	Tank* tank1 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+
 	Helicopter* heli = new Helicopter (&world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
 
 	JoystickController controller(heli);
-	KeyboardController kcontroller (tank2);
+	KeyboardController kcontroller (tank1);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
 	//&world, tank1);
@@ -182,9 +183,7 @@ public:
 				    gh_str02scm("r"));
 	  SCM lst  = scm_read (fdes);
 
-	  std::cout << "Map: " << std::flush;
-	  gh_display (lst);
-	  gh_newline ();
+	  std::cout << "Map: " << lst << std::endl;
 
 	  BuildingMapData* buildingmapdata = new BuildingMapData (gh_cdar(lst));
 	  GroundMapData* groundmapdata = GroundMapDataFactory::create (gh_cadr(lst));

@@ -2,6 +2,7 @@
 #include "Projectile.hxx"
 #include "Tank.hxx"
 #include "Turret.hxx"
+#include "generic/ofstreamext.hxx"
 
 extern CL_ResourceManager* resources;
 extern SpriteProviderStorage* storage;
@@ -14,6 +15,7 @@ Turret::Turret (boost::dummy_ptr<GameWorld>  w,
     fire_sur (storage->get (fire.c_str ())),
     sur (storage->get (surface.c_str ())),
     shadow (storage->get ("feuerkraft/turret2_shadow")),
+    angle (0),
     fireing (false),
     reloading (0),
     reloading_speed (r_speed)
@@ -29,11 +31,13 @@ void
 Turret::draw (View* view)
 {
   float absolute_angle = tank->get_angle () + angle;
-  
+
+#ifdef UGLY_SHADOWS_ENABLED  
   view->draw(shadow, tank->get_pos () + CL_Vector (10,10), absolute_angle);
   view->draw(shadow, tank->get_pos () + CL_Vector (15,15), absolute_angle);
   view->draw(shadow, tank->get_pos () + CL_Vector (20,20), absolute_angle);
   view->draw(shadow, tank->get_pos () + CL_Vector (25,25), absolute_angle);
+#endif 
 
   view->draw (sur, tank->get_pos (), absolute_angle);
 
