@@ -1,6 +1,8 @@
 (feuerkraft-controller
  
- (primary-button   (joystick-button 1 9))
+ (primary-button   (multi-button 
+                    (joystick-button 1 9)
+                    (joystick-button 1 0)))
  (secondary-button (joystick-button 1 8))
  (use-button       (joystick-button 1 3))
  (menu-button      (joystick-button 1 2))

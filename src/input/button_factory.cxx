@@ -27,6 +27,7 @@
 #include "input_button_input_device.hxx"
 #include "axis_factory.hxx"
 #include "axis_button.hxx"
+#include "multi_button.hxx"
 #include "button_factory.hxx"
 
 InputButton* 
@@ -45,6 +46,10 @@ ButtonFactory::create(SCM lst)
   else if (gh_equal_p(sym, gh_symbol2scm("axis-button")))
     {
       return create_axis_button(gh_cdr(lst));
+    }
+  else if (gh_equal_p(sym, gh_symbol2scm("multi-button")))
+    {
+      return create_multi_button(gh_cdr(lst));
     }
   else
     {
@@ -87,6 +92,20 @@ ButtonFactory::create_keyboard_button(SCM lst)
 
   // FIXME: No error checking
   return new InputButtonInputDevice(CL_Keyboard::get_device(), key_num);
+}
+
+InputButton*
+ButtonFactory::create_multi_button(SCM lst)
+{
+  MultiButton* button = new MultiButton();
+  
+  while (!gh_null_p(lst))
+    {
+      button->add(create(gh_car(lst)));
+      lst = gh_cdr(lst);
+    }
+  
+  return button;
 }
 
 /* EOF */

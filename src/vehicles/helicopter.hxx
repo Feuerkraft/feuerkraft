@@ -48,6 +48,7 @@ private:
   Energie energie;
   bool destroyed;
   VehicleAI* ai;
+
 public:
   Helicopter(const AList& lst);
   ~Helicopter();

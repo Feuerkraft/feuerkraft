@@ -35,6 +35,7 @@ private:
   static InputButton* create_joystick_button(SCM lst);
   static InputButton* create_keyboard_button(SCM lst);
   static InputButton* create_axis_button(SCM lst);
+  static InputButton* create_multi_button(SCM lst);
 
   ButtonFactory (const ButtonFactory&);
   ButtonFactory& operator= (const ButtonFactory&);

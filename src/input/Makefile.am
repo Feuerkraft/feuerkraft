@@ -1,3 +1,6 @@
+LDADD    = @INPUT_LIBS@
+CPPFLAGS = @INPUT_CFLAGS@
+
 noinst_LIBRARIES = libfeuerkraft_input.a
 
 libfeuerkraft_input_a_SOURCES = \
@@ -27,6 +30,8 @@ libfeuerkraft_input_a_SOURCES = \
   axis_factory.hxx \
   axis_factory.cxx \
   input_recorder.hxx \
-  input_recorder.cxx
+  input_recorder.cxx \
+  multi_button.hxx \
+  multi_button.cxx
 
 # EOF #

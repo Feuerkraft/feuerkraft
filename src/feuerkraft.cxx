@@ -116,7 +116,7 @@ Feuerkraft::init()
     {
       if (args->controller_file.empty())
         {
-          InputManager::init(path_manager.complete("controller.scm"));
+          InputManager::init(path_manager.complete("controller/keyboard.scm"));
         }
       else
         {
