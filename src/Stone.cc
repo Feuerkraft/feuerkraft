@@ -1,5 +1,5 @@
-//  $Id: Playfield.hh,v 1.3 2001/05/05 22:16:28 grumbel Exp $
-// 
+//  $Id: Stone.cc,v 1.1 2001/05/05 22:16:28 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,29 +12,35 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef PLAYFIELD_HH
-#define PLAYFIELD_HH
+#include "Stone.hh"
 
-#include "GameObj.hh"
+extern CL_ResourceManager* resources;
 
-class Playfield : public GameObj
+Stone::Stone (boost::dummy_ptr<GameWorld> w, const CL_Vector& arg_pos)
+  : GameObj (w),
+    sur ("feuerkraft/stone", resources),
+    pos (arg_pos)
 {
-private:
+}
 
-public:
-  Playfield (boost::dummy_ptr<GameWorld>  w);
-  virtual ~Playfield () {}
+Stone::~Stone ()
+{
+}
 
-  void draw (View*);
-  void update (float){}
-  int get_z_pos () { return -1000; }
-};
+void 
+Stone::draw (View* view)
+{
+  view->draw (sur, pos);
+}
 
-#endif
+void 
+Stone::update (float delta)
+{
+}
 
 /* EOF */

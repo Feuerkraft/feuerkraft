@@ -2,6 +2,7 @@
 	Loads a single surface from a pcx file without using resource files.
 */
 
+#include <ClanLib/jpeg.h>
 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
@@ -27,6 +28,8 @@
 #include "Basis.hh"
 #include "Fuelstation.hh"
 #include "Ammotent.hh"
+#include "Background.hh"
+#include "Stone.hh"
 #include "System.hh"
 
 CL_ResourceManager* resources;
@@ -79,6 +82,7 @@ public:
 	CL_SetupCore::init();
 	CL_SetupDisplay::init();
 	CL_SetupPNG::init ();
+	CL_SetupJPEG::init ();
 
 	// Set mode: 320x200 16 bpp
 	CL_Display::set_videomode(800, 600, 16, false);
@@ -118,6 +122,7 @@ public:
 	//world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
+	world.add (new Background (&world, CL_Surface ("feuerkraft/sand", resources)));
 	world.add (new Basis (&world, CL_Vector(0, 0)));
 	world.add (new Basis (&world, CL_Vector(400, 0)));
 	world.add (new Playfield (&world));
@@ -129,6 +134,12 @@ public:
 	world.add (new Tower (&world, 600.0, 100.0));
 	world.add (new Headquarter (&world, CL_Vector (-100.0, 0.0)));
 	
+	for (int i = 0; i < 20; ++i)
+	  {
+	    world.add (new Stone (&world, CL_Vector (rand () % 2048 - 1024,
+						     rand () % 2048 - 1024)));
+	  }
+
 	world.add (new Tree (&world, CL_Vector (100, 400), "feuerkraft/tree"));
 	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
 	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
@@ -191,6 +202,7 @@ public:
 	std::cout << "Avarage fps:   " 
 		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
+	CL_SetupJPEG::deinit ();
 	CL_SetupPNG::deinit ();
 	CL_SetupDisplay::deinit();
 	CL_SetupCore::deinit();

@@ -1,4 +1,4 @@
-//  $Id: Playfield.hh,v 1.3 2001/05/05 22:16:28 grumbel Exp $
+//  $Id: Background.hh,v 1.1 2001/05/05 22:16:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,22 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef PLAYFIELD_HH
-#define PLAYFIELD_HH
+#ifndef BACKGROUND_HH
+#define BACKGROUND_HH
 
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
 #include "GameObj.hh"
 
-class Playfield : public GameObj
+class Background 
+  : public GameObj
 {
 private:
-
+  CL_Surface sur;
+  
 public:
-  Playfield (boost::dummy_ptr<GameWorld>  w);
-  virtual ~Playfield () {}
+  Background (boost::dummy_ptr<GameWorld> w, const CL_Surface& sur);
+  virtual ~Background () {}
 
-  void draw (View*);
-  void update (float){}
-  int get_z_pos () { return -1000; }
+  void draw (View* draw);
+  void update (float delta) {}
+
+  virtual int  get_z_pos () { return -10; }
 };
 
 #endif

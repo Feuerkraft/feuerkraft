@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.6 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: View.hh,v 1.7 2001/05/05 22:16:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
+#include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include "boost/dummy_ptr.hpp"
 #include "GuiObj.hh"

@@ -147,7 +147,7 @@ Tank::update (float delta)
 	  smod_step = 0;
 	  tmp_angle = angle;
 	  smodpos.push_back (CL_Vector (pos.x, pos.y, angle));
-	  if (smodpos.size () > 20)
+	  if (smodpos.size () > 200)
 	    smodpos.pop_front ();
 	}
     }

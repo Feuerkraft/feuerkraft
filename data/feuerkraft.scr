@@ -57,6 +57,9 @@ soldierdead = data/images/soldierdead.png (type=surface, x=0, y=0, width=16, hei
 
 	fuelstation = data/images/fuelstation.png (type=surface, x=0, y=0, width=79, height=83);
 	ammotent = data/images/ammotent.png (type=surface, x=0, y=0, width=80, height=77);
+
+	sand = data/images/sand.jpg (type=surface, x=0, y=0, width=512, height=512);
+	stone = data/images/stone.png (type=surface, x=0, y=0, width=18, height=12);
 }
 
 // EOF //

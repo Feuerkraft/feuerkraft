@@ -13,6 +13,7 @@ VehicleView.cc VehicleView.hh Pathfinder.cc Pathfinder.hh Feuerkraft.hh \
 System.cc System.hh my_gettext.hh StringConverter.hh StringConverter.cc \
 Radar.hh Radar.cc GuiObj.hh Screen.hh Screen.cc \
 Basis.cc Basis.hh VehicleStatus.hh  VehicleStatus.cc Headquarter.hh Headquarter.cc \
-Fuelstation.hh Fuelstation.cc Ammotent.cc Ammotent.hh
+Fuelstation.hh Fuelstation.cc Ammotent.cc Ammotent.hh \
+Background.hh Background.cc Stone.hh Stone.cc
 
 # EOF #
