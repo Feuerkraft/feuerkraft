@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.6 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: menu.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,12 +21,15 @@
 #include "assert.hxx"
 #include "display_manager.hxx"
 #include "fonts.hxx"
+#include "input/input_manager.hxx"
 #include "menu_item.hxx"
 #include "menu.hxx"
 
 Menu::Menu()
 {
   current_item = 0;
+  pos = 0;
+  moving = false;
 }
 
 Menu::~Menu()
@@ -115,10 +118,7 @@ Menu::process_events(const InputEventLst& lst)
           switch (i->axis.name)
             {
             case ACCELERATE_AXIS:
-              if (i->axis.pos > 0)
-                next_item();
-              else if (i->axis.pos < 0)
-                previous_item();
+              // not using events for analog, but states
               break;
             default:
               break;
@@ -135,6 +135,10 @@ Menu::process_events(const InputEventLst& lst)
                   hide();
                 }
               break;
+            case SECONDARY_FIRE_BUTTON:
+              // FIXME: Go a menu item back (hack)
+              DisplayManager::current()->pop_menu();
+              break;
             default:
               break;
             }
@@ -142,6 +146,37 @@ Menu::process_events(const InputEventLst& lst)
         default:
           break;
         }
+    }
+
+  // FIXME: no delta
+  float delta = InputManager::get_controller().get_axis_state(ACCELERATE_AXIS);
+  
+  if (delta > .1f && !moving)
+    {
+      pos = 5.0f;
+      moving = true;
+    }
+  else if (delta < -.1f && !moving)
+    {
+      pos = -5.0f;
+      moving = true;
+    }
+  else if (moving && fabsf(delta) < .1f)
+    {
+      moving = false;
+    }
+  
+  pos += delta/4.0f;
+  
+  if (pos >= 1.0f)
+    {
+      next_item();
+      pos = 0.0f;
+    }
+  else if (pos <= -1.0f)
+    {
+      previous_item();
+      pos = 0.0f;
     }
 }
 

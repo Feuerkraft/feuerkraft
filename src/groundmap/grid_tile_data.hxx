@@ -1,4 +1,4 @@
-//  $Id: grid_tile_data.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_tile_data.hxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,7 @@
 
 class GridTile;
 
-/** A GridTileData object consist of a logical description of a grid
+/** A GridTileData object consistf a logical description of a grid
     tile, which means the ground type of each edge will be described.
     Via the create() call a fitting Tile can be generated. */
 class GridTileData

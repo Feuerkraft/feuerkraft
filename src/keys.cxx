@@ -1,4 +1,4 @@
-//  $Id: keys.cxx,v 1.3 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: keys.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,11 @@ const char* keyid2string(int id)
 {
   switch (id)
     {
+    case 1001: return "JOY_1";
+    case 1002: return "JOY_2";
+    case 1003: return "JOY_3";
+    case 1004: return "JOY_4";
+
     case CL_MOUSE_LEFT: return "MOUSE_LEFT"; 
     case CL_MOUSE_RIGHT: return "MOUSE_RIGHT"; 
     case CL_MOUSE_MIDDLE: return "MOUSE_MIDDLE"; 
@@ -146,7 +151,12 @@ const char* keyid2string(int id)
 
 int string2keyid(const char* key)
 {
-  if (strcasecmp(key, "MOUSE_LEFT") == 0) { return CL_MOUSE_LEFT; }
+  if      (strcasecmp(key, "JOY_1") == 0) { return 1001; }
+  else if (strcasecmp(key, "JOY_2") == 0) { return 1002; }
+  else if (strcasecmp(key, "JOY_3") == 0) { return 1003; }
+  else if (strcasecmp(key, "JOY_4") == 0) { return 1004; }
+
+  else if (strcasecmp(key, "MOUSE_LEFT") == 0) { return CL_MOUSE_LEFT; }
   else if (strcasecmp(key, "MOUSE_RIGHT") == 0) { return CL_MOUSE_RIGHT; }
   else if (strcasecmp(key, "MOUSE_MIDDLE") == 0) { return CL_MOUSE_MIDDLE; }
   else if (strcasecmp(key, "MOUSE_WHEEL_UP") == 0) { return CL_MOUSE_WHEEL_UP; }

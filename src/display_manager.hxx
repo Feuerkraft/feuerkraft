@@ -1,4 +1,4 @@
-//  $Id: display_manager.hxx,v 1.4 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: display_manager.hxx,v 1.5 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef HEADER_DISPLAY_MANAGER_HXX
 #define HEADER_DISPLAY_MANAGER_HXX
 
+#include <vector>
 #include "screen.hxx"
 
 class GuiObj;
@@ -52,7 +53,8 @@ private:
   Radar*         radar;
   VehicleStatus* vehicle_status;
   MessageBuffer* message_buffer;
-  Menu*          menu;
+  typedef std::vector<Menu*> Menus;
+  Menus menu;
 public:
   DisplayManager();
   ~DisplayManager();
@@ -69,13 +71,15 @@ public:
   void hide_help();
   
   /** Show the given menu */
-  void show_menu(Menu* menu);
+  void push_menu(Menu* menu);
   
+  void pop_menu();
+
   /** Hide the current menu */
   void hide_menu();
 
   /** @return the currently shown menu or 0 if none is shown */
-  Menu* get_menu() const { return menu; }
+  Menu* get_menu() const { if (menu.empty()) { return 0; } else { return menu.back(); } }
 private:
   DisplayManager (const DisplayManager&);
   DisplayManager& operator= (const DisplayManager&);

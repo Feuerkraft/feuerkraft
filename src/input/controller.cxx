@@ -1,4 +1,4 @@
-//  $Id: controller.cxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: controller.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,6 +53,8 @@ Controller::get_button_state(ButtonName name) const
     {
     case PRIMARY_FIRE_BUTTON:
       return primary_fire_button;
+    case SECONDARY_FIRE_BUTTON:
+      return secondary_fire_button;
     default:
       AssertMsg(0, "Controller: Unknown ButtonName");
       return false;
@@ -85,6 +87,11 @@ Controller::set_button_state(ButtonName name, bool down)
     {
     case PRIMARY_FIRE_BUTTON:
       primary_fire_button = down;
+      break;
+    case SECONDARY_FIRE_BUTTON:
+      secondary_fire_button = down;
+      break;
+    case USE_BUTTON:
       break;
     default:
       AssertMsg(0, "Controller: Unknown ButtonName");

@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.6 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: menu_commands.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ menu_show(int menu_id)
 {
   Menu* menu = menu_handle_mgr.lookup_by_handle(menu_id);
   if (menu)
-    DisplayManager::current()->show_menu(menu);
+    DisplayManager::current()->push_menu(menu);
   else
     std::cout << "Incorrect menu handle: " << menu_id << std::endl;
 }

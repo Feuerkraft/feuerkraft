@@ -143,20 +143,26 @@
              (gameobj-set-property (player-get-soldier) "hidden" #f))))))
 
 (input-register-callback "key_k" join-nearest-vehicle)
+(input-register-callback "joy_3" join-nearest-vehicle)
 
 (input-register-callback "key_f1" display-show-help)
 (input-register-callback "key_f2" display-hide-help)
 
-(input-register-callback "key_m" (lambda ()
-                                   (if (display-levelmap-visible)
-                                       (display-hide-levelmap)
-                                       (display-show-levelmap))))
+(define (toggle-levelmap)
+  (if (display-levelmap-visible)
+      (display-hide-levelmap)
+      (display-show-levelmap)))
 
-(input-register-callback "key_a" (lambda ()
-                                   (format #t "Menu Visible: ~a~%" (menu-visible))
-                                   (if (menu-visible)
-                                       (menu-hide)
-                                       (menu-show 0))))
+(define (toggle-menu)
+  (format #t "Menu Visible: ~a~%" (menu-visible))
+  (if (menu-visible)
+      (menu-hide)
+      (menu-show 0)))
+  
+(input-register-callback "key_m" toggle-levelmap)
+(input-register-callback "joy_2" toggle-menu)
+
+(input-register-callback "key_a" toggle-menu)
 
 (input-register-callback "key_escape" game-quit)
 (input-register-callback "key_p"      game-pause)

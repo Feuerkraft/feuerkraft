@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.54 2003/10/20 20:58:40 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.55 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -100,7 +100,9 @@ Feuerkraft::init()
     }
 
   // Create the main window
-  window = new CL_DisplayWindow(PACKAGE_STRING, args->screen_width, args->screen_height);
+  window = new CL_DisplayWindow(PACKAGE_STRING,
+                                args->screen_width, args->screen_height, 
+                                args->fullscreen);
   CL_Display::set_current_window (window);
   CL_Display::clear();
 

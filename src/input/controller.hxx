@@ -1,4 +1,4 @@
-//  $Id: controller.hxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: controller.hxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,7 @@ public:
   float strafe_axis;
 
   bool primary_fire_button;
+  bool secondary_fire_button;
 
   InputEventLst events;
 

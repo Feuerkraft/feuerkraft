@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.hxx,v 1.5 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: keyboard_manager.hxx,v 1.6 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,10 +39,7 @@ public:
       return instance_ = new KeyboardManager();
   }
 private:
-  CL_Slot keyboard_button_up_slot;
-  CL_Slot keyboard_button_down_slot;
-  CL_Slot mouse_button_up_slot;
-  CL_Slot mouse_button_down_slot;
+  std::vector<CL_Slot> slots;
 
   struct Callback {
     int key_id;

@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.19 2003/10/20 20:58:40 grumbel Exp $
+//  $Id: game_world.cxx,v 1.20 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -119,46 +119,6 @@ struct z_pos_sorter
     return a->get_z_pos () < b->get_z_pos ();
   }
 };
-
-// quicksort manual implementation, needed for msvc++'s sucky STL:
-// (maybe we should move this into ClanLib/Core/Math)
-// ---------------------------------------------------------------
-
-template<class Container, class Iterator, class Pred>
-void quicksort(Container &A, Iterator p, Iterator r, Pred &pred)
-{
-	while (p < r)
-	{
-		Iterator q = parition(A, p, r, pred);
-		quicksort(A, p, q, pred);
-		quicksort(A, q+1, r, pred);
-	}
-}
-
-template<class Container, class Iterator, class Pred>
-Iterator partition(Container &A, Iterator p, Iterator r, Pred &pred)
-{
-	Iterator x = p;
-	Iterator i = p-1;
-	Iterator j = r+1;
-
-	while (true)
-	{
-		do --j; while (pred(*j, x));
-		do ++i; while (pred(x, *j));
-
-		if (i < j) A.swap(i, j);
-		else return j;
-	}
-}
-
-/*
-template<class T, class Mem, class Arg>
-class my_mem_fun 
-{
-public:
-  void operator (T&) { }
-}*/
 
 void 
 GameWorld::draw (View& view)

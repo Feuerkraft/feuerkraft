@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.5 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: display_manager.cxx,v 1.6 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,7 +51,6 @@ DisplayManager::DisplayManager()
   help = new Help();
   screen.add(radar = new Radar(FloatVector2d(64, 64), player));
   screen.add(vehicle_status = new VehicleStatus());
-  menu = 0;
 }
 
 DisplayManager::~DisplayManager()
@@ -110,21 +109,40 @@ DisplayManager::hide_help()
 }
 
 void
-DisplayManager::show_menu(Menu* arg_menu)
+DisplayManager::push_menu(Menu* arg_menu)
 {
-  hide_menu(); // Hide current menu
+  //hide_menu(); // Hide current menu
+  if (!menu.empty())
+    {
+      screen.remove(menu.back());
+    }
 
-  menu = arg_menu;
-  screen.add(menu);
+  menu.push_back(arg_menu);
+  screen.add(arg_menu);
+}
+
+void
+DisplayManager::pop_menu()
+{
+  if (!menu.empty())
+    {
+      screen.remove(menu.back()); 
+      menu.pop_back();
+      if (!menu.empty())
+        {
+          screen.add(menu.back());
+        }
+    }
 }
   
 void
 DisplayManager::hide_menu()
 {
-  if (menu)
+  if (!menu.empty())
     {
-      screen.remove(menu);
-      menu = 0;
+      for (Menus::iterator i = menu.begin(); i != menu.end(); ++i)
+        screen.remove(*i);
+      menu.clear();
     }
 }
 

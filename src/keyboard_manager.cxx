@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: keyboard_manager.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include <ClanLib/Display/keyboard.h>
+#include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/mouse.h>
 #include "keyboard_manager.hxx"
 
@@ -26,11 +27,15 @@ KeyboardManager* KeyboardManager::instance_ = 0;
 
 KeyboardManager::KeyboardManager()
 {
-  keyboard_button_down_slot = CL_Keyboard::sig_key_down().connect(this, &KeyboardManager::button_down);
-  keyboard_button_up_slot   = CL_Keyboard::sig_key_up().connect(this, &KeyboardManager::button_up);
+  slots.push_back(CL_Keyboard::sig_key_down().connect(this, &KeyboardManager::button_down));
+  slots.push_back(CL_Keyboard::sig_key_up().connect(this, &KeyboardManager::button_up));
+  slots.push_back(CL_Mouse::sig_key_down().connect(this, &KeyboardManager::button_down));
+  slots.push_back(CL_Mouse::sig_key_up().connect(this, &KeyboardManager::button_up));
 
-  mouse_button_down_slot = CL_Mouse::sig_key_down().connect(this, &KeyboardManager::button_down);
-  mouse_button_up_slot   = CL_Mouse::sig_key_up().connect(this, &KeyboardManager::button_up);
+  CL_InputDevice joy = CL_Joystick::get_device(1);
+
+  slots.push_back(joy.sig_key_up().connect(this, &KeyboardManager::button_up));
+  slots.push_back(joy.sig_key_down().connect(this, &KeyboardManager::button_down));
 }
 
 KeyboardManager::~KeyboardManager()
@@ -51,10 +56,19 @@ KeyboardManager::button_down(const CL_InputEvent& event)
 {
   for(Callbacks::iterator i = callbacks.begin(); i != callbacks.end(); ++i)
     {
-      //std::cout << ">> DOWN: " << event.id << " " << (*i)->key_id << std::endl;
-      if (event.id == (*i)->key_id)
+      if (event.device.get_type() != CL_InputDevice::joystick)
         {
-          (*i)->run();
+          if (event.id == (*i)->key_id)
+            {
+              (*i)->run();
+            }
+        }
+      else
+        {
+          if (event.id == (*i)->key_id - 1000)
+            {
+              (*i)->run();
+            }
         }
     }
 }

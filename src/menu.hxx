@@ -1,4 +1,4 @@
-//  $Id: menu.hxx,v 1.4 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: menu.hxx,v 1.5 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,8 @@ private:
   typedef std::vector<MenuItem*> MenuItems;
   MenuItems items;
   int current_item;
+  float pos;
+  bool moving;
 public:
   Menu();
   ~Menu();

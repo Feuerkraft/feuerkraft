@@ -1,4 +1,4 @@
-//  $Id: menu_item.cxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: menu_item.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ MenuItemSubMenuFunctor::MenuItemSubMenuFunctor(Menu* arg_submenu)
 void
 MenuItemSubMenuFunctor::call()
 { // FIXME: This could be implemented on the scheme site
-  DisplayManager::current()->show_menu(submenu);
+  DisplayManager::current()->push_menu(submenu);
 }
 
 MenuItem::MenuItem(const std::string& arg_label, MenuItemFunctor* arg_functor)

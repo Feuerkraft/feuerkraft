@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.cxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: command_line_arguments.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,13 +29,14 @@ const char *argp_program_bug_address = "Ingo Ruhnke <grumbel@gmx.de>";
 static char doc[] = "Feuerkraft is a tank battle game";
 
 static struct argp_option options[] = {
-  {"verbose",  'v', 0,         0,  "Produce verbose output" },
-  {"quiet",    'q', 0,         0,  "Produce no output" },
-  {"datadir",  'd', 0,         0,  "Set the path to search for gamedata" },
-  {"fps",      'f', "FPS",     0,  "Limit of frames per second" },
-  {"music",    'm', 0,         0,  "Enable music" },
-  {"sound",    's', 0,         0,  "Enable sound" },
-  {"geometry", 'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
+  {"verbose",    'v', 0,         0,  "Produce verbose output" },
+  {"quiet",      'q', 0,         0,  "Produce no output" },
+  {"fullscreen", 'w', 0,         0,  "Switch to Fullscreen on startup" },
+  {"datadir",    'd', 0,         0,  "Set the path to search for gamedata" },
+  {"fps",        'f', "FPS",     0,  "Limit of frames per second" },
+  {"music",      'm', 0,         0,  "Enable music" },
+  {"sound",      's', 0,         0,  "Enable sound" },
+  {"geometry",   'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
   { 0 }
 };
 
@@ -59,6 +60,7 @@ CommandLineArguments::load_defaults()
   // Default Screen Size
   screen_width  = 800;
   screen_height = 600;
+  fullscreen    = false;
 
   mission_file = "";
   fps          = 30.0f;
@@ -132,6 +134,10 @@ CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
 
     case 's':
       sound_enabled = true;
+      break;
+
+    case 'w':
+      fullscreen = true;
       break;
 
     case 'g':
