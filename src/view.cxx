@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: view.cxx,v 1.5 2003/05/04 12:12:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -157,7 +157,7 @@ View::draw_line (int x1, int y1, int x2, int y2,
                          int((y2 + get_y_offset ())),
                          CL_Color(static_cast<int>(255*r),
                                   static_cast<int>(255*g),
-                                  static_cast<int>(255* b), 
+                                  static_cast<int>(255*b), 
                                   static_cast<int>(255*a)));
 }
 
@@ -211,7 +211,7 @@ View::draw_circle (int x_pos, int y_pos, int radius,
 {
   // FIXME: Probally not the fast circle draw algo on this world...
   const float pi = 3.1415927f * 2.0f;
-  const float steps = 8;
+  const float steps = 16;
   CL_Vector current (radius, 0);
   CL_Vector next = current.rotate (pi/steps, CL_Vector (0, 0, 1.0f));
 
@@ -221,7 +221,7 @@ View::draw_circle (int x_pos, int y_pos, int radius,
 		 int(x_pos + next.x), int(y_pos + next.y),
 		 r, g, b, a);
       current = next;
-      next = next.rotate (pi/8, CL_Vector (0, 0, 1.0f));
+      next = next.rotate (pi/float(steps), CL_Vector (0, 0, 1.0f));
     }
 }
 

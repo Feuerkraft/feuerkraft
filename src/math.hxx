@@ -1,4 +1,4 @@
-//  $Id: math.hxx,v 1.1 2003/05/02 00:30:16 grumbel Exp $
+//  $Id: math.hxx,v 1.2 2003/05/04 12:12:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,6 +76,17 @@ inline
 bool rand_bool()
 {
   return rand()%2 == 0;
+}
+
+inline 
+float normalize_angle(float angle)
+{
+  if (angle < 0)
+    return normalize_angle(angle + 2*pi);
+  else if (angle > 2*pi)
+    return normalize_angle(angle - 2*pi);
+  else 
+    return angle;
 }
 
 } // namespace Math

@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.1 2003/05/04 09:31:49 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.2 2003/05/04 12:12:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,8 @@
 
 #include <ClanLib/Core/Math/cl_vector.h>
 #include <vector>
+
+class View;
           
 /** */
 class LineSegments
@@ -33,23 +35,24 @@ private:
     int type;
     float length;
 
-    float x1, y1; //< start
-    float x2, y2; //< goal
+    float x1, y1; ///< start
+    float x2, y2; ///< goal
   };
 
   struct RadialSegment {
     int type;
     float length;
 
-    float x, y;
-    float radius;
-    float start_angle;
-    float end_angle;
+    float x, y;        ///< position of the circle
+    float radius;      ///< radius of the circle
+    float start_angle; ///< start angle in radians
+    float end_angle;   ///< end angle in radians
+    bool  turn_right;  ///< true if counterclockwise
   };
   
   union Segment {
-    int type;
-    float length;
+    int type;     ///< type of the segment
+    float length; ///< length of the segment, calculated from the segment
 
     struct RadialSegment   radial;
     struct StraightSegment straight;
@@ -65,16 +68,33 @@ private:
       \a l 'pixels' on it */
   CL_Vector get_pos(const Segment&, float l);
 
+  bool calc_route(float start_x, float start_y, 
+                  float dest_x, float dest_y, 
+                  float start_orientation, 
+                  float radius, bool turn_right,
+                  float& px, float& py, float& qx, float& qy, 
+                  float& angle_start, float& angle_final, float& length);
 public:
   LineSegments();
 
+  float     get_end_orientation();
+  CL_Vector get_end_pos();
+
   CL_Vector get_pos(float l);
+  float     get_orientation(float l);
 
   /** @return length of all segments together */
   float get_length();
 
   void add_straight_segment(float x1, float y1, float x2, float y2);
-  void add_radial_segment(float x, float y, float radius, float start_angle, float stop_angle);
+  void add_radial_segment(float x, float y, float radius, 
+                          float start_angle, float stop_angle, bool turn_right);
+  
+  /** Generate one or more segments to the given controll point */
+  void add_controll_point(float x, float y, float turn_radius);
+
+  /** Some code to draw the path for debugging */
+  void draw(View* view);
 };
 
 #endif

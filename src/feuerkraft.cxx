@@ -19,6 +19,7 @@
 #include "ai_vehicle.hxx"
 #include "jeep.hxx"
 #include "tree.hxx"
+#include "math.hxx"
 #include "flag.hxx"
 #include "helicopter.hxx"
 #include "turret.hxx"
@@ -35,6 +36,7 @@
 #include "ambulance.hxx"
 #include "level_map.hxx"
 #include "start_screen.hxx"
+#include "line_segments.hxx"
 #include "sound/sound.hxx"
 #include "command_line_arguments.hxx"
 
@@ -226,6 +228,10 @@ public:
 
         CL_System::keep_alive();
 
+        LineSegments segments;
+        CL_Vector last_pos(560, 1245);
+        segments.add_straight_segment(last_pos.x, last_pos.y, last_pos.x, last_pos.y);
+
 	// Loop until the user hits escape:
 	while (!CL_Keyboard::get_keycode(CL_KEY_ESCAPE)) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
@@ -267,12 +273,17 @@ public:
 		  CL_System::keep_alive ();
 
 		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
+
 		std::cout << "Mouse: " <<  pos << " | "
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 
 			  << " | " <<  int(pos.x) / 40  << " " << int(pos.y) / 40
 			  << std::endl;
 
                 ai_vehicle->drive_to(pos);
+
+                //segments.add_straight_segment(last_pos.x, last_pos.y, pos.x, pos.y);
+                segments.add_controll_point(pos.x, pos.y, 80);
+                last_pos = pos;
 	      }
 	    
 	    //controller.update (delta);
@@ -290,6 +301,8 @@ public:
 
 	    //start_screen.draw ();
 	    //start_screen.update (delta);
+
+            segments.draw(&view);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    window.flip ();
