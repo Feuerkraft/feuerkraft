@@ -1,4 +1,4 @@
-//  $Id: message_buffer.hxx,v 1.1 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: message_buffer.hxx,v 1.2 2003/06/08 15:49:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ private:
   Buffer buffer;
   static MessageBuffer* current_;
 public:
-  static MessageBuffer* current() { return current_; }
+  static MessageBuffer* current();
 
   MessageBuffer(int x, int y);
   

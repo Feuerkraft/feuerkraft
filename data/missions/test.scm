@@ -56,16 +56,13 @@
 
 (trigger-add-tile 5 41 (lambda (id) (convoy-start)))
 
-(sequence-add-hook (lambda () 
-                     (effect-add-explosion 671 1221)
-                     (object-remove my-vehicle9)))
+;;(sequence-add-hook (lambda () 
+;;                     (effect-add-explosion 671 1221)
+;;                     (object-remove my-vehicle9)))
 
-(define (hello-world)
-  (comm-send-message 0 "Hello World, I am a sequence hook"))
-
-(let ((id (sequence-start)))
-  (sequence-add-hook hello-world)
-  (sequence-end id))
+;;(let ((id (sequence-start)))
+;;  (sequence-add-hook hello-world)
+;;  (sequence-end id))
 
 (ai-vehicle-wait my-vehicle8 3)
 (for-each (lambda (pos)
@@ -75,8 +72,6 @@
 (for-each (lambda (pos)
             (ai-vehicle-drive-to my-vehicle8 (car pos) (cdr pos)))
           path4)
-
-(comm-send-message 0 "Vehicle id: " my-vehicle1)
 
 (define (convoy-reverse)
   (for-each (lambda (pos)

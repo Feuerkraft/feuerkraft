@@ -1,4 +1,4 @@
-//  $Id: message_buffer.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: message_buffer.cxx,v 1.3 2003/06/08 15:49:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "assert.hxx"
 #include "fonts.hxx"
 #include "message_buffer.hxx"
 
@@ -27,6 +28,13 @@ MessageBuffer::MessageBuffer(int arg_x, int arg_y)
   current_ = this;
   x_pos = arg_x;
   y_pos = arg_y;
+}
+
+MessageBuffer* 
+MessageBuffer::current()
+{
+  AssertMsg(current_, "comm-* commands must not be called on script loading!");
+  return current_;
 }
 
 void
