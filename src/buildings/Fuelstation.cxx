@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.1 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Fuelstation.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ Fuelstation::Fuelstation (boost::dummy_ptr<GameWorld> world, const FuelstationDa
   : Building (world),
     FuelstationData (data),
     fuelstation (storage->get("feuerkraft/fuelstation")),
-    pos (x_pos * 40, y_pos * 40 + 20) // FIXME: Hardcoded tilesize
+    pos (x_pos * 40 + 40, y_pos * 40 + 60) // FIXME: Hardcoded tilesize
 {
 }
 

@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.8 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.9 2002/03/17 17:10:46 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,8 +78,8 @@ TileMap::draw (View* view)
       // FIXME: Hard coded tilemap size is ugly
       if (tilemap [(width * y) + x])
 	tilemap [(width * y) + x]->draw (view , 
-					 int(x * 40 - 20),
-					 int(y * 40 - 20));
+					 int(x * 40 + 20),
+					 int(y * 40 + 20));
     }
 }
 

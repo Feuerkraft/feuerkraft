@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: Headquarter.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,7 @@ extern CL_ResourceManager* resources;
 Headquarter::Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData& data)
   : Building (world),
     HeadquarterData (data),
-    pos (x_pos * 40 + 40, y_pos * 40 - 40),
+    pos (x_pos * 40 + 40, y_pos * 40 + 40),
     headquarter (storage->get("feuerkraft/headquarter")),
     headquarter_damaged (storage->get("feuerkraft/headquarterdamaged")),
     headquarter_destroyed (storage->get("feuerkraft/headquarterdestroyed")),

@@ -114,7 +114,7 @@ public:
 	GameWorld world;
 	Screen    screen;
 
-	Tank* tank1 = new Tank(&world, CL_Vector (400, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank1 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 	Helicopter* heli = new Helicopter (&world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));

@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.5 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: Tower.cxx,v 1.6 2002/03/17 17:10:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,8 +35,8 @@ Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
     destroyed (false)
 {  
   // FIXME: Hardcoded tilesize is ugly
-  pos.x = x_pos * 40;
-  pos.y = x_pos * 40;
+  pos.x = x_pos * 40 + 40;
+  pos.y = y_pos * 40 + 40;
 }
   
 // Draw the object onto the screen

@@ -1,4 +1,4 @@
-//  $Id: Base.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: Base.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ Base::~Base ()
 void
 Base::draw (boost::dummy_ptr<View> view)
 {
-  view->draw (&sprite, pos - CL_Vector (40, 40));
+  view->draw (&sprite, pos);
 }
 
 void
