@@ -1,4 +1,4 @@
-//  $Id: Projectile.cc,v 1.2 2001/02/18 13:53:34 grumbel Exp $
+//  $Id: Projectile.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "boost/smart_ptr.hpp"
 #include "Collideable.hh"
 #include "Explosion.hh"
 #include "Projectile.hh"
@@ -71,10 +72,10 @@ Projectile::update ()
     }
   else
     {
-      for (std::list<GameObj*>::iterator j = world->get_objects ().begin ();
+      for (std::list<boost::shared_ptr<GameObj> >::iterator j = world->get_objects ().begin ();
 	   j != world->get_objects ().end (); ++j)
 	{
-	  Collideable* collideable = dynamic_cast<Collideable*>(*j);
+	  Collideable* collideable = dynamic_cast<Collideable*>(j->get ());
 	  if (collideable)
 	    {
 	      if ((collideable)->is_colliding (get_pos ()))
@@ -97,7 +98,7 @@ void
 Projectile::detonate ()
 {
   lifetime = -1;
-  world->add (new Explosion (pos));
+  world->add (boost::shared_ptr<GameObj>(new Explosion (pos)));
 }
 
 /* EOF */

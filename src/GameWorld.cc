@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.4 2001/02/18 15:27:25 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.5 2001/02/18 20:16:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ GameWorld::~GameWorld ()
 }
 
 void 
-GameWorld::add (GameObj* obj)
+GameWorld::add (boost::shared_ptr<GameObj> obj)
 {
   obj->set_world (this);
   obj->init ();
@@ -40,7 +40,14 @@ GameWorld::add (GameObj* obj)
   objects.push_back (obj);
 }
 
-static bool z_pos_sorter (GameObj* a, GameObj* b)
+void 
+GameWorld::add (GameObj* obj)
+{
+  add (boost::shared_ptr<GameObj>(obj));
+}
+
+static bool z_pos_sorter (boost::shared_ptr<GameObj> a, 
+			  boost::shared_ptr<GameObj> b)
 {
   return (a->get_z_pos () < b->get_z_pos ());
 }
@@ -49,14 +56,14 @@ void
 GameWorld::draw ()
 {
   objects.sort (z_pos_sorter);
-  for (std::list<GameObj*>::iterator i = objects.begin (); 
+  for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin (); 
        i != objects.end (); ++i)
     {
       (*i)->draw ();
     }
 }
 
-static bool is_removable (GameObj* obj)
+static bool is_removable (boost::shared_ptr<GameObj> obj)
 {
   return obj->removable ();
 }
@@ -67,7 +74,7 @@ GameWorld::update ()
   //std::cout << "Number of GameObj's: " << objects.size () << "\r          " << std::flush;
   objects.remove_if(is_removable); 
   
-  for (std::list<GameObj*>::iterator i = objects.begin ();
+  for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin ();
        i != objects.end (); ++i)
     (*i)->update ();
 }

@@ -1,5 +1,5 @@
-//  $Id: Collideable.hh,v 1.3 2001/02/18 20:16:50 grumbel Exp $
-// 
+//  $Id: Controller.cc,v 1.1 2001/02/18 20:21:01 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,31 +12,18 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef COLLIDEABLE_HH
-#define COLLIDEABLE_HH
+#include "Controller.hh"
+#include "Controllable.hh"
 
-#include "Projectile.hh"
-
-class Collideable
+Controller::Controller (Controllable* obj) :
+  controllable (obj)
 {
-private:
-  
-public:
-  Collideable () {};
-  virtual ~Collideable () {};
-
-  /** Check if the collideable is colliding with a object at obj_pos */
-  virtual bool is_colliding (CL_Vector obj_pos) =0;
-
-  /** Let the object collide with a Projectile, probally not usefull */
-  virtual void collide (Projectile*) {}
-};
-
-#endif
+  controllable->set_controller (this);
+}
 
 /* EOF */

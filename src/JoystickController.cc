@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: JoystickController.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,9 +30,9 @@ JoystickController::update ()
     controllable->turn_right ();
   
   if (left_t->is_pressed ())
-    dynamic_cast<Tank*>(controllable)->get_turret ()->increase_angle ();
+    controllable->turn_left2 ();
   else if (right_t->is_pressed ())
-    dynamic_cast<Tank*>(controllable)->get_turret ()->decrease_angle ();
+    controllable->turn_right2 ();
 
   if (vel_axis->get_pos () < -0.5)
     controllable->increase_velocity ();

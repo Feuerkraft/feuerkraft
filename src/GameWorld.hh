@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hh,v 1.2 2001/02/18 13:53:34 grumbel Exp $
+//  $Id: GameWorld.hh,v 1.3 2001/02/18 20:16:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define GAMEWORLD_HH
 
 #include <list>
+#include "boost/smart_ptr.hpp"
 #include "GameObj.hh"
 
 class GameObj;
@@ -28,14 +29,15 @@ class GameObj;
 class GameWorld
 {
 private:
-  std::list<GameObj*> objects;
+  std::list<boost::shared_ptr<GameObj> > objects;
   
 public:
   GameWorld ();
   ~GameWorld ();
   
   /// Return a reference to the objects in the world
-  std::list<GameObj*>& get_objects () { return objects; }
+  std::list<boost::shared_ptr<GameObj> >& get_objects () { return objects; }
+  void add (boost::shared_ptr<GameObj>);
   void add (GameObj*);
 
   void draw ();

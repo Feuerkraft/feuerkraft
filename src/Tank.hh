@@ -62,6 +62,9 @@ public:
   void turn_left () { increase_angle (); }
   void turn_right () { decrease_angle (); }
 
+  void turn_left2 ();
+  void turn_right2 ();
+
   void increase_velocity ();
   void decrease_velocity ();
   

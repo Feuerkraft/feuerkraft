@@ -6,6 +6,7 @@ feuerkraft_SOURCES = Collideable.hh	 Energie.hh	GameWorld.cc	       KeyboardCont
 Controllable.hh  Explosion.cc Explosion.hh	GameWorld.hh	       KeyboardController.hh  Tank.hh	Turret.hh \
 Controller.hh	 Feuerkraft.cc	JoystickController.cc  Projectile.cc	      Tower.cc \
 Energie.cc	 GameObj.hh	JoystickController.hh  Projectile.hh	      Tower.hh \
-Tree.cc Tree.hh Soldier.cc Soldier.hh Mine.hh  Mine.cc Shockwave.cc Shockwave.hh
+Tree.cc Tree.hh Soldier.cc Soldier.hh Mine.hh  Mine.cc Shockwave.cc Shockwave.hh \
+Controller.cc Helicopter.cc Helicopter.hh
 
 # EOF #

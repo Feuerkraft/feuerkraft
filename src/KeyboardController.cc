@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: KeyboardController.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,25 +25,25 @@
 void
 KeyboardController::update ()
 {
-  if (CL_Keyboard::get_keycode (CL_KEY_C))
-    dynamic_cast<Tank*>(controllable)->get_turret ()->increase_angle ();
-  else if (CL_Keyboard::get_keycode (CL_KEY_X))
-    dynamic_cast<Tank*>(controllable)->get_turret ()->decrease_angle ();
+  if (CL_Keyboard::get_keycode (CL_KEY_F))
+    controllable->turn_left2 ();
+  else if (CL_Keyboard::get_keycode (CL_KEY_S))
+    controllable->turn_right2 ();
   
   if (CL_Keyboard::get_keycode (CL_KEY_RIGHT))
     controllable->turn_left ();
   else if (CL_Keyboard::get_keycode (CL_KEY_LEFT))
-	controllable->turn_right ();
+    controllable->turn_right ();
         
   if (CL_Keyboard::get_keycode (CL_KEY_UP))
     controllable->increase_velocity ();
   else if (CL_Keyboard::get_keycode (CL_KEY_DOWN))
     controllable->decrease_velocity ();
 
-  if (CL_Keyboard::get_keycode (CL_KEY_ENTER))
+  if (CL_Keyboard::get_keycode (CL_KEY_E))
     controllable->drop_mine ();
 
-  if (CL_Keyboard::get_keycode (CL_KEY_SPACE))
+  if (CL_Keyboard::get_keycode (CL_KEY_D))
     controllable->start_fire ();
   else
     controllable->stop_fire ();

@@ -13,12 +13,12 @@ Tank::Tank (int reloading_speed, std::string tank, std::string turret, std::stri
   angle (0.0),
   speed (0.0),
   velocity (0.0),
-  pos (rand () % 80 +10, (rand () % 80 + 300)),
+  pos (rand () % 800, rand () % 600),
   increment (0.06),
   inc_step (0),
   sur (tank.c_str (), resources),
   smod ("feuerkraft/smod", resources),
-  sur_destroyed ("feuerkraft/tank2destroyed", resources),
+  sur_destroyed ("feuerkraft/tankdestroyed", resources),
   turret (new Turret(this, reloading_speed, turret, fire)),
   smod_step (0),
   mine_reload_time (0),
@@ -71,6 +71,13 @@ Tank::update ()
     {
       world->add (new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
+      Tank* tank = new Tank (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+      world->add (tank);
+      if (get_controller ())
+	{
+	  get_controller ()->set_controllable (tank);
+	  tank->set_controller (get_controller ());
+	}
     }
 
   turret->set_world (world);
@@ -149,6 +156,11 @@ Tank::decrease_velocity ()
 {
   velocity -= 0.1;
 }
+
+void 
+Tank::turn_left2 () { turret->increase_angle (); }
+void
+Tank::turn_right2 () { turret->decrease_angle (); }
 
 void 
 Tank::start_fire ()

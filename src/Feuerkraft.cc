@@ -11,6 +11,7 @@
 #include "JoystickController.hh"
 #include "Tank.hh"
 #include "Tree.hh"
+#include "Helicopter.hh"
 #include "Turret.hh"
 #include "Tower.hh"
 #include "Soldier.hh"
@@ -31,6 +32,7 @@ public:
   {
     try
       {
+	srand (time (0));
 	CL_SetupCore::init();
 	CL_SetupCore::init_display();
 	CL_SetupPNG::init ();
@@ -41,15 +43,17 @@ public:
 	resources =  CL_ResourceManager::create("data/feuerkraft.scr", false);
 
 	GameWorld world;
-	Tank tank1 (5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank tank2 (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-	Tower tower (100.0, 100.0);
-	JoystickController controller(&tank1);
-	KeyboardController kcontroller (&tank2);
 
-	world.add (&tank1);
-	world.add (&tank2);
-	world.add (&tower);
+	Tank* tank1 = new Tank(5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank2 = new Tank(5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Helicopter* heli = new Helicopter (CL_Vector (320, 200));
+
+	JoystickController controller(heli);
+	KeyboardController kcontroller (tank2);
+
+	world.add (heli);
+	world.add (tank1);
+	world.add (tank2);
 	world.add (new Tower (400.0, 200.0));
 	world.add (new Tower (600.0, 400.0));
 	world.add (new Tower (600.0, 100.0));
