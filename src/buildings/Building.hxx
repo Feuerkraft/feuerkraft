@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.6 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: Building.hxx,v 1.7 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@
 class View;
 class GameWorld;
 class Projectile;
+class Radar;
 
 class Building
 {
@@ -42,6 +43,8 @@ public:
 
   virtual void draw_energie (boost::dummy_ptr<View> view) {}
   
+  virtual void draw_radar (boost::dummy_ptr<Radar> radar) {}
+
   // Update the object once a game loop
   virtual void update (float) =0;
 

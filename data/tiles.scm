@@ -33,7 +33,9 @@
        ((g g s g) "tiles/sandgrass3")
        ((g g g s) "tiles/sandgrass4")
        ((s g g g) "tiles/sandgrass5")
-       ((g s g g) "tiles/sandgrass6")
+       ((g s g s) "tiles/gsgs1")
+       ((s g s g) "tiles/sgsg1")
+       ((g s g g) "tiles/sandgrass6" "tiles/gsgg1")
        ((s s g g) "tiles/sandgrass7")
        ((s s g s) "tiles/sandgrass8")
        ((s g s s) "tiles/sandgrass9")
@@ -47,6 +49,9 @@
        ((f d d f) "tiles/fddf")
        ((s s f s) "tiles/ssfs")
 
+       ((m s m s) "tiles/msms1")
+       ((s m s m) "tiles/smsm1")
+       
        ((m s s s) "tiles/msss1")
        ((m m s m) "tiles/mmsm1")
        ((m m m s) "tiles/mmms1")

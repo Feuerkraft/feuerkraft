@@ -1,4 +1,4 @@
-//  $Id: Wall.hxx,v 1.1 2002/03/24 14:00:40 grumbel Exp $
+//  $Id: Wall.hxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,8 @@ public:
   virtual ~Wall ();
 
   void draw (boost::dummy_ptr<View> view);
+  void draw_radar (boost::dummy_ptr<Radar> radar);
+
   void update(float);
   void collide (Projectile*);
 

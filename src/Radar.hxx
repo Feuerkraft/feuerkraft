@@ -1,4 +1,4 @@
-//  $Id: Radar.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Radar.hxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,13 +30,19 @@
 
 extern CL_ResourceManager* resources;
 
+class Building;
+
 class Radar : public GuiObj
 {
 private:
   boost::dummy_ptr<GameWorld> world;
   boost::dummy_ptr<Vehicle> vehicle;
+  
   CL_Surface background;
+
+  /** Position of the radar on the screen */
   CL_Vector pos;
+
   float angle;
 
   SpriteProviderStorage storage;
@@ -48,6 +54,11 @@ public:
 
   void draw ();
   void update (float delta);
+
+  /** Draw a blip to the radar, where 'pos' is in world coordinates
+      and size is the size of the object (1: projectile, 2: vehicle,
+      3: large vehicle, 4: building) */
+  void draw_blip (const CL_Vector& pos, int size);
 
 private:
   void draw_vehicle (boost::dummy_ptr<Vehicle> vehicle);

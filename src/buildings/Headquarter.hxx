@@ -1,4 +1,4 @@
-//  $Id: Headquarter.hxx,v 1.2 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: Headquarter.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,8 +45,11 @@ public:
   Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData&);
   virtual ~Headquarter ();
 
-  void update (float delta);
   void draw (boost::dummy_ptr<View>);
+  void draw_radar (boost::dummy_ptr<Radar> radar);
+
+  void update (float delta);
+
   bool is_colliding (CL_Vector obj_pos);
   void collide (Projectile*);
 

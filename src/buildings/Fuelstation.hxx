@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.hxx,v 1.2 2002/03/23 21:55:01 grumbel Exp $
+//  $Id: Fuelstation.hxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,8 @@ public:
   virtual ~Fuelstation ();
 
   void draw (boost::dummy_ptr<View>);
+  void draw_radar (boost::dummy_ptr<Radar> radar);
+
   void update (float delta);
 
   int get_x_pos () { return x_pos; }

@@ -1,4 +1,4 @@
-//  $Id: Base.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
+//  $Id: Base.cxx,v 1.3 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../Radar.hxx"
 #include "Base.hxx"
 
 // FIXME: hack... replace this with better resource handling
@@ -39,6 +40,12 @@ void
 Base::draw (boost::dummy_ptr<View> view)
 {
   view->draw (&sprite, pos);
+}
+
+void
+Base::draw_radar (boost::dummy_ptr<Radar> radar)
+{
+  radar->draw_blip (pos, 4);
 }
 
 void

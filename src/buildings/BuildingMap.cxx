@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.8 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.9 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -93,6 +93,17 @@ BuildingMap::draw_energie (View* view)
        ++i)
     {
       (*i)->draw_energie (view);
+    }  
+}
+
+void
+BuildingMap::draw_radar (Radar* radar)
+{
+  for (std::vector<Building*>::iterator i = buildings.begin ();
+       i != buildings.end ();
+       ++i)
+    {
+      (*i)->draw_radar (radar);
     }  
 }
   

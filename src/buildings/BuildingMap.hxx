@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.hxx,v 1.6 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: BuildingMap.hxx,v 1.7 2002/03/26 16:46:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@
 class View;
 class Building;
 class BuildingData;
+class Radar;
 
 class BuildingMap : public BuildingMapData,
 		    public GameObj
@@ -51,11 +52,15 @@ public:
   // Draw the object onto the screen
   virtual void draw (View* view);
   virtual void draw_energie (View* view);
+  virtual void draw_radar (Radar* radar);
   
   // Update the object once a game loop
   virtual void update (float);
 
   Building* get_building (const CL_Vector& pos);
+
+  /** FIXME: Not the cleanest API solution */
+  std::vector<Building*>& get_buildings ();
 };
 
 #endif

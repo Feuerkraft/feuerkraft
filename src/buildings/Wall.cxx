@@ -1,4 +1,4 @@
-//  $Id: Wall.cxx,v 1.1 2002/03/24 14:00:40 grumbel Exp $
+//  $Id: Wall.cxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../Radar.hxx"
 #include "../View.hxx"
 #include "Wall.hxx"
 
@@ -46,6 +47,12 @@ Wall::draw (boost::dummy_ptr<View> view)
     view->draw (wall_damaged, pos);
   else
     view->draw (wall_destroyed, pos);
+}
+
+void
+Wall::draw_radar (boost::dummy_ptr<Radar> radar)
+{
+  radar->draw_blip (pos, 2);
 }
 
 void

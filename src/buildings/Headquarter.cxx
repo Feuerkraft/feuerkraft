@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cxx,v 1.3 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: Headquarter.cxx,v 1.4 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../Radar.hxx"
 #include "../Flag.hxx"
 #include "../Explosion.hxx"
 #include "Headquarter.hxx"
@@ -57,6 +58,12 @@ Headquarter::draw (boost::dummy_ptr<View> view)
 {
   view->draw (current_sur.get(), pos);
   energie.draw (view, int(pos.x), int(pos.y - 40));
+}
+
+void
+Headquarter::draw_radar (boost::dummy_ptr<Radar> radar)
+{
+  radar->draw_blip (pos, 4);
 }
 
 bool 

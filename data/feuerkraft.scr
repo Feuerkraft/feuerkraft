@@ -448,6 +448,22 @@ section tiles
 		frame1 = images/tiles/msss1.png (type=surface);
 	}  
 
+	section  gsgg1 {
+		frame1 = images/tiles/gsgg1.png (type=surface);
+	}  
+	section  gsgs1 {
+		frame1 = images/tiles/gsgs1.png (type=surface);
+	}  
+	section  sgsg1 {
+		frame1 = images/tiles/sgsg1.png (type=surface);
+	}  
+
+	section  msms1 {
+		frame1 = images/tiles/msms1.png (type=surface);
+	}  
+	section  smsm1 {
+		frame1 = images/tiles/smsm1.png (type=surface);
+	}  
 }
 
 // EOF //

@@ -43,7 +43,7 @@
 	      (headquarter (pos 7 1))
 
 	      (tower  (energie 1)
-		      (pos 2 6)
+		      (pos 16 6)
 		      (angle 65))
 
 	      (tower  (energie 1)

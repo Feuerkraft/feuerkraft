@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.4 2002/03/23 21:55:01 grumbel Exp $
+//  $Id: Fuelstation.cxx,v 1.5 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include <cmath>
 #include "Fuelstation.hxx"
+#include "../Radar.hxx"
 #include "../Vehicle.hxx"
 
 extern SpriteProviderStorage* storage;
@@ -47,6 +48,12 @@ Fuelstation::draw (boost::dummy_ptr<View> view)
 			  int(pos.x + 31), int (pos.y + 57),
 			  1.0, 1.0, 1.0, sin(get_world ()->get_time () * 10.0f) * .3f + .5f);
     }
+}
+
+void
+Fuelstation::draw_radar (boost::dummy_ptr<Radar> radar)
+{
+  radar->draw_blip (pos, 4);
 }
 
 void 

@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: Radar.cxx,v 1.4 2002/03/26 16:46:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "buildings/BuildingMap.hxx"
 #include "Radar.hxx"
 
 Radar::Radar (const CL_Vector& arg_pos, 
@@ -55,6 +56,8 @@ Radar::draw ()
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
 
+  world->get_buildingmap ()->draw_radar (this);
+
   radar_line->draw (int(pos.x), int(pos.y), angle/3.1415927*180.0f + 180.0f);
 
   CL_Display::draw_line (int(pos.x), int(pos.y), int(pos.x) - 45, int(pos.y) - 45,
@@ -67,22 +70,32 @@ Radar::draw ()
 			 0.0, 1.0, 0.0);
 }
 
-void 
-Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
+void
+Radar::draw_blip (const CL_Vector& arg_pos, int size)
 {
-  CL_Vector diff = obj->get_pos () - vehicle->get_pos ();
+  // Callculate the distance between 'pos' and the vehicle that holds
+  // the radar
+  CL_Vector diff = arg_pos;
+  diff -= vehicle->get_pos ();
   diff *= 1/20.0f;
 
-  int size = int(obj->get_physical_size ()) + 1;
- 
+  float alpha = (1.0f - diff.norm () / 64.0);
+  alpha *= alpha;
+  
   if (diff.norm () < 64.0)
     {
       diff = diff.rotate (-vehicle->get_angle () + (3.14159/2), CL_Vector (0, 0, 1.0));
 
       CL_Display::fill_rect (int(pos.x + diff.x), int(pos.y + diff.y),
 			     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size,
-			     1.0, 0.0, 0.0, 0.5);
+			     1.0, 0.0, 0.0, alpha);
     }
+}
+
+void 
+Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
+{
+  draw_blip(obj->get_pos (), int(obj->get_physical_size ()));
 }
 
 void 
