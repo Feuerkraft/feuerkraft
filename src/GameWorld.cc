@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.12 2001/02/19 22:59:54 mbn Exp $
+//  $Id: GameWorld.cc,v 1.13 2001/02/20 00:13:33 mbn Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,19 +49,7 @@ GameWorld::add (GameObj* obj)
   add (boost::shared_ptr<GameObj>(obj));
 }
 
-/*
-static bool z_pos_sorter (boost::shared_ptr<GameObj> a, 
-			  boost::shared_ptr<GameObj> b)
-{
-  return (a->get_z_pos () < b->get_z_pos ());
-}*/
-
-/*
-struct z_pos_sorter : 
-  //  public std:y_function<boost::shared_ptr<GameObj> a, boost::shared_ptr<GameObj> a, bool>
-  //public std::binary_function<boost::shared_ptr<GameObj>, boost::shared_ptr<GameObj>, bool>
-  //  public std::greater<boost::shared_ptr<GameObj> >
-  public std::greater<boost::shared_ptr<GameObj> >
+struct z_pos_sorter
 {
   bool operator() (boost::shared_ptr<GameObj> a,
 		   boost::shared_ptr<GameObj> b)
@@ -70,18 +58,54 @@ struct z_pos_sorter :
   }
 };
 
+// quicksort manual implementation, needed for msvc++'s sucky STL:
+// (maybe we should move this into ClanLib/Core/Math)
+// ---------------------------------------------------------------
+
+template<class Container, class Iterator, class Pred>
+void quicksort(Container &A, Iterator p, Iterator r, Pred &pred)
+{
+	while (p < r)
+	{
+		Iterator q = parition(A, p, r, pred);
+		quicksort(A, p, q, pred);
+		quicksort(A, q+1, r, pred);
+	}
+}
+
+template<class Container, class Iterator, class Pred>
+Iterator partition(Container &A, Iterator p, Iterator r, Pred &pred)
+{
+	Iterator x = p;
+	Iterator i = p-1;
+	Iterator j = r+1;
+
+	while (true)
+	{
+		do --j; while (pred(*j, x));
+		do ++i; while (pred(x, *j));
+
+		if (i < j) A.swap(i, j);
+		else return j;
+	}
+}
 
 void 
 GameWorld::draw ()
 {
+#ifdef WIN32 // todo, change this define so that it checks STL library instead of platform.
+  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
+#else
   objects.sort (z_pos_sorter ());
+#endif
+
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin (); 
        i != objects.end (); ++i)
     {
       (*i)->draw ();
     }
 }
-*/
+
 struct is_removable
 {
   bool operator() (boost::shared_ptr<GameObj> obj)
