@@ -136,7 +136,7 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	View view (&world, 0, 0, 800, 600);
+	VehicleView view (&world, tank2, 0, 0, 800, 600);
 	view.set_view (400, 300);
 	
 	//VehicleView view1 (&world, heli, 0, 0, 399, 600);
@@ -157,7 +157,7 @@ public:
 	    ++loops;
 
 	    view.draw ();
-	    view.update (delta);
+	    view.update ();
 
 	    screen.update (delta);
 	    screen.draw ();
