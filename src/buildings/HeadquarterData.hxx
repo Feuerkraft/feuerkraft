@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: HeadquarterData.hxx,v 1.1 2002/03/17 16:44:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,27 +17,21 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef FUELSTATION_HH
-#define FUELSTATION_HH
+#ifndef HEADQUARTERDATA_HXX
+#define HEADQUARTERDATA_HXX
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "boost/dummy_ptr.hpp"
-#include "View.hxx"
-#include "GameObj.hxx"
+#include <guile/gh.h>
+#include "BuildingData.hxx"
 
-class Fuelstation : public GameObj
+class HeadquarterData : public BuildingData
 {
-private:
-  CL_Surface fuelstation;
-  CL_Vector pos;
-  
 public:
-  Fuelstation (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
-  virtual ~Fuelstation ();
+  int x_pos;
+  int y_pos;
+public:
+  HeadquarterData (SCM desc);
 
-  void draw (View* );
-  void update (float delta);
+  Building* create (boost::dummy_ptr<GameWorld> world);
 };
 
 #endif

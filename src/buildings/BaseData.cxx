@@ -1,4 +1,4 @@
-//  $Id: Basis.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: BaseData.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,30 +17,36 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Basis.hxx"
+#include "Base.hxx"
+#include "BaseData.hxx"
 
-extern CL_ResourceManager* resources;
-
-Basis::Basis (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
-  : GameObj (w),
-    sur ("feuerkraft/start", resources),
-    pos (arg_pos)
+BaseData::BaseData (SCM desc)
 {
+  while (!gh_null_p (desc))
+    {
+      SCM symbol = gh_caar(desc);
+      SCM data   = gh_cdar(desc);
+
+      if (gh_equal_p (gh_symbol2scm ("pos"), symbol))
+	{
+	  x_pos = gh_scm2int(gh_car (data));
+	  y_pos = gh_scm2int(gh_cadr (data));
+	}
+      else
+	{
+	  std::cout << "BaseData: Error: " << std::flush;
+	  gh_display(symbol);
+	  std::cout << std::endl;
+	}
+
+      desc = gh_cdr (desc);
+    }
 }
 
-Basis::~Basis ()
+Building*
+BaseData::create (boost::dummy_ptr<GameWorld> world)
 {
-}
-
-void
-Basis::draw (View* view)
-{
-  view->draw (sur, pos + CL_Vector (-50, -50));
-}
-
-void
-Basis::update (float delta)
-{
+  return new Base (world, *this);
 }
 
 /* EOF */

@@ -1,5 +1,5 @@
-//  $Id: Ammotent.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: HeadquarterData.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,34 +12,41 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef AMMOTENT_HH
-#define AMMOTENT_HH
+#include "Headquarter.hxx"
+#include "HeadquarterData.hxx"
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "boost/dummy_ptr.hpp"
-#include "View.hxx"
-#include "GameObj.hxx"
-
-class Ammotent : public GameObj
+HeadquarterData::HeadquarterData (SCM desc)
 {
-private:
-  CL_Surface ammotent;
-  CL_Vector pos;
+  while (!gh_null_p (desc))
+    {
+      SCM symbol = gh_caar(desc);
+      SCM data   = gh_cdar(desc);
 
-public:
-  Ammotent (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
-  virtual ~Ammotent ();
+      if (gh_equal_p (gh_symbol2scm ("pos"), symbol))
+	{
+	  x_pos = gh_scm2int(gh_car (data));
+	  y_pos = gh_scm2int(gh_cadr (data));
+	}
+      else
+	{
+	  std::cout << "HeadquarterData: Error: " << std::flush;
+	  gh_display(symbol);
+	  std::cout << std::endl;
+	}
 
-  void draw (View* );
-  void update (float delta);  
-};
+      desc = gh_cdr (desc);
+    }
+}
 
-#endif
+Building* 
+HeadquarterData::create (boost::dummy_ptr<GameWorld> world)
+{
+  return new Headquarter (world, *this);
+}
 
 /* EOF */

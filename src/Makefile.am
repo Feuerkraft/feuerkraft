@@ -19,8 +19,7 @@ Flag.cxx Flag.hxx View.cxx View.hxx Playfield.cxx Playfield.hxx \
 VehicleView.cxx VehicleView.hxx Pathfinder.cxx Pathfinder.hxx Feuerkraft.hxx \
 System.cxx System.hxx my_gettext.hxx StringConverter.hxx StringConverter.cxx \
 Radar.hxx Radar.cxx GuiObj.hxx Screen.hxx Screen.cxx \
-Basis.cxx Basis.hxx VehicleStatus.hxx  VehicleStatus.cxx Headquarter.hxx Headquarter.cxx \
-Fuelstation.hxx Fuelstation.cxx Ammotent.cxx Ammotent.hxx \
+VehicleStatus.hxx  VehicleStatus.cxx \
 Background.hxx Background.cxx Stone.hxx Stone.cxx \
 Ambulance.hxx Ambulance.cxx
 

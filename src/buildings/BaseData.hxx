@@ -1,4 +1,4 @@
-//  $Id: Basis.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: BaseData.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,27 +17,23 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BASIS_HH
-#define BASIS_HH
+#ifndef BASEDATA_HXX
+#define BASEDATA_HXX
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+#include <guile/gh.h>
+#include "BuildingData.hxx"
 
-#include "GameObj.hxx"
-#include "View.hxx"
-
-class Basis : public GameObj
+class BaseData : public BuildingData
 {
-private:
-  CL_Surface sur;
-  CL_Vector pos;
-
 public:
-  Basis (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
-  virtual ~Basis ();
+  int x_pos;
+  int y_pos;
+  
+public:
+  /** */
+  BaseData (SCM desc);
 
-  void draw (View* v);
-  void update (float delta);
+  Building* create (boost::dummy_ptr<GameWorld> world);
 };
 
 #endif

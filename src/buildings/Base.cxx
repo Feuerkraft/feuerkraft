@@ -1,4 +1,4 @@
-//  $Id: Ammotent.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Base.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,48 +17,33 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Vehicle.hxx"
-#include "Ammotent.hxx"
-#include <cmath>
+#include "Base.hxx"
 
+// FIXME: hack... replace this with better resource handling
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
-Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos)
-  : GameObj (world),
-    ammotent ("feuerkraft/ammotent", resources),
-    pos (arg_pos)
+Base::Base (boost::dummy_ptr<GameWorld>  w, const BaseData& data)
+  : Building (w),
+    BaseData (data),
+    sprite (storage->get("feuerkraft/start")),
+    pos (x_pos * 40 + 40, y_pos * 40 + 40) // FIXME: tilesize hardcoded
 {
 }
 
-Ammotent::~Ammotent ()
+Base::~Base ()
 {
 }
 
-void 
-Ammotent::draw (View* view)
+void
+Base::draw (boost::dummy_ptr<View> view)
 {
-  view->draw (ammotent, 
-	      int(pos.x - 40),
-	      int(pos.y - 75));
+  view->draw (&sprite, pos - CL_Vector (40, 40));
 }
 
-void 
-Ammotent::update (float delta)
+void
+Base::update (float delta)
 {
-  delta *= 50;
-  std::list<boost::shared_ptr<GameObj> >& objs = world->get_objects ();
-
-  for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
-    {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(i->get ());
-      if (vehicle && fabs((vehicle->get_pos () - pos).norm ()) < 10)
-	{
-	  if (vehicle->get_velocity () == 0.0)
-	    {
-	      vehicle->reload_ammo (delta);
-	    }
-	}
-    }
 }
 
 /* EOF */

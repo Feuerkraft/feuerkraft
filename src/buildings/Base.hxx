@@ -1,4 +1,4 @@
-//  $Id: BuildingData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Base.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,19 +17,37 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BUILDINGDATA_HXX
-#define BUILDINGDATA_HXX
+#ifndef BASE_HH
+#define BASE_HH
 
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
+
+#include <SphriteLib/sphritelib.h>
+#include "../View.hxx"
 #include "../boost/dummy_ptr.hpp"
+#include "Building.hxx"
+#include "BaseData.hxx"
 
-class Building;
-class GameWorld;
-
-class BuildingData
+class Base : public Building,
+	     public BaseData
 {
-protected:
+private:
+  Sprite sprite;
+  CL_Vector pos;
+
 public:
-  virtual Building* create (boost::dummy_ptr<GameWorld> world) =0;
+  Base (boost::dummy_ptr<GameWorld>  w, const BaseData& data);
+  virtual ~Base ();
+
+  void draw (boost::dummy_ptr<View> v);
+  void update (float delta);
+  
+  int get_x_pos () { return x_pos; }
+  int get_y_pos () { return y_pos; }
+
+  int get_map_width ()  { return 2; }
+  int get_map_height () { return 2; }
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.4 2002/03/17 12:50:40 grumbel Exp $
+//  $Id: Tower.cxx,v 1.5 2002/03/17 16:42:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@ extern CL_ResourceManager* resources;
 
 #include "../Explosion.hxx"
 
-Tower::Tower (GameWorld* w, const TowerData& data)
+Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
   : Building (w),
     TowerData (data),
     towerbase (storage->get("feuerkraft/towerbase")),
@@ -43,7 +43,7 @@ Tower::Tower (GameWorld* w, const TowerData& data)
 void
 Tower::draw (boost::dummy_ptr<View> view)
 {
-  std::cout << "Tower::draw" << std::endl;
+  //std::cout << "Tower::draw" << std::endl;
 
   if (energie > 50)
     {

@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.cxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: BuildingMapData.cxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,14 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "TowerData.hxx"
 #include "BuildingMapData.hxx"
 #include "BuildingMap.hxx"
+
+#include "TowerData.hxx"
+#include "FuelstationData.hxx"
+#include "AmmotentData.hxx"
+#include "BaseData.hxx"
+#include "HeadquarterData.hxx"
 
 BuildingMapData::BuildingMapData (SCM desc)
 {
@@ -38,6 +43,26 @@ BuildingMapData::BuildingMapData (SCM desc)
 	  // building_data does not contain position information
 	  buildings_data.push_back (new TowerData (data));
 	}
+      else if (gh_equal_p (gh_symbol2scm ("ammotent"), symbol))
+	{
+	  std::cout << "BuildingMapData: creating ammotent" << std::endl;
+	  buildings_data.push_back (new AmmotentData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("fuelstation"), symbol))
+	{
+	  std::cout << "BuildingMapData: creating ammotent" << std::endl;
+	  buildings_data.push_back (new FuelstationData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("headquarter"), symbol))
+	{
+	  std::cout << "BuildingMapData: creating headquarter" << std::endl;
+	  buildings_data.push_back (new HeadquarterData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("base"), symbol))
+	{
+	  std::cout << "BuildingMapData: creating base" << std::endl;
+	  buildings_data.push_back (new BaseData (data));
+	}
       else
 	{
 	  std::cout << "BuildingMapData: Error: " << std::flush;
@@ -52,9 +77,9 @@ BuildingMapData::BuildingMapData (SCM desc)
 }
 
 BuildingMap*
-BuildingMapData::create ()
+BuildingMapData::create (boost::dummy_ptr<GameWorld> world)
 {
-  return new BuildingMap (*this);
+  return new BuildingMap (world, *this);
 }
 
 /* EOF */

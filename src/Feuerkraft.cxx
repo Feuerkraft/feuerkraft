@@ -25,10 +25,6 @@
 #include "VehicleStatus.hxx"
 #include "Radar.hxx"
 #include "Screen.hxx"
-#include "Headquarter.hxx"
-#include "Basis.hxx"
-#include "Fuelstation.hxx"
-#include "Ammotent.hxx"
 #include "Background.hxx"
 #include "Stone.hxx"
 #include "System.hxx"
@@ -146,17 +142,12 @@ public:
 	world.add (tank1);
 	world.add (tank2);
 	world.add (new Background (&world, CL_Surface ("feuerkraft/sand", resources)));
-	world.add (new Basis (&world, CL_Vector(0, 0)));
-	world.add (new Basis (&world, CL_Vector(400, 0)));
 	world.add (new Playfield (&world));
 	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
-	world.add (new Fuelstation (&world, CL_Vector (-100.0f, 300.0f)));
-	world.add (new Ammotent (&world, CL_Vector (-200.0f, 300.0f)));
 	//world.add (new Tower (&world, 400.0, 200.0));
 	//world.add (new Tower (&world, 500.0, 300.0));
 	//world.add (new Tower (&world, 300.0, 140.0));
 	world.add (new Ambulance (&world));
-	world.add (new Headquarter (&world, CL_Vector (-100.0, 0.0)));
 	
 	for (int i = 0; i < 20; ++i)
 	  {
@@ -197,7 +188,7 @@ public:
 	  scm_close (fdes);
 	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 
-	  buildingmap = buildingmapdata->create ();
+	  buildingmap = buildingmapdata->create (&world);
 	  groundmap = groundmapdata->create ();
 	}
 	// End: Test of parsing code

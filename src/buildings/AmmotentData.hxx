@@ -1,4 +1,4 @@
-//  $Id: BuildingData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: AmmotentData.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,19 +17,26 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BUILDINGDATA_HXX
-#define BUILDINGDATA_HXX
+#ifndef AMMOTENTDATA_HXX
+#define AMMOTENTDATA_HXX
 
-#include "../boost/dummy_ptr.hpp"
+#include <guile/gh.h>
+#include "BuildingData.hxx"
 
-class Building;
-class GameWorld;
-
-class BuildingData
+class AmmotentData : public BuildingData
 {
-protected:
+public: // FIXME: Should be protected
+  // FIXME: I know its redundant to have the position in every
+  // FIXME: BuildingData thing, but I don't know a better way. (virtual
+  // FIXME: inheritance might be one)
+  int x_pos;
+  int y_pos;
+
 public:
-  virtual Building* create (boost::dummy_ptr<GameWorld> world) =0;
+  /** Format: (ammotent (pos 10 10))
+   */
+  AmmotentData (SCM desc);
+  Building* create (boost::dummy_ptr<GameWorld> world);
 };
 
 #endif

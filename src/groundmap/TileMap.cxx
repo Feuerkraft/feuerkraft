@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.7 2002/03/15 10:01:26 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.8 2002/03/17 16:42:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -75,10 +75,11 @@ TileMap::draw (View* view)
   for (std::vector<Tile*>::size_type y = 0; y < height; ++y)
     for (std::vector<Tile*>::size_type x = 0; x < width; ++x)
     {
+      // FIXME: Hard coded tilemap size is ugly
       if (tilemap [(width * y) + x])
 	tilemap [(width * y) + x]->draw (view , 
-					 int(x * 32)  - (int(width) * 16),
-					 int(y * 32)  - (int(height) * 16));
+					 int(x * 40 - 20),
+					 int(y * 40 - 20));
     }
 }
 

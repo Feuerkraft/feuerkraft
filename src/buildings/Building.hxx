@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: Building.hxx,v 1.4 2002/03/17 16:42:24 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,12 +27,12 @@ class View;
 class GameWorld;
 
 class Building
-
 {
 private:
-  GameWorld* world;
+  boost::dummy_ptr<GameWorld> world;
+
 public:
-  Building (GameWorld* w)
+  Building (boost::dummy_ptr<GameWorld> w)
     : world (w)
   {}
 
@@ -51,7 +51,7 @@ public:
   /** Returns the height which this building will take on the BuildingMap */
   virtual int get_map_height () =0;
 
-  GameWorld* get_world () { return world; }
+  GameWorld* get_world () { return world.get(); }
 };
 
 #endif

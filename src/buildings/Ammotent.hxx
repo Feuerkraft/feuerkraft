@@ -1,4 +1,4 @@
-//  $Id: BuildingData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Ammotent.hxx,v 1.1 2002/03/17 16:42:24 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,19 +17,35 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BUILDINGDATA_HXX
-#define BUILDINGDATA_HXX
+#ifndef AMMOTENT_HH
+#define AMMOTENT_HH
+
+#include <ClanLib/core.h>
+#include <SphriteLib/sphritelib.h>
 
 #include "../boost/dummy_ptr.hpp"
+#include "../View.hxx"
+#include "Building.hxx"
+#include "AmmotentData.hxx"
 
-class Building;
-class GameWorld;
-
-class BuildingData
+class Ammotent : public Building,
+		 public AmmotentData
 {
-protected:
+private:
+  Sprite ammotent;
+  CL_Vector pos;
+
 public:
-  virtual Building* create (boost::dummy_ptr<GameWorld> world) =0;
+  Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData&);
+  virtual ~Ammotent ();
+
+  void draw (boost::dummy_ptr<View>);
+  void update (float delta);  
+
+  int get_x_pos () { return x_pos; }
+  int get_y_pos () { return y_pos; }
+  int get_map_width () { return 2; }
+  int get_map_height () { return 2; }
 };
 
 #endif

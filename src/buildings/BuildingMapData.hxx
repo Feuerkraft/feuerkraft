@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.hxx,v 1.2 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: BuildingMapData.hxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,11 @@
 
 #include <vector>
 #include <guile/gh.h>
+#include "../boost/dummy_ptr.hpp"
 
 class BuildingData;
 class BuildingMap;
+class GameWorld;
 
 /** The BuildingMap is something like a TileMap which holds pointers
     to all Buildings. It is used to hold the Building's instead of the
@@ -46,7 +48,7 @@ public:
    */
   BuildingMapData (SCM desc);
   
-  BuildingMap* create ();
+  BuildingMap* create (boost::dummy_ptr<GameWorld> world);
 };
 
 #endif

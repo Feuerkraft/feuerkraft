@@ -1,4 +1,4 @@
-//  $Id: TowerData.cxx,v 1.3 2002/03/17 12:01:58 grumbel Exp $
+//  $Id: TowerData.cxx,v 1.4 2002/03/17 16:42:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,8 @@ TowerData::TowerData (SCM desc)
       else
 	{
 	  std::cout << "TowerData: Error: " << std::flush;
-	  std::cout << symbol << std::endl;
+	  gh_display(symbol);
+	  std::cout << std::endl;
 	}
 
       desc = gh_cdr (desc);
@@ -48,9 +49,9 @@ TowerData::TowerData (SCM desc)
 }
 
 Building* 
-TowerData::create ()
+TowerData::create (boost::dummy_ptr<GameWorld> world)
 {
-  return new Tower (0, *this); // FIXME: Bug!
+  return new Tower (world, *this); // FIXME: Bug!
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Ammotent.cxx,v 1.1 2002/03/17 16:42:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,37 +18,35 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <cmath>
-#include "Vehicle.hxx"
-#include "Fuelstation.hxx"
+#include "Ammotent.hxx"
+#include "../Vehicle.hxx"
 
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
-Fuelstation::Fuelstation (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos)
-  : GameObj (world),
-    fuelstation ("feuerkraft/fuelstation", resources),
-    pos (arg_pos)
+Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData& data)
+  : Building (world),
+    AmmotentData (data),
+    ammotent (storage->get("feuerkraft/ammotent")),
+    pos (data.x_pos * 40 + 40, data.y_pos * 40 + 60) // FIXME: Hard coded tilesize again...
 {
 }
 
-Fuelstation::~Fuelstation ()
+Ammotent::~Ammotent ()
 {
 }
 
 void 
-Fuelstation::draw (View* view)
+Ammotent::draw (boost::dummy_ptr<View> view)
 {
-  view->draw (fuelstation, 
-	      int(pos.x - 40),
-	      int(pos.y - 75));
+  view->draw (&ammotent, pos);
 }
 
 void 
-Fuelstation::update (float delta)
+Ammotent::update (float delta)
 {
   delta *= 50;
-
-  //FIXME: Slow
-  std::list<boost::shared_ptr<GameObj> >& objs = world->get_objects ();
+  std::list<boost::shared_ptr<GameObj> >& objs = get_world ()->get_objects ();
 
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
@@ -57,7 +55,7 @@ Fuelstation::update (float delta)
 	{
 	  if (vehicle->get_velocity () == 0.0)
 	    {
-	      vehicle->refuel (delta);
+	      vehicle->reload_ammo (delta);
 	    }
 	}
     }

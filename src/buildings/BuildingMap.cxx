@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.2 2002/03/17 12:50:40 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.3 2002/03/17 16:42:24 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,9 +23,9 @@
 #include "BuildingMap.hxx"
 #include "Building.hxx"
 
-BuildingMap::BuildingMap(const BuildingMapData& data)
+BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& data)
   : BuildingMapData (data),
-    GameObj (0) // FIXME: Bug
+    GameObj (w) // FIXME: Bug
 {
   for (std::vector<BuildingData*>::iterator i = buildings_data.begin ();
        i != buildings_data.end ();
@@ -33,7 +33,7 @@ BuildingMap::BuildingMap(const BuildingMapData& data)
     {
       // FIXME: we need probally to pass the GameWorld pointer all
       // FIXME: around
-      buildings.push_back ((*i)->create ());
+      buildings.push_back ((*i)->create (get_world ()));
     }
 
   // FIXME: Where is the width and height?!

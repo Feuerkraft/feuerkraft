@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.4 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: Headquarter.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,40 +17,39 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef TOWER_HXX
-#define TOWER_HXX
+#ifndef HEADQUARTER_HH
+#define HEADQUARTER_HH
 
+#include <ClanLib/core.h>
 #include <SphriteLib/sphritelib.h>
+
+#include "../boost/dummy_ptr.hpp"
 #include "../Energie.hxx"
 #include "Building.hxx"
-#include "TowerData.hxx"
+#include "HeadquarterData.hxx"
+#include "../Projectile.hxx"
 
-class GameWorld;
-
-class Tower : public Building,
-	      public TowerData
+class Headquarter : public Building,
+		    public HeadquarterData
 {
 private:
-  Sprite towerbase;
-  Sprite towerdamaged;
-  Sprite towerdestroyed;
-  Sprite turret;
-  
+  CL_Vector pos;
+  Sprite headquarter;
+  Sprite headquarter_damaged;
+  Sprite headquarter_destroyed;
+  boost::dummy_ptr<Sprite> current_sur;
   Energie energie;
   bool destroyed;
-
-  /** The position is just for easier handling here, the real position
-      is due to the position in the building map */
-  CL_Vector pos;
+  
 public:
-  Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data);
-  
-  // Draw the object onto the screen
-  void draw (boost::dummy_ptr<View> view);
+  Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData&);
+  virtual ~Headquarter ();
 
-  // Update the object once a game loop
-  void update (float);
-  
+  void update (float delta);
+  void draw (boost::dummy_ptr<View>);
+  bool is_colliding (CL_Vector obj_pos);
+  void collide (Projectile*);
+
   int get_x_pos () { return x_pos; }
   int get_y_pos () { return y_pos; }
 

@@ -1,5 +1,5 @@
-//  $Id: Headquarter.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
-// 
+//  $Id: AmmotentData.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,42 +12,42 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADQUARTER_HH
-#define HEADQUARTER_HH
+#include <iostream>
+#include "Ammotent.hxx"
+#include "AmmotentData.hxx"
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "boost/dummy_ptr.hpp"
-#include "GameObj.hxx"
-#include "Energie.hxx"
-#include "Collideable.hxx"
-
-class Headquarter : public Collideable
+AmmotentData::AmmotentData (SCM desc)
 {
-private:
-  CL_Vector pos;
-  CL_Surface headquarter;
-  CL_Surface headquarter_damaged;
-  CL_Surface headquarter_destroyed;
-  boost::dummy_ptr<CL_Surface> current_sur;
-  Energie energie;
-  bool destroyed;
-  
-public:
-  Headquarter (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
-  virtual ~Headquarter ();
+  while (!gh_null_p (desc))
+    {
+      SCM symbol = gh_caar(desc);
+      SCM data   = gh_cdar(desc);
 
-  void update (float delta);
-  void draw (View* view);
-  bool is_colliding (CL_Vector obj_pos);
-  void collide (Projectile*);
-};
+      if (gh_equal_p (gh_symbol2scm ("pos"), symbol))
+	{
+	  x_pos = gh_scm2int(gh_car (data));
+	  y_pos = gh_scm2int(gh_cadr (data));
+	}
+      else
+	{
+	  std::cout << "Ammotent: Error: " << std::flush;
+	  gh_display(symbol);
+	  std::cout << std::endl;
+	}
 
-#endif
+      desc = gh_cdr (desc);
+    }
+}
+
+Building* 
+AmmotentData::create (boost::dummy_ptr<GameWorld> world)
+{
+  return new Ammotent (world, *this);
+}
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Headquarter.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,18 +17,20 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Flag.hxx"
-#include "Explosion.hxx"
+#include "../Flag.hxx"
+#include "../Explosion.hxx"
 #include "Headquarter.hxx"
 
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
-Headquarter::Headquarter (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos)
-  : Collideable (world),
-    pos (arg_pos),
-    headquarter ("feuerkraft/headquarter", resources),
-    headquarter_damaged ("feuerkraft/headquarterdamaged", resources),
-    headquarter_destroyed ("feuerkraft/headquarterdestroyed", resources),
+Headquarter::Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData& data)
+  : Building (world),
+    HeadquarterData (data),
+    pos (x_pos * 40 + 40, y_pos * 40 - 40),
+    headquarter (storage->get("feuerkraft/headquarter")),
+    headquarter_damaged (storage->get("feuerkraft/headquarterdamaged")),
+    headquarter_destroyed (storage->get("feuerkraft/headquarterdestroyed")),
     energie (100),
     destroyed (false)
 {
@@ -44,17 +46,16 @@ Headquarter::update (float delta)
 {
   if (energie <= 0 && !destroyed)
     {
-      world->add (new Explosion (world, pos, Explosion::MEDIUM));
-      world->add (new Flag (world, pos));
+      get_world()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
+      get_world()->add (new Flag (get_world (), pos));
       destroyed = true;
     }
 }
 
 void 
-Headquarter::draw (View* view)
+Headquarter::draw (boost::dummy_ptr<View> view)
 {
-  view->draw (*current_sur, int(pos.x - current_sur->get_width ()/2), 
-	      int(pos.y - current_sur->get_height ()/2));
+  view->draw (current_sur.get(), pos);
   energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 

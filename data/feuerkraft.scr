@@ -108,17 +108,32 @@ section feuerkraft {
 	parking = images/parking.png (type=surface);
 	radar = images/radar.png (type=surface);
 	
-	start = images/start.png (type=surface);
+	section	start {
+		frame1 = images/start.png (type=surface);
+	}
 	
-	headquarter = images/headquater.png (type=surface);
-	headquarterdamaged = images/headquaterdamaged.png (type=surface);
-	headquarterdestroyed = images/headquaterdestroyed.png (type=surface);
+	section headquarter {
+		frame1 = images/headquater.png (type=surface);
+	}
+
+	section headquarterdamaged {
+		frame1 = images/headquaterdamaged.png (type=surface);
+	}
+
+	section headquarterdestroyed {
+		frame1 = images/headquaterdestroyed.png (type=surface);
+	}
 	
 	fuel = images/fuel.png (type=surface);
 	ammo = images/ammo.png (type=surface);
 	
-	fuelstation = images/fuelstation.png (type=surface);
-	ammotent = images/ammotent.png (type=surface);
+	section fuelstation {
+		frame1 = images/fuelstation.png (type=surface);
+	}
+
+	section	ammotent {
+		frame1 = images/ammotent.png (type=surface);
+	}
 	
 	sand = images/sand.jpg (type=surface);
 	stone = images/stone.png (type=surface);
