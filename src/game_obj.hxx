@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,15 +35,22 @@ class GameObj
 protected:
   friend class GameWorld;
 
+  int id;
+
   boost::dummy_ptr<GameWorld> world;
   bool remove_me;
+
+  friend class GameObjManager;
+  void set_id(int i) { id = i; }
 public:
-  
   GameObj (boost::dummy_ptr<GameWorld>  w)
-    : world (w),
+    : id(-1),
+      world (w),
       remove_me (false) {}
 
   virtual ~GameObj () {}
+
+  int get_id() const { return id; }
 
   /** Sync the GameObj with its GameObjData parent and return a
       pointer to the parent. The parent must not be deleted.

@@ -1,4 +1,4 @@
-//  $Id: draw_circle.cxx,v 1.1 2003/04/30 21:27:21 grumbel Exp $
+//  $Id: draw_circle.cxx,v 1.2 2003/05/01 20:56:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,10 +22,15 @@
 
 int main()
 {
-  Field<int> field(40, 40);
+  Field<int> field(50, 50);
+  srand(time(NULL));
+  //draw_circle(field, 20, 20, 12);
+  draw_fill_circle(field, 20, 20, 12);
+  //draw_fill_circle(field, 30, 30, 6);
 
-  draw_circle(field, 20, 20, 10);
-  draw_fill_circle(field, 20, 20, 10);
+  for(int count = 0; count < 40; ++count)
+    draw_fill_circle(field, (rand()%29)+10, (rand()%29)+10, rand()%9);
+
   //draw_fill_circle(field, 20, 20, 0);
   //draw_fill_circle(field, 20, 20, 2);
 

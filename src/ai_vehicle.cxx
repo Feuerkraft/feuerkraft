@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.2 2003/04/28 23:24:41 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,7 +67,6 @@ AIVehicle::update(float delta)
 
         if (distance < (pos - target_pos).norm())
           {
-            std::cout << "Target Reached" << std::endl;
             orientation = old_orientation;
             pos = target_pos;
             next_order();

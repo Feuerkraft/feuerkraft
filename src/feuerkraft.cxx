@@ -55,6 +55,8 @@ VehicleView* vehicle_view;
 //FIXME: Another ugly global variable, should be removed as soon as possible
 CL_GraphicContext* global_gc;
 
+extern "C" void SWIG_init(void);
+          
 void inner_main (void* closure, int argc, char* argv[]);
 
 class Feuerkraft : public CL_ClanApplication
@@ -74,6 +76,8 @@ public:
 	
   virtual int inner_main(void* closure, int argc, char** argv)
   {
+    SWIG_init();
+
     // Create a console window for text-output if not available
     CL_ConsoleWindow console("Console");
     console.redirect_stdio();
@@ -114,6 +118,7 @@ public:
 	resources->get_sprite("feuerkraft/tank2_shadow");
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
 
+        // Deserialize the game world
 	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
@@ -129,6 +134,9 @@ public:
 	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 	}
 	// End: Test of parsing code
+
+        // Load game scripts 
+        scm_c_primitive_load("data/missions/test.scm");
 
 	Screen    screen;
 
@@ -252,8 +260,8 @@ public:
             
 	    if (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 	      {
-		//while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
-		  //CL_System::keep_alive ();
+		while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
+		  CL_System::keep_alive ();
 
 		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
 		std::cout << "Mouse: " <<  pos << " | "

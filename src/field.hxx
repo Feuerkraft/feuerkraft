@@ -1,4 +1,4 @@
-//  $Id: field.hxx,v 1.3 2003/04/29 20:43:36 grumbel Exp $
+//  $Id: field.hxx,v 1.4 2003/05/01 20:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,11 +49,7 @@ public:
   }
 
   T& operator () (int x, int y) {
-    if (x < 0 || x >= width || y < 0 || y >= height)
-      {
-	std::cout << "Field: out of region: " << x << " " << y << std::endl;
-      }
-
+    assert(x >= 0 && x < width && y >= 0 && y < height);
     return data[width * y + x];
   }
 

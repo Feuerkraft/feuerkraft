@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_world.hxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <list>
 #include "boost/smart_ptr.hpp"
 #include "game_obj.hxx"
+#include "game_obj_manager.hxx"
 #include "game_world_data.hxx"
 #include "view.hxx"
 
@@ -35,7 +36,7 @@ class BuildingMap;
 class GameWorld : public GameWorldData
 {
 private:
-  std::list<GameObj*> objects;
+  GameObjManager game_obj_manager;
 
   // FIXME: This is a ugly ugly hack...
   GameObj* buildingmap;
@@ -44,7 +45,7 @@ private:
   float current_time;
 
 public:
-  typedef std::list<GameObj*>::iterator ObjIter;
+  typedef GameObjManager::iterator ObjIter;
 
   GameWorld ();
   GameWorld (const GameWorldData& data);
@@ -54,10 +55,11 @@ public:
       this shouldn't be necessary, but sometimes it is required. */
   GameWorldData* get_data ();
   
-  float get_time () { return current_time; }
+  float get_time() { return current_time; }
+
+  GameObjManager::GameObjs& get_objects() { return game_obj_manager.get_objects(); }
 
   /// Return a reference to the objects in the world
-  std::list<GameObj*>& get_objects () { return objects; }
   void add (GameObj*);
   void add_front (GameObj*);
 

@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: game_world.cxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,7 @@
 
 GameWorld::GameWorld (const GameWorldData& data)
   : GameWorldData (data),
+    game_obj_manager(this),
     current_time (0.0f)
 {
   if (groundmap_data)
@@ -43,26 +44,22 @@ GameWorld::GameWorld (const GameWorldData& data)
   if (!groundmap) 
     {
       std::cout << "GameWorld: No groundmap created, bailout" << std::endl;
-      assert (groundmap);
+      assert(groundmap);
     }
   
   if (!buildingmap)
     {
       std::cout << "GameWorld: No buildingmap created, bailout" << std::endl;
-      assert (buildingmap);
+      assert(buildingmap);
     }
 
-  objects.push_back (groundmap);
-  objects.push_back (buildingmap);
+  game_obj_manager.add_object(groundmap);
+  game_obj_manager.add_object(buildingmap);
 
   for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
     {
-      objects.push_back ((*i)->create (this));
+      game_obj_manager.add_object((*i)->create (this));
     }
-}
-
-GameWorld::GameWorld ()
-{
 }
 
 GameWorld::~GameWorld ()
@@ -73,13 +70,14 @@ GameWorld::~GameWorld ()
 void 
 GameWorld::add (GameObj* obj)
 {
-  objects.push_back(obj);
+  game_obj_manager.add_object(obj);
 }
 
 void 
 GameWorld::add_front (GameObj* obj)
 {
-  objects.push_front (obj);
+  // FIXME: no go...
+  game_obj_manager.add_object(obj);
 }
 
 struct z_pos_sorter
@@ -138,11 +136,11 @@ GameWorld::draw (View* view)
 //  if (!objects.empty()) quicksort(objects, objects.begin(), --objects.end(), z_pos_sorter ());
   objects.sort (z_pos_sorter ());
 #else
-  objects.sort (z_pos_sorter ());
+  game_obj_manager.get_objects().sort (z_pos_sorter ());
 #endif
 
-  for (ObjIter i = objects.begin (); 
-       i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); 
+       i != game_obj_manager.get_objects().end (); ++i)
     (*i)->draw (view);
   //for_each (objects.begin (), objects.end (), bind2nd(mem_fun (&GameObj::draw), view));
 }
@@ -150,8 +148,8 @@ GameWorld::draw (View* view)
 void 
 GameWorld::draw_energie (View* view)
 {
-  for (ObjIter i = objects.begin (); 
-       i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); 
+       i != game_obj_manager.get_objects().end (); ++i)
     (*i)->draw_energie (view);
 }
 
@@ -159,8 +157,8 @@ void
 GameWorld::draw_levelmap (LevelMap* levelmap)
 {
   //groundmap->draw_levelmap (levelmap);
-  for (ObjIter i = objects.begin (); 
-       i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); 
+       i != game_obj_manager.get_objects().end (); ++i)
     (*i)->draw_levelmap (levelmap);
 }
 
@@ -183,15 +181,15 @@ GameWorld::update (float delta)
   //probally I just mixed true/false
   std::remove_if(objects.begin(), objects.end(), is_removable());
 #else
-  objects.remove_if(is_removable ()); 
+  game_obj_manager.get_objects().remove_if(is_removable ()); 
 #endif 
 
-  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); i != game_obj_manager.get_objects().end (); ++i)
     (*i)->update (delta);
 
   // FIXME: insert collision check here
 
-  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); i != game_obj_manager.get_objects().end (); ++i)
     (*i)->flip ();
 }
 
@@ -223,7 +221,7 @@ GameWorld::get_data ()
     }
   
   // Fill the data object with the current gameobj's and sync them
-  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
+  for (ObjIter i = game_obj_manager.get_objects().begin (); i != game_obj_manager.get_objects().end (); ++i)
     {
       gameobj_data.push_back ((*i)->get_data ());
     }

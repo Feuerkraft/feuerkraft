@@ -1,4 +1,4 @@
-//  $Id: draw_circle.hxx,v 1.1 2003/04/30 21:27:21 grumbel Exp $
+//  $Id: draw_circle.hxx,v 1.2 2003/05/01 20:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,10 @@
 #define HEADER_DRAW_CIRCLE_HXX
 
 #include <stdlib.h>
+#include "math.hxx"
 #include "field.hxx"
 
+// FIXME: no clipping
 void draw_fill_circle(Field<int>& field, int center_x, int center_y, int radius)
 {
   int xchange = 1 - 2*radius;
@@ -47,12 +49,15 @@ void draw_fill_circle(Field<int>& field, int center_x, int center_y, int radius)
           xchange += 2;
         }
     }
+  
+  if (center_x > 0 && center_x < field.get_width())
+    for(int y = -pos[0]; y <= pos[0]; ++y)
+      ++field(center_x, center_y + y);
 
-  for(int x = 0; x <= radius; ++x)
+  for(int x = 1; x <= radius; ++x)
     for(int y = -pos[x]; y <= pos[x]; ++y)
       {
-        if (x != 0)
-          ++field(center_x + x, center_y + y);
+        ++field(center_x + x, center_y + y);
         ++field(center_x - x, center_y + y);
       }
 }

@@ -1,4 +1,4 @@
-SUBDIRS = boost groundmap particles generic buildings
+SUBDIRS = boost groundmap particles generic buildings scripting
 
 bindir=$(prefix)/games
 
@@ -7,7 +7,8 @@ bin_PROGRAMS = feuerkraft
 LDADD = \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
- generic/libfeuerkraft_generic.a 
+ generic/libfeuerkraft_generic.a     \
+ scripting/libfeuerkraft_scripting.a
 
 feuerkraft_SOURCES = \
 ai_vehicle.hxx \
@@ -36,6 +37,9 @@ game_delta.hxx \
 game_mission.cxx \
 game_mission.hxx \
 game_obj.hxx \
+game_obj.cxx \
+game_obj_manager.hxx \
+game_obj_manager.cxx \
 game_obj_data.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \

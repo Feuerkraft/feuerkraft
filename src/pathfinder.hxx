@@ -1,4 +1,4 @@
-//  $Id: pathfinder.hxx,v 1.5 2003/04/29 20:43:36 grumbel Exp $
+//  $Id: pathfinder.hxx,v 1.6 2003/05/01 20:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 
 // Datatypes shared by all the pathfinder 
 
-enum { PARENT_NONE,  //!< Parent isn't set
+enum { PARENT_NONE = 0, //!< Parent isn't set
        PARENT_GOAL,  //!< This is the goal node, it doesn't have a parent
        PARENT_NORTH, //!< parent is in north direction
        PARENT_SOUTH, //!< parent is in south direction
@@ -46,6 +46,12 @@ inline float PosDistance(const Pos& a, const Pos& b)
 {
   return sqrt((b.x - a.x) * (b.x - a.x)
               + (b.y - a.y) * (b.y - a.y));
+}
+
+inline float PosMDistance(const Pos& a, const Pos& b)
+{
+  return (b.x - a.x) * (b.x - a.x)
+    + (b.y - a.y) * (b.y - a.y);
 }
 
 #endif
