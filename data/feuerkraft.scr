@@ -29,20 +29,20 @@ section feuerkraft {
 	towerdamaged = (type=sprite, image1=images/towerdamaged.png);
 	towerdestroyed = (type=sprite, image1=images/towerdestroyed.png);
 	tree = (type=sprite, image1=images/tree.png);
-	tree_shadow = images/tree_shadow.png (type=surface);
-	tree2 = images/tree2.png (type=surface);
-	tree2_shadow = images/tree2_shadow.png (type=surface);
-	soldier = images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
+	tree_shadow = (type=sprite, image1=images/tree_shadow.png);
+	tree2 = (type=sprite, image1=images/tree2.png);
+	tree2_shadow = (type=sprite, image1=images/tree2_shadow.png);
+	soldier = (type=sprite, image1=images/soldier.png);
 	mine = (type=sprite, image1=images/mine.png);
 	mineactive = (type=sprite, image1=images/mineactive.png);
 	minewater = (type=sprite, image1=images/minewater.png);
 	minewateractive = (type=sprite, image1=images/minewateractive.png);
-	tank2destroyed = images/tank2destroyed.png (type=surface);
+	tank2destroyed = (type=sprite, image1=images/tank2destroyed.png);
 	shockwave = (type=sprite, image1=images/shockwave.png);
 	tankdestroyed = (type=sprite, image1=images/tankdestroyed.png); 
 
 	rotor = (
-		type=surface,
+		type=sprite,
 		image1=images/rotor1.png,
 		image2=images/rotor2.png
 	);
@@ -50,20 +50,20 @@ section feuerkraft {
 	hole = (type=sprite, image1=images/hole.png);
 	helidestroyed = (type=sprite, image1=images/helidestroyed.png);
 	
-	flagblue = images/flagblue.png (type=surface);
-	flaggreen = images/flaggreen.png (type=surface);
+	flagblue = (type=sprite, image1=images/flagblue.png);
+	flaggreen = (type=sprite, image1=images/flaggreen.png);
 	
-	blueflag = images/blueflag.png (type=surface);
-	parking = images/parking.png (type=surface);
-	radar = images/radar.png (type=surface);
+	blueflag = (type=sprite, image1=images/blueflag.png);
+	parking = (type=sprite, image1=images/parking.png);
+	radar = (type=sprite, image1=images/radar.png);
 	
 	start = (type=sprite, image1=images/start.png);
-	headquater = (type=sprite, image1=images/headquater.png);
-	headquaterdamaged = (type=sprite, image1=images/headquaterdamaged.png);
-	headquaterdestroyed = (type=sprite, image1=images/headquaterdestroyed.png);
+	headquarter = (type=sprite, image1=images/headquarter.png);
+	headquarterdamaged = (type=sprite, image1=images/headquarterdamaged.png);
+	headquarterdestroyed = (type=sprite, image1=images/headquarterdestroyed.png);
 	
-	fuel = images/fuel.png (type=surface);
-	ammo = images/ammo.png (type=surface);
+	fuel = (type=sprite, image1=images/fuel.png);
+	ammo = (type=sprite, image1=images/ammo.png);
 	
 	fuelstation = (type=sprite, image1=images/fuelstation.png);
 	emptytile = (type = sprite, image1 = images/emptytile.png);
@@ -72,8 +72,8 @@ section feuerkraft {
 	hdoor = (type=sprite, image1=images/hdoor.png);
 	vdoor = (type=sprite, image1=images/vdoor.png);
 
-	sand = images/sand.jpg (type=surface);
-	stone = images/stone.png (type=surface);
+	sand = (type=sprite, image1=images/sand.jpg);
+	stone = (type=sprite, image1=images/stone.png);
 }
 
 

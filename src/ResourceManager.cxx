@@ -1,4 +1,4 @@
-//  $Id: ResourceManager.cxx,v 1.1 2002/04/07 16:24:01 grumbel Exp $
+//  $Id: ResourceManager.cxx,v 1.2 2002/04/07 17:19:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@ ResourceManager* resources;
 ResourceManager::ResourceManager ()
 {
   resource_manager = new CL_ResourceManager ("data/feuerkraft.scr", false);
+  resource_manager2 = new CL_ResourceManager ("data/tiles.scr", false);
 }
 
 ResourceManager::~ResourceManager ()
@@ -42,6 +43,7 @@ ResourceManager::get_surface (const std::string& location)
 CL_Sprite
 ResourceManager::get_sprite (const std::string& location)
 {
+  /*
   std::cout << "ResourceManager::get_sprite: " << location << std::endl;
   CL_SpriteDescription desc;
   desc.add_frame (new CL_PNGProvider ("data/images/" + location + ".png"), true);
@@ -49,6 +51,19 @@ ResourceManager::get_sprite (const std::string& location)
   CL_Sprite sprite (desc);
   sprite.set_translation_hotspot (origin_center);
   return sprite;
+  */
+  try {
+    return CL_Sprite (location, resource_manager);
+  } catch (CL_Error& err) {
+    std::cout << "Catch and Retry: " << err.message << std::endl;
+    try {
+      return CL_Sprite (location, resource_manager2);
+    } catch (CL_Error& err) {
+      std::cout << "Bailout: " << err.message << std::endl;
+      assert (0);
+      return CL_Sprite ();
+    }
+  }
 }
 
 CL_Sprite*
