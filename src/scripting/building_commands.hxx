@@ -1,4 +1,4 @@
-//  $Id: building_commands.hxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: building_commands.hxx,v 1.4 2003/05/11 18:12:10 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,9 @@
 /** Create a building from type \a type at the tile position x, y
     @return a handler to the building */
 int  building_create(int type, int x, int y);
+
+SCM  building_get_property(int handle, const char* name);
+void building_set_property(int handle, const char* name, SCM value);
 
 /** Remove the given building */
 void building_remove(int handle);

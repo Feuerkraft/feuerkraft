@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.7 2003/05/11 18:12:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,8 @@
 #include "../guile.hxx"
 
 #include "../game_world.hxx"
+#include "../property.hxx"
+#include "../property_set.hxx"
 #include "buildings/building.hxx"
 #include "buildings/custom_building.hxx"
 #include "buildings/wall_data.hxx"
@@ -28,7 +30,8 @@
 #include "buildings/building_manager.hxx"
 #include "building_commands.hxx"
 
-int  building_create(int type, int x, int y)
+int
+building_create(int type, int x, int y)
 {
   Building* building;
 
@@ -62,21 +65,25 @@ int  building_create(int type, int x, int y)
     }
 }
 
-void building_remove(int handle)
+void
+building_remove(int handle)
 {
 }
 
-int  building_get_tile(int x, int y)
-{
-  return 0;
-}
-
-int  building_get(int x, int y)
+int
+building_get_tile(int x, int y)
 {
   return 0;
 }
 
-int building_create_type(const char* name, SCM lst)
+int
+building_get(int x, int y)
+{
+  return 0;
+}
+
+int
+building_create_type(const char* name, SCM lst)
 {
   AList alist;
   
@@ -98,12 +105,12 @@ int building_create_type(const char* name, SCM lst)
       gh_newline();
       
       if (gh_boolean_p(value))
-         {
-           alist.set_bool(Guile::keyword2string(key), gh_scm2bool(value));
-         }
+        {
+          alist.set_bool(Guile::keyword2string(key), gh_scm2bool(value));
+        }
       else if (gh_number_p(value))
         {
-           alist.set_int(Guile::keyword2string(key), gh_scm2int(value));
+          alist.set_int(Guile::keyword2string(key), gh_scm2int(value));
         }
       else if (gh_string_p(value))
         {
@@ -118,6 +125,101 @@ int building_create_type(const char* name, SCM lst)
     }
 
   return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(name, alist));
+}
+
+SCM 
+building_get_property(int handle, const char* name)
+{
+  Building* building = BuildingManager::current()->get_building_by_id(handle);
+  if (!building)
+    {
+      std::cout << "building_get_property: unknown handle: " << handle << std::endl;
+      return SCM_UNSPECIFIED;
+    }
+  else
+    {
+      PropertySet* properties = building->get_properties();
+      if (!properties)
+        {
+          return SCM_UNSPECIFIED;
+        }
+      else
+        {
+          Property* property = properties->lookup(name);
+          
+          if (!property)
+            {
+              return SCM_UNSPECIFIED;
+            }
+          else
+            {
+              switch(property->get_type())
+                {
+                case Property::T_INT:
+                  return gh_int2scm(property->get_int());
+                  break;
+              
+                case Property::T_FLOAT:
+                  return gh_double2scm(property->get_float());
+                  break;
+
+                case Property::T_BOOL:
+                  return gh_bool2scm(property->get_bool());
+                  break;
+
+                case Property::T_STRING:
+                  return gh_str02scm(property->get_string().c_str());
+                  break;
+
+                default:
+                  std::cout << "Unhandled property type" << std::endl;
+                  return SCM_UNSPECIFIED;
+                  break;
+                }
+            }
+        }
+    }
+}
+
+void
+building_set_property(int handle, const char* name, SCM value)
+{
+  Building* building = BuildingManager::current()->get_building_by_id(handle);
+  if (!building)
+    {
+      std::cout << "building_set_property: unknown handle: " << handle << std::endl;
+    }
+  else
+    {
+      PropertySet* properties = building->get_properties();
+      if (!properties)
+        {
+          std::cout << "building_set_property: object has no properties" << std::endl;
+        }
+      else
+        {
+          if (gh_string_p(value))
+            {
+              properties->set_string(name, Guile::scm2string(value));
+            }
+          else if (gh_boolean_p(value))
+            {
+              properties->set_bool(name, gh_scm2bool(value));
+            }
+          else if (gh_exact_p(value))
+            {
+              properties->set_int(name, gh_scm2int(value));
+            }
+          else if (gh_inexact_p(value))
+            {
+              properties->set_float(name, gh_scm2double(value));
+            }
+          else
+            {
+              std::cout << "Unhandled value" << std::endl;
+            }
+        }
+    }
 }
 
 /* EOF */
