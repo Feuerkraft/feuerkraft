@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.1 2002/03/16 23:41:07 grumbel Exp $
+//  $Id: Tower.cxx,v 1.2 2002/03/17 00:16:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,13 +19,20 @@
 
 #include "Tower.hxx"
 
-Tower::Tower (const TowerData& data)
-  : TowerData (data),
+extern SpriteProviderStorage* storage;
+extern CL_ResourceManager* resources;
+
+#include "../Explosion.hxx"
+
+Tower::Tower (GameWorld* w, const TowerData& data)
+  : Building (w),
+    TowerData (data),
     towerbase (storage->get("feuerkraft/towerbase")),
     towerdamaged (storage->get("feuerkraft/towerdamaged")),
     towerdestroyed (storage->get("feuerkraft/towerdestroyed")),
     turret (storage->get("feuerkraft/towerturret")),
-    energie (100)
+    energie (100),
+    destroyed (false)
 {  
 }
   
@@ -47,7 +54,7 @@ Tower::draw (boost::dummy_ptr<View> view)
       view->draw (&towerdestroyed, int(pos.x), int(pos.y));
     }
 
-  if (!destroyed)
+  if (energie > 0)
     {
       view->draw (&turret, int(pos.x), int(pos.y));
       energie.draw (view, int(pos.x), int (pos.y) - 40);
@@ -56,19 +63,19 @@ Tower::draw (boost::dummy_ptr<View> view)
   
 // Update the object once a game loop
 void
-Tower::update (float)
+Tower::update (float delta)
 {
   delta = delta * 50.0f;
 
-  if (destroyed)
+  if (!(energie > 0))
     return;
 
   if (++angle >= 160)
     angle = 0;
 
-  if (energie <= 0)
+  if (!destroyed)
     {
-      world->add (new Explosion (world, pos, Explosion::MEDIUM));
+      get_world ()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
       destroyed = true;
     } 
 }

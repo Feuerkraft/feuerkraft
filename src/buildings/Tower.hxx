@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.1 2002/03/16 23:41:07 grumbel Exp $
+//  $Id: Tower.hxx,v 1.2 2002/03/17 00:16:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,8 @@
 #include "Building.hxx"
 #include "TowerData.hxx"
 
+class GameWorld;
+
 class Tower : public Building,
 	      public TowerData
 {
@@ -35,12 +37,13 @@ private:
   Sprite turret;
   
   Energie energie;
+  bool destroyed;
 
   /** The position is just for easier handling here, the real position
       is due to the position in the building map */
   CL_Vector pos;
 public:
-  Tower (const TowerData& data);
+  Tower (GameWorld*, const TowerData& data);
   
   // Draw the object onto the screen
   void draw (boost::dummy_ptr<View> view);
