@@ -1,5 +1,5 @@
-//  $Id: controller.hxx,v 1.2 2003/06/18 00:27:09 grumbel Exp $
-// 
+//  $Id: ai_manager.cxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,41 +12,38 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_CONTROLLER_HXX
-#define HEADER_CONTROLLER_HXX
+#include "ai.hxx"
+#include "ai_manager.hxx"
 
-#include "input_event.hxx"
+AIManager* AIManager::instance_ = 0;
 
-/** The Controller class presents the current state of the controller
-    and the input events that occurred on the controller since the
-    last update */
-class Controller
+AIManager*
+AIManager::instance()
 {
-public:
-  float orientation_axis;
-  float accelerate_axis;
+  if (instance_)
+    return instance_;
+  else
+    return instance_ = new AIManager();
+}
 
-  bool primary_fire_button;
+void
+AIManager::add(AI* ai)
+{
+  ais.push_back(ai);
+}
 
-  InputEventLst events;
-
-public:
-  Controller();
-
-  float get_axis_state(AxisName name) const;
-  bool  get_button_state(ButtonName name) const;
-
-  void  set_axis_state(AxisName name, float pos);
-  void  set_button_state(ButtonName name, bool down);
-
-  InputEventLst get_events() const;
-};
-
-#endif
+void
+AIManager::update(float delta)
+{
+  for (std::vector<AI*>::iterator i = ais.begin(); i != ais.end(); ++i)
+    {
+      (*i)->update(delta);
+    }
+}
 
 /* EOF */

@@ -18,6 +18,8 @@ alist.hxx \
 alist.cxx \
 ai_vehicle.hxx \
 ai_vehicle.cxx \
+ai_manager.hxx \
+ai_manager.cxx \
 ambulance.cxx \
 ambulance.hxx \
 background.cxx \
@@ -157,6 +159,8 @@ vector2d.hxx \
 vector2d.cxx \
 vehicle.cxx \
 vehicle.hxx \
+vehicle_ai.cxx \
+vehicle_ai.hxx \
 vehicle_status.cxx \
 vehicle_status.hxx \
 vehicle_view.cxx \

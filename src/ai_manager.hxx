@@ -1,4 +1,4 @@
-//  $Id: controller.hxx,v 1.2 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: ai_manager.hxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,34 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_CONTROLLER_HXX
-#define HEADER_CONTROLLER_HXX
+#ifndef HEADER_AI_MANAGER_HXX
+#define HEADER_AI_MANAGER_HXX
 
-#include "input_event.hxx"
+#include <vector>
 
-/** The Controller class presents the current state of the controller
-    and the input events that occurred on the controller since the
-    last update */
-class Controller
+class AI;
+
+/** The AIManager keeps track of all AI objects around */
+class AIManager
 {
+private:
+  static AIManager* instance_;
 public:
-  float orientation_axis;
-  float accelerate_axis;
+  static AIManager* instance();
 
-  bool primary_fire_button;
-
-  InputEventLst events;
-
+private:
+  std::vector<AI*> ais;
 public:
-  Controller();
-
-  float get_axis_state(AxisName name) const;
-  bool  get_button_state(ButtonName name) const;
-
-  void  set_axis_state(AxisName name, float pos);
-  void  set_button_state(ButtonName name, bool down);
-
-  InputEventLst get_events() const;
+  /** Add an AI object to the AIManager */
+  void add(AI* ai);
+  void update(float delta);
 };
 
 #endif
