@@ -2,8 +2,6 @@ noinst_LIBRARIES = libfeuerkraft_generic.a
 
 libfeuerkraft_generic_a_SOURCES = \
   random.hxx \
-  random.cxx \
-  ofstreamext.hxx \
-  ofstreamext.cxx
+  random.cxx
 
 # EOF #

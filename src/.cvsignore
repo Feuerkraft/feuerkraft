@@ -1,4 +1,13 @@
 Makefile.in
 Makefile
 .deps
+.libs
+old
 feuerkraft
+feuerkraft.static
+feuerkraft.static.comp
+astar_pathfinder
+bfirst_pathfinder
+dijkstra_pathfinder
+shortcut_pathfinder
+core.*

@@ -1,0 +1,6 @@
+Makefile.in
+Makefile
+.deps
+.libs
+old
+feuerkraft_wrap.cxx
