@@ -1,4 +1,4 @@
-//  $Id: display_manager.hxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: display_manager.hxx,v 1.3 2003/06/08 15:31:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -63,6 +63,7 @@ public:
 
   void show_levelmap();
   void hide_levelmap();
+  LevelMap* get_levelmap();
 
   void show_help();
   void hide_help();

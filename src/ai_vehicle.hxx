@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.14 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.15 2003/06/08 15:31:27 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,6 +29,7 @@
 #include "sequence_manager.hxx"
 #include "vehicle.hxx"
 
+class SmokeEmitter;
 class LevelMap;
 
 struct Position
@@ -89,6 +90,7 @@ private:
   std::list<AIVehicleOrder> orders;
 
   AIVehicleOrder current_order;
+  SmokeEmitter* smoke_emitter;
 public:
   AIVehicle(const FloatVector2d& arg_pos);
 

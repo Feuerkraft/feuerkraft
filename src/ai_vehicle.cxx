@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.17 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.18 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@
 #include "projectile.hxx"
 #include "property_set.hxx"
 #include "mine.hxx"
+#include "particles/smoke_emitter.hxx"
 #include "level_map.hxx"
 
 AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
@@ -50,6 +51,8 @@ AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
   current_order.type = AI_VO_NONE;
   
   properties->register_bool ("destroyed",   &destroyed);
+
+  smoke_emitter = new SmokeEmitter(pos);
 }
 
 void
@@ -104,7 +107,11 @@ AIVehicle::update(float delta)
     }
 #else
   if (destroyed)
-    return; 
+    {
+      smoke_emitter->set_pos(pos + (FloatVector2d(-10.0f, -10.0f).rotate(orientation)));
+      smoke_emitter->update(delta);
+      return; 
+    }
 
   if (current_order.type != AI_VO_NONE)
     {

@@ -1,4 +1,4 @@
-//  $Id: fire_particle.cxx,v 1.1 2003/06/07 17:18:34 grumbel Exp $
+//  $Id: fire_particle.cxx,v 1.2 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,8 @@
 
 FireParticle::FireParticle(const FloatVector2d& arg_pos)
   : sprite(resources->get_sprite("feuerkraft/firep")),
-    pos(arg_pos)
+    pos(arg_pos),
+    life_time(0)
 {
   sprite.set_angle(Math::rad2deg(Math::frand() * Math::pi*2));
   sprite.set_blend_func(blend_src_alpha, blend_one);

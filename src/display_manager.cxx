@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.2 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: display_manager.cxx,v 1.3 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,6 +45,8 @@ DisplayManager::deinit()
 
 DisplayManager::DisplayManager()
 {
+  level_map = new LevelMap();
+
   screen.add(message_buffer = new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
   help = new Help();
   screen.add(radar = new Radar(FloatVector2d(64, 64), player));
@@ -84,6 +86,15 @@ void
 DisplayManager::hide_levelmap()
 {
   screen.remove(level_map);
+}
+
+LevelMap*
+DisplayManager::get_levelmap()
+{
+  if (screen.has(level_map))
+    return level_map;
+  else
+    0;
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.49 2003/06/06 18:36:24 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.50 2003/06/08 15:31:27 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -334,11 +334,6 @@ Feuerkraft::main(int argc, char** argv)
           int sleep_time = (last_time + delta_wait) - CL_System::get_time();
           if (sleep_time > 0)
             CL_System::sleep (sleep_time);
-
-          if (CL_Keyboard::get_keycode(CL_KEY_M))
-            {
-              DisplayManager::current()->show_levelmap();
-            }
 
           //start_screen.draw ();
           //start_screen.update (delta);
