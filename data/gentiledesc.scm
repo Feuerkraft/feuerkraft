@@ -6,7 +6,8 @@
 
 (define (get-images-lst)
   (filter (lambda (filename)
-	    (equal? (stat:type (stat (string-append "images/tiles/" filename))) 'regular))
+	    (and (equal? (stat:type (stat (string-append "images/tiles/" filename))) 'regular)
+                 (has-suffix? filename ".png")))
 	  (directory->list "images/tiles/")))
 
 (define (extract-tiledesc filename)

@@ -32,7 +32,9 @@ ResourceManager* resources;
 
 ResourceManager::ResourceManager ()
 {
-  resource_manager  = new CL_ResourceManager(path_manager.complete("feuerkraft.xml"), false);
+  resource_manager  = new CL_ResourceManager();
+  resource_manager->add_resources(CL_ResourceManager(path_manager.complete("feuerkraft.xml"), false));
+  resource_manager->add_resources(CL_ResourceManager(path_manager.complete("tiles.xml"), false));
 }
 
 ResourceManager::~ResourceManager ()

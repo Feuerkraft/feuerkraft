@@ -111,10 +111,11 @@ Helicopter::update (float delta)
   if (state != LANDED)
     {
       orientation += 3.0f * steering * delta;
-      velocity    += 15.0f * acceleration * delta;
+      velocity    -= 15.0f * acceleration * delta;
+      strafe      -= 3.0f * strafe_steering * delta;
     }
 
-  steering = acceleration = 0;
+  strafe_steering = steering = acceleration = 0;
 
   delta *= 50;
 
