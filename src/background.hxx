@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: background.hxx,v 1.9 2003/10/20 21:30:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ class Background
   : public GameObj
 {
 private:
-  CL_Surface sur;
+  CL_Sprite sprite;
   float z_pos;
 
 public:

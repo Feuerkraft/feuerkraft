@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.18 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: view.cxx,v 1.19 2003/10/20 21:30:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -83,46 +83,12 @@ View::set_zoom (float z)
   state.zoom = z;
 }
 
-void 
-View::draw (CL_Surface& sur, const FloatVector2d& pos)
-{
-  /* FIXME:Display2
-     sur.draw (int(pos.x + get_x_offset ()),
-     int(pos.y + get_y_offset ()),
-     gc);*/
-}
-
 void
 View::draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle)
 {
   sprite.set_angle(Math::rad2deg(angle));
   sprite.draw(int(pos.x + get_x_offset ()), 
               int(pos.y + get_y_offset ()));
-}
-
-void 
-View::draw (CL_Surface& sur, float x_pos, float y_pos)
-{
-  sur.draw (static_cast<int>(x_pos + get_x_offset ()),
-	    static_cast<int>(y_pos + get_y_offset ()));
-}
-
-void 
-View::draw (CL_Surface& sur, float x_pos, float y_pos, int frame)
-{
-  //FIXME:Display2: frame support removed 
-  sur.draw (static_cast<int>(x_pos + get_x_offset ()),
-            static_cast<int>(y_pos + get_y_offset ()));
-}
-
-void 
-View::draw (CL_Surface& sur, float x_pos, float y_pos, 
-	    float size_x, float size_y, int frame)
-{
-  //FIXME:Display2: frame support removed 
-  /*sur.draw (x_pos + get_x_offset (),
-    y_pos + get_y_offset (),
-    size_x * zoom, size_y * zoom, frame);  */
 }
 
 void 

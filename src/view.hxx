@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.13 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: view.hxx,v 1.14 2003/10/20 21:30:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,6 @@
 #include "vector2d.hxx"
 
 class CL_Sprite;
-class CL_Surface;
 class Color;
 
 /** ViewState represents the current configuration of a View, aka.
@@ -98,12 +97,6 @@ public:
 
   /** @param angle Angle in radian */
   void draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle = 0.0);
-  void draw (CL_Surface& sur, const FloatVector2d& pos);
-  void draw (CL_Surface& sur, float x_pos, float y_pos);
-  void draw (CL_Surface& sur, float x_pos, float y_pos, int frame);
-  void draw (CL_Surface& sur, float x_pos, float y_pos, 
-	     float size_x, float size_y, int frame);
-
 
   void draw_line (float x1, float y1, float x2, float y2, 
 		  const Color& color);

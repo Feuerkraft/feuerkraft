@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.11 2003/06/23 08:43:32 grumbel Exp $
+//  $Id: tower.cxx,v 1.12 2003/10/20 21:30:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,10 +28,10 @@
 
 Tower::Tower(const AList& lst)
   : Building(lst),
-    towerbase(resources->get_sprite("feuerkraft/towerbase")),
-    towerdamaged (resources->get_sprite("feuerkraft/towerdamaged")),
-    towerdestroyed (resources->get_sprite("feuerkraft/towerdestroyed")),
-    turret (resources->get_sprite("feuerkraft/towerturret")),
+    towerbase(resources->get_sprite("feuerkraft/tower/base")),
+    towerdamaged (resources->get_sprite("feuerkraft/tower/damaged")),
+    towerdestroyed (resources->get_sprite("feuerkraft/tower/destroyed")),
+    turret (resources->get_sprite("feuerkraft/tower/turret")),
     energie (lst.get_int("start-energie", 100)),
     destroyed (false)
 {  
@@ -58,24 +58,22 @@ Tower::~Tower ()
 void
 Tower::draw (View& view)
 {
-  //std::cout << "Tower::draw" << std::endl;
-
   if (energie > 50)
     {
-      view.draw (towerbase, pos);
+      view.draw(towerbase, pos);
     }
   else if (energie > 0)
     {
-      view.draw (towerdamaged, pos);
+      view.draw(towerdamaged, pos);
     }
   else
     {
-      view.draw (towerdestroyed, pos);
+      view.draw(towerdestroyed, pos);
     }
 
   if (energie > 0)
     {
-      view.draw (turret, pos, orientation);
+      view.draw(turret, pos, orientation);
     }
 }
   
