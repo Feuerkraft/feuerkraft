@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.51 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.52 2003/06/10 00:38:50 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,7 @@
 
 #include "fonts.hxx"
 #include "input/input_manager.hxx"
-#include "game_session.hxx"
+#include "game_session_manager.hxx"
 #include "keyboard_manager.hxx"
 #include "resource_manager.hxx"
 #include "path_manager.hxx"
@@ -145,8 +145,8 @@ Feuerkraft::main(int argc, char** argv)
       if (args->mission_file.empty())
         args->mission_file = path_manager.complete("missions/airport.feu");
 
-      GameSession session(args->mission_file);
-      session.run();
+      GameSessionManager::instance()->load(args->mission_file);
+      GameSessionManager::instance()->run();
 
       // Shutdown everything
       deinit();

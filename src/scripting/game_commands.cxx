@@ -1,7 +1,7 @@
-//  $Id: playfield.cxx,v 1.8 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: game_commands.cxx,v 1.1 2003/06/10 00:38:50 grumbel Exp $
 //
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,33 +17,32 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <ClanLib/Core/Math/rect.h>
-#include <ClanLib/Display/graphic_context.h>
-#include "view.hxx"
-#include "playfield.hxx"
-
-Playfield::Playfield (int x1, int y1, int x2, int y2)
-{
-  view = new View(x1, y1, x2, y2);
-}
-
-Playfield::~Playfield ();
+#include <iostream>
+#include "../game_session_manager.hxx"
+#include "game_commands.hxx"
 
 void
-Playfield::draw(CL_GraphicContext& gc)
+game_pause()
 {
-  gc.push_cliprect(CL_Rect(view->get_x1(),
-                           view->get_y1(),
-                           view->get_x2(),
-                           view->get_y2()));
-  view->draw();
-  gc.pop_cliprect();
+  GameSessionManager::instance()->pause();
 }
 
 void
-Playfield::update(float delta)
+game_quit()
 {
-  view->update(delta)
+  GameSessionManager::instance()->quit();
+}
+
+void
+game_load(const char* filename)
+{
+  GameSessionManager::instance()->load(filename);
+}
+
+void
+game_save(const char* filename)
+{
+  GameSessionManager::instance()->save(filename);
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: keys.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: keys.cxx,v 1.3 2003/06/10 00:38:50 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,10 @@
 #include <string.h>
 #include <ClanLib/display.h>
 #include "keys.hxx"
+
+#ifdef WIN32
+#  define strcasecmp _stricmp
+#endif
 
 // FIXME: Not all keys CL_KEY_'s work on my X11, so I had to manually remove them!
 const char* keyid2string(int id)

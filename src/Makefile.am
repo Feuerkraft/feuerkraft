@@ -47,6 +47,8 @@ game_obj.hxx \
 game_obj.cxx \
 game_session.hxx \
 game_session.cxx \
+game_session_manager.hxx \
+game_session_manager.cxx \
 game_obj_manager.hxx \
 game_obj_manager.cxx \
 game_obj_data.hxx \

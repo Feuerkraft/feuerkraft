@@ -96,5 +96,7 @@
                                        (menu-hide)
                                        (menu-show 0))))
 
+(input-register-callback "key_escape" game-quit)
+(input-register-callback "key_p"      game-pause)
 
 ;; EOF ;;

@@ -13,6 +13,8 @@ command_source = \
  effect_commands.hxx     \
  gameobj_commands.cxx    \
  gameobj_commands.hxx    \
+ game_commands.cxx       \
+ game_commands.hxx       \
  input_commands.cxx      \
  input_commands.hxx      \
  menu_commands.cxx       \

@@ -1,7 +1,7 @@
-//  $Id: playfield.cxx,v 1.8 2003/06/10 00:38:50 grumbel Exp $
-//
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  $Id: game_commands.hxx,v 1.1 2003/06/10 00:38:50 grumbel Exp $
+// 
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,38 +12,27 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <ClanLib/Core/Math/rect.h>
-#include <ClanLib/Display/graphic_context.h>
-#include "view.hxx"
-#include "playfield.hxx"
+#ifndef HEADER_GAME_COMMANDS_HXX
+#define HEADER_GAME_COMMANDS_HXX
 
-Playfield::Playfield (int x1, int y1, int x2, int y2)
-{
-  view = new View(x1, y1, x2, y2);
-}
+/** Pause the currently running game */
+void game_pause();
 
-Playfield::~Playfield ();
+/** Quit the currently running game */
+void game_quit();
 
-void
-Playfield::draw(CL_GraphicContext& gc)
-{
-  gc.push_cliprect(CL_Rect(view->get_x1(),
-                           view->get_y1(),
-                           view->get_x2(),
-                           view->get_y2()));
-  view->draw();
-  gc.pop_cliprect();
-}
+/** Load the game given by \a filename and replace the current one */
+void game_load(const char* filename);
 
-void
-Playfield::update(float delta)
-{
-  view->update(delta)
-}
+/** Dump the currently running game to filename (aka. creating a
+    savegame) */
+void game_save(const char* filename);
+
+#endif
 
 /* EOF */

@@ -189,9 +189,15 @@
                      (display-hide-levelmap)
                      (display-show-levelmap))))
 
-(menu-add-item comm-util-menu "Load 'test.scm'"
+(menu-add-item comm-util-menu "Load 'test.feu'"
                (lambda ()
-                 (display "loading test not implemented\n")))
+                 (game-load "missions/test.feu")))
+(menu-add-item comm-util-menu "Load 'airport.feu'"
+               (lambda ()
+                 (game-load "missions/airport.feu")))
+
+(menu-add-item comm-util-menu "Pause" (lambda () (game-pause)))
+(menu-add-item comm-util-menu "Quit" (lambda () (game-quit)))
 
 ;;;;;;;;;;;;;;;;;;
 ;; Retreat Menu ;;

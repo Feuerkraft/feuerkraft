@@ -14,6 +14,7 @@
 #include "sound_commands.hxx"
 #include "trigger_commands.hxx"
 #include "vehicle_commands.hxx"
+#include "game_commands.hxx"
 %}
 
 %include "ai_vehicle_commands.hxx"
@@ -30,5 +31,6 @@
 %include "sound_commands.hxx"
 %include "trigger_commands.hxx"
 %include "vehicle_commands.hxx"
+%include "game_commands.hxx"
 
 /* EOF */

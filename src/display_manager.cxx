@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.3 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: display_manager.cxx,v 1.4 2003/06/10 00:38:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -115,7 +115,8 @@ DisplayManager::show_menu(Menu* arg_menu)
   hide_menu(); // Hide current menu
 
   menu = arg_menu;
-  screen.add(menu);}
+  screen.add(menu);
+}
   
 void
 DisplayManager::hide_menu()

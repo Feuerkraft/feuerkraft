@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.21 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: tank.cxx,v 1.22 2003/06/10 00:38:50 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,6 +52,8 @@ Tank::Tank (const FloatVector2d &arg_pos,
   velocity = 0.0f;
 
   orientation = Math::south;
+  tmp_angle = orientation;
+
   sur.set_alignment(origin_center);
   sur_destroyed.set_alignment(origin_center);
 

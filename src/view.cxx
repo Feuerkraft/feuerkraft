@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.16 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: view.cxx,v 1.17 2003/06/10 00:38:50 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include <ClanLib/Display/display.h>
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
@@ -33,6 +34,9 @@ View::View (int arg_x1, int arg_y1,
     x2 (arg_x2), y2 (arg_y2),
     view_updater(arg_updater)
 {
+  //std::cout << "View: " << x1 << " " << y1 << " " << x2 << " " << y2 
+    //<< " " << state.x_offset << " " << state.y_offset << std::endl;
+  
   state.x_offset = -x1;
   state.y_offset = -y1;
 
@@ -226,6 +230,9 @@ View::set_updater(ViewUpdater* arg_updater)
 void
 View::update(float delta)
 {
+  //std::cout << "View:update: " << x1 << " " << y1 << " " << x2 << " " << y2 
+    //<< " " << state.x_offset << " " << state.y_offset << std::endl;
+
   if (view_updater)
     view_updater->update(delta, state);
 }
