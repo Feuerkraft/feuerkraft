@@ -94,12 +94,22 @@ section feuerkraft {
 	tank2destroyed = images/tank2destroyed.png (type=surface);
 	
 	section	shockwave {
-		frame1 = images/shockwave.png (type=surface, x=0, y=0, width=100, height=100);
+		frame1 = images/shockwave.png (type=surface);
 	}
 	tankdestroyed = images/tankdestroyed.png (type=surface); 
 	
-	rotor = images/rotor.png (type=surface, x=0, y=0, width=121, height=118,array=2x1);
-	helidestroyed = images/helidestroyed.png (type=surface);
+	section	rotor {
+		frame1 = images/rotor1.png (type=surface);
+		frame2 = images/rotor2.png (type=surface);
+	}
+
+	section hole {
+		frame1 = images/hole.png (type=surface);
+	}
+
+	section helidestroyed {
+		frame1 = images/helidestroyed.png (type=surface);
+	}
 	
 	flagblue = images/flagblue.png (type=surface);
 	flaggreen = images/flaggreen.png (type=surface);

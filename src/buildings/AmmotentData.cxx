@@ -1,4 +1,4 @@
-//  $Id: AmmotentData.cxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: AmmotentData.cxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,6 +32,10 @@ AmmotentData::AmmotentData (SCM desc)
 	{
 	  x_pos = gh_scm2int(gh_car (data));
 	  y_pos = gh_scm2int(gh_cadr (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("energie"), symbol))
+	{
+	  energie_value = gh_scm2double(gh_car (data));
 	}
       else
 	{

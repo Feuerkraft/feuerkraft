@@ -132,14 +132,8 @@ void
 Tank::update (float delta)
 {
   particle_release += fabs(velocity);
-  //particle_release += fabs(increment) * 50.0f;
 
-  /*
-  std::cout << "fabs: " << fabs(velocity) << std::endl;
-  std::cout << "angle: " << fabs(increment) << std::endl; 
-  */
-
-  if (particle_release > 20.0f)
+  if (particle_release > 20.0f && !destroyed)
     {
       world->add (new SmokeParticle (get_world (), pos));
       particle_release = 0;

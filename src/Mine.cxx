@@ -1,4 +1,4 @@
-//  $Id: Mine.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
+//  $Id: Mine.cxx,v 1.3 2002/03/17 22:32:08 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,12 +21,17 @@
 #include "Tank.hxx"
 #include "Mine.hxx"
 
+extern SpriteProviderStorage* storage;
+extern CL_ResourceManager* resources;
+
 Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
   : GameObj (w),
     sur ("feuerkraft/mine", resources),
     sur_active ("feuerkraft/mineactive", resources),
     pos (arg_pos),
-    active (50)
+    hole (storage->get ("feuerkraft/hole")),
+    active (2),
+    detonated (false)
 {
 }
 
@@ -35,9 +40,9 @@ Mine::update (float delta)
 {
   if (!is_active ())
     {
-      --active;
+      active -= delta;
     }
-  else
+  else if (!detonated)
     {
       for (std::list<boost::shared_ptr<GameObj> >::iterator 
 	     j = world->get_objects ().begin ();
@@ -67,10 +72,14 @@ Mine::draw (View* view)
       view->draw (sur, int(pos.x - sur.get_width ()/2),
 		  int(pos.y - sur.get_height ()/2));
     }
-  else
+  else if (!detonated)
     {
       view->draw (sur_active, int(pos.x - sur.get_width ()/2),
 		  int(pos.y - sur.get_height ()/2));
+    }
+  else
+    {
+      view->draw (hole, pos);
     }
 }
 
@@ -94,7 +103,8 @@ Mine::detonate ()
 
 
   world->add (boost::shared_ptr<GameObj>(new Explosion (world, pos, Explosion::MEDIUM)));
-  remove ();
+  detonated = true;
+  //remove ();
 }
 
 /* EOF */

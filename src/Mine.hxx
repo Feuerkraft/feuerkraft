@@ -1,4 +1,4 @@
-//  $Id: Mine.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Mine.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,10 +21,9 @@
 #define MINE_HH
 
 #include <ClanLib/core.h>
+#include <SphriteLib/sphritelib.h>
 #include "GameObj.hxx"
 #include "Explosion.hxx"
-
-extern CL_ResourceManager* resources;
 
 class Mine : public GameObj
 {
@@ -32,8 +31,9 @@ private:
   CL_Surface sur;
   CL_Surface sur_active;
   CL_Vector pos;
-  int active;
-  
+  Sprite hole;
+  float active;
+  bool detonated;
 public:
   Mine (boost::dummy_ptr<GameWorld>, const CL_Vector& arg_pos);
   virtual ~Mine () {}

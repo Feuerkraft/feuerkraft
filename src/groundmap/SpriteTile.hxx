@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.hxx,v 1.2 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: SpriteTile.hxx,v 1.3 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,7 @@ class SpriteTile : public Tile,
 		   public SpriteTileData
 {
 private:
-  Sprite* sprite;
+  Sprite sprite;
 
 public:
   SpriteTile (const SpriteTileData& data);

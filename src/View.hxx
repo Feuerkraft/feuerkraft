@@ -1,4 +1,4 @@
-//  $Id: View.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: View.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -61,6 +61,7 @@ public:
   int get_y2 ();
 
   void draw (Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
+  void draw (Sprite& sprite, const CL_Vector& pos, float angle = 0.0);
   void draw (CL_Surface& sur, const CL_Vector& pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);

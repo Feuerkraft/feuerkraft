@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cxx,v 1.3 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Helicopter.cxx,v 1.4 2002/03/17 22:32:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,12 +21,15 @@
 #include "Explosion.hxx"
 #include "Helicopter.hxx"
 
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
 Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
   : Vehicle (w),
-    rotor ("feuerkraft/rotor", resources),
-    helidestroyed ("feuerkraft/helidestroyed", resources),
+    rotor (storage->get ("feuerkraft/rotor")),
+    heli (storage->get ("feuerkraft/helicopter")),
+    heli_shadow (storage->get ("feuerkraft/helicopter_shadow")),
+    helidestroyed (storage->get ("feuerkraft/helidestroyed")),
     rotor_count (0),
     velocity (0.0),
     angle (0.0),
@@ -37,10 +40,6 @@ Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos)
     destroyed (false)
 {
   pos = arg_pos;
-  storage.add (new SpriteProvider ("feuerkraft/helicopter", resources));
-  storage.add (new SpriteProvider ("feuerkraft/helicopter_shadow", resources));
-  heli = storage.create ("feuerkraft/helicopter");
-  heli_shadow = storage.create ("feuerkraft/helicopter_shadow");
 }
 
 Helicopter::~Helicopter ()
@@ -54,30 +53,23 @@ Helicopter::draw (View* view)
     {
       const float circle = 6.2831854f;
   
-      heli_shadow->draw(int(view->get_x_offset () + pos.x + 25.0f),
-			int(view->get_y_offset () + pos.y + 50.0f),
-			angle/(circle/2.0)*180);
+      view->draw (heli_shadow, CL_Vector(pos.x + 25.0f, pos.y + 50.0f),
+		  angle/(circle/2.0)*180);
 
-      heli->draw(int(view->get_x_offset () + pos.x),
-		 int(view->get_y_offset () + pos.y),
-		 angle/(circle/2.0)*180);
+      view->draw (heli, pos, angle/(circle/2.0)*180);
   /*
       view->draw (heli,
 		  pos.x - heli.get_width ()/2,
 		  pos.y - heli.get_height ()/2,
 		  frame);*/
 
-      view->draw (rotor,
-		  int(pos.x - rotor.get_width ()/2),
-		  int(pos.y - rotor.get_height ()/2),
-		  (rotor_count = (rotor_count + 1) % 2));
+      view->draw (rotor, pos);
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
   else
     {
-      view->draw (helidestroyed,
-		  int(pos.x - helidestroyed.get_width ()/2),
-		  int(pos.y - helidestroyed.get_height ()/2));
+      const float circle = 6.2831854f;
+      view->draw (helidestroyed, pos, angle/(circle/2.0)*180);
     }
 
   /*
@@ -92,6 +84,8 @@ Helicopter::draw (View* view)
 void 
 Helicopter::update (float delta)
 {
+  rotor.update (delta);
+
   if (energie <= 0 && !destroyed)
     {
       world->add (new Explosion (world, pos, Explosion::MEDIUM));

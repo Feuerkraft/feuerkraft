@@ -1,4 +1,4 @@
-//  $Id: Helicopter.hxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Helicopter.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,11 +33,10 @@ class Helicopter : public Controllable,
 		   public Vehicle
 {
 private:
-  CL_Surface rotor;
-  Sprite* heli;
-  Sprite* heli_shadow;
-  SpriteProviderStorage storage;
-  CL_Surface helidestroyed;
+  Sprite rotor;
+  Sprite heli;
+  Sprite heli_shadow;
+  Sprite helidestroyed;
   int rotor_count;
   float velocity;
   float angle;

@@ -120,7 +120,7 @@ public:
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
 
-	JoystickController controller(tank2);
+	JoystickController controller(heli);
 	KeyboardController kcontroller (tank2);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 

@@ -1,4 +1,4 @@
-//  $Id: AmmotentData.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: AmmotentData.hxx,v 1.2 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,7 @@ public: // FIXME: Should be protected
   // FIXME: inheritance might be one)
   int x_pos;
   int y_pos;
+  float energie_value;
 
 public:
   /** Format: (ammotent (pos 10 10))

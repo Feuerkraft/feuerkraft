@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.cxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: SpriteTile.cxx,v 1.4 2002/03/17 22:32:08 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,20 +25,19 @@
 #include "SpriteTile.hxx"
 #include "../View.hxx"
 
+extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
 SpriteTile::SpriteTile (const SpriteTileData& data)
-  : SpriteTileData (data)
+  : SpriteTileData (data),
+    sprite (storage->get (sprite_location.c_str ()))
 {
-  SpriteProviderStorage storage;
-  storage.add (new SpriteProvider (sprite_location.c_str (), resources));
-  sprite = storage.create (sprite_location);
+  sprite.setHotSpot (0,0);
 }
 
 void
 SpriteTile::draw (View* view, float x, float y)
 {
-  assert (sprite);
   //sprite->draw ((int) x, (int) y);
   view->draw(sprite, CL_Vector (x, y));
   //std::cout << "draw: " << sprite_location << std::endl;
@@ -48,8 +47,7 @@ SpriteTile::draw (View* view, float x, float y)
 void
 SpriteTile::update (float delta)
 {
-  assert (sprite);
-  sprite->update (delta);
+  sprite.update (delta);
 }
 
 #endif
