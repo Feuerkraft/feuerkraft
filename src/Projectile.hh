@@ -1,4 +1,4 @@
-//  $Id: Projectile.hh,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: Projectile.hh,v 1.2 2001/02/18 13:53:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,6 +34,7 @@ private:
   CL_Vector  tmp_pos;
   CL_Vector  add;
   int lifetime;
+  int active;
 
 public:
   Projectile (const CL_Vector& arg_pos, const CL_Vector& arg_add);

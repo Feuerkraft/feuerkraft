@@ -27,14 +27,14 @@ Turret::draw ()
   float absolute_angle = tank->get_angle () + angle;
   int frame = int(fmod (absolute_angle, circle) / circle * 16.0);
   
-  sur.put_screen (tank->get_x_pos () - (sur.get_width ()/2), 
-		  tank->get_y_pos () - (sur.get_height ()/2),
+  sur.put_screen (tank->get_pos ().x - (sur.get_width ()/2), 
+		  tank->get_pos ().y - (sur.get_height ()/2),
 		  frame);
 
   if (fireing && reloading == 0)
     {
-      fire_sur.put_screen (tank->get_x_pos () - (fire_sur.get_width ()/2), 
-			   tank->get_y_pos () - (fire_sur.get_height ()/2),
+      fire_sur.put_screen (tank->get_pos ().x - (fire_sur.get_width ()/2), 
+			   tank->get_pos ().y - (fire_sur.get_height ()/2),
 			   frame);
       fireing = false;
       reloading = reloading_speed;

@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.2 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.3 2001/02/18 13:53:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -69,42 +69,6 @@ GameWorld::update ()
   for (std::list<GameObj*>::iterator i = objects.begin ();
        i != objects.end (); ++i)
     (*i)->update ();
-
-  // Check for collision
-  for (std::list<GameObj*>::iterator i = objects.begin ();
-       i != objects.end (); ++i)
-    {
-      Projectile* projectile = dynamic_cast<Projectile*>(*i);
-      if (projectile)
-	{
-	  for (std::list<GameObj*>::iterator j = objects.begin ();
-	       j != objects.end (); ++j)
-	    {
-	      Collideable* collideable = dynamic_cast<Collideable*>(*j);
-	      if (collideable)
-		{
-		  if ((collideable)->is_colliding (projectile->get_pos ()))
-		    {
-		      collideable->collide (projectile);
-		    }
-		}
-	    }
-	}
-
-      Mine* mine = dynamic_cast<Mine*>(*i);
-      if (mine)
-	{
-	  for (std::list<GameObj*>::iterator j = objects.begin ();
-	       j != objects.end (); ++j)
-	    {
-	      Tank* tank = dynamic_cast<Tank*>(*j);
-	      if (tank && (tank->get_pos () - mine->get_pos ()).norm () < 20.0)
-		{
-		  mine->detonate ();
-		}
-	    }	  
-	}
-    }
 }
 
 /* EOF */

@@ -13,15 +13,15 @@ Tank::Tank (int reloading_speed, std::string tank, std::string turret, std::stri
   angle (0.0),
   speed (0.0),
   velocity (0.0),
-  x_pos (rand () % 80 +100),
-  y_pos (rand () % 80 + 300),
+  pos (rand () % 80 +10, (rand () % 80 + 300)),
   increment (0.06),
   inc_step (0),
   sur (tank.c_str (), resources),
   smod ("feuerkraft/smod", resources),
   turret (new Turret(this, reloading_speed, turret, fire)),
   smod_step (0),
-  mine_reload_time (0)
+  mine_reload_time (0),
+  energie (100)
 {
 }
 
@@ -43,10 +43,12 @@ Tank::draw ()
 		       int(fmod (i->z, circle) / circle * 16.0));
     }
 
-  sur.put_screen (int(x_pos) - (sur.get_width ()/2),
-		  int(y_pos) - (sur.get_height ()/2),
+  sur.put_screen (int(pos.x) - (sur.get_width ()/2),
+		  int(pos.y) - (sur.get_height ()/2),
 		  frame);
   turret->draw ();
+
+  energie.draw (pos.x, pos.y - 40);
 }
 
 void 
@@ -70,7 +72,6 @@ Tank::update ()
   else if (velocity < -1)
     velocity = -1.0;
 
-  CL_Vector pos (x_pos, y_pos);
   CL_Vector vel (-velocity, 0.0);
   //std::cout << "Angle: " << angle 
   //	    << " CAngle: " << angle - fmod(angle, circle/16) 
@@ -83,15 +84,13 @@ Tank::update ()
 	{
 	  smod_step = 0;
 	  tmp_angle = angle;
-	  smodpos.push_back (CL_Vector (x_pos, y_pos, angle));
+	  smodpos.push_back (CL_Vector (pos.x, pos.y, angle));
 	  if (smodpos.size () > 20)
 	    smodpos.pop_front ();
 	}
     }
 
   pos = pos + vel;
-  x_pos = pos.x;
-  y_pos = pos.y;
 }
 
 void 
@@ -151,9 +150,24 @@ Tank::drop_mine ()
     {
       CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (angle - fmod(angle, circle/16.0), CL_Vector (0.0, 0.0, 1.0));
 
-      world->add (new Mine (CL_Vector(x_pos, y_pos) + vel));
+      world->add (new Mine (CL_Vector(pos.x, pos.y) + vel));
       mine_reload_time = 50;
     }
+}
+
+bool 
+Tank::is_colliding (CL_Vector obj_pos)
+{
+  float range = 10.0; 
+
+  return  (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
+	   && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);
+}
+
+void 
+Tank::collide (Projectile*)
+{
+  energie -= 5;
 }
 
 // EOF //

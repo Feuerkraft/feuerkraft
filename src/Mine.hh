@@ -1,4 +1,4 @@
-//  $Id: Mine.hh,v 1.1 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: Mine.hh,v 1.2 2001/02/18 13:53:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,25 +30,19 @@ class Mine : public GameObj
 {
 private:
   CL_Surface sur;
+  CL_Surface sur_active;
   CL_Vector pos;
-
+  int active;
+  
 public:
-  Mine (const CL_Vector& arg_pos) :
-    sur ("feuerkraft/mine", resources),
-    pos (arg_pos)
-  {
-  }
+  Mine (const CL_Vector& arg_pos);
+  virtual ~Mine () {}
 
   CL_Vector get_pos () { return pos; }
-
-  void draw () {
-    sur.put_screen (pos.x - sur.get_width ()/2,
-		    pos.y - sur.get_height ()/2);
-  }
-  void detonate () {
-    world->add (new Explosion (pos, Explosion::MEDIUM));
-    remove ();
-  }
+  void update ();
+  void draw ();
+  void detonate ();
+  bool is_active ();
 };
 
 #endif

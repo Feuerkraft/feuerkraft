@@ -1,4 +1,4 @@
-//  $Id: Collideable.hh,v 1.1 2001/02/17 20:02:09 grumbel Exp $
+//  $Id: Collideable.hh,v 1.2 2001/02/18 13:53:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,10 @@ public:
   Collideable () {};
   virtual ~Collideable () {};
 
+  /** Check if the collideable is colliding with a object at obj_pos */
   virtual bool is_colliding (CL_Vector obj_pos) =0;
+
+  /** Let the object collide with a Projectile, probally not usefull */
   virtual void collide (Projectile*) =0;
 };
 

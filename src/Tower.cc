@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.3 2001/02/18 00:49:16 grumbel Exp $
+//  $Id: Tower.cc,v 1.4 2001/02/18 13:53:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -99,9 +99,10 @@ Tower::stop_fire ()
 bool 
 Tower::is_colliding (CL_Vector obj_pos)
 {
+  float range = 36.0;
   if (!destroyed)
-    return (obj_pos.x > pos.x - 30.0 && obj_pos.x < pos.x + 30.0
-	    && obj_pos.y > pos.y - 30.0 && obj_pos.y < pos.y + 30.0);
+    return (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
+	    && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);
   else
     return false;
 }
@@ -110,7 +111,6 @@ void
 Tower::collide (Projectile* projectile)
 {
   energie -= 5;
-  projectile->detonate ();
 }
 
 /* EOF */
