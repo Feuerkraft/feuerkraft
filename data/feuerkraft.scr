@@ -24,6 +24,11 @@ section feuerkraft {
  soldier = data/images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
 
 soldierdead = data/images/soldierdead.png (type=surface, x=0, y=0, width=16, height=16);
+  mine = data/images/mine.png (type=surface, x=0, y=0, width=16, height=11);
+
+
+
+
 }
 
 
