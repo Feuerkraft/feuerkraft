@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle_commands.cxx,v 1.1 2003/05/01 20:56:39 grumbel Exp $
+//  $Id: ai_vehicle_commands.cxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,22 @@
 #include "../ai_vehicle.hxx"
 #include "ai_vehicle_commands.hxx"
 
+static AIVehicle*
+get_AIVehicle(int object_id)
+{
+  AIVehicle* vehicle = dynamic_cast<AIVehicle*>(GameObjManager::current()->get_object_by_id(object_id));
+  if (vehicle)
+    {
+      return vehicle;
+    }
+  else
+    {
+      std::cout  << "AIVehicle: no object given by id: " << object_id << std::endl;
+      return 0;
+    }
+}
+ 
+
 int
 ai_vehicle_create(int x, int y)
 {
@@ -30,38 +46,30 @@ ai_vehicle_create(int x, int y)
 }
 
 void
+ai_vehicle_wait(int object_id, float seconds)
+{
+  AIVehicle* vehicle = get_AIVehicle(object_id);
+
+  if (vehicle)
+    vehicle->wait(seconds);
+}
+
+void
 ai_vehicle_drive_to(int object_id, int x, int y)
 {
-  GameObj* game_obj  = GameObjManager::current()->get_object_by_id(object_id);
-  
-  if (!game_obj)
-    {
-      // FIXME: replace me by some scripting error stream
-      std::cout  << "no object given by id: " << object_id << std::endl;
-    }
-  else
-    {
-      AIVehicle* vehicle = dynamic_cast<AIVehicle*>(game_obj); 
-      if (vehicle)
-        vehicle->drive_to(CL_Vector(x, y));
-      else
-        std::cout  << "2 no object given by id: " << object_id << std::endl;
-    }
+  AIVehicle* vehicle = get_AIVehicle(object_id);
+
+  if (vehicle)
+    vehicle->drive_to(CL_Vector(x, y));
 }
 
 void
 ai_vehicle_clear_orders(int object_id)
 {
-  AIVehicle* vehicle = dynamic_cast<AIVehicle*>(GameObjManager::current()->get_object_by_id(object_id));
-  if (!vehicle)
-    {
-      // FIXME: replace me by some scripting error stream
-      std::cout  << "no object given by id: " << object_id << std::endl;
-    }
-  else
-    {
-      vehicle->clear_orders();
-    }
+  AIVehicle* vehicle = get_AIVehicle(object_id);
+
+  if (vehicle)
+    vehicle->clear_orders();
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.3 2003/05/01 20:56:39 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.4 2003/05/02 00:16:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,6 +76,12 @@ AIVehicle::update(float delta)
       } 
       break;
 
+    case AI_VO_WAIT:
+      current_order.wait.seconds -= delta;
+      if (current_order.wait.seconds < 0)
+        next_order();
+      break;
+
     default:
       break;
     }
@@ -94,8 +100,33 @@ AIVehicle::add_order(AIVehicleOrder order)
 }
 
 void
+AIVehicle::wait(float seconds)
+{
+  AIVehicleOrder order;
+  
+  order.type = AI_VO_WAIT;
+
+  order.wait.sequence_id = SequenceManager::current()->start_sequence();
+  order.wait.seconds = seconds;
+  
+  add_order(order);
+}
+
+void
 AIVehicle::next_order()
 {
+  switch(current_order.type)
+    {
+    case AI_VO_DRIVETO:
+      SequenceManager::current()->end_sequence(current_order.drive_to.sequence_id);
+      break;
+    case AI_VO_WAIT:
+      SequenceManager::current()->end_sequence(current_order.wait.sequence_id);
+      break;
+    default:
+      break;
+    }
+
   if (!orders.empty())
     {
       current_order = orders.back();
@@ -121,6 +152,7 @@ AIVehicle::drive_to(const CL_Vector& n_pos)
 
   order.type = AI_VO_DRIVETO;
 
+  order.drive_to.sequence_id = SequenceManager::current()->start_sequence();
   order.drive_to.pos.x = n_pos.x;
   order.drive_to.pos.y = n_pos.y;
   

@@ -1,5 +1,5 @@
-//  $Id: ai_vehicle_commands.hxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
-// 
+//  $Id: scm_sequence_hook.cxx,v 1.1 2003/05/02 00:17:14 grumbel Exp $
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,19 +12,52 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-// 
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_AI_VEHICLE_COMMANDS_HXX
-#define HEADER_AI_VEHICLE_COMMANDS_HXX
+#include <iostream>
+#include <libguile.h>
+#include "scm_sequence_hook.hxx"
 
-int  ai_vehicle_create(int x, int y);
-void ai_vehicle_wait(int object_id, float seconds);
-void ai_vehicle_drive_to(int object_id, int x, int y);
-void ai_vehicle_clear_orders(int object_id);
+SCMSequenceHook::SCMSequenceHook(SCM arg_func)
+{
+  func = arg_func;
+  scm_gc_protect_object(func);
+}
 
-#endif
+SCMSequenceHook::~SCMSequenceHook()
+{
+  scm_gc_unprotect_object(func);
+}
+
+SCMSequenceHook::SCMSequenceHook(const SCMSequenceHook& hook)
+{
+  func = hook.func;
+
+  scm_gc_protect_object(func);
+}
+
+SCMSequenceHook& 
+SCMSequenceHook::operator= (const SCMSequenceHook& hook)
+{
+  if (this != &hook)
+    {
+      scm_gc_unprotect_object(func);
+
+      func = hook.func;
+
+      scm_gc_protect_object(func);
+    }
+  return *this;
+}
+
+void
+SCMSequenceHook::call()
+{
+  std::cout << "SCMSequenceHook::call(): " << get_id() << std::endl;
+  scm_call_0(func);
+}
 
 /* EOF */

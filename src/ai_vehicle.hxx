@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.1 2003/04/28 21:20:37 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 
 #include <list>
 #include <ClanLib/Core/Math/cl_vector.h>
+#include "sequence_manager.hxx"
 #include "game_obj.hxx"
 
 struct Position
@@ -44,21 +45,19 @@ struct AIVehicleOrderNone
 struct AIVehicleOrderDriveTo
 {
   AIVehicleOrderType type;
+  int sequence_id;
+
   Position pos;
 };
 
 struct AIVehicleOrderWait
 {
   AIVehicleOrderType type;
+  int sequence_id;
+
   /** Number of seconds to wait, -1 means forever, until next order is
       given */
   float seconds;
-};
-
-struct AIVehicleOrderContinue
-{
-  AIVehicleOrderType type;
-  // Continue with the next order
 };
 
 union AIVehicleOrder
@@ -67,7 +66,6 @@ union AIVehicleOrder
 
   AIVehicleOrderDriveTo  drive_to;
   AIVehicleOrderWait     wait;
-  AIVehicleOrderContinue cont;
   AIVehicleOrderNone     none;
 };
 
@@ -89,7 +87,9 @@ public:
   void update(float delta);
   void draw (View* view);
 
+  void wait(float seconds);
   void drive_to(const CL_Vector& pos);
+
   void add_order(AIVehicleOrder);
   void clear_orders();
   void next_order();

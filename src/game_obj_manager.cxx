@@ -1,4 +1,4 @@
-//  $Id: game_obj_manager.cxx,v 1.1 2003/05/01 20:56:39 grumbel Exp $
+//  $Id: game_obj_manager.cxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,12 @@ GameObjManager::add_object(GameObj* obj)
   game_objs.push_back(obj);
   obj->set_id(next_obj_id);
   return next_obj_id++;
+}
+
+void
+GameObjManager::remove_object(GameObj* obj)
+{
+  obj->remove();
 }
 
 GameObj*

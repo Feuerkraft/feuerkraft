@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle_commands.hxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: scm_sequence_hook.hxx,v 1.1 2003/05/02 00:17:14 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,13 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_AI_VEHICLE_COMMANDS_HXX
-#define HEADER_AI_VEHICLE_COMMANDS_HXX
+#ifndef HEADER_SCM_SEQUENCE_HOOK_HXX
+#define HEADER_SCM_SEQUENCE_HOOK_HXX
 
-int  ai_vehicle_create(int x, int y);
-void ai_vehicle_wait(int object_id, float seconds);
-void ai_vehicle_drive_to(int object_id, int x, int y);
-void ai_vehicle_clear_orders(int object_id);
+#include <libguile.h>
+#include "sequence_manager.hxx"
+
+/** */
+class SCMSequenceHook : public SequenceHook
+{
+private:
+  SCM func;
+public:
+  SCMSequenceHook(SCM func);
+  virtual ~SCMSequenceHook();
+
+  SCMSequenceHook(const SCMSequenceHook&);
+
+  SCMSequenceHook& operator= (const SCMSequenceHook&);
+
+  void call();
+};
 
 #endif
 

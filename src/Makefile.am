@@ -74,6 +74,10 @@ resource_manager.cxx \
 resource_manager.hxx \
 screen.cxx \
 screen.hxx \
+scm_sequence_hook.hxx \
+scm_sequence_hook.cxx \
+sequence_manager.hxx \
+sequence_manager.cxx \
 shockwave.cxx \
 shockwave.hxx \
 soldier.cxx \
