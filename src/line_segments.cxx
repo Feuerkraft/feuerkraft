@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.3 2003/05/04 15:45:34 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.4 2003/05/04 16:52:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,18 @@ LineSegments::calc_length(const Segment& segment)
   switch(segment.type)
     {
     case RADIAL:
-      return 100.0f;
+      {
+        if (segment.data.radial.turn_right)
+          {
+            float angle = Math::normalize_angle(segment.data.radial.end_angle - segment.data.radial.start_angle);
+            return angle * segment.data.radial.radius;
+          }
+        else
+          {
+            float angle = Math::normalize_angle(segment.data.radial.start_angle - segment.data.radial.end_angle);
+            return angle * segment.data.radial.radius;
+          }
+      }
       break;
 
     case STRAIGHT:
@@ -123,6 +134,8 @@ LineSegments::get_end_pos()
       return CL_Vector(segment.data.straight.x2,
                        segment.data.straight.y2);
     case RADIAL:
+      return CL_Vector(segment.data.radial.x + segment.data.radial.radius * cos(segment.data.radial.end_angle),
+                       segment.data.radial.y + segment.data.radial.radius * sin(segment.data.radial.end_angle));
       break;
     }
   return CL_Vector();
@@ -151,16 +164,22 @@ LineSegments::get_pos(const Segment& segment, float len)
         const float& radius      = segment.data.radial.radius;
         
         float angle;
+
         if (segment.data.radial.turn_right)
-          angle = Math::normalize_angle(start_angle - end_angle);
-        else
           angle = Math::normalize_angle(end_angle - start_angle);
+        else
+          angle = Math::normalize_angle(start_angle - end_angle);
 
         float relative = len / (segment.data.radial.radius * angle);
+
         angle = angle * relative;
-        
-        return CL_Vector(segment.data.radial.x + cos(angle+start_angle)*radius,
-                         segment.data.radial.y + sin(angle+start_angle)*radius);
+
+        if (segment.data.radial.turn_right)
+          return CL_Vector(segment.data.radial.x + cos(start_angle + angle)*radius,
+                           segment.data.radial.y + sin(start_angle + angle)*radius);
+        else
+          return CL_Vector(segment.data.radial.x + cos(start_angle - angle)*radius,
+                           segment.data.radial.y + sin(start_angle - angle)*radius);
       }
       break;
     case STRAIGHT:
@@ -313,6 +332,15 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
 void
 LineSegments::draw(View* view)
 {
+  for(float i = 0; i < get_length(); i += 15)
+    {
+      CL_Vector pos = get_pos(i);
+      //std::cout << "Pos: " << pos << std::endl;
+      view->draw_fillrect(int(pos.x-5), int(pos.y-5),
+                          int(pos.x+5), int(pos.y+5),
+                          1.0f, 0.0f, 0.0f, .5f); // red      
+    }
+
   //std::cout << "-----: " << segments.size()  << std::endl;
   for(Segments::iterator i = segments.begin(); i != segments.end(); ++i)
     {
@@ -323,22 +351,6 @@ LineSegments::draw(View* view)
           //        << " " << (int)i->radial.radius << std::endl;
           view->draw_circle((int)i->data.radial.x, (int)i->data.radial.y, (int)i->data.radial.radius,
                             1.0f, 1.0f, 1.0f, .3f);
-
-          {
-            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.start_angle));
-            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.start_angle));
-            view->draw_fillrect(x-5, y-5,
-                                x+5, y+5,
-                                0.0, 0.0f, 1.0f);
-          }
-
-          {
-            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.end_angle));
-            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.end_angle));
-            view->draw_fillrect(x-5, y-5,
-                                x+5, y+5,
-                                1.0, 0.0f, 1.0f);
-          }
 
 
           if (i->data.radial.turn_right)
@@ -359,6 +371,22 @@ LineSegments::draw(View* view)
                                   (int)i->data.radial.x+5, (int)i->data.radial.y+5,
                                   1.0f, 0.0f, 0.0f); // red
             }
+
+          {
+            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.start_angle));
+            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.start_angle));
+            view->draw_fillrect(x-5, y-5,
+                                x+5, y+5,
+                                0.0, 0.0f, 1.0f);
+          }
+
+          {
+            int x = int(i->data.radial.x + i->data.radial.radius * cos(i->data.radial.end_angle));
+            int y = int(i->data.radial.y + i->data.radial.radius * sin(i->data.radial.end_angle));
+            view->draw_fillrect(x-5, y-5,
+                                x+5, y+5,
+                                1.0, 0.0f, 1.0f);
+          }
           break;
 
         case STRAIGHT:
@@ -370,15 +398,6 @@ LineSegments::draw(View* view)
           std::cout << "Unhandled type: " << i->type << std::endl;
           break;
         }
-    }
-
-  for(float i = 0; i < get_length(); i += 15)
-    {
-      CL_Vector pos = get_pos(i);
-      //std::cout << "Pos: " << pos << std::endl;
-      view->draw_fillrect(int(pos.x-5), int(pos.y-5),
-                          int(pos.x+5), int(pos.y+5),
-                          1.0f, 0.0f, 0.0f, .5f); // red      
     }
 }
 
