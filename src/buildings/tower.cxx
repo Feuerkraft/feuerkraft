@@ -60,21 +60,21 @@ Tower::draw (View& view)
 {
   if (energie > 50)
     {
-      view.get_dc().draw(towerbase, pos.x, pos.y);
+      view.get_sc().color().draw(towerbase, pos.x, pos.y);
     }
   else if (energie > 0)
     {
-      view.get_dc().draw(towerdamaged, pos.x, pos.y);
+      view.get_sc().color().draw(towerdamaged, pos.x, pos.y);
     }
   else
     {
-      view.get_dc().draw(towerdestroyed, pos.x, pos.y);
+      view.get_sc().color().draw(towerdestroyed, pos.x, pos.y);
     }
 
   if (energie > 0)
     {
       turret.set_angle(orientation);
-      view.get_dc().draw(turret, pos.x, pos.y);
+      view.get_sc().color().draw(turret, pos.x, pos.y);
     }
 }
   

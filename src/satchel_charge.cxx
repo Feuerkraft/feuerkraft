@@ -43,7 +43,7 @@ SatchelCharge::update(float delta)
 void
 SatchelCharge::draw(View& view)
 {
-  view.get_dc().draw(sprite, pos.x, pos.y);
+  view.get_sc().color().draw(sprite, pos.x, pos.y);
 }
 
 void

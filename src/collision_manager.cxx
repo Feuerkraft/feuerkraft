@@ -127,17 +127,17 @@ CollisionManager::draw(View& view)
       switch (i->type)
         {
         case SHAPE_CIRCLE:
-          view.get_dc().draw_circle(i->circle.x, i->circle.y, i->circle.radius,
+          view.get_sc().color().draw_circle(i->circle.x, i->circle.y, i->circle.radius,
                                     CL_Color(255, 0, 0));
           break;
         case SHAPE_RECT:
           {
             CL_Color color(255, 0, 0);
             Math::Quad quad = rect2quad(i->rect);
-            view.get_dc().draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
-            view.get_dc().draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
-            view.get_dc().draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
-            view.get_dc().draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
+            view.get_sc().color().draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
+            view.get_sc().color().draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
+            view.get_sc().color().draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
+            view.get_sc().color().draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
           }
           break;
         default:

@@ -23,6 +23,7 @@
 #include "view_properties.hxx"
 #include "vector2d.hxx"
 #include "display/drawing_context.hxx"
+#include "display/scene_context.hxx"
 
 class CL_Sprite;
 class Color;
@@ -68,7 +69,7 @@ protected:
   ViewState state;
   ViewUpdater* view_updater;
   ViewProperty properties;
-  DrawingContext* drawing_context;
+  SceneContext* scene_context;
   
   static View* current_;
 public:
@@ -88,7 +89,7 @@ public:
   void set_updater(ViewUpdater* arg_updater);
   void update(float delta);
 
-  DrawingContext& get_dc() { return *drawing_context; } 
+  SceneContext& get_sc() { return *scene_context; } 
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);

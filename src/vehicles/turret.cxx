@@ -38,12 +38,12 @@ Turret::draw (View& view)
 #endif 
 
   sur.set_angle((absolute_orientation + Math::pi) / Math::pi * 180.0f);
-  view.get_dc().draw(sur, tank->get_pos().x, tank->get_pos().y);
+  view.get_sc().color().draw(sur, tank->get_pos().x, tank->get_pos().y);
 
   if (fireing && reloading == 0 && tank->ammo > 0.0)
     {
       fire_sur.set_angle(Math::rad2deg(absolute_orientation + Math::pi));
-      view.get_dc().draw(fire_sur, tank->get_pos().x, tank->get_pos().y);
+      view.get_sc().color().draw(fire_sur, tank->get_pos().x, tank->get_pos().y);
       fireing = false;
       reloading = reloading_speed;
     }

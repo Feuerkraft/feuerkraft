@@ -63,6 +63,9 @@ Tank::Tank(const AList& lst)
   // Load
   smod   = resources->get_sprite(def.get_string("tank"));
   sur    = resources->get_sprite(def.get_string("tank"));
+  sur_light     = resources->get_sprite("feuerkraft/tank_light");
+  sur_highlight = resources->get_sprite("feuerkraft/tank_highlight");
+
   turret = new Turret(this, 
                       def.get_int("reloading_speed"),
                       def.get_string("turret"), 
@@ -106,6 +109,8 @@ Tank::Tank (const FloatVector2d &arg_pos,
     smod (resources->get_sprite (tank.c_str ())),
     sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
     sur (resources->get_sprite (tank.c_str ())),
+    sur_light(resources->get_sprite("feuerkraft/tank_light")),
+    sur_highlight(resources->get_sprite("feuerkraft/tank_highlight")),
     shadow (resources->get_sprite ("feuerkraft/tank2_shadow")),
     turret (NULL),
     smod_step (0),
@@ -159,7 +164,7 @@ Tank::draw (View& view)
 {
   if (destroyed)
     {
-      view.get_dc().draw(sur_destroyed, pos.x, pos.y);
+      view.get_sc().color().draw(sur_destroyed, pos.x, pos.y);
     }
   else
     {
@@ -181,8 +186,19 @@ Tank::draw (View& view)
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
+      sur_light.set_scale(2.5, 2.5);
+      sur_highlight.set_scale(2.5, 2.5);
       sur.set_angle(Math::rad2deg(orientation + Math::pi));
-      view.get_dc().draw(sur, pos.x, pos.y);
+      sur_light.set_angle(Math::rad2deg(orientation + Math::pi));
+      sur_highlight.set_angle(Math::rad2deg(orientation + Math::pi));
+
+      view.get_sc().color().draw(sur, pos.x, pos.y);
+
+      if (sur_light)
+        view.get_sc().light().draw(sur_light, pos.x, pos.y);
+      if (sur_highlight)
+        view.get_sc().highlight().draw(sur_highlight, pos.x, pos.y);
+
       turret->draw(view);
 
       // Draw Collision rect

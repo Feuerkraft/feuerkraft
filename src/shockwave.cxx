@@ -43,7 +43,7 @@ Shockwave::draw(View& view)
 {
   sprite.set_alpha(1.0f - (progress/10.0f));
   sprite.set_scale(progress + .5, progress + .5);
-  view.get_dc().draw(sprite, pos.x, pos.y);
+  view.get_sc().color().draw(sprite, pos.x, pos.y);
 }
 
 void 

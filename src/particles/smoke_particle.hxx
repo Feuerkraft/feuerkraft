@@ -62,7 +62,7 @@ public:
     sprite.set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
 		       0.8f + ((1 - life_time/max_life_time)) * 4.0f);
     sprite.set_angle(angle);
-    view.get_dc().draw(sprite, pos.x, pos.y);
+    view.get_sc().color().draw(sprite, pos.x, pos.y);
   }
 
   float get_z_pos () { return 100; }

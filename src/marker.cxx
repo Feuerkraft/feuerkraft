@@ -44,7 +44,7 @@ Marker::~Marker()
 void
 Marker::draw (View& view)
 {
-  view.get_dc().draw(sprite, pos.x, pos.y);
+  view.get_sc().color().draw(sprite, pos.x, pos.y);
 }
 
 void

@@ -32,7 +32,7 @@ GridTile::GridTile (std::string filename)
 void
 GridTile::draw(View& view, float x, float y)
 {
-  view.get_dc().draw(sprite, x, y);
+  view.get_sc().color().draw(sprite, x, y);
 }
 
 /* EOF */

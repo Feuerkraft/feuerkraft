@@ -48,12 +48,12 @@ Rotor::draw(View& view, const FloatVector2d& pos, float parent_orientation)
       if (direction == RotorDescription::LEFT)
         {
           fast.set_angle(Math::rad2deg(orientation));
-          view.get_dc().draw(fast, p.x, p.y);
+          view.get_sc().color().draw(fast, p.x, p.y);
         }
       else
         {
           fast.set_angle(Math::rad2deg(-orientation));
-          view.get_dc().draw(fast, p.x, p.y);
+          view.get_sc().color().draw(fast, p.x, p.y);
         }
     }
   else
@@ -61,12 +61,12 @@ Rotor::draw(View& view, const FloatVector2d& pos, float parent_orientation)
       if (direction == RotorDescription::LEFT)
         {
           slow.set_angle(Math::rad2deg(orientation));
-          view.get_dc().draw(slow, p.x, p.y);
+          view.get_sc().color().draw(slow, p.x, p.y);
         }
       else
         {
           slow.set_angle(Math::rad2deg(-orientation));
-          view.get_dc().draw(slow, p.x, p.y);
+          view.get_sc().color().draw(slow, p.x, p.y);
         }
     }
 }

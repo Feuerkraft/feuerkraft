@@ -32,6 +32,7 @@ class Soldier : public Unit
 private:
   SoldierAI* ai;
   CL_Sprite sur;
+  CL_Sprite sur_light;
 
   // Controll variables
   float acceleration;

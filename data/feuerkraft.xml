@@ -112,6 +112,15 @@
       <image file="images/vehicles/huey_shadow.png"  />
     </sprite>
 
+    <sprite name="tank_light">
+      <image file="images/vehicles/tank2-light.png"  />
+    </sprite>
+
+    <sprite name="tank_highlight">
+      <image file="images/vehicles/tank2-highlight.png"  />
+    </sprite>
+
+
     <sprite name="tank">
       <image 
         file="images/vehicles/tank.png" 
@@ -249,6 +258,10 @@
 
     <sprite name="tree2_shadow">
       <image file="images/tree2_shadow.png" />
+    </sprite>
+
+    <sprite name="soldier-light">
+      <image file="images/soldier-light.png" />
     </sprite>
 
     <sprite name="soldier">

@@ -443,7 +443,7 @@ LineSegments::draw(View& view)
 
           if (i->radial.turn_right)
             {
-              view.get_dc().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
+              view.get_sc().color().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
                                      i->radial.start_angle, i->radial.end_angle, 
                                      CL_Color(255, 255, 255));
               /*
@@ -454,7 +454,7 @@ LineSegments::draw(View& view)
             }
           else
             {
-              view.get_dc().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
+              view.get_sc().color().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
                                      i->radial.end_angle, i->radial.start_angle, 
                                      CL_Color(255, 255, 255));
               /*
@@ -482,7 +482,7 @@ LineSegments::draw(View& view)
           break;
 
         case STRAIGHT:
-          view.get_dc().draw_line(i->straight.x1, i->straight.y1,
+          view.get_sc().color().draw_line(i->straight.x1, i->straight.y1,
                                   i->straight.x2, i->straight.y2, 
                                   CL_Color(255, 255, 255, 255));
           break;

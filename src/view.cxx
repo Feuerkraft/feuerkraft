@@ -26,7 +26,6 @@
 #include "color.hxx"
 #include "math.hxx"
 #include "view.hxx"
-#include "display/drawing_context.hxx"
 
 View* View::current_ = 0;
 
@@ -46,7 +45,7 @@ View::View (int arg_x1, int arg_y1,
   state.zoom = 1.0;
   state.rotation = 0;
   
-  drawing_context = new DrawingContext();
+  scene_context = new SceneContext();
 
   current_ = this;
 }
@@ -142,7 +141,7 @@ View::draw_circle (float x_pos, float y_pos, float radius,
       FloatVector2d current = next;
       next = FloatVector2d::make_polar(radius, i * pi/float(steps));
       
-      get_dc().draw_line(x_pos + current.x, y_pos + current.y,
+     .get_sc().color().draw_line(x_pos + current.x, y_pos + current.y,
                          x_pos + next.x,    y_pos + next.y,
                          color);
     }
@@ -169,7 +168,7 @@ View::draw_arc (float x_pos, float y_pos, float radius, float angle_start, float
       x = x_pos + radius * cos(angle_start + i*enclosed_angle/steps);
       y = y_pos + radius * sin(angle_start + i*enclosed_angle/steps);
 
-      get_dc().draw_line(last_x, last_y, x, y, color);
+     .get_sc().color().draw_line(last_x, last_y, x, y, color);
 
       last_x = x;
       last_y = y;
@@ -192,8 +191,8 @@ View::update(float delta)
   if (view_updater)
     view_updater->update(delta, state);
 
-  drawing_context->reset_modelview();
-  drawing_context->translate(get_x_offset(), get_y_offset());
+  scene_context->reset_modelview();
+  scene_context->translate(get_x_offset(), get_y_offset());
   //drawing_context.translate(state.x_offset, state.y_offset);
 }
 

@@ -59,13 +59,13 @@ Energie::draw (View& view, int x_pos, int y_pos)
       && CL_System::get_time () > 2000)
     {
       // Black border rectangle
-      view.get_dc().draw_fillrect(x_pos - 32, y_pos - 5,
+      view.get_sc().color().draw_fillrect(x_pos - 32, y_pos - 5,
                                   x_pos + 32, y_pos + 5,
                                   CL_Color(CL_Colorf(0.0f, 0.0f, 0.0f,
                                                      (1000.0f - float(time_diff))/1000.0f * 0.8f)));
       
       // Energie bar
-      view.get_dc().draw_fillrect(x_pos - 30, y_pos - 3,
+      view.get_sc().color().draw_fillrect(x_pos - 30, y_pos - 3,
                                   x_pos - 30 + (ratio * 60),
                                   y_pos + 3,
                                   CL_Color(CL_Colorf(1.0f - energie/float(max_energie),

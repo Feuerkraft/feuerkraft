@@ -82,7 +82,7 @@ public:
                           ((1 - life_time/max_life_time)) * size);
 
         sprite.set_angle(Math::rad2deg(angle));
-	view.get_dc().draw(sprite, pos.x, pos.y);
+	view.get_sc().color().draw(sprite, pos.x, pos.y);
       }
   }
 

@@ -140,12 +140,12 @@ AIVehicle::draw (View& view)
   if (!destroyed)
     {
       sprite.set_angle(Math::rad2deg(orientation + PI));
-      view.get_dc().draw(sprite, pos.x, pos.y);
+      view.get_sc().color().draw(sprite, pos.x, pos.y);
     }
   else
     {
       destroyed_sprite.set_angle(Math::rad2deg(orientation + PI));
-      view.get_dc().draw(destroyed_sprite, pos.x, pos.y);
+      view.get_sc().color().draw(destroyed_sprite, pos.x, pos.y);
     }
   //line_segments.draw(view);
 }

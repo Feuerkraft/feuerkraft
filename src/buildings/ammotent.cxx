@@ -41,10 +41,10 @@ Ammotent::~Ammotent ()
 void 
 Ammotent::draw (View& view)
 {
-  view.get_dc().draw(ammotent, pos.x, pos.y);
+  view.get_sc().color().draw(ammotent, pos.x, pos.y);
   if (reloading)
     {
-      view.get_dc().draw_fillrect(pos.x - 32, pos.y + 25,
+      view.get_sc().color().draw_fillrect(pos.x - 32, pos.y + 25,
                                   pos.x + 31, pos.y + 57,
                                   CL_Color(CL_Colorf(1.0f, 1.0f, 1.0f, 
                                                      sin(GameWorld::current()->get_time () * 10.0f)

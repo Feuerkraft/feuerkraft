@@ -42,11 +42,11 @@ void
 Wall::draw (View& view)
 {
   if (energie > 60)
-    view.get_dc().draw (wall, pos.x, pos.y);
+    view.get_sc().color().draw (wall, pos.x, pos.y);
   else if (energie > 0)
-    view.get_dc().draw (wall_damaged, pos.x, pos.y);
+    view.get_sc().color().draw (wall_damaged, pos.x, pos.y);
   else
-    view.get_dc().draw (wall_destroyed, pos.x, pos.y);
+    view.get_sc().color().draw (wall_destroyed, pos.x, pos.y);
 }
 
 void

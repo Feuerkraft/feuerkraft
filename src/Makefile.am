@@ -17,6 +17,7 @@ LDADD = \
 
 feuerkraft_SOURCES = \
 display/drawing_context.cxx \
+display/scene_context.cxx \
 alist.hxx \
 alist.cxx \
 ai_vehicle.hxx \

@@ -30,7 +30,7 @@ Ambulance::Ambulance()
 void
 Ambulance::draw (View& view)
 {
-  view.get_dc().draw(sur, 0, 0);
+  view.get_sc().color().draw(sur, 0, 0);
 }
 
 

@@ -41,10 +41,10 @@ Fuelstation::~Fuelstation ()
 void 
 Fuelstation::draw (View& view)
 {
-  view.get_dc().draw(fuelstation, pos.x, pos.y);
+  view.get_sc().color().draw(fuelstation, pos.x, pos.y);
   if (refueling)
     {
-      view.get_dc().draw_fillrect(pos.x - 32, pos.y + 25,
+      view.get_sc().color().draw_fillrect(pos.x - 32, pos.y + 25,
                                   pos.x + 31, pos.y + 57,
                                   CL_Color(CL_Colorf(1.0, 1.0, 1.0,
                                                      sin(GameWorld::current()->get_time () * 10.0f)

@@ -124,7 +124,7 @@ RobotTank::draw (View& view)
 {
   // FIXME: Orientation is wrong
   sprite.set_angle(Math::deg2rad(-orientation - Math::pi_2));
-  view.get_dc().draw(sprite, pos.x, pos.y);
+  view.get_sc().color().draw(sprite, pos.x, pos.y);
 }
 
 void

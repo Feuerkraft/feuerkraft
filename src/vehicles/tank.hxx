@@ -62,6 +62,8 @@ private:
   CL_Sprite sur_destroyed;
 
   CL_Sprite sur;
+  CL_Sprite sur_light;
+  CL_Sprite sur_highlight;
   CL_Sprite shadow;
 
   Turret* turret;

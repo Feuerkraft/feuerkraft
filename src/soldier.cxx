@@ -30,7 +30,8 @@
 
 Soldier::Soldier(const AList& lst) 
   : ai(0),
-    sur(resources->get_sprite("feuerkraft/soldier"))
+    sur(resources->get_sprite("feuerkraft/soldier")),
+    sur_light(resources->get_sprite("feuerkraft/soldier-light"))
 {
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
@@ -65,7 +66,8 @@ Soldier::draw (View& view)
     }
 
   sur.set_angle(Math::rad2deg(new_orientation));
-  view.get_dc().draw(sur, pos.x, pos.y);
+  view.get_sc().color().draw(sur, pos.x, pos.y);
+  view.get_sc().light().draw(sur_light, pos.x, pos.y);
   orientation = new_orientation;
 }
 
