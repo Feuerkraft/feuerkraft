@@ -1,4 +1,4 @@
-//  $Id: TileDataFactory.hxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: TileDataFactory.hxx,v 1.2 2002/03/18 10:46:32 sphair Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,8 @@
 
 #include <guile/gh.h>
 
-class TileData;
-class SpriteTileData;
+struct TileData;
+struct SpriteTileData;
 
 /** The tile factory is used to create a Tile out of an SCM
     description

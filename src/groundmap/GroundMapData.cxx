@@ -1,4 +1,4 @@
-//  $Id: GroundMapData.cxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: GroundMapData.cxx,v 1.2 2002/03/18 10:46:32 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,6 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "GroundMapData.cxx"
+#include "GroundMapData.hxx"
 
 /* EOF */

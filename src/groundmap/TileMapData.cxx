@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.4 2002/03/18 10:46:32 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -74,9 +74,9 @@ TileMapData::parse_map (SCM desc)
   tilemap_data.resize (width * height);
   
   // Init the map to '0'
-  for (std::vector<int>::iterator i = tilemap_data.begin ();
-       i != tilemap_data.end (); ++i)
-    *i = 0;
+  for (std::vector<int>::iterator it = tilemap_data.begin ();
+       it != tilemap_data.end (); ++it)
+    *it = 0;
   
   std::cout << "Tilemap MapData: " << std::flush;
   gh_display (desc);

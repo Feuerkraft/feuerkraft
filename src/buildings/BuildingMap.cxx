@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.4 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.5 2002/03/18 10:46:32 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,13 +27,16 @@ BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& d
   : BuildingMapData (data),
     GameObj (w) // FIXME: Bug
 {
-  for (std::vector<BuildingData*>::iterator i = buildings_data.begin ();
-       i != buildings_data.end ();
-       ++i)
+  std::vector<Building*>::iterator i;
+  std::vector<BuildingData*>::iterator i2;
+
+  for (i2 = buildings_data.begin ();
+       i2 != buildings_data.end ();
+       ++i2)
     {
       // FIXME: we need probally to pass the GameWorld pointer all
       // FIXME: around
-      buildings.push_back ((*i)->create (get_world ()));
+      buildings.push_back ((*i2)->create (get_world ()));
     }
 
   // FIXME: Where is the width and height?!
@@ -42,7 +45,7 @@ BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& d
   building_map.resize (width * height);
   
   // Clear all pointers in the building map
-  for (std::vector<Building*>::iterator i = building_map.begin ();
+  for (i = building_map.begin ();
        i != building_map.end ();
        ++i)
     {
@@ -50,7 +53,7 @@ BuildingMap::BuildingMap(boost::dummy_ptr<GameWorld> w, const BuildingMapData& d
     }
 
   // 'Draw' the buildings onto the building_map
-  for (std::vector<Building*>::iterator i = buildings.begin ();
+  for (i = buildings.begin ();
        i != buildings.end ();
        ++i)
     {

@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.10 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.11 2002/03/18 10:46:32 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,13 +25,13 @@ TileMap::TileMap (const TileMapData& data)
   : TileMapData (data)
 {
   // Create the tiles from tiles_data
-  for (std::vector<TileData*>::iterator i = tiles_data.begin ();
-       i != tiles_data.end ();
-       ++i)
+  for (std::vector<TileData*>::iterator it = tiles_data.begin ();
+       it != tiles_data.end ();
+       ++it)
     {
-      //std::cout << "Tiles: " << *i << std::endl;
-      if (*i)
-	tiles.push_back ((*i)->create_Tile ());
+      //std::cout << "Tiles: " << *it << std::endl;
+      if (*it)
+	tiles.push_back ((*it)->create_Tile ());
       else
 	tiles.push_back (NULL);
     }

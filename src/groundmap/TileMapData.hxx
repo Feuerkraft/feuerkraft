@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.4 2002/03/11 21:34:43 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.5 2002/03/18 10:46:32 sphair Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,7 @@
 
 #include "GroundMapData.hxx"
 
-class TileData;
+struct TileData;
 class TileMap;
 
 /** TileMapData holds all data that is necesarry for creating a TileMap

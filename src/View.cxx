@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.5 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: View.cxx,v 1.6 2002/03/18 10:46:32 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -90,7 +90,7 @@ View::draw (CL_Surface& sur, const CL_Vector& pos)
 }
 
 void
-View::draw (Sprite& sprite, const CL_Vector& pos, float angle = 0.0)
+View::draw (Sprite& sprite, const CL_Vector& pos, float angle)
 {
   draw (&sprite, pos, angle);
 }

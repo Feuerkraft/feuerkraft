@@ -58,6 +58,10 @@ public:
 	
   virtual int inner_main(void* closure, int argc, char** argv)
   {
+    // Create a console window for text-output if not available
+    CL_ConsoleWindow console("Console");
+    console.redirect_stdio();
+
     try
       {
 	srand (time (0));
@@ -275,6 +279,9 @@ public:
       {
 	std::cout << "CL_Error: " << err.message.c_str() << std::endl;
       }
+
+    // Display console close message and wait for a key
+    console.display_close_message();
 
     return 0;
   }

@@ -80,7 +80,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 clanCored.lib clanAppd.lib clanPNGd.lib clanJPEGd.lib clanDisplayd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 libguile.lib SphriteLibGLd.lib clanCored.lib clanAppd.lib clanPNGd.lib clanJPEGd.lib clanDisplayd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 
 !ENDIF 
 
@@ -93,7 +93,15 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;cc;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=.\src\Ammotent.cxx
+SOURCE=.\src\Ambulance.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\Ammotent.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\AmmotentData.cxx
 # End Source File
 # Begin Source File
 
@@ -101,7 +109,19 @@ SOURCE=.\src\Background.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Basis.cxx
+SOURCE=.\src\buildings\Base.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\BaseData.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\BuildingMap.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\BuildingMapData.cxx
 # End Source File
 # Begin Source File
 
@@ -125,7 +145,15 @@ SOURCE=.\src\Flag.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Fuelstation.cxx
+SOURCE=.\src\vehicles\FoxTank.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\Fuelstation.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\FuelstationData.cxx
 # End Source File
 # Begin Source File
 
@@ -133,7 +161,19 @@ SOURCE=.\src\GameWorld.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Headquarter.cxx
+SOURCE=.\src\groundmap\GroundMapData.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\groundmap\GroundMapDataFactory.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\Headquarter.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\HeadquarterData.cxx
 # End Source File
 # Begin Source File
 
@@ -173,6 +213,10 @@ SOURCE=.\src\Radar.cxx
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\generic\Random.cxx
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Screen.cxx
 # End Source File
 # Begin Source File
@@ -182,6 +226,14 @@ SOURCE=.\src\Shockwave.cxx
 # Begin Source File
 
 SOURCE=.\src\Soldier.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\groundmap\SpriteTile.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\groundmap\SpriteTileData.cxx
 # End Source File
 # Begin Source File
 
@@ -201,7 +253,23 @@ SOURCE=.\src\Tank.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\Tower.cxx
+SOURCE=.\src\groundmap\TileDataFactory.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\groundmap\TileMap.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\groundmap\TileMapData.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\Tower.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\buildings\TowerData.cxx
 # End Source File
 # Begin Source File
 
@@ -231,150 +299,6 @@ SOURCE=.\src\View.cxx
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hh;hpp;hxx;hm;inl"
-# Begin Source File
-
-SOURCE=.\src\Basis.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Collideable.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Controllable.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Controller.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Energie.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Explosion.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Feuerkraft.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Flag.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Fuelstation.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\GameObj.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\GameWorld.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\GuiObj.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Headquarter.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Helicopter.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Jeep.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\JoystickController.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\KeyboardController.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Mine.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\my_gettext.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Pathfinder.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Playfield.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Projectile.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Radar.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Screen.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Shockwave.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Soldier.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\StringConverter.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\System.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Tank.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Tower.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Tree.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Turret.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\Vehicle.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\VehicleStatus.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\VehicleView.hxx
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\View.hxx
-# End Source File
 # End Group
 # Begin Group "Resource Files"
 
