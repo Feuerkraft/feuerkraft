@@ -18,7 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <assert.h>
+#include <iostream>
+#include <ClanLib/Display/joystick.h>
 #include "input_manager_clanlib.hxx"
+#include "input_manager_keyboard.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
 
@@ -28,9 +31,19 @@ void
 InputManager::init(InputManagerImpl* arg_impl)
 {
   if (arg_impl)
-    impl = arg_impl;
-  else
-    impl = new InputManagerClanLib();
+    { 
+      impl = arg_impl;
+    }
+  else if (CL_Joystick::get_device_count() > 0)
+    {
+      std::cout << "InputManager: Using joystick" << std::endl;
+      impl = new InputManagerClanLib();
+    }
+  else 
+    {
+      std::cout << "InputManager: Using keyboard" << std::endl;
+      impl = new InputManagerKeyboard();
+    }
 }
 
 void 
