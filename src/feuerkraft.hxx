@@ -98,6 +98,9 @@ public:
   void init();
   void deinit();
   int  main(int argc, char** argv);
+
+private:
+  void key_down(const CL_InputEvent& event);
 };
 
 #endif

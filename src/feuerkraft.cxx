@@ -22,6 +22,9 @@
 #include <ClanLib/gl.h>
 #include <ClanLib/Display/setupdisplay.h>
 #include <ClanLib/Display/display.h>
+#include <ClanLib/Display/keyboard.h>
+#include <ClanLib/Display/Providers/provider_factory.h>
+#include <ClanLib/Display/keys.h>
 #include <ClanLib/GL/setupgl.h>
 #include <ClanLib/core.h>
 #include <libguile.h>
@@ -137,6 +140,9 @@ Feuerkraft::deinit()
 {
   Fonts::deinit();
   PingusSound::deinit();
+
+  delete window;
+
   CL_SetupGL::deinit();
   CL_SetupDisplay::deinit();
   CL_SetupCore::deinit();
@@ -159,6 +165,8 @@ Feuerkraft::main(int argc, char** argv)
       
       if (args->mission_file.empty())
         args->mission_file = path_manager.complete("missions/airport.feu");
+
+      CL_Slot slot = CL_Keyboard::sig_key_down().connect(this, &Feuerkraft::key_down);
 
       GameSessionManager::instance()->load(args->mission_file);
       GameSessionManager::instance()->run();
@@ -187,6 +195,27 @@ Feuerkraft::main(int argc, char** argv)
   console.display_close_message();
 
   return 0;
+}
+
+void
+Feuerkraft::key_down(const CL_InputEvent& event)
+{
+  if (event.id == CL_KEY_F12)
+    {
+      std::string filename = "screenshot.jpg";
+      std::cout << "Saving screenshot to: " << filename << std::endl;
+      CL_ProviderFactory::save(CL_Display::get_front_buffer(),
+                               filename);
+    } 
+  else if (event.id == CL_KEY_F11)
+    {
+      if (CL_Display::is_fullscreen())
+        CL_Display::set_windowed();
+      else
+        CL_Display::set_fullscreen(CL_Display::get_width(),
+                                   CL_Display::get_height(),
+                                   32);
+    }
 }
 
 // EOF //
