@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.hxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: keyboard_manager.hxx,v 1.3 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,8 @@
 #include <vector>
 #include <ClanLib/Display/input_event.h>
 
-/** */
+/** Management class for keyboard events, if a key is pressed it looks
+    up a callback and if one it set it evalutes the callback */
 class KeyboardManager
 {
 private:
@@ -71,14 +72,14 @@ public:
   KeyboardManager();
   ~KeyboardManager();
 
-  void button_up(const CL_InputEvent& event);
-  void button_down(const CL_InputEvent& event);
-
   template<class C>
   void register_down_callback(int key_id, const C& c) {
     callbacks.push_back(new GenericCallback<C>(key_id, c));
   }
 private:
+  void button_up(const CL_InputEvent& event);
+  void button_down(const CL_InputEvent& event);
+
   KeyboardManager (const KeyboardManager&);
   KeyboardManager& operator= (const KeyboardManager&);
 };

@@ -1,4 +1,4 @@
-//  $Id: tree.hxx,v 1.5 2003/05/11 17:06:11 grumbel Exp $
+//  $Id: tree.hxx,v 1.6 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define TREE_HH
 
 #include <string>
+#include <ClanLib/Core/Math/cl_vector.h>
 #include <ClanLib/Display/sprite.h>
 
 #include "game_obj.hxx"

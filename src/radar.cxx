@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.6 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: radar.cxx,v 1.7 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,10 +25,8 @@
 #include "resource_manager.hxx"
 
 Radar::Radar (const CL_Vector& arg_pos, 
-	      GameWorldPtr w,
 	      VehiclePtr v)
-  : world (w),
-    vehicle (v),
+  : vehicle (v),
     background (resources->get_sprite("feuerkraft/radar")),
     pos (arg_pos),
     angle (0)
@@ -50,7 +48,7 @@ Radar::draw (CL_GraphicContext* gc)
 
   background.draw (int(pos.x), int(pos.y), gc);
   
-  GameObjManager* objs = world->get_game_obj_manager();
+  GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
@@ -58,7 +56,7 @@ Radar::draw (CL_GraphicContext* gc)
         draw_vehicle (vehicle);
     }
 
-  world->get_buildingmap ()->draw_radar (this);
+  GameWorld::current()->get_buildingmap ()->draw_radar (this);
 
   CL_Display::draw_line(int(pos.x), int(pos.y - 5),
                         int(pos.x), int(pos.y + 5),

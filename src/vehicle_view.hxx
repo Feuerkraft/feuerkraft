@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.hxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: vehicle_view.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef VEHICLEVIEW_HH
 #define VEHICLEVIEW_HH
 
-#include "boost/dummy_ptr.hpp"
 #include "vehicle.hxx"
 #include "view.hxx"
 
@@ -28,19 +27,18 @@ class VehicleView :
   public View
 {
 private:
-  boost::dummy_ptr<Vehicle> vehicle;
+  VehiclePtr vehicle;
   CL_Vector pos;
 
   float speed;
   float zoom_follower;
 public:
-  VehicleView (boost::dummy_ptr<Vehicle> arg_vehicle, 
+  VehicleView (VehiclePtr arg_vehicle, 
 	       int x1, int y1, int x2, int y2,
 	       CL_GraphicContext* arg_gc = 0);
   virtual ~VehicleView ();
 
-  void set_vehicle (boost::dummy_ptr<Vehicle> arg_vehicle);
-  
+  void set_vehicle (VehiclePtr arg_vehicle);
   void update (float delta);
 };
 

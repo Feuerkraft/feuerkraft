@@ -1,4 +1,4 @@
-//  $Id: headquarter.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: headquarter.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef HEADQUARTER_HH
 #define HEADQUARTER_HH
 
-#include "../boost/dummy_ptr.hpp"
 #include "../energie.hxx"
 #include "building.hxx"
 #include "headquarter_data.hxx"
@@ -33,7 +32,7 @@ private:
   CL_Sprite headquarter;
   CL_Sprite headquarter_damaged;
   CL_Sprite headquarter_destroyed;
-  boost::dummy_ptr<CL_Sprite> current_sur;
+  CL_Sprite* current_sur;
   Energie energie;
   bool destroyed;
   
@@ -41,8 +40,8 @@ public:
   Headquarter(const HeadquarterData&);
   virtual ~Headquarter();
 
-  void draw (boost::dummy_ptr<View>);
-  void draw_radar (boost::dummy_ptr<Radar> radar);
+  void draw (ViewPtr);
+  void draw_radar (RadarPtr radar);
 
   void update (float delta);
 

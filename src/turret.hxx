@@ -8,7 +8,7 @@ class Tank;
 class Turret : public GameObj
 {
 private:
-  boost::dummy_ptr<Tank> tank;
+  Tank* tank;
 
   CL_Sprite fire_sur;
   CL_Sprite sur;

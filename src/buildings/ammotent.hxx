@@ -1,4 +1,4 @@
-//  $Id: ammotent.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: ammotent.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,6 @@
 
 #include <ClanLib/Display/sprite.h>
 
-#include "../boost/dummy_ptr.hpp"
 #include "../view.hxx"
 #include "building.hxx"
 #include "ammotent_data.hxx"
@@ -38,8 +37,8 @@ public:
   Ammotent (const AmmotentData&);
   virtual ~Ammotent ();
 
-  void draw (boost::dummy_ptr<View>);
-  void draw_radar (boost::dummy_ptr<Radar> radar);
+  void draw (ViewPtr view);
+  void draw_radar (RadarPtr radar);
 
   void update (float delta);  
 

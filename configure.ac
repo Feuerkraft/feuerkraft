@@ -3,8 +3,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR(src/feuerkraft.hxx)
 AM_INIT_AUTOMAKE(dist-bzip2)
 
-CXXFLAGS="$CXXFLAGS -I.."
-CXXFLAGS="$CXXFLAGS -g -O0 -Wall"
+CXXFLAGS="$CXXFLAGS -g -O0 -Wall -Werror"
 
 AC_PROG_CXX
 AC_PROG_CC
@@ -90,9 +89,7 @@ AC_OUTPUT( Makefile
            src/scripting/Makefile
            src/buildings/Makefile
            src/sound/Makefile
-           src/generic/Makefile
-           src/boost/Makefile
-           src/boost/detail/Makefile)
+           src/generic/Makefile)
 
 dnl Local Variables:
 dnl compile-command: "./autogen.sh && ./configure"

@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.8 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: guile.hxx,v 1.9 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -67,6 +67,15 @@ void scm2property(PropertySet& properties, const char* name, SCM value);
 SCM  property2scm(const Property& property);
 
 AList scm2alist(SCM lst);
+
+/** Switches on debugging for Guile, causing line numbers and
+    backtraces be printed on errors */
+void enable_debug();
+
+/** Disable all debugging */
+void disable_debug();
+
+void enable_readline();
 
 } // namespace Guile
 

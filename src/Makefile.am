@@ -1,4 +1,4 @@
-SUBDIRS = boost groundmap particles generic buildings scripting sound
+SUBDIRS = groundmap particles generic buildings scripting sound
 
 bindir=$(prefix)/games
 

@@ -1,4 +1,4 @@
-//  $Id: wall.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: wall.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #include "../property_set.hxx"
 #include "../radar.hxx"
 #include "../view.hxx"
+#include "../resource_manager.hxx"
 #include "wall.hxx"
-#include "resource_manager.hxx"
 
 Wall::Wall (const WallData& data)
   : Building(data.x_pos, data.y_pos),
@@ -39,7 +39,7 @@ Wall::~Wall ()
 }
 
 void 
-Wall::draw (boost::dummy_ptr<View> view)
+Wall::draw (ViewPtr view)
 {
   if (energie > 60)
     view->draw (wall, pos);
@@ -50,7 +50,7 @@ Wall::draw (boost::dummy_ptr<View> view)
 }
 
 void
-Wall::draw_radar (boost::dummy_ptr<Radar> radar)
+Wall::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 2);
 }

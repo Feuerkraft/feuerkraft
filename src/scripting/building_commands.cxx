@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.8 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.9 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,15 +19,14 @@
 
 #include <iostream>
 #include "../guile.hxx"
-
 #include "../game_world.hxx"
 #include "../property.hxx"
 #include "../property_set.hxx"
-#include "buildings/building.hxx"
-#include "buildings/custom_building.hxx"
-#include "buildings/wall_data.hxx"
-#include "buildings/building_type_manager.hxx"
-#include "buildings/building_manager.hxx"
+#include "../buildings/building.hxx"
+#include "../buildings/custom_building.hxx"
+#include "../buildings/wall_data.hxx"
+#include "../buildings/building_type_manager.hxx"
+#include "../buildings/building_manager.hxx"
 #include "building_commands.hxx"
 
 int

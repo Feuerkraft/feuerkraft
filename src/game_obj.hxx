@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.7 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.8 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,6 @@
 #ifndef GAMEOBJ_HH
 #define GAMEOBJ_HH
 
-#include "view.hxx"
-#include "boost/dummy_ptr.hpp"
 #include "game_world.hxx"
 
 class Building;
@@ -31,6 +29,7 @@ class LevelMap;
 class GameWorld;
 class GameObjData;
 class PropertySet;
+typedef View* ViewPtr;
 
 class GameObj
 {
@@ -64,11 +63,11 @@ public:
 
   /** Draw the object onto the main view, which means the object will
       be drawn in normal game grafic */
-  virtual void draw (View* view) =0;
+  virtual void draw (ViewPtr view) =0;
 
   /** Draw the energie bar, this is done in a seperate function to
       avoid rotation and scaling of the energie bar */
-  virtual void draw_energie (View* view) {}
+  virtual void draw_energie (ViewPtr view) {}
 
   /** Draw the object to the radar */
   virtual void draw_radar (Radar* radar) {}
@@ -97,6 +96,8 @@ public:
   virtual float get_physical_mass () { return 1.0; }
   virtual float get_physical_size () { return 1.0; }
 };
+
+typedef GameObj* GameObjPtr;
 
 #endif
 

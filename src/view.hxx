@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: view.hxx,v 1.7 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,6 @@
 
 #include <ClanLib/Core/Math/cl_vector.h>
 
-#include "boost/dummy_ptr.hpp"
 #include "gui_obj.hxx"
 #include "game_world.hxx"
 #include "view_properties.hxx"
@@ -115,6 +114,8 @@ public:
   CL_Vector screen_to_world (const CL_Vector&);
   CL_Vector world_to_screen (const CL_Vector&);
 };
+
+typedef View* ViewPtr;
 
 #endif
 

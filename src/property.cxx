@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.4 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: property.cxx,v 1.5 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "string_converter.hxx"
 #include "property.hxx"
 
 Property::Property(const std::string& arg_name)
@@ -108,6 +109,28 @@ Property::get_string() const
 {
   assert(type == T_STRING);
   return *data.m_string;
+}
+
+std::string
+Property::to_string() const
+{
+  switch (type)
+    {
+    case Property::T_BOOL:
+      return ::to_string(get_bool());
+
+    case Property::T_FLOAT:
+      return ::to_string(get_float());
+      
+    case Property::T_INT:
+      return ::to_string(get_int());
+
+    case Property::T_STRING:
+      return get_string();
+
+    default:
+      return "<empty>";
+    }
 }
 
 std::ostream& operator<<(std::ostream& s, const Property& property)

@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: ammotent.cxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,11 +18,11 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <math.h>
-#include "game_obj_manager.hxx"
+#include "../game_obj_manager.hxx"
 #include "../radar.hxx"
-#include "ammotent.hxx"
 #include "../vehicle.hxx"
-#include "resource_manager.hxx"
+#include "../resource_manager.hxx"
+#include "ammotent.hxx"
 
 Ammotent::Ammotent (const AmmotentData& data)
   : Building (data.x_pos, data.y_pos),
@@ -37,7 +37,7 @@ Ammotent::~Ammotent ()
 }
 
 void 
-Ammotent::draw (boost::dummy_ptr<View> view)
+Ammotent::draw (ViewPtr view)
 {
   view->draw (&ammotent, pos);
   if (reloading)
@@ -50,7 +50,7 @@ Ammotent::draw (boost::dummy_ptr<View> view)
 }
 
 void
-Ammotent::draw_radar (boost::dummy_ptr<Radar> radar)
+Ammotent::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 4, 0, 0, 1.0f);
 }

@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: tower.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,9 +47,9 @@ public:
   virtual ~Tower();
   
   // Draw the object onto the screen
-  void draw (boost::dummy_ptr<View> view);
-  void draw_energie (boost::dummy_ptr<View> view);
-  void draw_radar (boost::dummy_ptr<Radar> radar);
+  void draw (ViewPtr view);
+  void draw_energie (ViewPtr view);
+  void draw_radar (RadarPtr radar);
 
   // Update the object once a game loop
   void update (float);

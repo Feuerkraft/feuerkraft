@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.11 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: guile.cxx,v 1.12 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -229,6 +229,39 @@ SCM  property2scm(const Property& property)
       return SCM_UNSPECIFIED;
       break;
     }
+}
+
+void enable_debug()
+{
+#if 0 // OLD Guile
+  SCM_DEVAL_P = 1;
+  SCM_BACKTRACE_P = 1;
+  SCM_RECORD_POSITIONS_P = 1;
+  SCM_RESET_DEBUG_MODE;
+#else
+  gh_eval_str("(debug-enable 'debug)"
+              "(debug-enable 'backtrace)"
+              "(read-enable  'positions)");
+#endif
+}
+
+/** Disable all debugging */
+void disable_debug()
+{
+  gh_eval_str("(debug-disable 'debug)"
+              "(debug-disable 'backtrace)"
+              "(read-disable  'positions)");
+}
+
+void enable_readline()
+{
+#ifdef WITH_STATIC_READLINE
+  std::cout << "Loading readline... " << std::endl;
+  scm_init_readline();
+#endif
+
+  gh_eval_str("(use-modules (ice-9 readline))"
+              "(activate-readline)");
 }
 
 } // namespace Guile

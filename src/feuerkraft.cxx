@@ -140,27 +140,20 @@ public:
 	window.get_gc()->clear();
 
 	resources = new ResourceManager ();
-        
-        KeyboardManager::instance();
         //Fonts::init();
-        
-	std::cout << "Trying load and destroy of a sprite" << std::endl;
-	resources->get_sprite("feuerkraft/tank2_shadow");
-	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
-        
-        BuildingTypeManager buildingtypemanager;
-        
-        SCM_DEVAL_P = 1;
-        SCM_BACKTRACE_P = 1;
-        SCM_RECORD_POSITIONS_P = 1;
-        SCM_RESET_DEBUG_MODE;
-        
-#ifdef WITH_STATIC_READLINE
-        std::cout << "Loading readline... " << std::endl;
-        scm_init_readline();
-#endif
+
+        Guile::enable_debug();
+        Guile::enable_readline();
+
         // Load helper functions
         scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
+
+        KeyboardManager::instance();
+        BuildingTypeManager buildingtypemanager;
+        Screen    screen;
+
+	//JoystickController controller(heli);
+        CollisionManager collision_mgr;
 
         // Deserialize the game world
 	GameWorld* world;
@@ -174,8 +167,7 @@ public:
 	  SCM lst  = scm_read (fdes);
 
           OutputWorldBuilder builder;
-          SexprWorldReader sexpr(lst, &builder);
-          sexpr.run();
+          SexprWorldReader(lst, &builder).run();
 
 	  GameWorldData data(lst);
 	  world = new GameWorld (lst);
@@ -186,31 +178,17 @@ public:
 	}
 	// End: Test of parsing code
         
-	Screen    screen;
-
 	Tank* tank2 = new Tank(CL_Vector (800, 200), 5,
                                "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank1 = new Tank(CL_Vector (560, 1245), 5, 
                                "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
         AIVehicle* ai_vehicle = new AIVehicle(CL_Vector(342, 1241));
-
 	Helicopter* heli = new Helicopter(CL_Vector (320, 200));
-	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
-
 	KeyboardController kcontroller (&window, current_controllable);
-	//JoystickController controller(heli);
-
-	//Radar radar1 (CL_Vector(800-64, 64), 
-	//world, tank1);
-
-	//Radar radar2 (CL_Vector(64, 64), 
-	//world, tank2);
-
-        CollisionManager collision_mgr;
 
         GameObj* tree = GameObjFactory::instance()->create(1, AList()
                                                            .set_float("x-pos", 50.0f)
@@ -219,65 +197,18 @@ public:
 	world->add(tree);
         world->add(new RobotTank(660, 1245, 0, 100.0f));
         
-        PropertySet* props = tree->get_properties();
-        if (props)
-          {
-            std::cout << "Tree Properties: " << std::endl;
-                  
-            for (PropertySet::iterator i = props->begin(); i != props->end(); ++i)
-              {
-                std::cout << "  " << i->first << ": "; 
-                switch(i->second->get_type())
-                  {
-                  case Property::T_BOOL:
-                    std::cout << i->second->get_bool() << std::endl;
-                    break;
-
-                  case Property::T_INT:
-                    std::cout << i->second->get_int() << std::endl;
-                    break;
-
-                  case Property::T_FLOAT:
-                    std::cout << i->second->get_float() << std::endl;
-                    break;                    
-                    
-                  case Property::T_STRING:
-                    std::cout << i->second->get_string() << std::endl;
-                    break;
-
-                  default:
-                    std::cout << "  <unhandled>" << std::endl;
-                    break;
-                  }
-              }
-            std::cout << "=================" << std::endl;
-          }
-
-	boost::shared_ptr<GuiObj> radar 
-	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
-						 world, current_vehicle));
-	screen.add (radar);
-	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (current_vehicle)));
-	//View view (world, 10, 10, 790, 590);
+        screen.add (new Radar (CL_Vector(64, 64), current_vehicle));
+	screen.add (new VehicleStatus (current_vehicle));
 
 	world->add (jeep);
 	world->add (heli);
-	//world->add (heli2);
 	world->add (tank1);
 	world->add (ai_vehicle);
 	world->add (tank2);
 	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
-	//world->add (new Background (world, resources->get_sprite("feuerkraft/cloudshadow"), 150.0f));
 	world->add (new Playfield ());
 	world->add (new Flag (CL_Vector(200.0f, 200.f)));
-
 	world->add (new Ambulance());
-	
-	for (int i = 0; i < 20; ++i)
-	  {
-	    world->add (new Stone (CL_Vector (rand () % 2048 - 1024,
-                                              rand () % 2048 - 1024)));
-	  }
 
 	world->add(new Soldier(CL_Vector (200, 200)));
 	world->add(new Soldier(CL_Vector (300, 300)));
@@ -302,9 +233,6 @@ public:
 	view.set_view (400, 300);
 
 	vehicle_view = &view;
-	
-	//VehicleView view1 (world, heli, 0, 0, 399, 600);
-	//VehicleView view2 (world, current_vehicle, 400, 0, 800, 600);
 	
 	int start_time = CL_System::get_time ();
 	int frames = 0;

@@ -1,4 +1,4 @@
-//  $Id: building_data.hxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: building_data.hxx,v 1.4 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,6 @@
 #define BUILDINGDATA_HXX
 
 #include <guile/gh.h>
-#include "../boost/dummy_ptr.hpp"
 
 class Building;
 class GameWorld;

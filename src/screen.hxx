@@ -1,4 +1,4 @@
-//  $Id: screen.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: screen.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,6 @@
 #define SCREEN_HH
 
 #include <vector>
-#include "boost/smart_ptr.hpp"
-#include "boost/dummy_ptr.hpp"
 #include "gui_obj.hxx"
 
 /** A screen is a collection of gui objects, it basically represents a
@@ -31,8 +29,8 @@ class Screen
   : public GuiObj
 {
 private:
-  std::vector<boost::shared_ptr<GuiObj> > gui_objs;
-  typedef std::vector<boost::shared_ptr<GuiObj> >::iterator GuiObjIter;
+  std::vector<GuiObj*> gui_objs;
+  typedef std::vector<GuiObj*>::iterator GuiObjIter;
   
 public:
   Screen ();
@@ -41,7 +39,7 @@ public:
   virtual void draw (CL_GraphicContext* gc);
   virtual void update (float delta);
 
-  virtual void add (boost::shared_ptr<GuiObj> obj);
+  virtual void add (GuiObj* obj);
 };
 
 #endif

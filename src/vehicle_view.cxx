@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include "vehicle_view.hxx"
 
-VehicleView::VehicleView (boost::dummy_ptr<Vehicle> arg_vehicle, 
+VehicleView::VehicleView (VehiclePtr arg_vehicle, 
 			  int x1, int y1, int x2, int y2, CL_GraphicContext* arg_gc) :
   View (x1, y1, x2, y2,
 	int(-arg_vehicle->get_pos ().x), int(-arg_vehicle->get_pos ().y),
@@ -65,7 +65,7 @@ VehicleView::update (float delta)
 }
 
 void
-VehicleView::set_vehicle (boost::dummy_ptr<Vehicle> arg_vehicle)
+VehicleView::set_vehicle (VehiclePtr arg_vehicle)
 {
   vehicle = arg_vehicle;
 }

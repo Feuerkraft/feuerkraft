@@ -1,4 +1,4 @@
-//  $Id: custom_building.hxx,v 1.2 2003/05/09 14:13:54 grumbel Exp $
+//  $Id: custom_building.hxx,v 1.3 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,8 +49,8 @@ public:
   int get_x_pos () { return x_pos; }
   int get_y_pos () { return y_pos; }
 
-  void draw(boost::dummy_ptr<View>);
-  void draw_energie(boost::dummy_ptr<View> view);
+  void draw(ViewPtr);
+  void draw_energie(ViewPtr view);
 
   void update(float);
 

@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: building.hxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,14 +20,19 @@
 #ifndef BUILDING_HXX
 #define BUILDING_HXX
 
-#include "../boost/dummy_ptr.hpp"
 #include "building_data.hxx"
 
-class View;
+// Begin: Forward declarations
 class GameWorld;
 class Projectile;
 class Radar;
 class PropertySet;
+
+class View;
+typedef View* ViewPtr;
+class Radar;
+typedef Radar* RadarPtr;
+// End: Forward declarations
 
 class Building
 {
@@ -53,11 +58,11 @@ public:
   virtual BuildingData* get_data () { return 0; }
 
   // Draw the object onto the screen
-  virtual void draw (boost::dummy_ptr<View> view) =0;
+  virtual void draw (ViewPtr view) =0;
 
-  virtual void draw_energie (boost::dummy_ptr<View> view) {}
+  virtual void draw_energie (ViewPtr view) {}
   
-  virtual void draw_radar (boost::dummy_ptr<Radar> radar) {}
+  virtual void draw_radar (RadarPtr radar) {}
 
   // Update the object once a game loop
   virtual void update (float) =0;

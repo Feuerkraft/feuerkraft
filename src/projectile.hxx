@@ -1,4 +1,4 @@
-//  $Id: projectile.hxx,v 1.6 2003/05/11 20:24:19 grumbel Exp $
+//  $Id: projectile.hxx,v 1.7 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef PROJECTILE_HH
 #define PROJECTILE_HH
 
-#include "boost/dummy_ptr.hpp"
 #include "vehicle.hxx"
 #include "resource_manager.hxx"
 
@@ -36,15 +35,14 @@ private:
   /** Pointer back to the parent objects which created this
       projectile. Its used to avoid friendly fire (aka shooting
       yourself in the food). */
-  boost::dummy_ptr<GameObj> parent;
+  GameObjPtr parent;
 
 public:
-  Projectile(boost::dummy_ptr<GameObj>  p, 
-             const CL_Vector& arg_pos, const CL_Vector& arg_velocity);
+  Projectile(GameObjPtr p, const CL_Vector& arg_pos, const CL_Vector& arg_velocity);
   virtual ~Projectile();
 
   virtual CL_Vector get_pos () { return pos; }
-  void draw (View* view);
+  void draw (ViewPtr view);
   void update (float);
   bool removable ();
 

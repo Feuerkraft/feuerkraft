@@ -1,4 +1,4 @@
-//  $Id: base.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: base.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../radar.hxx"
+#include "../resource_manager.hxx"
 #include "base.hxx"
-#include "resource_manager.hxx"
 
 Base::Base (const BaseData& data)
   : Building (data.x_pos, data.y_pos),
@@ -35,13 +35,13 @@ Base::~Base ()
 }
 
 void
-Base::draw (boost::dummy_ptr<View> view)
+Base::draw (ViewPtr view)
 {
   view->draw (&sprite, pos);
 }
 
 void
-Base::draw_radar (boost::dummy_ptr<Radar> radar)
+Base::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 4);
 }

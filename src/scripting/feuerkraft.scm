@@ -2,9 +2,6 @@
 ;; make there handling easier on the scheme side, the C version is
 ;; still accessible via the 'c:' prefix.
 
-(use-modules (ice-9 readline))
-(activate-readline)
-
 (display "### Loading helper function...")(newline)
 
 (define c:comm-send-message comm-send-message)

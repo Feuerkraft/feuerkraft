@@ -38,4 +38,9 @@ EXTRA_DIST = feuerkraft_wrap.cxx
 feuerkraft_wrap.cxx: feuerkraft.i  $(command_source)
 	$(SWIG) -guile -c++  -o $@ $<
 
+# We override the default compile command to skip all the warnings
+# that compiling the wrappers causes.
+feuerkraft_wrap.o : feuerkraft_wrap.cxx
+	$(CXX) -c -O2 -o $@ $<
+
 # EOF #

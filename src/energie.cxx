@@ -1,4 +1,4 @@
-//  $Id: energie.cxx,v 1.4 2003/05/08 23:02:09 grumbel Exp $
+//  $Id: energie.cxx,v 1.5 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,7 +43,7 @@ Energie::Energie (int arg_energie) :
 }
 
 void
-Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
+Energie::draw (ViewPtr view, int x_pos, int y_pos)
 {
   int time_diff = CL_System::get_time () - last_change ;
 

@@ -1,4 +1,4 @@
-//  $Id: robot_tank.cxx,v 1.1 2003/05/14 08:48:48 grumbel Exp $
+//  $Id: robot_tank.cxx,v 1.2 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Core/Math/cl_vector.h>
+#include "view.hxx"
 #include "math.hxx"
 #include "resource_manager.hxx"
 #include "robot_tank.hxx"
@@ -57,6 +59,8 @@ RobotTank::update (float delta)
     case T_BREAK:
       velocity -= max_deceleration * delta;
       break;
+    default:
+      assert(false);
     }
 
   if (velocity < 0)
@@ -76,6 +80,8 @@ RobotTank::update (float delta)
     case S_RIGHT:
       orientation -= max_steering * delta;
       break;
+    default:
+      assert(false);
     }
 
   // update position

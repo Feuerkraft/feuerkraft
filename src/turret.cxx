@@ -65,14 +65,13 @@ Turret::update (float delta)
 
       if (floppy)
 	{
-	  GameWorld::current()->add (new Projectile (boost::dummy_ptr<GameObj>(tank.get()), 
-                                                     tank->get_pos ()
-				      + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
+	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
+                                                     + CL_Vector (0.0, -5.0, 0.0).rotate(rot_angle, CL_Vector (0.0, 0.0, 1.0)),
                                                      dir));
 	}
       else
 	{
-	  GameWorld::current()->add (new Projectile (tank.get(), tank->get_pos ()
+	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
                                                      + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
                                                      dir));
 	}

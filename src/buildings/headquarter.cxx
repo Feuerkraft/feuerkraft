@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: headquarter.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #include "../radar.hxx"
 #include "../flag.hxx"
 #include "../explosion.hxx"
+#include "../resource_manager.hxx"
 #include "headquarter.hxx"
-#include "resource_manager.hxx"
 
 Headquarter::Headquarter (const HeadquarterData& data)
   : Building (data.x_pos, data.y_pos),
@@ -51,14 +51,14 @@ Headquarter::update (float delta)
 }
 
 void 
-Headquarter::draw (boost::dummy_ptr<View> view)
+Headquarter::draw (ViewPtr view)
 {
-  view->draw (current_sur.get(), pos);
+  view->draw (current_sur, pos);
   energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 
 void
-Headquarter::draw_radar (boost::dummy_ptr<Radar> radar)
+Headquarter::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 4);
 }

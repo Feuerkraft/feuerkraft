@@ -1,4 +1,4 @@
-//  $Id: level_map.hxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: level_map.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,6 @@
 #ifndef LEVELMAP_HXX
 #define LEVELMAP_HXX
 
-#include "boost/dummy_ptr.hpp"
 #include "gui_obj.hxx"
 
 class GameWorld;

@@ -1,4 +1,4 @@
-//  $Id: property.hxx,v 1.3 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: property.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -65,6 +65,10 @@ public:
   int   get_int()  const;
   float get_float() const;
   std::string get_string() const;
+
+  /** @return the value of the property as string. If it is not a
+      T_STRING, it is converted to a string on return */
+  std::string to_string() const;
 
   friend std::ostream& operator<<(std::ostream& s, const Property& property);
 };

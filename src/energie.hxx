@@ -1,4 +1,4 @@
-//  $Id: energie.hxx,v 1.4 2003/05/08 23:02:09 grumbel Exp $
+//  $Id: energie.hxx,v 1.5 2003/05/18 09:38:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,6 @@
 
 #include <ClanLib/Core/System/system.h>
 
-#include "boost/dummy_ptr.hpp"
 #include "view.hxx"
 
 class Energie
@@ -38,7 +37,7 @@ public:
 
   void set_max_energie(float max_energie);
 
-  void draw (boost::dummy_ptr<View> view, int x_pos, int y_pos);
+  void draw (ViewPtr view, int x_pos, int y_pos);
   operator int () { return int(energie); }
 
   void operator--() { 

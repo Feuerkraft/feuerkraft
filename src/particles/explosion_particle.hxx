@@ -1,4 +1,4 @@
-//  $Id: explosion_particle.hxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: explosion_particle.hxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define EXPLOSIONPARTICLE_HXX
 
 #include <ClanLib/display.h>
+#include "view.hxx"
 #include "particle.hxx"
 #include "../resource_manager.hxx"
 

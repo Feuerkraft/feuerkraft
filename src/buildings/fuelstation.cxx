@@ -1,4 +1,4 @@
-//  $Id: fuelstation.cxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: fuelstation.cxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,11 +18,11 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <cmath>
-#include "fuelstation.hxx"
-#include "game_obj_manager.hxx"
+#include "../game_obj_manager.hxx"
 #include "../radar.hxx"
 #include "../vehicle.hxx"
-#include "resource_manager.hxx"
+#include "../resource_manager.hxx"
+#include "fuelstation.hxx"
 
 Fuelstation::Fuelstation(const FuelstationData& data)
   : Building(data.x_pos, data.y_pos),
@@ -37,7 +37,7 @@ Fuelstation::~Fuelstation ()
 }
 
 void 
-Fuelstation::draw (boost::dummy_ptr<View> view)
+Fuelstation::draw (ViewPtr view)
 {
   view->draw (&fuelstation, pos);
   if (refueling)
@@ -49,7 +49,7 @@ Fuelstation::draw (boost::dummy_ptr<View> view)
 }
 
 void
-Fuelstation::draw_radar (boost::dummy_ptr<Radar> radar)
+Fuelstation::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 4, 0, 0, 1.0f);
 }

@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.7 2003/05/11 20:24:19 grumbel Exp $
+//  $Id: projectile.cxx,v 1.8 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include "property_set.hxx"
 #include "collideable.hxx"
+#include "view.hxx"
 #include "collision_manager.hxx"
 #include "explosion.hxx"
 #include "buildings/building.hxx"
@@ -27,7 +28,7 @@
 #include "projectile.hxx"
 #include "resource_manager.hxx"
 
-Projectile::Projectile (boost::dummy_ptr<GameObj> p,
+Projectile::Projectile (GameObjPtr p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
   : sur (resources->get_sprite("feuerkraft/projectile")),
     tmp_pos (arg_pos),
@@ -97,7 +98,7 @@ Projectile::detonate ()
 void
 Projectile::on_collision(GameObj* obj)
 {
-  if (Projectile::parent.get () != obj)
+  if (Projectile::parent != obj)
     {
       std::cout << "Projectile " << get_id() << " touched gameobj " << obj->get_id() << std::endl;
       Collideable* collideable = dynamic_cast<Collideable*>(obj);

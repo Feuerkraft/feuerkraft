@@ -1,4 +1,4 @@
-//  $Id: smoke_particle.hxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: smoke_particle.hxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef SMOKEPARTICLE_HXX
 #define SMOKEPARTICLE_HXX
 
+#include "../view.hxx"
 #include "particle.hxx"
 #include "resource_manager.hxx"
 

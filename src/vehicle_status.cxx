@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.cxx,v 1.3 2003/05/09 14:24:04 grumbel Exp $
+//  $Id: vehicle_status.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "resource_manager.hxx"
 #include "vehicle_status.hxx"
 
-VehicleStatus::VehicleStatus (boost::dummy_ptr<Vehicle> v)
+VehicleStatus::VehicleStatus (VehiclePtr v)
   : ammo (resources->get_sprite("feuerkraft/ammo")),
     fuel (resources->get_sprite("feuerkraft/fuel")),
     vehicle (v)

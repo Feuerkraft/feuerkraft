@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: tower.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,7 +45,7 @@ Tower::~Tower ()
 
 // Draw the object onto the screen
 void
-Tower::draw (boost::dummy_ptr<View> view)
+Tower::draw (ViewPtr view)
 {
   //std::cout << "Tower::draw" << std::endl;
 
@@ -69,13 +69,13 @@ Tower::draw (boost::dummy_ptr<View> view)
 }
   
 void
-Tower::draw_energie (boost::dummy_ptr<View> view)
+Tower::draw_energie (ViewPtr view)
 {
   energie.draw (view, int(pos.x), int (pos.y) - 40);
 }
 
 void
-Tower::draw_radar (boost::dummy_ptr<Radar> radar)
+Tower::draw_radar (RadarPtr radar)
 {
   radar->draw_blip (pos, 4);
 }

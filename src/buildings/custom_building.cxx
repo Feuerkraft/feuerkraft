@@ -1,4 +1,4 @@
-//  $Id: custom_building.cxx,v 1.3 2003/05/09 14:13:54 grumbel Exp $
+//  $Id: custom_building.cxx,v 1.4 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,14 +42,14 @@ CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
 }
 
 void
-CustomBuilding::draw(boost::dummy_ptr<View> view)
+CustomBuilding::draw(ViewPtr view)
 {
   view->draw(sprite, CL_Vector(x_pos * 40 + get_map_width()*20, 
                                y_pos * 40 + get_map_height()*20)); // FIXME: Hardcoded tilesize
 }
 
 void
-CustomBuilding::draw_energie(boost::dummy_ptr<View> view)
+CustomBuilding::draw_energie(ViewPtr view)
 {
   energie.draw(view, x_pos*40 + get_map_width()*20, (y_pos*40));
 }

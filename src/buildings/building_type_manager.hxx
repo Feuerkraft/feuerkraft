@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: building_type_manager.hxx,v 1.3 2003/05/18 09:38:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,7 +78,7 @@ class BuildingTypeManager
 private:
   static BuildingTypeManager* current_;
 public:
-  static BuildingTypeManager* current() { return current_; }
+  static BuildingTypeManager* current() { assert(current_); return current_; }
 private:
   int next_id;
 

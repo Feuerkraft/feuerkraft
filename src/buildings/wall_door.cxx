@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,9 @@
 
 #include "../vehicle.hxx"
 #include "../view.hxx"
-#include "game_obj_manager.hxx"
+#include "../game_obj_manager.hxx"
+#include "../resource_manager.hxx"
 #include "wall_door.hxx"
-#include "resource_manager.hxx"
 
 WallDoor::WallDoor(const WallDoorData& data)
   : Building (data.x_pos, data.y_pos)
@@ -49,14 +49,14 @@ WallDoor::~WallDoor ()
 }
 
 void
-WallDoor::draw (boost::dummy_ptr<View> view)
+WallDoor::draw (ViewPtr view)
 {
   if (status != S_OPENED)
     view->draw (sprite, pos);
 }
 
 void
-WallDoor::draw_radar (boost::dummy_ptr<Radar> radar)
+WallDoor::draw_radar (RadarPtr radar)
 {
 }
 
