@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Helicopter.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,14 +53,13 @@ Helicopter::draw (View* view)
   if (!destroyed)
     {
       const float circle = 6.2831854f;
-      int frame = (int(fmod(angle, circle) / circle * 16) + 16) % 16;
   
-      heli_shadow->draw(view->get_x_offset () + pos.x + 25.0f,
-			view->get_y_offset () + pos.y + 50.0f,
+      heli_shadow->draw(int(view->get_x_offset () + pos.x + 25.0f),
+			int(view->get_y_offset () + pos.y + 50.0f),
 			angle/(circle/2.0)*180);
 
-      heli->draw(view->get_x_offset () + pos.x,
-		 view->get_y_offset () + pos.y,
+      heli->draw(int(view->get_x_offset () + pos.x),
+		 int(view->get_y_offset () + pos.y),
 		 angle/(circle/2.0)*180);
   /*
       view->draw (heli,
@@ -69,16 +68,16 @@ Helicopter::draw (View* view)
 		  frame);*/
 
       view->draw (rotor,
-		  pos.x - rotor.get_width ()/2,
-		  pos.y - rotor.get_height ()/2,
+		  int(pos.x - rotor.get_width ()/2),
+		  int(pos.y - rotor.get_height ()/2),
 		  (rotor_count = (rotor_count + 1) % 2));
-      energie.draw (view, pos.x, pos.y - 40);
+      energie.draw (view, int(pos.x), int(pos.y - 40));
     }
   else
     {
       view->draw (helidestroyed,
-		  pos.x - helidestroyed.get_width ()/2,
-		  pos.y - helidestroyed.get_height ()/2);
+		  int(pos.x - helidestroyed.get_width ()/2),
+		  int(pos.y - helidestroyed.get_height ()/2));
     }
 
   /*

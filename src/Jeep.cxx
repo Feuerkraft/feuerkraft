@@ -1,4 +1,4 @@
-//  $Id: Jeep.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Jeep.cxx,v 1.2 2001/12/12 00:25:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -59,10 +59,10 @@ Jeep::draw (View* view)
   const float circle = 6.2831854f;
   //int frame = (int(fmod(angle, circle) / circle * jeep.get_num_frames ()) + 16) % 16;
   
-  jeep->draw(view->get_x_offset () + pos.x,
-	     view->get_y_offset () + pos.y,
+  jeep->draw(int(view->get_x_offset () + pos.x),
+	     int(view->get_y_offset () + pos.y),
 	     angle/(circle/2.0)*180);
-  energie.draw (view, pos.x, pos.y - 30);
+  energie.draw (view, int(pos.x), int(pos.y - 30));
 }
 
 void 
