@@ -64,9 +64,49 @@ Tank::draw (View* view)
 		      frame);
       turret->draw (view);
 
+      // Draw Collision rect
+      CL_Vector x1 (-30, -15);
+      CL_Vector y1 (-30, 15);
+      CL_Vector x2 (30, -15);
+      CL_Vector y2 (30, 15);
+
+      std::cout << "Angle: " << angle << std::endl;
+      x1 = x1.rotate (angle - fmod(angle, circle/16.0),
+		 CL_Vector (0.0, 0.0, 1.0));
+      y1 = y1.rotate (angle - fmod(angle, circle/16.0),
+		 CL_Vector (0.0, 0.0, 1.0));
+      x2 = x2.rotate (angle - fmod(angle, circle/16.0),
+		 CL_Vector (0.0, 0.0, 1.0));
+      y2 = y2.rotate (angle - fmod(angle, circle/16.0),
+		 CL_Vector (0.0, 0.0, 1.0));      
+
+      x1 += pos;
+      y1 += pos;
+      x2 += pos;
+      y2 += pos;
+
+      CL_Display::draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+      CL_Display::draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
+      CL_Display::draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+      CL_Display::draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);
+
       energie.draw (view, 
 		    view->get_x_offset () + pos.x,
 		    view->get_y_offset () + pos.y - 40);
+    }
+}
+
+void 
+Tank::explode ()
+{
+  world->add (new Explosion (pos, Explosion::MEDIUM));
+  destroyed = true;
+  Tank* tank = new Tank (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  world->add (tank);
+  if (get_controller ())
+    {
+      get_controller ()->set_controllable (tank);
+      tank->set_controller (get_controller ());
     }
 }
 
@@ -77,18 +117,8 @@ Tank::update (float delta)
     return;
 
   if (energie <= 0)
-    {
-      world->add (new Explosion (pos, Explosion::MEDIUM));
-      destroyed = true;
-      Tank* tank = new Tank (5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-      world->add (tank);
-      if (get_controller ())
-	{
-	  get_controller ()->set_controllable (tank);
-	  tank->set_controller (get_controller ());
-	}
-    }
-
+    explode ();
+  
   turret->set_world (world);
   turret->update (delta);
 

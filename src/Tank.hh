@@ -41,6 +41,8 @@ public:
   void draw (View* view);
   void update (float);
 
+  void explode ();
+
   void increase_angle (float delta);
   void decrease_angle (float delta);
   void set_angle (float);

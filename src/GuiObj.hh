@@ -1,5 +1,6 @@
-//  $Id: JoystickController.hh,v 1.6 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: GuiObj.hh,v 1.1 2001/05/01 10:45:48 grumbel Exp $
 // 
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -16,27 +17,18 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef JOYSTICKCONTROLLER_HH
-#define JOYSTICKCONTROLLER_HH
+#ifndef GUIOBJ_HH
+#define GUIOBJ_HH
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "Controller.hh"
-
-class JoystickController : public Controller
+class GuiObj
 {
 private:
-  CL_InputAxis* vel_axis;
-  CL_InputAxis* dir_axis;
   
-  CL_InputButton* left_t;
-  CL_InputButton* right_t;
-  CL_InputButton* fire;
-  CL_InputButton* drop_mine;
-
 public:
-  JoystickController (Controllable* obj);
-  virtual void update (float delta);
+  GuiObj() {}
+  virtual ~GuiObj() {}
+  virtual void draw () =0;
+  virtual void update (float delta) =0;
 };
 
 #endif

@@ -35,17 +35,18 @@ soldierdead = data/images/soldierdead.png (type=surface, x=0, y=0, width=16, hei
   
     helicopter = data/images/helicopter.png (type=surface, x=0, y=0, width=186, height=186, array=16x1);
     rotor = data/images/rotor.png (type=surface, x=0, y=0, width=121, height=118,array=2x1);
- helidestroyed = data/images/helidestroyed.png (type=surface, x=0, y=0, width=163, height=105);
+    helidestroyed = data/images/helidestroyed.png (type=surface, x=0, y=0, width=163, height=105);
 
-  jeep = data/images/jeep.png (type=surface, x=0, y=0, width=50, height=50, array=16x1);
+    jeep = data/images/jeep.png (type=surface, x=0, y=0, width=50, height=50, array=16x1);
 
-        flagblue = data/images/flagblue.png (type=surface, x=0, y=0, width=27, height=38);
-        flaggreen = data/images/flaggreen.png (type=surface, x=0, y=0, width=27, height=38);
+    flagblue = data/images/flagblue.png (type=surface, x=0, y=0, width=27, height=38);
+    flaggreen = data/images/flaggreen.png (type=surface, x=0, y=0, width=27, height=38);
 
-     blueflag = data/images/blueflag.png (type=surface, x=0, y=0, width=29, height=23);
- parking = data/images/parking.png (type=surface, x=0, y=0, width=96, height=56);
+    blueflag = data/images/blueflag.png (type=surface, x=0, y=0, width=29, height=23);
+    parking = data/images/parking.png (type=surface, x=0, y=0, width=96, height=56);
+    radar = data/images/radar.png (type=surface, x=0, y=0, width=128, height=128);
 
 
 }
 
-
+// EOF //

@@ -1,4 +1,4 @@
-//  $Id: Projectile.cc,v 1.5 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Projectile.cc,v 1.6 2001/05/01 10:44:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,8 +27,7 @@ Projectile::Projectile (const CL_Vector& arg_pos, const CL_Vector& arg_add) :
   pos (arg_pos),
   tmp_pos (arg_pos),
   add (arg_add),
-  lifetime (20 + rand () % 20 ),
-  active (2)
+  lifetime (20 + rand () % 20 )
 {
   //std::cout << "Add: " << add.x << " " << add.y << std::endl;
 }
@@ -67,15 +66,10 @@ Projectile::update (float delta)
   if (lifetime < 0)
     detonate ();
 
-
-  if (active > 0)
+  for (std::list<boost::shared_ptr<GameObj> >::iterator j = world->get_objects ().begin ();
+       j != world->get_objects ().end (); ++j)
     {
-      --active;
-    }
-  else
-    {
-      for (std::list<boost::shared_ptr<GameObj> >::iterator j = world->get_objects ().begin ();
-	   j != world->get_objects ().end (); ++j)
+      if (j->get () != parent.get ())
 	{
 	  Collideable* collideable = dynamic_cast<Collideable*>(j->get ());
 	  if (collideable)

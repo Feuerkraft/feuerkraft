@@ -1,4 +1,4 @@
-//  $Id: Jeep.cc,v 1.1 2001/02/24 20:32:12 grumbel Exp $
+//  $Id: Jeep.cc,v 1.2 2001/05/01 10:44:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include "Jeep.hh"
 
+const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
 
 Jeep::Jeep (CL_Vector arg_pos) :
@@ -36,7 +37,8 @@ Jeep::update (float delta)
 {
   CL_Vector vel (-velocity, 0.0, 0.0);
   
-  pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+  pos += vel.rotate (angle - fmod(angle, circle/16.0),
+		     CL_Vector (0.0, 0.0, 1.0)) * delta;
 
   velocity /= 1.03f;
 

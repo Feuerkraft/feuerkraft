@@ -1,4 +1,4 @@
-//  $Id: JoystickController.cc,v 1.6 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: JoystickController.cc,v 1.7 2001/05/01 10:44:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,32 @@
 #include "Tank.hh"
 #include "Turret.hh"
 #include "JoystickController.hh"
+
+JoystickController::JoystickController (Controllable* obj) :
+  Controller (obj),
+  vel_axis(NULL),
+  dir_axis(NULL),
+  left_t(NULL),
+  right_t(NULL),
+  fire(NULL),
+  drop_mine(NULL)
+{
+  if (CL_Input::joysticks.size () >= 1)
+    {
+      std::cout << "Joystick found" << std::endl;
+      vel_axis = CL_Input::joysticks[0]->get_axis (1);
+      dir_axis = CL_Input::joysticks[0]->get_axis (0);
+    
+      left_t = CL_Input::joysticks[0]->get_button (7);
+      right_t = CL_Input::joysticks[0]->get_button (6);
+      fire = CL_Input::joysticks[0]->get_button (4);
+      drop_mine = CL_Input::joysticks[0]->get_button (1);
+    }
+  else
+    {
+      std::cout << "Joystick not found: " << CL_Input::joysticks.size () << std::endl;
+    }
+}
 
 void 
 JoystickController::update (float delta)

@@ -1,4 +1,4 @@
-//  $Id: Projectile.hh,v 1.5 2001/03/16 20:36:06 grumbel Exp $
+//  $Id: Projectile.hh,v 1.6 2001/05/01 10:44:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 //#include <ClanLib/Core/Display/surface.h>
 #include <ClanLib/display.h>
 #include <ClanLib/core.h>
+#include "boost/dummy_ptr.hpp"
 #include "GameObj.hh"
 
 extern CL_ResourceManager* resources;
@@ -35,7 +36,11 @@ private:
   CL_Vector  tmp_pos;
   CL_Vector  add;
   int lifetime;
-  int active;
+  
+  /** Pointer back to the parent objects which created this
+      projectile. Its used to avoid friendly fire (aka shooting
+      yourself in the food). */
+  boost::dummy_ptr<GameObj> parent;
 
 public:
   Projectile (const CL_Vector& arg_pos, const CL_Vector& arg_add);

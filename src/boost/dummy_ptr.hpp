@@ -1,5 +1,6 @@
-//  $Id: JoystickController.hh,v 1.6 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: dummy_ptr.hpp,v 1.1 2001/05/01 10:45:48 grumbel Exp $
 // 
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -16,28 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef JOYSTICKCONTROLLER_HH
-#define JOYSTICKCONTROLLER_HH
+#ifndef DUMMY_PTR_HPP
+#define DUMMY_PTR_HPP
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "Controller.hh"
+#include <assert.h>
 
-class JoystickController : public Controller
+namespace boost
 {
-private:
-  CL_InputAxis* vel_axis;
-  CL_InputAxis* dir_axis;
-  
-  CL_InputButton* left_t;
-  CL_InputButton* right_t;
-  CL_InputButton* fire;
-  CL_InputButton* drop_mine;
-
-public:
-  JoystickController (Controllable* obj);
-  virtual void update (float delta);
-};
+  template<class T> 
+  class dummy_ptr
+  {
+  private:
+    T* data;
+  public:
+    dummy_ptr () { data = 0; }
+    dummy_ptr (T* d) : data (d) {}
+    dummy_ptr (const dummy_ptr& d) : data (d.data) {}
+    T* get () { return data; }
+    T* operator-> () { assert (data); return data; }
+    T& operator* () { assert (data); return *data; }
+  };
+}
 
 #endif
 

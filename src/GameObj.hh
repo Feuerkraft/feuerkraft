@@ -1,4 +1,4 @@
-//  $Id: GameObj.hh,v 1.7 2001/04/07 18:03:50 grumbel Exp $
+//  $Id: GameObj.hh,v 1.8 2001/05/01 10:44:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -60,6 +60,11 @@ public:
 
   //
   virtual int  get_z_pos () { return 0; }
+
+  /* Stuff that is used for the radar and probally for physics later
+     on */
+  virtual float get_physical_mass () { return 1.0; }
+  virtual float get_physical_size () { return 1.0; }
 
   // This is a pseudo constructor which is called when the world pointer is set
   virtual void init () {}

@@ -20,6 +20,7 @@
 #include "Playfield.hh"
 #include "Soldier.hh"
 #include "VehicleView.hh"
+#include "Radar.hh"
 #include "System.hh"
 
 CL_ResourceManager* resources;
@@ -85,15 +86,17 @@ public:
 
 	Tank* tank1 = new Tank(5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank2 = new Tank(5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-	//Helicopter* heli = new Helicopter (CL_Vector (320, 200));
+	Helicopter* heli = new Helicopter (CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
 	JoystickController controller(tank2);
 	KeyboardController kcontroller (tank1);
+
+	Radar radar (CL_Vector(128, 128), &world, tank1);
 	
 	world.add (jeep);
-	//world.add (heli);
+	world.add (heli);
 	//world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
@@ -123,15 +126,17 @@ public:
 
 	View view (&world, 0, 0, 800, 600);
 	view.set_view (400, 300);
+	
 	//VehicleView view1 (&world, heli, 0, 0, 399, 600);
 	//VehicleView view2 (&world, tank1, 400, 0, 800, 600);
 	
-	  int start_time = CL_System::get_time ();
+	int start_time = CL_System::get_time ();
 	int frames = 0;
 
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
+	    CL_System::sleep (50);
 	    delta = (CL_System::get_time () - last_time) / sec_fraction;
 	    last_time = CL_System::get_time ();
 	    world.update (delta);
@@ -144,9 +149,11 @@ public:
 	    view.draw ();
 	    //view1.draw ();
 	    //view2.draw ();
-
 	    //view1.update ();
 	    //view2.update ();
+
+	    radar.draw ();
+	    radar.update (delta);
 	    
 	    controller.update (delta);
 	    kcontroller.update (delta);

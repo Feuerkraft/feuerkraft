@@ -1,5 +1,6 @@
-//  $Id: JoystickController.hh,v 1.6 2001/05/01 10:44:54 grumbel Exp $
+//  $Id: Radar.hh,v 1.1 2001/05/01 10:44:54 grumbel Exp $
 // 
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -16,27 +17,36 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef JOYSTICKCONTROLLER_HH
-#define JOYSTICKCONTROLLER_HH
+#ifndef RADAR_HH
+#define RADAR_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
-#include "Controller.hh"
+#include "boost/dummy_ptr.hpp"
+#include "GameWorld.hh"
+#include "Vehicle.hh"
+#include "GuiObj.hh"
 
-class JoystickController : public Controller
+extern CL_ResourceManager* resources;
+
+class Radar : public GuiObj
 {
 private:
-  CL_InputAxis* vel_axis;
-  CL_InputAxis* dir_axis;
+  boost::dummy_ptr<GameWorld> world;
+  boost::dummy_ptr<Vehicle> vehicle;
+  CL_Surface background;
+  CL_Vector pos;
+  float angle;
   
-  CL_InputButton* left_t;
-  CL_InputButton* right_t;
-  CL_InputButton* fire;
-  CL_InputButton* drop_mine;
-
 public:
-  JoystickController (Controllable* obj);
-  virtual void update (float delta);
+  Radar (const CL_Vector& arg_pos,  boost::dummy_ptr<GameWorld> w, boost::dummy_ptr<Vehicle> v);
+  ~Radar ();
+
+  void draw ();
+  void update (float delta);
+
+private:
+  void draw_vehicle (boost::dummy_ptr<Vehicle> vehicle);
 };
 
 #endif
