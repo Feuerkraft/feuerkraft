@@ -196,10 +196,12 @@ feuerkraft.static.comp: feuerkraft.static
 	strip -s $@
 	upx-ucl -q --best $@
 
-BROWSE:	
+BROWSE:
 	TMPFILE=`tempfile`; \
 	find ./ -name "*.?xx" | sed "s/.\///" | grep -v "old/" | grep -v "feuerkraft_wrap.cxx" | \
-          sort -t . -k 2 -r > $TMPFILE; \
-	ebrowse --files=$TMPFILE
+          sort -t . -k 2 -r > $$TMPFILE; \
+	ebrowse --files=$$TMPFILE; rm -v $$TMPFILE
+
+.PHONY: BROWSE
 
 # EOF #
