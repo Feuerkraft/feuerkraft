@@ -1,4 +1,4 @@
-pkgdatadir = $(datadir)/games/@PACKAGE@/images/
+pkgdatadir = $(datadir)/games/@PACKAGE@/images
 
 SUBDIRS = tiles
 

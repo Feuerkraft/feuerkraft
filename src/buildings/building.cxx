@@ -1,4 +1,4 @@
-//  $Id: building.cxx,v 1.5 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: building.cxx,v 1.6 2003/08/20 00:02:46 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "../property_set.hxx"
+#include "../radar.hxx"
 #include "building.hxx"
 
 Building::Building (const AList& lst)
@@ -39,6 +40,12 @@ Building::register_properties()
 
   properties->register_int("x-pos", &x_pos);
   properties->register_int("y-pos", &y_pos);
+}
+
+void
+Building::draw_radar(Radar& radar)
+{
+  radar.draw_blip(FloatVector2d(x_pos * 40, y_pos * 40), 3, .5f, .5f, .5f);
 }
 
 /* EOF */

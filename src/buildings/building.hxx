@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.12 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: building.hxx,v 1.13 2003/08/20 00:02:46 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -59,7 +59,7 @@ public:
 
   virtual void draw_energie (View& view) {}
   
-  virtual void draw_radar (Radar& radar) {}
+  virtual void draw_radar (Radar& radar);
 
   // Update the object once a game loop
   virtual void update (float) =0;
