@@ -10,10 +10,6 @@ libfeuerkraft_input_a_SOURCES = \
   input_manager_impl.cxx \
   input_manager_custom.hxx \
   input_manager_custom.cxx \
-  input_manager_joystick.hxx \
-  input_manager_joystick.cxx \
-  input_manager_keyboard.hxx \
-  input_manager_keyboard.cxx \
   input_button.hxx \
   input_axis.hxx \
   input_button_input_device.hxx \

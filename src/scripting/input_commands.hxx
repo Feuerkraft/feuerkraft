@@ -44,12 +44,6 @@ float input_get_mouse_world_x();
 /** Return the current mouse y position on the world */
 float input_get_mouse_world_y();
 
-/** Switch game controlls to joystick */
-void input_use_joystick();
-
-/** Switch game controlls to keyboard */
-void input_use_keyboard();
-
 //@}
 
 #endif

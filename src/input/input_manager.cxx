@@ -23,8 +23,6 @@
 #include <sstream>
 #include <ClanLib/Display/joystick.h>
 #include "../command_line_arguments.hxx"
-#include "input_manager_joystick.hxx"
-#include "input_manager_keyboard.hxx"
 #include "input_manager_custom.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
