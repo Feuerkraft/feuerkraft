@@ -22,14 +22,12 @@
 #include <stdexcept>
 #include <sstream>
 #include <ClanLib/Display/joystick.h>
-#include "../command_line_arguments.hxx"
 #include "input_manager_custom.hxx"
 #include "input_manager_player.hxx"
 #include "input_manager_impl.hxx"
 #include "input_recorder.hxx"
 #include "input_manager.hxx"
 
-extern CommandLineArguments* args;
 InputManagerImpl* InputManager::impl = 0;
 InputRecorder* InputManager::recorder = 0;
 
@@ -44,8 +42,8 @@ InputManager::init(const std::string& filename)
 {
   if (!filename.empty())
     {
-      std::cout << "Reading: " << args->controller_file << std::endl;
-      SCM port = scm_open_file(gh_str02scm(args->controller_file.c_str()),
+      std::cout << "InputManager: Reading: " << filename << std::endl;
+      SCM port = scm_open_file(gh_str02scm(filename.c_str()),
                                gh_str02scm("r"));
       SCM lst  = scm_read(port);
 
@@ -59,7 +57,7 @@ InputManager::init(const std::string& filename)
         }
       else
         {
-          std::cout << "Error: not a valid controller file: " << args->controller_file << std::endl;
+          std::cout << "Error: not a valid controller file: " << filename << std::endl;
         }
       scm_close_port(port);
     }

@@ -30,6 +30,8 @@ command_line_arguments.hxx \
 command_line_arguments.cxx \
 color.hxx \
 color.cxx \
+controller_def.cxx \
+controller_def.hxx \
 communication_dialog.hxx \
 communication_dialog.cxx \
 collision_manager.hxx \

@@ -1,5 +1,11 @@
 noinst_LIBRARIES = libfeuerkraft_input.a
 
+libfeuerkraft_input_a_LIBDADD = \
+  @WINDSTILLE_LIBS@
+
+libfeuerkraft_input_a_CPPFLAGS = \
+  @WINDSTILLE_CFLAGS@
+
 libfeuerkraft_input_a_SOURCES = \
   controller.hxx \
   controller.cxx \
@@ -25,8 +31,6 @@ libfeuerkraft_input_a_SOURCES = \
   axis_factory.hxx \
   axis_factory.cxx \
   input_recorder.hxx \
-  input_recorder.cxx \
-  controller_def.cxx \
-  controller_def.hxx
+  input_recorder.cxx
 
 # EOF #

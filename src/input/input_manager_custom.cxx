@@ -25,11 +25,11 @@
 
 #include "../guile.hxx"
 #include "../assert.hxx"
+#include "../controller_def.hxx"
 #include "input_button_input_device.hxx"
 #include "input_axis_input_device.hxx"
 #include "button_factory.hxx"
 #include "axis_factory.hxx"
-#include "controller_def.hxx"
 
 #include "input_manager_custom.hxx"
 

@@ -21,7 +21,7 @@
 #define HEADER_CONTROLLER_HXX
 
 #include <vector>
-#include "controller_def.hxx"
+#include "../controller_def.hxx"
 #include "input_event.hxx"
 
 /** The Controller class presents the current state of the controller
