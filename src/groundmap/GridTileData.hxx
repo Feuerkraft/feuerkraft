@@ -1,4 +1,4 @@
-//  $Id: GridTileData.hxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
+//  $Id: GridTileData.hxx,v 1.3 2002/03/26 12:51:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef GRIDTILEDATA_HXX
 #define GRIDTILEDATA_HXX
 
+#include <iostream>
 #include "GroundType.hxx"
 
 class GridTile;
@@ -50,9 +51,12 @@ public:
   }
 
   GridTile* create ();
+
+  bool operator==(const GridTileData& a);
 };
 
 bool operator<(const GridTileData& a, const GridTileData& b);
+std::ostream& operator<<(std::ostream& s, const GridTileData& b);
 
 #endif
 

@@ -292,7 +292,9 @@ section tiles
 	section  ffdd {
 		frame1 = images/tiles/ffdd.png (type=surface);
 	} 
-
+	section  ddff {
+		frame1 = images/tiles/ddff.png (type=surface);
+	} 
 	section  fffd {
 		frame1 = images/tiles/fffd.png (type=surface);
 	} 
@@ -414,6 +416,38 @@ section tiles
 	section  smss1{
 		frame1 = images/tiles/smss1.png (type=surface);
 	}  
+	section  ssmm1{
+		frame1 = images/tiles/ssmm1.png (type=surface);
+	}  
+	section  ssmm2{
+		frame1 = images/tiles/ssmm2.png (type=surface);
+	}  
+	section  ssmm3{
+		frame1 = images/tiles/ssmm3.png (type=surface);
+	}  
+	section  mssm {
+		frame1 = images/tiles/mssm.png (type=surface);
+	}  
+	section  msmm1 {
+		frame1 = images/tiles/msmm1.png (type=surface);
+	}  
+
+	section  ssms1 {
+		frame1 = images/tiles/ssms1.png (type=surface);
+	}  
+	section  ssms2 {
+		frame1 = images/tiles/ssms2.png (type=surface);
+	}  
+	section  sssm1 {
+		frame1 = images/tiles/sssm1.png (type=surface);
+	}  
+	section  sssm2 {
+		frame1 = images/tiles/sssm2.png (type=surface);
+	}  
+	section  msss1 {
+		frame1 = images/tiles/msss1.png (type=surface);
+	}  
+
 }
 
 // EOF //

@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.cxx,v 1.1 2002/03/26 10:42:47 grumbel Exp $
+//  $Id: GridTileGenerator.cxx,v 1.2 2002/03/26 12:51:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,14 +50,18 @@ GridTileGenerator::parse_line (SCM desc)
 
   GridTileData gdata = scm2GridTileData (data);
 
-  TileTable::iterator i = tiles.find (gdata);
+  TileTable::iterator i;
+  for (i = tiles.begin (); i != tiles.end (); ++i)
+    if (i->first == gdata)
+      break;
+
   if (i != tiles.end ())
     {
-      std::cout << "GridTileGenerator: collision in file" << std::endl;
+      std::cout << "GridTileGenerator: collision in file: " << gdata << std::endl;
     }
   else
     {
-      tiles[gdata] = scm2GridTileVector (lst);
+      tiles.push_back (TileTableEntry(gdata, scm2GridTileVector (lst)));
     }
 }
 
@@ -123,7 +127,11 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
 GridTile*
 GridTileGenerator::create (const GridTileData& data)
 {
-  TileTable::iterator i = tiles.find (data);
+  TileTable::iterator i;
+  for (i = tiles.begin (); i != tiles.end (); ++i)
+    if (i->first == data)
+      break;
+
   if (i != tiles.end ())
     {
       if (i->second.size () > 0)

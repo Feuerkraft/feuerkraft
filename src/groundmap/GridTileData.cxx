@@ -1,4 +1,4 @@
-//  $Id: GridTileData.cxx,v 1.2 2002/03/25 15:32:58 grumbel Exp $
+//  $Id: GridTileData.cxx,v 1.3 2002/03/26 12:51:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,7 @@ GridTileData::create ()
   return 0;// FIXME: Unused
 }
 
-bool operator<(const GridTileData& a, const GridTileData& b)
+static bool Gridless(const GridTileData& a, const GridTileData& b)
 {
   if (a.ul < b.ul)
     return true;
@@ -50,6 +50,32 @@ bool operator<(const GridTileData& a, const GridTileData& b)
 	  return false;
 
   return false;
+}
+
+bool operator<(const GridTileData& a, const GridTileData& b)
+{
+  /*
+  std::cout << "if ("  << (int)a.ul << (int)a.ur << (int)a.br  << (int)a.bl
+	    << " < " 
+	    << (int)b.ul << (int)b.ur << (int)b.br << (int)b.bl
+	    << ") != " << Gridless (a, b) << ": " << "print \"Error\""<< std::endl;
+  */
+  return Gridless (a, b);
+}
+
+std::ostream& operator<<(std::ostream& s, const GridTileData& b)
+{
+  s << b.ul << b.ur << b.br << b.bl;
+  return s;
+}
+
+bool
+GridTileData::operator==(const GridTileData& b)
+{
+  return (this->ur == b.ur
+	  && this->ul == b.ul
+	  && this->bl == b.bl
+	  && this->br == b.br); 
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: GridTileGenerator.hxx,v 1.1 2002/03/26 10:42:47 grumbel Exp $
+//  $Id: GridTileGenerator.hxx,v 1.2 2002/03/26 12:51:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,7 +33,8 @@ class GridTileGenerator
 private:
 
 public:
-  typedef std::map<GridTileData, std::vector<GridTile*> > TileTable;
+  typedef std::pair<GridTileData, std::vector<GridTile*> > TileTableEntry;
+  typedef std::vector<std::pair<GridTileData, std::vector<GridTile*> > > TileTable;
   TileTable tiles;
 
   GridTileGenerator (std::string filename);
