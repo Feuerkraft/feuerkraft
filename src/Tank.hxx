@@ -49,6 +49,7 @@ public:
   virtual ~Tank ();
   
   void draw (View* view);
+  void draw_energie (View* view);
   void update (float);
 
   void explode ();

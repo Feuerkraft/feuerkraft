@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.4 2002/03/23 16:10:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -136,6 +136,14 @@ GameWorld::draw (View* view)
        i != objects.end (); ++i)
     (*i)->draw (view);
   //for_each (objects.begin (), objects.end (), bind2nd(mem_fun (&GameObj::draw), view));
+}
+
+void 
+GameWorld::draw_energie (View* view)
+{
+  for (ObjIter::iterator i = objects.begin (); 
+       i != objects.end (); ++i)
+    (*i)->draw_energie (view);
 }
 
 struct is_removable

@@ -1,4 +1,4 @@
-//  $Id: Tower.hxx,v 1.5 2002/03/23 12:20:43 grumbel Exp $
+//  $Id: Tower.hxx,v 1.6 2002/03/23 16:10:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,6 +47,7 @@ public:
   
   // Draw the object onto the screen
   void draw (boost::dummy_ptr<View> view);
+  void draw_energie (boost::dummy_ptr<View> view);
 
   // Update the object once a game loop
   void update (float);
@@ -58,6 +59,8 @@ public:
   int get_map_height () { return 2; }
 
   void collide (Projectile*);
+
+  bool alive ();
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.5 2002/03/23 12:20:43 grumbel Exp $
+//  $Id: Building.hxx,v 1.6 2002/03/23 16:10:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,8 @@ public:
 
   // Draw the object onto the screen
   virtual void draw (boost::dummy_ptr<View> view) =0;
+
+  virtual void draw_energie (boost::dummy_ptr<View> view) {}
   
   // Update the object once a game loop
   virtual void update (float) =0;
@@ -55,6 +57,11 @@ public:
   GameWorld* get_world () { return world.get(); }
 
   virtual void collide (Projectile*) {}
+
+  /** If returns true the building will act normal, when returning
+      false the building will 'disapear' from the collision map
+   */
+  virtual bool alive () { return true; }
 };
 
 #endif

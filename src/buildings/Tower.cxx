@@ -1,4 +1,4 @@
-//  $Id: Tower.cxx,v 1.7 2002/03/23 12:20:43 grumbel Exp $
+//  $Id: Tower.cxx,v 1.8 2002/03/23 16:10:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -61,10 +61,15 @@ Tower::draw (boost::dummy_ptr<View> view)
   if (energie > 0)
     {
       view->draw (&turret, pos, angle);
-      energie.draw (view, int(pos.x), int (pos.y) - 40);
     }
 }
   
+void
+Tower::draw_energie (boost::dummy_ptr<View> view)
+{
+  energie.draw (view, int(pos.x), int (pos.y) - 40);
+}
+
 // Update the object once a game loop
 void
 Tower::update (float delta)
@@ -93,6 +98,12 @@ Tower::collide (Projectile*)
       get_world()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
       destroyed = true;
     }
+}
+
+bool
+Tower::alive ()
+{
+  return !destroyed;
 }
 
 /* EOF */

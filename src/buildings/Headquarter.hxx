@@ -1,4 +1,4 @@
-//  $Id: Headquarter.hxx,v 1.1 2002/03/17 16:44:38 grumbel Exp $
+//  $Id: Headquarter.hxx,v 1.2 2002/03/23 16:10:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -55,6 +55,8 @@ public:
 
   int get_map_width ()  { return 2; }
   int get_map_height () { return 2; }
+
+  bool alive ();
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.6 2002/03/23 12:20:43 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.7 2002/03/23 16:10:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -84,6 +84,17 @@ BuildingMap::draw (View* view)
       (*i)->draw (view);
     }
 }
+
+void
+BuildingMap::draw_energie (View* view)
+{
+  for (std::vector<Building*>::iterator i = buildings.begin ();
+       i != buildings.end ();
+       ++i)
+    {
+      (*i)->draw_energie (view);
+    }  
+}
   
 // Update the object once a game loop
 void
@@ -118,7 +129,13 @@ BuildingMap::get_building (const CL_Vector& pos)
     y -= 1;
 
   if (x >= 0 && x < width && y >=0 && y < height)
-    return building_map[(y * width) + x];
+    {
+      Building* b = building_map[(y * width) + x];
+      if (b && b->alive ())
+	return b;
+      else
+	return 0;
+    }
   else
     return NULL;
 }

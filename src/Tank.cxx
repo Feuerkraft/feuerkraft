@@ -42,6 +42,13 @@ Tank::~Tank ()
 {
   delete turret;
 }
+
+void
+Tank::draw_energie (View* view)
+{
+  energie.draw (view, 
+		int(pos.x), int(pos.y - 40));
+}
   
 void
 Tank::draw (View* view)
@@ -100,9 +107,6 @@ Tank::draw (View* view)
       view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
       view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
       view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
-
-      energie.draw (view, 
-		    int(pos.x), int(pos.y - 40));
     }
 }
 

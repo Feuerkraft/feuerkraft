@@ -1,4 +1,4 @@
-//  $Id: Headquarter.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
+//  $Id: Headquarter.cxx,v 1.3 2002/03/23 16:10:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,6 +78,12 @@ Headquarter::collide (Projectile*)
     current_sur = &headquarter_damaged;
   else
     current_sur = &headquarter_destroyed;
+}
+
+bool
+Headquarter::alive ()
+{
+  return (energie > 0);
 }
 
 /* EOF */
