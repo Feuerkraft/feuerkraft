@@ -21,7 +21,7 @@
 
 #include <config.h>
 
-#define _(String)  gettext(String)
-#define N_(String) gettext_noop(String)
+#define _(String)
+#define N_(String)
 
 #endif /* _LIBGETTEXT_H */
