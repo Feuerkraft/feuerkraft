@@ -16,9 +16,11 @@ export slibs="\
 /usr/local/lib/libHermes.a \
 /usr/lib/libguile.a \
 /usr/lib/libltdl.a \
-/usr/lib/libqthreads.a"
+/usr/lib/libqthreads.a \
+"
 
 export dlibs="-L/usr/X11R6/lib/ \
+-Wl,-Bstatic \
 -lz \
 -ljpeg \
 -lpng \
@@ -29,14 +31,17 @@ export dlibs="-L/usr/X11R6/lib/ \
 -lXxf86vm \
 -lSM \
 -lXt \
--lGLU \
+-Wl,-Bdynamic \
 -lGL \
+-Wl,-Bstatic \
+/usr/lib/libGLU.a \
 -ldl \
 -lX11 \
 "
 
 
-g++ -I.. -O2 -Wall  -o feuerkraft  GameWorld.o KeyboardController.o Tank.o Turret.o Explosion.o Feuerkraft.o JoystickController.o Projectile.o Energie.o Tree.o TreeData.o Soldier.o Mine.o Shockwave.o Controller.o Helicopter.o Jeep.o Vehicle.o Flag.o View.o Playfield.o VehicleView.o Pathfinder.o System.o StringConverter.o Radar.o Screen.o VehicleStatus.o Background.o Stone.o Ambulance.o GameWorldData.o GameObjDataFactory.o LevelMap.o StartScreen.o groundmap/libfeuerkraft_groundmap.a  buildings/libfeuerkraft_buildings.a  generic/libfeuerkraft_generic.a $slibs $dlibs
+g++-3.0 -nodefaultlibs  -I.. -O2 -Wall  -o feuerkraft  GameWorld.o KeyboardController.o Tank.o Turret.o Explosion.o Feuerkraft.o JoystickController.o Projectile.o Energie.o Tree.o TreeData.o Soldier.o Mine.o Shockwave.o Controller.o Helicopter.o Jeep.o Vehicle.o Flag.o View.o Playfield.o VehicleView.o Pathfinder.o System.o StringConverter.o Radar.o Screen.o VehicleStatus.o Background.o Stone.o Ambulance.o GameWorldData.o GameObjDataFactory.o LevelMap.o StartScreen.o groundmap/libfeuerkraft_groundmap.a  buildings/libfeuerkraft_buildings.a  generic/libfeuerkraft_generic.a $slibs /usr/lib/gcc-lib/i386-linux/3.0.3/libstdc++.a -lm -lgcc -lc -lgcc  $dlibs
+
 
 #upx-ucl feuerkraft
 
