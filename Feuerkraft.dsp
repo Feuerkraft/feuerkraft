@@ -93,6 +93,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;cc;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\src\Ammotent.cc
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\Basis.cc
 # End Source File
 # Begin Source File
@@ -198,6 +202,10 @@ SOURCE=.\src\Tree.cc
 # Begin Source File
 
 SOURCE=.\src\Turret.cc
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\Vehicle.cc
 # End Source File
 # Begin Source File
 
