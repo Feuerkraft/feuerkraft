@@ -1,4 +1,4 @@
-//  $Id: Projectile.hh,v 1.4 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Projectile.hh,v 1.5 2001/03/16 20:36:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define PROJECTILE_HH
 
 //#include <ClanLib/Core/Display/surface.h>
+#include <ClanLib/display.h>
 #include <ClanLib/core.h>
 #include "GameObj.hh"
 

@@ -1,4 +1,4 @@
-//  $Id: Shockwave.hh,v 1.3 2001/02/24 20:32:13 grumbel Exp $
+//  $Id: Shockwave.hh,v 1.4 2001/03/16 20:36:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,7 @@
 #define SHOCKWAVE_HH
 
 #include <ClanLib/core.h>
+#include <ClanLib/display.h>
 #include "GameObj.hh"
 
 extern CL_ResourceManager* resources;

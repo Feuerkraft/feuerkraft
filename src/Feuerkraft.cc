@@ -4,7 +4,7 @@
 
 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
-
+#include <ClanLib/application.h>
 
 #include "GameWorld.hh"
 #include "KeyboardController.hh"
@@ -50,7 +50,7 @@ public:
 	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
 		
 	CL_SetupCore::init();
-	CL_SetupCore::init_display();
+	CL_SetupDisplay::init();
 	CL_SetupPNG::init ();
 
 	// Set mode: 320x200 16 bpp
@@ -145,7 +145,7 @@ public:
 		  << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 
 	CL_SetupPNG::deinit ();
-	CL_SetupCore::deinit_display();
+	CL_SetupDisplay::deinit();
 	CL_SetupCore::deinit();
       }
     catch (CL_Error err)
