@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.7 2003/05/11 17:40:58 grumbel Exp $
+//  $Id: guile.hxx,v 1.8 2003/05/11 19:50:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,6 +28,9 @@
 
 #include "alist.hxx"
 
+class Property;
+class PropertySet;
+
 /** A loose collection of Guile helper functions */
 namespace Guile {
 
@@ -56,6 +59,12 @@ std::string symbol2string(SCM symbol);
 
 /** Enters the read-eval-print-loop, which can be exited by (q) */
 void enter_repl();
+
+/** Sets a property from a SCM */
+void scm2property(PropertySet& properties, const char* name, SCM value);
+
+/** Converts a given property class to a SCM */
+SCM  property2scm(const Property& property);
 
 AList scm2alist(SCM lst);
 

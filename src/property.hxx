@@ -1,4 +1,4 @@
-//  $Id: property.hxx,v 1.1 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: property.hxx,v 1.2 2003/05/11 19:50:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,19 +52,19 @@ public:
   ~Property();
 
   void set_name(const std::string& arg_name) { name = arg_name; }
-  std::string get_name() { return name; }
+  std::string get_name() const { return name; }
 
-  Type get_type() { return type; }
+  Type get_type() const { return type; }
   
   void set_bool(bool);
   void set_int(int);
   void set_float(float);
   void set_string(const std::string&);
 
-  bool  get_bool();
-  int   get_int();
-  float get_float();
-  std::string get_string();
+  bool  get_bool() const;
+  int   get_int()  const;
+  float get_float() const;
+  std::string get_string() const;
 };
 
 #endif

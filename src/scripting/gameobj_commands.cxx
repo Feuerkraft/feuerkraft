@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.1 2003/05/11 19:14:43 grumbel Exp $
+//  $Id: gameobj_commands.cxx,v 1.2 2003/05/11 19:50:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../guile.hxx"
 #include "../property_set.hxx"
 #include "../property.hxx"
 #include "../game_obj.hxx"
@@ -26,13 +27,33 @@
 SCM
 gameobj_get_property(int handle, const char* name)
 {
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  if (obj)
+    {
+      PropertySet* properties = obj->get_properties();
+      if (properties)
+        {
+          Property* prop = properties->lookup(name);
+          if (prop)
+            return Guile::property2scm(*prop);
+        }
+    }
+    
   return SCM_UNSPECIFIED;
 }
 
 void
 gameobj_set_property(int handle, const char* name, SCM value)
 {
-  
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  if (obj)
+    {
+      PropertySet* properties = obj->get_properties();
+      if (properties)
+        {
+          Guile::scm2property(*properties, name, value);
+        }      
+    }
 }
 
 SCM
@@ -54,7 +75,7 @@ gameobj_properties(int handle)
               lst = gh_cons(gh_str02scm(i->second->get_name().c_str()), lst);
             }
         }
-      return lst;
+      return gh_reverse(lst);
     }
   return SCM_BOOL_F;
 }

@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.2 2003/05/11 17:06:11 grumbel Exp $
+//  $Id: property.cxx,v 1.3 2003/05/11 19:50:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -82,28 +82,28 @@ Property::set_string(const std::string& value)
 }
 
 bool
-Property::get_bool()
+Property::get_bool() const
 {
   assert(type == T_BOOL);
   return *data.m_bool;
 }
 
 int
-Property::get_int()
+Property::get_int() const
 {
   assert(type == T_INT);
   return *data.m_int;
 }
 
 float
-Property::get_float()
+Property::get_float() const
 {
   assert(type == T_FLOAT);
   return *data.m_float;
 }
 
 std::string
-Property::get_string()
+Property::get_string() const
 {
   assert(type == T_STRING);
   return *data.m_string;

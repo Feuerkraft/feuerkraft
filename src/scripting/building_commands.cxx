@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.7 2003/05/11 18:12:10 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.8 2003/05/11 19:50:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -153,29 +153,7 @@ building_get_property(int handle, const char* name)
             }
           else
             {
-              switch(property->get_type())
-                {
-                case Property::T_INT:
-                  return gh_int2scm(property->get_int());
-                  break;
-              
-                case Property::T_FLOAT:
-                  return gh_double2scm(property->get_float());
-                  break;
-
-                case Property::T_BOOL:
-                  return gh_bool2scm(property->get_bool());
-                  break;
-
-                case Property::T_STRING:
-                  return gh_str02scm(property->get_string().c_str());
-                  break;
-
-                default:
-                  std::cout << "Unhandled property type" << std::endl;
-                  return SCM_UNSPECIFIED;
-                  break;
-                }
+              return Guile::property2scm(*property);
             }
         }
     }
@@ -198,26 +176,7 @@ building_set_property(int handle, const char* name, SCM value)
         }
       else
         {
-          if (gh_string_p(value))
-            {
-              properties->set_string(name, Guile::scm2string(value));
-            }
-          else if (gh_boolean_p(value))
-            {
-              properties->set_bool(name, gh_scm2bool(value));
-            }
-          else if (gh_exact_p(value))
-            {
-              properties->set_int(name, gh_scm2int(value));
-            }
-          else if (gh_inexact_p(value))
-            {
-              properties->set_float(name, gh_scm2double(value));
-            }
-          else
-            {
-              std::cout << "Unhandled value" << std::endl;
-            }
+          Guile::scm2property(*properties, name, value);
         }
     }
 }

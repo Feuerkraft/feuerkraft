@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.10 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.11 2003/05/11 19:50:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,7 @@
 #include "collision_manager.hxx"
 #include "ai_vehicle.hxx"
 #include "projectile.hxx"
+#include "property_set.hxx"
 #include "mine.hxx"
 #include "level_map.hxx"
 
@@ -45,6 +46,11 @@ AIVehicle::AIVehicle(const CL_Vector& arg_pos)
   
   velocity = 100.0f;
   orientation = 0.0f;
+
+  properties->register_float("x-pos",       &pos.x);
+  properties->register_float("y-pos",       &pos.y);
+  properties->register_bool ("destroyed",   &destroyed);
+  properties->register_float("orientation", &orientation);
 }
 
 void

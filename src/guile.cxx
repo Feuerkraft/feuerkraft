@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.10 2003/05/11 17:40:58 grumbel Exp $
+//  $Id: guile.cxx,v 1.11 2003/05/11 19:50:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,8 @@
 #include <guile/gh.h>
 #include <ClanLib/Core/System/cl_assert.h>
 
+#include "property.hxx"
+#include "property_set.hxx"
 #include "guile.hxx"
 
 namespace Guile {
@@ -42,10 +44,10 @@ SCM vector2scm (const CL_Vector& vec)
 {
   /** If this causes throuble on WIN32, replace it with gh_cons() */
   return SCM_BOOL_F; /*scm_listify (gh_symbol2scm ("pos"),
-                      gh_double2scm(vec.x),
-                      gh_double2scm(vec.y),
-                      gh_double2scm(vec.z),
-                      SCM_UNDEFINED);*/
+                       gh_double2scm(vec.x),
+                       gh_double2scm(vec.y),
+                       gh_double2scm(vec.z),
+                       SCM_UNDEFINED);*/
 }
 
 SCM pos2scm (int x, int y)
@@ -175,6 +177,57 @@ void enter_repl()
   else
     {
       std::cout << "### Error: feuerkraft.scm must be loaded to use the repl!" << std::endl;
+    }
+}
+
+void scm2property(PropertySet& properties, const char* name, SCM value)
+{
+  if (gh_string_p(value))
+    {
+      properties.set_string(name, Guile::scm2string(value));
+    }
+  else if (gh_boolean_p(value))
+    {
+      properties.set_bool(name, gh_scm2bool(value));
+    }
+  else if (gh_exact_p(value))
+    {
+      properties.set_int(name, gh_scm2int(value));
+    }
+  else if (gh_inexact_p(value))
+    {
+      properties.set_float(name, gh_scm2double(value));
+    }
+  else
+    {
+      std::cout << "Unhandled value" << std::endl;
+    }
+}
+
+SCM  property2scm(const Property& property)
+{
+  switch(property.get_type())
+    {
+    case Property::T_INT:
+      return gh_int2scm(property.get_int());
+      break;
+              
+    case Property::T_FLOAT:
+      return gh_double2scm(property.get_float());
+      break;
+
+    case Property::T_BOOL:
+      return gh_bool2scm(property.get_bool());
+      break;
+
+    case Property::T_STRING:
+      return gh_str02scm(property.get_string().c_str());
+      break;
+
+    default:
+      std::cout << "Guile: Unhandled property type" << std::endl;
+      return SCM_UNSPECIFIED;
+      break;
     }
 }
 
