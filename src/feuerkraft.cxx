@@ -18,6 +18,7 @@
 #include "keyboard_controller.hxx"
 //#include "joystick_controller.hxx"
 #include "tank.hxx"
+#include "ai_vehicle.hxx"
 #include "jeep.hxx"
 #include "tree.hxx"
 #include "flag.hxx"
@@ -134,6 +135,8 @@ public:
 	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 
+        AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(378, 873));
+
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (world, CL_Vector (250, 250));
@@ -161,6 +164,7 @@ public:
 	world->add (heli);
 	//world->add (heli2);
 	world->add (tank1);
+	world->add (ai_vehicle);
 	world->add (tank2);
 	world->add (new Background (world, resources->get_sprite("feuerkraft/sand")));
 	world->add (new Playfield (world));
@@ -241,6 +245,9 @@ public:
 
 	    screen.update (delta);
 	    screen.draw (window.get_gc ());
+
+	    if (CL_Mouse::get_keycode(CL_MOUSE_RIGHT))
+              ai_vehicle->clear_orders();
             
 	    if (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 	      {
@@ -251,6 +258,8 @@ public:
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 
 			  << " | " <<  int(pos.x) / 40  << " " << int(pos.y) / 40
 			  << std::endl;
+
+                ai_vehicle->drive_to(pos);
 	      }
 	    
 	    //controller.update (delta);

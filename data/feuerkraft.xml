@@ -30,6 +30,14 @@
       <image name="image1" file="data/images/wall_destroyed.png" />
     </sprite>
 
+    <sprite name="trooper">
+      <image name="image1" 
+        file="data/images/trooper.png" 
+        rotation_hotspot="center, 0, 0"
+        translation_hotspot="center, 0, 0" 
+        />
+    </sprite>
+
     <sprite name="tank">
       <image name="image1" 
         file="data/images/tank.png" 

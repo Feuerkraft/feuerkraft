@@ -10,6 +10,8 @@ LDADD = \
  generic/libfeuerkraft_generic.a 
 
 feuerkraft_SOURCES = \
+ai_vehicle.hxx \
+ai_vehicle.cxx \
 ambulance.cxx \
 ambulance.hxx \
 background.cxx \

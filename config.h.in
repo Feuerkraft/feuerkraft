@@ -1,13 +1,4 @@
-/* config.h.in.  Generated from configure.in by autoheader.  */
-#ifndef ADVENT_CONFIG_H
-#define ADVENT_CONFIG_H
-
-
-#undef MAJOR_VERSION
-#undef MINOR_VERSION
-#undef PATCH_VERSION
-#undef VERSION_STRING
-
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -77,5 +68,3 @@
 
 /* Version number of package */
 #undef VERSION
-
-#endif /* ADVENT_CONFIG_H */
