@@ -1,4 +1,4 @@
-//  $Id: Explosion.cxx,v 1.3 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: Explosion.cxx,v 1.4 2002/03/10 23:26:51 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,7 @@
 
 #include "Shockwave.hxx"
 #include "Explosion.hxx"
+#include "generic/Random.hxx"
 #include "particles/ExplosionParticle.hxx"
 
 Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
@@ -26,23 +27,24 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
   : GameObj (w),
     is_drawn (false),
     pos (arg_pos),
-    size (arg_size)
+    en_size (arg_size)
 {
 
   new_particle_time = 0.0f;
 
-  switch (size)
+  switch (en_size)
     {
     case SMALL:
     case LARGE:
       explo = CL_Surface("feuerkraft/smallexplo", resources);
       lifetime = 1;
-      
+      size = .1;
       break;
     case MEDIUM:
       explo = CL_Surface("feuerkraft/mediumexplo", resources);
       lifetime = 25;
       world->add (new Shockwave (world, pos));
+      size = 2;
       break;
     }
 
@@ -69,13 +71,15 @@ Explosion::update (float delta)
   
   if (new_particle_time > 0.7)
     {
-      for (int i = 0; i < 6; ++i)
-	{
+      for (int i = 0; i < 4; ++i)
+	{     
+
+	  std::cout << "Random: " << Random::frand (.1, .3) << std::endl;
 	  world->add_front (new ExplosionParticle (get_world (),
 						   CL_Vector (pos.x + (rand()%10 - 5), 
 							      pos.y + (rand()%10 - 5)),
 						   CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
-						   (rand() % 10) / 30.f));
+						   Random::frand(size) + .01));
 	}
       
       new_particle_time = 0;

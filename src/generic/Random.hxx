@@ -1,4 +1,4 @@
-//  $Id: Explosion.hxx,v 1.3 2002/03/10 23:26:51 grumbel Exp $
+//  $Id: Random.hxx,v 1.1 2002/03/10 23:26:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,35 +17,19 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef EXPLOSION_HH
-#define EXPLOSION_HH
+#ifndef RANDOM_HXX
+#define RANDOM_HXX
 
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
-#include "GameObj.hxx"
-
-extern CL_ResourceManager* resources;
-
-class Explosion : public GameObj
+class Random
 {
 private:
-  bool is_drawn;
-  float lifetime;
-  CL_Surface explo;
-  CL_Vector pos;
-  float new_particle_time;
-  float size;
-public:
-  enum Size { SMALL, MEDIUM, LARGE } en_size;
-  
-  Explosion (boost::dummy_ptr<GameWorld>  w, 
-	     const CL_Vector& arg_pos, Size arg_size = SMALL);
-  void init ();
 
-  void draw (View* view);
-  void update (float);
-  bool removable ();
-  int get_z_pos ();
+public:
+  static float frand (float max);
+  static float frand (float min, float max);
+
+  static int rand (int max);
+  static int rand (int min, int max);
 };
 
 #endif

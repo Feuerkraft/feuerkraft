@@ -89,4 +89,5 @@ AC_OUTPUT( Makefile
            src/Makefile
            src/map/Makefile
            src/particles/Makefile
+           src/generic/Makefile
            src/boost/Makefile)

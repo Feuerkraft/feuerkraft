@@ -1,4 +1,4 @@
-//  $Id: ExplosionParticle.hxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: ExplosionParticle.hxx,v 1.3 2002/03/10 23:26:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,7 +39,7 @@ public:
     velocity = arg_vel;
     pos = arg_pos;
 
-    life_time = ((rand() % 10) / 10.0f) + 1;
+    life_time = ((rand() % 10) / 40.0f) + .5;
     max_life_time = life_time;
 
     size = arg_size;
@@ -51,7 +51,7 @@ public:
     // FIXME: memory leak
     sprite = new Sprite (new SpriteProvider ("feuerkraft/explosion", resources));
     sprite->rotate (angle);
-    std::cout << "Angle: " << angle << std::endl;
+    //std::cout << "Angle: " << angle << std::endl;
   }
 
   void update (float delta) {
@@ -73,7 +73,7 @@ public:
       {
 	//std::cout << "Drawing particle:" << life_time << " pos: " << pos << " angle:" << angle << std::endl;
 
-	std::cout << "Angle: " << sprite->getAngle () << std::endl;
+	//std::cout << "Angle: " << sprite->getAngle () << std::endl;
 
 	sprite->setAlpha (life_time/max_life_time);
 	sprite->setScale (size + ((1 - life_time/max_life_time)) * 1.0f);
