@@ -32,10 +32,12 @@ KeyboardManager::KeyboardManager()
   slots.push_back(CL_Mouse::sig_key_down().connect(this, &KeyboardManager::button_down));
   slots.push_back(CL_Mouse::sig_key_up().connect(this, &KeyboardManager::button_up));
 
-  CL_InputDevice joy = CL_Joystick::get_device(1);
-
-  slots.push_back(joy.sig_key_up().connect(this, &KeyboardManager::button_up));
-  slots.push_back(joy.sig_key_down().connect(this, &KeyboardManager::button_down));
+  for (int i = 0; i < CL_Joystick::get_device_count(); ++i)
+    {
+      CL_InputDevice joy = CL_Joystick::get_device(i);
+      slots.push_back(joy.sig_key_up().connect(this, &KeyboardManager::button_up));
+      slots.push_back(joy.sig_key_down().connect(this, &KeyboardManager::button_down));
+    }
 }
 
 KeyboardManager::~KeyboardManager()

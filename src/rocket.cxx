@@ -32,6 +32,7 @@ Rocket::Rocket(const FloatVector2d& pos, float orientation)
     max_velocity(50.0f),
     life_time(0)
 {
+  release_count = 0;
   sprite = resources->get_sprite("feuerkraft/rocket");
   smoke  = resources->get_sprite("feuerkraft/rocket_smoke");
 }
@@ -57,7 +58,15 @@ Rocket::update(float delta)
 
   CollisionManager::current()->add_point(get_id(), pos.x, pos.y);
 
-  GameWorld::current()->add(new RocketSmokeParticle(pos));
+  release_count += delta;
+  if (release_count > 0.03f)
+    GameWorld::current()->add(new RocketSmokeParticle(pos));
+
+  while (release_count > 0.03f)
+    {
+      release_count -= 0.03f;
+    }
+
   life_time += delta;
   if (life_time > 2.0f)
     {

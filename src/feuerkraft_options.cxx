@@ -24,6 +24,7 @@ FeuerkraftOptions::FeuerkraftOptions ()
   // Set defaults for all options
   screen_width  = 800;
   screen_height = 600;
+  joystick      = -1;
 
   // FIXME: This needs to be more flexible of course
   config_file = "/home/ingo/.feuerkraft/config";

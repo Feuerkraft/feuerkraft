@@ -34,6 +34,7 @@ private:
   float velocity;
   float max_velocity;
   float life_time;
+  float release_count;
 public:
   Rocket(const FloatVector2d& pos, float orientation);
   ~Rocket();

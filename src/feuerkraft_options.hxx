@@ -33,6 +33,7 @@ private:
   int screen_width;
   int screen_height;
   std::string config_file;
+  int joystick;
   
 public:
   FeuerkraftOptions ();
