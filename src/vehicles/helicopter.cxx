@@ -100,19 +100,23 @@ Helicopter::draw (View& view)
 {
   if (!destroyed)
     {
-      view.draw (heli_shadow, FloatVector2d(pos.x + height/2.0f, pos.y + height),
-                 orientation);
+      heli_shadow.set_angle(Math::rad2deg(orientation));
+      view.get_dc().draw(heli_shadow, pos.x + height/2.0f, pos.y + height);
 
-      view.draw(heli, pos, orientation);
+      heli.set_angle(Math::rad2deg(orientation));
+      view.get_dc().draw(heli, pos.x, pos.y);
 
       for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
-        (*i).draw(view, pos, orientation);
+        {
+          (*i).draw(view, pos, orientation);
+        }
 
-      energie.draw (view, int(pos.x), int(pos.y - 40));
+      energie.draw(view, int(pos.x), int(pos.y - 40));
     }
   else
     {
-      view.draw (helidestroyed, pos, orientation);
+      helidestroyed.set_angle(Math::rad2deg(orientation));
+      view.get_dc().draw(helidestroyed, pos.x, pos.y);
     }
 }
 

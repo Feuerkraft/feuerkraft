@@ -159,7 +159,7 @@ Tank::draw (View& view)
 {
   if (destroyed)
     {
-      view.draw(sur_destroyed, pos);
+      view.get_dc().draw(sur_destroyed, pos.x, pos.y);
     }
   else
     {
@@ -181,8 +181,9 @@ Tank::draw (View& view)
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
-      view.draw(sur, pos, orientation + Math::pi);
-      turret->draw (view);
+      sur.set_angle(Math::rad2deg(orientation + Math::pi));
+      view.get_dc().draw(sur, pos.x, pos.y);
+      turret->draw(view);
 
       // Draw Collision rect
       FloatVector2d x1 (-30, -15);

@@ -23,6 +23,7 @@
 #include "../radar.hxx"
 #include "../resource_manager.hxx"
 #include "../vehicles/vehicle.hxx"
+#include "../display/drawing_context.hxx"
 #include "ammotent.hxx"
 
 Ammotent::Ammotent (const AList& lst)
@@ -40,13 +41,14 @@ Ammotent::~Ammotent ()
 void 
 Ammotent::draw (View& view)
 {
-  view.draw (ammotent, pos);
+  view.get_dc().draw(ammotent, pos.x, pos.y);
   if (reloading)
     {
-      view.draw_fillrect(int(pos.x - 32), int (pos.y + 25),
-			  int(pos.x + 31), int (pos.y + 57),
-			  Color(1.0f, 1.0f, 1.0f, 
-                                sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f));
+      view.get_dc().draw_fillrect(pos.x - 32, pos.y + 25,
+                                  pos.x + 31, pos.y + 57,
+                                  CL_Color(CL_Colorf(1.0f, 1.0f, 1.0f, 
+                                                     sin(GameWorld::current()->get_time () * 10.0f)
+                                                     * .3f + .5f)));
     }
 }
 

@@ -64,7 +64,8 @@ Soldier::draw (View& view)
       sur.set_frame(1);
     }
 
-  view.draw(sur, pos, new_orientation);
+  sur.set_angle(Math::rad2deg(new_orientation));
+  view.get_dc().draw(sur, pos.x, pos.y);
   orientation = new_orientation;
 }
 

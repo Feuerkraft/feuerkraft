@@ -63,7 +63,7 @@ FireParticle::update(float delta)
 void
 FireParticle::draw (View& view)
 {
-  view.draw(sprite, pos, Math::deg2rad(sprite.get_angle()));
+  view.get_dc().draw(sprite, pos.x, pos.y);
 }
 
 /* EOF */

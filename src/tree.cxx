@@ -68,7 +68,7 @@ Tree::properties_updated()
 void 
 Tree::draw (View& view)
 {
-  view.draw(sur, pos);
+  view.get_dc().draw(sur, pos.x, pos.y);
 }
 
 /* EOF */

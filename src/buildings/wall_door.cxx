@@ -50,7 +50,7 @@ void
 WallDoor::draw (View& view)
 {
   if (status != S_OPENED)
-    view.draw(sprite, pos);
+    view.get_dc().draw(sprite, pos.x, pos.y);
 }
 
 void

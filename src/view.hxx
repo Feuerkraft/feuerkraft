@@ -22,9 +22,11 @@
 
 #include "view_properties.hxx"
 #include "vector2d.hxx"
+#include "display/drawing_context.hxx"
 
 class CL_Sprite;
 class Color;
+class DrawingContext;
 
 /** ViewState represents the current configuration of a View, aka.
     rotation, position, zoom, etc. It is passed to the plug-ins to be
@@ -66,19 +68,14 @@ protected:
   ViewState state;
   ViewUpdater* view_updater;
   ViewProperty properties;
-
+  DrawingContext* drawing_context;
+  
   static View* current_;
 public:
   View (int x1, int y1, int x2, int y2, ViewUpdater* arg_updater = 0);
   virtual ~View ();
 
   static View* current() { return current_; }
-
-  void set_view (int x_pos, int y_pos);
-
-  /** Set the zoom of the current view, a zoom of 1.0 is normal, >1.0
-      is enlarged */
-  void set_zoom (float zoom);
 
   float get_x_offset ();
   float get_y_offset ();
@@ -91,24 +88,7 @@ public:
   void set_updater(ViewUpdater* arg_updater);
   void update(float delta);
 
-  /** @param angle Angle in radian */
-  void draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle = 0.0);
-
-  void draw_line (float x1, float y1, float x2, float y2, 
-		  const Color& color);
-  void draw_fillrect (float x1, float y1, float x2, float y2, 
-		      const Color& color);
-  void draw_rect (float x1, float y1, float x2, float y2, 
-		  const Color& color);
-  void draw_pixel (float x_pos, float y_pos, 
-		   const Color& color);
-  void draw_circle (float x_pos, float y_pos, float radius,
-                    const Color& color);
-
-  /** Draws an arc, starting from angle_start to angle_end in
-      counterclockwise direction. Angles are taken in radian */
-  void draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_end,
-                 const Color& color);
+  DrawingContext& get_dc() { return *drawing_context; } 
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);

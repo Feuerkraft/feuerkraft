@@ -88,11 +88,11 @@ Mine::draw (View& view)
 {
   if (!is_active ())
     {
-      view.draw (sur, pos);
+      view.get_dc().draw(sur, pos.x, pos.y);
     }
   else if (!detonated)
     {
-      view.draw (sur_active, pos);
+      view.get_dc().draw(sur_active, pos.x, pos.y);
     }
   else
     {

@@ -28,6 +28,7 @@
 #include "buildings/building_map.hxx"
 #include "collision_manager.hxx"
 #include "game_obj_manager.hxx"
+#include "display/drawing_context.hxx"
 
 CollisionManager* CollisionManager::current_ = 0;
 
@@ -126,17 +127,17 @@ CollisionManager::draw(View& view)
       switch (i->type)
         {
         case SHAPE_CIRCLE:
-          view.draw_circle(int(i->circle.x), int(i->circle.y), int(i->circle.radius),
-                            Color(1.0f, .0f, .0f));
+          view.get_dc().draw_circle(i->circle.x, i->circle.y, i->circle.radius,
+                                    CL_Color(255, 0, 0));
           break;
         case SHAPE_RECT:
           {
-            Color color(1.0f, 0.0f , 0.0f);
+            CL_Color color(255, 0, 0);
             Math::Quad quad = rect2quad(i->rect);
-            view.draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
-            view.draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
-            view.draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
-            view.draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
+            view.get_dc().draw_line(quad.a.x, quad.a.y, quad.b.x, quad.b.y, color);
+            view.get_dc().draw_line(quad.b.x, quad.b.y, quad.c.x, quad.c.y, color);
+            view.get_dc().draw_line(quad.c.x, quad.c.y, quad.d.x, quad.d.y, color);
+            view.get_dc().draw_line(quad.d.x, quad.d.y, quad.a.x, quad.a.y, color);
           }
           break;
         default:

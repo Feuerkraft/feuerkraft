@@ -51,7 +51,7 @@ Headquarter::update (float delta)
 void 
 Headquarter::draw (View& view)
 {
-  view.draw(*current_sur, pos);
+  view.get_dc().draw(*current_sur, pos.x, pos.y);
   energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 

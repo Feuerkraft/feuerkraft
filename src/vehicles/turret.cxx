@@ -3,6 +3,7 @@
 #include "../math.hxx"
 #include "../resource_manager.hxx"
 #include "../rocket.hxx"
+#include "../math.hxx"
 #include "tank.hxx"
 #include "turret.hxx"
 
@@ -36,11 +37,13 @@ Turret::draw (View& view)
   view.draw(shadow, tank->get_pos () + FloatVector2d (25,25), absolute_orientation);
 #endif 
 
-  view.draw(sur, tank->get_pos (), absolute_orientation + Math::pi);
+  sur.set_angle((absolute_orientation + Math::pi) / Math::pi * 180.0f);
+  view.get_dc().draw(sur, tank->get_pos().x, tank->get_pos().y);
 
   if (fireing && reloading == 0 && tank->ammo > 0.0)
     {
-      view.draw(fire_sur, tank->get_pos (), absolute_orientation + Math::pi);
+      fire_sur.set_angle(Math::rad2deg(absolute_orientation + Math::pi));
+      view.get_dc().draw(fire_sur, tank->get_pos().x, tank->get_pos().y);
       fireing = false;
       reloading = reloading_speed;
     }

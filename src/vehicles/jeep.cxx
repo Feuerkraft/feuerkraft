@@ -69,7 +69,8 @@ Jeep::draw (View& view)
 {
   const float circle = 6.2831854f;
   
-  view.draw(jeep, pos, angle/(circle/2.0)*180);
+  jeep.set_angle(angle/(circle/2.0)*180);
+  view.get_dc().draw(jeep, pos.x, pos.y);
   energie.draw (view, int(pos.x), int(pos.y - 30));
 }
 

@@ -23,6 +23,7 @@
 #include <ClanLib/display.h>
 #include "view.hxx"
 #include "particle.hxx"
+#include "../math.hxx"
 #include "../resource_manager.hxx"
 
 class ExplosionParticle : public Particle
@@ -79,7 +80,9 @@ public:
 
 	sprite.set_scale (((1 - life_time/max_life_time)) * size,
                           ((1 - life_time/max_life_time)) * size);
-	view.draw(sprite, pos, angle);
+
+        sprite.set_angle(Math::rad2deg(angle));
+	view.get_dc().draw(sprite, pos.x, pos.y);
       }
   }
 

@@ -26,6 +26,7 @@
 #include "color.hxx"
 #include "math.hxx"
 #include "view.hxx"
+#include "display/drawing_context.hxx"
 
 View* View::current_ = 0;
 
@@ -45,6 +46,8 @@ View::View (int arg_x1, int arg_y1,
   state.zoom = 1.0;
   state.rotation = 0;
   
+  drawing_context = new DrawingContext();
+
   current_ = this;
 }
 
@@ -65,19 +68,7 @@ View::get_y_offset ()
   return y1 - state.y_offset + (y2 - y1)/2; 
 }
 
-void 
-View::set_view (int x_pos, int y_pos)
-{
-  state.x_offset = x_pos;
-  state.y_offset = y_pos;
-}
-
-void 
-View::set_zoom (float z)
-{
-  state.zoom = z;
-}
-
+/*
 void
 View::draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle)
 {
@@ -151,9 +142,9 @@ View::draw_circle (float x_pos, float y_pos, float radius,
       FloatVector2d current = next;
       next = FloatVector2d::make_polar(radius, i * pi/float(steps));
       
-      draw_line (int(x_pos + current.x), int(y_pos + current.y),
-		 int(x_pos + next.x), int(y_pos + next.y),
-		 color);
+      get_dc().draw_line(x_pos + current.x, y_pos + current.y,
+                         x_pos + next.x,    y_pos + next.y,
+                         color);
     }
 }
 
@@ -178,13 +169,13 @@ View::draw_arc (float x_pos, float y_pos, float radius, float angle_start, float
       x = x_pos + radius * cos(angle_start + i*enclosed_angle/steps);
       y = y_pos + radius * sin(angle_start + i*enclosed_angle/steps);
 
-      draw_line(last_x, last_y, x, y, color);
+      get_dc().draw_line(last_x, last_y, x, y, color);
 
       last_x = x;
       last_y = y;
     }
 }
-
+*/
 void
 View::set_updater(ViewUpdater* arg_updater)
 {
@@ -200,6 +191,10 @@ View::update(float delta)
 
   if (view_updater)
     view_updater->update(delta, state);
+
+  drawing_context->reset_modelview();
+  drawing_context->translate(get_x_offset(), get_y_offset());
+  //drawing_context.translate(state.x_offset, state.y_offset);
 }
 
 bool

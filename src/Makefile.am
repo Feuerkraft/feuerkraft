@@ -16,6 +16,7 @@ LDADD = \
  sound/libpingus_sound.a
 
 feuerkraft_SOURCES = \
+display/drawing_context.cxx \
 alist.hxx \
 alist.cxx \
 ai_vehicle.hxx \

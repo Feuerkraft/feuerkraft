@@ -30,7 +30,7 @@ Ambulance::Ambulance()
 void
 Ambulance::draw (View& view)
 {
-  view.draw (sur, FloatVector2d ());
+  view.get_dc().draw(sur, 0, 0);
 }
 
 

@@ -35,7 +35,7 @@ SpriteTile::SpriteTile (const SpriteTileData& data)
 void
 SpriteTile::draw(View& view, float x, float y)
 {
-  view.draw(sprite, FloatVector2d(x, y));
+  view.get_dc().draw(sprite, x, y);
 }
 
 /** FIXME: 'float delta' should be replaced with GameDelta */

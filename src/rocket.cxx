@@ -44,7 +44,8 @@ Rocket::~Rocket()
 void
 Rocket::draw(View& view)
 {
-  view.draw(sprite, pos, orientation);
+  sprite.set_angle(Math::rad2deg(orientation));
+  view.get_dc().draw(sprite, pos.x, pos.y);
 }
 
 void

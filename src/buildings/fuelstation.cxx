@@ -23,6 +23,7 @@
 #include "../radar.hxx"
 #include "../vehicles/vehicle.hxx"
 #include "../resource_manager.hxx"
+#include "../display/drawing_context.hxx"
 #include "fuelstation.hxx"
 
 Fuelstation::Fuelstation(const AList& lst)
@@ -40,13 +41,14 @@ Fuelstation::~Fuelstation ()
 void 
 Fuelstation::draw (View& view)
 {
-  view.draw (fuelstation, pos);
+  view.get_dc().draw(fuelstation, pos.x, pos.y);
   if (refueling)
     {
-      view.draw_fillrect(int(pos.x - 32), int (pos.y + 25),
-                         int(pos.x + 31), int (pos.y + 57),
-                         Color(1.0, 1.0, 1.0,
-                               sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f));
+      view.get_dc().draw_fillrect(pos.x - 32, pos.y + 25,
+                                  pos.x + 31, pos.y + 57,
+                                  CL_Color(CL_Colorf(1.0, 1.0, 1.0,
+                                                     sin(GameWorld::current()->get_time () * 10.0f)
+                                                     * .3f + .5f)));
     }
 }
 

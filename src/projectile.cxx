@@ -56,7 +56,8 @@ void
 Projectile::draw (View& view)
 {
   if (lifetime > 0) {
-    view.draw (sur, pos, velocity.get_orientation());
+    sur.set_angle(Math::rad2deg(velocity.get_orientation()));
+    view.get_dc().draw(sur, pos.x, pos.y);
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;

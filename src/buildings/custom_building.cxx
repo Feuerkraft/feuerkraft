@@ -42,8 +42,9 @@ CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
 void
 CustomBuilding::draw(View& view)
 {
-  view.draw(sprite, FloatVector2d(x_pos * 40 + get_map_width()*20, 
-                                  y_pos * 40 + get_map_height()*20)); // FIXME: Hardcoded tilesize
+  view.get_dc().draw(sprite,
+                     x_pos * 40 + get_map_width()*20, 
+                     y_pos * 40 + get_map_height()*20); // FIXME: Hardcoded tilesize
 }
 
 void

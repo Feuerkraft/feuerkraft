@@ -58,7 +58,8 @@ public:
     sprite.set_alpha ((life_time/max_life_time) * 0.4);
     sprite.set_scale (0.8f + ((1 - life_time/max_life_time)) * 4.0f,
 		       0.8f + ((1 - life_time/max_life_time)) * 4.0f);
-    view.draw(sprite, pos, angle);
+    sprite.set_angle(angle);
+    view.get_dc().draw(sprite, pos.x, pos.y);
   }
 
   float get_z_pos () { return 100; }

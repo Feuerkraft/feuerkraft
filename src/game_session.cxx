@@ -211,6 +211,7 @@ GameSession::update()
 
   GameWorld::current()->draw(*view);
   GameWorld::current()->draw_energie(*view);
+  view->get_dc().render(CL_Display::get_current_window()->get_gc());
 
   if (draw_colmap)
     collision_mgr->draw(*view);
@@ -302,6 +303,7 @@ GameSession::update()
     }
 
   InputManager::clear();
+  view->get_dc().clear();
 }
 
 void

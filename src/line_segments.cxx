@@ -443,9 +443,9 @@ LineSegments::draw(View& view)
 
           if (i->radial.turn_right)
             {
-              view.draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
-                             i->radial.start_angle, i->radial.end_angle, 
-                             Color(1.0f, 1.0f, 1.0f));
+              view.get_dc().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
+                                     i->radial.start_angle, i->radial.end_angle, 
+                                     CL_Color(255, 255, 255));
               /*
               view.draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
                                   (int)i->radial.x+5, (int)i->radial.y+5,
@@ -454,12 +454,12 @@ LineSegments::draw(View& view)
             }
           else
             {
-              view.draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
-                             i->radial.end_angle, i->radial.start_angle, 
-                             Color(1.0f, 1.0f, 1.0f));
+              view.get_dc().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
+                                     i->radial.end_angle, i->radial.start_angle, 
+                                     CL_Color(255, 255, 255));
               /*
-              view.draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
-                                  (int)i->radial.x+5, (int)i->radial.y+5,
+              view.draw_fillrect(i->radial.x-5, i->radial.y-5,
+                                  i->radial.x+5, i->radial.y+5,
                                   Color(1.0f, 0.0f, 0.0f)); // red
               */
             }
@@ -482,9 +482,9 @@ LineSegments::draw(View& view)
           break;
 
         case STRAIGHT:
-          view.draw_line((int)i->straight.x1, (int)i->straight.y1,
-                          (int)i->straight.x2, (int)i->straight.y2, 
-                          Color(1.0f, 1.0f, 1.0f, 1.0f));
+          view.get_dc().draw_line(i->straight.x1, i->straight.y1,
+                                  i->straight.x2, i->straight.y2, 
+                                  CL_Color(255, 255, 255, 255));
           break;
         default:
           std::cout << "Unhandled type: " << i->type << std::endl;

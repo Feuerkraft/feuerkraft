@@ -19,6 +19,7 @@
 
 #include "../view.hxx"
 #include "../resource_manager.hxx"
+#include "../math.hxx"
 #include "rotor.hxx"
 
 Rotor::Rotor(const RotorDescription& desc)
@@ -40,20 +41,33 @@ void
 Rotor::draw(View& view, const FloatVector2d& pos, float parent_orientation)
 {
   FloatVector2d off = offset;
+  FloatVector2d p = pos + off.rotate(parent_orientation);
 
   if (velocity > 8.0f)
     {
       if (direction == RotorDescription::LEFT)
-        view.draw(fast, pos + off.rotate(parent_orientation), orientation);
+        {
+          fast.set_angle(Math::rad2deg(orientation));
+          view.get_dc().draw(fast, p.x, p.y);
+        }
       else
-        view.draw(fast, pos + off.rotate(parent_orientation), -orientation);
+        {
+          fast.set_angle(Math::rad2deg(-orientation));
+          view.get_dc().draw(fast, p.x, p.y);
+        }
     }
   else
     {
       if (direction == RotorDescription::LEFT)
-        view.draw(slow, pos + off.rotate(parent_orientation), orientation);
+        {
+          slow.set_angle(Math::rad2deg(orientation));
+          view.get_dc().draw(slow, p.x, p.y);
+        }
       else
-        view.draw(slow, pos + off.rotate(parent_orientation), -orientation);
+        {
+          slow.set_angle(Math::rad2deg(-orientation));
+          view.get_dc().draw(slow, p.x, p.y);
+        }
     }
 }
 
