@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.hxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: command_line_arguments.hxx,v 1.3 2003/05/31 20:17:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,9 @@
 struct CommandLineArguments
 {
 public:
+  int screen_width;
+  int screen_height;
+  
   /** Mission file to start, empty() if non is given */
   std::string mission_file;
 

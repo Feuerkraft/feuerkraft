@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.11 2003/05/30 22:44:53 grumbel Exp $
+//  $Id: projectile.cxx,v 1.12 2003/05/31 20:17:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,6 +26,7 @@
 #include "buildings/building_map.hxx"
 #include "game_obj_manager.hxx"
 #include "projectile.hxx"
+#include "vehicle.hxx"
 #include "resource_manager.hxx"
 
 Projectile::Projectile (GameObjPtr p,
@@ -101,7 +102,9 @@ Projectile::on_collision(GameObj* obj)
   if (Projectile::parent != obj)
     {
       //std::cout << "Projectile " << get_id() << " touched gameobj " << obj->get_id() << std::endl;
-      obj->collide(this);
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(obj);
+      if (vehicle)
+        vehicle->collide(this);
       detonate();
     }
 }
@@ -110,7 +113,7 @@ void
 Projectile::on_collision_with_building(Building* building)
 {
   std::cout << "Projectile touched building" << get_id() << std::endl;
-  building->collide (this);      
+  building->collide (this);
   detonate ();
 }
 

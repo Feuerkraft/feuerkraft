@@ -1,4 +1,4 @@
-//  $Id: particle_system.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: particle_system.hxx,v 1.2 2003/05/31 20:17:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,9 +23,10 @@
 class ParticleSystem
 {
 private:
-  std::list<Particle*> particles;
+  std::vector<Particle*> particles;
 public:
-  void update (float delta);
+  void update(float delta);
+  void add(Particle* particle);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.14 2003/05/30 22:44:53 grumbel Exp $
+//  $Id: tank.cxx,v 1.15 2003/05/31 20:17:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -365,7 +365,7 @@ Tank::get_velocity ()
 void
 Tank::on_collision_with_building(Building* building)
 {
-  std::cout << "Tank: collision with building " << get_id() << std::endl;
+  //std::cout << "Tank: collision with building " << get_id() << std::endl;
 }
 
 void

@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.cxx,v 1.4 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: command_line_arguments.cxx,v 1.5 2003/05/31 20:17:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,7 @@ static struct argp_option options[] = {
   {"fps",      'f', "FPS",     0,  "Limit of frames per second" },
   {"music",    'm', 0,         0,  "Enable music" },
   {"sound",    's', 0,         0,  "Enable sound" },
+  {"geometry", 'g', "WIDTHxHEIGHT", 0,  "Set screen size" },
   { 0 }
 };
 
@@ -55,6 +56,10 @@ CommandLineArguments::CommandLineArguments(int argc, char** argv)
 void
 CommandLineArguments::load_defaults()
 {
+  // Default Screen Size
+  screen_width  = 800;
+  screen_height = 600;
+
   mission_file = "";
   fps          = 30.0f;
   verbose      = true;
@@ -127,6 +132,14 @@ CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
 
     case 's':
       sound_enabled = true;
+      break;
+
+    case 'g':
+      if (sscanf(arg, "%dx%d", &screen_width, &screen_height) != 2)
+        {
+          std::cout << "Screen size value incorrect: '" << arg << "'" << std::endl;
+          exit(EXIT_FAILURE);
+        }
       break;
 
     default: 

@@ -1,4 +1,4 @@
-//  $Id: grid_map.cxx,v 1.5 2003/05/19 21:46:21 grumbel Exp $
+//  $Id: grid_map.cxx,v 1.6 2003/05/31 20:17:36 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -64,8 +64,8 @@ GridMap::draw (View& view)
   /* FIXME: This code should be shared with TileMap */
   int tile_x_offset = int(-(view.get_x_offset ()) / 40);
   int tile_y_offset = int(-(view.get_y_offset ()) / 40);
-  int tile_width    = tile_x_offset + (view.get_width () / 40) + 1;
-  int tile_height   = tile_y_offset + (view.get_height () / 40) + 1; 
+  int tile_width    = tile_x_offset + (view.get_width()  / 40) + 2;
+  int tile_height   = tile_y_offset + (view.get_height() / 40) + 2; 
   // FIXME: one tile more to avoid artefacts, hack, hack hack...
   
   for (int y = tile_y_offset; y < tile_height; ++y)

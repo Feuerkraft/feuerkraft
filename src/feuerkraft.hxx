@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.4 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: feuerkraft.hxx,v 1.5 2003/05/31 20:17:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,11 @@
 
 #ifndef FEUERKRAFT_HH
 #define FEUERKRAFT_HH
+
+#include <ClanLib/application.h>
+
+class CL_DisplayWindow;
+class CommandLineArguments;
 
 /**
    \mainpage %Feuerkraft Index Page
@@ -72,6 +77,20 @@
    named SomeObjectPtr. typedef for SomeObjectPtr should be in the
    some_object.hxx file.
 */
+class Feuerkraft : public CL_ClanApplication
+{
+private:
+  CL_DisplayWindow* window;
+  CommandLineArguments* args;
+
+public:
+  Feuerkraft();
+  ~Feuerkraft();
+  
+  void init();
+  void deinit();
+  int  main(int argc, char** argv);
+};
 
 #endif
 

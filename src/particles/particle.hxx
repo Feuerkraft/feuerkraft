@@ -1,4 +1,4 @@
-//  $Id: particle.hxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: particle.hxx,v 1.5 2003/05/31 20:17:36 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,7 @@
 
 class Particle : public GameObj
 {
-public: // FIXME: Probally a bad idea?!
+public:
   FloatVector2d pos;
   FloatVector2d velocity;
   FloatVector2d acceleration;
