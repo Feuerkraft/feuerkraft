@@ -35,7 +35,8 @@ private:
   enum { FLYING, STARTING, LANDING, LANDED } state;
   float height;
 
-  Rotor rotor;
+  typedef std::vector<Rotor> Rotors;
+  Rotors rotors;
 
   CL_Sprite heli;
   CL_Sprite heli_shadow;

@@ -24,10 +24,23 @@
 
 class View;
 
+class RotorDescription
+{
+public:
+  enum Direction { LEFT, RIGHT }; 
+
+  std::string   slow_sprite;
+  std::string   fast_sprite;
+  FloatVector2d offset;
+  RotorDescription::Direction direction;
+};
+
 /** */
 class Rotor
 {
 private:
+  RotorDescription::Direction direction;
+  FloatVector2d offset;
   bool running;
 
   float orientation;
@@ -39,8 +52,7 @@ private:
   CL_Sprite slow;
   CL_Sprite fast;
 public:
-  Rotor(const std::string& slow_name,
-        const std::string& fast_name);
+  Rotor(const RotorDescription& desc);
 
   void draw(View& view, const FloatVector2d& pos, float orientation);
   void update(float delta);

@@ -21,11 +21,13 @@
 #include "../resource_manager.hxx"
 #include "rotor.hxx"
 
-Rotor::Rotor(const std::string& slow_name,
-             const std::string& fast_name)
+Rotor::Rotor(const RotorDescription& desc)
 {
-  slow = CL_Sprite(resources->get_sprite(slow_name));
-  fast = CL_Sprite(resources->get_sprite(fast_name));
+  // Rotor::Description
+  direction = desc.direction;
+  slow = CL_Sprite(resources->get_sprite(desc.slow_sprite));
+  fast = CL_Sprite(resources->get_sprite(desc.fast_sprite));
+  offset = desc.offset;
 
   running      = false;
   orientation  = 0;
@@ -35,15 +37,23 @@ Rotor::Rotor(const std::string& slow_name,
 }
 
 void
-Rotor::draw(View& view, const FloatVector2d& pos, float ori)
+Rotor::draw(View& view, const FloatVector2d& pos, float parent_orientation)
 {
+  FloatVector2d off = offset;
+
   if (velocity > 8.0f)
     {
-      view.draw(fast, pos, orientation);
+      if (direction == RotorDescription::LEFT)
+        view.draw(fast, pos + off.rotate(parent_orientation), orientation);
+      else
+        view.draw(fast, pos + off.rotate(parent_orientation), -orientation);
     }
   else
     {
-      view.draw(slow, pos, orientation + ori);
+      if (direction == RotorDescription::LEFT)
+        view.draw(slow, pos + off.rotate(parent_orientation), orientation);
+      else
+        view.draw(slow, pos + off.rotate(parent_orientation), -orientation);
     }
 }
 

@@ -32,8 +32,6 @@ Helicopter::Helicopter(const AList& lst)
   //      "feuerkraft/huey_rotor2"),
   //heli (resources->get_sprite ("feuerkraft/chuey")),
   //heli_shadow (resources->get_sprite ("feuerkraft/huey_shadow")),
-  rotor("feuerkraft/chinook_rotor", 
-        "feuerkraft/chinook_rotor2"),
   heli (resources->get_sprite ("feuerkraft/chinook")),
   heli_shadow (resources->get_sprite ("feuerkraft/chinook_shadow")),
   helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
@@ -44,6 +42,20 @@ Helicopter::Helicopter(const AList& lst)
   destroyed (false),
   ai(0)
 {
+  RotorDescription rotor1;
+  rotor1.offset = FloatVector2d(40.0f, 0);
+  rotor1.slow_sprite = "feuerkraft/chinook_rotor";
+  rotor1.fast_sprite = "feuerkraft/chinook_rotor2";
+  rotor1.direction = RotorDescription::LEFT;
+  rotors.push_back(Rotor(rotor1));
+  
+  RotorDescription rotor2;
+  rotor2.offset = FloatVector2d(-40.0f, 0);
+  rotor2.slow_sprite = "feuerkraft/chinook_rotor";
+  rotor2.fast_sprite = "feuerkraft/chinook_rotor2";
+  rotor2.direction = RotorDescription::RIGHT;
+  rotors.push_back(Rotor(rotor2));
+
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
 
@@ -68,8 +80,8 @@ Helicopter::draw (View& view)
 
       view.draw(heli, pos, orientation);
 
-      rotor.draw(view, pos + FloatVector2d(-40.0f, 0).rotate(orientation), orientation);
-      rotor.draw(view, pos + FloatVector2d(+40.0f, 0).rotate(orientation), orientation);
+      for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
+        (*i).draw(view, pos, orientation);
 
       energie.draw (view, int(pos.x), int(pos.y - 40));
     }
@@ -82,7 +94,8 @@ Helicopter::draw (View& view)
 void 
 Helicopter::update (float delta)
 {
-  rotor.update(delta);
+  for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
+    (*i).update(delta);
 
   if (state == LANDING)
     {
@@ -91,12 +104,19 @@ Helicopter::update (float delta)
         {
           height = 0;
           state = LANDED;
-          rotor.stop();
+
+          for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
+            (*i).stop();
         }
     }
   else if (state == STARTING)
     {
-      if (rotor.is_running())
+      bool running = true;
+      for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
+        if (!(*i).is_running())
+          running = false;          
+
+      if (running)
         {
           height += 20.0f * delta;
           if (height > 50.0f)
@@ -161,7 +181,8 @@ Helicopter::land_or_start()
   else if (state == LANDED || state == LANDING)
     {
       state = STARTING;
-      rotor.start();
+      for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
+        (*i).start();
     }
 }
 
