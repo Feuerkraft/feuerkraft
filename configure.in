@@ -5,7 +5,7 @@ PACKAGE=feuerkraft
 
 MAJOR_VERSION=0
 MINOR_VERSION=0
-PATCH_VERSION=3
+PATCH_VERSION=5
 
 VERSION=${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}
 
@@ -63,4 +63,5 @@ AC_CHECK_LIB( clanPNG,   main,, [
 
 AC_OUTPUT( Makefile
            data/Makefile
-           src/Makefile)
+           src/Makefile
+           src/boost/Makefile)

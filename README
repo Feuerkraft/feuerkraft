@@ -1,9 +1,10 @@
 Feuerkraft
 ~~~~~~~~~~
 
-Feuerkraft is a multiplayer tank game.
+Feuerkraft is a multiplayer tank game and its still under development,
+so its not yet a finished game, not even a playable.
 
-The newest version is always available via CVS:
+You can find new versions of Feuerkraft via CVS:
 
 $ export CVSROOT=':pserver:anonymous@dark.x.dtu.dk:/usr/local/cvsroot'
 $ cvs login

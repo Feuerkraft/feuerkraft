@@ -1,6 +1,6 @@
 pkgdatadir = $(datadir)/games/@PACKAGE@
 
-EXTRA_DIST = feuerkraft.scr images/*.png
+EXTRA_DIST = feuerkraft.scr images/*.png images/*.jpg
 
 pkgdata_DATA = $(EXTRA_DIST)
 
