@@ -9,6 +9,11 @@
                         #:width  3
                         #:height 3))
 
+(define building:garage
+  (building-create-type #:sprite "feuerkraft/garage"
+                        #:width  3
+                        #:height 4))
+
 (define building:house2
   (building-create-type #:sprite "feuerkraft/house2"
                         #:width  3
@@ -26,6 +31,20 @@
 
 (building-create building:house1 10 35)
 (building-create building:house2 14 35)
+
+(building-create building:garage 13 43)
+(building-create building:garage 16 43)
+(building-create building:garage 19 43)
+(building-create building:garage 22 43)
+
+(building-create building:armored-generator 25 43)
+
+(building-create building:garage 13 49)
+(building-create building:garage 16 49)
+(building-create building:garage 19 49)
+(building-create building:garage 22 49)
+
+(building-create building:armored-generator 25 49)
 
 (building-create building:generator 10 38)
 (building-create building:armored-generator 5 38)
