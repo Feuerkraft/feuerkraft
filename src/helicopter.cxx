@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.9 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.10 2003/06/07 18:57:43 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,10 @@ Helicopter::Helicopter(FloatVector2d arg_pos)
 
   velocity = 0;
   orientation = 0;
+
+  height = 50.0f;
+
+  state = FLYING;
 }
 
 Helicopter::~Helicopter ()
@@ -50,8 +54,8 @@ Helicopter::draw (View& view)
 {
   if (!destroyed)
     {
-      view.draw (heli_shadow, FloatVector2d(pos.x + 25.0f, pos.y + 50.0f),
-		  orientation);
+      view.draw (heli_shadow, FloatVector2d(pos.x + height/2.0f, pos.y + height),
+                 orientation);
 
       view.draw (heli, pos, orientation);
       /*
@@ -80,9 +84,31 @@ Helicopter::draw (View& view)
 void 
 Helicopter::update (float delta)
 {
+  if (state == LANDING)
+    {
+      height -= 20.0f * delta;
+      if (height < 0.0f)
+        {
+          height = 0;
+          state = LANDED;
+        }
+    }
+  else if (state == STARTING)
+    {
+      height += 20.0f * delta;
+      if (height > 50.0f)
+        {
+          height = 50;
+          state = FLYING;
+        }
+    }
+    
   // Apply controlls
-  orientation += 3.0f * steering * delta;
-  velocity    += 15.0f * acceleration * delta;
+  if (state != LANDED)
+    {
+      orientation += 3.0f * steering * delta;
+      velocity    += 15.0f * acceleration * delta;
+    }
 
   steering = acceleration = 0;
 
@@ -120,6 +146,15 @@ Helicopter::update (float delta)
 
   if (reloading)
     --reloading;
+}
+
+void
+Helicopter::land_or_start()
+{
+  if (state == FLYING || state == STARTING)
+    state = LANDING;
+  else if (state == LANDED || state == LANDING)
+    state = STARTING;
 }
 
 bool 

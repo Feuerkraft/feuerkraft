@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: gameobj_commands.cxx,v 1.6 2003/06/07 18:57:43 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 
 #include "../soldier.hxx"
 #include "../vehicle.hxx"
+#include "../helicopter.hxx"
 #include "../unit.hxx"
 
 #include "../game_obj.hxx"
@@ -112,6 +113,13 @@ gameobj_is_soldier(int handle)
 {
   GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
   return (obj && dynamic_cast<Soldier*>(obj));
+}
+
+bool
+gameobj_is_helicopter(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  return (obj && dynamic_cast<Helicopter*>(obj));
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.hxx,v 1.5 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: vehicle_commands.hxx,v 1.6 2003/06/07 18:57:43 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,8 @@ void vehicle_set_position(int vehicle_handle, int x, int y);
     vehicle is further away than \a max_distance, it is ignored and 0
     is returned */
 int vehicle_find_nearest(float x, float y, float max_distance);
+
+void helicopter_start_or_land(int handle);
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.cxx,v 1.1 2003/06/04 13:16:17 grumbel Exp $
+//  $Id: vehicle_commands.cxx,v 1.2 2003/06/07 18:57:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../helicopter.hxx"
 #include "../vehicle.hxx"
 #include "../game_obj_manager.hxx"
 #include "vehicle_commands.hxx"
@@ -52,6 +53,18 @@ int vehicle_find_nearest(float x, float y, float max_distance)
     return nearest_vehicle->get_id();
   else
     return 0;
+}
+
+void
+helicopter_start_or_land(int handle)
+{
+  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
+  if (obj)
+    {
+      Helicopter* heli = dynamic_cast<Helicopter*>(obj);
+      if (heli)
+        heli->land_or_start();
+    }
 }
 
 /* EOF */

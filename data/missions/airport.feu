@@ -1,0 +1,14 @@
+;; -*- mode: scheme; -*-
+(feuerkraft-scenario
+ (objects (tree (pos 120 100)))
+ 
+ (buildings
+  (tower (pos 61 242))
+  (tower (pos 49 242)))
+
+ (groundmap 
+  (gridmap 	  (file "data/missions/airport.png")))
+
+ (scripts "data/missions/airport.scm"))
+
+;; EOF ;;

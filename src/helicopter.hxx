@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.11 2003/06/04 21:07:54 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.12 2003/06/07 18:57:43 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef HELICOPTER_HH
 #define HELICOPTER_HH
 
+#include <ClanLib/Display/sprite.h>
 #include "game_obj.hxx"
 #include "energie.hxx"
 #include "vehicle.hxx"
@@ -28,6 +29,9 @@
 class Helicopter : public Vehicle
 {
 private:
+  enum { FLYING, STARTING, LANDING, LANDED } state;
+  float height;
+
   CL_Sprite rotor;
   CL_Sprite heli;
   CL_Sprite heli_shadow;
@@ -46,6 +50,8 @@ public:
   void draw (View& view);
   void update (float);
   float get_z_pos () { return destroyed ? 0 : 150; }
+
+  void land_or_start();
 
   // Controllable impl
   virtual float get_turn_speed () { return 1.0; }
