@@ -1,4 +1,4 @@
-//  $Id: System.cc,v 1.2 2001/05/01 22:48:43 sphair Exp $
+//  $Id: System.cc,v 1.3 2001/05/02 08:31:46 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
@@ -169,8 +169,9 @@ void
 System::change_dir (std::string dir)
 {
 #ifdef WIN32
-#else
   _chdir (dir.c_str ());
+#else
+  chdir (dir.c_str ());
 #endif
 }
 
