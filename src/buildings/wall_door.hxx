@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: wall_door.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,8 +42,8 @@ private:
   Status status;
 
 public:
-  WallDoor (boost::dummy_ptr<GameWorld> world, const WallDoorData&);
-  virtual ~WallDoor ();
+  WallDoor(const WallDoorData&);
+  virtual ~WallDoor();
 
   void draw (boost::dummy_ptr<View> view);
   void draw_radar (boost::dummy_ptr<Radar> radar);

@@ -1,4 +1,4 @@
-//  $Id: output_world_builder.hxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: output_world_builder.hxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,8 @@ public:
   void add_script(const std::string& resname);
 
 private:
+  void print_alist(const AList& alist);
+
   OutputWorldBuilder (const OutputWorldBuilder&);
   OutputWorldBuilder& operator= (const OutputWorldBuilder&);
 };

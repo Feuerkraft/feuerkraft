@@ -1,4 +1,4 @@
-//  $Id: mine.hxx,v 1.4 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: mine.hxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,8 +33,8 @@ private:
   float active;
   bool detonated;
 public:
-  Mine (boost::dummy_ptr<GameWorld>, const CL_Vector& arg_pos);
-  virtual ~Mine () {}
+  Mine(const CL_Vector& arg_pos);
+  virtual ~Mine() {}
 
   CL_Vector get_pos () { return pos; }
   void update (float);

@@ -18,10 +18,9 @@ const float circle = 6.2831854f;
 #include "vehicle_view.hxx"
 extern VehicleView* vehicle_view;
 
-Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
+Tank::Tank (const CL_Vector &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
-  : Vehicle (w),
-    orientation (3.14159f/2.0f),
+  : orientation (3.14159f/2.0f),
     speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
@@ -38,7 +37,7 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
   sur.set_alignment(origin_center);
   sur_destroyed.set_alignment(origin_center);
 
-  turret = new Turret(world, this, reloading_speed, str_turret, fire);
+  turret = new Turret(this, reloading_speed, str_turret, fire);
   pos = arg_pos;
 
   particle_release = 0.0f;
@@ -124,7 +123,7 @@ Tank::draw (View* view)
 void 
 Tank::explode ()
 {
-  world->add (new Explosion (world, pos, Explosion::MEDIUM));
+  GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
   destroyed = true;
   destroy_time = CL_System::get_time ();
 }
@@ -133,8 +132,8 @@ void
 Tank::respawn ()
 {
   /* FIXME: This respawn code is extremly ugly... */
-  Tank* tank = new Tank (world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-  world->add (tank);
+  Tank* tank = new Tank(CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  GameWorld::current()->add (tank);
   if (get_controller ())
     {
       get_controller ()->set_controllable (tank);
@@ -157,12 +156,12 @@ Tank::update (float delta)
 
   if (particle_release > 20.0f && !destroyed)
     {
-      GroundType type = get_world ()->get_groundmap ()->get_groundtype (pos.x, pos.y);
+      GroundType type = GameWorld::current()->get_groundmap ()->get_groundtype (pos.x, pos.y);
 
       if (type == GT_SAND)
-	world->add (new SmokeParticle (get_world (), pos));
+	GameWorld::current()->add (new SmokeParticle(pos));
       else if (type == GT_GRASS)
-	world->add (new GrassParticle (get_world (), pos));
+	GameWorld::current()->add (new GrassParticle(pos));
 
       particle_release = 0;
     }
@@ -211,7 +210,7 @@ Tank::update (float delta)
 
   CL_Vector tmp_pos = pos + (vel * delta);
 
-  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
     {
       //pos = tmp_pos; // We collided with a building
       //velocity = 0;
@@ -222,7 +221,7 @@ Tank::update (float delta)
       velocity /= delta;
     }
 
-  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
     {
       //pos = tmp_pos; // We collided with a building
       //velocity = 0;
@@ -308,7 +307,7 @@ Tank::drop_mine ()
       CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (orientation,
 							 CL_Vector (0.0, 0.0, 1.0));
 
-      world->add(new Mine (world, CL_Vector(pos.x, pos.y) + vel));
+      GameWorld::current()->add(new Mine(CL_Vector(pos.x, pos.y) + vel));
       mine_reload_time = 50;
     }
 }

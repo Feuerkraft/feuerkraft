@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.5 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: background.hxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ private:
   float z_pos;
 
 public:
-  Background (boost::dummy_ptr<GameWorld> w, const CL_Sprite& sprite, float z_pos);
+  Background(const CL_Sprite& sprite, float z_pos);
   virtual ~Background () {}
 
   void draw (View* draw);

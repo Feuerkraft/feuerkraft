@@ -1,4 +1,4 @@
-//  $Id: game_obj_data.hxx,v 1.1 2003/04/19 22:39:06 grumbel Exp $
+//  $Id: game_obj_data.hxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ private:
 public:
   /** Create the correct GameObj out of an GameObjData object. This is
       something like a virtual constructor. */
-  virtual GameObj* create (boost::dummy_ptr<GameWorld> world) =0;
+  virtual GameObj* create() =0;
   
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */

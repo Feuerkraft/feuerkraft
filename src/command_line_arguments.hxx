@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.hxx,v 1.1 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: command_line_arguments.hxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,6 +34,9 @@ public:
 
   /** number of fps to which the game should limit itself */
   float fps;
+
+  bool music_enabled;
+  bool sound_enabled;
 
   bool verbose;
 

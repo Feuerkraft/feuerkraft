@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: view.cxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,12 +24,11 @@
 #include "math.hxx"
 #include "view.hxx"
 
-View::View (boost::dummy_ptr<GameWorld> arg_world, 
-	    int arg_x1, int arg_y1, 
+View::View (int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
 	    int arg_x_offset, int arg_y_offset,
 	    CL_GraphicContext* arg_gc)
-  : gc (arg_gc), world (arg_world), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
+  : gc (arg_gc), x1 (arg_x1), y1 (arg_y1), x2 (arg_x2), y2 (arg_y2),
     x_offset (-arg_x_offset), y_offset (-arg_y_offset)
 {
   x_offset -= x1;
@@ -58,8 +57,8 @@ View::draw (CL_GraphicContext* gc)
   glRotated (rotation, 0, 0, 1.0);
   glTranslated (-400, -300, 0.0);*/
   
-  world->draw (this);
-  world->draw_energie (this);
+  GameWorld::current()->draw (this);
+  GameWorld::current()->draw_energie (this);
 
   //glPopMatrix ();
 

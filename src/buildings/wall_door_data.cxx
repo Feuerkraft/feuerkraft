@@ -1,4 +1,4 @@
-//  $Id: wall_door_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: wall_door_data.cxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -65,9 +65,9 @@ WallDoorData::~WallDoorData ()
 }
 
 Building*
-WallDoorData::create (boost::dummy_ptr<GameWorld> world)
+WallDoorData::create()
 {
-  return new WallDoor (world, *this);
+  return new WallDoor(*this);
 }
 
 SCM

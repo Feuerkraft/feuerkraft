@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: tower.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,14 +17,15 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "../property_set.hxx"
 #include "../radar.hxx"
 #include "tower.hxx"
 #include "../resource_manager.hxx"
 #include "../explosion.hxx"
 
-Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
-  : Building (w, data.x_pos, data.y_pos),
-    towerbase (resources->get_sprite("feuerkraft/towerbase")),
+Tower::Tower(const TowerData& data)
+  : Building(data.x_pos, data.y_pos),
+    towerbase(resources->get_sprite("feuerkraft/towerbase")),
     towerdamaged (resources->get_sprite("feuerkraft/towerdamaged")),
     towerdestroyed (resources->get_sprite("feuerkraft/towerdestroyed")),
     turret (resources->get_sprite("feuerkraft/towerturret")),
@@ -34,6 +35,8 @@ Tower::Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data)
   angle = data.angle;
   pos.x = x_pos * 40 + 40;
   pos.y = y_pos * 40 + 40;
+
+  properties->register_float("angle", &angle);
 }
   
 Tower::~Tower ()
@@ -91,7 +94,7 @@ Tower::update (float delta)
 
   if (!destroyed && !(energie > 0))
     {
-      get_world ()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
+      GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
     }
 }
@@ -102,7 +105,7 @@ Tower::collide (Projectile*)
   energie -= 5;   
   if (!destroyed && !(energie > 0))
     {
-      get_world()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
+      GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
     }
 }

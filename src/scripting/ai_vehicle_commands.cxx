@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle_commands.cxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: ai_vehicle_commands.cxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ get_AIVehicle(int object_id)
 int
 ai_vehicle_create(int x, int y)
 {
-  AIVehicle* vehicle = new AIVehicle(GameObjManager::current()->get_world(), CL_Vector(x,y));
+  AIVehicle* vehicle = new AIVehicle(CL_Vector(x,y));
 
   return GameObjManager::current()->add_object(vehicle);
 }

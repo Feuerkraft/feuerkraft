@@ -1,4 +1,4 @@
-//  $Id: shockwave.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: shockwave.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,8 @@
 #include "shockwave.hxx"
 #include "resource_manager.hxx"
 
-Shockwave::Shockwave (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
-  : GameObj (w),
-    pos (arg_pos)
+Shockwave::Shockwave(CL_Vector arg_pos) 
+  : pos (arg_pos)
 {
   progress = 0;
   sprite = resources->get_sprite ("feuerkraft/shockwave");

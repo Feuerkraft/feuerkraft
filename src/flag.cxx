@@ -1,4 +1,4 @@
-//  $Id: flag.cxx,v 1.3 2003/05/02 14:28:26 grumbel Exp $
+//  $Id: flag.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,8 @@
 #include "flag.hxx"
 #include "resource_manager.hxx"
 
-Flag::Flag (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
-  : GameObj (w),
-    sur (resources->get_sprite("feuerkraft/blueflag")),
+Flag::Flag(CL_Vector arg_pos) 
+  : sur (resources->get_sprite("feuerkraft/blueflag")),
     pos (arg_pos)
 {
 }

@@ -1,4 +1,4 @@
-//  $Id: sexpr_world_reader.cxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: sexpr_world_reader.cxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -105,7 +105,7 @@ SexprWorldReader::parse_buildings(SCM data)
       
       if (gh_symbol_p(gh_car(building)))
         {
-          builder->add_building(Guile::scm2string(gh_car(building)),
+          builder->add_building(Guile::symbol2string(gh_car(building)),
                                 Guile::scm2alist(gh_cdr(building)));
         }
       else
@@ -128,7 +128,7 @@ SexprWorldReader::parse_objects(SCM data)
       
       if (gh_symbol_p(gh_car(object)))
         {
-          builder->add_object(Guile::scm2string(gh_car(object)),
+          builder->add_object(Guile::symbol2string(gh_car(object)),
                               Guile::scm2alist(gh_cdr(object)));
         }
       else

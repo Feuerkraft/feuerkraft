@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,8 @@
 
 #include "vehicle.hxx"
 
-Vehicle::Vehicle (boost::dummy_ptr<GameWorld>  w)
-  : Collideable (w),
-    ammo (1.0f), 
+Vehicle::Vehicle ()
+  : ammo (1.0f), 
     fuel (1.0f)
 {
 }

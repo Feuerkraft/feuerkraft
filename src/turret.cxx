@@ -7,10 +7,8 @@
 
 const float circle = 6.2831854f;
 
-Turret::Turret (boost::dummy_ptr<GameWorld>  w, 
-		Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
-  : GameObj (w),
-    fire_sur (resources->get_sprite (fire.c_str ())),
+Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
+  : fire_sur (resources->get_sprite (fire.c_str ())),
     sur (resources->get_sprite (surface.c_str ())),
     shadow (resources->get_sprite ("feuerkraft/turret2_shadow")),
     angle (0),
@@ -67,16 +65,16 @@ Turret::update (float delta)
 
       if (floppy)
 	{
-	  world->add (new Projectile (world, boost::dummy_ptr<GameObj>(tank.get()), 
-				      tank->get_pos ()
+	  GameWorld::current()->add (new Projectile (boost::dummy_ptr<GameObj>(tank.get()), 
+                                                     tank->get_pos ()
 				      + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
-				      dir));
+                                                     dir));
 	}
       else
 	{
-	  world->add (new Projectile (world, tank.get(), tank->get_pos ()
-				      + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
-				      dir));
+	  GameWorld::current()->add (new Projectile (tank.get(), tank->get_pos ()
+                                                     + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
+                                                     dir));
 	}
       floppy = !floppy;
     }

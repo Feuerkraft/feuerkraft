@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.4 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: explosion.cxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,10 +23,8 @@
 #include "sound/sound.hxx"
 #include "particles/explosion_particle.hxx"
 
-Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
-		      const CL_Vector& arg_pos, Size arg_size) 
-  : GameObj (w),
-    is_drawn (false),
+Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size) 
+  : is_drawn (false),
     pos (arg_pos),
     en_size (arg_size)
 {
@@ -44,7 +42,7 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
     case MEDIUM:
       explo = resources->get_sprite("feuerkraft/mediumexplo");
       lifetime = 25;
-      world->add (new Shockwave (world, pos));
+      GameWorld::current()->add(new Shockwave(pos));
       size = 2;
       PingusSound::play_sound("explosion");
       break;
@@ -79,24 +77,21 @@ Explosion::update (float delta)
 	  switch (en_size)
 	    {
 	    case MEDIUM:
-	      world->add (new ExplosionParticle (get_world (),
-						 CL_Vector (pos.x + (rand()%40 - 20), 
-							    pos.y + (rand()%40 - 20)),
-						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
-						 Random::frand(size) + 1.0)); 
-	      world->add (new ExplosionParticle (get_world (),
-						 CL_Vector (pos.x + (rand()%40 - 20), 
-							    pos.y + (rand()%40 - 20)),
-						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
-						 Random::frand(size) + 1.0)); 
+	      GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%40 - 20), 
+                                                                          pos.y + (rand()%40 - 20)),
+                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               Random::frand(size) + 1.0)); 
+	      GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%40 - 20), 
+                                                                          pos.y + (rand()%40 - 20)),
+                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               Random::frand(size) + 1.0)); 
 	      break;
 
 	    default:
-	      world->add (new ExplosionParticle (get_world (),
-						 CL_Vector (pos.x + (rand()%10 - 5), 
-							    pos.y + (rand()%10 - 5)),
-						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
-						 Random::frand(size) + .01)); 
+              GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%10 - 5), 
+                                                                          pos.y + (rand()%10 - 5)),
+                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               Random::frand(size) + .01)); 
 	      break;
 	    }
 	  lifetime = 0;

@@ -1,4 +1,4 @@
-//  $Id: grass_particle.hxx,v 1.3 2003/04/27 23:26:27 grumbel Exp $
+//  $Id: grass_particle.hxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,8 +32,7 @@ private:
   float max_life_time;
   
 public:
-  GrassParticle (boost::dummy_ptr<GameWorld> world, const CL_Vector& arg_pos)
-    : Particle (world)
+  GrassParticle(const CL_Vector& arg_pos)
   {
     pos = arg_pos;
     size = 1;

@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,8 @@
 #include "wall_door.hxx"
 #include "resource_manager.hxx"
 
-WallDoor::WallDoor (boost::dummy_ptr<GameWorld> world, const WallDoorData& data)
-  : Building (world, data.x_pos, data.y_pos)
+WallDoor::WallDoor(const WallDoorData& data)
+  : Building (data.x_pos, data.y_pos)
 {
   switch (data.orientation)
     {
@@ -65,7 +65,7 @@ WallDoor::update(float)
 {
   status = S_CLOSED;
   
-  GameObjManager* objs = get_world()->get_game_obj_manager();
+  GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);

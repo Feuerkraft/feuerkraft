@@ -81,6 +81,10 @@ playfield.cxx \
 playfield.hxx \
 output_world_builder.hxx \
 output_world_builder.cxx \
+property.hxx \
+property.cxx \
+property_set.hxx \
+property_set.cxx \
 projectile.cxx \
 projectile.hxx \
 radar.cxx \

@@ -1,4 +1,4 @@
-//  $Id: building_data.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: building_data.hxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,9 +32,9 @@ public:
   int x_pos;
   int y_pos;
 
-  virtual Building* create (boost::dummy_ptr<GameWorld> world) =0;
+  virtual Building* create() =0;
 
-  virtual SCM dump_to_scm () =0;
+  virtual SCM dump_to_scm() =0;
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: level_map.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: level_map.hxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,9 +28,8 @@ class GameWorld;
 class LevelMap : public GuiObj
 {
 private:
-  boost::dummy_ptr<GameWorld> world;
 public:
-  LevelMap (boost::dummy_ptr<GameWorld>);
+  LevelMap ();
   ~LevelMap ();
 
   void update (float delta);

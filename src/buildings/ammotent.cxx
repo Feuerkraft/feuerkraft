@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: ammotent.cxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,8 +24,8 @@
 #include "../vehicle.hxx"
 #include "resource_manager.hxx"
 
-Ammotent::Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData& data)
-  : Building (world, data.x_pos, data.y_pos),
+Ammotent::Ammotent (const AmmotentData& data)
+  : Building (data.x_pos, data.y_pos),
     ammotent (resources->get_sprite("feuerkraft/ammotent")),
     pos (x_pos * 40 + 40, y_pos * 40 + 60), // FIXME: Hard coded tilesize again...
     reloading(false)
@@ -44,7 +44,8 @@ Ammotent::draw (boost::dummy_ptr<View> view)
     {
       view->draw_fillrect(int(pos.x - 32), int (pos.y + 25),
 			  int(pos.x + 31), int (pos.y + 57),
-			  1.0, 1.0, 1.0, sin(get_world ()->get_time () * 10.0f) * .3f + .5f);
+			  1.0, 1.0, 1.0, 
+                          sin(GameWorld::current()->get_time () * 10.0f) * .3f + .5f);
     }
 }
 
@@ -61,7 +62,7 @@ Ammotent::update (float delta)
 
   reloading = false;
 
-  GameObjManager* objs = get_world()->get_game_obj_manager();
+  GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);

@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: tower.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,8 +43,8 @@ private:
       is due to the position in the building map */
   CL_Vector pos;
 public:
-  Tower (boost::dummy_ptr<GameWorld> w, const TowerData& data);
-  virtual ~Tower ();
+  Tower(const TowerData& data);
+  virtual ~Tower();
   
   // Draw the object onto the screen
   void draw (boost::dummy_ptr<View> view);

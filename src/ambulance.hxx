@@ -1,4 +1,4 @@
-//  $Id: ambulance.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: ambulance.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ class Ambulance : public GameObj
 private:
   CL_Sprite sur;
 public:
-  Ambulance (boost::dummy_ptr<GameWorld>  w);
+  Ambulance();
 
   // Draw the object onto the screen
   void draw (View* view);

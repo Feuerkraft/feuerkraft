@@ -1,4 +1,4 @@
-//  $Id: fuelstation.hxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: fuelstation.hxx,v 1.5 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,14 +26,19 @@
 #include "../view.hxx"
 #include "fuelstation_data.hxx"
 
-class Fuelstation : public Building
+class Fuelstation
+  : public Building
 {
 private:
   CL_Sprite fuelstation;
   CL_Vector pos;
+
+  /** The refueling variable keeps track if the fuelstation is
+      currently refueling a vehicle, which triggers a blink-mark to
+      indicate that to the user */
   bool refueling;
 public:
-  Fuelstation (boost::dummy_ptr<GameWorld> world, const FuelstationData& data);
+  Fuelstation (const FuelstationData& data);
   virtual ~Fuelstation ();
 
   void draw (boost::dummy_ptr<View>);

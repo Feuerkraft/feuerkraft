@@ -22,8 +22,7 @@ private:
   int  reloading_speed;
 
 public:
-  Turret (boost::dummy_ptr<GameWorld>  w,
-	  Tank*, int reloading_speed, std::string, std::string);
+  Turret (Tank*, int reloading_speed, std::string, std::string);
   ~Turret ();
 
   void draw (View* view);

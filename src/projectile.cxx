@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.5 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: projectile.cxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,10 +26,9 @@
 #include "projectile.hxx"
 #include "resource_manager.hxx"
 
-Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
+Projectile::Projectile (boost::dummy_ptr<GameObj> p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
-  : Collideable (w),
-    sur (resources->get_sprite("feuerkraft/projectile")),
+  : sur (resources->get_sprite("feuerkraft/projectile")),
     tmp_pos (arg_pos),
     velocity (arg_velocity),
     lifetime (45 + rand () % 5 ),
@@ -85,7 +84,7 @@ void
 Projectile::detonate ()
 {
   lifetime = -1;
-  world->add_front (new Explosion (world, pos));
+  GameWorld::current()->add_front (new Explosion(pos));
 }
 
 void

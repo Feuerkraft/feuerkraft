@@ -1,4 +1,4 @@
-//  $Id: building_map_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: building_map_data.cxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,34 +47,34 @@ BuildingMapData::BuildingMapData (SCM desc)
 	{
 	  //std::cout << "BuildingMapData: creating towerdata" << std::endl;
 	  // building_data does not contain position information
-	  buildings_data.push_back (new TowerData (data));
+	  buildings_data.push_back(new TowerData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("ammotent"), symbol))
 	{
 	  //std::cout << "BuildingMapData: creating ammotent" << std::endl;
-	  buildings_data.push_back (new AmmotentData (data));
+	  buildings_data.push_back(new AmmotentData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("wall"), symbol))
 	{
-	  buildings_data.push_back (new WallData (data));
+	  buildings_data.push_back(new WallData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("fuelstation"), symbol))
 	{
 	  //std::cout << "BuildingMapData: creating ammotent" << std::endl;
-	  buildings_data.push_back (new FuelstationData (data));
+	  buildings_data.push_back(new FuelstationData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("headquarter"), symbol))
 	{
 	  //std::cout << "BuildingMapData: creating headquarter" << std::endl;
-	  buildings_data.push_back (new HeadquarterData (data));
+	  buildings_data.push_back(new HeadquarterData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("base"), symbol))
 	{
-	  buildings_data.push_back (new BaseData (data));
+	  buildings_data.push_back(new BaseData (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("walldoor"), symbol))
 	{
-	  buildings_data.push_back (new WallDoorData (data));
+	  buildings_data.push_back(new WallDoorData (data));
 	}
       else
 	{
@@ -94,9 +94,9 @@ BuildingMapData::~BuildingMapData ()
 }
 
 GameObj*
-BuildingMapData::create (boost::dummy_ptr<GameWorld> world)
+BuildingMapData::create ()
 {
-  return new BuildingMap (world, *this);
+  return new BuildingMap(*this);
 }
 
 SCM

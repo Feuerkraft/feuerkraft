@@ -11,6 +11,7 @@ base_data.cxx \
 base_data.hxx \
 basis_data.hxx \
 building.hxx \
+building.cxx \
 building_data.hxx \
 building_map.cxx \
 building_map.hxx \

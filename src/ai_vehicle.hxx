@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -94,7 +94,7 @@ private:
 
   AIVehicleOrder current_order;
 public:
-  AIVehicle(boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
+  AIVehicle(const CL_Vector& arg_pos);
 
   void update(float delta);
   void draw (View* view);

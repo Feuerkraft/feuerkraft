@@ -1,4 +1,4 @@
-//  $Id: jeep.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: jeep.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,9 +24,8 @@
 
 const float circle = 6.2831854f;
 
-Jeep::Jeep (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
-  : Vehicle (w),
-    energie (50),
+Jeep::Jeep(CL_Vector arg_pos) 
+  : energie (50),
     velocity (0.0),
     angle (0.0),
     flag (0)
@@ -45,7 +44,7 @@ Jeep::update (float delta)
   
   CL_Vector tmp_pos = pos + vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
 
-  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
     {
       pos.y = tmp_pos.y;
     }
@@ -54,7 +53,7 @@ Jeep::update (float delta)
       //velocity /= delta;
     }
 
-  if (!(get_world ()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
     {
       pos.x = tmp_pos.x;
     }

@@ -53,6 +53,7 @@
 #include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
 
+#include "globals.hxx"
 #include "output_world_builder.hxx"
 #include "sexpr_world_reader.hxx"
 
@@ -113,6 +114,9 @@ public:
 	//CL_SetupSound::init();
 	CL_SetupDisplay::init();
 	CL_SetupGL::init();
+        
+        music_enabled = args.music_enabled;
+        sound_enabled = args.sound_enabled;
 
         PingusSound::init();
         
@@ -158,15 +162,15 @@ public:
         
 	Screen    screen;
 
-	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5,
+	Tank* tank2 = new Tank(CL_Vector (800, 200), 5,
                                "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, 
+	Tank* tank1 = new Tank(CL_Vector (560, 1245), 5, 
                                "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-        AIVehicle* ai_vehicle = new AIVehicle(world, CL_Vector(342, 1241));
+        AIVehicle* ai_vehicle = new AIVehicle(CL_Vector(342, 1241));
 
-	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
+	Helicopter* heli = new Helicopter(CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
-	Jeep* jeep = new Jeep (world, CL_Vector (250, 250));
+	Jeep* jeep = new Jeep (CL_Vector (250, 250));
 
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
@@ -195,24 +199,24 @@ public:
 	world->add (tank1);
 	world->add (ai_vehicle);
 	world->add (tank2);
-	world->add (new Background (world, resources->get_sprite("feuerkraft/sand"), -10.0f));
+	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
 	//world->add (new Background (world, resources->get_sprite("feuerkraft/cloudshadow"), 150.0f));
-	world->add (new Playfield (world));
-	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
+	world->add (new Playfield ());
+	world->add (new Flag (CL_Vector(200.0f, 200.f)));
 
-	world->add (new Ambulance (world));
+	world->add (new Ambulance());
 	
 	for (int i = 0; i < 20; ++i)
 	  {
-	    world->add (new Stone (world, CL_Vector (rand () % 2048 - 1024,
-						     rand () % 2048 - 1024)));
+	    world->add (new Stone (CL_Vector (rand () % 2048 - 1024,
+                                              rand () % 2048 - 1024)));
 	  }
 
-	world->add(new Soldier (world, CL_Vector (200, 200)));
-	world->add(new Soldier (world, CL_Vector (300, 300)));
-	world->add(new Soldier (world, CL_Vector (150, 400)));
-	world->add(new Soldier (world, CL_Vector (550, 400)));
-	world->add(new Soldier (world, CL_Vector (550, 100)));
+	world->add(new Soldier(CL_Vector (200, 200)));
+	world->add(new Soldier(CL_Vector (300, 300)));
+	world->add(new Soldier(CL_Vector (150, 400)));
+	world->add(new Soldier(CL_Vector (550, 400)));
+	world->add(new Soldier(CL_Vector (550, 100)));
 	
 	/** 1/30sec = 1.0delta
 	 */
@@ -222,7 +226,7 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (world, current_vehicle, 0, 0, 800, 600, window.get_gc ());
+	VehicleView view(current_vehicle, 0, 0, 800, 600, window.get_gc ());
 
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
@@ -239,7 +243,7 @@ public:
 
 	int delta_wait = static_cast<int>(1000/args.fps);
 
-	LevelMap levelmap (world);
+	LevelMap levelmap;
 	
 
         CL_System::keep_alive();

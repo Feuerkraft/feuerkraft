@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.4 2003/05/07 17:37:47 grumbel Exp $
+//  $Id: mine.cxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,14 +25,13 @@
 #include "collision_manager.hxx"
 #include "resource_manager.hxx"
 
-Mine::Mine (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
-  : GameObj (w),
-    pos (arg_pos),
+Mine::Mine (const CL_Vector& arg_pos) 
+  : pos (arg_pos),
     hole (resources->get_sprite ("feuerkraft/hole")),
     active (2),
     detonated (false)
 {
-  GroundType type = get_world ()->get_groundmap ()->get_groundtype (pos.x, pos.y);
+  GroundType type = GameWorld::current()->get_groundmap ()->get_groundtype (pos.x, pos.y);
   if (type == GT_FLATWATER)
     {
       sur = resources->get_sprite ("feuerkraft/minewater");
@@ -97,7 +96,7 @@ void
 Mine::detonate () 
 {
   // Search for game objects in the given area to make damage
-  GameObjManager* objs = get_world()->get_game_obj_manager();
+  GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
@@ -112,7 +111,7 @@ Mine::detonate ()
     }
 
 
-  world->add (new Explosion (world, pos, Explosion::MEDIUM));
+  GameWorld::current()->add (new Explosion(pos, Explosion::MEDIUM));
   detonated = true;
   //remove ();
 }

@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: building.hxx,v 1.6 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,24 +27,25 @@ class View;
 class GameWorld;
 class Projectile;
 class Radar;
+class PropertySet;
 
 class Building
 {
 private:
-  boost::dummy_ptr<GameWorld> world;
-
   int id;
+  void register_properties();
+
 protected:
+  PropertySet* properties;
+
   int x_pos;
   int y_pos;
 public:
-  Building (boost::dummy_ptr<GameWorld> w, int x, int y)
-    : world (w), x_pos(x), y_pos(y)
-  {}
-
-  Building ()
-    : world(0)
-  {}
+  Building (int x, int y);
+  Building ();
+  virtual ~Building ();
+  
+  PropertySet* get_properties() { return properties; }
 
   void set_id(int i) { id = i; }
   int  get_id() { return id; }
@@ -69,8 +70,6 @@ public:
 
   /** Returns the height which this building will take on the BuildingMap */
   virtual int get_map_height () =0;
-
-  GameWorld* get_world () { return world.get(); }
 
   virtual void collide (Projectile*) {}
 

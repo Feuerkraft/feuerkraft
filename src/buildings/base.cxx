@@ -1,4 +1,4 @@
-//  $Id: base.cxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: base.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #include "base.hxx"
 #include "resource_manager.hxx"
 
-Base::Base (boost::dummy_ptr<GameWorld>  w, const BaseData& data)
-  : Building (w, data.x_pos, data.y_pos),
+Base::Base (const BaseData& data)
+  : Building (data.x_pos, data.y_pos),
     sprite (resources->get_sprite("feuerkraft/start")),
     pos (data.x_pos * 40 + 40, data.y_pos * 40 + 40) // FIXME: tilesize hardcoded
 {

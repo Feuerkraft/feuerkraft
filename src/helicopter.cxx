@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,8 @@
 #include "helicopter.hxx"
 #include "resource_manager.hxx"
 
-Helicopter::Helicopter (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos) 
-  : Vehicle (w),
-    rotor (resources->get_sprite ("feuerkraft/rotor")),
+Helicopter::Helicopter(CL_Vector arg_pos) 
+  : rotor (resources->get_sprite ("feuerkraft/rotor")),
     heli (resources->get_sprite ("feuerkraft/helicopter")),
     heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
     helidestroyed (resources->get_sprite ("feuerkraft/helidestroyed")),
@@ -53,11 +52,11 @@ Helicopter::draw (View* view)
 		  angle);
 
       view->draw (heli, pos, angle);
-  /*
-      view->draw (heli,
-		  pos.x - heli.get_width ()/2,
-		  pos.y - heli.get_height ()/2,
-		  frame);*/
+      /*
+        view->draw (heli,
+        pos.x - heli.get_width ()/2,
+        pos.y - heli.get_height ()/2,
+        frame);*/
 
       view->draw (rotor, pos);
       energie.draw (view, int(pos.x), int(pos.y - 40));
@@ -68,12 +67,12 @@ Helicopter::draw (View* view)
     }
 
   /*
-  view->draw_rect (int(pos.x) - 40, int(pos.y) - 10, 
-		   int(pos.x) + 30, int(pos.y) + 10, 
-		   1.0f, 1.0f, 1.0f);
-  view->draw_rect (int(pos.x) - 15, int(pos.y) - 20, 
-		   int(pos.x) + 5, int(pos.y) + 20, 
-		   1.0f, 1.0f, 1.0f);*/
+    view->draw_rect (int(pos.x) - 40, int(pos.y) - 10, 
+    int(pos.x) + 30, int(pos.y) + 10, 
+    1.0f, 1.0f, 1.0f);
+    view->draw_rect (int(pos.x) - 15, int(pos.y) - 20, 
+    int(pos.x) + 5, int(pos.y) + 20, 
+    1.0f, 1.0f, 1.0f);*/
 }
 
 void 
@@ -85,7 +84,7 @@ Helicopter::update (float delta)
 
   if (energie <= 0 && !destroyed)
     {
-      world->add (new Explosion (world, pos, Explosion::MEDIUM));
+      GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
     }
 
@@ -102,9 +101,10 @@ Helicopter::update (float delta)
     {
       float rot_angle = angle;
       CL_Vector dir = CL_Vector (15.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
-      world->add (new Projectile (world, this, pos
-				  + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
-				  dir));
+      GameWorld::current()->add (new Projectile (this, pos
+                                                 + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle,
+                                                                                      CL_Vector (0.0, 0.0, 1.0)),
+                                                 dir));
       reloading = 4;
     }
 

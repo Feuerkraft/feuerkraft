@@ -1,4 +1,4 @@
-//  $Id: collideable.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: collideable.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ class Collideable : public GameObj
 private:
   
 public:
-  Collideable (boost::dummy_ptr<GameWorld>  w) : GameObj (w) {};
+  Collideable () {}
   virtual ~Collideable () {};
 
   /** Check if the collideable is colliding with a object at obj_pos */

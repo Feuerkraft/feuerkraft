@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.4 2003/05/07 16:30:26 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,7 @@ class View;
 class LevelMap;
 class GameWorld;
 class GameObjData;
+class PropertySet;
 
 class GameObj
 {
@@ -38,29 +39,24 @@ protected:
 
   int id;
 
-  boost::dummy_ptr<GameWorld> world;
   bool remove_me;
 
   friend class GameObjManager;
   void set_id(int i) { id = i; }
-public:
-  GameObj (boost::dummy_ptr<GameWorld>  w)
-    : id(-1),
-      world (w),
-      remove_me (false) {}
 
-  virtual ~GameObj () {}
+  PropertySet* properties;
+public:
+  GameObj();
+  virtual ~GameObj ();
 
   int get_id() const { return id; }
+
+  PropertySet* get_properties() { return properties; }
 
   /** Sync the GameObj with its GameObjData parent and return a
       pointer to the parent. The parent must not be deleted.
       0 is return if the function is unimplemented. */
   virtual GameObjData* get_data () { return 0; }
-
-  boost::dummy_ptr<GameWorld> get_world () {
-    return world; 
-  }
 
   /** Draw the object onto the main view, which means the object will
       be drawn in normal game grafic */

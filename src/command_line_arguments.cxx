@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.cxx,v 1.2 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: command_line_arguments.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,8 @@ static struct argp_option options[] = {
   {"quiet",    'q', 0,         0,  "Produce no output" },
   {"datadir",  'd', 0,         0,  "Set the path to search for gamedata" },
   {"fps",      'f', "FPS",     0,  "Limit of frames per second" },
+  {"music",    'm', 0,         0,  "Enable music" },
+  {"sound",    's', 0,         0,  "Enable sound" },
   { 0 }
 };
 
@@ -57,6 +59,8 @@ CommandLineArguments::load_defaults()
   fps          = 30.0f;
   verbose      = true;
   datadir      = "";
+  music_enabled = false;
+  sound_enabled = false;
 }
   
 void
@@ -115,6 +119,14 @@ CommandLineArguments::parse_option(int key, char *arg, struct argp_state *state)
 
     case 'q':
       verbose = false;
+      break;
+
+    case 'm':
+      music_enabled = true;
+      break;
+
+    case 's':
+      sound_enabled = true;
       break;
 
     default: 

@@ -1,4 +1,4 @@
-//  $Id: output_world_builder.cxx,v 1.1 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: output_world_builder.cxx,v 1.2 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,33 +24,76 @@ OutputWorldBuilder::OutputWorldBuilder()
 }
 
 void
-OutputWorldBuilder::add_object(const std::string& type, const AList&)
+OutputWorldBuilder::add_object(const std::string& type, const AList& alist)
 {
   std::cout << "OutputWorldBuilder: gameobj: " << type << std::endl;
+  print_alist(alist);
 }
 
 void
-OutputWorldBuilder::add_brush(const std::string& resname, const AList&)
+OutputWorldBuilder::add_brush(const std::string& resname, const AList& alist)
 {
   std::cout << "OutputWorldBuilder: brush: " << resname << std::endl;
+  print_alist(alist);
 }
 
 void
-OutputWorldBuilder::add_building(const std::string& type, const AList&)
+OutputWorldBuilder::add_building(const std::string& type, const AList& alist)
 {
   std::cout << "OutputWorldBuilder: building: " << type << std::endl;
+  print_alist(alist);
 }
 
 void
-OutputWorldBuilder::add_groundmap(const std::string& type, const AList&)
+OutputWorldBuilder::add_groundmap(const std::string& type, const AList& alist)
 {
   std::cout << "OutputWorldBuilder: groundmap: " << type << std::endl;
+  print_alist(alist);
 }
 
 void
 OutputWorldBuilder::add_script(const std::string& resname)
 {
   std::cout << "OutputWorldBuilder: script: " << resname << std::endl;
+}
+
+void
+OutputWorldBuilder::print_alist(const AList& alist)
+{
+  for(AList::const_iterator i = alist.begin(); i != alist.end(); ++i)
+    {
+      std::cout << "  " << i->first << " -> ";
+      switch(i->second.type)
+        {
+        case AList::AL_INT:
+          std::cout << i->second.value.v_int << std::endl;
+          break;
+        case AList::AL_FLOAT:
+          std::cout << i->second.value.v_float << std::endl;
+          break;
+        case AList::AL_BOOL:
+          std::cout << i->second.value.v_bool << std::endl;
+          break;
+        case AList::AL_STRING:
+          std::cout << *i->second.value.v_string << std::endl;
+          break;
+        case AList::AL_INTVECTOR2D:
+          std::cout << "[" << (*i).second.value.v_int_vector2d.x
+                    << ", " << (*i).second.value.v_int_vector2d.y
+                    << "]"
+                    << std::endl;
+          break;
+        case AList::AL_FLOATVECTOR2D:
+          std::cout << "[" << (*i).second.value.v_float_vector2d.x
+                    << ", " << (*i).second.value.v_float_vector2d.y
+                    << "]"
+                    << std::endl;
+          break;
+        default:
+          std::cout << "<unhandled>" << std::endl;
+          break;
+        }
+    }
 }
 
 /* EOF */

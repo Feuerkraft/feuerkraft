@@ -1,4 +1,4 @@
-//  $Id: building_map_data.hxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: building_map_data.hxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,12 +22,10 @@
 
 #include <vector>
 #include <guile/gh.h>
-#include "../boost/dummy_ptr.hpp"
 #include "../game_obj_data.hxx"
 
 class BuildingData;
 class BuildingMap;
-class GameWorld;
 
 /** The BuildingMap is something like a TileMap which holds pointers
     to all Buildings. It is used to hold the Building's instead of the
@@ -52,7 +50,7 @@ public:
   BuildingMapData (SCM desc);
   virtual ~BuildingMapData ();
   
-  GameObj* create (boost::dummy_ptr<GameWorld> world);
+  GameObj* create();
 
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */

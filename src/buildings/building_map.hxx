@@ -1,4 +1,4 @@
-//  $Id: building_map.hxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: building_map.hxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -42,7 +42,7 @@ private:
   std::vector<Building*> building_map;
 
 public:
-  BuildingMap (boost::dummy_ptr<GameWorld> w, const BuildingMapData&);
+  BuildingMap (const BuildingMapData&);
   virtual ~BuildingMap () {}
 
   int get_width () { return width; }

@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.2 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: alist.hxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,26 +22,59 @@
 
 #include <string>
 #include <map>
+#include "vector2d.hxx"
 
 /** Simple associated list like class */
 class AList
 {
+public:
+  enum Type { AL_NONE, AL_INT, AL_FLOAT, AL_BOOL, AL_STRING, AL_INTVECTOR2D, AL_FLOATVECTOR2D };
+
+  struct Value {
+    Type type;
+    
+    union {
+      int   v_int;
+      float v_float;
+      bool  v_bool;
+      IntVector2d   v_int_vector2d;
+      FloatVector2d v_float_vector2d;
+      std::string* v_string;
+    } value;
+  };
 private:
-  typedef std::map<std::string, std::string> Content;
+  typedef std::map<std::string, Value> Content;
   Content content;
+
+  Value& ensure_free_cell(const std::string& name, Type type);
+  const Value* get_value(const std::string& name, Type type) const;
 public:
   typedef Content::iterator iterator;
   typedef Content::const_iterator const_iterator;
 
-  AList& set_int(const std::string& str, int);
-  AList& set_float(const std::string& str, float);
-  AList& set_bool(const std::string& str, bool);
-  AList& set_string(const std::string& str, const std::string&);
+  AList();
+  ~AList();
 
-  bool get_int(const std::string& str, int&) const;
-  bool get_float(const std::string& str, float&) const;
-  bool get_bool(const std::string& str, bool&) const;
-  bool get_string(const std::string& str, std::string&) const;
+  AList& set_int   (const std::string& str, int value);
+  AList& set_float (const std::string& str, float value);
+  AList& set_bool  (const std::string& str, bool value);
+  AList& set_string(const std::string& str, const std::string& value);
+  AList& set_int_vector2d(const std::string& str, IntVector2d& value);
+  AList& set_float_vector2d(const std::string& str, FloatVector2d& value);
+
+  bool get_int      (const std::string& str, int& value) const;
+  bool get_float    (const std::string& str, float&value) const;
+  bool get_bool     (const std::string& str, bool& value) const;
+  bool get_string   (const std::string& str, std::string& value) const;
+
+  bool get_int_vector2d (const std::string& str, IntVector2d& value) const;
+  bool get_float_vector2d (const std::string& str, FloatVector2d& value) const;
+
+  iterator begin() { return content.begin(); }
+  iterator end() { return content.end(); }
+
+  const_iterator begin() const { return content.begin(); }
+  const_iterator end() const { return content.end(); }
 };
 
 #endif

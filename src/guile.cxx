@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.7 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: guile.cxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -98,6 +98,9 @@ AList scm2alist(SCM lst)
       SCM key  = gh_caar(lst);
       SCM data = gh_cdar(lst);
 
+      if (gh_pair_p(data) && gh_null_p(gh_cdr(data)))
+        data = gh_car(data);
+
       if (!gh_symbol_p(key))
         {
           std::cout << "Guile: Error: key not a symbol" << std::endl;
@@ -108,23 +111,38 @@ AList scm2alist(SCM lst)
         {
           if (gh_string_p(data))
             {
-              alist.set_string(Guile::scm2string(key), 
+              alist.set_string(Guile::symbol2string(key), 
                                Guile::scm2string(data));
             }
           else if (gh_exact_p(data))
             {
-              alist.set_int(Guile::scm2string(key), 
+              alist.set_int(Guile::symbol2string(key), 
                             gh_scm2int(data));
             }
           else if (gh_inexact_p(data))
             {
-              alist.set_float(Guile::scm2string(key), 
+              alist.set_float(Guile::symbol2string(key), 
                               gh_scm2double(data));
             }
           else if (gh_boolean_p(data))
             {
-              alist.set_bool(Guile::scm2string(key), 
+              alist.set_bool(Guile::symbol2string(key), 
                              gh_scm2bool(data));
+            }
+          else if (gh_list_p(data) && gh_length(data) == 2
+                   && gh_exact_p(gh_car(data)) 
+                   && gh_exact_p(gh_cadr(data)))
+            {
+              IntVector2d vec;
+              vec.x = gh_scm2int(gh_car(data));
+              vec.y = gh_scm2int(gh_cadr(data));
+              alist.set_int_vector2d(Guile::symbol2string(key), 
+                                     vec);
+            }
+          else if (gh_symbol_p(data))
+            {
+              alist.set_string(Guile::symbol2string(key),
+                               Guile::symbol2string(data));
             }
           else
             {
@@ -133,6 +151,8 @@ AList scm2alist(SCM lst)
               gh_newline();
             }
         }
+
+      lst = gh_cdr(lst);
     }
   return alist;
 }

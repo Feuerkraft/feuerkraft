@@ -1,4 +1,4 @@
-//  $Id: fuelstation_data.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: fuelstation_data.cxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,9 +46,9 @@ FuelstationData::FuelstationData (SCM desc)
 }
 
 Building*
-FuelstationData::create (boost::dummy_ptr<GameWorld> world)
+FuelstationData::create()
 {
-  return new Fuelstation (world, *this);
+  return new Fuelstation(*this);
 }
 
 SCM

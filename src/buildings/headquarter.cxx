@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.3 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: headquarter.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,8 @@
 #include "headquarter.hxx"
 #include "resource_manager.hxx"
 
-Headquarter::Headquarter (boost::dummy_ptr<GameWorld> world, const HeadquarterData& data)
-  : Building (world, data.x_pos, data.y_pos),
+Headquarter::Headquarter (const HeadquarterData& data)
+  : Building (data.x_pos, data.y_pos),
     pos (x_pos * 40 + 40, y_pos * 40 + 40),
     headquarter (resources->get_sprite("feuerkraft/headquarter")),
     headquarter_damaged (resources->get_sprite("feuerkraft/headquarterdamaged")),
@@ -44,8 +44,8 @@ Headquarter::update (float delta)
 {
   if (energie <= 0 && !destroyed)
     {
-      get_world()->add (new Explosion (get_world (), pos, Explosion::MEDIUM));
-      get_world()->add (new Flag (get_world (), pos));
+      GameWorld::current()->add(new Explosion (pos, Explosion::MEDIUM));
+      GameWorld::current()->add(new Flag (pos));
       destroyed = true;
     }
 }

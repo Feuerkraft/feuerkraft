@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: soldier.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,8 @@
 
 #include "soldier.hxx"
 
-Soldier::Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos) 
-  : Vehicle (w),
-    sur (resources->get_sprite("feuerkraft/soldier")),
+Soldier::Soldier(const CL_Vector& arg_pos) 
+  : sur (resources->get_sprite("feuerkraft/soldier")),
     frame (0)
 {
   pos = arg_pos;

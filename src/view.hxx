@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.5 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: view.hxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,7 +52,6 @@ class View
 {
 protected:
   CL_GraphicContext* gc;
-  boost::dummy_ptr<GameWorld> world;
   int x1, y1;
   int x2, y2;
   int x_offset, y_offset;
@@ -60,8 +59,7 @@ protected:
   float rotation;
   ViewProperty properties;
 public:
-  View (boost::dummy_ptr<GameWorld> world,
-	int x1, int y1, int x2, int y2,
+  View (int x1, int y1, int x2, int y2,
 	int x_offset = 0, int y_offset = 0,
 	CL_GraphicContext* arg_gc = 0);
   virtual ~View ();

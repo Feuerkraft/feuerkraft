@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,8 +44,8 @@ private:
   bool destroyed;
 
 public:
-  Helicopter (boost::dummy_ptr<GameWorld>, CL_Vector);
-  ~Helicopter ();
+  Helicopter(CL_Vector);
+  ~Helicopter();
 
   void draw (View* view);
   void update (float);
