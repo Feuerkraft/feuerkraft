@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.hxx,v 1.2 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: KeyboardController.hxx,v 1.3 2002/04/08 21:10:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,13 +25,22 @@
 class KeyboardController : public Controller
 {
 private:
-  CL_Display* display;
+  bool left_key;
+  bool right_key;
+  bool left2_key;
+  bool right2_key;
+  bool mine_key;
+  bool fire_key;
+  bool up_key;
+  bool down_key;
+
+  CL_Slot key_down_slot;
+
+  void input_down (const CL_Key& key);
 public:
-  KeyboardController (Controllable* obj) :
-    Controller (obj) 
-  {}
+  KeyboardController (CL_DisplayWindow* window, Controllable* obj);
   
-  virtual void update (float delta);
+  void update (float delta);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cxx,v 1.3 2002/04/02 09:52:56 grumbel Exp $
+//  $Id: KeyboardController.cxx,v 1.4 2002/04/08 21:10:34 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,30 +23,83 @@
 #include "Turret.hxx"
 #include "KeyboardController.hxx"
 
+KeyboardController::KeyboardController (CL_DisplayWindow* window, Controllable* obj)
+  : Controller (obj) 
+{
+  left_key = false;
+  right_key = false;
+  left2_key = false;
+  right2_key = false;
+  mine_key = false;
+  fire_key = false;
+  up_key = false;
+  down_key = false;
+
+  key_down_slot = window->get_ic ()->sig_key_down (0).connect (this, &KeyboardController::input_down);
+}  
+
+void
+KeyboardController::input_down (const CL_Key& key)
+{
+  std::cout << "got input: " << key.id << " " << key.type << std::endl;
+  
+  bool value;
+  if (key.type == CL_Key::released)
+    {
+      std::cout << "Release" << std::endl;
+      value = false;
+    }
+  else
+    {
+      std::cout << "Press" << std::endl;
+      value = true;
+    }
+
+  switch (key.id)
+    {
+    case 65362: // up
+      up_key = value;
+      down_key = !value;
+      break;
+    case 65364: // down
+      down_key = value;
+      up_key = !value;
+      break;
+    case 65363: // left
+      left_key = value;
+      right_key = !value;
+      break;
+    case 65361: // right
+      right_key = value;
+      left_key = !value;
+      break;
+    }
+}
+
 void
 KeyboardController::update (float delta)
 {
   delta = delta * 50.0f;
 
-  if (display->get_keycode (CL_KEY_F))
+  if (left2_key)
     controllable->turn_left2 (delta);
-  else if (display->get_keycode (CL_KEY_S))
+  else if (right2_key)
     controllable->turn_right2 (delta);
   
-  if (display->get_keycode (CL_KEY_RIGHT))
+  if (left_key)
     controllable->turn_left (delta);
-  else if (display->get_keycode (CL_KEY_LEFT))
+  else if (right_key)
     controllable->turn_right (delta);
         
-  if (display->get_keycode (CL_KEY_UP))
+  if (up_key)
     controllable->increase_velocity (delta);
-  else if (display->get_keycode (CL_KEY_DOWN))
+  else if (down_key)
     controllable->decrease_velocity (delta);
 
-  if (display->get_keycode (CL_KEY_E))
+  if (mine_key)
     controllable->drop_mine ();
 
-  if (display->get_keycode (CL_KEY_D))
+  if (fire_key)
     controllable->start_fire ();
   else
     controllable->stop_fire ();

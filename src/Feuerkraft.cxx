@@ -2,8 +2,6 @@
 	Loads a single surface from a pcx file without using resource files.
 */
 
-//FIXME:Display2 #include <ClanLib/jpeg.h>
-//FIXME:Display2 #include <ClanLib/png.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 //#include <ClanLib/sound.h>
@@ -179,7 +177,7 @@ public:
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
 
-	KeyboardController kcontroller (current_controllable);
+	KeyboardController kcontroller (&window, current_controllable);
 	//JoystickController controller(heli);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
