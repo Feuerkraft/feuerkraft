@@ -1,4 +1,4 @@
-//  $Id: tower_data.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tower_data.cxx,v 1.5 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,16 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../ai_manager.hxx"
 #include "tower.hxx"
+#include "tower_ai.hxx"
 #include "tower_data.hxx"
 
 TowerData::TowerData (SCM desc)
 {
   // Default values
   start_energie = 100.0f;
+  orientation = 0;
 
   while (!gh_null_p (desc))
     {
@@ -33,7 +36,7 @@ TowerData::TowerData (SCM desc)
 
       if (gh_equal_p (gh_symbol2scm ("angle"), symbol))
 	{
-	  angle = gh_scm2double(gh_car (data));
+	  orientation = gh_scm2double(gh_car (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("pos"), symbol))
 	{
@@ -58,7 +61,10 @@ TowerData::TowerData (SCM desc)
 Building* 
 TowerData::create()
 {
-  return new Tower(*this);
+  // FIXME: not really the right place for this
+  Tower* tower = new Tower(*this);
+  AIManager::instance()->add(new TowerAI(tower));
+  return tower;
 }
 
 SCM

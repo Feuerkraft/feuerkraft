@@ -1,4 +1,4 @@
-//  $Id: game_obj.cxx,v 1.5 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: game_obj.cxx,v 1.6 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,8 @@
 
 GameObj::GameObj()
   : id(-1),
-    remove_me (false),
-    hidden(false)
+    hidden(false),
+    remove_me (false)
 {
   properties = new PropertySet();
   properties->register_int("id", &id);

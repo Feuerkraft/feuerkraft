@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.4 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: menu.cxx,v 1.5 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -72,7 +72,7 @@ Menu::next_item()
 {
   AssertMsg(items.size() > 0, "Menu is empty!");
 
-  if (current_item == items.size() - 1)
+  if (current_item == static_cast<int>(items.size()) - 1)
     current_item = 0;
   else
     current_item += 1;
@@ -120,6 +120,8 @@ Menu::process_events(const InputEventLst& lst)
               else if (i->axis.pos < 0)
                 previous_item();
               break;
+            default:
+              break;
             }
           break;
         case BUTTON_EVENT:
@@ -132,7 +134,11 @@ Menu::process_events(const InputEventLst& lst)
                   hide();
                 }
               break;
+            default:
+              break;
             }
+          break;
+        default:
           break;
         }
     }

@@ -1,4 +1,4 @@
-//  $Id: math.hxx,v 1.6 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: math.hxx,v 1.7 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -86,6 +86,7 @@ bool rand_bool()
 inline 
 float normalize_angle(float angle)
 {
+  // FIXME: Use fmod here
   if (angle < 0)
     return normalize_angle(angle + 2*pi);
   else if (angle > 2*pi)

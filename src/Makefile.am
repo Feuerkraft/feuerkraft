@@ -137,6 +137,8 @@ sexpr_world_reader.hxx \
 sexpr_world_reader.cxx \
 soldier.cxx \
 soldier.hxx \
+soldier_ai.cxx \
+soldier_ai.hxx \
 start_screen.cxx \
 start_screen.hxx \
 globals.hxx \

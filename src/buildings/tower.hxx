@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tower.hxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,7 @@
 #include "building.hxx"
 #include "tower_data.hxx"
 
+class Controller;
 class GameWorld;
 
 class Tower : public Building
@@ -35,7 +36,8 @@ private:
   CL_Sprite towerdestroyed;
   CL_Sprite turret;
   
-  float angle;
+  float steering;
+  float orientation;
   Energie energie;
   bool destroyed;
 
@@ -54,11 +56,14 @@ public:
   // Update the object once a game loop
   void update (float);
   
+  void update_controlls(const Controller& controller);
+
   int get_map_width ()  { return 2; }
   int get_map_height () { return 2; }
 
   void collide (Projectile*);
 
+  float get_orientation() const { return orientation; }
   bool alive ();
 };
 

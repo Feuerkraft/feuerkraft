@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.9 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: mine.cxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,9 +28,9 @@
 
 Mine::Mine ()
   : pos (0, 0),
-    hole (resources->get_sprite ("feuerkraft/hole")),
     active (2),
-    detonated (false)
+    detonated (false),
+    hole (resources->get_sprite ("feuerkraft/hole"))
 {
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
@@ -103,7 +103,7 @@ Mine::detonate ()
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
+      //Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       
       // If distance to the mine is smaller than 100 apply a force
       /*if (vehicle && (vehicle->get_pos () - get_pos ()).get_length() < 100.0)

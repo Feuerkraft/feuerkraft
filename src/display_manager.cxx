@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.4 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: display_manager.cxx,v 1.5 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -94,7 +94,7 @@ DisplayManager::get_levelmap()
   if (screen.has(level_map))
     return level_map;
   else
-    0;
+    return 0;
 }
 
 void

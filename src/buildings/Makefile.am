@@ -31,6 +31,8 @@ headquarter.cxx \
 headquarter.hxx \
 headquarter_data.cxx \
 headquarter_data.hxx \
+tower_ai.cxx \
+tower_ai.hxx \
 tower.cxx \
 tower.hxx \
 tower_data.cxx \

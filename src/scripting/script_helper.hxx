@@ -1,7 +1,7 @@
-//  $Id: soldier.hxx,v 1.15 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: script_helper.hxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
 // 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,36 +17,31 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef SOLDIER_HH
-#define SOLDIER_HH
+#ifndef HEADER_SCRIPT_HELPER_HXX
+#define HEADER_SCRIPT_HELPER_HXX
 
-#include "soldier_ai.hxx"
-#include "unit.hxx"
-#include "resource_manager.hxx"
+#include <iostream>
+#include "../game_obj_manager.hxx"
 
-class Soldier : public Unit
+namespace Scripting {
+
+template<class T>
+T* get_object(int object_id)
 {
-private:
-  CL_Sprite sur;
+  T* obj = dynamic_cast<T*>(GameObjManager::current()->get_object_by_id(object_id));
 
-  // Controll variables
-  float acceleration;
-  float steering;
-  
-public:
-  Soldier();
-  ~Soldier();
+  if (obj)
+    {
+      return obj;
+    }
+  else
+    {
+      std::cout  << "Scripting: no object given by id: " << object_id << std::endl;
+      return 0;
+    } 
+}
 
-  void update_controlls(const Controller& events);
-
-  float get_angle () { return 0.0; }
-  void  draw (View& view);
-  void  update (float);
-
-  bool is_colliding(FloatVector2d);
-  
-  float get_physical_size () { return 1.0; }
-};
+} // namespace Scripting
 
 #endif
 

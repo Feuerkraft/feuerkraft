@@ -1,4 +1,4 @@
-//  $Id: vehicle_ai.hxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: vehicle_ai.hxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,6 +33,8 @@ protected:
   Vehicle* vehicle;
 public:
   VehicleAI(Vehicle* vehicle);
+  virtual ~VehicleAI() {};
+  GameObj* get_object() { return vehicle; }
 };
 
 /** class for robot like ai which controlls a vehicle with physic

@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.5 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: menu_commands.cxx,v 1.6 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,6 +76,7 @@ menu_add_submenu_item(int menu_id, const char* label, int sub_menu_id)
   else
     {
       std::cout << __FUNCTION__ << ": Invalid menu id: " << menu_id << " " << sub_menu_id << std::endl;
+      return 0;
     }
 }
 

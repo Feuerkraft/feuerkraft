@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tower.cxx,v 1.9 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,11 @@
 
 #include "../property_set.hxx"
 #include "../radar.hxx"
-#include "tower.hxx"
 #include "../resource_manager.hxx"
+#include "../input/controller.hxx"
+#include "../math.hxx"
 #include "../explosion.hxx"
+#include "tower.hxx"
 
 Tower::Tower(const TowerData& data)
   : Building(data.x_pos, data.y_pos),
@@ -32,11 +34,13 @@ Tower::Tower(const TowerData& data)
     energie (int(data.start_energie)),
     destroyed (false)
 {  
-  angle = data.angle;
+  orientation = data.orientation;
   pos.x = x_pos * 40 + 40;
   pos.y = y_pos * 40 + 40;
 
-  properties->register_float("angle", &angle);
+  steering = 0;
+
+  properties->register_float("orientation", &orientation);
 }
   
 Tower::~Tower ()
@@ -64,7 +68,7 @@ Tower::draw (View& view)
 
   if (energie > 0)
     {
-      view.draw (turret, pos, angle);
+      view.draw (turret, pos, orientation);
     }
 }
   
@@ -87,16 +91,19 @@ Tower::update (float delta)
   if (!(energie > 0))
     return;
 
-  angle += 1 * delta;
-
-  if (angle >= 160)
-    angle = 0;
+  orientation = Math::normalize_angle(orientation + steering * delta);
 
   if (!destroyed && !(energie > 0))
     {
       GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
     }
+}
+
+void
+Tower::update_controlls(const Controller& controller)
+{
+  steering = controller.get_axis_state(ORIENTATION_AXIS);
 }
 
 void 

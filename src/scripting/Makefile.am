@@ -1,6 +1,8 @@
 noinst_LIBRARIES = libfeuerkraft_scripting.a
 
 command_source = \
+ ai_commands.cxx \
+ ai_commands.hxx \
  ai_vehicle_commands.cxx \
  ai_vehicle_commands.hxx \
  building_commands.cxx   \
@@ -32,7 +34,9 @@ command_source = \
  trigger_commands.cxx    \
  trigger_commands.hxx    \
  vehicle_commands.cxx    \
- vehicle_commands.hxx
+ vehicle_commands.hxx    \
+ script_helper.cxx       \
+ script_helper.hxx
 
 libfeuerkraft_scripting_a_SOURCES = \
  $(command_source) \

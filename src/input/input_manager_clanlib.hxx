@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.hxx,v 1.3 2003/06/06 18:36:24 grumbel Exp $
+//  $Id: input_manager_clanlib.hxx,v 1.4 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@ private:
   void add_button_event(ButtonName name, bool down);
 public:
   InputManagerClanLib();
-  ~InputManagerClanLib();
+  virtual ~InputManagerClanLib();
 
   void update(float delta);
   InputEventLst get_events();

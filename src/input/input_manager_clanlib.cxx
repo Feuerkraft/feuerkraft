@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.cxx,v 1.7 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: input_manager_clanlib.cxx,v 1.8 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -66,7 +66,12 @@ InputManagerClanLib::on_key_event(const CL_InputEvent& event)
           case CL_KEY_E:
             add_button_event(PRIMARY_FIRE_BUTTON, true);
             break;
+          default:
+            break;
           }
+        break;
+
+      default:
         break;
       }
     }

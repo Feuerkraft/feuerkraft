@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.7 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: game_obj_factory.cxx,v 1.8 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -107,7 +107,7 @@ GameObjFactory::create_raw_object(int type_id)
 GameObjAbstractFactory*
 GameObjFactory::get_factory(int type_id)
 {
-  if (type_id >= 0 && type_id < factories.size())
+  if (type_id >= 0 && type_id < int(factories.size()))
     return factories[type_id];
   else 
     return 0;

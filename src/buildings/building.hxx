@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: building.hxx,v 1.10 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,9 @@ private:
 protected:
   PropertySet* properties;
 
+  /** Position in units of tiles */
   int x_pos;
+  /** Position in units of tiles */
   int y_pos;
 public:
   Building (int x, int y);

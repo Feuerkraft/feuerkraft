@@ -1,4 +1,4 @@
-//  $Id: ai_manager.cxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: ai_commands.cxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,44 +17,39 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "ai.hxx"
-#include "ai_manager.hxx"
-
-AIManager* AIManager::instance_ = 0;
-
-AIManager*
-AIManager::instance()
-{
-  if (instance_)
-    return instance_;
-  else
-    return instance_ = new AIManager();
-}
+#include "../soldier.hxx"
+#include "script_helper.hxx"
+#include "../ai_manager.hxx"
+#include "ai_commands.hxx"
 
 void
-AIManager::add(AI* ai)
+ai_goto(int handle, float x, float y)
 {
-  ais.push_back(ai);
-}
+  Soldier* soldier = Scripting::get_object<Soldier>(handle);
 
-void
-AIManager::update(float delta)
-{
-  for (std::vector<AI*>::iterator i = ais.begin(); i != ais.end(); ++i)
+  if (soldier)
     {
-      (*i)->update(delta);
+      AI* ai = AIManager::instance()->get_ai(soldier);
+      SoldierAI* soldier_ai = 0;
+      if (ai && (soldier_ai = dynamic_cast<SoldierAI*>(ai)))
+        {
+          soldier_ai->goto_to(FloatVector2d(x, y));
+        }
+      else
+        {
+          std::cout << "Soldier doesn't have an AI" << std::endl;
+        }
+    }
+  else
+    {
+      std::cout << "No soldier with id: " << handle << std::endl;
     }
 }
 
-AI*
-AIManager::get_ai(GameObj* obj)
+void
+ai_stop(int handle)
 {
-  for (std::vector<AI*>::iterator i = ais.begin(); i != ais.end(); ++i)
-    {
-      if ((*i)->get_object() == obj)
-        return *i;
-    }  
-  return 0;
+  
 }
 
 /* EOF */

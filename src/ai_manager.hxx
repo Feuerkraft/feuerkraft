@@ -1,4 +1,4 @@
-//  $Id: ai_manager.hxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: ai_manager.hxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,7 @@
 #include <vector>
 
 class AI;
+class GameObj;
 
 /** The AIManager keeps track of all AI objects around */
 class AIManager
@@ -35,6 +36,10 @@ public:
 private:
   std::vector<AI*> ais;
 public:
+  /** @return the AI object that is associated with the given
+      game object */
+  AI* get_ai(GameObj* obj);
+
   /** Add an AI object to the AIManager */
   void add(AI* ai);
   void update(float delta);

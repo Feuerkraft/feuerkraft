@@ -1,4 +1,4 @@
-//  $Id: controller.cxx,v 1.1 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: controller.cxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,7 @@ Controller::get_axis_state(AxisName name) const
       return accelerate_axis;
     default:
       AssertMsg(0, "Controllor: Unknown AxisName");
+      return 0;
     }
 }
 
@@ -51,6 +52,7 @@ Controller::get_button_state(ButtonName name) const
       return primary_fire_button;
     default:
       AssertMsg(0, "Controller: Unknown ButtonName");
+      return false;
     }
 }
 

@@ -1,4 +1,4 @@
-//  $Id: tower_data.hxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tower_data.hxx,v 1.6 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,13 +26,13 @@
 class TowerData : public BuildingData
 {
 public:
-  // Angle in degree
-  double angle;
+  // Orientation in degree
+  double orientation;
   double start_energie;
 
   /** Format:
 
-  (tower (angle 23))
+  (tower (orientation 23))
 
   Where 'desc' is only the cdr of the complete thing
   */

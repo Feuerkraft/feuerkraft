@@ -1,4 +1,4 @@
-//  $Id: menu_item.hxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: menu_item.hxx,v 1.4 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ class MenuItemFunctor
 {
 public:
   MenuItemFunctor() {}
-  ~MenuItemFunctor() {}
+  virtual ~MenuItemFunctor() {}
   
   virtual void call() {}
 };

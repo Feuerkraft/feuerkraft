@@ -1,4 +1,4 @@
-//  $Id: ai.hxx,v 1.1 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: ai.hxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,11 +20,17 @@
 #ifndef HEADER_AI_HXX
 #define HEADER_AI_HXX
 
+class GameObj;
+
 /** */
 class AI
 {
 private:
 public:
+  AI() {}
+  virtual ~AI() {}
+  
+  virtual GameObj* get_object() =0;
   virtual void update(float delta) =0;
 };
 

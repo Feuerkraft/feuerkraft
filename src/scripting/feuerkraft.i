@@ -1,6 +1,7 @@
 %module feuerkraft
 %{
 #include "ai_vehicle_commands.hxx"
+#include "ai_commands.hxx"
 #include "building_commands.hxx"
 #include "comm_commands.hxx"
 #include "display_commands.hxx"
@@ -19,6 +20,7 @@
 %}
 
 %include "ai_vehicle_commands.hxx"
+%include "ai_commands.hxx"
 %include "building_commands.hxx"
 %include "comm_commands.hxx"
 %include "display_commands.hxx"

@@ -1,4 +1,4 @@
-//  $Id: handle_manager.hxx,v 1.2 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: handle_manager.hxx,v 1.3 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -73,7 +73,7 @@ public:
   
   T* lookup_by_handle(Handle handle)
   {
-    if (handle >= 0 && handle < objects.size())
+    if (handle >= 0 && handle < int(objects.size()))
       return objects[handle];
     else
       return 0;    
