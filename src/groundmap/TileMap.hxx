@@ -1,4 +1,4 @@
-//  $Id: TileMap.hxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: TileMap.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,23 +22,22 @@
 
 #include <vector>
 #include "GroundMap.hxx"
+#include "TileMapData.hxx"
 
 class Tile;
 
-class TileMap : public GroundMap
+class TileMap : public GroundMap,
+		protected TileMapData
 {
 private:
-  int width;
-  int height;
-
   std::vector<Tile*> tiles;
 public:
   /** arg_width and arg_height give the number of tiles in each
       direction, they give *not* the width and height in world
       coordinates. tile_size must be the size of the tiles. */
-  TileMap (int arg_width, int arg_height, int tile_size);
+  TileMap (const TileMapData& data);
 
-  ~TileMap ();
+  virtual ~TileMap ();
 
   GroundType get_groundtype (float x, float y);
 };

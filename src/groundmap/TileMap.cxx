@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,10 @@
 #include "Tile.hxx"
 #include "TileMap.hxx"
 
-TileMap::TileMap (int arg_width, int arg_height, int tile_size)
+TileMap::TileMap (const TileMapData& data)
+  : TileMapData (data)
 {
+  
 }
 
 TileMap::~TileMap ()

@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: TileDataFactory.hxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,32 +17,28 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef SOLDIER_HH
-#define SOLDIER_HH
+#ifndef TILEFACTORY_HXX
+#define TILEFACTORY_HXX
 
-#include <ClanLib/display.h>
-#include "Vehicle.hxx"
+#include <guile/gh.h>
 
-extern CL_ResourceManager* resources;
+class TileData;
+class SpriteTileData;
 
-/** FIXME: needs a complete rewrite */
-class Soldier : public Vehicle
+/** The tile factory is used to create a Tile out of an SCM
+    description
+    
+    FIXME: This could also be placed in the constructor or does this
+    FIXME: have any big advantages?
+    FIXME: Disadvantages: SpriteTileData need public member variables
+*/
+class TileDataFactory
 {
 private:
-  CL_Surface sur;
-  int frame;
-  int step;
+
 public:
-  Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
-  ~Soldier ();
-
-  float get_angle () { return 0.0; }
-  void draw (View* view);
-  void update (float);
-
-  bool is_colliding(CL_Vector);
-  
-  float get_physical_size () { return 1.0; }
+  static TileData* create (SCM desc);
+  static SpriteTileData* create_SpriteTileData (SCM desc);
 };
 
 #endif

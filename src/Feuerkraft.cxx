@@ -7,6 +7,7 @@
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 #include <ClanLib/gl.h>
+#include <guile/gh.h>
 
 #include "Feuerkraft.hxx"
 #include "GameWorld.hxx"
@@ -34,21 +35,25 @@
 #include "System.hxx"
 #include "Ambulance.hxx"
 
+#include "map/GroundMapDataFactory.hxx"
+
 CL_ResourceManager* resources;
 Pathfinder datafiles;
 
-/*CL_InputSourceProvider *
-CL_ResourceManager::get_resource_provider(void) const 
-{
-  return 0;
-}
-*/
+void inner_main (void* closure, int argc, char* argv[]);
+
 class Feuerkraft : public CL_ClanApplication
 {
 public:
   virtual char *get_title() { return "Surface application"; }
-	
+
   virtual int main(int argc, char** argv)
+  {
+    scm_boot_guile (argc, argv,::inner_main, 0);
+    return 0;
+  }
+	
+  virtual int inner_main(void* closure, int argc, char** argv)
   {
     try
       {
@@ -68,15 +73,15 @@ public:
 	      }
 	  }
 
-	datafiles.add_sig_files ("../data/feuerkraft.scr");
+	datafiles.add_sig_files ("data/feuerkraft.scr");
 	datafiles.add_back (".");
 	datafiles.add_back ("..");
 	datafiles.print ();
 
 	/*
-	try {
+	  try {
 	  System::change_dir(datafiles.find_path ("data/feuerkraft.scr"));
-	} catch (Pathfinder::FileNotFound e) {
+	  } catch (Pathfinder::FileNotFound e) {
 	  std::cout << "Pathfinder:FileNotFound: " << e.filename << std::endl;
 	  }*/
 
@@ -97,6 +102,24 @@ public:
 	CL_Display::clear_display ();
 	CL_Display::flip_display ();
 
+
+	// Test of parsing code
+	{
+	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
+	  SCM fdes = scm_open_file (gh_str02scm("../data/missions/test.feu"), 
+				    gh_str02scm("r"));
+	  SCM lst  = scm_read (fdes);
+
+	  std::cout << "Map: " << std::flush;
+	  gh_display (lst);
+	  gh_newline ();
+
+	  GroundMapData* groundmap = GroundMapDataFactory::create (lst);
+	  scm_close (fdes);
+	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
+	}
+	// End: Test of parsing code
+
 	std::cout << "Trying this:" << std::endl;
 	resources =  new CL_ResourceManager ("../data/feuerkraft.scr", false);
 	std::cout << "DoneTrying this:" << std::endl;
@@ -114,10 +137,10 @@ public:
 	KeyboardController kcontroller (tank2);
 
 	//Radar radar1 (CL_Vector(800-64, 64), 
-		      //&world, tank1);
+	//&world, tank1);
 
 	//Radar radar2 (CL_Vector(64, 64), 
-		      //&world, tank2);
+	//&world, tank2);
 	
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
@@ -231,4 +254,10 @@ public:
   }
 } feuerkraft;
 
-  // EOF 
+// Wrapper to call the member func
+void inner_main (void* closure, int argc, char* argv[])
+{
+  feuerkraft.inner_main (closure, argc, argv);
+}
+
+// EOF 

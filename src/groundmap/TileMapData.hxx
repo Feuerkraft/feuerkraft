@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,32 +17,44 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef SOLDIER_HH
-#define SOLDIER_HH
+#ifndef TILEMAPDATA_HXX
+#define TILEMAPDATA_HXX
 
-#include <ClanLib/display.h>
-#include "Vehicle.hxx"
+#include <guile/gh.h>
+#include <list>
 
-extern CL_ResourceManager* resources;
+#include "GroundMapData.hxx"
 
-/** FIXME: needs a complete rewrite */
-class Soldier : public Vehicle
+class TileData;
+class TileMap;
+
+/** TileMapData holds all data that is necesarry for creating a TileMap
+ */
+class TileMapData : public GroundMapData
 {
-private:
-  CL_Surface sur;
-  int frame;
-  int step;
 public:
-  Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
-  ~Soldier ();
+  int width;
+  int height;
+  std::list<TileData*> tiles;
 
-  float get_angle () { return 0.0; }
-  void draw (View* view);
-  void update (float);
+public:
+  /** Create a TileMapData out of an SCM description, the structure is
+      like this:
+      
+      ((width 100)
+       (height 100)
+       (tiles (spritetile ...)
+              (someothertiletype ...)
+              ...))
+   */
+  TileMapData (SCM desc);
+  virtual ~TileMapData ();
 
-  bool is_colliding(CL_Vector);
-  
-  float get_physical_size () { return 1.0; }
+private:
+  void parse_tiles (SCM desc);
+
+public:
+  GroundMap* create ();
 };
 
 #endif

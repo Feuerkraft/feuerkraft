@@ -1,4 +1,4 @@
-//  $Id: Soldier.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: GroundMapData.hxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,32 +17,17 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef SOLDIER_HH
-#define SOLDIER_HH
+#ifndef GROUNDMAPDATA_HXX
+#define GROUNDMAPDATA_HXX
 
-#include <ClanLib/display.h>
-#include "Vehicle.hxx"
+class GroundMap;
 
-extern CL_ResourceManager* resources;
-
-/** FIXME: needs a complete rewrite */
-class Soldier : public Vehicle
+class GroundMapData
 {
 private:
-  CL_Surface sur;
-  int frame;
-  int step;
+
 public:
-  Soldier (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos);
-  ~Soldier ();
-
-  float get_angle () { return 0.0; }
-  void draw (View* view);
-  void update (float);
-
-  bool is_colliding(CL_Vector);
-  
-  float get_physical_size () { return 1.0; }
+  virtual GroundMap* create() =0;
 };
 
 #endif

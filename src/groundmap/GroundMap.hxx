@@ -1,4 +1,4 @@
-//  $Id: GroundMap.hxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: GroundMap.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,8 @@ class GroundMap
 private:
 
 public:
-  virtual GroundType get_groundtype (float x, float y);
+  /** Return the type of ground */
+  virtual GroundType get_groundtype (float x, float y) =0;
 };
 
 #endif

@@ -1,8 +1,10 @@
-SUBDIRS = boost
+SUBDIRS = boost map
 
 bindir=$(prefix)/games
 
 bin_PROGRAMS = feuerkraft
+
+LDADD = map/libfeuerkraft_map.a
 
 feuerkraft_SOURCES = Collideable.hxx	 Energie.hxx	GameWorld.cxx	       KeyboardController.cxx  Tank.cxx	Turret.cxx \
 Controllable.hxx  Explosion.cxx Explosion.hxx	GameWorld.hxx	       KeyboardController.hxx  Tank.hxx	Turret.hxx \
