@@ -86,13 +86,6 @@ Turret::increase_angle (float delta)
 }
 
 void
-Turret::decrease_angle (float delta)
-{
-  orientation -= tank->get_increment ();
-  //angle = fmod (angle + circle, circle);
-}
-
-void
 Turret::start_fire ()
 {
   fireing = true;

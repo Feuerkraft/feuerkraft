@@ -1,4 +1,4 @@
-//  $Id: input_manager_clanlib.cxx,v 1.8 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: input_manager_clanlib.cxx,v 1.9 2003/06/18 21:43:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,41 +39,48 @@ InputManagerClanLib::on_key_event(const CL_InputEvent& event)
   if (event.device.get_type() == CL_InputDevice::keyboard)
     {
       switch (event.type)
-      {
-      case CL_InputEvent::released:
-        //std::cout << "Release: " << event.id << std::endl;
-        break;
+        {
+        case CL_InputEvent::released:
+          //std::cout << "Release: " << event.id << std::endl;
+          break;
 
-      case CL_InputEvent::pressed:
-        //std::cout << "Press: " << event.id << std::endl;
-        switch (event.id)
-          {
-            // Steering
-          case CL_KEY_DOWN:
-            add_axis_event(ACCELERATE_AXIS, 1.0f);
-            break;
-          case CL_KEY_UP:
-            add_axis_event(ACCELERATE_AXIS, -1.0f);
-            break;
-          case CL_KEY_RIGHT:
-            add_axis_event(ORIENTATION_AXIS, 1.0f);
-            break;
-          case CL_KEY_LEFT:
-            add_axis_event(ORIENTATION_AXIS, -1.0f);
-            break;
+        case CL_InputEvent::pressed:
+          //std::cout << "Press: " << event.id << std::endl;
+          switch (event.id)
+            {
+              // Steering
+            case CL_KEY_DOWN:
+              add_axis_event(ACCELERATE_AXIS, 1.0f);
+              break;
+            case CL_KEY_UP:
+              add_axis_event(ACCELERATE_AXIS, -1.0f);
+              break;
+            case CL_KEY_RIGHT:
+              add_axis_event(ORIENTATION_AXIS, 1.0f);
+              break;
+            case CL_KEY_LEFT:
+              add_axis_event(ORIENTATION_AXIS, -1.0f);
+              break;
 
-            // Fire buttons
-          case CL_KEY_E:
-            add_button_event(PRIMARY_FIRE_BUTTON, true);
-            break;
-          default:
-            break;
-          }
-        break;
+            case CL_KEY_O:
+              add_axis_event(STRAFE_AXIS, -1.0f);
+              break;
+            case CL_KEY_U:
+              add_axis_event(STRAFE_AXIS, 1.0f);
+              break;
 
-      default:
-        break;
-      }
+              // Fire buttons
+            case CL_KEY_E:
+              add_button_event(PRIMARY_FIRE_BUTTON, true);
+              break;
+            default:
+              break;
+            }
+          break;
+
+        default:
+          break;
+        }
     }
 }
 
@@ -132,16 +139,16 @@ InputManagerClanLib::update(float delta)
       controller.set_axis_state(ACCELERATE_AXIS, 0);
     }
 
+
+  if (CL_Keyboard::get_keycode(CL_KEY_O) && !CL_Keyboard::get_keycode(CL_KEY_U))
+    controller.set_axis_state(STRAFE_AXIS, -1.0f);
+  else if (CL_Keyboard::get_keycode(CL_KEY_U) && !CL_Keyboard::get_keycode(CL_KEY_O))
+    controller.set_axis_state(STRAFE_AXIS, 1.0f);
+  else
+    controller.set_axis_state(STRAFE_AXIS, 0.0f);
+
   controller.set_button_state(PRIMARY_FIRE_BUTTON, 
                               CL_Keyboard::get_keycode(CL_KEY_E));
-
-  {
-    InputEvent fire_event;
-    fire_event.type = BUTTON_EVENT;
-    fire_event.button.name = PRIMARY_FIRE_BUTTON;
-    fire_event.button.down = CL_Keyboard::get_keycode(CL_KEY_O);
-    events.push_back(fire_event);
-  }
 }
 
 InputEventLst

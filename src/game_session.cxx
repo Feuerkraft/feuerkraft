@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: game_session.cxx,v 1.2 2003/06/18 21:43:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -123,6 +123,18 @@ GameSession::init()
 
   {
     Tank* tank = new Tank(FloatVector2d (450, 1245), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire2");
+    world->add(tank);
+    AIManager::instance()->add(new VehicleRoboAI(tank));
+  }
+
+  {
+    Tank* tank = new Tank(FloatVector2d (0, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret", "feuerkraft/fire2");
+    world->add(tank);
+    AIManager::instance()->add(new VehicleRoboAI(tank));
+  }
+
+  {
+    Tank* tank = new Tank(FloatVector2d (-100, 1245), 5, "feuerkraft/tank", "feuerkraft/turret2", "feuerkraft/fire2");
     world->add(tank);
     AIManager::instance()->add(new VehicleRoboAI(tank));
   }

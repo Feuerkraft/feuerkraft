@@ -21,6 +21,8 @@
   (tower (pos 33 7))
   (tower (pos 33 12))
 
+  (ammotent    (pos  10 0))
+  (fuelstation (pos  15 0))
 
   (tower (pos 61 242))
   (tower (pos 49 242)))

@@ -1,4 +1,4 @@
-//  $Id: input_event.hxx,v 1.2 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: input_event.hxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,7 @@
 #include <vector>
 
 enum InputEventType { BUTTON_EVENT, AXIS_EVENT };
-enum AxisName       { ORIENTATION_AXIS, ACCELERATE_AXIS };
+enum AxisName       { ORIENTATION_AXIS, ACCELERATE_AXIS, STRAFE_AXIS };
 enum ButtonName     { PRIMARY_FIRE_BUTTON, SECONDARY_FIRE_BUTTON };
 
 struct ButtonEvent

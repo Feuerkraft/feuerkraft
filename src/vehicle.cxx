@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.9 2003/06/06 18:18:13 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.10 2003/06/18 21:43:50 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@ Vehicle::Vehicle ()
 {
   acceleration = 0;
   steering = 0;
+  strafe_steering = 0;
   firing = false;
 }
 
@@ -65,6 +66,7 @@ Vehicle::update_controlls(const Controller& controller)
 {
   acceleration = controller.get_axis_state(ACCELERATE_AXIS);
   steering     = controller.get_axis_state(ORIENTATION_AXIS);
+  strafe_steering = controller.get_axis_state(STRAFE_AXIS);
   firing       = controller.get_button_state(PRIMARY_FIRE_BUTTON);
 }
 

@@ -1,4 +1,4 @@
-//  $Id: controller.cxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: controller.cxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@ Controller::Controller()
 {
   orientation_axis = 0.0f;
   accelerate_axis  = 0.0f;
+  strafe_axis      = 0.0f;
   
   primary_fire_button = false;
 }
@@ -37,6 +38,8 @@ Controller::get_axis_state(AxisName name) const
       return orientation_axis;
     case ACCELERATE_AXIS:
       return accelerate_axis;
+    case STRAFE_AXIS:
+      return strafe_axis;
     default:
       AssertMsg(0, "Controllor: Unknown AxisName");
       return 0;
@@ -66,6 +69,9 @@ Controller::set_axis_state(AxisName name, float pos)
       break;
     case ACCELERATE_AXIS:
       accelerate_axis = pos;
+      break;
+    case STRAFE_AXIS:
+      strafe_axis = pos;
       break;
     default:
       AssertMsg(0, "Controllor: Unknown AxisName");

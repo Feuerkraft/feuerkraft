@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.15 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: tank.hxx,v 1.16 2003/06/18 21:43:50 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,7 +49,10 @@ private:
   FloatVector2d tmp_pos;
 
   float speed;
+
+  /** The maximum turn speed of the turret */
   float increment;
+
   int frame;
   bool burning;
 
@@ -99,9 +102,6 @@ public:
   float get_max_forward_velocity () { return 1.0; }
   float get_max_backward_velocity () { return -1.0; }
   float get_turn_speed () { return 1.0; }
-
-  void turn_left2 (float delta);
-  void turn_right2 (float delta);
   
   void drop_mine ();
   

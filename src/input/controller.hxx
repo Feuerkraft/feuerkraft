@@ -1,4 +1,4 @@
-//  $Id: controller.hxx,v 1.2 2003/06/18 00:27:09 grumbel Exp $
+//  $Id: controller.hxx,v 1.3 2003/06/18 21:43:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,7 @@ class Controller
 public:
   float orientation_axis;
   float accelerate_axis;
+  float strafe_axis;
 
   bool primary_fire_button;
 

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.23 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: tank.cxx,v 1.24 2003/06/18 21:43:50 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ const float circle = 6.2831854f;
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : speed (0.0f),
-    increment (0.06f),
+    increment (2.0f),
     burning(false),
     smod (resources->get_sprite (tank.c_str ())),
     sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
@@ -183,6 +183,8 @@ Tank::update (float delta)
   orientation += 3.0f * steering * delta;
   velocity    += 15.0f * acceleration * delta;
 
+  turret->increase_angle(strafe_steering * delta);
+
   steering = acceleration = 0;
 
   if (firing)
@@ -263,18 +265,6 @@ void
 Tank::set_angle (float arg_orientation)
 {
   orientation = arg_orientation;
-}
-
-void 
-Tank::turn_left2 (float delta) 
-{
-  turret->increase_angle (delta); 
-}
-
-void
-Tank::turn_right2 (float delta) 
-{ 
-  turret->decrease_angle (delta); 
 }
 
 void

@@ -29,7 +29,7 @@ public:
   void update (float);
 
   void increase_angle (float delta);
-  void decrease_angle (float delta);
+
   void start_fire ();
   void stop_fire ();
   

@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.5 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: menu.cxx,v 1.6 2003/06/18 21:43:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -130,6 +130,7 @@ Menu::process_events(const InputEventLst& lst)
             case PRIMARY_FIRE_BUTTON:
               if (i->button.down)
                 {
+                  std::cout << "--- button event" << std::endl;
                   call_current_item();
                   hide();
                 }
