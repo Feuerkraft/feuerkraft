@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.3 2003/05/08 23:02:10 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.4 2003/05/09 14:13:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,6 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include "../guile.hxx"
+
 #include "../game_world.hxx"
 #include "buildings/building.hxx"
 #include "buildings/custom_building.hxx"
@@ -76,7 +78,46 @@ int  building_get(int x, int y)
 
 int building_create_type(SCM lst)
 {
-  return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(AList()));
+  AList alist;
+  
+  while(!gh_null_p(lst))
+    {
+      SCM key   = gh_car(lst);
+
+      gh_display(key);
+      gh_newline();
+
+      if (gh_null_p(gh_cdr(lst)))
+        {
+          std::cout << "Missing argument to keyword!" << std::endl;
+        }
+
+      SCM value = gh_cadr(lst);
+
+      gh_display(value);
+      gh_newline();
+      
+      if (gh_boolean_p(value))
+         {
+           alist.set_bool(Guile::keyword2string(key), gh_scm2bool(value));
+         }
+      else if (gh_number_p(value))
+        {
+           alist.set_int(Guile::keyword2string(key), gh_scm2int(value));
+        }
+      else if (gh_string_p(value))
+        {
+          alist.set_string(Guile::keyword2string(key), Guile::scm2string(value));
+        }
+      else
+        {
+          std::cout << "BuildingCommands: unknown argumnent type" << std::endl;
+        }
+
+      lst = gh_cddr(lst);
+    }
+
+  return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(alist));
 }
 
 /* EOF */

@@ -4,10 +4,33 @@
 ;;(load-extension "/home/ingo/projects/feuerkraft/cvs/src/scripting/.libs/libguile-feuerkraft.so" 
 ;;                "SWIG_init")
 
-(define my-building-type (building-create-type '()))
+(define building:house1
+  (building-create-type #:sprite "feuerkraft/house1"
+                        #:width  3
+                        #:height 3))
 
-(building-create my-building-type 10 35)
-(display "MYBUILDING TYPE: ")(display my-building-type)(newline)
+(define building:house2
+  (building-create-type #:sprite "feuerkraft/house2"
+                        #:width  3
+                        #:height 3))
+
+(define building:generator
+  (building-create-type #:sprite "feuerkraft/generator"
+                        #:width  3
+                        #:height 2))
+
+(define building:armored-generator
+  (building-create-type #:sprite "feuerkraft/armoredgenerator"
+                        #:width  3
+                        #:height 3))
+
+(building-create building:house1 10 35)
+(building-create building:house2 14 35)
+
+(building-create building:generator 10 38)
+(building-create building:armored-generator 5 38)
+
+(display "MYBUILDING TYPE: ")(display building:house1)(newline)
 
 (building-create 1 4 32)
 (building-create 1 4 33)
@@ -39,7 +62,7 @@
      (if (= (random 3) 1)
          (trigger-add-timed (/ x 200.0)
                             (lambda () (sound-play-sound "bomb"))))
-         )))
+     )))
 
 (ai-vehicle-drive-to my-vehicle9 546 1120)
 (ai-vehicle-drive-to my-vehicle9 460 1165)

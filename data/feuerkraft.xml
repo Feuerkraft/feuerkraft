@@ -28,6 +28,26 @@
       <image name="image1" file="data/images/wall_damaged.png" />
     </sprite>
 
+    <sprite name="house2">
+      <image name="image1" file="data/images/house2.png" />
+    </sprite>
+
+    <sprite name="generator">
+      <image name="image1" file="data/images/generator.png" />
+    </sprite>
+
+    <sprite name="armoredgenerator">
+      <image name="image1" file="data/images/armoredgenerator.png" />
+    </sprite>
+
+    <sprite name="house">
+      <image name="image1" file="data/images/house.png" />
+    </sprite>
+
+    <sprite name="house1">
+      <image name="image1" file="data/images/house1.png" />
+    </sprite>
+
     <sprite name="wall_destroyed">
       <image name="image1" file="data/images/wall_destroyed.png" />
     </sprite>

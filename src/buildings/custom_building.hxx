@@ -1,4 +1,4 @@
-//  $Id: custom_building.hxx,v 1.1 2003/05/08 23:02:10 grumbel Exp $
+//  $Id: custom_building.hxx,v 1.2 2003/05/09 14:13:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -50,10 +50,14 @@ public:
   int get_y_pos () { return y_pos; }
 
   void draw(boost::dummy_ptr<View>);
+  void draw_energie(boost::dummy_ptr<View> view);
+
   void update(float);
 
   int  get_map_width() { return width; }
   int  get_map_height() { return height; }
+
+  void collide (Projectile*);
 private:
   CustomBuilding (const CustomBuilding&);
   CustomBuilding& operator= (const CustomBuilding&);

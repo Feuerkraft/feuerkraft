@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.3 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: guile.hxx,v 1.4 2003/05/09 14:13:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -47,6 +47,8 @@ void pretty_print (std::ostream& s, SCM obj);
 bool equal_p(SCM a, SCM b);
 
 SCM symbol2scm(const char* str);
+
+std::string keyword2string(SCM keyword);
 
 } // namespace Guile
 

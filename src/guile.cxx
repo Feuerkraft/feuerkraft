@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.4 2003/05/03 16:21:35 grumbel Exp $
+//  $Id: guile.cxx,v 1.5 2003/05/09 14:13:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,9 +26,9 @@ namespace Guile {
 std::string
 scm2string (SCM data)
 {
-  cl_assert(SCM_STRINGP(data));
+  cl_assert(gh_string_p(data));
 
-  char* tmpstr = gh_scm2newstr(SCM_CADR(data), 0);
+  char* tmpstr = gh_scm2newstr(data, 0);
   std::string str = tmpstr;
 
 #ifdef WIN32 // the free causes throuble on Win32, so we disable it
@@ -73,6 +73,21 @@ bool equal_p(SCM a, SCM b)
 SCM symbol2scm(const char* str)
 {
   return scm_str2symbol(str);
+}
+
+std::string keyword2string(SCM keyword)
+{
+  assert(SCM_KEYWORDP(keyword));
+  puts("keyword2string: ");
+  gh_display(keyword);
+  gh_newline();
+  //gh_display(scm_keyword_dash_symbol(keyword));
+  //gh_newline();
+
+  char* str = gh_symbol2newstr(scm_keyword_dash_symbol(keyword), 0);
+  std::string ret = str + 1; // skip the dash
+  free(str);
+  return ret;
 }
 
 } // namespace Guile

@@ -1,4 +1,4 @@
-//  $Id: custom_building.cxx,v 1.2 2003/05/08 23:04:46 grumbel Exp $
+//  $Id: custom_building.cxx,v 1.3 2003/05/09 14:13:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,8 +49,20 @@ CustomBuilding::draw(boost::dummy_ptr<View> view)
 }
 
 void
+CustomBuilding::draw_energie(boost::dummy_ptr<View> view)
+{
+  energie.draw(view, x_pos*40 + get_map_width()*20, (y_pos*40));
+}
+
+void
 CustomBuilding::update(float)
 {
+}
+
+void
+CustomBuilding::collide (Projectile*)
+{
+  energie -= 5;
 }
 
 /* EOF */
