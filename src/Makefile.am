@@ -14,6 +14,8 @@ ambulance.cxx \
 ambulance.hxx \
 background.cxx \
 background.hxx \
+command_line_arguments.hxx \
+command_line_arguments.cxx \
 collideable.hxx \
 controllable.hxx \
 controller.cxx \
@@ -54,8 +56,8 @@ math.hxx \
 mine.cxx \
 mine.hxx \
 my_gettext.hxx \
-pathfinder.cxx \
-pathfinder.hxx \
+path_manager.cxx \
+path_manager.hxx \
 playfield.cxx \
 playfield.hxx \
 projectile.cxx \

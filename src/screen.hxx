@@ -1,4 +1,4 @@
-//  $Id: screen.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: screen.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SCREEN_HH
 #define SCREEN_HH
 
-#include <list>
+#include <vector>
 #include "boost/smart_ptr.hpp"
 #include "boost/dummy_ptr.hpp"
 #include "gui_obj.hxx"
@@ -31,8 +31,8 @@ class Screen
   : public GuiObj
 {
 private:
-  std::list<boost::shared_ptr<GuiObj> > gui_objs;
-  typedef std::list<boost::shared_ptr<GuiObj> >::iterator GuiObjIter;
+  std::vector<boost::shared_ptr<GuiObj> > gui_objs;
+  typedef std::vector<boost::shared_ptr<GuiObj> >::iterator GuiObjIter;
   
 public:
   Screen ();
@@ -40,6 +40,7 @@ public:
 
   virtual void draw (CL_GraphicContext* gc);
   virtual void update (float delta);
+
   virtual void add (boost::shared_ptr<GuiObj> obj);
 };
 

@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.4 2003/04/27 23:26:27 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.5 2003/04/28 19:42:59 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,15 +18,15 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-//#include <ClanLib/Display2/Providers/png_provider.h>
+#include "path_manager.hxx"
 #include "resource_manager.hxx"
 
 ResourceManager* resources;
 
 ResourceManager::ResourceManager ()
 {
-  resource_manager  = new CL_ResourceManager ("data/feuerkraft.xml", false);
-  resource_manager2 = new CL_ResourceManager ("data/tiles.xml", false);
+  resource_manager  = new CL_ResourceManager(path_manager.complete("data/feuerkraft.xml"), false);
+  resource_manager2 = new CL_ResourceManager (path_manager.complete("data/tiles.xml"), false);
 }
 
 ResourceManager::~ResourceManager ()

@@ -32,9 +32,11 @@
 #include "background.hxx"
 #include "stone.hxx"
 #include "system.hxx"
+#include "path_manager.hxx"
 #include "ambulance.hxx"
 #include "level_map.hxx"
 #include "start_screen.hxx"
+#include "command_line_arguments.hxx"
 
 #include "groundmap/ground_map.hxx"
 #include "groundmap/ground_map_data.hxx"
@@ -45,8 +47,6 @@
 #include "generic/ofstreamext.hxx"
 #include "resource_manager.hxx"
 #include "guile.hxx"
-
-Pathfinder datafiles;
 
 // FIXME: Ugly global variable, should be removed as soon as possible
 VehicleView* vehicle_view;
@@ -79,60 +79,26 @@ public:
 
     try
       {
+        CommandLineArguments args(argc, argv);
+        
 	srand (time (0));
 
-	float sec_fraction = 20.0f;
-	if (argc == 3)
-	  {
-	    if (strcmp (argv[1], "--speed") == 0
-		&& sscanf (argv[2], "%f", &sec_fraction) == 1)
-	      {
+        if (args.datadir.empty())
+          {
+            path_manager.add_path("..");
+            path_manager.add_path(".");
+            
+            path_manager.find_path("data/feuerkraft.xml");
+          }
+        else
+          {
+            path_manager.set_path(args.datadir);
+          }
 
-	      }
-	    else
-	      {
-		std::cout << "Wrong args: " << argv[1] << " " << argv[2] << std::endl;
-	      }
-	  }
-
-	datafiles.add_sig_files ("data/feuerkraft.xml");
-	datafiles.add_back (".");
-	datafiles.add_back ("..");
-	datafiles.print ();
-
-	/*
-	  try {
-	  System::change_dir(datafiles.find_path ("data/feuerkraft.scr"));
-	  } catch (Pathfinder::FileNotFound e) {
-	  std::cout << "Pathfinder:FileNotFound: " << e.filename << std::endl;
-	  }*/
-
-	std::cout << "New Fraction Time: " << sec_fraction << std::endl;
-		
 	CL_SetupCore::init();
 	//CL_SetupSound::init();
 	CL_SetupDisplay::init();
 	CL_SetupGL::init();
-
-	//CL_SetupGL::init();
-	//FIXME:Display2 CL_SetupPNG::init ();
-	//FIXME:Display2 CL_SetupJPEG::init ();
-
-		
-
-	//glAlphaFunc ( GL_GREATER, 0.1 ) ;
-
-	//CL_Display::clear_display ();
-	//CL_Display::flip_display ();
-	//window.flip ();
-
-	//std::cout << "Trying this:" << std::endl;
-	//FIXME:Display2 resources =  new CL_ResourceManager ("data/feuerkraft.scr", false);
-	//FIXME:Display2 tile_resources =  new CL_ResourceManager ("data/tiles.scr", false);
-	//FIXME:Display2 storage = new SpriteProviderStorage ();
-	//FIXME:Display2 storage->add(resources);
-	//FIXME:Display2 storage->add(tile_resources);
-	//std::cout << "DoneTrying this:" << std::endl;
         
 	resources = new ResourceManager ();
 
@@ -237,42 +203,16 @@ public:
 
 	CL_System::keep_alive();
 
-	int wannahavefps = 30;
-	int delta_wait = 1000/wannahavefps;
+	int delta_wait = static_cast<int>(1000/args.fps);
 
 	LevelMap levelmap (world);
 	
-	/*
-	StartScreen start_screen (&window);
-	{
-	unsigned int last_time = CL_System::get_time ();
-	while (!start_screen.done())
-	  {
-	    if (window.get_keycode(CL_KEY_SPACE))
-	      {
-		std::cout << "Space pressed" << std::endl;
-	      }
-
-	    start_screen.update ((CL_System::get_time () - last_time) / 1000.0f);
-	    last_time = CL_System::get_time ();
-
-	    start_screen.draw ();
-	    window.flip ();
-	    CL_System::keep_alive ();
-	    CL_System::sleep (10);
-	  }
-	}
-	*/
-
-	std::cout << ">>>>>>>>>>> The World <<<<<<<<<<<<<<" << std::endl;	
-	//Guile::pretty_print(std::cout, world->get_data ()->dump_to_scm ());
-	std::cout << "<<<<<<<<<<< END World >>>>>>>>>>>>>>" << std::endl;	
 
         CL_System::keep_alive();
+
 	// Loop until the user hits escape:
-	while (true) //start_screen.logo_mode != StartScreen::S_QUIT)
+	while (!CL_Keyboard::get_keycode(CL_KEY_ESCAPE)) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
-#if 0
 	    // Poor mans pause button
 	    if (window.get_ic()->get_keyboard().get_keycode(CL_KEY_P))
 	      {
@@ -286,9 +226,6 @@ public:
 		last_time = CL_System::get_time ();
 	      }
 
-	    CL_System::sleep (0);
-#endif
-
 	    /* Switch between hard and variable updates here */
 	    //delta = ((CL_System::get_time () - last_time) / 1000.0f);
 	    delta = delta_wait/1000.0f;
@@ -299,26 +236,22 @@ public:
 	    deltas += delta;
 	    ++loops;
 
-	    //glRotatef (angle, 0.0, 0.0, 1.0);
-	    //glTranslatef (-320,-200, 0);
-
 	    view.draw (window.get_gc ());
 	    view.update (delta);
 
 	    screen.update (delta);
 	    screen.draw (window.get_gc ());
-
-		/*FIXME:Display2
-	    if (CL_Mouse::left_pressed ())
+            
+	    if (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 	      {
-		while (CL_Mouse::left_pressed ())
+		while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 		  CL_System::keep_alive ();
 		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
 		std::cout << "Mouse: " <<  pos << " | "
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 
 			  << " | " <<  int(pos.x) / 40  << " " << int(pos.y) / 40
 			  << std::endl;
-	      }*/
+	      }
 	    
 	    //controller.update (delta);
 	    kcontroller.update (delta);

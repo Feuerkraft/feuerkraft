@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.3 2003/04/27 23:26:27 grumbel Exp $
+//  $Id: background.cxx,v 1.4 2003/04/28 19:42:59 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,9 +22,9 @@
 
 
 Background::Background (boost::dummy_ptr<GameWorld> w,
-			const CL_Sprite& arg_sur)
+			const CL_Sprite& arg_sprite)
   : GameObj (w),
-    sur (arg_sur)
+    sur (arg_sprite.get_frame_surface(0))
 {
   sur.set_alignment(origin_top_left);
 }
@@ -35,11 +35,11 @@ Background::draw (View* view)
   // FIXME: We should take the view size into account
   for (int y = -1; y <= 1; ++y)
     for (int x = -1; x <= 1; ++x)
-      sur.draw ((x * 512) // Fixme:Display2 sur.get_width()) 
-		+ view->get_x_offset () % 512,
-		 (y * 512) // Fixme:Display2 sur.get_height())
-		+ view->get_y_offset () % 512,
-		  view->get_gc ());
+      sur.draw ((x * sur.get_width()) 
+		+ view->get_x_offset () % sur.get_height(),
+                (y * sur.get_height())
+                + view->get_y_offset () % sur.get_height(),
+                view->get_gc ());
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: feuerkraft.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,10 +19,6 @@
 
 #ifndef FEUERKRAFT_HH
 #define FEUERKRAFT_HH
-
-#include "pathfinder.hxx"
-
-extern Pathfinder datafiles;
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.2 2003/04/19 23:17:52 grumbel Exp $
+//  $Id: background.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef BACKGROUND_HH
-#define BACKGROUND_HH
+#ifndef FEUERKRAFT_BACKGROUND_HH
+#define FEUERKRAFT_BACKGROUND_HH
 
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
@@ -30,10 +30,10 @@ class Background
   : public GameObj
 {
 private:
-  CL_Sprite sur;
+  CL_Surface sur;
   
 public:
-  Background (boost::dummy_ptr<GameWorld> w, const CL_Sprite& sur);
+  Background (boost::dummy_ptr<GameWorld> w, const CL_Sprite& sprite);
   virtual ~Background () {}
 
   void draw (View* draw);
