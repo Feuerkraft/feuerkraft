@@ -20,6 +20,8 @@
 #ifndef HEADER_CONTROLLER_HXX
 #define HEADER_CONTROLLER_HXX
 
+#include <vector>
+#include "controller_def.hxx"
 #include "input_event.hxx"
 
 /** The Controller class presents the current state of the controller
@@ -27,31 +29,29 @@
     last update */
 class Controller
 {
-public:
-  float orientation_axis;
-  float accelerate_axis;
-  float strafe_axis;
-
-  bool primary_fire_button;
-  bool secondary_fire_button;
-  bool use_button;
-  bool menu_button;
+private:
+  /** State of all buttons, indexed by ButtonName */
+  std::vector<bool> buttons;
+  
+  /** State of all axis, indexed by AxisName */
+  std::vector<float> axes;
 
   InputEventLst events;
 
 public:
   Controller();
 
-  float get_axis_state(AxisName name) const;
-  bool  get_button_state(ButtonName name) const;
+  float get_axis_state  (int name) const;
+  bool  get_button_state(int name) const;
 
-  void  set_axis_state(AxisName name, float pos);
-  void  set_button_state(ButtonName name, bool down);
+  void  set_axis_state  (int name, float pos);
+  void  set_button_state(int name, bool down);
 
-  void add_axis_event(AxisName name, float pos);
-  void add_button_event(ButtonName name, bool down);
+  void add_axis_event  (int name, float pos);
+  void add_button_event(int name, bool down);
 
   InputEventLst get_events() const;
+  void set_events(const InputEventLst& lst);
 };
 
 #endif

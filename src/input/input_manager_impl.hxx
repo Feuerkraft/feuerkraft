@@ -37,11 +37,12 @@ public:
   virtual void update(float delta) =0;
   
   InputEventLst get_events();
+
   Controller get_controller();
   void clear();
 
-  void add_axis_event(AxisName name, float pos);
-  void add_button_event(ButtonName name, bool down);
+  void add_axis_event  (int name, float pos);
+  void add_button_event(int name, bool down);
 private:
   InputManagerImpl(const InputManagerImpl&);
   InputManagerImpl& operator=(const InputManagerImpl&);

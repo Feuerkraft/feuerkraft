@@ -17,42 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_INPUT_MANAGER_CUSTOM_HXX
-#define HEADER_INPUT_MANAGER_CUSTOM_HXX
+#ifndef HEADER_CONTROLLER_DEF_HXX
+#define HEADER_CONTROLLER_DEF_HXX
 
-#include <guile/gh.h>
-#include <ClanLib/Display/input_device.h>
-#include <ClanLib/Display/input_event.h>
-#include "input_event.hxx"
-#include "input_button.hxx"
-#include "input_axis.hxx"
-#include "input_manager_impl.hxx"
+#include <string>
+
+enum AxisName       { ORIENTATION_AXIS, ACCELERATE_AXIS, STRAFE_AXIS };
+enum ButtonName     { PRIMARY_FIRE_BUTTON, SECONDARY_FIRE_BUTTON, USE_BUTTON, MENU_BUTTON };
 
 /** */
-class InputManagerCustom : public InputManagerImpl
+class ControllerDef
 {
 private:
-  std::vector<CL_Slot> slots;
-
-  typedef std::vector<InputAxis*>   Axes;
-  typedef std::vector<InputButton*> Buttons;
-  
-  Axes    axes;
-  Buttons buttons;
-
 public:
-  InputManagerCustom(SCM lst);
-  
-  void update(float delta);
+  static int         get_button_count();
+  static int         get_axis_count();
 
-  void on_button_up(int name);
-  void on_button_down(int name);
-  void on_axis_move(float pos, int name);
-private:
-  void init(SCM lst);
+  static std::string button_id2name(int id);
+  static int         button_name2id(const std::string& name);
 
-  InputManagerCustom (const InputManagerCustom&);
-  InputManagerCustom& operator= (const InputManagerCustom&);
+  static std::string axis_id2name(int id);
+  static int         axis_name2id(const std::string& name);
 };
 
 #endif

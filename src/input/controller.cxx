@@ -22,93 +22,41 @@
 
 Controller::Controller()
 {
-  orientation_axis = 0.0f;
-  accelerate_axis  = 0.0f;
-  strafe_axis      = 0.0f;
-  
-  primary_fire_button   = false;
-  secondary_fire_button = false;
-  use_button  = false;
-  menu_button = false;
+  buttons.resize(ControllerDef::get_button_count());
+  axes.resize(ControllerDef::get_axis_count());
 }
 
 float
-Controller::get_axis_state(AxisName name) const
+Controller::get_axis_state(int name) const
 {
-  switch(name)
-    {
-    case ORIENTATION_AXIS:
-      return orientation_axis;
-    case ACCELERATE_AXIS:
-      return accelerate_axis;
-    case STRAFE_AXIS:
-      return strafe_axis;
-     
-    default:
-      AssertMsg(0, "Controllor: Unknown AxisName");
-      return 0;
-    }
+  AssertMsg(name < int(axes.size()), "Controllor: Unknown AxisName");  
+  return axes[name];
 }
+        
 
 bool
-Controller::get_button_state(ButtonName name) const
+Controller::get_button_state(int name) const
 {
-  switch(name)
-    {
-    case PRIMARY_FIRE_BUTTON:
-      return primary_fire_button;
-    case SECONDARY_FIRE_BUTTON:
-      return secondary_fire_button;
-
-    default:
-      AssertMsg(0, "Controller: Unknown ButtonName");
-      return false;
-    }
+  AssertMsg(name < int(buttons.size()), "Controllor: Unknown ButtonName");  
+  return buttons[name];
 }
 
 void
-Controller::set_axis_state(AxisName name, float pos)
+Controller::set_axis_state(int name, float pos)
 {
-  switch(name)
-    {
-    case ORIENTATION_AXIS:
-      orientation_axis = pos;
-      break;
-    case ACCELERATE_AXIS:
-      accelerate_axis = pos;
-      break;
-    case STRAFE_AXIS:
-      strafe_axis = pos;
-      break;
-    default:
-      AssertMsg(0, "Controllor: Unknown AxisName");
-    }
+  AssertMsg(name < static_cast<int>(axes.size()), "Controllor: Unknown AxisName");
+  axes[name] = pos;
 }
 
 void
-Controller::set_button_state(ButtonName name, bool down)
+Controller::set_button_state(int name, bool down)
 {
-  switch(name)
-    {
-    case PRIMARY_FIRE_BUTTON:
-      primary_fire_button = down;
-      break;
-    case SECONDARY_FIRE_BUTTON:
-      secondary_fire_button = down;
-      break;
-    case USE_BUTTON:
-      use_button = down;
-      break;
-    case MENU_BUTTON:
-      menu_button = down;
-      break;
-    default:
-      AssertMsg(0, "Controller: Unknown ButtonName");
-    }  
+  AssertMsg(name < static_cast<int>(buttons.size()), "Controller: Unknown ButtonName");
+  buttons[name] = down;
 }
 
 void
-Controller::add_axis_event(AxisName name, float pos)
+Controller::add_axis_event(int name, float pos)
 {
   InputEvent event;
   event.type = AXIS_EVENT;
@@ -118,7 +66,7 @@ Controller::add_axis_event(AxisName name, float pos)
 }
 
 void
-Controller::add_button_event(ButtonName name, bool down)
+Controller::add_button_event(int name, bool down)
 {
   InputEvent event;
   event.type = BUTTON_EVENT;
@@ -131,6 +79,12 @@ InputEventLst
 Controller::get_events() const
 {
   return events;
+}
+
+void
+Controller::set_events(const InputEventLst& lst)
+{
+  events = lst;
 }
 
 /* EOF */

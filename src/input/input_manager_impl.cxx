@@ -28,12 +28,12 @@ InputManagerImpl::get_events()
 Controller
 InputManagerImpl::get_controller()
 {
-  controller.events = events;
+  controller.set_events(events);
   return controller;
 }
 
 void
-InputManagerImpl::add_axis_event(AxisName name, float pos)
+InputManagerImpl::add_axis_event(int name, float pos)
 {
   InputEvent event;
   event.type = AXIS_EVENT;
@@ -43,7 +43,7 @@ InputManagerImpl::add_axis_event(AxisName name, float pos)
 }
 
 void
-InputManagerImpl::add_button_event(ButtonName name, bool down)
+InputManagerImpl::add_button_event(int name, bool down)
 {
   InputEvent event;
   event.type = BUTTON_EVENT;

@@ -29,8 +29,8 @@ AxisFactory::create(SCM lst)
 {
   while(gh_pair_p(lst))
     {
-      SCM sym  = gh_caar(lst);
-      SCM data = gh_cdar(lst);
+      SCM sym  = gh_car(lst);
+      SCM data = gh_cdr(lst);
       
       if (gh_equal_p(sym, gh_symbol2scm("joystick-axis")))
         {

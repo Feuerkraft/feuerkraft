@@ -48,7 +48,7 @@ InputManager::init(InputManagerImpl* arg_impl)
       recorder = 0;
     }
 
-  if (!recorder)
+  if (0)
     {
       recorder = new InputRecorder("/tmp/feuerkraft.rec");
     }
@@ -83,21 +83,25 @@ InputManager::init(InputManagerImpl* arg_impl)
       
       if (!impl)
         { 
-#if 1
-          impl = new InputManagerPlayer("/tmp/feuerkraft1.rec");
-#else
-          // Set default configuration
-          impl = new InputManagerCustom
-            (gh_eval_str("'("
-                         "(primary-button   (joystick-button 1 1))"
-                         "(secondary-button (joystick-button 1 0))"
-                         "(use-button       (joystick-button 1 3))"
-                         "(menu-button      (joystick-button 1 2))"
-                         "(orientation-axis (joystick-axis 1 0))"
-                         "(accelerate-axis  (joystick-axis 1 1))"
-                         "(strafe-axis      (joystick-axis 1 2))"
-                         ")"));
-#endif
+          if (0)
+            { // AVI
+              impl = new InputManagerPlayer("/tmp/feuerkraft1.rec");
+            }
+          else
+            {
+              // FIXME: Default to keyboard would be better
+              // Set default configuration
+              impl = new InputManagerCustom
+                (gh_eval_str("'("
+                             "(primary-button   (joystick-button 1 9))"
+                             "(secondary-button (joystick-button 1 8))"
+                             "(use-button       (joystick-button 1 3))"
+                             "(menu-button      (joystick-button 1 2))"
+                             "(orientation-axis (joystick-axis 1 0))"
+                             "(accelerate-axis  (joystick-axis 1 1))"
+                             "(strafe-axis      (joystick-axis 1 2))"
+                             ")"));
+            }
         }     
     }
 }
@@ -113,7 +117,8 @@ InputManager::update(float delta)
 {
   assert(impl);
   impl->update(delta);
-  recorder->record(get_controller());
+  if (recorder)
+    recorder->record(get_controller());
 }
 
 InputEventLst

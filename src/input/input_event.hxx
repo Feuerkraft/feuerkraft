@@ -23,12 +23,10 @@
 #include <vector>
 
 enum InputEventType { BUTTON_EVENT, AXIS_EVENT };
-enum AxisName       { ORIENTATION_AXIS, ACCELERATE_AXIS, STRAFE_AXIS };
-enum ButtonName     { PRIMARY_FIRE_BUTTON, SECONDARY_FIRE_BUTTON, USE_BUTTON, MENU_BUTTON };
 
 struct ButtonEvent
 {
-  ButtonName name;
+  int name;
 
   /** true if down, false if up */
   bool down;
@@ -39,7 +37,7 @@ struct ButtonEvent
 
 struct AxisEvent
 {
-  AxisName name;
+  int name;
 
   /** Pos can be in range from [-1.0, 1.0], some axis will only use [0,1.0] */
   float pos;

@@ -233,7 +233,10 @@ GameSession::update()
 
   // Flip front and backbuffer. This makes the changes visible:
   CL_Display::flip ();
-  Screenshot::write_screenshot_pnm("/tmp/feuerkraft/" + to_string(frames));
+
+  if (0) // AVI
+    Screenshot::write_screenshot_pnm("/tmp/feuerkraft/" + to_string(frames));
+
   ++frames;
 	    
   // Update keyboard input and handle system events:

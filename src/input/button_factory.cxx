@@ -39,7 +39,8 @@ ButtonFactory::create(SCM lst)
     }
   else
     {
-      std::cout << "ButtonFactory::create: parse error: ";
+      std::cout << "ButtonFactory::create: parse error: " << std::flush;
+      scm_flush_all_ports();
       gh_display(lst); std::cout << std::endl;
     }
       
@@ -64,7 +65,7 @@ ButtonFactory::create_joystick_button(SCM lst)
 InputButton*
 ButtonFactory::create_keyboard_button(SCM lst)
 {
-  gh_display(lst);
+  //gh_display(lst);
   std::string key_str = Guile::scm2string(gh_car(lst));
   int key_num = CL_Keyboard::get_device().keyid_to_string(key_str);
 

@@ -42,7 +42,7 @@ InputManagerPlayer::InputManagerPlayer(const std::string& filename)
       std::cout << "Entry: " << entry_num << " events: " << lst.size() << std::endl;
       entries.push(Entry(entry_num, lst));
     }
-  gh_display(entry);gh_newline();
+  //gh_display(entry);gh_newline();
   scm_close_port(port);
 }
 
@@ -56,19 +56,20 @@ InputManagerPlayer::scm2event(SCM entry)
   if (gh_equal_p(gh_symbol2scm("axis"), sym)) 
     {
       event.type = AXIS_EVENT;
-      event.axis.name = (AxisName)gh_scm2int(gh_car(data));
+      event.axis.name = gh_scm2int(gh_car(data));
       event.axis.pos  = gh_scm2double(gh_cadr(data));
     } 
   else if (gh_equal_p(gh_symbol2scm("button"), sym))
     {
       event.type = BUTTON_EVENT;
-      event.button.name = (ButtonName)gh_scm2int(gh_car(data));
+      event.button.name = gh_scm2int(gh_car(data));
       event.button.down = gh_scm2int(gh_cadr(data));
     } 
   else 
     {
-      std::cout << "scm2event: Unknown sym: ";
+      std::cout << "scm2event: Unknown sym: " << std::flush;
       gh_display(sym);
+      scm_flush_all_ports();
       std::cout << std::endl;
     }
   return event;
