@@ -21,7 +21,7 @@
 
 #include <config.h>
 
-#define _(String)
-#define N_(String)
+#define _(String)  String
+#define N_(String) String
 
 #endif /* _LIBGETTEXT_H */
