@@ -59,6 +59,8 @@ keyboard_controller.cxx \
 keyboard_controller.hxx \
 level_map.cxx \
 level_map.hxx \
+line_segments.hxx \
+line_segments.cxx \
 math.hxx \
 mine.cxx \
 mine.hxx \
