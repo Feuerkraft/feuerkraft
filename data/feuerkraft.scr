@@ -375,6 +375,45 @@ section tiles
 	section  sssg {
 		frame1 = images/tiles/sssg.png (type=surface);
 	}  
+	section  mud1 {
+		frame1 = images/tiles/mud1.png (type=surface);
+	}  
+	section  mud2 {
+		frame1 = images/tiles/mud2.png (type=surface);
+	}  
+	section  mud3 {
+		frame1 = images/tiles/mud3.png (type=surface);
+	}  
+	section  mud4 {
+		frame1 = images/tiles/mud4.png (type=surface);
+	}  
+
+	section  mmms1 {
+		frame1 = images/tiles/mmms1.png (type=surface);
+	}  
+
+	section  mmss1 {
+		frame1 = images/tiles/mmss1.png (type=surface);
+	}  
+	section  mmss2{
+		frame1 = images/tiles/mmss2.png (type=surface);
+	}  
+	section  mmsm1{
+		frame1 = images/tiles/mmsm1.png (type=surface);
+	}  
+
+	section  smmm{
+		frame1 = images/tiles/smmm.png (type=surface);
+	}  
+	section  smmm1{
+		frame1 = images/tiles/smmm1.png (type=surface);
+	}  
+	section  smms{
+		frame1 = images/tiles/smms.png (type=surface);
+	}  
+	section  smss1{
+		frame1 = images/tiles/smss1.png (type=surface);
+	}  
 }
 
 // EOF //

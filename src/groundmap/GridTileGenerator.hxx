@@ -1,4 +1,4 @@
-//  $Id: GridMap.hxx,v 1.3 2002/03/26 10:42:46 grumbel Exp $
+//  $Id: GridTileGenerator.hxx,v 1.1 2002/03/26 10:42:47 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,39 +17,34 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef GRIDMAP_HXX
-#define GRIDMAP_HXX
+#ifndef GRIDTILEGENERATOR_HXX
+#define GRIDTILEGENERATOR_HXX
 
 #include <vector>
 #include <map>
-#include "GroundMap.hxx"
+#include <string>
+#include <guile/gh.h>
+#include "GroundType.hxx"
 #include "GridTileData.hxx"
-#include "GridMapData.hxx"
-#include "GridTileGenerator.hxx"
 
-class GridTile;
-
-class GridMap : public GroundMap,
-		public GridMapData
+/** Creates/loads the tiles for a GridMap out of an description */
+class GridTileGenerator
 {
 private:
-  int width;
-  int height;
-  
-  /** This is the map, all tiles in this vector are just pointers to
-      the tiles in 'tiles' */
-  std::vector<GridTile*> gridmap;
-
-  /** All real tiles are stored in this map, delete them here */
-  GridTileGenerator tiles;
 
 public:
-  GridMap (const GridMapData& data);
-  virtual ~GridMap ();
+  typedef std::map<GridTileData, std::vector<GridTile*> > TileTable;
+  TileTable tiles;
 
-  GroundType get_groundtype (float x, float y);
-  void draw (View* view);
-  void update (float);
+  GridTileGenerator (std::string filename);
+  ~GridTileGenerator ();
+
+  GridTile* create (const GridTileData& data);
+private:
+  GroundType symbol2GroundType (SCM);
+  void parse_line (SCM desc);
+  GridTileData scm2GridTileData (SCM);
+  std::vector<GridTile*> scm2GridTileVector (SCM);
 };
 
 #endif

@@ -26,6 +26,8 @@ libfeuerkraft_groundmap_a_SOURCES = \
   GridTileData.hxx \
   GridTileData.cxx \
   GridTile.hxx \
-  GridTile.cxx 
+  GridTile.cxx \
+  GridTileGenerator.hxx \
+  GridTileGenerator.cxx
 
 # EOF #
