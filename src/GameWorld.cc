@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.9 2001/02/19 22:02:18 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.10 2001/02/19 22:45:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -87,6 +87,17 @@ GameWorld::draw ()
   return obj->removable ();
 }*/
 
+template<class T, class Pred>
+void my_remove_if (std::list<T>& lst, Pred p)
+{
+  for (std::list<T>::iterator i = lst.begin ();
+       i != lst.end (); ++i)
+    {
+      i = lst.erase (i);
+      --i;
+    }
+}
+
 struct is_removable 
 {
   bool operator() (boost::shared_ptr<GameObj> obj) 
@@ -99,7 +110,8 @@ void
 GameWorld::update ()
 {
   //std::cout << "Number of GameObj's: " << objects.size () << "\r          " << std::flush;
-  objects.remove_if(is_removable ()); 
+  //objects.remove_if(is_removable ()); 
+  my_remove_if (objects, is_removable ());
   
   for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin ();
        i != objects.end (); ++i)
