@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.12 2003/06/04 14:46:10 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.13 2003/08/20 00:15:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,7 @@
 #ifndef GAMEOBJ_HH
 #define GAMEOBJ_HH
 
+#include <assert.h>
 #include "game_world.hxx"
 
 class Building;

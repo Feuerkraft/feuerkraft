@@ -1,4 +1,4 @@
-//  $Id: vector2d.hxx,v 1.5 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: vector2d.hxx,v 1.6 2003/08/20 00:15:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,7 +57,7 @@ public:
   FloatVector2d& rotate(float angle);
 
   /** @return Length of the vector */
-  inline float get_length() const;
+  float get_length() const;
 
   /** @return abs(x) + abs(y) */
   inline float get_manhatten_length() const;

@@ -1,4 +1,4 @@
-//  $Id: input_manager.cxx,v 1.3 2003/06/06 18:36:24 grumbel Exp $
+//  $Id: input_manager.cxx,v 1.4 2003/08/20 00:15:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <assert.h>
 #include "input_manager_clanlib.hxx"
 #include "input_manager_impl.hxx"
 #include "input_manager.hxx"
