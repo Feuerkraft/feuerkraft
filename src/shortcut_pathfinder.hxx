@@ -1,4 +1,4 @@
-//  $Id: shortcut_pathfinder.hxx,v 1.1 2003/04/29 20:43:36 grumbel Exp $
+//  $Id: shortcut_pathfinder.hxx,v 1.2 2003/04/30 15:03:26 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,8 +58,10 @@ public:
     short y;
 #else
     unsigned int visited : 1;
-    unsigned int parent  : 3;
+    /// If parent != PARENT_NONE then is in open
+    unsigned int parent  : 3; 
     unsigned int cost    : 8;
+
     unsigned int x       : 8;
     unsigned int y       : 8;
 #endif
@@ -67,7 +69,7 @@ public:
 
   struct PQComp
   {
-    bool operator()(Node* a, Node* b) {
+    inline bool operator()(Node* a, Node* b) {
       return a->cost > b->cost;
     }
   };
@@ -81,7 +83,11 @@ private:
 
   Pos start;
   Pos end;
+  int rounds;
+  int max_rounds;
   std::vector<Pos> path;
+
+  std::vector<Node*> dirty_nodes;
 
   State state;
 public:
@@ -89,7 +95,10 @@ public:
   
   void init(Pos& arg_start, Pos& arg_end);
 
-  bool finished();
+  inline bool finished() {
+    return state != WORKING;
+  }
+
   bool is_path_node(int x, int y);
 
   std::vector<Pos>& get_path() { return path; }

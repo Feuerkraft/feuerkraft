@@ -1,4 +1,4 @@
-//  $Id: shortcut_pathfinder.cxx,v 1.1 2003/04/29 20:43:36 grumbel Exp $
+//  $Id: shortcut_pathfinder.cxx,v 1.2 2003/04/30 15:03:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,11 +26,23 @@ ShortcutPathfinder::ShortcutPathfinder(Field<int>* arg_field)
   : field(*arg_field),
     node_field(field.get_width(), field.get_height())
 {
+  for(int y = 0; y < node_field.get_height(); ++y)
+    for(int x = 0; x < node_field.get_width(); ++x)
+      {
+        Node& node = node_field(x,y);
+        node.visited = 0;
+        node.parent  = PARENT_NONE;
+        node.cost    = 0;
+        node.x = x;
+        node.y = y;
+      }  
 }
 
 void
 ShortcutPathfinder::init(Pos& arg_start, Pos& arg_end)
 {
+  max_rounds = 300;
+  rounds = 0;
   start = arg_start;
   end   = arg_end;
 
@@ -43,19 +55,18 @@ ShortcutPathfinder::init(Pos& arg_start, Pos& arg_end)
       return;
     }
 
-  // initing node_field
-  for(int y = 0; y < node_field.get_height(); ++y)
-    for(int x = 0; x < node_field.get_width(); ++x)
-      {
-        Node& node = node_field(x,y);
-
-        node.visited = 0;
-        node.parent  = PARENT_NONE;
-        node.cost    = 0;
-        node.x = x;
-        node.y = y;
-      }
+  //memset(&*node_field.begin(), 0, sizeof(Node));
   
+  // initing node_field
+  for(std::vector<Node*>::iterator i = dirty_nodes.begin(); i != dirty_nodes.end(); ++i)
+    {
+      Node& node = *(*i);
+      node.visited = 0;
+      node.parent  = PARENT_NONE;
+      node.cost    = 0;
+    }
+  dirty_nodes.clear();
+
   open_nodes = OpenNodes();
 
   state = WORKING;
@@ -69,16 +80,16 @@ ShortcutPathfinder::init(Pos& arg_start, Pos& arg_end)
   make_neighbors_open(node);
 }
 
-bool
-ShortcutPathfinder::finished()
-{
-  return state != WORKING;
-}
-
 inline 
 void
 ShortcutPathfinder::process_one_open_node()
 {
+  if (++rounds == max_rounds)
+    {
+      state = NO_PATH_AVAILABLE;
+      return;
+    }
+
   if (open_nodes.empty())
     {
       state = NO_PATH_AVAILABLE;
@@ -113,7 +124,7 @@ ShortcutPathfinder::make_neighbors_open(Node& cnode)
     and n'.cost < = newcost
     continue
   */
-  if (cnode.x > 0)
+  if (cnode.x != 0)
     {
       if (field(cnode.x - 1, cnode.y) == 0) // node is walkable
         {
@@ -129,7 +140,7 @@ ShortcutPathfinder::make_neighbors_open(Node& cnode)
         }
     }
 
-  if (int(cnode.x) < node_field.get_width()-1  && field(cnode.x+1, cnode.y) == 0)
+  if (int(cnode.x) != node_field.get_width()-1  && field(cnode.x+1, cnode.y) == 0)
     {
       Node& east = node_field(cnode.x + 1, cnode.y);
       if (east.visited == 0  && east.parent == PARENT_NONE) 
@@ -141,7 +152,7 @@ ShortcutPathfinder::make_neighbors_open(Node& cnode)
         }
     }
 
-  if (cnode.y > 0 && field(cnode.x, cnode.y - 1) == 0)
+  if (cnode.y != 0 && field(cnode.x, cnode.y - 1) == 0)
     {
       Node& north = node_field(cnode.x, cnode.y - 1);
       if (north.visited == 0  && north.parent == PARENT_NONE)
@@ -153,7 +164,7 @@ ShortcutPathfinder::make_neighbors_open(Node& cnode)
         }
     }
   
-  if (int(cnode.y) < node_field.get_height() - 1  && field(cnode.x, cnode.y+1) == 0)
+  if (int(cnode.y) != node_field.get_height() - 1  && field(cnode.x, cnode.y+1) == 0)
     {
       Node& south = node_field(cnode.x, cnode.y + 1);
       if (south.visited == 0  && south.parent == PARENT_NONE)
@@ -170,6 +181,7 @@ inline void
 ShortcutPathfinder::add_to_open_nodes(Node& cnode)
 {
   assert(cnode.parent != PARENT_NONE);
+  dirty_nodes.push_back(&cnode);
   open_nodes.push(&cnode);
 }
 
@@ -212,8 +224,8 @@ ShortcutPathfinder::display()
         }
       std::cout << std::endl;
     }
-  std::cout << "OpenNodes: " << open_nodes.size() << std::endl;
-  std::cout << "State: " << state << std::endl;
+  //std::cout << "OpenNodes: " << open_nodes.size() << std::endl;
+  //std::cout << "State: " << state << std::endl;
 }
 
 bool
@@ -235,11 +247,7 @@ ShortcutPathfinder::is_path_node(int x, int y)
 ShortcutPathfinder::Node&
 ShortcutPathfinder::resolve_parent(Node& node)
 {
-  if (node.parent == PARENT_NONE)
-    {
-      display();
-      assert(false);
-    }
+  assert(node.parent != PARENT_NONE);
 
   switch(node.parent)
     {
@@ -263,7 +271,7 @@ ShortcutPathfinder::construct_path()
 {
   //std::cout << "Construct path" << std::endl;
   // We construct the path reverse, so we start at the end
-  Node& current_node = node_field(end.x, end.y);
+  Node current_node = node_field(end.x, end.y);
 
   while(current_node.parent != PARENT_GOAL)
     {
@@ -272,6 +280,7 @@ ShortcutPathfinder::construct_path()
       path.push_back(Pos(current_node.x, current_node.y));
       current_node = resolve_parent(current_node);
     }
+  //std::cout << "OPenNodes: " << open_nodes.size() << std::endl;
 }
 
 #ifdef TESTME
@@ -283,7 +292,7 @@ int main()
   CL_SetupCore::init();
 
   srand(time(NULL));
-  Field<int> field(80, 50);
+  Field<int> field(50, 30);
 
   unsigned int start_time = CL_System::get_time();
   unsigned int end_time;
@@ -291,7 +300,7 @@ int main()
   for(int y = 0; y < field.get_height(); ++y)
     for(int x = 0; x < field.get_width(); ++x)
       {
-        field(x,y) = (rand()%100) > 40 ? 0 : 1;
+        field(x,y) = (rand()%100) > 30 ? 0 : 1;
       }
 
   ShortcutPathfinder pathfinder(&field);
@@ -301,12 +310,12 @@ int main()
 
   for(int count = 0; count < 1000; ++count)
     {
-  start.x = rand()%field.get_width();
-  start.y = rand()%field.get_height();
+      start.x = rand()%field.get_width();
+      start.y = rand()%field.get_height();
   
-  end.x = rand()%field.get_width();
-  end.y = rand()%field.get_height();
-
+      end.x = rand()%field.get_width();
+      end.y = rand()%field.get_height();
+      
       pathfinder.init(start, end);
       //pathfinder.display();
 
@@ -314,20 +323,22 @@ int main()
       //std::cout << "Start: " << start.x << " " << start.y << std::endl;
       //std::cout << "End:   " << end.x << " " << end.y << std::endl;
 
+      int rounds = 0;
       while(!pathfinder.finished())
         {
           //for(int i = 0; i < 10 && !pathfinder.finished(); ++i)
           pathfinder.process_one_open_node();
-
+          ++rounds;
+          //std::cout << "c" << std::endl;
+          //pathfinder.display();
           //getchar();
         }
-      if (1)
-        {
-          std::cout << "c" << std::endl;
-          pathfinder.display();
-          getchar();
-        }
- 
+
+      std::cout << "c" << std::endl;
+      pathfinder.display();
+      std::cout << "Rounds: " << rounds << std::endl;
+      getchar();
+     
       //pathfinder.display();
       
       /*
@@ -349,6 +360,50 @@ int main()
 
       //      getchar();
       //std::cout << "round: " << ++i << std::endl;
+    }
+  end_time = CL_System::get_time();
+  std::cout << "Msec: " << end_time - start_time << std::endl;
+
+  CL_SetupCore::deinit();
+}
+#elif TESTME2
+int main()
+{
+  CL_SetupCore::init();
+
+  srand(time(NULL));
+  Field<int> field(256, 256);
+
+  for(int y = 0; y < field.get_height(); ++y)
+    for(int x = 0; x < field.get_width(); ++x)
+      {
+        field(x,y) = (rand()%100) > 20 ? 0 : 1;
+      }
+
+  ShortcutPathfinder pathfinder(&field);
+
+  Pos start;
+  Pos end;
+
+  unsigned int start_time = CL_System::get_time();
+  unsigned int end_time;
+
+
+  for(int count = 0; count < 1000; ++count)
+    {
+      start.x = rand()%field.get_width();
+      start.y = rand()%field.get_height();
+  
+      end.x = rand()%field.get_width();
+      end.y = rand()%field.get_height();
+
+      pathfinder.init(start, end);
+    
+      while(!pathfinder.finished())
+        {
+          pathfinder.process_one_open_node();
+        }
+      //std::cout << "State: " << rounds << " " << pathfinder.get_state() << std::endl;
     }
   end_time = CL_System::get_time();
   std::cout << "Msec: " << end_time - start_time << std::endl;
