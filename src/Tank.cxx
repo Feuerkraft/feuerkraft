@@ -44,13 +44,11 @@ Tank::draw (View* view)
   if (destroyed)
     {
       view->draw (sur_destroyed, 
-		  pos.x - sur_destroyed.get_width ()/2,
-		  pos.y - sur_destroyed.get_height ()/2);
+		  int(pos.x - sur_destroyed.get_width ()/2),
+		  int(pos.y - sur_destroyed.get_height ()/2));
     }
   else
     {
-      int frame = int(fmod (angle, circle) / circle * 16.0);
-  
       for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
@@ -75,8 +73,8 @@ Tank::draw (View* view)
 		  view->get_x_offset () + pos.y);
 		  glEnd ();*/
 
-      sur->draw(view->get_x_offset () + pos.x,
-		view->get_y_offset () + pos.y,
+      sur->draw(int(view->get_x_offset () + pos.x),
+		int(view->get_y_offset () + pos.y),
 		angle/(circle/2.0)*180);
 
       turret->draw (view);
@@ -108,7 +106,7 @@ Tank::draw (View* view)
       view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
 
       energie.draw (view, 
-		    pos.x, pos.y - 40);
+		    int(pos.x), int(pos.y - 40));
     }
 }
 
