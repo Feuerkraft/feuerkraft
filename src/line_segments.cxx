@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.9 2003/05/19 08:56:37 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.10 2003/05/19 09:54:29 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -430,8 +430,9 @@ LineSegments::draw(View* view)
         case RADIAL:
           //std::cout << "Radial: " << (int)i->radial.x << ", " <<(int)i->radial.y
           //        << " " << (int)i->radial.radius << std::endl;
+          /*
           view->draw_circle((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
-                            Color(1.0f, 1.0f, 1.0f, .3f));
+          Color(1.0f, 1.0f, 1.0f, .3f));*/
 
 
           if (i->radial.turn_right)
@@ -439,20 +440,24 @@ LineSegments::draw(View* view)
               view->draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
                              i->radial.start_angle, i->radial.end_angle, 
                              Color(1.0f, 1.0f, 1.0f));
+              /*
               view->draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
                                   (int)i->radial.x+5, (int)i->radial.y+5,
                                   Color(0.0f, 0.0f, 1.0f)); //blue
+              */
             }
           else
             {
               view->draw_arc((int)i->radial.x, (int)i->radial.y, (int)i->radial.radius,
                              i->radial.end_angle, i->radial.start_angle, 
                              Color(1.0f, 1.0f, 1.0f));
+              /*
               view->draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
                                   (int)i->radial.x+5, (int)i->radial.y+5,
                                   Color(1.0f, 0.0f, 0.0f)); // red
+              */
             }
-
+          /*
           {
             int x = int(i->radial.x + i->radial.radius * cos(i->radial.start_angle));
             int y = int(i->radial.y + i->radial.radius * sin(i->radial.start_angle));
@@ -467,7 +472,7 @@ LineSegments::draw(View* view)
             view->draw_fillrect(x-5, y-5,
                                 x+5, y+5,
                                 Color(1.0, 0.0f, 1.0f));
-          }
+          }*/
           break;
 
         case STRAIGHT:

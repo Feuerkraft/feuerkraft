@@ -84,8 +84,6 @@ mine.cxx \
 mine.hxx \
 path_manager.cxx \
 path_manager.hxx \
-playfield.cxx \
-playfield.hxx \
 output_world_builder.hxx \
 output_world_builder.cxx \
 property.hxx \

@@ -6,7 +6,6 @@
 #include <ClanLib/GL/setupgl.h>
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
-//#include <ClanLib/sound.h>
 #include <libguile.h>
 
 #include <time.h>
@@ -15,7 +14,6 @@
 #include "game_world.hxx"
 #include "keyboard_controller.hxx"
 #include "keyboard_manager.hxx"
-//#include "joystick_controller.hxx"
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
 #include "robot_tank.hxx"
@@ -26,7 +24,6 @@
 #include "flag.hxx"
 #include "helicopter.hxx"
 #include "turret.hxx"
-#include "playfield.hxx"
 #include "soldier.hxx"
 #include "vehicle_view.hxx"
 #include "vehicle_status.hxx"
@@ -39,7 +36,6 @@
 #include "ambulance.hxx"
 #include "level_map.hxx"
 #include "start_screen.hxx"
-#include "line_segments.hxx"
 #include "sound/sound.hxx"
 #include "collision_manager.hxx"
 #include "command_line_arguments.hxx"
@@ -177,13 +173,10 @@ public:
 	}
 	// End: Test of parsing code
         
-	Tank* tank2 = new Tank(FloatVector2d (800, 200), 5,
-                               "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
 	Tank* tank1 = new Tank(FloatVector2d (560, 1245), 5, 
                                "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+
         AIVehicle* ai_vehicle = new AIVehicle(FloatVector2d(342, 1241));
-	Helicopter* heli = new Helicopter(FloatVector2d (320, 200));
-	Jeep* jeep = new Jeep (FloatVector2d (250, 250));
 
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
@@ -199,13 +192,10 @@ public:
         screen.add (new Radar (FloatVector2d(64, 64), current_vehicle));
 	screen.add (new VehicleStatus (current_vehicle));
 
-	world->add (jeep);
-	world->add (heli);
 	world->add (tank1);
 	world->add (ai_vehicle);
-	world->add (tank2);
+
 	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
-	world->add (new Playfield ());
 	world->add (new Flag (FloatVector2d(200.0f, 200.f)));
 	world->add (new Ambulance());
 
@@ -245,10 +235,6 @@ public:
 
         CL_System::keep_alive();
 
-        LineSegments segments(560, 1245, 3.14159f);
-        FloatVector2d last_pos(560, 1245);
-        segments.add_straight_segment(last_pos.x, last_pos.y, last_pos.x, last_pos.y);
-
 	// Loop until the user hits escape:
 	while (!CL_Keyboard::get_keycode(CL_KEY_ESCAPE)) //start_screen.logo_mode != StartScreen::S_QUIT)
 	  {
@@ -286,11 +272,10 @@ public:
             GameWorld::current()->draw(&view);
             GameWorld::current()->draw_energie (&view);
 
-            segments.draw(&view);
             collision_mgr.draw(&view);
 
 	    screen.update (delta);
-	    screen.draw (window.get_gc ());
+	    screen.draw(window.get_gc ());
 
 	    if (CL_Mouse::get_keycode(CL_MOUSE_RIGHT))
               ai_vehicle->clear_orders();
@@ -308,10 +293,6 @@ public:
 			  << std::endl;
 
                 ai_vehicle->drive_to(pos);
-
-                //segments.add_straight_segment(last_pos.x, last_pos.y, pos.x, pos.y);
-                segments.add_controll_point(pos.x, pos.y, 50);
-                last_pos = pos;
 	      }
 	    
 	    //controller.update (delta);
