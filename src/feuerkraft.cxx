@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.52 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.53 2003/06/23 09:04:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -108,13 +108,8 @@ Feuerkraft::init()
   resources = new ResourceManager ();
   Fonts::init();
 
-  // Load helper functions
-  scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
-
   KeyboardManager::instance();
   InputManager::init();
-
-  scm_c_primitive_load(path_manager.complete("input.scm").c_str());
 }
 
 void 

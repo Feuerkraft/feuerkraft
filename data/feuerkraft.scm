@@ -13,6 +13,11 @@
 (define heli-type    7)
 ;; End: GameObj Types
 
+;; Building Types
+(define building:fuelstation (building-get-type-from-name "fuelstation"))
+(define building:ammotent    (building-get-type-from-name "ammotent"))
+;; End: Building Types
+
 (define (keywords2assoc lst)
   (cond ((and (pair? lst)
               (not (null? (cdr lst))))
@@ -346,6 +351,8 @@
                              (building-insert-func 'building:armored-generator)
                              (building-insert-func 'building:generator)
                              (building-insert-func 'building:garage)
+                             (building-insert-func 'building:fuelstation)
+                             (building-insert-func 'building:ammotent)
                              ))
 ;; Make an endless list
 (list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)

@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.12 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: building_commands.cxx,v 1.13 2003/06/23 09:04:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -166,6 +166,12 @@ building_set_property(int handle, const char* name, SCM value)
           Guile::scm2property(*properties, name, value);
         }
     }
+}
+
+int
+building_get_type_from_name(const char* name)
+{
+  return BuildingTypeManager::current()->name_to_id(name);
 }
 
 /* EOF */

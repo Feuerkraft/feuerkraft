@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.5 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: game_session.cxx,v 1.6 2003/06/23 09:04:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -51,6 +51,7 @@
 #include "output_world_builder.hxx"
 #include "game_world.hxx"
 #include "player.hxx"
+#include "path_manager.hxx"
 #include "command_line_arguments.hxx"
 #include "game_session.hxx"
 
@@ -76,6 +77,11 @@ GameSession::init()
 
   collision_mgr       = new CollisionManager();
   buildingtypemanager = new BuildingTypeManager();
+
+  // Load helper functions
+  // FIXME: These functions need a better place
+  scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
+  scm_c_primitive_load(path_manager.complete("input.scm").c_str());
   
   // Deserialize the game world
   {

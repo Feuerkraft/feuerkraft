@@ -1,4 +1,4 @@
-//  $Id: building_commands.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: building_commands.hxx,v 1.7 2003/06/23 09:04:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,6 +40,10 @@ int  building_get_tile(int x, int y);
 int  building_get(int x, int y);
 
 int  building_create_type(const char* name, SCM lst);
+
+/** Get a type_id by the types name 
+    @return type_id or 0 if no type given with that name */
+int  building_get_type_from_name(const char* name);
 
 /*@}*/
 
