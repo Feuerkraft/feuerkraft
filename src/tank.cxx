@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: tank.cxx,v 1.10 2003/05/18 22:47:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ extern VehicleView* vehicle_view;
 
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
-  : orientation (3.14159f/2.0f),
+  : orientation (Math::south),
     speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
@@ -93,7 +93,7 @@ Tank::draw (View* view)
 {
   if (destroyed)
     {
-      view->draw (sur_destroyed, pos);
+      view->draw(sur_destroyed, pos);
     }
   else
     {
@@ -115,7 +115,7 @@ Tank::draw (View* view)
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
-      view->draw(sur, pos, orientation);
+      view->draw(sur, pos, orientation + Math::pi);
       turret->draw (view);
 
       // Draw Collision rect
@@ -124,10 +124,10 @@ Tank::draw (View* view)
       FloatVector2d x2 (30, -15);
       FloatVector2d y2 (30, 15);
 
-      x1 = x1.rotate(orientation);
-      y1 = y1.rotate(orientation);
-      x2 = x2.rotate(orientation);
-      y2 = y2.rotate(orientation);
+      x1.rotate(orientation);
+      y1.rotate(orientation);
+      x2.rotate(orientation);
+      y2.rotate(orientation);
 
       x1 += pos;
       y1 += pos;
@@ -153,7 +153,8 @@ void
 Tank::respawn ()
 {
   /* FIXME: This respawn code is extremly ugly... */
-  Tank* tank = new Tank(FloatVector2d (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  Tank* tank = new Tank(FloatVector2d (560, 1245), 5,
+                        "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   GameWorld::current()->add (tank);
   if (get_controller ())
     {
@@ -213,8 +214,7 @@ Tank::update (float delta)
   else if (velocity < -2)
     velocity = -2.0f;
 
-  FloatVector2d vel (-velocity, 0.0);
-  vel.rotate(orientation);
+  FloatVector2d vel = FloatVector2d::make_polar(velocity, orientation);
 
   if (velocity != 0.0 || tmp_angle != orientation)
     {

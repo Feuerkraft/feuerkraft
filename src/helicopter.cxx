@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.5 2003/05/18 22:47:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -89,7 +89,7 @@ Helicopter::update (float delta)
       destroyed = true;
     }
 
-  FloatVector2d vel(-velocity, 0.0);
+  FloatVector2d vel(velocity, 0.0);
 
   vel.rotate(angle) * delta;
   pos += vel;

@@ -1,4 +1,4 @@
-//  $Id: math.hxx,v 1.3 2003/05/08 20:56:37 grumbel Exp $
+//  $Id: math.hxx,v 1.4 2003/05/18 22:47:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,11 @@ namespace Math {
 
 const double pi   = 3.14159265358979323846;	/* pi */
 const double pi_2 = 1.57079632679489661923;	/* pi/2 */
+
+const double east  = 0;
+const double north = pi_2;
+const double west  = pi;
+const double south = 3.0*pi_2;
 
 inline double deg2rad(double deg) 
 {

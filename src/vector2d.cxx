@@ -1,4 +1,4 @@
-//  $Id: vector2d.cxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: vector2d.cxx,v 1.3 2003/05/18 22:47:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,21 +30,25 @@ FloatVector2d::FloatVector2d(float arg_x, float arg_y)
 {
 }
 
+FloatVector2d
+FloatVector2d::make_polar(float length, float orientation)
+{
+  return FloatVector2d(cos(orientation) * length,
+                       sin(orientation) * length);
+}
+
 void
 FloatVector2d::set_orientation(float angle)
 {
-  float length = get_length();
-  x = sin(angle) * length;
-  y = cos(angle) * length;
+  x = sin(angle) * get_length();
+  y = cos(angle) * get_length();
 }
 
 FloatVector2d&
 FloatVector2d::rotate(float angle)
 {
-  float length = get_length();
-  float orienentation = get_orientation();
-  x = sin(orienentation + angle) * length;
-  y = cos(orienentation + angle) * length;
+  x = cos(get_orientation() + angle) * get_length();
+  y = sin(get_orientation() + angle) * get_length();
   return *this;
 }
 

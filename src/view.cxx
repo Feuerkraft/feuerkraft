@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: view.cxx,v 1.10 2003/05/18 22:47:54 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -171,7 +171,7 @@ View::draw_fillrect (float x1, float y1, float x2, float y2,
                                   static_cast<int>(255*a)));
 }
 
-void 
+void
 View::draw_rect (float x1, float y1, float x2, float y2, 
 		 float r, float g, float b, float a)
 {
@@ -206,17 +206,16 @@ View::draw_circle (float x_pos, float y_pos, float radius,
   // FIXME: Probally not the fast circle draw algo on this world...
   const float pi = 3.1415927f * 2.0f;
   const float steps = 16;
-  FloatVector2d current (radius, 0);
-  FloatVector2d next(current);
-  next.rotate(pi/steps);
+  FloatVector2d next    = FloatVector2d::make_polar(radius, 0 * pi/float(steps));
 
-  for (int i = 0; i < steps; ++i)
+  for (int i = 1; i <= steps; ++i)
     {
+      FloatVector2d current = next;
+      next = FloatVector2d::make_polar(radius, i * pi/float(steps));
+      
       draw_line (int(x_pos + current.x), int(y_pos + current.y),
 		 int(x_pos + next.x), int(y_pos + next.y),
 		 r, g, b, a);
-      current = next;
-      next.rotate (pi/float(steps));
     }
 }
 

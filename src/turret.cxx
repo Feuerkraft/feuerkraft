@@ -60,18 +60,18 @@ Turret::update (float delta)
       //std::cout << "Fireing..." << std::endl;
       float rot_angle = tank->get_angle () + angle + 3.1415927; //- fmod(angle, circle/16.0)
       
-      FloatVector2d dir = FloatVector2d (10.0 + tank->get_velocity (), 0.0).rotate(rot_angle);
+      FloatVector2d dir = FloatVector2d::make_polar(10.0 + tank->get_velocity(), rot_angle);
 
       if (floppy)
 	{
 	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
-                                                     + FloatVector2d (0.0f, -5.0f).rotate(rot_angle),
+                                                     + FloatVector2d::make_polar(-5.0f, rot_angle),
                                                      dir));
 	}
       else
 	{
 	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
-                                                     + FloatVector2d (0.0f, 5.0).rotate(rot_angle),
+                                                     + FloatVector2d::make_polar(5.0, rot_angle),
                                                      dir));
 	}
       floppy = !floppy;

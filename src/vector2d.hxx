@@ -1,4 +1,4 @@
-//  $Id: vector2d.hxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
+//  $Id: vector2d.hxx,v 1.3 2003/05/18 22:47:54 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,9 @@ public:
   FloatVector2d(const FloatVector2d& vec) : x(vec.x), y(vec.y) {};
   FloatVector2d(float arg_x, float arg_y);
 
+  /** Create a vector with the given polar coordinates */
+  static FloatVector2d make_polar(float length, float orientation);
+
   /** 
    * Set the orienentation of a vector to \a angle
    * 
@@ -54,10 +57,10 @@ public:
   FloatVector2d& rotate(float angle);
 
   /** @return Length of the vector */
-  float get_length() const;
+  inline float get_length() const;
 
   /** @return abs(x) + abs(y) */
-  float get_manhatten_length() const;
+  inline float get_manhatten_length() const;
 
   /** @return the current orienentation of the vector in radian */
   float get_orientation() const;
