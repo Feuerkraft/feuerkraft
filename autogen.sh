@@ -1,4 +1,4 @@
 aclocal
 autoheader
 automake --add-missing
-autoconf
+autoconf2.50

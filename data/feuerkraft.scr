@@ -96,4 +96,17 @@ section feuerkraft {
 	stone = images/stone.png (type=surface);
 }
 
+section tiles
+{
+	section grass1 {
+		frame1 = images/tiles/grass1.png (type=surface);
+	}	
+	section grass2 {
+		frame1 = images/tiles/grass2.png (type=surface);
+	}	
+	section grass3 {
+		frame1 = images/tiles/grass3.png (type=surface);
+	}	
+}
+
 // EOF //

@@ -35,6 +35,8 @@
 #include "System.hxx"
 #include "Ambulance.hxx"
 
+#include "map/GroundMap.hxx"
+#include "map/GroundMapData.hxx"
 #include "map/GroundMapDataFactory.hxx"
 
 CL_ResourceManager* resources;
@@ -102,24 +104,6 @@ public:
 	CL_Display::clear_display ();
 	CL_Display::flip_display ();
 
-
-	// Test of parsing code
-	{
-	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-	  SCM fdes = scm_open_file (gh_str02scm("../data/missions/test.feu"), 
-				    gh_str02scm("r"));
-	  SCM lst  = scm_read (fdes);
-
-	  std::cout << "Map: " << std::flush;
-	  gh_display (lst);
-	  gh_newline ();
-
-	  GroundMapData* groundmap = GroundMapDataFactory::create (lst);
-	  scm_close (fdes);
-	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
-	}
-	// End: Test of parsing code
-
 	std::cout << "Trying this:" << std::endl;
 	resources =  new CL_ResourceManager ("../data/feuerkraft.scr", false);
 	std::cout << "DoneTrying this:" << std::endl;
@@ -183,6 +167,28 @@ public:
 	world.add (new Soldier (&world, CL_Vector (550, 400)));
 	world.add (new Soldier (&world, CL_Vector (550, 100)));
 
+	GroundMap* groundmap;
+	// Test of parsing code
+	{
+	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
+	  SCM fdes = scm_open_file (gh_str02scm("../data/missions/test.feu"), 
+				    gh_str02scm("r"));
+	  SCM lst  = scm_read (fdes);
+
+	  std::cout << "Map: " << std::flush;
+	  gh_display (lst);
+	  gh_newline ();
+
+	  GroundMapData* groundmapdata = GroundMapDataFactory::create (lst);
+	  scm_close (fdes);
+	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
+
+	  groundmap = groundmapdata->create ();
+	}
+	// End: Test of parsing code
+
+	world.add (groundmap);
+	
 	/** 1/30sec = 1.0delta
 	 */
 	float delta;

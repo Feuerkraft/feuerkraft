@@ -1,4 +1,4 @@
-//  $Id: Tile.hxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: Tile.hxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,10 +25,10 @@ class Tile
 private:
 
 public:
-  void draw (float x, float y);
+  virtual void draw (float x, float y) =0;
 
   /** FIXME: 'float delta' should be replaced with GameDelta */
-  void update (float delta);
+  virtual void update (float delta) =0;
 };
 
 #endif

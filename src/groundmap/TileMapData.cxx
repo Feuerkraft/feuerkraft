@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,9 @@
 
 TileMapData::TileMapData (SCM desc)
 {
+  width = -1;
+  height = -1;
+
   while (!gh_null_p (desc))
     {
       SCM symbol = gh_caar(desc);
@@ -35,10 +38,19 @@ TileMapData::TileMapData (SCM desc)
 	}
       else if (gh_equal_p (gh_symbol2scm ("height"), symbol))
 	{
-	  width = gh_scm2int(gh_car (data));
+	  height = gh_scm2int(gh_car (data));
 	}
       else if (gh_equal_p (gh_symbol2scm ("tiles"), symbol))
 	{
+	  assert (width != -1);
+	  assert (height != -1);
+
+	  tiles_data.resize (width * height);
+
+	  for (std::vector<TileData*>::iterator i = tiles_data.begin ();
+	       i != tiles_data.end (); ++i)
+	    *i = NULL;
+
 	  parse_tiles (data);
 	}
       else
@@ -62,10 +74,19 @@ TileMapData::~TileMapData ()
 void
 TileMapData::parse_tiles (SCM desc)
 {
+  int i = 0;
   while (!gh_null_p (desc))
     {
-      tiles.push_back (TileDataFactory::create (gh_car(desc)));
-
+      if (i < tiles_data.size ())
+	{
+	  tiles_data[i] = TileDataFactory::create (gh_car(desc));
+	  ++i;
+	}
+      else
+	{
+	  std::cout << "To many tiles...." << std::endl;
+	}
+      
       desc = gh_cdr (desc);
     }
 }

@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.1 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ class TileMapData : public GroundMapData
 public:
   int width;
   int height;
-  std::list<TileData*> tiles;
+  std::vector<TileData*> tiles_data;
 
 public:
   /** Create a TileMapData out of an SCM description, the structure is

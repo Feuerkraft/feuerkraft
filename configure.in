@@ -23,6 +23,10 @@ AC_PROG_RANLIB
 
 dnl Checking for libraries
 
+AC_CHECK_LIB(qthreads, main)
+AC_CHECK_LIB(guile, scm_boot_guile)
+AC_CHECK_HEADER(guile/gh.h)
+
 AC_CHECK_LIB( clanCore,   main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
@@ -83,4 +87,5 @@ AC_CHECK_LIB( SphriteLibGL,   main,, [
 AC_OUTPUT( Makefile
            data/Makefile
            src/Makefile
+           src/map/Makefile
            src/boost/Makefile)

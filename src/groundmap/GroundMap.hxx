@@ -1,4 +1,4 @@
-//  $Id: GroundMap.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: GroundMap.hxx,v 1.3 2002/03/09 14:53:51 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,17 +20,23 @@
 #ifndef GROUNDMAP_HXX
 #define GROUNDMAP_HXX
 
+#include "../GameObj.hxx"
 #include "GroundType.hxx"
 
 /** The GroundMap interface defines the basic interaction between
     vehicles and the ground. It allows a GameObj to know what the
     current groundtype is and similar things
 */
-class GroundMap
+class GroundMap : public GameObj
 {
 private:
 
 public:
+  GroundMap ()
+    : GameObj (boost::dummy_ptr<GameWorld>()) // FIXME: BUG!
+  {
+  }
+
   /** Return the type of ground */
   virtual GroundType get_groundtype (float x, float y) =0;
 };

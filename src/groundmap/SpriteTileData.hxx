@@ -1,4 +1,4 @@
-//  $Id: SpriteTileData.hxx,v 1.2 2002/03/09 13:48:32 grumbel Exp $
+//  $Id: SpriteTileData.hxx,v 1.3 2002/03/09 14:53:51 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,13 +27,16 @@ class SpriteTile;
 
 struct SpriteTileData : public TileData
 {
+  SpriteTileData ();
+  virtual ~SpriteTileData ();
+
   /** The location of the Sprite which is used for this Tile. FIXME:
       Should be a ResourceLocation instead of std::string */
   std::string sprite_location;
 
   /** FIXME: Should be renamed if we need a EditorSpriteTile or
       something like that */
-  SpriteTile* create ();
+  Tile* create_Tile ();
 };
 
 #endif

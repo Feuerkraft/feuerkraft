@@ -1,4 +1,4 @@
-//  $Id: SpriteTile.cxx,v 1.1 2002/03/06 21:50:39 grumbel Exp $
+//  $Id: SpriteTile.cxx,v 1.2 2002/03/09 14:53:51 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,25 +20,33 @@
 #ifndef SPRITETILE_CXX
 #define SPRITETILE_CXX
 
+#include <ClanLib/display.h>
+#include <SphriteLib/sphritelibGL.h>
 #include "SpriteTile.hxx"
+
+extern CL_ResourceManager* resources;
 
 SpriteTile::SpriteTile (const SpriteTileData& data)
   : SpriteTileData (data)
 {
-  // FIXME: Load the sprite
-  //sprite = ...sprite_location;
+  SpriteProviderStorage storage;
+  storage.add (new SpriteProvider (sprite_location.c_str (), resources));
+  sprite = storage.create (sprite_location);
 }
 
 void
 SpriteTile::draw (float x, float y)
 {
+  assert (sprite);
   sprite->draw ((int) x, (int) y);
+  //std::cout << "draw: " << sprite_location << std::endl;
 }
 
 /** FIXME: 'float delta' should be replaced with GameDelta */
 void
 SpriteTile::update (float delta)
 {
+  assert (sprite);
   sprite->update (delta);
 }
 
