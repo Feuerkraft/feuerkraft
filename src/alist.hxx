@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.5 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: alist.hxx,v 1.6 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,10 @@
 #include <map>
 #include "vector2d.hxx"
 
-/** Simple associated list like class */
+/** Simple associated list like class 
+
+    FIXME: Looks pretty similar to PropertySet, except for the
+    pointers. */
 class AList
 {
 public:
@@ -39,7 +42,6 @@ public:
       bool  v_bool;
       std::string*  v_string;
       IntVector2d   v_int_vector2d;
-      FloatVector2d v_float_vector2d;
     };
   };
 private:
@@ -63,7 +65,6 @@ public:
   AList& set_bool  (const std::string& str, bool value);
   AList& set_string(const std::string& str, const std::string& value);
   AList& set_int_vector2d(const std::string& str, IntVector2d& value);
-  AList& set_float_vector2d(const std::string& str, FloatVector2d& value);
 
   bool get_int      (const std::string& str, int& value) const;
   bool get_float    (const std::string& str, float&value) const;
@@ -71,7 +72,6 @@ public:
   bool get_string   (const std::string& str, std::string& value) const;
 
   bool get_int_vector2d (const std::string& str, IntVector2d& value) const;
-  bool get_float_vector2d (const std::string& str, FloatVector2d& value) const;
 
   iterator begin() { return content.begin(); }
   iterator end() { return content.end(); }

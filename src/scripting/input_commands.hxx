@@ -1,4 +1,4 @@
-//  $Id: input_commands.hxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: input_commands.hxx,v 1.3 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,27 @@
 #ifndef HEADER_INPUT_COMMANDS_HXX
 #define HEADER_INPUT_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
+/** @brief Register a callback on a key press event 
+ *  @param key   a string representing the key, see keys.hxx
+ *  @param func  a procedure taking zero arguments
+ * 
+ *  Currently this is a bit limited and buggy, mouse events and other
+ *  input events might also be grabbed when the correct string is
+ *  \a key string supplied.
+ */
 void input_register_callback(const char* key, SCM func);
+
+/** @brief Return the current mouse x position */
 int  input_get_mouse_x();
+
+/** @brief Return the current mouse y position */
 int  input_get_mouse_y();
+
+//@}
+
 
 #endif
 

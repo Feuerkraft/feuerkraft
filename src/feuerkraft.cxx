@@ -18,6 +18,7 @@
 //#include "joystick_controller.hxx"
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
+#include "robot_tank.hxx"
 #include "jeep.hxx"
 #include "fonts.hxx"
 #include "tree.hxx"
@@ -216,6 +217,7 @@ public:
                                                            .set_float("y-pos", 50.0f)
                                                            .set_string("sprite", "feuerkraft/tree"));
 	world->add(tree);
+        world->add(new RobotTank(660, 1245, 0, 100.0f));
         
         PropertySet* props = tree->get_properties();
         if (props)

@@ -1,4 +1,4 @@
-//  $Id: effect_commands.hxx,v 1.1 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: effect_commands.hxx,v 1.2 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,12 @@
 #ifndef HEADER_EFFECT_COMMANDS_HXX
 #define HEADER_EFFECT_COMMANDS_HXX
 
+/** \addtogroup scripting */
+//@{
+
 void effect_add_explosion(int x, int y);
+
+//@}
 
 #endif
 

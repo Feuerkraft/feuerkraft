@@ -1,4 +1,4 @@
-//  $Id: property_set.hxx,v 1.2 2003/05/11 17:06:11 grumbel Exp $
+//  $Id: property_set.hxx,v 1.3 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef HEADER_PROPERTY_SET_HXX
-#define HEADER_PROPERTY_SET_HXX
+#ifndef HEADER_FEUERKRAFT_PROPERTY_SET_HXX
+#define HEADER_FEUERKRAFT_PROPERTY_SET_HXX
 
 #include <map>
 #include <string>

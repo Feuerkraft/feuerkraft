@@ -1,4 +1,4 @@
-//  $Id: output_world_builder.cxx,v 1.3 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: output_world_builder.cxx,v 1.4 2003/05/14 08:48:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -83,12 +83,12 @@ OutputWorldBuilder::print_alist(const AList& alist)
                     << "]"
                     << std::endl;
           break;
-        case AList::AL_FLOATVECTOR2D:
+          /*case AList::AL_FLOATVECTOR2D:
           std::cout << "[" << (*i).second.v_float_vector2d.x
                     << ", " << (*i).second.v_float_vector2d.y
                     << "]"
                     << std::endl;
-          break;
+                    break;*/
         default:
           std::cout << "<unhandled>" << std::endl;
           break;

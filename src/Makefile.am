@@ -95,6 +95,8 @@ projectile.cxx \
 projectile.hxx \
 radar.cxx \
 radar.hxx \
+robot_tank.hxx \
+robot_tank.cxx \
 resource_manager.cxx \
 resource_manager.hxx \
 screen.cxx \
@@ -129,6 +131,8 @@ tree.cxx \
 tree.hxx \
 turret.cxx \
 turret.hxx \
+vector2d.hxx \
+vector2d.cxx \
 vehicle.cxx \
 vehicle.hxx \
 vehicle_status.cxx \

@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.7 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: alist.cxx,v 1.8 2003/05/14 08:48:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -121,7 +121,7 @@ AList::set_int_vector2d(const std::string& name, IntVector2d& value)
   v.v_int_vector2d = value;
   return *this;
 }
-
+/*
 AList&
 AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
 {
@@ -129,7 +129,7 @@ AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
   v.v_float_vector2d = value;  
   return *this;
 }
-
+*/
 const AList::Value*
 AList::get_value(const std::string& name, Type type) const
 {
@@ -222,7 +222,7 @@ AList::get_int_vector2d (const std::string& name, IntVector2d& value) const
       return true;
     }
 }
-
+/*
 bool
 AList::get_float_vector2d (const std::string& name, FloatVector2d& value) const
 {
@@ -235,5 +235,5 @@ AList::get_float_vector2d (const std::string& name, FloatVector2d& value) const
       return true;
     }
 }
-
+*/
 /* EOF */

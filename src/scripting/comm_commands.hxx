@@ -1,4 +1,4 @@
-//  $Id: comm_commands.hxx,v 1.1 2003/05/02 19:10:24 grumbel Exp $
+//  $Id: comm_commands.hxx,v 1.2 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,12 @@
 #ifndef HEADER_COMM_COMMANDS_HXX
 #define HEADER_COMM_COMMANDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 void comm_send_message(int color, const char* str);
+
+//@}
 
 #endif
 

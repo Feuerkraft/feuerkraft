@@ -1,4 +1,4 @@
-//  $Id: building_commands.hxx,v 1.4 2003/05/11 18:12:10 grumbel Exp $
+//  $Id: building_commands.hxx,v 1.5 2003/05/14 08:48:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,6 +20,9 @@
 #ifndef HEADER_BUILDING_COMMONDS_HXX
 #define HEADER_BUILDING_COMMONDS_HXX
 
+/** @addtogroup scripting */
+//@{
+
 /** Create a building from type \a type at the tile position x, y
     @return a handler to the building */
 int  building_create(int type, int x, int y);
@@ -37,6 +40,8 @@ int  building_get_tile(int x, int y);
 int  building_get(int x, int y);
 
 int  building_create_type(const char* name, SCM lst);
+
+/*@}*/
 
 #endif
 
