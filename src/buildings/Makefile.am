@@ -30,6 +30,10 @@ libfeuerkraft_buildings_a_SOURCES = \
   Wall.cxx \
   Wall.hxx \
   WallData.cxx \
-  WallData.hxx
+  WallData.hxx \
+  WallDoorData.cxx \
+  WallDoorData.hxx \
+  WallDoor.hxx \
+  WallDoor.cxx
 
 # EOF #

@@ -1,4 +1,4 @@
-//  $Id: BuildingMapData.cxx,v 1.6 2002/03/24 14:00:40 grumbel Exp $
+//  $Id: BuildingMapData.cxx,v 1.7 2002/03/28 01:50:46 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@
 #include "BaseData.hxx"
 #include "HeadquarterData.hxx"
 #include "Wall.hxx"
+#include "WallDoor.hxx"
 
 BuildingMapData::BuildingMapData (SCM desc)
 {
@@ -68,8 +69,11 @@ BuildingMapData::BuildingMapData (SCM desc)
 	}
       else if (gh_equal_p (gh_symbol2scm ("base"), symbol))
 	{
-	  //std::cout << "BuildingMapData: creating base" << std::endl;
 	  buildings_data.push_back (new BaseData (data));
+	}
+      else if (gh_equal_p (gh_symbol2scm ("walldoor"), symbol))
+	{
+	  buildings_data.push_back (new WallDoorData (data));
 	}
       else
 	{

@@ -1,6 +1,9 @@
 (tiles 
-((a a a a) "tiles/aaaa1")
+((a a a a) "tiles/aaaa3" "tiles/aaaa2" "tiles/aaaa1")
+((a a a s) "tiles/aaas1")
+((a a s a) "tiles/aasa1")
 ((a a s s) "tiles/aass1")
+((a s a a) "tiles/asaa1")
 ((a s s a) "tiles/assa1")
 ((a s s s) "tiles/asss1")
 ((d d d d) "tiles/dddd1")
@@ -56,6 +59,7 @@
 ((m s s g) "tiles/mssg1")
 ((m s s m) "tiles/mssm3" "tiles/mssm2" "tiles/mssm1" "tiles/mssm")
 ((m s s s) "tiles/msss2" "tiles/msss1")
+((s a a a) "tiles/saaa1")
 ((s a a s) "tiles/saas1")
 ((s a s s) "tiles/sass1")
 ((s f f f) "tiles/sfff")

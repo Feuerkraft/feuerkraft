@@ -177,6 +177,14 @@ section feuerkraft {
 		frame1 = images/ammotent.png (type=surface);
 	}
 	
+	section	hdoor {
+		frame1 = images/hdoor.png (type=surface);
+	}
+
+	section	vdoor {
+		frame1 = images/vdoor.png (type=surface);
+	}
+
 	sand = images/sand.jpg (type=surface);
 	stone = images/stone.png (type=surface);
 }
