@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.5 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: radar.cxx,v 1.6 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,8 +25,8 @@
 #include "resource_manager.hxx"
 
 Radar::Radar (const CL_Vector& arg_pos, 
-	      boost::dummy_ptr<GameWorld> w,
-	      boost::dummy_ptr<Vehicle> v)
+	      GameWorldPtr w,
+	      VehiclePtr v)
   : world (w),
     vehicle (v),
     background (resources->get_sprite("feuerkraft/radar")),
@@ -54,7 +54,8 @@ Radar::draw (CL_GraphicContext* gc)
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
-      if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
+      if (vehicle && vehicle != this->vehicle)
+        draw_vehicle (vehicle);
     }
 
   world->get_buildingmap ()->draw_radar (this);
@@ -96,7 +97,7 @@ Radar::draw_blip (const CL_Vector& arg_pos, int size,
 }
 
 void 
-Radar::draw_vehicle (boost::dummy_ptr<Vehicle> obj)
+Radar::draw_vehicle (VehiclePtr obj)
 {
   draw_blip(obj->get_pos (), int(obj->get_physical_size ()));
 }

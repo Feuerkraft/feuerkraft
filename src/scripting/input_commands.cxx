@@ -1,4 +1,4 @@
-//  $Id: input_commands.cxx,v 1.1 2003/05/12 07:56:29 grumbel Exp $
+//  $Id: input_commands.cxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <ClanLib/Display/mouse.h>
 #include "scm_functor.hxx"
 #include "keys.hxx"
 #include "../keyboard_manager.hxx"
@@ -26,6 +27,18 @@ void
 input_register_callback(const char* key, SCM func)
 {
   KeyboardManager::instance()->register_down_callback(string2keyid(key), SCMFunctor(func));
+}
+
+int
+input_get_mouse_x()
+{
+  return CL_Mouse::get_x();
+}
+
+int
+input_get_mouse_y()
+{
+  return CL_Mouse::get_y();
 }
 
 /* EOF */

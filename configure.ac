@@ -9,8 +9,12 @@ CXXFLAGS="$CXXFLAGS -g -O0 -Wall"
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_INSTALL
+
+dnl AC_DISABLE_SHARED
 dnl AC_PROG_LIBTOOL
+
 AC_PROG_RANLIB
+
 AC_LANG(C++)
 
 dnl Checking for libraries
@@ -75,6 +79,7 @@ AC_CHECK_LIB( clanMikMod,   main)
 AC_CHECK_LIB( clanVorbis,   main)
 
 AC_OUTPUT( Makefile
+           doc/Makefile
            data/Makefile
            data/images/Makefile
            data/images/tiles/Makefile

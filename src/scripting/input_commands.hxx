@@ -1,4 +1,4 @@
-//  $Id: input_commands.hxx,v 1.1 2003/05/12 07:56:29 grumbel Exp $
+//  $Id: input_commands.hxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,6 +21,8 @@
 #define HEADER_INPUT_COMMANDS_HXX
 
 void input_register_callback(const char* key, SCM func);
+int  input_get_mouse_x();
+int  input_get_mouse_y();
 
 #endif
 

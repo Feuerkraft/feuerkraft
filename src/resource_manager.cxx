@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.8 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: resource_manager.cxx,v 1.9 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ ResourceManager* resources;
 
 ResourceManager::ResourceManager ()
 {
-  resource_manager  = new CL_ResourceManager(path_manager.complete("data/feuerkraft.xml"), false);
+  resource_manager  = new CL_ResourceManager(path_manager.complete("feuerkraft.xml"), false);
 }
 
 ResourceManager::~ResourceManager ()

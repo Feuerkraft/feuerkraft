@@ -1,4 +1,4 @@
-//  $Id: game_obj.hxx,v 1.6 2003/05/11 17:06:10 grumbel Exp $
+//  $Id: game_obj.hxx,v 1.7 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,12 +53,14 @@ public:
 
   PropertySet* get_properties() { return properties; }
 
+  /** This is called once somebody alters the properties, might be
+      needed if one for example changes the surface-string and
+      requires the surface to be reloaded.
+  
+      FIXME: Might be a stupid way to do it, a surface with self
+      reloading capabilities might be better, but might not always
+      work. */
   virtual void properties_updated() {}
-
-  /** Sync the GameObj with its GameObjData parent and return a
-      pointer to the parent. The parent must not be deleted.
-      0 is return if the function is unimplemented. */
-  virtual GameObjData* get_data() { return 0; }
 
   /** Draw the object onto the main view, which means the object will
       be drawn in normal game grafic */
@@ -84,11 +86,6 @@ public:
   // @return true if the object can be removed from the world
   virtual bool removable () { return remove_me; }
   
-  /** flip is called once after an update step is completly
-      finished. This is needed because collision detection is handled
-      outsite this gameobject */
-  virtual void flip () { /* do nothing */ }
-
   virtual void on_collision(GameObj* obj);
   virtual void on_collision_with_building(Building* building);
 

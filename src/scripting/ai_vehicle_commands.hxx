@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle_commands.hxx,v 1.2 2003/05/02 00:16:53 grumbel Exp $
+//  $Id: ai_vehicle_commands.hxx,v 1.3 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,14 @@
 #ifndef HEADER_AI_VEHICLE_COMMANDS_HXX
 #define HEADER_AI_VEHICLE_COMMANDS_HXX
 
+/** \ingroup scripting 
+    @{ */
 int  ai_vehicle_create(int x, int y);
 void ai_vehicle_wait(int object_id, float seconds);
 void ai_vehicle_drive_to(int object_id, int x, int y);
 void ai_vehicle_clear_orders(int object_id);
+
+/** @} */
 
 #endif
 

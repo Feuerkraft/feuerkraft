@@ -1,4 +1,4 @@
-//  $Id: scm_functor.cxx,v 1.2 2003/05/02 16:20:45 grumbel Exp $
+//  $Id: scm_functor.cxx,v 1.3 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -63,6 +63,18 @@ void
 SCMFunctor::operator()(SCM arg)
 {
   scm_call_1(func, arg);
+}
+
+void
+SCMFunctor::operator()(SCM arg1, SCM arg2)
+{
+  scm_call_2(func, arg1, arg2);
+}
+
+void
+SCMFunctor::operator()(SCM arg1, SCM arg2, SCM arg3)
+{
+  scm_call_3(func, arg1, arg2, arg3);
 }
 
 /* EOF */

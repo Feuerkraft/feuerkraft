@@ -32,6 +32,9 @@ libfeuerkraft_scripting_a_SOURCES = \
 #libguile_feuerkraft_la_SOURCES = feuerkraft_wrap.cxx
 #libguile_feuerkraft_la_LIBADD = libfeuerkraft_scripting.a
 
+# Include feuerkraft_wrap.cxx in case the user doesn't have swig installed
+EXTRA_DIST = feuerkraft_wrap.cxx
+
 feuerkraft_wrap.cxx: feuerkraft.i  $(command_source)
 	$(SWIG) -guile -c++  -o $@ $<
 

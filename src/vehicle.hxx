@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.5 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,6 +43,8 @@ public:
   virtual void  reload_ammo(float delta);
   virtual float get_velocity() { return 0.0; };
 };
+
+typedef Vehicle* VehiclePtr;
 
 #endif
 

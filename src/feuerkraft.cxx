@@ -72,6 +72,11 @@ CL_GraphicContext* global_gc;
 Controller* player_controller;
 VehicleView* player_vehicle_view;
 
+//#define WITH_STATIC_READLINE 1
+
+#ifdef WITH_STATIC_READLINE
+extern "C" void scm_init_readline();
+#endif
 extern "C" void SWIG_init(void);
           
 void inner_main (void* closure, int argc, char* argv[]);
@@ -107,10 +112,12 @@ public:
 
         if (args.datadir.empty())
           {
-            path_manager.add_path("..");
-            path_manager.add_path(".");
+            path_manager.add_path("../data");
+            path_manager.add_path("data");
+            path_manager.add_path("share/games/feuerkraft");
+            path_manager.add_path("../share/games/feuerkraft");
             
-            path_manager.find_path("data/feuerkraft.xml");
+            path_manager.find_path("feuerkraft.xml");
           }
         else
           {
@@ -144,14 +151,26 @@ public:
 	std::cout << "End: Trying load and destroy of a sprite" << std::endl;
         
         BuildingTypeManager buildingtypemanager;
-
+        
+        SCM_DEVAL_P = 1;
+        SCM_BACKTRACE_P = 1;
+        SCM_RECORD_POSITIONS_P = 1;
+        SCM_RESET_DEBUG_MODE;
+        
+#ifdef WITH_STATIC_READLINE
+        std::cout << "Loading readline... " << std::endl;
+        scm_init_readline();
+#endif
         // Load helper functions
-        scm_c_primitive_load("src/scripting/feuerkraft.scm");
+        scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
 
         // Deserialize the game world
 	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
+          if (args.mission_file.empty())
+            args.mission_file = path_manager.complete("missions/airport.feu");
+
 	  SCM fdes = scm_open_file (scm_makfrom0str(args.mission_file.c_str()), 
                                     scm_makfrom0str("r"));
 	  SCM lst  = scm_read (fdes);

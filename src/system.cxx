@@ -1,4 +1,4 @@
-//  $Id: system.cxx,v 1.3 2003/05/08 23:02:09 grumbel Exp $
+//  $Id: system.cxx,v 1.4 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@
 #include <cstdio>
 #include <iostream>
 
-#include "my_gettext.hxx"
+#include "gettext.h"
 
 //#include "PingusError.hxx" 
 #include "string_converter.hxx"

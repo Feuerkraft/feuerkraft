@@ -1,4 +1,4 @@
-//  $Id: game_world.hxx,v 1.8 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: game_world.hxx,v 1.9 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,6 +30,9 @@ class BuildingMap;
 class TriggerManager;
 class GameObjManager;
 class BuildingManager;
+class GameWorld;
+
+typedef GameWorld* GameWorldPtr;
 
 class GameWorld : public GameWorldData
 {
@@ -53,10 +56,6 @@ public:
   GameWorld (const GameWorldData& data);
   ~GameWorld ();
 
-  /** Sync the GameWorld with its GameWorldData parent, in the ideal case
-      this shouldn't be necessary, but sometimes it is required. */
-  GameWorldData* get_data ();
-  
   float get_time() { return current_time; }
 
   /// Return a reference to the objects in the world

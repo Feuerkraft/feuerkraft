@@ -1,4 +1,4 @@
-//  $Id: scm_functor.hxx,v 1.2 2003/05/02 16:20:45 grumbel Exp $
+//  $Id: scm_functor.hxx,v 1.3 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,6 +38,8 @@ public:
 
   void operator()();
   void operator()(SCM arg);
+  void operator()(SCM arg1, SCM arg2);
+  void operator()(SCM arg1, SCM arg2, SCM arg3);
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.hxx,v 1.1 2003/05/12 07:56:29 grumbel Exp $
+//  $Id: keyboard_manager.hxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,6 @@
 #define HEADER_KEYBOARD_MANAGER_HXX
 
 #include <vector>
-#include <ClanLib/Display/keyboard.h>
 #include <ClanLib/Display/input_event.h>
 
 /** */
@@ -37,8 +36,10 @@ public:
       return instance_ = new KeyboardManager();
   }
 private:
-  CL_Slot button_up_slot;
-  CL_Slot button_down_slot;
+  CL_Slot keyboard_button_up_slot;
+  CL_Slot keyboard_button_down_slot;
+  CL_Slot mouse_button_up_slot;
+  CL_Slot mouse_button_down_slot;
 
   struct Callback {
     int key_id;

@@ -1,4 +1,4 @@
-//  $Id: ofstreamext.cxx,v 1.2 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: ofstreamext.cxx,v 1.3 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,10 +19,11 @@
 
 #include "ofstreamext.hxx"
 
+/*
 std::ostream& operator<<(std::ostream& s, const CL_Vector& pos)
 {
   return (s << "(pos: " << pos.x << ", " << pos.y << ", " << pos.z << ")");
-}
+}*/
 
 /*std::ostream& operator<<(std::ostream& s, SCM desc)
 {

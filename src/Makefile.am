@@ -141,28 +141,49 @@ view_plugin.hxx \
 view_properties.hxx \
 z_pos_layers.hxx
 
+STATIC_READLINE=
+#STATIC_READLINE=-lguilereadline-v-12 -lreadline -lncurses
+
 STATICBIN_LIBS = \
 -L/usr/X11R6/lib/ \
 -Wl,-Bstatic \
--lz \
+-lclanApp \
+-lclanVorbis \
+-lclanMikMod \
+-lclanSound \
+-lclanGL \
+-lclanDisplay \
+-lclanCore \
+-lguile \
+-lguile-ltdl \
+$(STATIC_READLINE) \
+-lqthreads \
+-lcrypt \
+-lHermes \
+-lvorbis \
+-logg \
+-lmikmod \
 -ljpeg \
--lpng \
--lpthread \
+-lpng12 \
+-lz \
 -lm \
--lXext \
 -lX11 \
 -lXxf86vm \
 -lSM \
 -lXt \
+-lXext \
+-lGLU \
+-ldl \
+-lX11 \
+-lstdc++ \
+-lgcc_eh \
+-lgcc \
 -Wl,-Bdynamic \
 -lGL \
--Wl,-Bstatic \
-/usr/lib/libGLU.a \
--ldl \
--lX11
+-lc
 
-feuerkraft.static: $(feuerkraft_OBJECTS) $(feuerkraft_DEPENDENCIES)
-	$(CXX) -nodefaultlibs $(CXXFLAGS) -s -static -o $@ $(feuerkraft_OBJECTS) \
+feuerkraft.static: $(feuerkraft_OBJECTS) $(feuerkraft_DEPENDENCIES) Makefile
+	$(CXX) -nodefaultlibs $(CXXFLAGS)  -o $@ $(feuerkraft_OBJECTS) \
          $(feuerkraft_DEPENDENCIES) $(STATICBIN_LIBS) 
 
 feuerkraft.static.comp: feuerkraft.static

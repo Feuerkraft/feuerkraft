@@ -1,64 +1,64 @@
 <resources>
   <section name="feuerkraft">
     <sprite name="logo">
-      <image name="image1" file="data/images/logo.jpg" />
+      <image name="image1" file="images/logo.jpg" />
     </sprite>
 
     <sprite name="keys">
-      <image name="image1" file="data/images/keys.png" />
+      <image name="image1" file="images/keys.png" />
     </sprite>
 
     <sprite name="endscreen">
-      <image name="image1" file="data/images/endscreen.jpg" />
+      <image name="image1" file="images/endscreen.jpg" />
     </sprite>
 
     <sprite name="ambulance">
-      <image name="image1" file="data/images/ambulance.png" />
+      <image name="image1" file="images/ambulance.png" />
     </sprite>
     
     <sprite name="wall">
-      <image name="image1" file="data/images/wall.png" />
+      <image name="image1" file="images/wall.png" />
     </sprite>
 
     <sprite name="nobuilding">
-      <image name="image1" file="data/images/nobuilding.png" />
+      <image name="image1" file="images/nobuilding.png" />
     </sprite>
 
     <sprite name="wall_damaged">
-      <image name="image1" file="data/images/wall_damaged.png" />
+      <image name="image1" file="images/wall_damaged.png" />
     </sprite>
 
     <sprite name="house2">
-      <image name="image1" file="data/images/house2.png" />
+      <image name="image1" file="images/house2.png" />
     </sprite>
 
     <sprite name="generator">
-      <image name="image1" file="data/images/generator.png" />
+      <image name="image1" file="images/generator.png" />
     </sprite>
 
     <sprite name="armoredgenerator">
-      <image name="image1" file="data/images/armoredgenerator.png" />
+      <image name="image1" file="images/armoredgenerator.png" />
     </sprite>
 
     <sprite name="house">
-      <image name="image1" file="data/images/house.png" />
+      <image name="image1" file="images/house.png" />
     </sprite>
 
     <sprite name="garage">
-      <image name="image1" file="data/images/garage.png" />
+      <image name="image1" file="images/garage.png" />
     </sprite>
 
     <sprite name="house1">
-      <image name="image1" file="data/images/house1.png" />
+      <image name="image1" file="images/house1.png" />
     </sprite>
 
     <sprite name="wall_destroyed">
-      <image name="image1" file="data/images/wall_destroyed.png" />
+      <image name="image1" file="images/wall_destroyed.png" />
     </sprite>
 
     <sprite name="trooper">
       <image name="image1" 
-        file="data/images/trooper.png" 
+        file="images/trooper.png" 
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0" 
         />
@@ -66,7 +66,7 @@
 
     <sprite name="trooper_destroyed">
       <image name="image1" 
-        file="data/images/trooper_destroyed.png" 
+        file="images/trooper_destroyed.png" 
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0" 
         />
@@ -74,7 +74,7 @@
 
     <sprite name="tank">
       <image name="image1" 
-        file="data/images/tank.png" 
+        file="images/tank.png" 
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0" 
         />
@@ -82,40 +82,40 @@
     
     <sprite name="tank2">
       <image name="image1"
-        file="data/images/tank2.png"
+        file="images/tank2.png"
         rotation_hotspot="center,0,0"
         translation_hotspot="center,0,0"
         />
     </sprite>
 
     <sprite name="tank2_shadow">
-      <image name="image1" file="data/images/tank2_shadow.png" />
+      <image name="image1" file="images/tank2_shadow.png" />
     </sprite>
     
     <sprite name="helicopter">
-      <image name="image1" file="data/images/helicopter.png" />
+      <image name="image1" file="images/helicopter.png" />
     </sprite>
     
     <sprite name="helicopter_shadow">
-      <image name="image1" file="data/images/helicopter_shadow.png" />
+      <image name="image1" file="images/helicopter_shadow.png" />
     </sprite>
 
     <sprite name="turret">
-      <image name="image1" file="data/images/turret.png" rotation_hotspot="center, 0, 0"
+      <image name="image1" file="images/turret.png" rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0" />
     </sprite>
 
     <sprite name="turret2_shadow">
-      <image name="image1"  file="data/images/turret2_shadow.png" />
+      <image name="image1"  file="images/turret2_shadow.png" />
     </sprite>
     
     <sprite name="radar_line">
-      <image name="image1" file="data/images/radar_line.png" />
+      <image name="image1" file="images/radar_line.png" />
     </sprite>
     
     <sprite name="turret2">
       <image name="image1"  
-        file="data/images/turret2.png"
+        file="images/turret2.png"
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0"
         />
@@ -123,42 +123,42 @@
     
     <sprite name="fire2">
       <image name="image1" 
-        file="data/images/fire2.png"
+        file="images/fire2.png"
         rotation_hotspot="center, 0, 0" 
         translation_hotspot="center, 0, 0"
         />
     </sprite>
     
     <sprite name="fire">
-      <image name="image1" file="data/images/fire.png" />
+      <image name="image1" file="images/fire.png" />
     </sprite>
     
     <sprite name="jeep">
-      <image name="image1" file="data/images/jeep.png" />
+      <image name="image1" file="images/jeep.png" />
     </sprite>
 
     <sprite name="towerbase">
-      <image name="image1" file="data/images/towerbase.png" />
+      <image name="image1" file="images/towerbase.png" />
     </sprite>
     
     <sprite name="towerturret">
-      <image name="image1" file="data/images/towerturret.png" />
+      <image name="image1" file="images/towerturret.png" />
     </sprite>
     
     <sprite name="projectile">
-      <image name="image1" file="data/images/projectile.png" />
+      <image name="image1" file="images/projectile.png" />
     </sprite>
 
     <sprite name="sandsmoke">
       <image name="image1"
-        file="data/images/sandsmoke.png" 
+        file="images/sandsmoke.png" 
         rotation_hotspot="center, 0, 0" 
         translation_hotspot="center, 0, 0"
         />
     </sprite>
     
     <sprite name="grasssmoke">
-      <image name="image1" file="data/images/grasssmoke.png"
+      <image name="image1" file="images/grasssmoke.png"
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0"
         />
@@ -166,797 +166,797 @@
 
     <sprite name="explosion">
       <image name="image1" 
-        file="data/images/explosion.png"
+        file="images/explosion.png"
         rotation_hotspot="center,0,0" 
         translation_hotspot="center,0,0"
         />
     </sprite>
 
     <sprite name="smallexplo">
-      <image name="image1" file="data/images/smallexplo.png"
+      <image name="image1" file="images/smallexplo.png"
         rotation_hotspot="center, 0, 0"
         translation_hotspot="center, 0, 0"
         />
     </sprite>
     
     <sprite name="mediumexplo">
-      <image name="image1" file="data/images/mediumexplo.png"
+      <image name="image1" file="images/mediumexplo.png"
         rotation_hotspot="center, 0, 0" 
         translation_hotspot="center, 0, 0"
         />
     </sprite>
 
     <sprite name="towerdamaged">
-      <image name="image1" file="data/images/towerdamaged.png" />
+      <image name="image1" file="images/towerdamaged.png" />
     </sprite>
     
     <sprite name="towerdestroyed">
-      <image name="image1" file="data/images/towerdestroyed.png" />
+      <image name="image1" file="images/towerdestroyed.png" />
     </sprite>
     
 
 
     <sprite name="tree">
-      <image name="image1" file="data/images/tree.png" />
+      <image name="image1" file="images/tree.png" />
     </sprite>
 
     <sprite name="tree_shadow">
-      <image name="image1" file="data/images/tree_shadow.png" />
+      <image name="image1" file="images/tree_shadow.png" />
     </sprite>
 
     <sprite name="tree2">
-      <image name="image1" file="data/images/tree2.png" />
+      <image name="image1" file="images/tree2.png" />
     </sprite>
 
     <sprite name="tree2_shadow">
-      <image name="image1" file="data/images/tree2_shadow.png" />
+      <image name="image1" file="images/tree2_shadow.png" />
     </sprite>
 
     <sprite name="soldier">
-      <image name="image1" file="data/images/soldier.png" />
+      <image name="image1" file="images/soldier.png" />
     </sprite>
 
     <sprite name="mine">
-      <image name="image1" file="data/images/mine.png" />
+      <image name="image1" file="images/mine.png" />
     </sprite>
 
     <sprite name="mineactive">
-      <image name="image1" file="data/images/mineactive.png" />
+      <image name="image1" file="images/mineactive.png" />
     </sprite>
 
     <sprite name="minewater">
-      <image name="image1" file="data/images/minewater.png" />
+      <image name="image1" file="images/minewater.png" />
     </sprite>
 
     <sprite name="minewateractive">
-      <image name="image1" file="data/images/minewateractive.png" />
+      <image name="image1" file="images/minewateractive.png" />
     </sprite>
 
     <sprite name="tank2destroyed">
-      <image name="image1" file="data/images/tank2destroyed.png" />
+      <image name="image1" file="images/tank2destroyed.png" />
     </sprite>
 
     <sprite name="shockwave">
-      <image name="image1" file="data/images/shockwave.png" />
+      <image name="image1" file="images/shockwave.png" />
     </sprite>
     <sprite name="tankdestroyed">
-      <image name="image1" file="data/images/tankdestroyed.png" />
+      <image name="image1" file="images/tankdestroyed.png" />
     </sprite> 
 
     <sprite name="rotor">
-      <image name="image1" file="data/images/rotor1.png" />
-      <image name="image2" file="data/images/rotor2.png" />
+      <image name="image1" file="images/rotor1.png" />
+      <image name="image2" file="images/rotor2.png" />
     </sprite>
 
     <sprite name="hole">
-      <image name="image1" file="data/images/hole.png" />
+      <image name="image1" file="images/hole.png" />
     </sprite>
 
     <sprite name="helidestroyed">
-      <image name="image1" file="data/images/helidestroyed.png" />
+      <image name="image1" file="images/helidestroyed.png" />
     </sprite>
     
     <sprite name="flagblue">
-      <image name="image1" file="data/images/flagblue.png" />
+      <image name="image1" file="images/flagblue.png" />
     </sprite>
     <sprite name="flaggreen">
-      <image name="image1" file="data/images/flaggreen.png" />
+      <image name="image1" file="images/flaggreen.png" />
     </sprite>
     
     <sprite name="blueflag">
-      <image name="image1" file="data/images/blueflag.png" />
+      <image name="image1" file="images/blueflag.png" />
     </sprite>
     <sprite name="parking">
-      <image name="image1" file="data/images/parking.png" />
+      <image name="image1" file="images/parking.png" />
     </sprite>
 
     <sprite name="radar">
-      <image name="image1" file="data/images/radar.png"
+      <image name="image1" file="images/radar.png"
         rotation_hotspot="center, 0, 0" 
         translation_hotspot="center, 0, 0" 
         />
     </sprite>
     
     <sprite name="start">
-      <image name="image1" file="data/images/start.png" />
+      <image name="image1" file="images/start.png" />
     </sprite>
 
     <sprite name="headquarter">
-      <image name="image1" file="data/images/headquarter.png" />
+      <image name="image1" file="images/headquarter.png" />
     </sprite>
 
     <sprite name="headquarterdamaged">
-      <image name="image1" file="data/images/headquarterdamaged.png" />
+      <image name="image1" file="images/headquarterdamaged.png" />
     </sprite>
 
 
 
     <sprite name="headquarterdestroyed">
-      <image name="image1" file="data/images/headquarterdestroyed.png" />
+      <image name="image1" file="images/headquarterdestroyed.png" />
     </sprite>
     
     <sprite name="fuel">
-      <image name="image1" file="data/images/fuel.png" />
+      <image name="image1" file="images/fuel.png" />
     </sprite>
 
     <sprite name="ammo">
-      <image name="image1" file="data/images/ammo.png" />
+      <image name="image1" file="images/ammo.png" />
     </sprite>
     
     <sprite name="fuelstation">
-      <image name="image1" file="data/images/fuelstation.png" />
+      <image name="image1" file="images/fuelstation.png" />
     </sprite>
 
     <sprite name="emptytile">
-      <image name="image1" file="data/images/emptytile.png" />
+      <image name="image1" file="images/emptytile.png" />
     </sprite>
 
     <sprite name="ammotent">
-      <image name="image1" file="data/images/ammotent.png" />
+      <image name="image1" file="images/ammotent.png" />
     </sprite>
 
     <sprite name="hdoor">
-      <image name="image1" file="data/images/hdoor.png" />
+      <image name="image1" file="images/hdoor.png" />
     </sprite>
 
     <sprite name="vdoor">
-      <image name="image1" file="data/images/vdoor.png" />
+      <image name="image1" file="images/vdoor.png" />
     </sprite>
 
     <sprite name="sand">
-      <image name="image1" file="data/images/sand.jpg" />
+      <image name="image1" file="images/sand.jpg" />
     </sprite>
 
     <sprite name="cloudshadow">
-      <image name="image1" file="data/images/cloudshadow.png" />
+      <image name="image1" file="images/cloudshadow.png" />
     </sprite>
 
     <sprite name="stone">
-      <image name="image1" file="data/images/stone.png" />
+      <image name="image1" file="images/stone.png" />
     </sprite>
 
   </section>
 
   <section name="tiles">
     <sprite name="aaaa1">
-      <image name="image1" file="data/images/tiles/aaaa1.png" />
+      <image name="image1" file="images/tiles/aaaa1.png" />
     </sprite>
 
     <sprite name="aaaa2">
-      <image name="image1" file="data/images/tiles/aaaa2.png" />
+      <image name="image1" file="images/tiles/aaaa2.png" />
     </sprite>
 
     <sprite name="aaaa3">
-      <image name="image1" file="data/images/tiles/aaaa3.png" />
+      <image name="image1" file="images/tiles/aaaa3.png" />
     </sprite>
 
     <sprite name="aaas1">
-      <image name="image1" file="data/images/tiles/aaas1.png" />
+      <image name="image1" file="images/tiles/aaas1.png" />
     </sprite>
 
     <sprite name="aadd1">
-      <image name="image1" file="data/images/tiles/aadd1.png" />
+      <image name="image1" file="images/tiles/aadd1.png" />
     </sprite>
 
     <sprite name="aadf1">
-      <image name="image1" file="data/images/tiles/aadf1.png" />
+      <image name="image1" file="images/tiles/aadf1.png" />
     </sprite>
 
     <sprite name="aafd1">
-      <image name="image1" file="data/images/tiles/aafd1.png" />
+      <image name="image1" file="images/tiles/aafd1.png" />
     </sprite>
 
     <sprite name="aaff1">
-      <image name="image1" file="data/images/tiles/aaff1.png" />
+      <image name="image1" file="images/tiles/aaff1.png" />
     </sprite>
 
     <sprite name="aafs1">
-      <image name="image1" file="data/images/tiles/aafs1.png" />
+      <image name="image1" file="images/tiles/aafs1.png" />
     </sprite>
 
     <sprite name="aasa1">
-      <image name="image1" file="data/images/tiles/aasa1.png" />
+      <image name="image1" file="images/tiles/aasa1.png" />
     </sprite>
 
     <sprite name="aasf1">
-      <image name="image1" file="data/images/tiles/aasf1.png" />
+      <image name="image1" file="images/tiles/aasf1.png" />
     </sprite>
 
     <sprite name="aass1">
-      <image name="image1" file="data/images/tiles/aass1.png" />
+      <image name="image1" file="images/tiles/aass1.png" />
     </sprite>
 
     <sprite name="asaa1">
-      <image name="image1" file="data/images/tiles/asaa1.png" />
+      <image name="image1" file="images/tiles/asaa1.png" />
     </sprite>
 
     <sprite name="asas">
-      <image name="image1" file="data/images/tiles/asas.png" />
+      <image name="image1" file="images/tiles/asas.png" />
     </sprite>
 
     <sprite name="asas1">
-      <image name="image1" file="data/images/tiles/asas1.png" />
+      <image name="image1" file="images/tiles/asas1.png" />
     </sprite>
 
     <sprite name="assa1">
-      <image name="image1" file="data/images/tiles/assa1.png" />
+      <image name="image1" file="images/tiles/assa1.png" />
     </sprite>
 
     <sprite name="asss1">
-      <image name="image1" file="data/images/tiles/asss1.png" />
+      <image name="image1" file="images/tiles/asss1.png" />
     </sprite>
 
     <sprite name="ddaa1">
-      <image name="image1" file="data/images/tiles/ddaa1.png" />
+      <image name="image1" file="images/tiles/ddaa1.png" />
     </sprite>
 
     <sprite name="dddd1">
-      <image name="image1" file="data/images/tiles/dddd1.png" />
+      <image name="image1" file="images/tiles/dddd1.png" />
     </sprite>
 
     <sprite name="dddf">
-      <image name="image1" file="data/images/tiles/dddf.png" />
+      <image name="image1" file="images/tiles/dddf.png" />
     </sprite>
 
     <sprite name="ddff">
-      <image name="image1" file="data/images/tiles/ddff.png" />
+      <image name="image1" file="images/tiles/ddff.png" />
     </sprite>
 
     <sprite name="dfaa1">
-      <image name="image1" file="data/images/tiles/dfaa1.png" />
+      <image name="image1" file="images/tiles/dfaa1.png" />
     </sprite>
 
     <sprite name="dfdd">
-      <image name="image1" file="data/images/tiles/dfdd.png" />
+      <image name="image1" file="images/tiles/dfdd.png" />
     </sprite>
 
     <sprite name="dffd">
-      <image name="image1" file="data/images/tiles/dffd.png" />
+      <image name="image1" file="images/tiles/dffd.png" />
     </sprite>
 
     <sprite name="dfff">
-      <image name="image1" file="data/images/tiles/dfff.png" />
+      <image name="image1" file="images/tiles/dfff.png" />
     </sprite>
 
     <sprite name="fdaa1">
-      <image name="image1" file="data/images/tiles/fdaa1.png" />
+      <image name="image1" file="images/tiles/fdaa1.png" />
     </sprite>
 
     <sprite name="fddd">
-      <image name="image1" file="data/images/tiles/fddd.png" />
+      <image name="image1" file="images/tiles/fddd.png" />
     </sprite>
 
     <sprite name="fddf">
-      <image name="image1" file="data/images/tiles/fddf.png" />
+      <image name="image1" file="images/tiles/fddf.png" />
     </sprite>
 
     <sprite name="fdfd">
-      <image name="image1" file="data/images/tiles/fdfd.png" />
+      <image name="image1" file="images/tiles/fdfd.png" />
     </sprite>
 
     <sprite name="fdff">
-      <image name="image1" file="data/images/tiles/fdff.png" />
+      <image name="image1" file="images/tiles/fdff.png" />
     </sprite>
 
     <sprite name="ffaa1">
-      <image name="image1" file="data/images/tiles/ffaa1.png" />
+      <image name="image1" file="images/tiles/ffaa1.png" />
     </sprite>
 
     <sprite name="ffdd">
-      <image name="image1" file="data/images/tiles/ffdd.png" />
+      <image name="image1" file="images/tiles/ffdd.png" />
     </sprite>
 
     <sprite name="ffdf">
-      <image name="image1" file="data/images/tiles/ffdf.png" />
+      <image name="image1" file="images/tiles/ffdf.png" />
     </sprite>
 
     <sprite name="fffd">
-      <image name="image1" file="data/images/tiles/fffd.png" />
+      <image name="image1" file="images/tiles/fffd.png" />
     </sprite>
 
     <sprite name="ffff1">
-      <image name="image1" file="data/images/tiles/ffff1.png" />
+      <image name="image1" file="images/tiles/ffff1.png" />
     </sprite>
 
     <sprite name="ffff2">
-      <image name="image1" file="data/images/tiles/ffff2.png" />
+      <image name="image1" file="images/tiles/ffff2.png" />
     </sprite>
 
     <sprite name="ffff3">
-      <image name="image1" file="data/images/tiles/ffff3.png" />
+      <image name="image1" file="images/tiles/ffff3.png" />
     </sprite>
 
     <sprite name="fffs">
-      <image name="image1" file="data/images/tiles/fffs.png" />
+      <image name="image1" file="images/tiles/fffs.png" />
     </sprite>
 
     <sprite name="ffsf">
-      <image name="image1" file="data/images/tiles/ffsf.png" />
+      <image name="image1" file="images/tiles/ffsf.png" />
     </sprite>
 
     <sprite name="ffss">
-      <image name="image1" file="data/images/tiles/ffss.png" />
+      <image name="image1" file="images/tiles/ffss.png" />
     </sprite>
 
     <sprite name="fsaa">
-      <image name="image1" file="data/images/tiles/fsaa.png" />
+      <image name="image1" file="images/tiles/fsaa.png" />
     </sprite>
 
     <sprite name="fsff">
-      <image name="image1" file="data/images/tiles/fsff.png" />
+      <image name="image1" file="images/tiles/fsff.png" />
     </sprite>
 
     <sprite name="fsfs">
-      <image name="image1" file="data/images/tiles/fsfs.png" />
+      <image name="image1" file="images/tiles/fsfs.png" />
     </sprite>
 
     <sprite name="fssf">
-      <image name="image1" file="data/images/tiles/fssf.png" />
+      <image name="image1" file="images/tiles/fssf.png" />
     </sprite>
 
     <sprite name="fsss">
-      <image name="image1" file="data/images/tiles/fsss.png" />
+      <image name="image1" file="images/tiles/fsss.png" />
     </sprite>
 
     <sprite name="fsss1">
-      <image name="image1" file="data/images/tiles/fsss1.png" />
+      <image name="image1" file="images/tiles/fsss1.png" />
     </sprite>
 
     <sprite name="gggg1">
-      <image name="image1" file="data/images/tiles/gggg1.png" />
+      <image name="image1" file="images/tiles/gggg1.png" />
     </sprite>
 
     <sprite name="gggg2">
-      <image name="image1" file="data/images/tiles/gggg2.png" />
+      <image name="image1" file="images/tiles/gggg2.png" />
     </sprite>
 
     <sprite name="gggg3">
-      <image name="image1" file="data/images/tiles/gggg3.png" />
+      <image name="image1" file="images/tiles/gggg3.png" />
     </sprite>
 
     <sprite name="gggg4">
-      <image name="image1" file="data/images/tiles/gggg4.png" />
+      <image name="image1" file="images/tiles/gggg4.png" />
     </sprite>
 
     <sprite name="gggg5">
-      <image name="image1" file="data/images/tiles/gggg5.png" />
+      <image name="image1" file="images/tiles/gggg5.png" />
     </sprite>
 
     <sprite name="gggm2">
-      <image name="image1" file="data/images/tiles/gggm2.png" />
+      <image name="image1" file="images/tiles/gggm2.png" />
     </sprite>
 
     <sprite name="gggs1">
-      <image name="image1" file="data/images/tiles/gggs1.png" />
+      <image name="image1" file="images/tiles/gggs1.png" />
     </sprite>
 
     <sprite name="ggmg2">
-      <image name="image1" file="data/images/tiles/ggmg2.png" />
+      <image name="image1" file="images/tiles/ggmg2.png" />
     </sprite>
 
     <sprite name="ggmm1">
-      <image name="image1" file="data/images/tiles/ggmm1.png" />
+      <image name="image1" file="images/tiles/ggmm1.png" />
     </sprite>
 
     <sprite name="ggsg1">
-      <image name="image1" file="data/images/tiles/ggsg1.png" />
+      <image name="image1" file="images/tiles/ggsg1.png" />
     </sprite>
 
     <sprite name="ggss">
-      <image name="image1" file="data/images/tiles/ggss.png" />
+      <image name="image1" file="images/tiles/ggss.png" />
     </sprite>
 
     <sprite name="gmgg1">
-      <image name="image1" file="data/images/tiles/gmgg1.png" />
+      <image name="image1" file="images/tiles/gmgg1.png" />
     </sprite>
 
     <sprite name="gmgm1">
-      <image name="image1" file="data/images/tiles/gmgm1.png" />
+      <image name="image1" file="images/tiles/gmgm1.png" />
     </sprite>
 
     <sprite name="gmmg1">
-      <image name="image1" file="data/images/tiles/gmmg1.png" />
+      <image name="image1" file="images/tiles/gmmg1.png" />
     </sprite>
 
     <sprite name="gmmm1">
-      <image name="image1" file="data/images/tiles/gmmm1.png" />
+      <image name="image1" file="images/tiles/gmmm1.png" />
     </sprite>
 
     <sprite name="gsgg1">
-      <image name="image1" file="data/images/tiles/gsgg1.png" />
+      <image name="image1" file="images/tiles/gsgg1.png" />
     </sprite>
 
     <sprite name="gsgg2">
-      <image name="image1" file="data/images/tiles/gsgg2.png" />
+      <image name="image1" file="images/tiles/gsgg2.png" />
     </sprite>
 
     <sprite name="gsgs1">
-      <image name="image1" file="data/images/tiles/gsgs1.png" />
+      <image name="image1" file="images/tiles/gsgs1.png" />
     </sprite>
 
     <sprite name="gssg1">
-      <image name="image1" file="data/images/tiles/gssg1.png" />
+      <image name="image1" file="images/tiles/gssg1.png" />
     </sprite>
 
     <sprite name="gssm1">
-      <image name="image1" file="data/images/tiles/gssm1.png" />
+      <image name="image1" file="images/tiles/gssm1.png" />
     </sprite>
 
     <sprite name="gsss1">
-      <image name="image1" file="data/images/tiles/gsss1.png" />
+      <image name="image1" file="images/tiles/gsss1.png" />
     </sprite>
 
     <sprite name="mggg1">
-      <image name="image1" file="data/images/tiles/mggg1.png" />
+      <image name="image1" file="images/tiles/mggg1.png" />
     </sprite>
 
     <sprite name="mggm1">
-      <image name="image1" file="data/images/tiles/mggm1.png" />
+      <image name="image1" file="images/tiles/mggm1.png" />
     </sprite>
 
     <sprite name="mgmg1">
-      <image name="image1" file="data/images/tiles/mgmg1.png" />
+      <image name="image1" file="images/tiles/mgmg1.png" />
     </sprite>
 
     <sprite name="mgmm1">
-      <image name="image1" file="data/images/tiles/mgmm1.png" />
+      <image name="image1" file="images/tiles/mgmm1.png" />
     </sprite>
 
     <sprite name="mmgg1">
-      <image name="image1" file="data/images/tiles/mmgg1.png" />
+      <image name="image1" file="images/tiles/mmgg1.png" />
     </sprite>
 
     <sprite name="mmgm1">
-      <image name="image1" file="data/images/tiles/mmgm1.png" />
+      <image name="image1" file="images/tiles/mmgm1.png" />
     </sprite>
 
     <sprite name="mmmg1">
-      <image name="image1" file="data/images/tiles/mmmg1.png" />
+      <image name="image1" file="images/tiles/mmmg1.png" />
     </sprite>
 
     <sprite name="mmmm1">
-      <image name="image1" file="data/images/tiles/mmmm1.png" />
+      <image name="image1" file="images/tiles/mmmm1.png" />
     </sprite>
 
     <sprite name="mmmm2">
-      <image name="image1" file="data/images/tiles/mmmm2.png" />
+      <image name="image1" file="images/tiles/mmmm2.png" />
     </sprite>
 
     <sprite name="mmmm3">
-      <image name="image1" file="data/images/tiles/mmmm3.png" />
+      <image name="image1" file="images/tiles/mmmm3.png" />
     </sprite>
 
     <sprite name="mmmm4">
-      <image name="image1" file="data/images/tiles/mmmm4.png" />
+      <image name="image1" file="images/tiles/mmmm4.png" />
     </sprite>
 
     <sprite name="mmms1">
-      <image name="image1" file="data/images/tiles/mmms1.png" />
+      <image name="image1" file="images/tiles/mmms1.png" />
     </sprite>
 
     <sprite name="mmms2">
-      <image name="image1" file="data/images/tiles/mmms2.png" />
+      <image name="image1" file="images/tiles/mmms2.png" />
     </sprite>
 
     <sprite name="mmsm1">
-      <image name="image1" file="data/images/tiles/mmsm1.png" />
+      <image name="image1" file="images/tiles/mmsm1.png" />
     </sprite>
 
     <sprite name="mmsm2">
-      <image name="image1" file="data/images/tiles/mmsm2.png" />
+      <image name="image1" file="images/tiles/mmsm2.png" />
     </sprite>
 
     <sprite name="mmss1">
-      <image name="image1" file="data/images/tiles/mmss1.png" />
+      <image name="image1" file="images/tiles/mmss1.png" />
     </sprite>
 
     <sprite name="mmss2">
-      <image name="image1" file="data/images/tiles/mmss2.png" />
+      <image name="image1" file="images/tiles/mmss2.png" />
     </sprite>
 
     <sprite name="msmm1">
-      <image name="image1" file="data/images/tiles/msmm1.png" />
+      <image name="image1" file="images/tiles/msmm1.png" />
     </sprite>
 
     <sprite name="msmm2">
-      <image name="image1" file="data/images/tiles/msmm2.png" />
+      <image name="image1" file="images/tiles/msmm2.png" />
     </sprite>
 
     <sprite name="msms1">
-      <image name="image1" file="data/images/tiles/msms1.png" />
+      <image name="image1" file="images/tiles/msms1.png" />
     </sprite>
 
     <sprite name="mssg1">
-      <image name="image1" file="data/images/tiles/mssg1.png" />
+      <image name="image1" file="images/tiles/mssg1.png" />
     </sprite>
 
     <sprite name="mssm">
-      <image name="image1" file="data/images/tiles/mssm.png" />
+      <image name="image1" file="images/tiles/mssm.png" />
     </sprite>
 
     <sprite name="mssm1">
-      <image name="image1" file="data/images/tiles/mssm1.png" />
+      <image name="image1" file="images/tiles/mssm1.png" />
     </sprite>
 
     <sprite name="mssm2">
-      <image name="image1" file="data/images/tiles/mssm2.png" />
+      <image name="image1" file="images/tiles/mssm2.png" />
     </sprite>
 
     <sprite name="mssm3">
-      <image name="image1" file="data/images/tiles/mssm3.png" />
+      <image name="image1" file="images/tiles/mssm3.png" />
     </sprite>
 
     <sprite name="msss1">
-      <image name="image1" file="data/images/tiles/msss1.png" />
+      <image name="image1" file="images/tiles/msss1.png" />
     </sprite>
 
     <sprite name="msss2">
-      <image name="image1" file="data/images/tiles/msss2.png" />
+      <image name="image1" file="images/tiles/msss2.png" />
     </sprite>
 
     <sprite name="saaa1">
-      <image name="image1" file="data/images/tiles/saaa1.png" />
+      <image name="image1" file="images/tiles/saaa1.png" />
     </sprite>
 
     <sprite name="saas1">
-      <image name="image1" file="data/images/tiles/saas1.png" />
+      <image name="image1" file="images/tiles/saas1.png" />
     </sprite>
 
     <sprite name="sasa1">
-      <image name="image1" file="data/images/tiles/sasa1.png" />
+      <image name="image1" file="images/tiles/sasa1.png" />
     </sprite>
 
     <sprite name="sass1">
-      <image name="image1" file="data/images/tiles/sass1.png" />
+      <image name="image1" file="images/tiles/sass1.png" />
     </sprite>
 
     <sprite name="sfaa">
-      <image name="image1" file="data/images/tiles/sfaa.png" />
+      <image name="image1" file="images/tiles/sfaa.png" />
     </sprite>
 
     <sprite name="sfff">
-      <image name="image1" file="data/images/tiles/sfff.png" />
+      <image name="image1" file="images/tiles/sfff.png" />
     </sprite>
 
     <sprite name="sffs">
-      <image name="image1" file="data/images/tiles/sffs.png" />
+      <image name="image1" file="images/tiles/sffs.png" />
     </sprite>
 
     <sprite name="sffs1">
-      <image name="image1" file="data/images/tiles/sffs1.png" />
+      <image name="image1" file="images/tiles/sffs1.png" />
     </sprite>
 
     <sprite name="sfsf">
-      <image name="image1" file="data/images/tiles/sfsf.png" />
+      <image name="image1" file="images/tiles/sfsf.png" />
     </sprite>
 
     <sprite name="sfss">
-      <image name="image1" file="data/images/tiles/sfss.png" />
+      <image name="image1" file="images/tiles/sfss.png" />
     </sprite>
 
     <sprite name="sfss1">
-      <image name="image1" file="data/images/tiles/sfss1.png" />
+      <image name="image1" file="images/tiles/sfss1.png" />
     </sprite>
 
     <sprite name="sggg1">
-      <image name="image1" file="data/images/tiles/sggg1.png" />
+      <image name="image1" file="images/tiles/sggg1.png" />
     </sprite>
 
     <sprite name="sggs1">
-      <image name="image1" file="data/images/tiles/sggs1.png" />
+      <image name="image1" file="images/tiles/sggs1.png" />
     </sprite>
 
     <sprite name="sgms1">
-      <image name="image1" file="data/images/tiles/sgms1.png" />
+      <image name="image1" file="images/tiles/sgms1.png" />
     </sprite>
 
     <sprite name="sgsg1">
-      <image name="image1" file="data/images/tiles/sgsg1.png" />
+      <image name="image1" file="images/tiles/sgsg1.png" />
     </sprite>
 
     <sprite name="sgss1">
-      <image name="image1" file="data/images/tiles/sgss1.png" />
+      <image name="image1" file="images/tiles/sgss1.png" />
     </sprite>
 
     <sprite name="smgs1">
-      <image name="image1" file="data/images/tiles/smgs1.png" />
+      <image name="image1" file="images/tiles/smgs1.png" />
     </sprite>
 
     <sprite name="smmm">
-      <image name="image1" file="data/images/tiles/smmm.png" />
+      <image name="image1" file="images/tiles/smmm.png" />
     </sprite>
 
     <sprite name="smmm1">
-      <image name="image1" file="data/images/tiles/smmm1.png" />
+      <image name="image1" file="images/tiles/smmm1.png" />
     </sprite>
 
     <sprite name="smms">
-      <image name="image1" file="data/images/tiles/smms.png" />
+      <image name="image1" file="images/tiles/smms.png" />
     </sprite>
 
     <sprite name="smms1">
-      <image name="image1" file="data/images/tiles/smms1.png" />
+      <image name="image1" file="images/tiles/smms1.png" />
     </sprite>
 
     <sprite name="smsm1">
-      <image name="image1" file="data/images/tiles/smsm1.png" />
+      <image name="image1" file="images/tiles/smsm1.png" />
     </sprite>
 
     <sprite name="smss1">
-      <image name="image1" file="data/images/tiles/smss1.png" />
+      <image name="image1" file="images/tiles/smss1.png" />
     </sprite>
 
     <sprite name="smss2">
-      <image name="image1" file="data/images/tiles/smss2.png" />
+      <image name="image1" file="images/tiles/smss2.png" />
     </sprite>
 
     <sprite name="ssaa1">
-      <image name="image1" file="data/images/tiles/ssaa1.png" />
+      <image name="image1" file="images/tiles/ssaa1.png" />
     </sprite>
 
     <sprite name="ssas1">
-      <image name="image1" file="data/images/tiles/ssas1.png" />
+      <image name="image1" file="images/tiles/ssas1.png" />
     </sprite>
 
     <sprite name="ssff">
-      <image name="image1" file="data/images/tiles/ssff.png" />
+      <image name="image1" file="images/tiles/ssff.png" />
     </sprite>
 
     <sprite name="ssff1">
-      <image name="image1" file="data/images/tiles/ssff1.png" />
+      <image name="image1" file="images/tiles/ssff1.png" />
     </sprite>
 
     <sprite name="ssfs">
-      <image name="image1" file="data/images/tiles/ssfs.png" />
+      <image name="image1" file="images/tiles/ssfs.png" />
     </sprite>
 
     <sprite name="ssfs2">
-      <image name="image1" file="data/images/tiles/ssfs2.png" />
+      <image name="image1" file="images/tiles/ssfs2.png" />
     </sprite>
 
     <sprite name="ssgg1">
-      <image name="image1" file="data/images/tiles/ssgg1.png" />
+      <image name="image1" file="images/tiles/ssgg1.png" />
     </sprite>
 
     <sprite name="ssgs1">
-      <image name="image1" file="data/images/tiles/ssgs1.png" />
+      <image name="image1" file="images/tiles/ssgs1.png" />
     </sprite>
 
     <sprite name="ssmm1">
-      <image name="image1" file="data/images/tiles/ssmm1.png" />
+      <image name="image1" file="images/tiles/ssmm1.png" />
     </sprite>
 
     <sprite name="ssmm2">
-      <image name="image1" file="data/images/tiles/ssmm2.png" />
+      <image name="image1" file="images/tiles/ssmm2.png" />
     </sprite>
 
     <sprite name="ssmm3">
-      <image name="image1" file="data/images/tiles/ssmm3.png" />
+      <image name="image1" file="images/tiles/ssmm3.png" />
     </sprite>
 
     <sprite name="ssms1">
-      <image name="image1" file="data/images/tiles/ssms1.png" />
+      <image name="image1" file="images/tiles/ssms1.png" />
     </sprite>
 
     <sprite name="ssms2">
-      <image name="image1" file="data/images/tiles/ssms2.png" />
+      <image name="image1" file="images/tiles/ssms2.png" />
     </sprite>
 
     <sprite name="sssa1">
-      <image name="image1" file="data/images/tiles/sssa1.png" />
+      <image name="image1" file="images/tiles/sssa1.png" />
     </sprite>
 
     <sprite name="sssf">
-      <image name="image1" file="data/images/tiles/sssf.png" />
+      <image name="image1" file="images/tiles/sssf.png" />
     </sprite>
 
     <sprite name="sssf1">
-      <image name="image1" file="data/images/tiles/sssf1.png" />
+      <image name="image1" file="images/tiles/sssf1.png" />
     </sprite>
 
     <sprite name="sssg">
-      <image name="image1" file="data/images/tiles/sssg.png" />
+      <image name="image1" file="images/tiles/sssg.png" />
     </sprite>
 
     <sprite name="sssm1">
-      <image name="image1" file="data/images/tiles/sssm1.png" />
+      <image name="image1" file="images/tiles/sssm1.png" />
     </sprite>
 
     <sprite name="sssm2">
-      <image name="image1" file="data/images/tiles/sssm2.png" />
+      <image name="image1" file="images/tiles/sssm2.png" />
     </sprite>
 
     <sprite name="ssss1">
-      <image name="image1" file="data/images/tiles/ssss1.png" />
+      <image name="image1" file="images/tiles/ssss1.png" />
     </sprite>
 
     <sprite name="ssss10">
-      <image name="image1" file="data/images/tiles/ssss10.png" />
+      <image name="image1" file="images/tiles/ssss10.png" />
     </sprite>
 
     <sprite name="ssss12">
-      <image name="image1" file="data/images/tiles/ssss12.png" />
+      <image name="image1" file="images/tiles/ssss12.png" />
     </sprite>
 
     <sprite name="ssss3">
-      <image name="image1" file="data/images/tiles/ssss3.png" />
+      <image name="image1" file="images/tiles/ssss3.png" />
     </sprite>
 
     <sprite name="ssss4">
-      <image name="image1" file="data/images/tiles/ssss4.png" />
+      <image name="image1" file="images/tiles/ssss4.png" />
     </sprite>
 
     <sprite name="ssss5">
-      <image name="image1" file="data/images/tiles/ssss5.png" />
+      <image name="image1" file="images/tiles/ssss5.png" />
     </sprite>
 
     <sprite name="ssss6">
-      <image name="image1" file="data/images/tiles/ssss6.png" />
+      <image name="image1" file="images/tiles/ssss6.png" />
     </sprite>
 
     <sprite name="ssss7">
-      <image name="image1" file="data/images/tiles/ssss7.png" />
+      <image name="image1" file="images/tiles/ssss7.png" />
     </sprite>
 
     <sprite name="swsw1">
-      <image name="image1" file="data/images/tiles/swsw1.png" />
+      <image name="image1" file="images/tiles/swsw1.png" />
     </sprite>
 
     <sprite name="wsws1">
-      <image name="image1" file="data/images/tiles/wsws1.png" />
+      <image name="image1" file="images/tiles/wsws1.png" />
     </sprite>
 
     <sprite name="wwss1">
-      <image name="image1" file="data/images/tiles/wwss1.png" />
+      <image name="image1" file="images/tiles/wwss1.png" />
     </sprite>
 
     <sprite name="wwww1">
-      <image name="image1" file="data/images/tiles/wwww1.png" />
+      <image name="image1" file="images/tiles/wwww1.png" />
     </sprite>
 
     <sprite name="wwww2">
-      <image name="image1" file="data/images/tiles/wwww2.png" />
+      <image name="image1" file="images/tiles/wwww2.png" />
     </sprite>
 
 
     <sprite name="wssw1">
-      <image name="image1" file="data/images/tiles/wssw1.png" />
+      <image name="image1" file="images/tiles/wssw1.png" />
     </sprite>
 
     <sprite name="wwsw1">
-      <image name="image1" file="data/images/tiles/wwsw1.png" />
+      <image name="image1" file="images/tiles/wwsw1.png" />
     </sprite>
 
     <sprite name="swws1">
-      <image name="image1" file="data/images/tiles/swws1.png" />
+      <image name="image1" file="images/tiles/swws1.png" />
     </sprite>
   </section>
 
   <sprite name="Font_glyphs" method="alpha">
-    <image name="image1" file="data/images/font1.tga" alpha="alpha" >
+    <image name="image1" file="images/font1.tga" alpha="alpha" >
       <alpha />
     </image>
-    <image name="image2" file="data/images/font2.tga" alpha="alpha" >
+    <image name="image2" file="images/font2.tga" alpha="alpha" >
       <alpha />
     </image>
   </sprite>

@@ -1,1 +1,3 @@
-SUBDIRS = src data
+SUBDIRS = src data doc
+
+# EOF #

@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.4 2003/05/09 23:38:12 grumbel Exp $
+//  $Id: radar.hxx,v 1.5 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,8 +31,8 @@ class Building;
 class Radar : public GuiObj
 {
 private:
-  boost::dummy_ptr<GameWorld> world;
-  boost::dummy_ptr<Vehicle> vehicle;
+  GameWorldPtr world;
+  VehiclePtr   vehicle;
   
   CL_Sprite background;
 
@@ -42,7 +42,7 @@ private:
   float angle;
 
 public:
-  Radar (const CL_Vector& arg_pos,  boost::dummy_ptr<GameWorld> w, boost::dummy_ptr<Vehicle> v);
+  Radar (const CL_Vector& arg_pos, GameWorldPtr w, VehiclePtr v);
   ~Radar ();
 
   void draw (CL_GraphicContext* gc);
@@ -55,7 +55,7 @@ public:
 		  float red = 1.0f, float green = 0.0f, float blue = 0.0f);
 
 private:
-  void draw_vehicle (boost::dummy_ptr<Vehicle> vehicle);
+  void draw_vehicle (VehiclePtr vehicle);
 };
 
 #endif

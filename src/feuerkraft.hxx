@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.3 2003/04/28 19:42:59 grumbel Exp $
+//  $Id: feuerkraft.hxx,v 1.4 2003/05/13 17:30:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,6 +19,59 @@
 
 #ifndef FEUERKRAFT_HH
 #define FEUERKRAFT_HH
+
+/**
+   \mainpage %Feuerkraft Index Page
+ 
+   \section intro Introduction
+ 
+   This is the source code documentation for Feuerkraft, not all
+   members and functions might be documented, but source code is
+   included, so you might still figure out what a function should do
+   and what it shouldn't.
+ 
+
+   \section code Quick Overview
+
+   A very quick overview about the source code, it works like this:
+
+   - everything starts from FeuerkraftMain
+
+   - FeuerkraftMain constructs the GameWorld and a View
+
+   - FeuerkraftMain enters a while(true) loop and updates the
+   GameWorld repeatatly and redraws the View as necessary
+
+   - everything in GameWorld is a GameObj and has a id, by which it
+   can be accessed
+
+   - GameObj objects are grouped into two main subclasses, Building
+   objects and Unit objects
+
+   - a Building is a GameObj that is aligned to the tile grid and
+   unmovable
+
+   - a Unit is something moveable, which is not restricted by the
+   tile grid and which the player can controll
+
+   - other GameObj objects might included brushes and other stuff that
+   is not controllable by the player, but that is not yet written
+
+   FIXME: Just a 'test' introduction, to fill the empty index page,
+   rewrite me with something usefull
+
+
+   \section style Coding Style
+   
+   Coding style is mostly the default GNU Emacs one for C++, in
+   addition to that namespaces have a indent level of 0.
+
+   Pointer holding objects allocated with \c new and which need to get
+   deleted by \c delete are named SomeObject*, while pointers which
+   only hold references to objects managed and allocated elsewhere are
+   named SomeObjectPtr. typedef for SomeObjectPtr should be in the
+   some_object.hxx file.
+*/
 
 #endif
 

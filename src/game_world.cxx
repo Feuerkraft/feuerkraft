@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.9 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: game_world.cxx,v 1.10 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -217,11 +217,6 @@ GameWorld::update (float delta)
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     (*i)->update (delta);
-
-  // FIXME: insert collision check here
-
-  for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    (*i)->flip ();
 }
 
 BuildingMap*
@@ -235,32 +230,6 @@ GroundMap*
 GameWorld::get_groundmap ()
 {
   return groundmap;
-}
-
-GameWorldData*
-GameWorld::get_data ()
-{
-  std::cout << "GameWorld::get_data()" << std::endl;
-  // Clear the current GameObjData data list
-  if (needs_delete)
-    {
-      std::cout << "GameWorld: Deleting current data objects" << std::endl;
-      for (std::vector<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
-	delete *i;
-      gameobj_data.clear ();
-      needs_delete = false;
-    }
-  
-  // Fill the data object with the current gameobj's and sync them
-  GameObjManager* objs = game_obj_manager;
-  for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
-    gameobj_data.push_back ((*i)->get_data ());
-  
-  // groundmap_data is constant => no sync required
-  
-  buildingmap_data =  dynamic_cast<BuildingMapData*>(buildingmap->get_data ());
-
-  return this;
 }
 
 GameObjManager*

@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.cxx,v 1.1 2003/05/12 07:56:29 grumbel Exp $
+//  $Id: keyboard_manager.cxx,v 1.2 2003/05/13 17:30:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,14 +18,19 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
+#include <ClanLib/Display/keyboard.h>
+#include <ClanLib/Display/mouse.h>
 #include "keyboard_manager.hxx"
 
 KeyboardManager* KeyboardManager::instance_ = 0;
 
 KeyboardManager::KeyboardManager()
 {
-  button_down_slot = CL_Keyboard::sig_key_down().connect(this, &KeyboardManager::button_down);
-  button_up_slot   = CL_Keyboard::sig_key_up().connect(this, &KeyboardManager::button_up);
+  keyboard_button_down_slot = CL_Keyboard::sig_key_down().connect(this, &KeyboardManager::button_down);
+  keyboard_button_up_slot   = CL_Keyboard::sig_key_up().connect(this, &KeyboardManager::button_up);
+
+  mouse_button_down_slot = CL_Mouse::sig_key_down().connect(this, &KeyboardManager::button_down);
+  mouse_button_up_slot   = CL_Mouse::sig_key_up().connect(this, &KeyboardManager::button_up);
 }
 
 KeyboardManager::~KeyboardManager()
@@ -44,9 +49,9 @@ KeyboardManager::button_up(const CL_InputEvent& event)
 void
 KeyboardManager::button_down(const CL_InputEvent& event)
 {
-  //std::cout << ">> DOWN: " << event.id << std::endl;
   for(Callbacks::iterator i = callbacks.begin(); i != callbacks.end(); ++i)
     {
+      //std::cout << ">> DOWN: " << event.id << " " << (*i)->key_id << std::endl;
       if (event.id == (*i)->key_id)
         {
           (*i)->run();
