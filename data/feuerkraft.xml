@@ -20,7 +20,9 @@
       <image name="image1" file="data/images/wall.png" />
     </sprite>
 
-
+    <sprite name="nobuilding">
+      <image name="image1" file="data/images/nobuilding.png" />
+    </sprite>
 
     <sprite name="wall_damaged">
       <image name="image1" file="data/images/wall_damaged.png" />

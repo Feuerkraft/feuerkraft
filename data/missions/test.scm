@@ -4,6 +4,11 @@
 ;;(load-extension "/home/ingo/projects/feuerkraft/cvs/src/scripting/.libs/libguile-feuerkraft.so" 
 ;;                "SWIG_init")
 
+(define my-building-type (building-create-type '()))
+
+(building-create my-building-type 10 35)
+(display "MYBUILDING TYPE: ")(display my-building-type)(newline)
+
 (building-create 1 4 32)
 (building-create 1 4 33)
 (building-create 1 4 34)
