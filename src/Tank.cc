@@ -148,13 +148,13 @@ Tank::set_angle (float arg_angle)
 void 
 Tank::increase_velocity (float delta)
 {
-  velocity += 0.05f * delta;
+  velocity += 0.1f * delta;
 }
 
 void
 Tank::decrease_velocity (float delta)
 {
-  velocity -= 0.05f * delta;
+  velocity -= 0.1f * delta;
 }
 
 void 

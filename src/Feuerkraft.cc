@@ -28,11 +28,28 @@ public:
     return CL_Surface(new CL_PCXProvider("survivor.pcx", NULL), true);
   }
 	
-  virtual int main(int, char **)
+  virtual int main(int argc, char* argv[])
   {
     try
       {
 	srand (time (0));
+
+	float sec_fraction = 33.0;
+	if (argc == 3)
+	  {
+	    if (strcmp (argv[1], "--speed") == 0
+		&& sscanf (argv[2], "%f", &sec_fraction) == 1)
+	      {
+
+	      }
+	    else
+	      {
+		std::cout << "Wrong args: " << argv[1] << " " << argv[2] << std::endl;
+	      }
+	  }
+
+		std::cout << "New Fraction Time: " << sec_fraction << std::endl;
+
 	CL_SetupCore::init();
 	CL_SetupCore::init_display();
 	CL_SetupPNG::init ();
@@ -81,7 +98,7 @@ public:
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
-	    delta = (CL_System::get_time () - last_time) / 33.33;
+	    delta = (CL_System::get_time () - last_time) / sec_fraction;
 	    last_time = CL_System::get_time ();
 	    world.update (delta);
 	    
