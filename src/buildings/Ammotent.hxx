@@ -1,4 +1,4 @@
-//  $Id: Ammotent.hxx,v 1.1 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Ammotent.hxx,v 1.2 2002/03/23 21:55:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,8 @@ class Ammotent : public Building,
 private:
   Sprite ammotent;
   CL_Vector pos;
-
+  bool reloading;
+  
 public:
   Ammotent (boost::dummy_ptr<GameWorld> world, const AmmotentData&);
   virtual ~Ammotent ();

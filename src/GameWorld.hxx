@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hxx,v 1.4 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: GameWorld.hxx,v 1.5 2002/03/23 21:55:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,7 @@ private:
   std::list<GameObj*> objects;
   BuildingMap* buildingmap;
   GroundMap* groundmap;
+  float current_time;
 
 public:
   typedef std::list<GameObj*>::iterator ObjIter;
@@ -45,6 +46,8 @@ public:
   GameWorld (const GameWorldData& data);
   ~GameWorld ();
   
+  float get_time () { return current_time; }
+
   /// Return a reference to the objects in the world
   std::list<GameObj*>& get_objects () { return objects; }
   void add (GameObj*);

@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.5 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.6 2002/03/23 21:55:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,8 @@
 #include "buildings/BuildingMap.hxx"
 
 GameWorld::GameWorld (const GameWorldData& data)
-  : GameWorldData (data)
+  : GameWorldData (data),
+    current_time (0.0f)
 {
   if (groundmap_data)
     groundmap = groundmap_data->create ();//this);
@@ -163,6 +164,8 @@ struct is_removable
 void 
 GameWorld::update (float delta)
 {
+  current_time += delta;
+
   //std::cout << "Number of GameObj's: " << objects.size () << "\r          " << std::flush;
 #ifdef WIN32
   //std::remove_if doesn't seem to have any effect for gcc?! or

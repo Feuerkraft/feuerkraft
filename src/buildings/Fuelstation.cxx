@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: Fuelstation.cxx,v 1.4 2002/03/23 21:55:01 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,8 @@ Fuelstation::Fuelstation (boost::dummy_ptr<GameWorld> world, const FuelstationDa
   : Building (world),
     FuelstationData (data),
     fuelstation (storage->get("feuerkraft/fuelstation")),
-    pos (x_pos * 40 + 40, y_pos * 40 + 60) // FIXME: Hardcoded tilesize
+    pos (x_pos * 40 + 40, y_pos * 40 + 60), // FIXME: Hardcoded tilesize
+    refueling (false)
 {
 }
 
@@ -40,6 +41,12 @@ void
 Fuelstation::draw (boost::dummy_ptr<View> view)
 {
   view->draw (&fuelstation, pos);
+  if (refueling)
+    {
+      view->draw_fillrect(int(pos.x - 32), int (pos.y + 25),
+			  int(pos.x + 31), int (pos.y + 57),
+			  1.0, 1.0, 1.0, sin(get_world ()->get_time () * 10.0f) * .3f + .5f);
+    }
 }
 
 void 
@@ -47,17 +54,23 @@ Fuelstation::update (float delta)
 {
   delta *= 50;
 
+  refueling = false;
+
   //FIXME: Slow
   std::list<GameObj*>& objs = get_world ()->get_objects ();
 
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
-      if (vehicle && fabs((vehicle->get_pos () - pos).norm ()) < 10)
+      if (vehicle && (vehicle->get_pos ().x > pos.x - 40
+		      && vehicle->get_pos ().x < pos.x + 40
+		      && vehicle->get_pos ().y > pos.y + 20
+		      && vehicle->get_pos ().y < pos.y + 60))
 	{
 	  if (vehicle->get_velocity () == 0.0)
 	    {
 	      vehicle->refuel (delta);
+	      refueling = true;
 	    }
 	}
     }

@@ -1,4 +1,4 @@
-//  $Id: Explosion.cxx,v 1.7 2002/03/15 10:01:25 grumbel Exp $
+//  $Id: Explosion.cxx,v 1.8 2002/03/23 21:55:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -73,13 +73,29 @@ Explosion::update (float delta)
     {
       for (int i = 0; i < 4; ++i)
 	{     
+	  switch (en_size)
+	    {
+	    case MEDIUM:
+	      world->add (new ExplosionParticle (get_world (),
+						 CL_Vector (pos.x + (rand()%40 - 20), 
+							    pos.y + (rand()%40 - 20)),
+						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+						 Random::frand(size) + 1.0)); 
+	      world->add (new ExplosionParticle (get_world (),
+						 CL_Vector (pos.x + (rand()%40 - 20), 
+							    pos.y + (rand()%40 - 20)),
+						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+						 Random::frand(size) + 1.0)); 
+	      break;
 
-	  //std::cout << "Random: " << Random::frand (.1, .3) << std::endl;
-	  world->add (new ExplosionParticle (get_world (),
-						   CL_Vector (pos.x + (rand()%10 - 5), 
-							      pos.y + (rand()%10 - 5)),
-						   CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
-						   Random::frand(size) + .01));
+	    default:
+	      world->add (new ExplosionParticle (get_world (),
+						 CL_Vector (pos.x + (rand()%10 - 5), 
+							    pos.y + (rand()%10 - 5)),
+						 CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+						 Random::frand(size) + .01)); 
+	      break;
+	    }
 	  lifetime = 0;
 	}
       

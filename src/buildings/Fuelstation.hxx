@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.hxx,v 1.1 2002/03/17 16:42:25 grumbel Exp $
+//  $Id: Fuelstation.hxx,v 1.2 2002/03/23 21:55:01 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ class Fuelstation : public Building,
 private:
   Sprite fuelstation;
   CL_Vector pos;
-  
+  bool refueling;
 public:
   Fuelstation (boost::dummy_ptr<GameWorld> world, const FuelstationData& data);
   virtual ~Fuelstation ();

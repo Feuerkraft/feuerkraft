@@ -133,8 +133,8 @@ public:
 
 	Screen    screen;
 
-	Tank* tank1 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank2 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Tank* tank2 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank1 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
@@ -151,9 +151,9 @@ public:
 	
 	boost::shared_ptr<GuiObj> radar 
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
-						 world, tank2));
+						 world, tank1));
 	screen.add (radar);
-	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank2)));
+	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank1)));
 	//View view (world, 10, 10, 790, 590);
 
 	world->add (jeep);
