@@ -1,4 +1,4 @@
-//  $Id: Projectile.hxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Projectile.hxx,v 1.3 2002/03/15 10:32:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -33,8 +33,8 @@ class Projectile : public Vehicle
 private:
   CL_Surface sur;
   CL_Vector  tmp_pos;
-  CL_Vector  add;
-  int lifetime;
+  CL_Vector  velocity;
+  float lifetime;
   
   /** Pointer back to the parent objects which created this
       projectile. Its used to avoid friendly fire (aka shooting
@@ -43,7 +43,7 @@ private:
 
 public:
   Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj>  p, 
-	      const CL_Vector& arg_pos, const CL_Vector& arg_add);
+	      const CL_Vector& arg_pos, const CL_Vector& arg_velocity);
   virtual ~Projectile ();
 
   virtual CL_Vector get_pos () { return pos; }

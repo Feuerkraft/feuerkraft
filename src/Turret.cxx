@@ -57,7 +57,7 @@ Turret::update (float delta)
       //std::cout << "Fireing..." << std::endl;
       float rot_angle = tank->get_angle () + angle + 3.1415927; //- fmod(angle, circle/16.0)
       
-      CL_Vector dir = CL_Vector (10.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
+      CL_Vector dir = CL_Vector (10.0 + tank->get_velocity (), 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
 
       if (floppy)
 	{

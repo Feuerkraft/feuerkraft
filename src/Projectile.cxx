@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.5 2002/03/15 10:01:25 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.6 2002/03/15 10:32:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,15 +23,15 @@
 #include "Projectile.hxx"
 
 Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
-			const CL_Vector& arg_pos, const CL_Vector& arg_add)
+			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
   : Vehicle (w),
     sur ("feuerkraft/projectile", resources),
     tmp_pos (arg_pos),
-    add (arg_add),
-    lifetime (20 + rand () % 20 ),
+    velocity (arg_velocity),
+    lifetime (45 + rand () % 5 ),
     parent (p)
 {
-  //std::cout << "Add: " << add.x << " " << add.y << std::endl;
+  //std::cout << "Velocity: " << velocity.x << " " << velocity.y << std::endl;
   pos  = arg_pos;
 }
 
@@ -63,8 +63,8 @@ Projectile::update (float delta)
     {
       tmp_pos = pos;
 
-      pos += add * delta;
-      --lifetime;
+      pos += velocity * delta;
+      --lifetime; // FIXME: not delta clean
     }
 
   if (lifetime < 0)
