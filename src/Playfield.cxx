@@ -1,4 +1,4 @@
-//  $Id: Playfield.cxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: Playfield.cxx,v 1.2 2002/03/15 10:01:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,10 +29,11 @@ Playfield::Playfield (boost::dummy_ptr<GameWorld>  w)
 void 
 Playfield::draw (View* view)
 {
-  CL_Display::fill_rect (0, 0, 
+  /*  CL_Display::fill_rect (0, 0, 
 			 CL_Display::get_width (),
 			 CL_Display::get_height (),
 			 0.7f, 0.7f, 0.6f);
+  */
 }
 
 /* EOF */

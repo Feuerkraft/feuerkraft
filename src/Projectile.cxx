@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.4 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.5 2002/03/15 10:01:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -98,7 +98,7 @@ void
 Projectile::detonate ()
 {
   lifetime = -1;
-  world->add (boost::shared_ptr<GameObj>(new Explosion (world, pos)));
+  world->add_front (new Explosion (world, pos));
 }
 
 /* EOF */

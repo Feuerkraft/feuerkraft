@@ -1,4 +1,4 @@
-//  $Id: View.cxx,v 1.3 2002/03/11 21:34:43 grumbel Exp $
+//  $Id: View.cxx,v 1.4 2002/03/15 10:01:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -49,13 +49,15 @@ void
 View::draw ()
 {
   CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
-  glPushMatrix ();
+  /*glPushMatrix ();
   glTranslated (400, 300, 0.0);
   glScaled (zoom, zoom, 1.0);
   //glRotated (rotation, 0, 0, 1.0);
   glTranslated (-400, -300, 0.0);
-  world->draw (this);
+  
   glPopMatrix ();
+*/
+  world->draw (this);
 
   CL_Display::pop_clip_rect ();
 }
@@ -129,10 +131,10 @@ View::draw_line (int x1, int y1, int x2, int y2,
     }
   else
     {
-      CL_Display::draw_line (int((x1 + get_x_offset ()) * zoom),
-			     int((y1 + get_y_offset ()) * zoom),
-			     int((x2 + get_x_offset ()) * zoom),
-			     int((y2 + get_y_offset ()) * zoom),
+      CL_Display::draw_line (int((x1 + get_x_offset ())),
+			     int((y1 + get_y_offset ())),
+			     int((x2 + get_x_offset ())),
+			     int((y2 + get_y_offset ())),
 			     r, g, b, a);
     }
 }
@@ -141,10 +143,10 @@ void
 View::draw_fillrect (int x1, int y1, int x2, int y2, 
 		    float r, float g, float b, float a)
 {
-  CL_Display::fill_rect (int((x1 + get_x_offset ()) * zoom),
-			 int((y1 + get_y_offset ()) * zoom), 
-			 int((x2 + get_x_offset ()) * zoom),
-			 int((y2 + get_y_offset ()) * zoom),
+  CL_Display::fill_rect (int((x1 + get_x_offset ())),
+			 int((y1 + get_y_offset ())), 
+			 int((x2 + get_x_offset ())),
+			 int((y2 + get_y_offset ())),
 			 r, g, b, a);
 }
 

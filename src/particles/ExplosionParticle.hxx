@@ -1,4 +1,4 @@
-//  $Id: ExplosionParticle.hxx,v 1.5 2002/03/13 10:03:21 grumbel Exp $
+//  $Id: ExplosionParticle.hxx,v 1.6 2002/03/15 10:01:27 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -79,8 +79,11 @@ public:
 
 	//std::cout << "Angle: " << sprite->getAngle () << std::endl;
 
-	sprite->setAlpha ((life_time/max_life_time) * (life_time/max_life_time));
-	sprite->setScale (size + ((1 - life_time/max_life_time)) * 1.0f);
+	float alpha = 1.0f - (life_time/max_life_time);
+
+	sprite->setAlpha (1.0f - (alpha * alpha));
+
+	sprite->setScale (((1 - life_time/max_life_time)) * size);
 	view->draw(sprite, pos, angle);
       }
   }

@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.6 2002/03/10 17:00:34 grumbel Exp $
+//  $Id: TileMap.cxx,v 1.7 2002/03/15 10:01:26 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -64,7 +64,7 @@ TileMap::~TileMap ()
 GroundType
 TileMap::get_groundtype (float x, float y)
 {
-  return GT_SAND;
+  return GT_FLATWATER;
 }
 
 void

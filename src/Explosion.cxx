@@ -1,4 +1,4 @@
-//  $Id: Explosion.cxx,v 1.6 2002/03/13 10:13:34 grumbel Exp $
+//  $Id: Explosion.cxx,v 1.7 2002/03/15 10:01:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,8 +37,8 @@ Explosion::Explosion (boost::dummy_ptr<GameWorld>  w,
     case SMALL:
     case LARGE:
       explo = CL_Surface("feuerkraft/smallexplo", resources);
-      lifetime = 1;
-      size = .1;
+      lifetime = .5;
+      size = .6;
       break;
     case MEDIUM:
       explo = CL_Surface("feuerkraft/mediumexplo", resources);
@@ -69,17 +69,18 @@ Explosion::update (float delta)
 
   new_particle_time += delta;
   
-  if (new_particle_time > 0.175)
+  if (new_particle_time > 0.200)
     {
-      for (int i = 0; i < 1; ++i)
+      for (int i = 0; i < 4; ++i)
 	{     
 
 	  //std::cout << "Random: " << Random::frand (.1, .3) << std::endl;
-	  world->add_front (new ExplosionParticle (get_world (),
+	  world->add (new ExplosionParticle (get_world (),
 						   CL_Vector (pos.x + (rand()%10 - 5), 
 							      pos.y + (rand()%10 - 5)),
 						   CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
 						   Random::frand(size) + .01));
+	  lifetime = 0;
 	}
       
       new_particle_time = 0;

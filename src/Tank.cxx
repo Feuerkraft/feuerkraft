@@ -7,6 +7,7 @@
 #include "Turret.hxx"
 #include "Tank.hxx"
 #include "particles/SmokeParticle.hxx"
+#include "particles/GrassParticle.hxx"
 
 const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
@@ -140,7 +141,7 @@ Tank::update (float delta)
 
   if (particle_release > 20.0f)
     {
-      world->add (new SmokeParticle (get_world (), pos));
+      world->add (new GrassParticle (get_world (), pos));
       particle_release = 0;
     }
   

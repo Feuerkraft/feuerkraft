@@ -33,7 +33,7 @@ Turret::draw (View* view)
   
   view->draw (sur, tank->get_pos (), absolute_angle);
 
-  if (fireing && reloading == 0)
+  if (fireing && reloading == 0 && tank->ammo > 0.0)
     {
       view->draw (fire_sur, tank->get_pos (), absolute_angle);
       fireing = false;

@@ -1,4 +1,4 @@
-//  $Id: Energie.cxx,v 1.3 2002/03/13 10:13:34 grumbel Exp $
+//  $Id: Energie.cxx,v 1.4 2002/03/15 10:01:25 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,9 @@ Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
 
   float ratio = energie / max_energie;
   
+  if (ratio < 0)
+    ratio = 0;
+
   //  std::cout << "Ratio: " << ratio << std::endl;
 
   if (time_diff < 1000
@@ -49,7 +52,8 @@ Energie::draw (boost::dummy_ptr<View> view, int x_pos, int y_pos)
       
       // Energie bar
       view->draw_fillrect (x_pos - 30, y_pos - 3,
-			   x_pos - 30 + (ratio * 60) + view->get_x_offset (), y_pos + 3,
+			   x_pos - 30 + (ratio * 60),
+			   y_pos + 3,
 			   1.0f - energie/float(max_energie),
 			   ratio,
 			   0.0f, 
