@@ -1,4 +1,4 @@
-//  $Id: jeep.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: jeep.hxx,v 1.10 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,15 +23,13 @@
 #include <ClanLib/Display/sprite.h>
 
 #include "vehicle.hxx"
-#include "controllable.hxx"
 #include "energie.hxx"
 #include "game_obj.hxx"
 
 class Projectile;
 
 /** @ingroup units */
-class Jeep : public Controllable,
-	     public Vehicle
+class Jeep : public Vehicle
 {
 private:
   CL_Sprite jeep;

@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.16 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tank.cxx,v 1.17 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,7 +37,6 @@ const float circle = 6.2831854f;
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : speed (0.0f),
-    velocity (0.0f),
     increment (0.06f),
     smod (resources->get_sprite (tank.c_str ())),
     sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
@@ -49,6 +48,8 @@ Tank::Tank (const FloatVector2d &arg_pos,
     energie (100),
     destroyed (false)
 {
+  velocity = 0.0f;
+
   orientation = Math::south;
   sur.set_alignment(origin_center);
   sur_destroyed.set_alignment(origin_center);
@@ -165,6 +166,13 @@ Tank::respawn ()
 void 
 Tank::update (float delta)
 {
+  // Apply controlls
+  orientation += 2.0f * steering * delta;
+
+  velocity += 10.0f * acceleration * delta;
+  velocity -= 10.0f * deceleration * delta;
+
+
   // FIXME: Ugly
   if (destroyed && destroy_time != -1 && destroy_time + 2000 < (int) CL_System::get_time ())
     {
@@ -231,44 +239,10 @@ Tank::update (float delta)
   CollisionManager::current()->add_rect(get_id(), pos.x, pos.y, 30, 68, orientation);
 }
 
-void 
-Tank::increase_angle (float delta)
-{
-  if (velocity >= 0)
-    orientation += increment * delta;
-  else
-    orientation += increment * delta;
-  //orientation = fmod (orientation + circle, circle);
-}
-
-void
-Tank::decrease_angle (float delta)
-{
-  if (velocity >= 0)
-    orientation -= increment * delta;
-  else
-    orientation -= increment * delta;
-  //orientation = fmod (orientation + circle, circle);
-}
-
 void
 Tank::set_angle (float arg_orientation)
 {
   orientation = arg_orientation;
-}
-
-void 
-Tank::increase_velocity (float delta)
-{
-  velocity += 0.3f * delta;
-
-  fuel -= 0.0001 * delta;
-}
-
-void
-Tank::decrease_velocity (float delta)
-{
-  velocity -= 0.3f * delta;
 }
 
 void 
@@ -335,12 +309,6 @@ Tank::collide (FloatVector2d force)
   std::cout << "Tank: Got force: " << force.get_length() << std::endl;
 }
 
-float 
-Tank::get_velocity ()
-{
-  return velocity;
-}
-
 void
 Tank::on_collision_with_building(Building* building)
 {
@@ -352,9 +320,12 @@ Tank::on_collision_with_building(Building* building)
 void
 Tank::on_collision(GameObj* obj)
 {
-  std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
-  pos = tmp_pos;
-  velocity = 0;
+  if (dynamic_cast<Unit*>(obj))
+    {
+      std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
+      pos = tmp_pos;
+      velocity = 0;
+    }
 }
 
 // EOF //

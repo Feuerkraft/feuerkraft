@@ -1,4 +1,4 @@
-//  $Id: ambulance.hxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: ambulance.hxx,v 1.7 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@ class Ambulance : public GameObj
 {
 private:
   CL_Sprite sur;
+
 public:
   Ambulance();
 

@@ -1,6 +1,6 @@
-//  $Id: player_commands.cxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
-//
-//  Feuerkraft - A Tank Battle Game
+//  $Id: input_manager_clanlib.hxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
+// 
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -12,39 +12,32 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include "../game_obj.hxx"
-#include "../vehicle.hxx"
-#include "../player.hxx"
-#include "../game_obj_manager.hxx"
-#include "player_commands.hxx"
+#ifndef HEADER_INPUT_MANAGER_CLANLIB_HXX
+#define HEADER_INPUT_MANAGER_CLANLIB_HXX
 
-extern Player* player;
+#include "input_manager_impl.hxx"
 
-void player_set_current_vehicle(int handle)
+/** */
+class InputManagerClanLib : public InputManagerImpl
 {
-  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
-  if (obj)
-    {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(obj);
-      if (vehicle != 0)
-        player->set_current_vehicle(vehicle);
-    }
-  else
-    {
-      std::cout << __FUNCTION__ << ": No such object: " << handle << std::endl;
-    }
-}
+private:
+  InputEventLst events;
+public:
+  InputManagerClanLib();
+  ~InputManagerClanLib();
 
-int  player_get_current_vehicle()
-{
-  GameObj* game_obj = player->get_current_vehicle();
-  return game_obj->get_id();
-}
+  void update(float delta);
+  InputEventLst get_events();
+private:
+  InputManagerClanLib (const InputManagerClanLib&);
+  InputManagerClanLib& operator= (const InputManagerClanLib&);
+};
+
+#endif
 
 /* EOF */

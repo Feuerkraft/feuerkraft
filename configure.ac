@@ -62,6 +62,7 @@ AC_OUTPUT( Makefile
            src/groundmap/Makefile
            src/particles/Makefile
            src/scripting/Makefile
+           src/input/Makefile
            src/buildings/Makefile
            src/sound/Makefile
            src/generic/Makefile)

@@ -1,4 +1,4 @@
-//  $Id: player.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: player.hxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ private:
 public:
   Player(Vehicle* vehicle);
 
-  void set_current_vehicle(Vehicle*);
+  void     set_current_vehicle(Vehicle*);
   Vehicle* get_current_vehicle();
 
 private:

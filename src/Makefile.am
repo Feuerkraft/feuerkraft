@@ -1,4 +1,4 @@
-SUBDIRS = groundmap particles generic buildings scripting sound
+SUBDIRS = groundmap input particles generic buildings scripting sound
 
 bindir=$(prefix)/games
 
@@ -9,6 +9,7 @@ LDADD = \
  groundmap/libfeuerkraft_groundmap.a \
  buildings/libfeuerkraft_buildings.a \
  generic/libfeuerkraft_generic.a     \
+ input/libfeuerkraft_input.a     \
  sound/libpingus_sound.a
 
 feuerkraft_SOURCES = \
@@ -26,9 +27,6 @@ color.hxx \
 color.cxx \
 collision_manager.hxx \
 collision_manager.cxx \
-controllable.hxx \
-controller.cxx \
-controller.hxx \
 energie.cxx \
 energie.hxx \
 explosion.cxx \
@@ -71,8 +69,6 @@ keyboard_manager.hxx \
 keyboard_manager.cxx \
 jeep.cxx \
 jeep.hxx \
-keyboard_controller.cxx \
-keyboard_controller.hxx \
 level_map.cxx \
 level_map.hxx \
 line_segments.hxx \

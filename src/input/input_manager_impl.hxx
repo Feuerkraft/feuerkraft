@@ -1,7 +1,7 @@
-//  $Id: controller.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
-//
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  $Id: input_manager_impl.hxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
+// 
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -12,18 +12,28 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "controller.hxx"
-#include "controllable.hxx"
+#ifndef HEADER_INPUT_MANAGER_IMPL_HXX
+#define HEADER_INPUT_MANAGER_IMPL_HXX
 
-Controller::Controller (Controllable* obj) :
-  controllable (obj)
+#include "input_event.hxx"
+
+/** */
+class InputManagerImpl
 {
-  controllable->set_controller (this);
-}
+public:
+  InputManagerImpl() {}
+  virtual void update(float delta) =0;
+  virtual InputEventLst get_events() =0;
+private:
+  InputManagerImpl(const InputManagerImpl&);
+  InputManagerImpl& operator=(const InputManagerImpl&);
+};
+
+#endif
 
 /* EOF */

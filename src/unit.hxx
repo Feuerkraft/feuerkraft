@@ -1,4 +1,4 @@
-//  $Id: unit.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: unit.hxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,6 +22,7 @@
 
 #include "game_obj.hxx"
 #include "vector2d.hxx"
+#include "input/input_event.hxx"
 
 /** A unit is a vehicle, a solidier or a gun tower that the player can
     controll */
@@ -37,17 +38,13 @@ protected:
 public:
   Unit();
   ~Unit();
+  
+  /** Feed new input events into the unit, allowing it to move
+      accordingly */
+  virtual void update_controlls(const InputEventLst& events) =0;
 
   FloatVector2d get_pos() { return pos; }
   float get_orientation() { return orientation; }
-
-  /** Sets the current turn of the vehicle, \a turn needs to be in
-      range of [-1.0, 1.0] */
-  void set_turn(float turn);
-
-  /** Sets the current acceleration, \a accel must be in range of
-      [-1.0, 1.0] (full break, full acceleration) */
-  void set_acceleration(float accel);
 
   void set_position(const FloatVector2d& new_pos);
   void set_orientation(float new_orientation);

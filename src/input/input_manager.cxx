@@ -1,6 +1,6 @@
-//  $Id: player_commands.cxx,v 1.4 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: input_manager.cxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
 //
-//  Feuerkraft - A Tank Battle Game
+//  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -17,34 +17,39 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include "../game_obj.hxx"
-#include "../vehicle.hxx"
-#include "../player.hxx"
-#include "../game_obj_manager.hxx"
-#include "player_commands.hxx"
+#include "input_manager_clanlib.hxx"
+#include "input_manager_impl.hxx"
+#include "input_manager.hxx"
 
-extern Player* player;
+InputManagerImpl* InputManager::impl = 0;
 
-void player_set_current_vehicle(int handle)
+void
+InputManager::init(InputManagerImpl* arg_impl)
 {
-  GameObj* obj = GameObjManager::current()->get_object_by_id(handle);
-  if (obj)
-    {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(obj);
-      if (vehicle != 0)
-        player->set_current_vehicle(vehicle);
-    }
+  if (arg_impl)
+    impl = arg_impl;
   else
-    {
-      std::cout << __FUNCTION__ << ": No such object: " << handle << std::endl;
-    }
+    impl = new InputManagerClanLib();
 }
 
-int  player_get_current_vehicle()
+void 
+InputManager::deinit()
 {
-  GameObj* game_obj = player->get_current_vehicle();
-  return game_obj->get_id();
+  delete impl;
+}
+
+void
+InputManager::update(float delta)
+{
+  assert(impl);
+  impl->update(delta);
+}
+
+InputEventLst
+InputManager::get_events()
+{
+  assert(impl);
+  return impl->get_events();
 }
 
 /* EOF */

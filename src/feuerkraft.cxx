@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.38 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.39 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,6 @@
 
 #include "feuerkraft.hxx"
 #include "game_world.hxx"
-#include "keyboard_controller.hxx"
 #include "keyboard_manager.hxx"
 #include "tank.hxx"
 #include "ai_vehicle.hxx"
@@ -68,6 +67,7 @@
 #include "property_set.hxx"
 #include "property.hxx"
 
+#include "input/input_manager.hxx"
 #include "globals.hxx"
 #include "output_world_builder.hxx"
 #include "sexpr_world_reader.hxx"
@@ -140,6 +140,7 @@ Feuerkraft::init()
   scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
 
   KeyboardManager::instance();
+  InputManager::init();
 }
 
 Feuerkraft::Feuerkraft()
@@ -201,8 +202,6 @@ Feuerkraft::main(int argc, char** argv)
       AIVehicle* ai_vehicle = new AIVehicle(FloatVector2d(342, 1241));
 
       Vehicle* current_vehicle = tank1;
-      Controllable* current_controllable = tank1;
-      KeyboardController kcontroller(current_controllable);
 
       GameObj* tree = GameObjFactory::instance()->create(1, AList()
                                                          .set_float("x-pos", 50.0f)
@@ -326,8 +325,6 @@ Feuerkraft::main(int argc, char** argv)
               ai_vehicle->drive_to(pos);
             }
 	    
-          kcontroller.update (delta);
-	    
           // Comment out for variable frame rate
           int sleep_time = (last_time + delta_wait) - CL_System::get_time();
           if (sleep_time > 0)
@@ -352,6 +349,8 @@ Feuerkraft::main(int argc, char** argv)
           // Exits the loop if ClanLib requests shutdown - for instance if
           // someone closes the window.
           CL_System::keep_alive();
+          InputManager::update(delta);
+          player->get_current_vehicle()->update_controlls(InputManager::get_events());
         }
 
       std::cout << "Avarage delta: " << deltas/loops << std::endl;

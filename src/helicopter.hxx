@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.10 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,13 +21,11 @@
 #define HELICOPTER_HH
 
 #include "game_obj.hxx"
-#include "controllable.hxx"
 #include "energie.hxx"
 #include "vehicle.hxx"
 
 /** @ingroup units */
-class Helicopter : public Controllable,
-		   public Vehicle
+class Helicopter : public Vehicle
 {
 private:
   CL_Sprite rotor;

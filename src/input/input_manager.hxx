@@ -1,7 +1,7 @@
-//  $Id: keyboard_controller.hxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: input_manager.hxx,v 1.1 2003/06/04 10:59:00 grumbel Exp $
 // 
-//  Feuerkraft - A Tank Battle Game
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Pingus - A free Lemmings clone
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -17,34 +17,29 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef KEYBOARDCONTROLLER_HH
-#define KEYBOARDCONTROLLER_HH
+#ifndef HEADER_INPUT_MANAGER_HXX
+#define HEADER_INPUT_MANAGER_HXX
 
-#include <ClanLib/Display/input_event.h>
-#include <ClanLib/Display/display_window.h>
-#include "controller.hxx"
+#include <vector>
+#include "input_event.hxx"
 
-class KeyboardController : public Controller
+class InputManagerImpl;
+
+/** */
+class InputManager
 {
 private:
-  bool left_key;
-  bool right_key;
-  bool left2_key;
-  bool right2_key;
-  bool mine_key;
-  bool fire_key;
-  bool up_key;
-  bool down_key;
-
-  CL_Slot key_up_slot;
-  CL_Slot key_down_slot;
-
-  void input_down(const CL_InputEvent& key);
+  static InputManagerImpl* impl;
 public:
-  KeyboardController(Controllable* obj);
-  
-  void update (float delta);
-};
+  static void init(InputManagerImpl* arg_impl = 0);
+  static void deinit();
+
+  static void update(float delta);
+  static InputEventLst get_events();
+private:
+  InputManager(const InputManager&);
+  InputManager& operator=(const InputManager&);
+};        
 
 #endif
 

@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: soldier.hxx,v 1.8 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef SOLDIER_HH
 #define SOLDIER_HH
 
-#include "vehicle.hxx"
+#include "unit.hxx"
 #include "resource_manager.hxx"
 
 class Soldier : public Unit
@@ -29,8 +29,10 @@ private:
   CL_Sprite sur;
 
 public:
-  Soldier();
+  Soldier(const FloatVector2d& new_pos);
   ~Soldier();
+
+  void update_controlls(const InputEventLst& events);
 
   float get_angle () { return 0.0; }
   void draw (View& view);

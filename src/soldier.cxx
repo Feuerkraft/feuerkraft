@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: soldier.cxx,v 1.8 2003/06/04 10:59:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,14 +20,19 @@
 #include "soldier.hxx"
 
 Soldier::Soldier(const FloatVector2d& arg_pos) 
-  : sur (resources->get_sprite("feuerkraft/soldier")),
-    frame (0)
+  : sur (resources->get_sprite("feuerkraft/soldier"))
 {
   pos = arg_pos;
 }
 
 Soldier::~Soldier ()
 {
+}
+
+void
+Soldier::update_controlls(const InputEventLst& events)
+{
+  
 }
 
 void 

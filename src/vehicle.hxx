@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.9 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,11 +32,26 @@ protected:
 
   float ammo;
   float fuel;
+
+  // Controll variables
+  float acceleration;
+  float deceleration;
+  float steering;
 public:
   Vehicle ();
   virtual ~Vehicle () {}
 
-  virtual float get_velocity() { return 0.0; }
+  virtual void update_controlls(const InputEventLst&);
+
+  virtual float get_velocity() { return velocity; }
+
+  /** Sets the current turn of the vehicle, \a turn needs to be in
+      range of [-1.0, 1.0] */
+  void set_turn(float turn);
+
+  /** Sets the current acceleration, \a accel must be in range of
+      [-1.0, 1.0] (full break, full acceleration) */
+  void set_acceleration(float accel);
 
   virtual float get_ammo();
   virtual float get_fuel();

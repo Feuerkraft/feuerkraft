@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: vehicle.cxx,v 1.5 2003/06/04 10:59:00 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,16 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "vehicle.hxx"
 
 Vehicle::Vehicle ()
   : ammo (1.0f), 
     fuel (1.0f)
 {
+  acceleration = 0;
+  deceleration = 0;
+  steering = 0;
 }
 
 float 
@@ -53,6 +57,38 @@ Vehicle::reload_ammo (float delta)
 
   if (ammo > 1.0f)
     ammo = 1.0f;
+}
+
+void
+Vehicle::update_controlls(const InputEventLst& events)
+{
+  for (InputEventLst::const_iterator i = events.begin(); i != events.end(); ++i)
+    {
+      switch (i->type)
+        {
+        case AXIS_EVENT:
+          switch (i->axis.name)
+            {
+            case ACCELERATE_AXIS:
+              std::cout << "Accelerate: " << i->axis.pos << std::endl;
+              acceleration = i->axis.pos;
+              break;
+            case BREAK_AXIS:
+              std::cout << "Break: " << i->axis.pos << std::endl;
+              deceleration = i->axis.pos;
+              break;
+            case ORIENTATION_AXIS:
+              std::cout << "Steering: " << i->axis.pos << std::endl;
+              steering = i->axis.pos;
+              break;
+            default:
+              std::cout << "Unknown axis: " << i->axis.name << std::endl;
+            }
+          break;
+        default:
+          std::cout << "Unknown event type: " << i->type << std::endl;
+        }
+    }
 }
 
 /* EOF */

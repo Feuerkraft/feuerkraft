@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: keyboard_manager.hxx,v 1.5 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,9 @@
 #include <ClanLib/Display/input_event.h>
 
 /** Management class for keyboard events, if a key is pressed it looks
-    up a callback and if one it set it evalutes the callback */
+    up a callback and if one it set it evalutes the callback. This
+    class is mainly used for user-created callback functions from
+    Guile */
 class KeyboardManager
 {
 private:

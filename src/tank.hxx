@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: tank.hxx,v 1.12 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,6 @@
 
 #include "mine.hxx"
 #include "game_obj.hxx"
-#include "controllable.hxx"
 #include "energie.hxx"
 #include "vehicle.hxx"
 
@@ -42,15 +41,13 @@ class Turret;
     velocity, ammount of ammunition and other things are
     configurable...
 */
-class Tank : public Controllable,
-	     public Vehicle
+class Tank : public Vehicle
 {
 private:
   /** Position of the tank, before the last update() */
   FloatVector2d tmp_pos;
 
   float speed;
-  float velocity;
   float increment;
   int frame;
 
@@ -88,8 +85,6 @@ public:
 
   void explode ();
 
-  void increase_angle (float delta);
-  void decrease_angle (float delta);
   void set_angle (float);
   Turret* get_turret () { return turret; }
 
@@ -101,14 +96,8 @@ public:
   float get_max_backward_velocity () { return -1.0; }
   float get_turn_speed () { return 1.0; }
 
-  void turn_left (float delta) { decrease_angle (delta); }
-  void turn_right (float delta) { increase_angle (delta); }
-
   void turn_left2 (float delta);
   void turn_right2 (float delta);
-
-  void increase_velocity (float delta);
-  void decrease_velocity (float delta);
   
   void start_fire ();
   void stop_fire ();
@@ -127,7 +116,6 @@ public:
   virtual void collide (FloatVector2d force);
 
   virtual float get_physical_size () { return 3.0; }
-  float get_velocity ();
 
   /** FIXME: This should be placed in a Player-Manager class or
       something like that */
