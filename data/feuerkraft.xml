@@ -952,12 +952,15 @@
     </sprite>
   </section>
 
+  <sprite name="Font_glyphs" method="alpha">
+    <image name="image1" file="data/images/font1.tga" alpha="alpha" >
+      <alpha />
+    </image>
+    <image name="image2" file="data/images/font2.tga" alpha="alpha" >
+      <alpha />
+    </image>
+  </sprite>
 
-    <sprite name="arialfont14_glyphs">
-      <image name="image1" file="data/images/arialfont14.png" alpha="alpha" />
-      <image name="image2" file="data/images/arialfont14.png" alpha="alpha" />
-    </sprite>
-
-    <font name="arialfont14" glyphs="arialfont14_glyphs" letters="!|#$%|'()*+,-./0123456789:;|=|?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~" />
+  <font name="font" glyphs="Font_glyphs" letters="!~#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^`abcdefghijklmnopqrstuvwxyz{|}" />
 
 </resources>

@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: alist.cxx,v 1.4 2003/05/11 11:57:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,6 +23,36 @@
 
 AList::AList()
 {  
+}
+
+AList::AList(const AList& alist)
+{
+  content = alist.content;
+
+  for(Content::iterator i = content.begin(); i != content.end(); ++i)
+    {
+      if (i->second.type == AL_STRING)
+        i->second.value.v_string = new std::string(*(i->second.value.v_string));
+    }  
+}
+
+AList&
+AList::operator=(const AList& alist)
+{
+  for(Content::iterator i = content.begin(); i != content.end(); ++i)
+    {
+      if (i->second.type == AL_STRING)
+        delete i->second.value.v_string;
+    }
+  content.clear();
+
+  content = alist.content;
+
+  for(Content::iterator i = content.begin(); i != content.end(); ++i)
+    {
+      if (i->second.type == AL_STRING)
+        i->second.value.v_string = new std::string(*(i->second.value.v_string));
+    }
 }
 
 AList::~AList()
@@ -77,6 +107,7 @@ AList::set_bool(const std::string& name, bool value)
 AList&
 AList::set_string(const std::string& name, const std::string& value)
 {
+  std::cout << "AList: " << name << " '" << value << "'" << std::endl;
   Value& v = ensure_free_cell(name, AL_STRING);
   v.value.v_string = new std::string(value);
   return *this;
@@ -169,7 +200,7 @@ bool
 AList::get_string(const std::string& name, std::string& value) const
 {
   const Value* v = get_value(name, AL_STRING);
-  if (!v)
+  if (v == 0)
     return false;
   else
     {

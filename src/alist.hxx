@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: alist.hxx,v 1.4 2003/05/11 11:57:52 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,9 +37,9 @@ public:
       int   v_int;
       float v_float;
       bool  v_bool;
+      std::string*  v_string;
       IntVector2d   v_int_vector2d;
       FloatVector2d v_float_vector2d;
-      std::string* v_string;
     } value;
   };
 private:
@@ -53,6 +53,9 @@ public:
   typedef Content::const_iterator const_iterator;
 
   AList();
+  AList(const AList&);
+  AList& operator=(const AList&);
+
   ~AList();
 
   AList& set_int   (const std::string& str, int value);

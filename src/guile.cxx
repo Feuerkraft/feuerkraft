@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: guile.cxx,v 1.9 2003/05/11 11:57:52 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,9 +78,9 @@ SCM symbol2scm(const char* str)
 std::string keyword2string(SCM keyword)
 {
   assert(SCM_KEYWORDP(keyword));
-  puts("keyword2string: ");
-  gh_display(keyword);
-  gh_newline();
+  //puts("keyword2string: ");
+  //gh_display(keyword);
+  //gh_newline();
   //gh_display(scm_keyword_dash_symbol(keyword));
   //gh_newline();
 
