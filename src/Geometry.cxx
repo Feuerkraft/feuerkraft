@@ -1,4 +1,4 @@
-//  $Id: Geometry.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Geometry.cxx,v 1.2 2002/03/18 22:23:56 sphair Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Geometry.cc"
+#include "Geometry.hxx"
 
 bool 
 Circle::do_not_intersec (const Circle& c)
