@@ -1,6 +1,6 @@
-//  $Id: particle_system.hxx,v 1.2 2003/05/31 20:17:37 grumbel Exp $
+//  $Id: particle_system.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or

@@ -1,6 +1,6 @@
-//  $Id: view.cxx,v 1.12 2003/05/19 21:46:21 grumbel Exp $
+//  $Id: view.cxx,v 1.13 2003/06/03 14:11:22 grumbel Exp $
 //
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or

@@ -1,6 +1,6 @@
-//  $Id: soldier.hxx,v 1.6 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: soldier.hxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -23,15 +23,13 @@
 #include "vehicle.hxx"
 #include "resource_manager.hxx"
 
-/** FIXME: needs a complete rewrite */
-class Soldier : public Vehicle
+class Soldier : public Unit
 {
 private:
   CL_Sprite sur;
-  int frame;
 
 public:
-  Soldier(const FloatVector2d& arg_pos);
+  Soldier();
   ~Soldier();
 
   float get_angle () { return 0.0; }

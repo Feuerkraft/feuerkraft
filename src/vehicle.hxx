@@ -1,6 +1,6 @@
-//  $Id: vehicle.hxx,v 1.7 2003/05/30 22:44:53 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -20,18 +20,14 @@
 #ifndef VEHICLE_HH
 #define VEHICLE_HH
 
-#include "game_obj.hxx"
-#include "vector2d.hxx"
+#include "unit.hxx"
 
 class Projectile;
 
 /** FIXME: Wrong name for this kind of class, better rename it at some point */
-class Vehicle : public GameObj
+class Vehicle : public Unit
 {
 protected:
-  FloatVector2d pos;
-  
-  float orientation;
   float velocity;
 
   float ammo;
@@ -40,13 +36,13 @@ public:
   Vehicle ();
   virtual ~Vehicle () {}
 
-  FloatVector2d get_pos() { return pos; }
-  virtual float get_angle() { return 0.0; }
+  virtual float get_velocity() { return 0.0; }
+
   virtual float get_ammo();
   virtual float get_fuel();
+
   virtual void  refuel(float delta);
   virtual void  reload_ammo(float delta);
-  virtual float get_velocity() { return 0.0; };
 
   virtual void collide (Projectile*) {}
 };

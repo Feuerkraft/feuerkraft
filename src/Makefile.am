@@ -131,6 +131,8 @@ tree.cxx \
 tree.hxx \
 turret.cxx \
 turret.hxx \
+unit.hxx \
+unit.cxx \
 vector2d.hxx \
 vector2d.cxx \
 vehicle.cxx \

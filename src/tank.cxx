@@ -1,6 +1,6 @@
-//  $Id: tank.cxx,v 1.15 2003/05/31 20:17:36 grumbel Exp $
+//  $Id: tank.cxx,v 1.16 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -36,8 +36,7 @@ const float circle = 6.2831854f;
 
 Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
-  : orientation (Math::south),
-    speed (0.0f),
+  : speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
     smod (resources->get_sprite (tank.c_str ())),
@@ -50,6 +49,7 @@ Tank::Tank (const FloatVector2d &arg_pos,
     energie (100),
     destroyed (false)
 {
+  orientation = Math::south;
   sur.set_alignment(origin_center);
   sur_destroyed.set_alignment(origin_center);
 
@@ -225,29 +225,8 @@ Tank::update (float delta)
 	}
     }
 
-  FloatVector2d tmp_pos = pos + (vel * delta);
-
-  if (!(GameWorld::current()->get_buildingmap ()->get_building(FloatVector2d(pos.x, tmp_pos.y))))
-    {
-      //pos = tmp_pos; // We collided with a building
-      //velocity = 0;
-      pos.y = tmp_pos.y;
-    }
-  else
-    {
-      velocity /= delta;
-    }
-
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(tmp_pos.x, pos.y))))
-    {
-      //pos = tmp_pos; // We collided with a building
-      //velocity = 0;
-      pos.x = tmp_pos.x;
-    }
-  else
-    {
-      velocity /= delta;
-    }
+  tmp_pos = pos;
+  pos += vel * delta;
 
   CollisionManager::current()->add_rect(get_id(), pos.x, pos.y, 30, 68, orientation);
 }
@@ -366,12 +345,16 @@ void
 Tank::on_collision_with_building(Building* building)
 {
   //std::cout << "Tank: collision with building " << get_id() << std::endl;
+  pos = tmp_pos;
+  velocity = 0;
 }
 
 void
 Tank::on_collision(GameObj* obj)
 {
   std::cout << "Tank: collision from " << get_id() << " with: " << obj->get_id() << std::endl;
+  pos = tmp_pos;
+  velocity = 0;
 }
 
 // EOF //

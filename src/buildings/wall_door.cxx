@@ -1,6 +1,6 @@
-//  $Id: wall_door.cxx,v 1.8 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
 //
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -66,6 +66,7 @@ WallDoor::update(float)
   status = S_CLOSED;
   
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
+
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);

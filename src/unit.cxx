@@ -1,4 +1,4 @@
-//  $Id: fonts.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: unit.cxx,v 1.1 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,22 +17,27 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "resource_manager.hxx"
-#include "fonts.hxx"
+#include "unit.hxx"
 
-namespace Fonts {
-
-CL_Font font;
-
-void init()
+Unit::Unit()
 {
-  font = resources->get_font("feuerkraft/font");
+  pos = FloatVector2d(0,0);
+  orientation = 0;
 }
 
-void deinit(){
-  // nothing to do
+Unit::~Unit()
+{
 }
 
-} // namespace Fonts
+void
+Unit::set_position(const FloatVector2d& new_pos)
+{
+  
+}
+
+void
+Unit::set_orientation(float new_orientation)
+{
+}
 
 /* EOF */

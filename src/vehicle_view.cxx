@@ -1,6 +1,6 @@
-//  $Id: vehicle_view.cxx,v 1.8 2003/05/19 21:46:21 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.9 2003/06/03 14:11:22 grumbel Exp $
 //
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -53,7 +53,7 @@ VehicleViewUpdater::update (float delta, ViewState& state)
   state.x_offset = int(pos.x);
   state.y_offset = int(pos.y);
 
-  float my_rotation = -(vehicle->get_angle ()/3.1415927*180.0) + 90;
+  float my_rotation = -(vehicle->get_orientation()/3.1415927*180.0) + 90;
 
   if (state.rotation > my_rotation) 
     state.rotation -= 2 * delta;

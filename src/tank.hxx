@@ -1,6 +1,6 @@
-//  $Id: tank.hxx,v 1.10 2003/05/30 22:44:53 grumbel Exp $
+//  $Id: tank.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -46,7 +46,9 @@ class Tank : public Controllable,
 	     public Vehicle
 {
 private:
-  float orientation; //rad
+  /** Position of the tank, before the last update() */
+  FloatVector2d tmp_pos;
+
   float speed;
   float velocity;
   float increment;
@@ -91,7 +93,6 @@ public:
   void set_angle (float);
   Turret* get_turret () { return turret; }
 
-  float get_orientation() { return orientation; }
   float get_increment() { return increment; }
 
   // Implementing Controllable

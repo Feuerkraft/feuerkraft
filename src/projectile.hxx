@@ -1,6 +1,6 @@
-//  $Id: projectile.hxx,v 1.10 2003/05/30 22:44:53 grumbel Exp $
+//  $Id: projectile.hxx,v 1.11 2003/06/03 14:11:22 grumbel Exp $
 // 
-//  Pingus - A free Lemmings clone
+//  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
@@ -43,6 +43,9 @@ public:
   virtual ~Projectile();
 
   virtual FloatVector2d get_pos () { return pos; }
+
+  GameObj* get_parent() const { return parent; }
+
   void draw (View& view);
   void update (float);
   bool removable ();
