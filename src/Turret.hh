@@ -29,8 +29,8 @@ public:
   void draw ();
   void update (float);
 
-  void increase_angle ();
-  void decrease_angle ();
+  void increase_angle (float delta);
+  void decrease_angle (float delta);
   void start_fire ();
   void stop_fire ();
   void set_angle (float angle);

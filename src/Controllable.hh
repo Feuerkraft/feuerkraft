@@ -17,14 +17,14 @@ public:
   virtual float get_max_backward_velocity () { return 0.0; }
   virtual float get_turn_speed ()   =0;
 
-  virtual void turn_left ()  =0;
-  virtual void turn_right () =0;
+  virtual void turn_left (float delta)  =0;
+  virtual void turn_right (float delta) =0;
 
-  virtual void turn_left2 () {}
-  virtual void turn_right2 () {}
+  virtual void turn_left2 (float delta) {}
+  virtual void turn_right2 (float delta) {}
 
-  virtual void increase_velocity () {};
-  virtual void decrease_velocity () {};
+  virtual void increase_velocity (float delta) {};
+  virtual void decrease_velocity (float delta) {};
   virtual void start_fire () =0;
   virtual void stop_fire () =0;
 

@@ -1,4 +1,4 @@
-//  $Id: Helicopter.hh,v 1.2 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Helicopter.hh,v 1.3 2001/02/21 07:54:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -55,14 +55,14 @@ public:
   // Controllable impl
   virtual float get_turn_speed () { return 1.0; }
 
-  virtual void turn_left ();
-  virtual void turn_right ();
+  virtual void turn_left (float delta);
+  virtual void turn_right (float delta);
 
-  virtual void turn_left2 ();
-  virtual void turn_right2 ();
+  virtual void turn_left2 (float delta);
+  virtual void turn_right2 (float delta);
 
-  virtual void increase_velocity ();
-  virtual void decrease_velocity ();
+  virtual void increase_velocity (float delta);
+  virtual void decrease_velocity (float delta);
   virtual void start_fire ();
   virtual void stop_fire ();
 

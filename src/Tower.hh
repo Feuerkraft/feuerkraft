@@ -1,4 +1,4 @@
-//  $Id: Tower.hh,v 1.3 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Tower.hh,v 1.4 2001/02/21 07:54:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,8 +57,8 @@ public:
   virtual void start_fire ();
   virtual void stop_fire ();
 
-  virtual void turn_left () {}
-  virtual void turn_right () {}
+  virtual void turn_left (float delta) {}
+  virtual void turn_right (float delta) {}
 
   virtual float get_turn_speed () { return 0.0; }
   

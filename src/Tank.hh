@@ -43,8 +43,8 @@ public:
   void draw ();
   void update (float);
 
-  void increase_angle ();
-  void decrease_angle ();
+  void increase_angle (float delta);
+  void decrease_angle (float delta);
   void set_angle (float);
   Turret* get_turret () { return turret; }
 
@@ -59,14 +59,14 @@ public:
   float get_max_backward_velocity () { return -1.0; }
   float get_turn_speed () { return 1.0; }
 
-  void turn_left () { increase_angle (); }
-  void turn_right () { decrease_angle (); }
+  void turn_left (float delta) { increase_angle (delta); }
+  void turn_right (float delta) { decrease_angle (delta); }
 
-  void turn_left2 ();
-  void turn_right2 ();
+  void turn_left2 (float delta);
+  void turn_right2 (float delta);
 
-  void increase_velocity ();
-  void decrease_velocity ();
+  void increase_velocity (float delta);
+  void decrease_velocity (float delta);
   
   void start_fire ();
   void stop_fire ();

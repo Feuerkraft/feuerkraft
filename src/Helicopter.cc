@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.3 2001/02/20 22:49:01 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.4 2001/02/21 07:54:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -97,37 +97,37 @@ Helicopter::update (float delta)
 }
 
 void 
-Helicopter::increase_velocity ()
+Helicopter::increase_velocity (float delta)
 {
   velocity += 0.1f;
 }
 
 void 
-Helicopter::decrease_velocity ()
+Helicopter::decrease_velocity (float delta)
 {
   velocity -= 0.1f;
 }
 
 void
-Helicopter::turn_left ()
+Helicopter::turn_left (float )
 {
   angle += 0.04f;
 }
 
 void 
-Helicopter::turn_right ()
+Helicopter::turn_right (float )
 {
   angle -= 0.04f;
 }
 
 void 
-Helicopter::turn_left2 ()
+Helicopter::turn_left2 (float )
 {
   strafe -= 0.1f;
 }
 
 void 
-Helicopter::turn_right2 ()
+Helicopter::turn_right2 (float )
 {
   strafe += 0.1f;
 }

@@ -39,7 +39,9 @@ public:
 
 	// Set mode: 320x200 16 bpp
 	CL_Display::set_videomode(800, 600, 16, false);
-	
+	CL_Display::clear_display (0.7f, 0.7f, 0.6f);
+	CL_Display::flip_display ();
+		
 	resources =  CL_ResourceManager::create("data/feuerkraft.scr", false);
 
 	GameWorld world;
@@ -90,8 +92,8 @@ public:
 	    
 	    world.draw ();
 	    
-	    controller.update ();
-	    kcontroller.update ();
+	    controller.update (delta);
+	    kcontroller.update (delta);
 
 	    // Flip front and backbuffer. This makes the changes visible:
 	    CL_Display::flip_display();

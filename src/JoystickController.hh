@@ -1,4 +1,4 @@
-//  $Id: JoystickController.hh,v 1.3 2001/02/20 11:20:30 mbn Exp $
+//  $Id: JoystickController.hh,v 1.4 2001/02/21 07:54:33 grumbel Exp $
 // 
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -54,7 +54,7 @@ public:
     }
   }
 
-  virtual void update ();
+  virtual void update (float delta);
 };
 
 #endif

@@ -74,14 +74,14 @@ Turret::update (float delta)
 }
 
 void 
-Turret::increase_angle ()
+Turret::increase_angle (float delta)
 {
-  angle += tank->get_increment ();
+  angle += tank->get_increment () * delta;
   angle = fmod (angle + circle, circle);
 }
 
 void
-Turret::decrease_angle ()
+Turret::decrease_angle (float delta)
 {
   angle -= tank->get_increment ();
   angle = fmod (angle + circle, circle);

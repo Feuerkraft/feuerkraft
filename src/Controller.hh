@@ -15,7 +15,7 @@ public:
   virtual ~Controller () {
   }
 
-  virtual void update () =0;
+  virtual void update (float delta) =0;
   virtual void set_controllable (Controllable* obj) { controllable = obj; }
 };
 

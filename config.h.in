@@ -17,12 +17,6 @@
 /* Define if you have the clanPNG library (-lclanPNG).  */
 #undef HAVE_LIBCLANPNG
 
-/* Define if you have the guile library (-lguile).  */
-#undef HAVE_LIBGUILE
-
-/* Define if you have the qthreads library (-lqthreads).  */
-#undef HAVE_LIBQTHREADS
-
 /* Name of package */
 #undef PACKAGE
 

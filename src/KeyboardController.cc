@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.cc,v 1.3 2001/02/18 20:16:50 grumbel Exp $
+//  $Id: KeyboardController.cc,v 1.4 2001/02/21 07:54:33 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,22 +23,22 @@
 #include "KeyboardController.hh"
 
 void
-KeyboardController::update ()
+KeyboardController::update (float delta)
 {
   if (CL_Keyboard::get_keycode (CL_KEY_F))
-    controllable->turn_left2 ();
+    controllable->turn_left2 (delta);
   else if (CL_Keyboard::get_keycode (CL_KEY_S))
-    controllable->turn_right2 ();
+    controllable->turn_right2 (delta);
   
   if (CL_Keyboard::get_keycode (CL_KEY_RIGHT))
-    controllable->turn_left ();
+    controllable->turn_left (delta);
   else if (CL_Keyboard::get_keycode (CL_KEY_LEFT))
-    controllable->turn_right ();
+    controllable->turn_right (delta);
         
   if (CL_Keyboard::get_keycode (CL_KEY_UP))
-    controllable->increase_velocity ();
+    controllable->increase_velocity (delta);
   else if (CL_Keyboard::get_keycode (CL_KEY_DOWN))
-    controllable->decrease_velocity ();
+    controllable->decrease_velocity (delta);
 
   if (CL_Keyboard::get_keycode (CL_KEY_E))
     controllable->drop_mine ();

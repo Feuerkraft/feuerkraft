@@ -120,22 +120,22 @@ Tank::update (float delta)
 }
 
 void 
-Tank::increase_angle ()
+Tank::increase_angle (float delta)
 {
   if (velocity >= 0)
-    angle += increment;
+    angle += increment * delta;
   else
-    angle += increment;
+    angle += increment * delta;
   angle = fmod (angle + circle, circle);
 }
 
 void
-Tank::decrease_angle ()
+Tank::decrease_angle (float delta)
 {
   if (velocity >= 0)
-    angle -= increment;
+    angle -= increment * delta;
   else
-    angle -= increment;
+    angle -= increment * delta;
   angle = fmod (angle + circle, circle);
 }
 
@@ -146,21 +146,21 @@ Tank::set_angle (float arg_angle)
 }
 
 void 
-Tank::increase_velocity ()
+Tank::increase_velocity (float delta)
 {
-  velocity += 0.1f;
+  velocity += 0.05f * delta;
 }
 
 void
-Tank::decrease_velocity ()
+Tank::decrease_velocity (float delta)
 {
-  velocity -= 0.1f;
+  velocity -= 0.05f * delta;
 }
 
 void 
-Tank::turn_left2 () { turret->increase_angle (); }
+Tank::turn_left2 (float delta) { turret->increase_angle (delta); }
 void
-Tank::turn_right2 () { turret->decrease_angle (); }
+Tank::turn_right2 (float delta) { turret->decrease_angle (delta); }
 
 void 
 Tank::start_fire ()

@@ -1,4 +1,4 @@
-//  $Id: KeyboardController.hh,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: KeyboardController.hh,v 1.2 2001/02/21 07:54:33 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,7 +31,7 @@ public:
     Controller (obj) 
   {}
   
-  virtual void update ();
+  virtual void update (float delta);
 };
 
 #endif
