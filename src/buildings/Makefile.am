@@ -1,39 +1,40 @@
 noinst_LIBRARIES = libfeuerkraft_buildings.a
 
 libfeuerkraft_buildings_a_SOURCES = \
-  BuildingMapData.hxx \
-  BuildingMapData.cxx \
-  BuildingMap.cxx \
-  BuildingMap.hxx \
-  BuildingData.hxx \
-  Building.hxx     \
-  TowerData.hxx    \
-  TowerData.cxx    \
-  Tower.hxx        \
-  Tower.cxx        \
-  AmmotentData.hxx \
-  AmmotentData.cxx \
-  Ammotent.hxx \
-  Ammotent.cxx \
-  FuelstationData.hxx \
-  FuelstationData.cxx \
-  Fuelstation.hxx \
-  Fuelstation.cxx \
-  BaseData.hxx \
-  BaseData.cxx \
-  Base.hxx \
-  Base.cxx \
-  Headquarter.hxx \
-  Headquarter.cxx \
-  HeadquarterData.hxx \
-  HeadquarterData.cxx \
-  Wall.cxx \
-  Wall.hxx \
-  WallData.cxx \
-  WallData.hxx \
-  WallDoorData.cxx \
-  WallDoorData.hxx \
-  WallDoor.hxx \
-  WallDoor.cxx
+ammotent.cxx \
+ammotent.hxx \
+ammotent_data.cxx \
+ammotent_data.hxx \
+base.cxx \
+base.hxx \
+base_data.cxx \
+base_data.hxx \
+basis_data.hxx \
+building.hxx \
+building_data.hxx \
+building_map.cxx \
+building_map.hxx \
+building_map_data.cxx \
+building_map_data.hxx \
+fuelstation.cxx \
+fuelstation.hxx \
+fuelstation_data.cxx \
+fuelstation_data.hxx \
+headquarter.cxx \
+headquarter.hxx \
+headquarter_data.cxx \
+headquarter_data.hxx \
+tower.cxx \
+tower.hxx \
+tower_data.cxx \
+tower_data.hxx \
+wall.cxx \
+wall.hxx \
+wall_data.cxx \
+wall_data.hxx \
+wall_door.cxx \
+wall_door.hxx \
+wall_door_data.cxx \
+wall_door_data.hxx
 
 # EOF #
