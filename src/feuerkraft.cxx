@@ -68,6 +68,9 @@ VehicleView* vehicle_view;
 //FIXME: Another ugly global variable, should be removed as soon as possible
 CL_GraphicContext* global_gc;
 
+Controller* player_controller;
+VehicleView* player_vehicle_view;
+
 extern "C" void SWIG_init(void);
           
 void inner_main (void* closure, int argc, char* argv[]);
@@ -271,6 +274,9 @@ public:
 	float deltas = 0.0;
 
 	VehicleView view(current_vehicle, 0, 0, 800, 600, window.get_gc ());
+
+        player_controller = &kcontroller;
+        player_vehicle_view = &view;
 
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);

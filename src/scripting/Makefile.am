@@ -16,6 +16,8 @@ command_source = ai_vehicle_commands.cxx \
  trigger_commands.cxx    \
  comm_commands.hxx       \
  comm_commands.cxx       \
+ player_commands.hxx     \
+ player_commands.cxx     \
  sound_commands.cxx      \
  sound_commands.hxx
 

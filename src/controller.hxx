@@ -22,6 +22,7 @@ public:
 
   virtual void update (float delta) =0;
   virtual void set_controllable (Controllable* obj) { controllable = obj; }
+  virtual Controllable* get_controllable () { return controllable; }
 
   /* Pseudo Code:
 

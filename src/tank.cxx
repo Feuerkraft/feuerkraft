@@ -5,6 +5,7 @@
 #include "mine.hxx"
 #include "turret.hxx"
 #include "tank.hxx"
+#include "property_set.hxx"
 #include "groundmap/ground_map.hxx"
 #include "buildings/building_map.hxx"
 #include "particles/smoke_particle.hxx"
@@ -41,6 +42,11 @@ Tank::Tank (const CL_Vector &arg_pos,
   pos = arg_pos;
 
   particle_release = 0.0f;
+  
+  properties->register_float("x-pos", &pos.x);
+  properties->register_float("y-pos", &pos.y);
+  properties->register_float("ammo",  &ammo);
+  properties->register_float("fuel",  &fuel);
 }
 
 Tank::~Tank ()

@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.6 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: projectile.cxx,v 1.7 2003/05/11 20:24:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "property_set.hxx"
 #include "collideable.hxx"
 #include "collision_manager.hxx"
 #include "explosion.hxx"
@@ -36,6 +37,12 @@ Projectile::Projectile (boost::dummy_ptr<GameObj> p,
 {
   //std::cout << "Velocity: " << velocity.x << " " << velocity.y << std::endl;
   pos  = arg_pos;
+  
+  properties->register_float("lifetime",   &lifetime);
+  properties->register_float("x-pos",      &pos.x);
+  properties->register_float("y-pos",      &pos.y);
+  properties->register_float("velocity-x", &velocity.x);
+  properties->register_float("velocity-y", &velocity.y);
 }
 
 Projectile::~Projectile ()

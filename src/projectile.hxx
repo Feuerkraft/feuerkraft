@@ -1,4 +1,4 @@
-//  $Id: projectile.hxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: projectile.hxx,v 1.6 2003/05/11 20:24:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,8 +29,8 @@ class Projectile : public Collideable
 private:
   CL_Vector pos;
   CL_Sprite sur;
-  CL_Vector  tmp_pos;
-  CL_Vector  velocity;
+  CL_Vector tmp_pos;
+  CL_Vector velocity;
   float lifetime;
   
   /** Pointer back to the parent objects which created this
