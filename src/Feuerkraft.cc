@@ -28,7 +28,7 @@ public:
     return CL_Surface(new CL_PCXProvider("survivor.pcx", NULL), true);
   }
 	
-  virtual int main(int argc, char* argv[])
+  virtual int main(int argc, char** argv)
   {
     try
       {
