@@ -1,4 +1,4 @@
-//  $Id: Building.hxx,v 1.7 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Building.hxx,v 1.8 2002/03/28 21:27:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -60,6 +60,15 @@ public:
   GameWorld* get_world () { return world.get(); }
 
   virtual void collide (Projectile*) {}
+
+  /** is_at() can be overwritten to provide a more detailed building
+      'resolution', so that buildings can be subgrid large 
+      FIXME: Looks a bit hack like and doesn't work at polygon level  */
+  virtual bool is_at (float x, float y) { return true; }
+
+  /** If returns false the building is temporary inactive and will be
+      'removed' from the collision map */
+  virtual bool is_active() { return true; }
 
   /** If returns true the building will act normal, when returning
       false the building will 'disapear' from the collision map

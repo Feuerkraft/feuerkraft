@@ -1,4 +1,4 @@
-//  $Id: Projectile.hxx,v 1.3 2002/03/15 10:32:35 grumbel Exp $
+//  $Id: Projectile.hxx,v 1.4 2002/03/28 21:27:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,9 +28,10 @@
 
 extern CL_ResourceManager* resources;
 
-class Projectile : public Vehicle
+class Projectile : public Collideable
 {
 private:
+  CL_Vector pos;
   CL_Surface sur;
   CL_Vector  tmp_pos;
   CL_Vector  velocity;

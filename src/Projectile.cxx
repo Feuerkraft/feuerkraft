@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.9 2002/03/28 01:50:46 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.10 2002/03/28 21:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,7 +26,7 @@
 
 Projectile::Projectile (boost::dummy_ptr<GameWorld>  w, boost::dummy_ptr<GameObj> p,
 			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
-  : Vehicle (w),
+  : Collideable (w),
     sur ("feuerkraft/projectile", resources),
     tmp_pos (arg_pos),
     velocity (arg_velocity),

@@ -1,4 +1,4 @@
-//  $Id: WallDoor.hxx,v 1.1 2002/03/28 01:50:46 grumbel Exp $
+//  $Id: WallDoor.hxx,v 1.2 2002/03/28 21:27:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -57,6 +57,7 @@ public:
   int get_map_width ()  { return map_width; }
   int get_map_height () { return map_height; }
 
+  bool is_active ();
   bool alive ();
 };
 

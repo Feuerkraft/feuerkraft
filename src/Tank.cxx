@@ -15,10 +15,14 @@ const float circle = 6.2831854f;
 extern SpriteProviderStorage* storage;
 extern CL_ResourceManager* resources;
 
+// FIXME: Global variable hack, remove as soon as possible
+#include "VehicleView.hxx"
+extern VehicleView* vehicle_view;
+
 Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : Vehicle (w),
-    angle (0.0f),
+    angle (3.14159f/2.0f),
     speed (0.0f),
     velocity (0.0f),
     increment (0.06f),
@@ -123,18 +127,34 @@ Tank::explode ()
 {
   world->add (new Explosion (world, pos, Explosion::MEDIUM));
   destroyed = true;
-  Tank* tank = new Tank (world, CL_Vector (400, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  destroy_time = CL_System::get_time ();
+}
+
+void
+Tank::respawn ()
+{
+  /* FIXME: This respawn code is extremly ugly... */
+  Tank* tank = new Tank (world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   world->add (tank);
   if (get_controller ())
     {
       get_controller ()->set_controllable (tank);
       tank->set_controller (get_controller ());
+      vehicle_view->set_vehicle (tank);
     }
+  destroy_time = -1;
 }
 
 void 
 Tank::update (float delta)
 {
+  // FIXME: Ugly
+  if (destroyed && destroy_time != -1 && destroy_time + 2000 < (int) CL_System::get_time ())
+    {
+      respawn ();
+    }
+
+
   particle_release += fabs(velocity);
 
   if (particle_release > 20.0f && !destroyed)

@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.9 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.10 2002/03/28 21:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -134,10 +134,10 @@ BuildingMap::get_building (const CL_Vector& pos)
   if (x >= 0 && x < width && y >=0 && y < height)
     {
       Building* b = building_map[(y * width) + x];
-      if (b && b->alive ())
+      if (b && b->alive () && b->is_active ())
 	return b;
       else
-	return 0;
+	return NULL;
     }
   else
     return NULL;

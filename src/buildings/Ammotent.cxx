@@ -1,4 +1,4 @@
-//  $Id: Ammotent.cxx,v 1.4 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Ammotent.cxx,v 1.5 2002/03/28 21:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,7 +53,7 @@ Ammotent::draw (boost::dummy_ptr<View> view)
 void
 Ammotent::draw_radar (boost::dummy_ptr<Radar> radar)
 {
-  radar->draw_blip (pos, 4);
+  radar->draw_blip (pos, 4, 0, 0, 1.0f);
 }
 
 void 

@@ -1,4 +1,4 @@
-//  $Id: Radar.hxx,v 1.2 2002/03/26 16:46:36 grumbel Exp $
+//  $Id: Radar.hxx,v 1.3 2002/03/28 21:27:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -58,7 +58,8 @@ public:
   /** Draw a blip to the radar, where 'pos' is in world coordinates
       and size is the size of the object (1: projectile, 2: vehicle,
       3: large vehicle, 4: building) */
-  void draw_blip (const CL_Vector& pos, int size);
+  void draw_blip (const CL_Vector& pos, int size, 
+		  float red = 1.0f, float green = 0.0f, float blue = 0.0f);
 
 private:
   void draw_vehicle (boost::dummy_ptr<Vehicle> vehicle);

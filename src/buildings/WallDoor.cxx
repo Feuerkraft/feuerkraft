@@ -1,4 +1,4 @@
-//  $Id: WallDoor.cxx,v 1.1 2002/03/28 01:50:46 grumbel Exp $
+//  $Id: WallDoor.cxx,v 1.2 2002/03/28 21:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -76,7 +76,7 @@ WallDoor::update(float)
 	  CL_Vector diff = pos;
 	  diff -= vehicle->get_pos ();
 
-	  if (diff.norm () < 50.0f)
+	  if (diff.norm () < 75.0f)
 	    {
 	      status = S_OPENED;
 	      return;
@@ -88,6 +88,15 @@ WallDoor::update(float)
 void
 WallDoor::collide (Projectile*)
 {
+}
+
+bool
+WallDoor::is_active ()
+{
+  if (status == S_OPENED)
+    return false;
+  else
+    return true;
 }
 
 bool

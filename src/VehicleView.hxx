@@ -1,4 +1,4 @@
-//  $Id: VehicleView.hxx,v 1.1 2001/12/12 00:00:33 grumbel Exp $
+//  $Id: VehicleView.hxx,v 1.2 2002/03/28 21:27:31 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,6 +39,8 @@ public:
 	       boost::dummy_ptr<Vehicle> arg_vehicle, 
 	       int x1, int y1, int x2, int y2);
   virtual ~VehicleView ();
+
+  void set_vehicle (boost::dummy_ptr<Vehicle> arg_vehicle);
   
   void update (float delta);
 };

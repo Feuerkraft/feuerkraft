@@ -46,6 +46,9 @@ CL_ResourceManager* resources;
 CL_ResourceManager* tile_resources;
 Pathfinder datafiles;
 
+// FIXME: Ugly global variable, should be removed as soon as possible
+VehicleView* vehicle_view;
+
 void inner_main (void* closure, int argc, char* argv[]);
 
 class Feuerkraft : public CL_ClanApplication
@@ -139,7 +142,7 @@ public:
 	Screen    screen;
 
 	Tank* tank2 = new Tank(world, CL_Vector (800, 200), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank1 = new Tank(world, CL_Vector (800, 600), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Tank* tank1 = new Tank(world, CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 
 	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
@@ -208,6 +211,9 @@ public:
 	VehicleView view (world, current_vehicle, 0, 0, 800, 600);
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
+
+	vehicle_view = &view;
+	
 
 	//VehicleView view1 (world, heli, 0, 0, 399, 600);
 	//VehicleView view2 (world, current_vehicle, 400, 0, 800, 600);

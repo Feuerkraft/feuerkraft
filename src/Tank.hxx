@@ -40,7 +40,9 @@ private:
   Energie energie;
   bool destroyed;
   float particle_release;
-
+  /** time since destruction */
+  int destroy_time;
+  
 public:
   friend class Turret;
 
@@ -94,6 +96,10 @@ public:
 
   virtual float get_physical_size () { return 3.0; }
   float get_velocity ();
+
+  /** FIXME: This should be placed in a Player-Manager class or
+      something like that */
+  void respawn ();
 };
 
 #endif // TANK_HH

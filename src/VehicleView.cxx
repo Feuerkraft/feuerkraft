@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cxx,v 1.3 2002/03/18 23:25:36 grumbel Exp $
+//  $Id: VehicleView.cxx,v 1.4 2002/03/28 21:27:31 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -62,6 +62,12 @@ VehicleView::update (float delta)
 
   if (rotation > my_rotation) rotation -= 2 * delta;
   if (rotation < my_rotation) rotation += 2 * delta;
+}
+
+void
+VehicleView::set_vehicle (boost::dummy_ptr<Vehicle> arg_vehicle)
+{
+  vehicle = arg_vehicle;
 }
 
 /* EOF */

@@ -12,26 +12,32 @@
 	  (tree (pos 1203 1525))
 	  (tree (pos 1091 2120))
 
-	  (tree (pos 1840 3481))
-	  (tree (pos 1883 3378))
-	  (tree (pos 1972 3447))
-	  (tree (pos 2020 3318))
 	  (tree (pos 1920 3281))
-	  (tree (pos 2118 3366))
-	  (tree (pos 2161 3324))
-	  (tree (pos 2289 3451))
-	  (tree (pos 2184 3472))
-	  (tree (pos 2332 3545))
 	  (tree (pos 2435 3577))
 	  (tree (pos 2364 3638))
 	  (tree (pos 1959 3766))
 	  (tree (pos 1887 3717))
-	  (tree (pos 1935 3538))
-	  (tree (pos 1879 3589))
+
+(tree (pos 1617 3659))
+(tree (pos 1618 3565))
+(tree (pos 1665 3854))
+(tree (pos 1535 3821))
+(tree (pos 1492 3871))
+(tree (pos 1632 3943))
+(tree (pos 1786 3883))
+
 
 	  )
 
  (buildingmap 
+
+(tower (pos 61 242))
+(tower (pos 49 242))
+(ammotent (pos 158 192))
+(fuelstation (pos   162 193))
+
+(ammotent (pos 40 241))
+(fuelstation (pos  45 240))
 
   (tower (pos 55 89))
   (tower (pos 50 95))
@@ -120,10 +126,11 @@
 	  (angle 45))
   (tower  (energie 70)(pos 10 12)
 	  (angle 85))
-  (tower  (energie 70)(pos 21 16)
-	  (angle 95))
   (base (pos 13 30))
   (headquarter (pos 16 3))
+
+(fuelstation (pos 33 90))
+(ammotent (pos 37 90))
 
   (tower  (energie 70)
 	  (pos 16 6)
