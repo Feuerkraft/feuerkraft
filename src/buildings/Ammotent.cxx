@@ -1,4 +1,4 @@
-//  $Id: Ammotent.cxx,v 1.1 2002/03/17 16:42:24 grumbel Exp $
+//  $Id: Ammotent.cxx,v 1.2 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,11 +46,11 @@ void
 Ammotent::update (float delta)
 {
   delta *= 50;
-  std::list<boost::shared_ptr<GameObj> >& objs = get_world ()->get_objects ();
+  std::list<GameObj*>& objs = get_world ()->get_objects ();
 
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(i->get ());
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle && fabs((vehicle->get_pos () - pos).norm ()) < 10)
 	{
 	  if (vehicle->get_velocity () == 0.0)

@@ -1,4 +1,4 @@
-//  $Id: TileMap.cxx,v 1.11 2002/03/18 10:46:32 sphair Exp $
+//  $Id: TileMap.cxx,v 1.12 2002/03/23 10:16:17 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ TileMap::TileMap (const TileMapData& data)
   tilemap.resize (tilemap_data.size ());
   for (unsigned int i = 0; i < tilemap.size (); ++i)
     {
-      if (tilemap_data[i] >= 0 && tilemap_data[i] < tiles.size())
+      if (tilemap_data[i] >= 0 && tilemap_data[i] < int(tiles.size()))
 	{
 	  tilemap[i] = tiles[tilemap_data[i]];
 	  //std::cout << "Tile: " << tilemap_data[i] << " " << tiles[tilemap_data[i]] << std::endl;
@@ -72,8 +72,8 @@ TileMap::draw (View* view)
 {
   //std::cout << "TileMap::draw" << std::endl;
 
-  for (std::vector<Tile*>::size_type y = 0; y < height; ++y)
-    for (std::vector<Tile*>::size_type x = 0; x < width; ++x)
+  for (int y = 0; y < height; ++y)
+    for (int x = 0; x < width; ++x)
     {
       // FIXME: Hard coded tilemap size is ugly
       if (tilemap [(width * y) + x])

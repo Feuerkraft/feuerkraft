@@ -1,8 +1,27 @@
-Feuerkraft (GNU/Linux)
-~~~~~~~~~~~~~~~~~~~~~~
+$Id: INSTALL,v 1.3 2002/03/23 10:16:15 grumbel Exp $ 
 
-Feuerkraft requires that you have a working ClanLib 0.5 installed, if
-you don't have one, you can get it at http://www.clanlib.org
+Feuerkraft (GNU/Linux)
+======================
+
+Required Libraries:
+===================
+
+guile 1.4:
+----------
+  Source: http://www.gnu.org/software/guile/guile.html
+  Win32:  http://clanlib.org/download/foreign-win32.html
+
+ClanLib 0.6.0:
+--------------
+  http://www.clanlib.org/
+
+SphriteLib:
+-----------
+  http://dark.x.dtu.dk/~sphair/SphriteLib/
+
+
+Compilation & Running:
+======================
 
 For compilation just type:
 
@@ -11,27 +30,20 @@ For compilation just type:
 
 then type the following to start it:
 
- $ cd src/
- $ ./feuerkraft
+ $ src/feuerkraft
+
+
+Installation:
+=============
+
+Installing Feuerkraft is currently not supported, you should instead
+run it directly from the source tree.
 
 
 
 
-Feuerkraft (Win32)
-~~~~~~~~~~~~~~~~~~
-
-For compiling Feuerkraft under Win32, you first have to enable MSVC++
-to handle .cc file endings:
-
- * http://support.microsoft.com/support/kb/articles/Q181/5/06.ASP
-
-Then you should be able to use the provided project files
-Feuerkraft.dsp and Feuerkraft.dsw.
-
-
-Last update: $Date: 2001/11/28 17:17:26 $
-
-
+[The rest of this file is the standard GNU documentation about how
+ 'configure' works in detail]
 
 
 Basic Installation

@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,6 +25,34 @@
 #include "Projectile.hxx"
 #include "Collideable.hxx"
 #include "GameWorld.hxx"
+#include "groundmap/GroundMapData.hxx"
+#include "groundmap/GroundMap.hxx"
+#include "buildings/BuildingMap.hxx"
+
+GameWorld::GameWorld (const GameWorldData& data)
+  : GameWorldData (data)
+{
+  if (groundmap_data)
+    groundmap = groundmap_data->create ();//this);
+
+  if (buildingmap_data)
+    buildingmap = buildingmap_data->create (this);
+
+  if (!groundmap) 
+    {
+      std::cout << "GameWorld: No groundmap created, bailout" << std::endl;
+      assert (groundmap);
+    }
+  
+  if (!buildingmap)
+    {
+      std::cout << "GameWorld: No buildingmap created, bailout" << std::endl;
+      assert (buildingmap);
+    }
+
+  objects.push_back (groundmap);
+  objects.push_back (buildingmap);
+}
 
 GameWorld::GameWorld ()
 {
@@ -35,27 +63,20 @@ GameWorld::~GameWorld ()
 }
 
 void 
-GameWorld::add (boost::shared_ptr<GameObj> obj)
-{
-  objects.push_back (obj);
-}
-
-void 
 GameWorld::add (GameObj* obj)
 {
-  add (boost::shared_ptr<GameObj>(obj));
+  objects.push_back(obj);
 }
 
 void 
 GameWorld::add_front (GameObj* obj)
 {
-  objects.push_front (boost::shared_ptr<GameObj>(obj));
+  objects.push_front (obj);
 }
 
 struct z_pos_sorter
 {
-  bool operator() (boost::shared_ptr<GameObj> a,
-		   boost::shared_ptr<GameObj> b)
+  bool operator() (GameObj* a, GameObj* b)
   {
     return a->get_z_pos () < b->get_z_pos ();
   }
@@ -111,7 +132,7 @@ GameWorld::draw (View* view)
   objects.sort (z_pos_sorter ());
 #endif
 
-  for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin (); 
+  for (ObjIter::iterator i = objects.begin (); 
        i != objects.end (); ++i)
     (*i)->draw (view);
   //for_each (objects.begin (), objects.end (), bind2nd(mem_fun (&GameObj::draw), view));
@@ -119,7 +140,7 @@ GameWorld::draw (View* view)
 
 struct is_removable
 {
-  bool operator() (boost::shared_ptr<GameObj> obj)
+  bool operator() (GameObj* obj)
   {
     return obj->removable ();
   }
@@ -137,9 +158,21 @@ GameWorld::update (float delta)
   objects.remove_if(is_removable ()); 
 #endif 
 
-  for (std::list<boost::shared_ptr<GameObj> >::iterator i = objects.begin ();
+  for (ObjIter i = objects.begin ();
        i != objects.end (); ++i)
     (*i)->update (delta);
+}
+
+BuildingMap*
+GameWorld::get_buildingmap ()
+{
+  return buildingmap;
+}
+
+GroundMap*
+GameWorld::get_groundmap ()
+{
+  return groundmap;
 }
 
 /* EOF */

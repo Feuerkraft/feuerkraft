@@ -1,4 +1,4 @@
-//  $Id: Projectile.cxx,v 1.6 2002/03/15 10:32:35 grumbel Exp $
+//  $Id: Projectile.cxx,v 1.7 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -70,12 +70,12 @@ Projectile::update (float delta)
   if (lifetime < 0)
     detonate ();
 
-  for (std::list<boost::shared_ptr<GameObj> >::iterator j = world->get_objects ().begin ();
+  for (GameWorld::ObjIter j = world->get_objects ().begin ();
        j != world->get_objects ().end (); ++j)
     {
-      if (j->get () != parent.get ())
+      if (*j != parent.get ())
 	{
-	  Collideable* collideable = dynamic_cast<Collideable*>(j->get ());
+	  Collideable* collideable = dynamic_cast<Collideable*>(*j);
 	  if (collideable)
 	    {
 	      if ((collideable)->is_colliding (get_pos ()))

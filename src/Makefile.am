@@ -21,6 +21,7 @@ System.cxx System.hxx my_gettext.hxx StringConverter.hxx StringConverter.cxx \
 Radar.hxx Radar.cxx GuiObj.hxx Screen.hxx Screen.cxx \
 VehicleStatus.hxx  VehicleStatus.cxx \
 Background.hxx Background.cxx Stone.hxx Stone.cxx \
-Ambulance.hxx Ambulance.cxx
+Ambulance.hxx Ambulance.cxx \
+GameObjData.hxx GameWorldData.hxx GameWorldData.cxx
 
 # EOF #

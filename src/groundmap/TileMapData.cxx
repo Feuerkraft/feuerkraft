@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.4 2002/03/18 10:46:32 sphair Exp $
+//  $Id: TileMapData.cxx,v 1.5 2002/03/23 10:16:17 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -85,7 +85,7 @@ TileMapData::parse_map (SCM desc)
   int i = 0;
   while (!gh_null_p (desc))
     {
-      if (i < tilemap_data.size())
+      if (i < static_cast<int>(tilemap_data.size()))
 	{
 	  tilemap_data[i] = gh_scm2int (gh_car (desc));
 	  ++i;

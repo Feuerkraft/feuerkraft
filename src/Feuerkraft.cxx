@@ -115,89 +115,79 @@ public:
 	storage->add(resources);
 	std::cout << "DoneTrying this:" << std::endl;
 
-	GameWorld world;
-	Screen    screen;
-
-	Tank* tank1 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank2 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-
-	Helicopter* heli = new Helicopter (&world, CL_Vector (320, 200));
-	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
-	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
-
-	JoystickController controller(heli);
-	KeyboardController kcontroller (tank1);
-
-	//Radar radar1 (CL_Vector(800-64, 64), 
-	//&world, tank1);
-
-	//Radar radar2 (CL_Vector(64, 64), 
-	//&world, tank2);
-	
-	boost::shared_ptr<GuiObj> radar 
-	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
-						 &world, tank2));
-	screen.add (radar);
-	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank2)));
-	//View view (&world, 10, 10, 790, 590);
-
-	world.add (jeep);
-	world.add (heli);
-	//world.add (heli2);
-	world.add (tank1);
-	world.add (tank2);
-	world.add (new Background (&world, CL_Surface ("feuerkraft/sand", resources)));
-	world.add (new Playfield (&world));
-	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
-	//world.add (new Tower (&world, 400.0, 200.0));
-	//world.add (new Tower (&world, 500.0, 300.0));
-	//world.add (new Tower (&world, 300.0, 140.0));
-	world.add (new Ambulance (&world));
-	
-	for (int i = 0; i < 20; ++i)
-	  {
-	    world.add (new Stone (&world, CL_Vector (rand () % 2048 - 1024,
-						     rand () % 2048 - 1024)));
-	  }
-
-	world.add (new Tree (&world, CL_Vector (100, 400), "feuerkraft/tree"));
-	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
-	world.add (new Tree (&world, CL_Vector (200, 440), "feuerkraft/tree"));
-
-	world.add (new Tree (&world, CL_Vector (150, 300), "feuerkraft/tree2"));
-	world.add (new Tree (&world, CL_Vector (450, 120), "feuerkraft/tree2"));
-	world.add (new Tree (&world, CL_Vector (250, 330), "feuerkraft/tree2"));
-
-	world.add (new Soldier (&world, CL_Vector (200, 200)));
-	world.add (new Soldier (&world, CL_Vector (300, 300)));
-	world.add (new Soldier (&world, CL_Vector (150, 400)));
-	world.add (new Soldier (&world, CL_Vector (550, 400)));
-	world.add (new Soldier (&world, CL_Vector (550, 100)));
-
-	GroundMap* groundmap;
-	BuildingMap* buildingmap;
-	// Test of parsing code
+	GameWorld* world;
 	{
 	  std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
 	  SCM fdes = scm_open_file (gh_str02scm("data/missions/test.feu"), 
 				    gh_str02scm("r"));
 	  SCM lst  = scm_read (fdes);
 
-	  std::cout << "Map: " << lst << std::endl;
-
-	  BuildingMapData* buildingmapdata = new BuildingMapData (gh_cdar(lst));
-	  GroundMapData* groundmapdata = GroundMapDataFactory::create (gh_cadr(lst));
+	  GameWorldData data(lst);
+	  world = new GameWorld (lst);
 
 	  scm_close (fdes);
-	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 
-	  buildingmap = buildingmapdata->create (&world);
-	  groundmap = groundmapdata->create ();
+	  std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
 	}
 	// End: Test of parsing code
 
-	world.add (buildingmap);
-	world.add (groundmap);
+	Screen    screen;
+
+	Tank* tank1 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank2 = new Tank(world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+
+	Helicopter* heli = new Helicopter (world, CL_Vector (320, 200));
+	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
+	Jeep* jeep = new Jeep (world, CL_Vector (250, 250));
+
+	JoystickController controller(heli);
+	KeyboardController kcontroller (tank1);
+
+	//Radar radar1 (CL_Vector(800-64, 64), 
+	//world, tank1);
+
+	//Radar radar2 (CL_Vector(64, 64), 
+	//world, tank2);
+	
+	boost::shared_ptr<GuiObj> radar 
+	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
+						 world, tank2));
+	screen.add (radar);
+	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus (tank2)));
+	//View view (world, 10, 10, 790, 590);
+
+	world->add (jeep);
+	world->add (heli);
+	//world->add (heli2);
+	world->add (tank1);
+	world->add (tank2);
+	world->add (new Background (world, CL_Surface ("feuerkraft/sand", resources)));
+	world->add (new Playfield (world));
+	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
+	//world->add (new Tower (world, 400.0, 200.0));
+	//world->add (new Tower (world, 500.0, 300.0));
+	//world->add (new Tower (world, 300.0, 140.0));
+	world->add (new Ambulance (world));
+	
+	for (int i = 0; i < 20; ++i)
+	  {
+	    world->add (new Stone (world, CL_Vector (rand () % 2048 - 1024,
+						     rand () % 2048 - 1024)));
+	  }
+
+	world->add (new Tree (world, CL_Vector (100, 400), "feuerkraft/tree"));
+	world->add (new Tree (world, CL_Vector (400, 440), "feuerkraft/tree"));
+	world->add (new Tree (world, CL_Vector (200, 440), "feuerkraft/tree"));
+
+	world->add (new Tree (world, CL_Vector (150, 300), "feuerkraft/tree2"));
+	world->add (new Tree (world, CL_Vector (450, 120), "feuerkraft/tree2"));
+	world->add (new Tree (world, CL_Vector (250, 330), "feuerkraft/tree2"));
+
+	world->add (new Soldier (world, CL_Vector (200, 200)));
+	world->add (new Soldier (world, CL_Vector (300, 300)));
+	world->add (new Soldier (world, CL_Vector (150, 400)));
+	world->add (new Soldier (world, CL_Vector (550, 400)));
+	world->add (new Soldier (world, CL_Vector (550, 100)));
 	
 	/** 1/30sec = 1.0delta
 	 */
@@ -207,12 +197,12 @@ public:
 	int loops = 0;
 	float deltas = 0.0;
 
-	VehicleView view (&world, tank2, 0, 0, 800, 600);
+	VehicleView view (world, tank1, 0, 0, 800, 600);
 	view.set_zoom (0.5f);
 	view.set_view (400, 300);
 	
-	//VehicleView view1 (&world, heli, 0, 0, 399, 600);
-	//VehicleView view2 (&world, tank1, 400, 0, 800, 600);
+	//VehicleView view1 (world, heli, 0, 0, 399, 600);
+	//VehicleView view2 (world, tank1, 400, 0, 800, 600);
 	
 	int start_time = CL_System::get_time ();
 	int frames = 0;
@@ -238,7 +228,7 @@ public:
 	    CL_System::sleep (0);
 	    delta = (CL_System::get_time () - last_time) / 1000.0f;
 	    last_time = CL_System::get_time ();
-	    world.update (delta);
+	    world->update (delta);
 	    
 	    deltas += delta;
 	    ++loops;

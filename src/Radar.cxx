@@ -1,4 +1,4 @@
-//  $Id: Radar.cxx,v 1.2 2002/03/13 10:03:20 grumbel Exp $
+//  $Id: Radar.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,10 +48,10 @@ Radar::draw ()
   background.put_screen (int(pos.x - (background.get_width ()/2)),
 			 int(pos.y - (background.get_height ()/2)));
   
-  std::list<boost::shared_ptr<GameObj> > objs = world->get_objects ();
+  std::list<GameObj*>& objs = world->get_objects ();
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>((*i).get());
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle && vehicle != this->vehicle.get ()) draw_vehicle (vehicle);
     }
 

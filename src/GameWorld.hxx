@@ -1,4 +1,4 @@
-//  $Id: GameWorld.hxx,v 1.2 2002/03/10 19:51:42 grumbel Exp $
+//  $Id: GameWorld.hxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,30 +23,38 @@
 #include <list>
 #include "boost/smart_ptr.hpp"
 #include "GameObj.hxx"
+#include "GameWorldData.hxx"
 #include "View.hxx"
 
 class View;
 class GameObj;
+class GroundMap;
+class BuildingMap;
 
-class GameWorld
+class GameWorld : public GameWorldData
 {
 private:
-  std::list<boost::shared_ptr<GameObj> > objects;
-  
+  std::list<GameObj*> objects;
+  BuildingMap* buildingmap;
+  GroundMap* groundmap;
+
 public:
-  typedef std::list<boost::shared_ptr<GameObj> >::iterator ObjIter;
+  typedef std::list<GameObj*>::iterator ObjIter;
 
   GameWorld ();
+  GameWorld (const GameWorldData& data);
   ~GameWorld ();
   
   /// Return a reference to the objects in the world
-  std::list<boost::shared_ptr<GameObj> >& get_objects () { return objects; }
-  void add (boost::shared_ptr<GameObj>);
+  std::list<GameObj*>& get_objects () { return objects; }
   void add (GameObj*);
   void add_front (GameObj*);
 
   void draw (View* view);
   void update (float delta);
+
+  BuildingMap* get_buildingmap ();
+  GroundMap*   get_groundmap ();
 };
 
 #endif

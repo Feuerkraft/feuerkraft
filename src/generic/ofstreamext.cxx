@@ -1,4 +1,4 @@
-//  $Id: ofstreamext.cxx,v 1.1 2002/03/18 23:25:37 grumbel Exp $
+//  $Id: ofstreamext.cxx,v 1.2 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,13 +24,13 @@ std::ostream& operator<<(std::ostream& s, const CL_Vector& pos)
   return (s << "(pos: " << pos.x << ", " << pos.y << ", " << pos.z << ")");
 }
 
-std::ostream& operator<<(std::ostream& s, SCM desc)
+/*std::ostream& operator<<(std::ostream& s, SCM desc)
 {
   //FIXME: This is for guile1.5
   //SCM str = scm_object_to_string (desc); // FIXME: Will this gets garbage collected?
 
   SCM str = scm_strprint_obj (desc);
   return (s << SCM_CHARS(str));
-}
+}*/
 
 /* EOF */

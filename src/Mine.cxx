@@ -1,4 +1,4 @@
-//  $Id: Mine.cxx,v 1.3 2002/03/17 22:32:08 grumbel Exp $
+//  $Id: Mine.cxx,v 1.4 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -44,11 +44,10 @@ Mine::update (float delta)
     }
   else if (!detonated)
     {
-      for (std::list<boost::shared_ptr<GameObj> >::iterator 
-	     j = world->get_objects ().begin ();
+      for (GameWorld::ObjIter j = world->get_objects ().begin ();
 	   j != world->get_objects ().end (); ++j)
 	{
-	  Vehicle* vehicle = dynamic_cast<Vehicle*>(j->get());
+	  Vehicle* vehicle = dynamic_cast<Vehicle*>(*j);
 
 	  if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 30.0f)
 	    {
@@ -86,11 +85,10 @@ Mine::draw (View* view)
 void 
 Mine::detonate () 
 {
-  for (std::list<boost::shared_ptr<GameObj> >::iterator 
-	 j = world->get_objects ().begin ();
+  for (GameWorld::ObjIter j = world->get_objects ().begin ();
        j != world->get_objects ().end (); ++j)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(j->get());
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(*j);
       
       // If distance to the mine is smaller than 100 apply a force
       if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 100.0)
@@ -102,7 +100,7 @@ Mine::detonate ()
     }
 
 
-  world->add (boost::shared_ptr<GameObj>(new Explosion (world, pos, Explosion::MEDIUM)));
+  world->add (new Explosion (world, pos, Explosion::MEDIUM));
   detonated = true;
   //remove ();
 }

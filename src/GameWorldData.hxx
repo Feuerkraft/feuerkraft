@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.hxx,v 1.2 2002/03/18 22:23:56 sphair Exp $
+//  $Id: GameWorldData.hxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,18 +20,27 @@
 #ifndef GAMEWORLDDATA_HXX
 #define GAMEWORLDDATA_HXX
 
+#include <guile/gh.h>
 #include <list>
+
+class GameObjData;
+class GroundMapData;
+class BuildingMapData;
+class GameWorld;
 
 class GameWorldData
 {
-private:
-  std::list<GameObjData*>
-  GroundMapData* groundmap;
+protected:
+  std::list<GameObjData*> gameobj_data;
+  GroundMapData* groundmap_data;
+  BuildingMapData* buildingmap_data;
   
 public:
+  GameWorldData ();
   GameWorldData (SCM desc);
   ~GameWorldData ();
   
+  GameWorld* create ();
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: Flag.cxx,v 1.1 2001/12/12 00:00:32 grumbel Exp $
+//  $Id: Flag.cxx,v 1.2 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,11 +45,10 @@ Flag::draw (View* view)
 void
 Flag::update (float delta)
 {
-  for (std::list<boost::shared_ptr<GameObj> >::iterator 
-	 j = world->get_objects ().begin ();
+  for (GameWorld::ObjIter j = world->get_objects ().begin ();
        j != world->get_objects ().end (); ++j)
     {
-      Jeep* jeep = dynamic_cast<Jeep*>(j->get ());
+      Jeep* jeep = dynamic_cast<Jeep*>(*j);
       if (jeep && (pos - jeep->get_pos ()).norm () < 20.0f)
 	{
 	  jeep->add_flag (this);

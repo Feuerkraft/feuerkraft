@@ -1,4 +1,4 @@
-//  $Id: Fuelstation.cxx,v 1.2 2002/03/17 17:10:45 grumbel Exp $
+//  $Id: Fuelstation.cxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -48,11 +48,11 @@ Fuelstation::update (float delta)
   delta *= 50;
 
   //FIXME: Slow
-  std::list<boost::shared_ptr<GameObj> >& objs = get_world ()->get_objects ();
+  std::list<GameObj*>& objs = get_world ()->get_objects ();
 
   for (GameWorld::ObjIter i = objs.begin (); i != objs.end (); ++i)
     {
-      Vehicle* vehicle = dynamic_cast<Vehicle*>(i->get ());
+      Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle && fabs((vehicle->get_pos () - pos).norm ()) < 10)
 	{
 	  if (vehicle->get_velocity () == 0.0)
