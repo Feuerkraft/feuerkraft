@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.7 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Tower.cc,v 1.8 2001/05/05 09:04:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -68,6 +68,11 @@ Tower::draw (View* view)
       energie.draw (view,
 		    int(pos.x), int (pos.y) - 40);
     }
+
+  /*
+  view->draw_rect (int(pos.x) - 40, int(pos.y) - 40, 
+		   int(pos.x) + 40, int(pos.y) + 40, 
+		   1.0f, 1.0f, 1.0f);*/
 }
 
 void

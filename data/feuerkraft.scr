@@ -46,7 +46,16 @@ soldierdead = data/images/soldierdead.png (type=surface, x=0, y=0, width=16, hei
     parking = data/images/parking.png (type=surface, x=0, y=0, width=96, height=56);
     radar = data/images/radar.png (type=surface, x=0, y=0, width=128, height=128);
 
+    start = data/images/start.png (type=surface, x=0, y=0, width=100, height=100);
 
+	headquarter = data/images/headquater.png (type=surface, x=0, y=0, width=80, height=80);
+	headquarterdamaged = data/images/headquaterdamaged.png (type=surface, x=0, y=0, width=80, height=80);
+	headquarterdestroyed = data/images/headquaterdestroyed.png (type=surface, x=0, y=0, width=100, height=100);
+
+	fuel = data/images/fuel.png (type=surface, x=0, y=0, width=24, height=24);
+	ammo = data/images/ammo.png (type=surface, x=0, y=0, width=24, height=24);
+
+	fuelstation = data/images/fuelstation.png (type=surface, x=0, y=0, width=79, height=83);
 }
 
 // EOF //

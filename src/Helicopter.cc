@@ -1,4 +1,4 @@
-//  $Id: Helicopter.cc,v 1.8 2001/05/04 17:11:08 grumbel Exp $
+//  $Id: Helicopter.cc,v 1.9 2001/05/05 09:04:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -71,6 +71,14 @@ Helicopter::draw (View* view)
 				view->get_y_offset () + 
 				pos.y - helidestroyed.get_height ()/2);
     }
+
+  /*
+  view->draw_rect (int(pos.x) - 40, int(pos.y) - 10, 
+		   int(pos.x) + 30, int(pos.y) + 10, 
+		   1.0f, 1.0f, 1.0f);
+  view->draw_rect (int(pos.x) - 15, int(pos.y) - 20, 
+		   int(pos.x) + 5, int(pos.y) + 20, 
+		   1.0f, 1.0f, 1.0f);*/
 }
 
 void 

@@ -35,7 +35,7 @@ private:
   bool destroyed;
 
 public:
-  Tank (boost::dummy_ptr<GameWorld>  w,
+  Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
   

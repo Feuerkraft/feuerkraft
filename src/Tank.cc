@@ -9,7 +9,7 @@
 const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
 
-Tank::Tank (boost::dummy_ptr<GameWorld>  w,
+Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : Vehicle (w),
     angle (0.0f),
@@ -27,7 +27,7 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w,
     destroyed (false)
 {
   turret = new Turret(world, this, reloading_speed, str_turret, fire);
-  pos = CL_Vector (rand () % 800, rand () % 600);
+  pos = arg_pos;
 }
 
 Tank::~Tank ()
@@ -85,10 +85,10 @@ Tank::draw (View* view)
       x2 += pos;
       y2 += pos;
 
-      view->draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+      /*view->draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
       view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
       view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-      view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);
+      view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
 
       energie.draw (view, 
 		    pos.x, pos.y - 40);
@@ -100,7 +100,7 @@ Tank::explode ()
 {
   world->add (new Explosion (world, pos, Explosion::MEDIUM));
   destroyed = true;
-  Tank* tank = new Tank (world, 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  Tank* tank = new Tank (world, CL_Vector (400, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   world->add (tank);
   if (get_controller ())
     {

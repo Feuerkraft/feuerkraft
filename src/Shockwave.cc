@@ -1,4 +1,4 @@
-//  $Id: Shockwave.cc,v 1.4 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Shockwave.cc,v 1.5 2001/05/05 09:04:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -43,9 +43,10 @@ Shockwave::draw (View* view)
   float size = counter / 15.0 + 0.5;
   int frame = mid(0, int((counter)/ (30/4.0)), 3);
 
-  sur.put_screen (pos.x - (sur.get_width () * size)/2,
-		  pos.y - (sur.get_height () * size)/2,
-		  size, size, frame);
+  view->draw (sur, 
+	      pos.x - (sur.get_width () * size)/2,
+	      pos.y - (sur.get_height () * size)/2,
+	      size, size, frame);
 }
 
 void 

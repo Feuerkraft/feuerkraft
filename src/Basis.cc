@@ -1,4 +1,4 @@
-//  $Id: Tree.cc,v 1.5 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: Basis.cc,v 1.1 2001/05/05 09:06:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,28 +17,30 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Tree.hh"
+#include "Basis.hh"
 
-Tree::Tree (boost::dummy_ptr<GameWorld>  w,
-	    CL_Vector arg_pos, std::string name) 
+extern CL_ResourceManager* resources;
+
+Basis::Basis (boost::dummy_ptr<GameWorld>  w, const CL_Vector& arg_pos)
   : GameObj (w),
-    pos (arg_pos),
-    sur (name.c_str (), resources)
+    sur ("feuerkraft/start", resources),
+    pos (arg_pos)
 {
 }
 
-Tree::~Tree ()
+Basis::~Basis ()
 {
 }
-  
-void 
-Tree::draw (View* view)
+
+void
+Basis::draw (View* view)
 {
-  view->draw (sur, 
-	      pos.x - sur.get_width ()/2, 
-	      pos.y - sur.get_height ()/2);
-  //view->draw_circle (pos.x, pos.y, 7,
-  //1.0f, 1.0f, 1.0f);
+  view->draw (sur, pos + CL_Vector (-50, -50));
+}
+
+void
+Basis::update (float delta)
+{
 }
 
 /* EOF */

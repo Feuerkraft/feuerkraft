@@ -1,4 +1,4 @@
-//  $Id: Headquarter.hh,v 1.1 2001/02/24 20:33:47 grumbel Exp $
+//  $Id: Headquarter.hh,v 1.2 2001/05/05 09:04:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,20 +20,32 @@
 #ifndef HEADQUARTER_HH
 #define HEADQUARTER_HH
 
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
+#include "boost/dummy_ptr.hpp"
 #include "GameObj.hh"
+#include "Energie.hh"
 #include "Collideable.hh"
 
-class Headquarter : public GameObj,
-  public Collideable
+class Headquarter : public Collideable
 {
 private:
-
+  CL_Vector pos;
+  CL_Surface headquarter;
+  CL_Surface headquarter_damaged;
+  CL_Surface headquarter_destroyed;
+  boost::dummy_ptr<CL_Surface> current_sur;
+  Energie energie;
+  bool destroyed;
+  
 public:
-  Headquarter ();
+  Headquarter (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
   virtual ~Headquarter ();
 
   void update (float delta);
   void draw (View* view);
+  bool is_colliding (CL_Vector obj_pos);
+  void collide (Projectile*);
 };
 
 #endif

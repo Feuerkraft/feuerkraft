@@ -1,5 +1,5 @@
-//  $Id: Tree.cc,v 1.5 2001/05/05 09:04:58 grumbel Exp $
-//
+//  $Id: Fuelstation.hh,v 1.1 2001/05/05 09:04:58 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,33 +12,34 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Tree.hh"
+#ifndef FUELSTATION_HH
+#define FUELSTATION_HH
 
-Tree::Tree (boost::dummy_ptr<GameWorld>  w,
-	    CL_Vector arg_pos, std::string name) 
-  : GameObj (w),
-    pos (arg_pos),
-    sur (name.c_str (), resources)
-{
-}
+#include <ClanLib/core.h>
+#include <ClanLib/display.h>
+#include "boost/dummy_ptr.hpp"
+#include "View.hh"
+#include "GameObj.hh"
 
-Tree::~Tree ()
+class Fuelstation : public GameObj
 {
-}
+private:
+  CL_Surface fuelstation;
+  CL_Vector pos;
   
-void 
-Tree::draw (View* view)
-{
-  view->draw (sur, 
-	      pos.x - sur.get_width ()/2, 
-	      pos.y - sur.get_height ()/2);
-  //view->draw_circle (pos.x, pos.y, 7,
-  //1.0f, 1.0f, 1.0f);
-}
+public:
+  Fuelstation (boost::dummy_ptr<GameWorld> world, CL_Vector arg_pos);
+  virtual ~Fuelstation ();
+
+  void draw (View* );
+  void update (float delta);
+};
+
+#endif
 
 /* EOF */

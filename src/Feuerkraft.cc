@@ -20,8 +20,12 @@
 #include "Playfield.hh"
 #include "Soldier.hh"
 #include "VehicleView.hh"
+#include "VehicleStatus.hh"
 #include "Radar.hh"
 #include "Screen.hh"
+#include "Headquarter.hh"
+#include "Basis.hh"
+#include "Fuelstation.hh"
 #include "System.hh"
 
 CL_ResourceManager* resources;
@@ -86,8 +90,8 @@ public:
 	GameWorld world;
 	Screen    screen;
 
-	Tank* tank1 = new Tank(&world, 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank2 = new Tank(&world, 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+	Tank* tank1 = new Tank(&world, CL_Vector (400, 0), 5, "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
+	Tank* tank2 = new Tank(&world, CL_Vector (0, 0), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
 	Helicopter* heli = new Helicopter (&world, CL_Vector (320, 200));
 	//Helicopter* heli2 = new Helicopter (CL_Vector (320, 200));
 	Jeep* jeep = new Jeep (&world, CL_Vector (250, 250));
@@ -105,6 +109,7 @@ public:
 	  = boost::shared_ptr<GuiObj>(new Radar (CL_Vector(64, 64), 
 						 &world, tank2));
 	screen.add (radar);
+	screen.add (boost::shared_ptr<GuiObj>(new VehicleStatus ()));
 	//View view (&world, 10, 10, 790, 590);
 
 	world.add (jeep);
@@ -112,11 +117,15 @@ public:
 	//world.add (heli2);
 	world.add (tank1);
 	world.add (tank2);
+	world.add (new Basis (&world, CL_Vector(0, 0)));
+	world.add (new Basis (&world, CL_Vector(400, 0)));
 	world.add (new Playfield (&world));
 	world.add (new Flag (&world, CL_Vector(200.0f, 200.f)));
+	world.add (new Fuelstation (&world, CL_Vector (-100.0f, 400.0f)));
 	world.add (new Tower (&world, 400.0, 200.0));
 	world.add (new Tower (&world, 600.0, 400.0));
 	world.add (new Tower (&world, 600.0, 100.0));
+	world.add (new Headquarter (&world, CL_Vector (-100.0, 0.0)));
 	
 	world.add (new Tree (&world, CL_Vector (100, 400), "feuerkraft/tree"));
 	world.add (new Tree (&world, CL_Vector (400, 440), "feuerkraft/tree"));
@@ -145,6 +154,7 @@ public:
 	int start_time = CL_System::get_time ();
 	int frames = 0;
 
+	    CL_System::keep_alive();
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	

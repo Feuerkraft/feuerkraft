@@ -1,4 +1,4 @@
-//  $Id: View.hh,v 1.5 2001/05/04 17:40:11 grumbel Exp $
+//  $Id: View.hh,v 1.6 2001/05/05 09:04:58 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -52,9 +52,12 @@ public:
   int get_y1 ();
   int get_y2 ();
 
-  void draw (CL_Surface& sur, CL_Vector& pos);
+  void draw (CL_Surface& sur, const CL_Vector& pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos);
   void draw (CL_Surface& sur, int x_pos, int y_pos, int frame);
+  void draw (CL_Surface& sur, int x_pos, int y_pos, 
+	     float size_x, float size_y, int frame);
+
 
   void draw_line (int x1, int y1, int x2, int y2, 
 		  float r, float g, float b, float a = 1.0f);

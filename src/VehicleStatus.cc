@@ -1,4 +1,4 @@
-//  $Id: Tree.cc,v 1.5 2001/05/05 09:04:58 grumbel Exp $
+//  $Id: VehicleStatus.cc,v 1.1 2001/05/05 09:06:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,28 +17,35 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "Tree.hh"
+#include "VehicleStatus.hh"
 
-Tree::Tree (boost::dummy_ptr<GameWorld>  w,
-	    CL_Vector arg_pos, std::string name) 
-  : GameObj (w),
-    pos (arg_pos),
-    sur (name.c_str (), resources)
+extern CL_ResourceManager* resources;
+
+VehicleStatus::VehicleStatus ()
+  : ammo ("feuerkraft/ammo", resources),
+    fuel ("feuerkraft/fuel", resources)
 {
 }
 
-Tree::~Tree ()
+VehicleStatus::~VehicleStatus ()
 {
 }
-  
+
 void 
-Tree::draw (View* view)
+VehicleStatus::update (float delta)
 {
-  view->draw (sur, 
-	      pos.x - sur.get_width ()/2, 
-	      pos.y - sur.get_height ()/2);
-  //view->draw_circle (pos.x, pos.y, 7,
-  //1.0f, 1.0f, 1.0f);
+}
+
+void 
+VehicleStatus::draw ()
+{
+  CL_Display::fill_rect (8 + 32, 600 - 8 - 24 + 6,
+			 80, 600 - 8 - 6, 0.0f, 1.0f, 0.0f);
+  fuel.put_screen (8, 600 - 8 - 24);
+
+  CL_Display::fill_rect (8 + 32, 600 - 40 - 24 + 6, 
+			 100, 600 - 40 - 6, 1.0f, 0.0f, 0.0f);
+  ammo.put_screen (8, 600 - 40 - 24);
 }
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: Mine.cc,v 1.5 2001/05/01 15:06:52 grumbel Exp $
+//  $Id: Mine.cc,v 1.6 2001/05/05 09:04:58 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -64,13 +64,13 @@ Mine::draw (View* view)
 {
   if (!is_active ())
     {
-      sur.put_screen (pos.x - sur.get_width ()/2,
-		      pos.y - sur.get_height ()/2);
+      view->draw (sur, pos.x - sur.get_width ()/2,
+		  pos.y - sur.get_height ()/2);
     }
   else
     {
-      sur_active.put_screen (pos.x - sur.get_width ()/2,
-			     pos.y - sur.get_height ()/2);
+      view->draw (sur_active, pos.x - sur.get_width ()/2,
+		  pos.y - sur.get_height ()/2);
     }
 }
 
