@@ -1,4 +1,4 @@
-//  $Id: Explosion.cxx,v 1.4 2002/03/10 23:26:51 grumbel Exp $
+//  $Id: Explosion.cxx,v 1.5 2002/03/11 21:34:42 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -69,9 +69,9 @@ Explosion::update (float delta)
 
   new_particle_time += delta;
   
-  if (new_particle_time > 0.7)
+  if (new_particle_time > 0.175)
     {
-      for (int i = 0; i < 4; ++i)
+      for (int i = 0; i < 1; ++i)
 	{     
 
 	  std::cout << "Random: " << Random::frand (.1, .3) << std::endl;

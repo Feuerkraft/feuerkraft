@@ -24,7 +24,11 @@ AC_PROG_RANLIB
 dnl Checking for libraries
 
 AC_CHECK_LIB(qthreads, main)
-AC_CHECK_LIB(guile, scm_boot_guile)
+AC_CHECK_LIB( guile,  scm_boot_guile,, [
+  echo "libguile is missing"
+  exit
+  ])
+
 AC_CHECK_HEADER(guile/gh.h)
 
 AC_CHECK_LIB( clanCore,   main,, [

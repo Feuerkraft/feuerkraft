@@ -39,6 +39,7 @@ private:
   int mine_reload_time;
   Energie energie;
   bool destroyed;
+  float particle_release;
 
 public:
   friend class Turret;

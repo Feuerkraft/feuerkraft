@@ -1,4 +1,4 @@
-//  $Id: TileMapData.hxx,v 1.3 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: TileMapData.hxx,v 1.4 2002/03/11 21:34:43 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define TILEMAPDATA_HXX
 
 #include <guile/gh.h>
-#include <list>
+#include <vector>
 
 #include "GroundMapData.hxx"
 

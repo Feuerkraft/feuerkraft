@@ -56,6 +56,10 @@ section feuerkraft {
 
 	projectile = images/projectile.png (type=surface);
 
+	section	sandsmoke {
+		frame1 = images/sandsmoke.png (type=surface);
+	}
+
 	section	explosion {
 		frame1 = images/explosion.png (type=surface);
 	}

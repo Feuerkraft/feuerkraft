@@ -6,6 +6,7 @@
 #include "Mine.hxx"
 #include "Turret.hxx"
 #include "Tank.hxx"
+#include "particles/SmokeParticle.hxx"
 
 const float circle = 6.2831854f;
 extern CL_ResourceManager* resources;
@@ -31,6 +32,8 @@ Tank::Tank (boost::dummy_ptr<GameWorld>  w, const CL_Vector &arg_pos,
 
   storage.add (new SpriteProvider (tank.c_str (), resources));
   sur = storage.create (tank.c_str ());
+
+  particle_release = 0.0f;
 }
 
 Tank::~Tank ()
@@ -127,6 +130,14 @@ Tank::explode ()
 void 
 Tank::update (float delta)
 {
+  particle_release += fabs(velocity);
+  
+  if (particle_release > 20.0f)
+    {
+      world->add (new SmokeParticle (get_world (), pos));
+      particle_release = 0;
+    }
+  
   delta = delta * 50.0f;
 
   if (destroyed)
