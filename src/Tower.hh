@@ -1,4 +1,4 @@
-//  $Id: Tower.hh,v 1.1 2001/02/17 20:02:12 grumbel Exp $
+//  $Id: Tower.hh,v 1.2 2001/02/17 22:41:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,24 +34,19 @@ class Tower : public Controllable,
 {
 private:
   CL_Surface towerbase;
+  CL_Surface towerdamaged;
+  CL_Surface towerdestroyed;
+
   CL_Surface turret;
   
   CL_Vector pos;
   bool fireing;
   int angle;
   Energie energie;
-  
+  bool destroyed;
+
 public:
-  Tower (float arg_x_pos, float arg_y_pos) :
-    towerbase ("feuerkraft/towerbase", resources),
-    turret ("feuerkraft/towerturret", resources),
-    pos (arg_x_pos, arg_y_pos),
-    fireing (true),
-    angle (0),
-    energie (100)    
-  {
-  }
-  
+  Tower (float, float);
   virtual ~Tower () 
   {
   }

@@ -1,4 +1,4 @@
-//  $Id: Tower.cc,v 1.1 2001/02/17 20:02:11 grumbel Exp $
+//  $Id: Tower.cc,v 1.2 2001/02/17 22:41:37 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,19 +21,53 @@
 #include "Projectile.hh"
 #include "Tower.hh"
 
+Tower::Tower (float arg_x_pos, float arg_y_pos) :
+  towerbase ("feuerkraft/towerbase", resources),
+  towerdamaged ("feuerkraft/towerdamaged", resources),
+  towerdestroyed ("feuerkraft/towerdestroyed", resources),
+  turret ("feuerkraft/towerturret", resources),
+  pos (arg_x_pos, arg_y_pos),
+  fireing (true),
+  angle (0),
+  energie (100),
+  destroyed (false)
+{
+}
+
+
 void
 Tower::draw () 
 {
-  towerbase.put_screen (int(pos.x) - towerbase.get_width ()/2,
-			int(pos.y) - towerbase.get_height ()/2);
-  turret.put_screen (int(pos.x) - turret.get_width ()/2, 
-		     int(pos.y) - turret.get_height ()/2, angle/10);
-  energie.draw (int(pos.x), int (pos.y) - 40);
+  if (energie > 50)
+    {
+      towerbase.put_screen (int(pos.x) - towerbase.get_width ()/2,
+			    int(pos.y) - towerbase.get_height ()/2);
+    }
+  else if (energie > 0)
+    {
+      towerdamaged.put_screen (int(pos.x) - towerdamaged.get_width ()/2,
+			       int(pos.y) - towerdamaged.get_height ()/2);
+    }
+  else
+    {
+      towerdestroyed.put_screen (int(pos.x) - towerdestroyed.get_width ()/2,
+				 int(pos.y) - towerdestroyed.get_height ()/2);
+    }
+
+  if (!destroyed)
+    {
+      turret.put_screen (int(pos.x) - turret.get_width ()/2, 
+			 int(pos.y) - turret.get_height ()/2, angle/10);
+      energie.draw (int(pos.x), int (pos.y) - 40);
+    }
 }
 
 void
 Tower::update () 
 {
+  if (destroyed)
+    return;
+
   if (++angle >= 160)
     angle = 0;
 
@@ -48,7 +82,7 @@ Tower::update ()
   if (energie <= 0)
     {
       world->add (new Explosion (pos, Explosion::MEDIUM));
-      remove ();
+      destroyed = true;
     }
 }
 
@@ -73,7 +107,7 @@ void
 Tower::collide (Projectile* projectile)
 {
   energie -= 5;
-  std::cout << "Energie: " << energie << std::endl;
+  //  std::cout << "Energie: " << energie << std::endl;
   projectile->detonate ();
   
 }

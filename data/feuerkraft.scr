@@ -16,6 +16,14 @@ section feuerkraft {
  smallexplo = data/images/smallexplo.png (type=surface, x=0, y=0, width=32, height=32);
   mediumexplo = data/images/mediumexplo.png (type=surface, x=0, y=0, width=134, height=126);
 
+
+ towerdamaged = data/images/towerdamaged.png (type=surface, x=0, y=0, width=83, height=80);
+ towerdestroyed = data/images/towerdestroyed.png (type=surface, x=0, y=0, width=83, height=80);
+
+ tree = data/images/tree.png (type=surface, x=0, y=0, width=63, height=59);
+ soldier = data/images/soldier.png (type=surface, x=0, y=0, width=16, height=16, array=3x1);
+
+soldierdead = data/images/soldierdead.png (type=surface, x=0, y=0, width=16, height=16);
 }
 
 

@@ -95,7 +95,7 @@ Tank::increase_angle ()
   if (velocity >= 0)
     angle += increment;
   else
-    angle -= increment;
+    angle += increment;
   angle = fmod (angle + circle, circle);
 }
 
@@ -105,7 +105,7 @@ Tank::decrease_angle ()
   if (velocity >= 0)
     angle -= increment;
   else
-    angle += increment;
+    angle -= increment;
   angle = fmod (angle + circle, circle);
 }
 

@@ -10,8 +10,10 @@
 #include "KeyboardController.hh"
 #include "JoystickController.hh"
 #include "Tank.hh"
+#include "Tree.hh"
 #include "Turret.hh"
 #include "Tower.hh"
+#include "Soldier.hh"
 
 CL_ResourceManager* resources;
 
@@ -52,6 +54,16 @@ public:
 	world.add (new Tower (600.0, 400.0));
 	world.add (new Tower (600.0, 100.0));
 
+	world.add (new Tree (CL_Vector (100, 400), "feuerkraft/tree"));
+	world.add (new Tree (CL_Vector (400, 440), "feuerkraft/tree"));
+	world.add (new Tree (CL_Vector (400, 440), "feuerkraft/tree"));
+
+	world.add (new Soldier (CL_Vector (200, 200)));
+	world.add (new Soldier (CL_Vector (300, 300)));
+	world.add (new Soldier (CL_Vector (150, 400)));
+	world.add (new Soldier (CL_Vector (550, 400)));
+	world.add (new Soldier (CL_Vector (550, 100)));
+
 	// Loop until the user hits escape:
 	while (CL_Keyboard::get_keycode(CL_KEY_ESCAPE) == false)
 	  {	
@@ -78,7 +90,7 @@ public:
       }
     catch (CL_Error err)
       {
-	std::cout << "Error: " << err.message.c_str() << std::endl;
+	std::cout << "CL_Error: " << err.message.c_str() << std::endl;
       }
 
     return 0;

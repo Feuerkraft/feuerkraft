@@ -1,4 +1,4 @@
-//  $Id: Energie.hh,v 1.2 2001/02/17 22:41:37 grumbel Exp $
+//  $Id: Tree.hh,v 1.1 2001/02/17 22:41:37 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,42 +17,25 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#ifndef ENERGIE_HH
-#define ENERGIE_HH
+#ifndef TREE_HH
+#define TREE_HH
 
-class Energie
+#include <string>
+#include <ClanLib/core.h>
+#include "GameObj.hh"
+
+extern CL_ResourceManager* resources;
+
+class Tree : public GameObj
 {
 private:
-  int max_energie;
-  int energie;
-  unsigned int last_change;
-
+  CL_Vector pos;
+  CL_Surface sur;
 public:
-  Energie (int arg_energie);
-
-  void draw (int x_pos, int y_pos);
-  operator int () { return energie; }
-
-  void operator--() { 
-    --energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator++() {
-    ++energie; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator+=(int i) { 
-    energie += i; 
-    last_change = CL_System::get_time ();
-  }
-
-  void operator-=(int i) { 
-    energie -= i; 
-    last_change = CL_System::get_time ();
-  }
-
+  Tree (CL_Vector arg_pos, std::string name);
+  ~Tree ();
+  
+  void draw ();
 };
 
 #endif
