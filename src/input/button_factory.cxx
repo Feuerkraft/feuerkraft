@@ -58,7 +58,6 @@ ButtonFactory::create(SCM lst)
 InputButton*
 ButtonFactory::create_axis_button(SCM lst)
 {
-  std::cout << "ButtonFactory::create_axis_button: " << Guile::scm2string(lst) << std::endl;
   InputAxis* axis = AxisFactory::create(gh_car(lst));
   bool top = gh_scm2bool(gh_cadr(lst));
   

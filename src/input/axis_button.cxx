@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "input_axis.hxx"
 #include "axis_button.hxx"
 
@@ -45,12 +46,12 @@ AxisButton::on_axis_move(float pos)
       if (down && pos < 0.5f)
         {
           down = false;
-          on_key_up();
+          button_up();
         }
       else if (!down && pos > 0.5f)
         {
           down = true;
-          on_key_down();
+          button_down();
         }
     }
   else
@@ -58,12 +59,12 @@ AxisButton::on_axis_move(float pos)
       if (down && pos > -0.5f)
         {
           down = false;
-          on_key_up();
+          button_up();
         }
       else if (!down && pos < -0.5f)
         {
           down = true;
-          on_key_down();
+          button_down();
         }
     }
 }
