@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cc,v 1.8 2001/02/19 21:54:30 grumbel Exp $
+//  $Id: GameWorld.cc,v 1.9 2001/02/19 22:02:18 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -87,8 +87,7 @@ GameWorld::draw ()
   return obj->removable ();
 }*/
 
-struct is_removable :
-  public std::greater<boost::shared_ptr<GameObj> >
+struct is_removable 
 {
   bool operator() (boost::shared_ptr<GameObj> obj) 
   {
