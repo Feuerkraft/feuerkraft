@@ -1,5 +1,5 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.2 2002/03/23 19:51:48 grumbel Exp $
-//
+//  $Id: TreeData.hxx,v 1.1 2002/03/23 19:52:19 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,40 +12,34 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include "TileMapData.hxx"
-#include "GroundMapDataFactory.hxx"
+#ifndef TREEDATA_HXX
+#define TREEDATA_HXX
 
-GroundMapData* 
-GroundMapDataFactory::create (SCM desc)
+#include <string>
+#include <ClanLib/core.h>
+#include <guile/gh.h>
+#include "GameObjData.hxx"
+
+class TreeData : public GameObjData
 {
-  SCM symbol = gh_caar (desc);
-  SCM data   = gh_cdar (desc);
+protected:
+  CL_Vector pos;
+  std::string name;
+  // FIXME: Insert destruction status here
 
-  std::cout << "GroundMapFactory: symbol: "<< std::flush;
-  gh_display (symbol);
-  gh_newline ();
+public:
+  /** Formate: (tree (pos 100 100))*/
+  TreeData (SCM desc);
+  virtual ~TreeData ();
 
-  std::cout << "GroundMapFactory: data: "<< std::flush;
-  gh_display (data);
-  gh_newline ();
+  GameObj* create (boost::dummy_ptr<GameWorld> world);
+};
 
-  if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
-    {
-      return new TileMapData (data);
-    }
-  else
-    {
-      std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
-      gh_display (symbol);
-      gh_newline ();
-      return 0;
-    }
-}
+#endif
 
 /* EOF */

@@ -1,4 +1,4 @@
-//  $Id: Tree.hxx,v 1.2 2002/03/09 18:36:56 grumbel Exp $
+//  $Id: Tree.hxx,v 1.3 2002/03/23 19:51:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,17 +24,18 @@
 #include <ClanLib/core.h>
 #include <ClanLib/display.h>
 #include "GameObj.hxx"
+#include "TreeData.hxx"
 
 extern CL_ResourceManager* resources;
 
-class Tree : public GameObj
+class Tree : public GameObj,
+	     public TreeData
 {
 private:
-  CL_Vector pos;
   CL_Surface sur;
   CL_Surface sur_shadow;
 public:
-  Tree (boost::dummy_ptr<GameWorld>  w, CL_Vector arg_pos, std::string name);
+  Tree (boost::dummy_ptr<GameWorld>  w, const TreeData& data);
   ~Tree ();
   
   void draw (View* view);

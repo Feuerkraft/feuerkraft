@@ -1,5 +1,9 @@
 ;; -*- mode: scheme; -*-
-((buildingmap (tower (pos 10 0)
+((objects (tree (pos 120 100))
+	  (tree (pos 200 200))
+	  (tree (pos 400 150)))
+
+ (buildingmap (tower (pos 10 0)
 		     (angle 102))
 	      (ammotent (pos 5 0))
 	      (fuelstation (pos 0 2))

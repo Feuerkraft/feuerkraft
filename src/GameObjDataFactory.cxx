@@ -1,4 +1,4 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.2 2002/03/23 19:51:48 grumbel Exp $
+//  $Id: GameObjDataFactory.cxx,v 1.1 2002/03/23 19:52:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,35 +17,28 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include "TileMapData.hxx"
-#include "GroundMapDataFactory.hxx"
+#include "TreeData.hxx"
+#include "GameObjDataFactory.hxx"
 
-GroundMapData* 
-GroundMapDataFactory::create (SCM desc)
+GameObjData*
+GameObjDataFactory::create (SCM symbol, SCM data)
 {
-  SCM symbol = gh_caar (desc);
-  SCM data   = gh_cdar (desc);
-
-  std::cout << "GroundMapFactory: symbol: "<< std::flush;
-  gh_display (symbol);
-  gh_newline ();
-
-  std::cout << "GroundMapFactory: data: "<< std::flush;
-  gh_display (data);
-  gh_newline ();
-
-  if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
+  if (gh_equal_p (gh_symbol2scm ("tree"), symbol))
     {
-      return new TileMapData (data);
+      std::cout << "!!!!!!!!!!!! Creating Tree !!!!!!!!!!!!!" << std::endl;
+      return new TreeData (data);
+    }
+  else if (gh_equal_p (gh_symbol2scm ("tank"), symbol))
+    {
+      std::cout << "GameObjDataFactory::create: not implemented" << std::endl;
     }
   else
     {
-      std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
+      std::cout << "GameObjDataFactory: Unknown symbol: " << std::flush;
       gh_display (symbol);
       gh_newline ();
-      return 0;
     }
+  return 0;
 }
 
 /* EOF */

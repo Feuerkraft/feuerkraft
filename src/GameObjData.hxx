@@ -1,4 +1,4 @@
-//  $Id: GameObjData.hxx,v 1.1 2002/03/10 19:56:01 grumbel Exp $
+//  $Id: GameObjData.hxx,v 1.2 2002/03/23 19:51:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,11 +20,17 @@
 #ifndef GAMEOBJDATA_HXX
 #define GAMEOBJDATA_HXX
 
+#include <boost/dummy_ptr.hpp>
+
+class GameWorld;
+class GameObj;
+
 class GameObjData
 {
 private:
 
 public:
+  virtual GameObj* create (boost::dummy_ptr<GameWorld> world) =0;
 };
 
 #endif

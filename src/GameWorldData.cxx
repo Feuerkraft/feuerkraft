@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.cxx,v 1.2 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: GameWorldData.cxx,v 1.3 2002/03/23 19:51:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include "groundmap/GroundMapData.hxx"
 #include "GameObjData.hxx"
 #include "groundmap/GroundMapDataFactory.hxx"
+#include "GameObjDataFactory.hxx"
 #include "GameWorldData.hxx"
 
 GameWorldData::GameWorldData ()
@@ -49,6 +50,10 @@ GameWorldData::GameWorldData (SCM desc)
 		{
 		  buildingmap_data = new BuildingMapData (data);
 		}
+	      else if (gh_equal_p (gh_symbol2scm ("objects"), symbol))
+		{
+		  parse_objects (data);
+		}
 	      else
 		{
 		  std::cout << "GameWorldData: Error: " << symbol << " " << data << std::endl;;
@@ -66,6 +71,37 @@ GameWorldData::GameWorldData (SCM desc)
 	}
 
       desc = gh_cdr(desc);
+    }
+}
+
+void
+GameWorldData::parse_objects (SCM desc)
+{
+  std::cout << "GameWorldData::parse_objects" << std::endl;
+  gh_display (desc);
+  gh_newline ();
+  while (gh_pair_p(desc)) // is a list
+    {
+      if (gh_pair_p (gh_car (desc))) // is a symbol/value pair
+	{
+	  SCM symbol = gh_caar(desc);
+	  SCM data   = gh_cdar(desc);   
+
+	  GameObjData* obj = GameObjDataFactory::create (symbol, data);
+	  if (obj)
+	    {
+	      gameobj_data.push_back (obj);
+	    }
+	  else
+	    {
+	      std::cout << "Error: GameWorldData::parse_objects" << std::endl;
+	    }
+	}
+      else
+	{
+	  std::cout << "Error: GameWorldData::parse_objects" << std::endl;
+	}
+      desc = gh_cdr (desc);
     }
 }
 

@@ -1,4 +1,4 @@
-//  $Id: BuildingMap.cxx,v 1.7 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: BuildingMap.cxx,v 1.8 2002/03/23 19:51:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -106,14 +106,6 @@ BuildingMap::update (float delta)
     {
       (*i)->update (delta);
     }
-}
-
-static int round (float a)
-{
-  if (a > 0)
-    return int(a + 0.5f);
-  else
-    return int(a - 0.5f);    
 }
 
 Building*

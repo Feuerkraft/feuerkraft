@@ -1,4 +1,4 @@
-//  $Id: GameWorldData.hxx,v 1.3 2002/03/23 10:16:16 grumbel Exp $
+//  $Id: GameWorldData.hxx,v 1.4 2002/03/23 19:51:48 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,6 +41,8 @@ public:
   ~GameWorldData ();
   
   GameWorld* create ();
+private:
+  void parse_objects (SCM desc);
 };
 
 #endif

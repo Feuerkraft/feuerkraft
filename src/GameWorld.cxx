@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.4 2002/03/23 16:10:33 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.5 2002/03/23 19:51:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,6 +27,7 @@
 #include "GameWorld.hxx"
 #include "groundmap/GroundMapData.hxx"
 #include "groundmap/GroundMap.hxx"
+#include "GameObjData.hxx"
 #include "buildings/BuildingMap.hxx"
 
 GameWorld::GameWorld (const GameWorldData& data)
@@ -52,6 +53,11 @@ GameWorld::GameWorld (const GameWorldData& data)
 
   objects.push_back (groundmap);
   objects.push_back (buildingmap);
+
+  for (std::list<GameObjData*>::iterator i = gameobj_data.begin (); i != gameobj_data.end (); ++i)
+    {
+      objects.push_back ((*i)->create (this));
+    }
 }
 
 GameWorld::GameWorld ()

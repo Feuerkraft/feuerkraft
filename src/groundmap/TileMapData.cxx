@@ -1,4 +1,4 @@
-//  $Id: TileMapData.cxx,v 1.5 2002/03/23 10:16:17 grumbel Exp $
+//  $Id: TileMapData.cxx,v 1.6 2002/03/23 19:51:48 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -78,9 +78,9 @@ TileMapData::parse_map (SCM desc)
        it != tilemap_data.end (); ++it)
     *it = 0;
   
-  std::cout << "Tilemap MapData: " << std::flush;
+  /*std::cout << "Tilemap MapData: " << std::flush;
   gh_display (desc);
-  gh_newline ();
+  gh_newline ();*/
   
   int i = 0;
   while (!gh_null_p (desc))

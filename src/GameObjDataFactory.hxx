@@ -1,5 +1,5 @@
-//  $Id: GroundMapDataFactory.cxx,v 1.2 2002/03/23 19:51:48 grumbel Exp $
-//
+//  $Id: GameObjDataFactory.hxx,v 1.1 2002/03/23 19:52:19 grumbel Exp $
+// 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -12,40 +12,29 @@
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//
+// 
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <iostream>
-#include "TileMapData.hxx"
-#include "GroundMapDataFactory.hxx"
+#ifndef GAMEOBJDATAFACTORY_HXX
+#define GAMEOBJDATAFACTORY_HXX
 
-GroundMapData* 
-GroundMapDataFactory::create (SCM desc)
+#include <guile/gh.h>
+
+class GameObjDataFactory
 {
-  SCM symbol = gh_caar (desc);
-  SCM data   = gh_cdar (desc);
+private:
 
-  std::cout << "GroundMapFactory: symbol: "<< std::flush;
-  gh_display (symbol);
-  gh_newline ();
+public:
+  /** Create a GameObjData out of a symbol and a data, 
+      FIXME: Abstractfactory stuff could be usefull here, but might
+      FIXME: not be extremly important
+      This function might return NULL on error! (no exceptions at the moment)
+  */
+  static GameObjData* create (SCM symbol, SCM data);
+};
 
-  std::cout << "GroundMapFactory: data: "<< std::flush;
-  gh_display (data);
-  gh_newline ();
-
-  if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
-    {
-      return new TileMapData (data);
-    }
-  else
-    {
-      std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
-      gh_display (symbol);
-      gh_newline ();
-      return 0;
-    }
-}
+#endif
 
 /* EOF */
