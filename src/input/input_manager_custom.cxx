@@ -50,7 +50,7 @@ InputManagerCustom::InputManagerCustom(SCM lst)
         }
     }
 
-  for (int i = 0; i < (int)buttons.size(); ++i)
+  for (int i = 0; i < (int)axes.size(); ++i)
     {
       if (axes[i])
         {
