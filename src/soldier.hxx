@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: soldier.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,15 +29,16 @@ class Soldier : public Vehicle
 private:
   CL_Sprite sur;
   int frame;
+
 public:
-  Soldier(const CL_Vector& arg_pos);
+  Soldier(const FloatVector2d& arg_pos);
   ~Soldier();
 
   float get_angle () { return 0.0; }
   void draw (View* view);
   void update (float);
 
-  bool is_colliding(CL_Vector);
+  bool is_colliding(FloatVector2d);
   
   float get_physical_size () { return 1.0; }
 };

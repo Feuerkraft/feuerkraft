@@ -1,4 +1,4 @@
-//  $Id: unit.hxx,v 1.1 2003/05/18 11:39:00 grumbel Exp $
+//  $Id: unit.hxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,9 +24,20 @@
     controll */
 class Unit
 {
-private:
-  
+protected:
+  /** Position of the unit in world-coordinates */
+  FloatVector2d pos;
+
+  /** Orientation of the unit */
+  float orientation;
 public:
+  /** Sets the current turn of the vehicle, \a turn needs to be in
+      range of [-1.0, 1.0] */
+  void set_turn(float turn);
+
+  /** Sets the current acceleration, \a accel must be in range of
+      [-1.0, 1.0] (full break, full acceleration) */
+  void set_acceleration(float accel);
   
 private:
   Unit (const Unit&);

@@ -1,4 +1,4 @@
-//  $Id: sprite_tile.cxx,v 1.2 2003/04/19 23:17:53 grumbel Exp $
+//  $Id: sprite_tile.cxx,v 1.3 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,9 +35,7 @@ SpriteTile::SpriteTile (const SpriteTileData& data)
 void
 SpriteTile::draw (View* view, float x, float y)
 {
-  //sprite->draw ((int) x, (int) y);
-  view->draw(sprite, CL_Vector (x, y));
-  //std::cout << "draw: " << sprite_location << std::endl;
+  view->draw(sprite, FloatVector2d(x, y));
 }
 
 /** FIXME: 'float delta' should be replaced with GameDelta */

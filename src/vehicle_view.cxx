@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: vehicle_view.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <math.h>
 #include "vehicle_view.hxx"
 
 VehicleView::VehicleView (VehiclePtr arg_vehicle, 
@@ -38,20 +39,18 @@ void
 VehicleView::update (float delta)
 {
   delta *= 50.0f;
-  CL_Vector target = vehicle->get_pos ();
+  FloatVector2d target = vehicle->get_pos ();
  
   float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0) * 1.5f;
 
   if (zoom_follower > zoom) zoom_follower -= 0.01 * delta;
   if (zoom_follower < zoom) zoom_follower += 0.01 * delta;
 
-  set_zoom (zoom_follower);
+  set_zoom(zoom_follower);
 
-  if (!(pos == target))
+  if ((pos - target).get_length() > 1.0f)
     {
-      CL_Vector direction = (target - pos);
-      //.normalize ();
-      
+      FloatVector2d direction = (target - pos);
       pos += direction * speed;
    }
   

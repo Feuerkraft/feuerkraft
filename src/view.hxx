@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.7 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: view.hxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,9 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 
+#include "vector2d.hxx"
 #include "gui_obj.hxx"
 #include "game_world.hxx"
 #include "view_properties.hxx"
@@ -83,9 +84,8 @@ public:
   int get_y1 ();
   int get_y2 ();
 
-  void draw (CL_Sprite* sprite, const CL_Vector& pos, float angle = 0.0);
-  void draw (CL_Sprite& sprite, const CL_Vector& pos, float angle = 0.0);
-  void draw (CL_Surface& sur, const CL_Vector& pos);
+  void draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle = 0.0);
+  void draw (CL_Surface& sur, const FloatVector2d& pos);
   void draw (CL_Surface& sur, float x_pos, float y_pos);
   void draw (CL_Surface& sur, float x_pos, float y_pos, int frame);
   void draw (CL_Surface& sur, float x_pos, float y_pos, 
@@ -111,8 +111,8 @@ public:
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);
 
-  CL_Vector screen_to_world (const CL_Vector&);
-  CL_Vector world_to_screen (const CL_Vector&);
+  FloatVector2d screen_to_world (const FloatVector2d&);
+  FloatVector2d world_to_screen (const FloatVector2d&);
 };
 
 typedef View* ViewPtr;

@@ -1,4 +1,4 @@
-//  $Id: ammotent.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: ammotent.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ class Ammotent : public Building
 {
 private:
   CL_Sprite ammotent;
-  CL_Vector pos;
+  FloatVector2d pos;
   bool reloading;
   
 public:

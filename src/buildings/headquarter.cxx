@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: headquarter.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -53,7 +53,7 @@ Headquarter::update (float delta)
 void 
 Headquarter::draw (ViewPtr view)
 {
-  view->draw (current_sur, pos);
+  view->draw(*current_sur, pos);
   energie.draw (view, int(pos.x), int(pos.y - 40));
 }
 
@@ -64,7 +64,7 @@ Headquarter::draw_radar (RadarPtr radar)
 }
 
 bool 
-Headquarter::is_colliding (CL_Vector obj_pos)
+Headquarter::is_colliding (FloatVector2d obj_pos)
 {
   return (!destroyed &&
 	  obj_pos.x > pos.x - 40 && obj_pos.x < pos.x + 40 &&

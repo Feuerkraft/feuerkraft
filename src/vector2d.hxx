@@ -1,4 +1,4 @@
-//  $Id: vector2d.hxx,v 1.1 2003/05/18 11:39:00 grumbel Exp $
+//  $Id: vector2d.hxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,6 +35,8 @@ public:
   float x;
   float y;
 
+  FloatVector2d();
+  FloatVector2d(const FloatVector2d& vec) : x(vec.x), y(vec.y) {};
   FloatVector2d(float arg_x, float arg_y);
 
   /** 
@@ -49,7 +51,7 @@ public:
    * 
    * @param angle in radian
    */
-  void rotate(float angle);
+  FloatVector2d& rotate(float angle);
 
   /** @return Length of the vector */
   float get_length() const;

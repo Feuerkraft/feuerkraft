@@ -1,4 +1,4 @@
-//  $Id: wall_door.cxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: wall_door.cxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,14 +30,14 @@ WallDoor::WallDoor(const WallDoorData& data)
     {
     case WallDoorData::O_VERTICAL:
       sprite = resources->get_sprite("feuerkraft/vdoor");
-      pos = CL_Vector (x_pos * 40 + 20, y_pos * 40 + 60);
+      pos = FloatVector2d(x_pos * 40 + 20, y_pos * 40 + 60);
       map_width = 1;
       map_height = 3;
       break;
     case WallDoorData::O_HORIZONTAL:
     default:
       sprite = resources->get_sprite("feuerkraft/hdoor");
-      pos = CL_Vector (x_pos * 40 + 60, y_pos * 40 + 20);
+      pos = FloatVector2d(x_pos * 40 + 60, y_pos * 40 + 20);
       map_width = 3;
       map_height = 1;
       break;
@@ -52,7 +52,7 @@ void
 WallDoor::draw (ViewPtr view)
 {
   if (status != S_OPENED)
-    view->draw (sprite, pos);
+    view->draw(sprite, pos);
 }
 
 void
@@ -71,10 +71,10 @@ WallDoor::update(float)
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       if (vehicle)
 	{
-	  CL_Vector diff = pos;
+	  FloatVector2d diff = pos;
 	  diff -= vehicle->get_pos ();
 
-	  if (diff.norm () < 75.0f)
+	  if (diff.get_length() < 75.0f)
 	    {
 	      status = S_OPENED;
 	      return;

@@ -1,4 +1,4 @@
-//  $Id: building_map.hxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: building_map.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 #include "building_map_data.hxx"
 #include "../game_obj.hxx"
 
-class CL_Vector;
+class FloatVector2d;
 class View;
 class Building;
 class BuildingData;
@@ -60,7 +60,7 @@ public:
 
   void add_building(Building* building, int x, int y);
 
-  BuildingPtr get_building (const CL_Vector& pos);
+  BuildingPtr get_building (const FloatVector2d& pos);
   
   /** FIXME: Not the cleanest API solution */
   std::vector<Building*>& get_buildings ();

@@ -1,4 +1,4 @@
-//  $Id: tower.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: tower.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,7 +41,7 @@ private:
 
   /** The position is just for easier handling here, the real position
       is due to the position in the building map */
-  CL_Vector pos;
+  FloatVector2d pos;
 public:
   Tower(const TowerData& data);
   virtual ~Tower();

@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.5 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: helicopter.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -45,7 +45,7 @@ private:
   bool destroyed;
 
 public:
-  Helicopter(CL_Vector);
+  Helicopter(FloatVector2d);
   ~Helicopter();
 
   void draw (View* view);
@@ -68,7 +68,7 @@ public:
 
   virtual void drop_mine () {}
 
-  bool is_colliding (CL_Vector);
+  bool is_colliding (FloatVector2d);
   void collide (Projectile*);
   virtual float get_physical_size () { return 3.0; }
 };

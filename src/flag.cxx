@@ -1,4 +1,4 @@
-//  $Id: flag.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: flag.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "flag.hxx"
 #include "resource_manager.hxx"
 
-Flag::Flag(CL_Vector arg_pos) 
+Flag::Flag(FloatVector2d arg_pos) 
   : sur (resources->get_sprite("feuerkraft/blueflag")),
     pos (arg_pos)
 {
@@ -34,7 +34,7 @@ Flag::~Flag ()
 void 
 Flag::draw (View* view)
 {
-  view->draw (sur, int(pos.x - 24), int(pos.y - 3));
+  view->draw (sur, pos - FloatVector2d(24, 3));
 
   //view->draw_circle ((int)pos.x, (int)pos.y, 5,
   //1.0f, 1.0f, 1.0f);

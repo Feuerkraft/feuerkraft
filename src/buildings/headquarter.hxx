@@ -1,4 +1,4 @@
-//  $Id: headquarter.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: headquarter.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@
 class Headquarter : public Building
 {
 private:
-  CL_Vector pos;
+  FloatVector2d pos;
   CL_Sprite headquarter;
   CL_Sprite headquarter_damaged;
   CL_Sprite headquarter_destroyed;
@@ -45,7 +45,7 @@ public:
 
   void update (float delta);
 
-  bool is_colliding (CL_Vector obj_pos);
+  bool is_colliding (FloatVector2d obj_pos);
   void collide (Projectile*);
 
   int get_map_width ()  { return 2; }

@@ -1,4 +1,4 @@
-//  $Id: base.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: base.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ class Base : public Building
 {
 private:
   CL_Sprite sprite;
-  CL_Vector pos;
+  FloatVector2d pos;
 
 public:
   Base (const BaseData& data);

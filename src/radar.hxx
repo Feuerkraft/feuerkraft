@@ -1,12 +1,12 @@
-//  $Id: radar.hxx,v 1.6 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: radar.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
-//  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
 //  as published by the Free Software Foundation; either version 2
-//  of the License, or (at your option) any later version.
+//  of the License, or(at your option) any later version.
 //
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,25 +35,25 @@ private:
   CL_Sprite background;
 
   /** Position of the radar on the screen */
-  CL_Vector pos;
+  FloatVector2d pos;
 
   float angle;
 
 public:
-  Radar (const CL_Vector& arg_pos, VehiclePtr v);
-  ~Radar ();
+  Radar(const FloatVector2d& arg_pos, VehiclePtr v);
+  ~Radar();
 
-  void draw (CL_GraphicContext* gc);
-  void update (float delta);
+  void draw(CL_GraphicContext* gc);
+  void update(float delta);
 
   /** Draw a blip to the radar, where 'pos' is in world coordinates
-      and size is the size of the object (1: projectile, 2: vehicle,
+      and size is the size of the object(1: projectile, 2: vehicle,
       3: large vehicle, 4: building) */
-  void draw_blip (const CL_Vector& pos, int size, 
+  void draw_blip(const FloatVector2d& pos, int size, 
 		  float red = 1.0f, float green = 0.0f, float blue = 0.0f);
 
 private:
-  void draw_vehicle (VehiclePtr vehicle);
+  void draw_vehicle(VehiclePtr vehicle);
 };
 
 typedef Radar* RadarPtr;

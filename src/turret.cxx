@@ -28,10 +28,10 @@ Turret::draw (View* view)
   float absolute_angle = tank->get_angle () + angle;
 
 #ifdef UGLY_SHADOWS_ENABLED  
-  view->draw(shadow, tank->get_pos () + CL_Vector (10,10), absolute_angle);
-  view->draw(shadow, tank->get_pos () + CL_Vector (15,15), absolute_angle);
-  view->draw(shadow, tank->get_pos () + CL_Vector (20,20), absolute_angle);
-  view->draw(shadow, tank->get_pos () + CL_Vector (25,25), absolute_angle);
+  view->draw(shadow, tank->get_pos () + FloatVector2d (10,10), absolute_angle);
+  view->draw(shadow, tank->get_pos () + FloatVector2d (15,15), absolute_angle);
+  view->draw(shadow, tank->get_pos () + FloatVector2d (20,20), absolute_angle);
+  view->draw(shadow, tank->get_pos () + FloatVector2d (25,25), absolute_angle);
 #endif 
 
   view->draw (sur, tank->get_pos (), absolute_angle);
@@ -60,18 +60,18 @@ Turret::update (float delta)
       //std::cout << "Fireing..." << std::endl;
       float rot_angle = tank->get_angle () + angle + 3.1415927; //- fmod(angle, circle/16.0)
       
-      CL_Vector dir = CL_Vector (10.0 + tank->get_velocity (), 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
+      FloatVector2d dir = FloatVector2d (10.0 + tank->get_velocity (), 0.0).rotate(rot_angle);
 
       if (floppy)
 	{
 	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
-                                                     + CL_Vector (0.0, -5.0, 0.0).rotate(rot_angle, CL_Vector (0.0, 0.0, 1.0)),
+                                                     + FloatVector2d (0.0f, -5.0f).rotate(rot_angle),
                                                      dir));
 	}
       else
 	{
 	  GameWorld::current()->add (new Projectile (tank, tank->get_pos ()
-                                                     + CL_Vector (0.0, 5.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0)),
+                                                     + FloatVector2d (0.0f, 5.0).rotate(rot_angle),
                                                      dir));
 	}
       floppy = !floppy;

@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.9 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: guile.hxx,v 1.10 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 #include <string>
 #include <iostream>
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 
 #include "alist.hxx"
 
@@ -38,8 +38,8 @@ namespace Guile {
     non string SCM data isn't currently supported */
 std::string scm2string (SCM data);
 
-/** Convert a CL_Vector into a SCM of the form (pos 12.2 40.912 234) */
-SCM vector2scm (const CL_Vector& vec);
+/** Convert a FloatVector2d into a SCM of the form (pos 12.2 40.912 234) */
+SCM vector2scm (const FloatVector2d& vec);
 
 /** Used in the BuildingMap: x,y => (pos x y) */
 SCM pos2scm (int x, int y);

@@ -1,4 +1,4 @@
-//  $Id: grass_particle.hxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: grass_particle.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -32,7 +32,7 @@ private:
   float max_life_time;
   
 public:
-  GrassParticle(const CL_Vector& arg_pos)
+  GrassParticle(const FloatVector2d& arg_pos)
   {
     pos = arg_pos;
     size = 1;
@@ -40,7 +40,7 @@ public:
     sprite = resources->get_sprite("feuerkraft/grasssmoke");
     max_life_time = 10.0f;
     life_time = max_life_time;
-    //velocity = CL_Vector (80.0f, 0.0f);
+    //velocity = FloatVector2d (80.0f, 0.0f);
   }
 
   virtual ~GrassParticle ()

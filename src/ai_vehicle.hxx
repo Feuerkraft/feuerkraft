@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.9 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: ai_vehicle.hxx,v 1.10 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_AI_VEHICLE_HXX
 
 #include <list>
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 #include <ClanLib/Display/sprite.h>
 
 #include "energie.hxx"
@@ -81,7 +81,7 @@ class AIVehicle : public GameObj
 private:
   bool destroyed;
   Energie energie;
-  CL_Vector pos;
+  FloatVector2d pos;
   float length;
   LineSegments line_segments;
 
@@ -94,7 +94,7 @@ private:
 
   AIVehicleOrder current_order;
 public:
-  AIVehicle(const CL_Vector& arg_pos);
+  AIVehicle(const FloatVector2d& arg_pos);
 
   void update(float delta);
   void draw (View* view);
@@ -102,7 +102,7 @@ public:
   void draw_levelmap (LevelMap* levelmap);
 
   void wait(float seconds);
-  void drive_to(const CL_Vector& pos);
+  void drive_to(const FloatVector2d& pos);
 
   void add_order(AIVehicleOrder);
   void clear_orders();

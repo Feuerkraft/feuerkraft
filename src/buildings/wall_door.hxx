@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.6 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: wall_door.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,6 +24,7 @@
 #include <ClanLib/Core/Math/cl_vector.h>
 
 #include "building.hxx"
+#include "../vector2d.hxx"
 #include "wall_door_data.hxx"
 
 class View;
@@ -34,11 +35,13 @@ class WallDoor : public Building
 {
 private:
   CL_Sprite sprite;
-  CL_Vector pos;
   int map_width;
   int map_height;
   typedef enum { S_OPENED, S_CLOSED } Status;
   Status status;
+  
+  /** Just for caching purpose */
+  FloatVector2d pos;
 
 public:
   WallDoor(const WallDoorData&);

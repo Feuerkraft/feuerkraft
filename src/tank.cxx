@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.8 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: tank.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -38,7 +38,7 @@ const float circle = 6.2831854f;
 #include "vehicle_view.hxx"
 extern VehicleView* vehicle_view;
 
-Tank::Tank (const CL_Vector &arg_pos,
+Tank::Tank (const FloatVector2d &arg_pos,
 	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
   : orientation (3.14159f/2.0f),
     speed (0.0f),
@@ -97,21 +97,21 @@ Tank::draw (View* view)
     }
   else
     {
-      for (std::deque<CL_Vector>::iterator i = smodpos.begin ();
+      for (std::deque<FloatVector2d>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
 	  /*view->draw (smod, 
-		      int(i->x - (smod.get_width ()/2)),
-		      int(i->y - (smod.get_height ()/2)),
-		      int(fmod (i->z, circle) / circle * 16.0));*/
+            int(i->x - (smod.get_width ()/2)),
+            int(i->y - (smod.get_height ()/2)),
+            int(fmod (i->z, circle) / circle * 16.0));*/
 	  //view->draw (smod, 
 	}
 
 #ifdef UGLY_SHADOWS_ENABLED
-      view->draw(shadow, pos + CL_Vector (0,0), orientation);
-      view->draw(shadow, pos + CL_Vector (5,5), orientation);
-      view->draw(shadow, pos + CL_Vector (10,10), orientation);
-      view->draw(shadow, pos + CL_Vector (15,15), orientation);
+      view->draw(shadow, pos + FloatVector2d (0,0), orientation);
+      view->draw(shadow, pos + FloatVector2d (5,5), orientation);
+      view->draw(shadow, pos + FloatVector2d (10,10), orientation);
+      view->draw(shadow, pos + FloatVector2d (15,15), orientation);
 #endif /* UGLY_SHADOWS_ENABLED */
 
       // Draw the tank
@@ -119,19 +119,15 @@ Tank::draw (View* view)
       turret->draw (view);
 
       // Draw Collision rect
-      CL_Vector x1 (-30, -15);
-      CL_Vector y1 (-30, 15);
-      CL_Vector x2 (30, -15);
-      CL_Vector y2 (30, 15);
+      FloatVector2d x1 (-30, -15);
+      FloatVector2d y1 (-30, 15);
+      FloatVector2d x2 (30, -15);
+      FloatVector2d y2 (30, 15);
 
-      x1 = x1.rotate (orientation,
-		 CL_Vector (0.0, 0.0, 1.0));
-      y1 = y1.rotate (orientation,
-		 CL_Vector (0.0, 0.0, 1.0));
-      x2 = x2.rotate (orientation,
-		 CL_Vector (0.0, 0.0, 1.0));
-      y2 = y2.rotate (orientation,
-		 CL_Vector (0.0, 0.0, 1.0));      
+      x1 = x1.rotate(orientation);
+      y1 = y1.rotate(orientation);
+      x2 = x2.rotate(orientation);
+      y2 = y2.rotate(orientation);
 
       x1 += pos;
       y1 += pos;
@@ -139,9 +135,9 @@ Tank::draw (View* view)
       y2 += pos;
 
       /*view->draw_line (x1.x, x1.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-      view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
-      view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
-      view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
+        view->draw_line (y1.x, y1.y, y2.x, y2.y, 1.0, 1.0, 1.0);
+        view->draw_line (y2.x, y2.y, x2.x, x2.y, 1.0, 1.0, 1.0);
+        view->draw_line (y1.x, y1.y, x1.x, x1.y, 1.0, 1.0, 1.0);*/
     }
 }
 
@@ -157,7 +153,7 @@ void
 Tank::respawn ()
 {
   /* FIXME: This respawn code is extremly ugly... */
-  Tank* tank = new Tank(CL_Vector (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
+  Tank* tank = new Tank(FloatVector2d (560, 1245), 5, "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
   GameWorld::current()->add (tank);
   if (get_controller ())
     {
@@ -217,9 +213,8 @@ Tank::update (float delta)
   else if (velocity < -2)
     velocity = -2.0f;
 
-  CL_Vector vel (-velocity, 0.0);
-  vel = vel.rotate (orientation, // - fmod(orientation, circle/16.0), 
-		    CL_Vector (0.0, 0.0, 1.0));
+  FloatVector2d vel (-velocity, 0.0);
+  vel.rotate(orientation);
 
   if (velocity != 0.0 || tmp_angle != orientation)
     {
@@ -227,15 +222,15 @@ Tank::update (float delta)
 	{
 	  smod_step = 0;
 	  tmp_angle = orientation;
-	  smodpos.push_back (CL_Vector (pos.x, pos.y, orientation));
+	  smodpos.push_back(pos);
 	  if (smodpos.size () > 200)
 	    smodpos.pop_front ();
 	}
     }
 
-  CL_Vector tmp_pos = pos + (vel * delta);
+  FloatVector2d tmp_pos = pos + (vel * delta);
 
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(pos.x, tmp_pos.y))))
     {
       //pos = tmp_pos; // We collided with a building
       //velocity = 0;
@@ -246,7 +241,7 @@ Tank::update (float delta)
       velocity /= delta;
     }
 
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(tmp_pos.x, pos.y))))
     {
       //pos = tmp_pos; // We collided with a building
       //velocity = 0;
@@ -329,16 +324,14 @@ Tank::drop_mine ()
 {
   if (mine_reload_time <= 0)
     {
-      CL_Vector vel = CL_Vector (25.0, 0.0, 0.0).rotate (orientation,
-							 CL_Vector (0.0, 0.0, 1.0));
-
-      GameWorld::current()->add(new Mine(CL_Vector(pos.x, pos.y) + vel));
+      FloatVector2d vel = FloatVector2d(25.0f, 0.0f).rotate (orientation);
+      GameWorld::current()->add(new Mine(FloatVector2d(pos.x, pos.y) + vel));
       mine_reload_time = 50;
     }
 }
 
 bool 
-Tank::is_colliding (CL_Vector obj_pos)
+Tank::is_colliding (FloatVector2d obj_pos)
 {
   float range = 10.0; 
 
@@ -359,11 +352,11 @@ Tank::collide (Mine*)
 }
 
 void 
-Tank::collide (CL_Vector force)
+Tank::collide (FloatVector2d force)
 {
-  energie -= int(force.norm ());
+  energie -= int(force.get_length());
   
-  std::cout << "Tank: Got force: " << force.norm () << std::endl;
+  std::cout << "Tank: Got force: " << force.get_length() << std::endl;
 }
 
 float 

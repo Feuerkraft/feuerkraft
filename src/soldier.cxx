@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: soldier.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include "soldier.hxx"
 
-Soldier::Soldier(const CL_Vector& arg_pos) 
+Soldier::Soldier(const FloatVector2d& arg_pos) 
   : sur (resources->get_sprite("feuerkraft/soldier")),
     frame (0)
 {
@@ -39,14 +39,14 @@ Soldier::draw (View* view)
 void 
 Soldier::update (float delta)
 {
-  pos += CL_Vector (0.0, -0.5, 0.0);
+  pos += FloatVector2d(0.0f, -0.5f);
 }
 
 bool 
-Soldier::is_colliding(CL_Vector obj_pos)
+Soldier::is_colliding(FloatVector2d obj_pos)
 {
-  CL_Vector diff = obj_pos - pos;
-  if (diff.norm () > 5)
+  FloatVector2d diff = obj_pos - pos;
+  if (diff.get_length() > 5)
     return false;
   else
     return true;

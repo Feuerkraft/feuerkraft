@@ -177,13 +177,13 @@ public:
 	}
 	// End: Test of parsing code
         
-	Tank* tank2 = new Tank(CL_Vector (800, 200), 5,
+	Tank* tank2 = new Tank(FloatVector2d (800, 200), 5,
                                "feuerkraft/tank", "feuerkraft/turret", "feuerkraft/fire");
-	Tank* tank1 = new Tank(CL_Vector (560, 1245), 5, 
+	Tank* tank1 = new Tank(FloatVector2d (560, 1245), 5, 
                                "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
-        AIVehicle* ai_vehicle = new AIVehicle(CL_Vector(342, 1241));
-	Helicopter* heli = new Helicopter(CL_Vector (320, 200));
-	Jeep* jeep = new Jeep (CL_Vector (250, 250));
+        AIVehicle* ai_vehicle = new AIVehicle(FloatVector2d(342, 1241));
+	Helicopter* heli = new Helicopter(FloatVector2d (320, 200));
+	Jeep* jeep = new Jeep (FloatVector2d (250, 250));
 
 	Vehicle* current_vehicle = tank1;
 	Controllable* current_controllable = tank1;
@@ -196,7 +196,7 @@ public:
 	world->add(tree);
         world->add(new RobotTank(660, 1245, 0, 100.0f));
         
-        screen.add (new Radar (CL_Vector(64, 64), current_vehicle));
+        screen.add (new Radar (FloatVector2d(64, 64), current_vehicle));
 	screen.add (new VehicleStatus (current_vehicle));
 
 	world->add (jeep);
@@ -206,14 +206,14 @@ public:
 	world->add (tank2);
 	world->add (new Background (resources->get_sprite("feuerkraft/sand"), -10.0f));
 	world->add (new Playfield ());
-	world->add (new Flag (CL_Vector(200.0f, 200.f)));
+	world->add (new Flag (FloatVector2d(200.0f, 200.f)));
 	world->add (new Ambulance());
 
-	world->add(new Soldier(CL_Vector (200, 200)));
-	world->add(new Soldier(CL_Vector (300, 300)));
-	world->add(new Soldier(CL_Vector (150, 400)));
-	world->add(new Soldier(CL_Vector (550, 400)));
-	world->add(new Soldier(CL_Vector (550, 100)));
+	world->add(new Soldier(FloatVector2d (200, 200)));
+	world->add(new Soldier(FloatVector2d (300, 300)));
+	world->add(new Soldier(FloatVector2d (150, 400)));
+	world->add(new Soldier(FloatVector2d (550, 400)));
+	world->add(new Soldier(FloatVector2d (550, 100)));
 	
 	/** 1/30sec = 1.0delta
 	 */
@@ -246,7 +246,7 @@ public:
         CL_System::keep_alive();
 
         LineSegments segments(560, 1245, 3.14159f);
-        CL_Vector last_pos(560, 1245);
+        FloatVector2d last_pos(560, 1245);
         segments.add_straight_segment(last_pos.x, last_pos.y, last_pos.x, last_pos.y);
 
 	// Loop until the user hits escape:
@@ -298,7 +298,7 @@ public:
 		while (CL_Mouse::get_keycode(CL_MOUSE_LEFT))
 		  CL_System::keep_alive ();
 
-		CL_Vector pos (view.screen_to_world (CL_Vector(CL_Mouse::get_x (), CL_Mouse::get_y ())));
+		FloatVector2d pos (view.screen_to_world (FloatVector2d(CL_Mouse::get_x (), CL_Mouse::get_y ())));
 
 		std::cout << "Mouse: " <<  pos << " | "
 			  << world->get_groundmap ()->get_groundtype (pos.x, pos.y) 

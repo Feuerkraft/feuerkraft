@@ -1,4 +1,4 @@
-//  $Id: explosion_particle.hxx,v 1.5 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: explosion_particle.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -34,7 +34,7 @@ private:
   bool direction;
   float angle;
 public:
-  ExplosionParticle(const CL_Vector& arg_pos, const CL_Vector& arg_vel, float arg_size)
+  ExplosionParticle(const FloatVector2d& arg_pos, const FloatVector2d& arg_vel, float arg_size)
   {
     velocity = arg_vel;
     pos = arg_pos;

@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.5 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: line_segments.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef HEADER_LINE_SEGMENTS_HXX
 #define HEADER_LINE_SEGMENTS_HXX
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 #include <vector>
 
 class View;
@@ -65,7 +65,7 @@ private:
 
   /** @return the position on the line segment after having traveled
       \a l 'pixels' on it */
-  CL_Vector get_pos(const Segment&, float l);
+  FloatVector2d get_pos(const Segment&, float l);
   float     get_orientation(const Segment&, float l);
 
   bool calc_route(float start_x, float start_y, 
@@ -78,9 +78,9 @@ public:
   LineSegments(float init_x, float init_y, float init_orientation);
 
   float     get_end_orientation();
-  CL_Vector get_end_pos();
+  FloatVector2d get_end_pos();
 
-  CL_Vector get_pos(float l);
+  FloatVector2d get_pos(float l);
   float     get_orientation(float l);
 
   /** @return length of all segments together */

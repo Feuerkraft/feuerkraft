@@ -1,4 +1,4 @@
-//  $Id: shockwave.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: shockwave.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "shockwave.hxx"
 #include "resource_manager.hxx"
 
-Shockwave::Shockwave(CL_Vector arg_pos) 
+Shockwave::Shockwave(FloatVector2d arg_pos) 
   : pos (arg_pos)
 {
   progress = 0;

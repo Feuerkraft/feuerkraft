@@ -80,7 +80,6 @@ math.hxx \
 math.cxx \
 mine.cxx \
 mine.hxx \
-my_gettext.hxx \
 path_manager.cxx \
 path_manager.hxx \
 playfield.cxx \
@@ -194,5 +193,11 @@ feuerkraft.static.comp: feuerkraft.static
 	cp $< $@
 	strip -s $@
 	upx-ucl -q --best $@
+
+BROWSE:	
+	TMPFILE=`tempfile`; \
+	find ./ -name "*.?xx" | sed "s/.\///" | grep -v "old/" | grep -v "feuerkraft_wrap.cxx" | \
+          sort -t . -k 2 -r > $TMPFILE; \
+	ebrowse --files=$TMPFILE
 
 # EOF #

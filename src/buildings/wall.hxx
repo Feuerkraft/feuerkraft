@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: wall.hxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_FEUERKRAFT_WALL_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "../vector2d.hxx"
 
 #include "wall_data.hxx"
 #include "building.hxx"
@@ -29,7 +29,7 @@
 class Wall : public Building
 {
 private:
-  CL_Vector pos;
+  FloatVector2d pos;
   CL_Sprite wall;
   CL_Sprite wall_damaged;
   CL_Sprite wall_destroyed;

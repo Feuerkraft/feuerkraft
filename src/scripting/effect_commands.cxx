@@ -1,4 +1,4 @@
-//  $Id: effect_commands.cxx,v 1.2 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: effect_commands.cxx,v 1.3 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,7 @@
 
 void effect_add_explosion(int x, int y)
 {
-  GameObjManager::current()->add_object(new Explosion(CL_Vector(x,y), 
+  GameObjManager::current()->add_object(new Explosion(FloatVector2d(x,y), 
                                                       Explosion::MEDIUM));
 }
 

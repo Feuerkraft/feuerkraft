@@ -1,4 +1,4 @@
-//  $Id: explosion.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: explosion.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define EXPLOSION_HH
 
 #include <ClanLib/Display/sprite.h>
-#include <ClanLib/Core/Math/cl_vector.h>
 
+#include "vector2d.hxx"
 #include "game_obj.hxx"
 #include "resource_manager.hxx"
 
@@ -32,13 +32,13 @@ private:
   bool is_drawn;
   float lifetime;
   CL_Sprite explo;
-  CL_Vector pos;
+  FloatVector2d pos;
   float new_particle_time;
   float size;
 public:
   enum Size { SMALL, MEDIUM, LARGE } en_size;
   
-  Explosion (const CL_Vector& arg_pos, Size arg_size = SMALL);
+  Explosion (const FloatVector2d& arg_pos, Size arg_size = SMALL);
   void init ();
 
   void draw (View* view);

@@ -1,4 +1,4 @@
-//  $Id: stone.hxx,v 1.5 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: stone.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,17 +20,17 @@
 #ifndef STONE_HH
 #define STONE_HH
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 #include "game_obj.hxx"
 
 class Stone : public GameObj
 {
 private:
   CL_Sprite sur;
-  CL_Vector pos;
+  FloatVector2d pos;
 
 public:
-  Stone (const CL_Vector& arg_pos);
+  Stone (const FloatVector2d& arg_pos);
   ~Stone ();
   
   void draw (View*);

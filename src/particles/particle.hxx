@@ -1,4 +1,4 @@
-//  $Id: particle.hxx,v 1.3 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: particle.hxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,9 +26,9 @@
 class Particle : public GameObj
 {
 public: // FIXME: Probally a bad idea?!
-  CL_Vector pos;
-  CL_Vector velocity;
-  CL_Vector acceleration;
+  FloatVector2d pos;
+  FloatVector2d velocity;
+  FloatVector2d acceleration;
 
   // Lifetime of the particle in seconds
   float life_time;
@@ -45,7 +45,7 @@ public:
   }
 
   virtual bool alive () { return life_time > 0; }
-  CL_Vector get_pos () { return pos; }
+  FloatVector2d get_pos () { return pos; }
 
   bool removable () { return !alive (); }
 };

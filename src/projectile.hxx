@@ -1,4 +1,4 @@
-//  $Id: projectile.hxx,v 1.7 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: projectile.hxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -26,10 +26,10 @@
 class Projectile : public Collideable
 {
 private:
-  CL_Vector pos;
+  FloatVector2d pos;
   CL_Sprite sur;
-  CL_Vector tmp_pos;
-  CL_Vector velocity;
+  FloatVector2d tmp_pos;
+  FloatVector2d velocity;
   float lifetime;
   
   /** Pointer back to the parent objects which created this
@@ -38,10 +38,10 @@ private:
   GameObjPtr parent;
 
 public:
-  Projectile(GameObjPtr p, const CL_Vector& arg_pos, const CL_Vector& arg_velocity);
+  Projectile(GameObjPtr p, const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity);
   virtual ~Projectile();
 
-  virtual CL_Vector get_pos () { return pos; }
+  virtual FloatVector2d get_pos () { return pos; }
   void draw (ViewPtr view);
   void update (float);
   bool removable ();
@@ -50,7 +50,7 @@ public:
   void on_collision_with_building(Building* building);
 
   void detonate ();
-  bool is_colliding(CL_Vector) { return false;}
+  bool is_colliding(FloatVector2d) { return false;}
 };
 
 #endif

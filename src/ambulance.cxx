@@ -1,4 +1,4 @@
-//  $Id: ambulance.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: ambulance.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,7 +30,7 @@ Ambulance::Ambulance()
 void
 Ambulance::draw (View* view)
 {
-  view->draw (sur, CL_Vector ());
+  view->draw (sur, FloatVector2d ());
 }
 
 

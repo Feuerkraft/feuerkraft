@@ -1,4 +1,4 @@
-//  $Id: jeep.hxx,v 1.5 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: jeep.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ private:
   float angle;
   Flag* flag;
 public:
-  Jeep (CL_Vector arg_pos);
+  Jeep (FloatVector2d arg_pos);
   virtual ~Jeep () {}
   
   void update (float delta);
@@ -62,10 +62,9 @@ public:
 
   virtual void drop_mine ();
 
-  virtual bool is_colliding (CL_Vector obj_pos);
-  virtual void collide (Mine*);
+  virtual bool is_colliding (FloatVector2d obj_pos);
   virtual void collide (Projectile*);
-  virtual void collide (CL_Vector force);
+  virtual void collide (FloatVector2d force);
 
   virtual int get_z_pos () { return 50; }
   

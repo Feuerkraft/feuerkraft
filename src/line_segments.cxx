@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.7 2003/05/13 18:28:10 grumbel Exp $
+//  $Id: line_segments.cxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -146,7 +146,7 @@ LineSegments::get_orientation(float l)
     return get_orientation(*seg, seg->length - (len - l));
 }
 
-CL_Vector
+FloatVector2d
 LineSegments::get_pos(float l)
 {
   float len = 0.0f; 
@@ -195,7 +195,7 @@ LineSegments::get_end_orientation()
     }
 }
 
-CL_Vector
+FloatVector2d
 LineSegments::get_end_pos()
 {
   if (segments.size() > 0)
@@ -204,18 +204,18 @@ LineSegments::get_end_pos()
       switch (segment.type)
         {
         case STRAIGHT:
-          return CL_Vector(segment.straight.x2,
+          return FloatVector2d(segment.straight.x2,
                            segment.straight.y2);
         case RADIAL:
-          return CL_Vector(segment.radial.x + segment.radial.radius * cos(segment.radial.end_angle),
+          return FloatVector2d(segment.radial.x + segment.radial.radius * cos(segment.radial.end_angle),
                            segment.radial.y + segment.radial.radius * sin(segment.radial.end_angle));
           break;
         }
-      return CL_Vector();
+      return FloatVector2d();
     }
   else
     {
-      return CL_Vector(init_x, init_y, init_orientation);
+      return FloatVector2d(init_x, init_y);
     }
 }
 
@@ -230,7 +230,7 @@ LineSegments::get_length()
   return len;
 }
 
-CL_Vector
+FloatVector2d
 LineSegments::get_pos(const Segment& segment, float len)
 {
   switch(segment.type)
@@ -253,10 +253,10 @@ LineSegments::get_pos(const Segment& segment, float len)
         angle = angle * relative;
 
         if (segment.radial.turn_right)
-          return CL_Vector(segment.radial.x + cos(start_angle + angle)*radius,
+          return FloatVector2d(segment.radial.x + cos(start_angle + angle)*radius,
                            segment.radial.y + sin(start_angle + angle)*radius);
         else
-          return CL_Vector(segment.radial.x + cos(start_angle - angle)*radius,
+          return FloatVector2d(segment.radial.x + cos(start_angle - angle)*radius,
                            segment.radial.y + sin(start_angle - angle)*radius);
       }
       break;
@@ -267,12 +267,12 @@ LineSegments::get_pos(const Segment& segment, float len)
         float xlen    = segment.straight.x2 - segment.straight.x1;
         float ylen    = segment.straight.y2 - segment.straight.y1;
 
-        return CL_Vector(segment.straight.x1 + (xlen * rel_pos),
+        return FloatVector2d(segment.straight.x1 + (xlen * rel_pos),
                          segment.straight.y1 + (ylen * rel_pos));
       }
       break;
     }
-  return CL_Vector();
+  return FloatVector2d();
 }
 
 void
@@ -413,7 +413,7 @@ LineSegments::draw(View* view)
 #if 0
   for(float i = 0; i < get_length(); i += 15)
     {
-      CL_Vector pos = get_pos(i);
+      FloatVector2d pos = get_pos(i);
       //std::cout << "Pos: " << pos << std::endl;
       view->draw_fillrect(int(pos.x-5), int(pos.y-5),
                           int(pos.x+5), int(pos.y+5),

@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.7 2003/05/18 09:38:44 grumbel Exp $
+//  $Id: ammotent.cxx,v 1.8 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,7 +39,7 @@ Ammotent::~Ammotent ()
 void 
 Ammotent::draw (ViewPtr view)
 {
-  view->draw (&ammotent, pos);
+  view->draw (ammotent, pos);
   if (reloading)
     {
       view->draw_fillrect(int(pos.x - 32), int (pos.y + 25),

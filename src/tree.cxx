@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.6 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: tree.cxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -46,7 +46,7 @@ Tree::properties_updated()
 void 
 Tree::draw (View* view)
 {
-  view->draw(sur_shadow, pos - CL_Vector(15,15));
+  view->draw(sur_shadow, pos - FloatVector2d(15,15));
   view->draw(sur, pos);
 }
 

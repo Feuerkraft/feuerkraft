@@ -1,4 +1,4 @@
-//  $Id: mine.hxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: mine.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,15 +28,15 @@ class Mine : public GameObj
 private:
   CL_Sprite sur;
   CL_Sprite sur_active;
-  CL_Vector pos;
+  FloatVector2d pos;
   CL_Sprite hole;
   float active;
   bool detonated;
 public:
-  Mine(const CL_Vector& arg_pos);
+  Mine(const FloatVector2d& arg_pos);
   virtual ~Mine() {}
 
-  CL_Vector get_pos () { return pos; }
+  FloatVector2d get_pos () { return pos; }
   void update (float);
   void draw (View* view);
   void detonate ();

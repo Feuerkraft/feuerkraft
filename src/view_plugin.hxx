@@ -1,4 +1,4 @@
-//  $Id: view_plugin.hxx,v 1.1 2003/04/19 22:39:07 grumbel Exp $
+//  $Id: view_plugin.hxx,v 1.2 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,7 +35,7 @@ public:
   virtual float get_rotation () =0;
   
   /** Return the position that the View should take */
-  virtual CL_Vector get_pos () =0;
+  virtual FloatVector2d get_pos () =0;
 
   /** Return true if the View class should make a smooth translation
       between changes of the View or should make hard changes. */

@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.4 2003/05/11 11:20:45 grumbel Exp $
+//  $Id: building_map.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -35,18 +35,18 @@ BuildingMap::BuildingMap(const BuildingMapData& data)
       buildings.push_back((*i)->create ());
     }
 
-  building_map.resize (width * height);
+  building_map.resize(width * height);
   
   // Clear all pointers in the building map
-  for (std::vector<Building*>::iterator i = building_map.begin ();
-       i != building_map.end ();
+  for (std::vector<Building*>::iterator i = building_map.begin();
+       i != building_map.end();
        ++i)
     {
       *i = NULL;
     }
 
   // 'Draw' the buildings onto the building_map
-  for (std::vector<Building*>::iterator i = buildings.begin ();
+  for (std::vector<Building*>::iterator i = buildings.begin();
        i != buildings.end ();
        ++i)
     {
@@ -116,7 +116,7 @@ BuildingMap::update (float delta)
 }
 
 Building*
-BuildingMap::get_building (const CL_Vector& pos)
+BuildingMap::get_building (const FloatVector2d& pos)
 {
   int x = int(pos.x)/40;
   int y = int(pos.y)/40;

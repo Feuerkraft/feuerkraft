@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.8 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: view.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -16,6 +16,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+#include <iostream>
 
 #include <ClanLib/Display/display.h>
 #include <ClanLib/Display/sprite.h>
@@ -98,7 +100,7 @@ View::set_gc (CL_GraphicContext* arg_gc)
 }
 
 void 
-View::draw (CL_Surface& sur, const CL_Vector& pos)
+View::draw (CL_Surface& sur, const FloatVector2d& pos)
 {
   /* FIXME:Display2
   sur.draw (int(pos.x + get_x_offset ()),
@@ -107,16 +109,10 @@ View::draw (CL_Surface& sur, const CL_Vector& pos)
 }
 
 void
-View::draw (CL_Sprite& sprite, const CL_Vector& pos, float angle)
+View::draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle)
 {
-  draw (&sprite, pos, angle);
-}
-
-void 
-View::draw (CL_Sprite* sprite, const CL_Vector& pos, float angle)
-{
-  sprite->set_angle(Math::rad2deg(angle));
-  sprite->draw(int(pos.x + get_x_offset ()), 
+  sprite.set_angle(Math::rad2deg(angle));
+  sprite.draw(int(pos.x + get_x_offset ()), 
 	       int(pos.y + get_y_offset ()),
 	       gc);
 }
@@ -210,8 +206,9 @@ View::draw_circle (float x_pos, float y_pos, float radius,
   // FIXME: Probally not the fast circle draw algo on this world...
   const float pi = 3.1415927f * 2.0f;
   const float steps = 16;
-  CL_Vector current (radius, 0);
-  CL_Vector next = current.rotate (pi/steps, CL_Vector (0, 0, 1.0f));
+  FloatVector2d current (radius, 0);
+  FloatVector2d next(current);
+  next.rotate(pi/steps);
 
   for (int i = 0; i < steps; ++i)
     {
@@ -219,7 +216,7 @@ View::draw_circle (float x_pos, float y_pos, float radius,
 		 int(x_pos + next.x), int(y_pos + next.y),
 		 r, g, b, a);
       current = next;
-      next = next.rotate (pi/float(steps), CL_Vector (0, 0, 1.0f));
+      next.rotate (pi/float(steps));
     }
 }
 
@@ -280,17 +277,17 @@ View::get_height ()
   return y2 - y1;// FIXME: Off by one?!
 }
 
-CL_Vector
-View::screen_to_world (const CL_Vector& pos)
+FloatVector2d
+View::screen_to_world (const FloatVector2d& pos)
 {
-  return CL_Vector (pos.x - get_x_offset (),
+  return FloatVector2d (pos.x - get_x_offset (),
 		    pos.y - get_y_offset ());
 }
 
-CL_Vector
-View::world_to_screen (const CL_Vector& pos)
+FloatVector2d
+View::world_to_screen (const FloatVector2d& pos)
 {
-  return CL_Vector (pos.x + get_x_offset (),
+  return FloatVector2d (pos.x + get_x_offset (),
 		    pos.y + get_y_offset ());
 }
 

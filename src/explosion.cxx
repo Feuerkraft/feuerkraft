@@ -1,4 +1,4 @@
-//  $Id: explosion.cxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: explosion.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,7 @@
 #include "sound/sound.hxx"
 #include "particles/explosion_particle.hxx"
 
-Explosion::Explosion (const CL_Vector& arg_pos, Size arg_size) 
+Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size) 
   : is_drawn (false),
     pos (arg_pos),
     en_size (arg_size)
@@ -77,20 +77,20 @@ Explosion::update (float delta)
 	  switch (en_size)
 	    {
 	    case MEDIUM:
-	      GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%40 - 20), 
+	      GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%40 - 20), 
                                                                           pos.y + (rand()%40 - 20)),
-                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
                                                                Random::frand(size) + 1.0)); 
-	      GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%40 - 20), 
+	      GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%40 - 20), 
                                                                           pos.y + (rand()%40 - 20)),
-                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
                                                                Random::frand(size) + 1.0)); 
 	      break;
 
 	    default:
-              GameWorld::current()->add (new ExplosionParticle(CL_Vector (pos.x + (rand()%10 - 5), 
+              GameWorld::current()->add (new ExplosionParticle(FloatVector2d (pos.x + (rand()%10 - 5), 
                                                                           pos.y + (rand()%10 - 5)),
-                                                               CL_Vector (rand ()%20 - 10, rand ()%20 - 10), 
+                                                               FloatVector2d (rand ()%20 - 10, rand ()%20 - 10), 
                                                                Random::frand(size) + .01)); 
 	      break;
 	    }

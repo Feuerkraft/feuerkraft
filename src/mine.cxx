@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.5 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: mine.cxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,7 +25,7 @@
 #include "collision_manager.hxx"
 #include "resource_manager.hxx"
 
-Mine::Mine (const CL_Vector& arg_pos) 
+Mine::Mine (const FloatVector2d& arg_pos) 
   : pos (arg_pos),
     hole (resources->get_sprite ("feuerkraft/hole")),
     active (2),
@@ -102,12 +102,12 @@ Mine::detonate ()
       Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
       
       // If distance to the mine is smaller than 100 apply a force
-      if (vehicle && (vehicle->get_pos () - get_pos ()).norm () < 100.0)
+      /*if (vehicle && (vehicle->get_pos () - get_pos ()).get_length() < 100.0)
 	{
-	  CL_Vector force(pos - vehicle->get_pos ());
-	  force = (100.0f) * (pos - vehicle->get_pos ()).norm ();
-	  vehicle->collide (force);
-	}
+	  FloatVector2d force(pos - vehicle->get_pos());
+	  force = (100.0f) * (pos - vehicle->get_pos()).get_length();
+	  vehicle->collide(force);
+	}*/
     }
 
 

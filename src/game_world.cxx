@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.10 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: game_world.cxx,v 1.11 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include <algorithm>
 #include <functional>
 

@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.11 2003/05/11 19:50:37 grumbel Exp $
+//  $Id: ai_vehicle.cxx,v 1.12 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -29,7 +29,7 @@
 #include "mine.hxx"
 #include "level_map.hxx"
 
-AIVehicle::AIVehicle(const CL_Vector& arg_pos)
+AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
   : destroyed(false),
     energie(100),
     pos(arg_pos),
@@ -72,7 +72,7 @@ AIVehicle::update(float delta)
       {
         float old_orientation = orientation;
         
-        CL_Vector target_pos(current_order.drive_to.pos.x,
+        FloatVector2d target_pos(current_order.drive_to.pos.x,
                              current_order.drive_to.pos.y);
 
         orientation = atan2(target_pos.y - pos.y,
@@ -206,7 +206,7 @@ AIVehicle::draw_energie (View* view)
 }
   
 void
-AIVehicle::drive_to(const CL_Vector& n_pos)
+AIVehicle::drive_to(const FloatVector2d& n_pos)
 {
 #if 0
   AIVehicleOrder order;

@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.8 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: projectile.cxx,v 1.9 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,6 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include <iostream>
 #include "property_set.hxx"
 #include "collideable.hxx"
 #include "view.hxx"
@@ -29,7 +30,7 @@
 #include "resource_manager.hxx"
 
 Projectile::Projectile (GameObjPtr p,
-			const CL_Vector& arg_pos, const CL_Vector& arg_velocity)
+			const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity)
   : sur (resources->get_sprite("feuerkraft/projectile")),
     tmp_pos (arg_pos),
     velocity (arg_velocity),
@@ -52,7 +53,7 @@ Projectile::~Projectile ()
 }
 
 void 
-Projectile::draw (View* view)
+Projectile::draw (ViewPtr view)
 {
   if (lifetime > 0) {
     view->draw (sur, pos);

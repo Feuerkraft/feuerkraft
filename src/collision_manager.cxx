@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.4 2003/05/10 22:41:28 grumbel Exp $
+//  $Id: collision_manager.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -86,19 +86,19 @@ CollisionManager::run()
         case SHAPE_CIRCLE:
           {
             BuildingMap* building_map = GameWorld::current()->get_buildingmap();
-            Building* building = building_map->get_building(CL_Vector(i->circle.x, i->circle.y));
+            Building* building = building_map->get_building(FloatVector2d(i->circle.x, i->circle.y));
             
             if (!building)
-              building = building_map->get_building(CL_Vector(i->circle.x - i->circle.radius, i->circle.y));
+              building = building_map->get_building(FloatVector2d(i->circle.x - i->circle.radius, i->circle.y));
 
             if (!building)
-              building = building_map->get_building(CL_Vector(i->circle.x + i->circle.radius, i->circle.y));
+              building = building_map->get_building(FloatVector2d(i->circle.x + i->circle.radius, i->circle.y));
 
             if (!building)
-              building = building_map->get_building(CL_Vector(i->circle.x, i->circle.y - i->circle.radius));
+              building = building_map->get_building(FloatVector2d(i->circle.x, i->circle.y - i->circle.radius));
 
             if (!building)
-              building = building_map->get_building(CL_Vector(i->circle.x, i->circle.y + i->circle.radius));
+              building = building_map->get_building(FloatVector2d(i->circle.x, i->circle.y + i->circle.radius));
             
             if (building)
               {

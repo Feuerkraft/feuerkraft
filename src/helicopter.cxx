@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: helicopter.cxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 #include "helicopter.hxx"
 #include "resource_manager.hxx"
 
-Helicopter::Helicopter(CL_Vector arg_pos) 
+Helicopter::Helicopter(FloatVector2d arg_pos) 
   : rotor (resources->get_sprite ("feuerkraft/rotor")),
     heli (resources->get_sprite ("feuerkraft/helicopter")),
     heli_shadow (resources->get_sprite ("feuerkraft/helicopter_shadow")),
@@ -36,7 +36,8 @@ Helicopter::Helicopter(CL_Vector arg_pos)
     energie (100),
     destroyed (false)
 {
-  pos = arg_pos;
+  pos.x = arg_pos.x;
+  pos.y = arg_pos.y;
 }
 
 Helicopter::~Helicopter ()
@@ -48,7 +49,7 @@ Helicopter::draw (View* view)
 {
   if (!destroyed)
     {
-      view->draw (heli_shadow, CL_Vector(pos.x + 25.0f, pos.y + 50.0f),
+      view->draw (heli_shadow, FloatVector2d(pos.x + 25.0f, pos.y + 50.0f),
 		  angle);
 
       view->draw (heli, pos, angle);
@@ -84,15 +85,16 @@ Helicopter::update (float delta)
 
   if (energie <= 0 && !destroyed)
     {
-      GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
+      GameWorld::current()->add(new Explosion (pos, Explosion::MEDIUM));
       destroyed = true;
     }
 
-  CL_Vector vel (-velocity, 0.0, 0.0);
+  FloatVector2d vel(-velocity, 0.0);
 
-  pos += vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+  vel.rotate(angle) * delta;
+  pos += vel;
 
-  pos += CL_Vector (0.0, strafe, 0.0).rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+  pos += FloatVector2d(0.0, strafe).rotate(angle) * delta;
 
   velocity /= 1.03f;
   strafe /= 1.03f;
@@ -100,11 +102,10 @@ Helicopter::update (float delta)
   if (fireing && !reloading)
     {
       float rot_angle = angle;
-      CL_Vector dir = CL_Vector (15.0, 0.0).rotate (rot_angle, CL_Vector (0.0, 0.0, 1.0));
-      GameWorld::current()->add (new Projectile (this, pos
-                                                 + CL_Vector (0.0, -5.0, 0.0).rotate (rot_angle,
-                                                                                      CL_Vector (0.0, 0.0, 1.0)),
-                                                 dir));
+      FloatVector2d dir = FloatVector2d (15.0, 0.0).rotate(rot_angle);
+      GameWorld::current()->add (new Projectile(this, pos
+                                                + FloatVector2d (0.0, -5.0).rotate (rot_angle),
+                                                dir));
       reloading = 4;
     }
 
@@ -163,7 +164,7 @@ Helicopter::stop_fire ()
 }
 
 bool 
-Helicopter::is_colliding (CL_Vector obj_pos)
+Helicopter::is_colliding (FloatVector2d obj_pos)
 {
   float range = 20.0; 
 

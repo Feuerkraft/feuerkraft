@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.12 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: guile.cxx,v 1.13 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -40,7 +40,7 @@ scm2string (SCM data)
   return str;
 }
 
-SCM vector2scm (const CL_Vector& vec)
+SCM vector2scm (const FloatVector2d& vec)
 {
   /** If this causes throuble on WIN32, replace it with gh_cons() */
   return SCM_BOOL_F; /*scm_listify (gh_symbol2scm ("pos"),

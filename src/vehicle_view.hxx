@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.hxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: vehicle_view.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -28,7 +28,7 @@ class VehicleView :
 {
 private:
   VehiclePtr vehicle;
-  CL_Vector pos;
+  FloatVector2d pos;
 
   float speed;
   float zoom_follower;

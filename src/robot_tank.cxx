@@ -1,4 +1,4 @@
-//  $Id: robot_tank.cxx,v 1.2 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: robot_tank.cxx,v 1.3 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 #include "view.hxx"
 #include "math.hxx"
 #include "resource_manager.hxx"
@@ -121,7 +121,7 @@ void
 RobotTank::draw (View* view)
 {
   // FIXME: Orientation is wrong
-  view->draw(sprite, CL_Vector(pos.x, pos.y), -orientation - Math::pi_2);
+  view->draw(sprite, FloatVector2d(pos.x, pos.y), -orientation - Math::pi_2);
 }
 
 void

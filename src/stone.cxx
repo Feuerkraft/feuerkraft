@@ -1,4 +1,4 @@
-//  $Id: stone.cxx,v 1.4 2003/05/18 09:38:43 grumbel Exp $
+//  $Id: stone.cxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include "resource_manager.hxx"
 #include "stone.hxx"
 
-Stone::Stone (const CL_Vector& arg_pos)
+Stone::Stone (const FloatVector2d& arg_pos)
   : sur (resources->get_sprite("feuerkraft/stone")),
     pos (arg_pos)
 {

@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.5 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: vehicle.hxx,v 1.6 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,22 +20,26 @@
 #ifndef VEHICLE_HH
 #define VEHICLE_HH
 
-#include "mine.hxx"
 #include "collideable.hxx"
+#include "vector2d.hxx"
 
 /** FIXME: Wrong name for this kind of class, better rename it at some point */
-class Vehicle :
-  public Collideable
+class Vehicle 
+  : public Collideable
 {
 protected:
-  CL_Vector pos;
+  FloatVector2d pos;
+  
+  float orientation;
+  float velocity;
+
   float ammo;
   float fuel;
 public:
   Vehicle ();
   virtual ~Vehicle () {}
 
-  virtual CL_Vector get_pos() { return pos; }
+  FloatVector2d get_pos() { return pos; }
   virtual float get_angle() { return 0.0; }
   virtual float get_ammo();
   virtual float get_fuel();

@@ -1,4 +1,4 @@
-//  $Id: jeep.cxx,v 1.3 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: jeep.cxx,v 1.4 2003/05/18 21:15:06 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,19 +18,21 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/gl.h>
+#include <iostream>
 #include "buildings/building_map.hxx"
 #include "jeep.hxx"
 #include "resource_manager.hxx"
 
 const float circle = 6.2831854f;
 
-Jeep::Jeep(CL_Vector arg_pos) 
+Jeep::Jeep(FloatVector2d arg_pos) 
   : energie (50),
     velocity (0.0),
     angle (0.0),
     flag (0)
 {
-  pos = arg_pos;
+  pos.x = arg_pos.x;
+  pos.y = arg_pos.y;
   jeep = resources->get_sprite ("feuerkraft/jeep");
 }
 
@@ -39,12 +41,9 @@ Jeep::update (float delta)
 {
   delta *= 50;
 
-  CL_Vector vel (-velocity, 0.0, 0.0);
-  
-  
-  CL_Vector tmp_pos = pos + vel.rotate (angle, CL_Vector (0.0, 0.0, 1.0)) * delta;
+  FloatVector2d tmp_pos = pos + FloatVector2d(-velocity, 0.0).rotate(angle) * delta;
 
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(pos.x, tmp_pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(pos.x, tmp_pos.y))))
     {
       pos.y = tmp_pos.y;
     }
@@ -53,7 +52,7 @@ Jeep::update (float delta)
       //velocity /= delta;
     }
 
-  if (!(GameWorld::current()->get_buildingmap ()->get_building (CL_Vector(tmp_pos.x, pos.y))))
+  if (!(GameWorld::current()->get_buildingmap ()->get_building (FloatVector2d(tmp_pos.x, pos.y))))
     {
       pos.x = tmp_pos.x;
     }
@@ -67,9 +66,8 @@ Jeep::update (float delta)
 
   if (flag)
     {
-      CL_Vector flag_offset (14.0, 0.0, 0.0);
-      flag->set_pos (pos
-		     + flag_offset.rotate (angle, CL_Vector (0.0, 0.0, 1.0)));
+      flag->set_pos (FloatVector2d(pos.x, pos.y)
+		     + FloatVector2d(14.0f, 0.0f).rotate(angle));
     }
 }
 
@@ -138,21 +136,15 @@ Jeep::collide (Projectile*)
 }
 
 void 
-Jeep::collide (Mine*)
+Jeep::collide (FloatVector2d force) 
 {
-  energie -= 25;
-}
-
-void 
-Jeep::collide (CL_Vector force) 
-{
-  energie -= int(force.norm ());
+  energie -= int(force.get_length());
   
-  std::cout << "Jeep: Got force: " << force.norm () << std::endl;
+  std::cout << "Jeep: Got force: " << force.get_length() << std::endl;
 }
 
 bool 
-Jeep::is_colliding (CL_Vector obj_pos)
+Jeep::is_colliding (FloatVector2d obj_pos)
 {
   float range = 6.0; 
 

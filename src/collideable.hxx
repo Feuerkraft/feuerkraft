@@ -1,4 +1,4 @@
-//  $Id: collideable.hxx,v 1.4 2003/05/11 11:20:44 grumbel Exp $
+//  $Id: collideable.hxx,v 1.5 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef COLLIDEABLE_HH
 #define COLLIDEABLE_HH
 
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 
 #include "game_obj.hxx"
 
@@ -35,12 +35,12 @@ public:
   virtual ~Collideable () {};
 
   /** Check if the collideable is colliding with a object at obj_pos */
-  virtual bool is_colliding (CL_Vector obj_pos) =0;
+  virtual bool is_colliding (FloatVector2d obj_pos) =0;
 
   /** Let the object collide with a Projectile, probally not usefull */
   virtual void collide (Projectile*) {}
 
-  virtual void collide (CL_Vector force) {}
+  virtual void collide (FloatVector2d force) {}
 };
 
 #endif

@@ -1,4 +1,4 @@
-//  $Id: tank.hxx,v 1.6 2003/05/13 17:30:27 grumbel Exp $
+//  $Id: tank.hxx,v 1.7 2003/05/18 21:15:06 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define TANK_HH
 
 #include <ClanLib/Display/sprite.h>
-#include <ClanLib/Core/Math/cl_vector.h>
+#include "vector2d.hxx"
 #include <deque>
 
 #include "mine.hxx"
@@ -60,7 +60,7 @@ private:
 
   Turret* turret;
 
-  std::deque<CL_Vector> smodpos;
+  std::deque<FloatVector2d> smodpos;
   float tmp_angle;
   int smod_step;
   int mine_reload_time;
@@ -73,7 +73,7 @@ private:
 public:
   friend class Turret;
 
-  Tank (const CL_Vector &arg_pos,
+  Tank (const FloatVector2d &arg_pos,
 	int reloading_speed, std::string tank, std::string turret, std::string fire);
   virtual ~Tank ();
   
@@ -115,14 +115,14 @@ public:
   
   int get_z_pos () { return destroyed ? 0 : 50; }
 
-  bool is_colliding (CL_Vector obj_pos);
+  bool is_colliding (FloatVector2d obj_pos);
 
   void on_collision(GameObj* obj);
   void on_collision_with_building(Building* building);
 
   void collide (Projectile*);
   void collide (Mine*);
-  virtual void collide (CL_Vector force);
+  virtual void collide (FloatVector2d force);
 
   virtual float get_physical_size () { return 3.0; }
   float get_velocity ();
