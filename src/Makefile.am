@@ -49,6 +49,8 @@ game_obj_factory.cxx \
 game_obj_factory.hxx \
 game_obj_data_factory.cxx \
 game_obj_data_factory.hxx \
+help.hxx \
+help.cxx \
 ipc.cxx \
 ipc.hxx \
 keys.hxx \

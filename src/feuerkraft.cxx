@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.43 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: feuerkraft.cxx,v 1.44 2003/06/05 21:34:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -37,6 +37,7 @@
 #include "tree.hxx"
 #include "math.hxx"
 #include "helicopter.hxx"
+#include "help.hxx"
 #include "turret.hxx"
 #include "soldier.hxx"
 #include "player_view.hxx"
@@ -235,6 +236,7 @@ Feuerkraft::main(int argc, char** argv)
       menu->add_item(menu_item_handle_mgr.create("Base  ->", new MenuItemFunctor()));
 
       screen.add(menu);
+      screen.add(new Help());
       screen.add(new Radar(FloatVector2d(64, 64), player));
       screen.add(new VehicleStatus(current_vehicle));
 
