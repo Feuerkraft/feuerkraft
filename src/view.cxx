@@ -65,11 +65,6 @@ View::get_y_offset ()
   return y1 - state.y_offset + (y2 - y1)/2; 
 }
 
-int View::get_x1 () { return x1; }
-int View::get_x2 () { return x2; }
-int View::get_y1 () { return y1; }
-int View::get_y2 () { return y2; }
-
 void 
 View::set_view (int x_pos, int y_pos)
 {

@@ -85,10 +85,6 @@ public:
 
   int get_width ();
   int get_height ();
-  int get_x1 ();
-  int get_x2 ();
-  int get_y1 ();
-  int get_y2 ();
   
   /** Set the ViewUpdater. \a arg_updater will get deleted once it is
       no longer used */

@@ -51,13 +51,11 @@ FireParticle::update(float delta)
   // white  CL_Color(255, 255, 255);
 
   float factor = life_time * 3.0f;
-
-  /*CL_Color color(life_time >= 0.75 ? 255 : int(255 * (life_time - 0.75f)/0.25f),
+  
+  CL_Color color(life_time >= 0.75 ? 255 : int(255 * (life_time - 0.75f)/0.25f),
                  int(factor * 255),
-                 life_time >= 0.25 ? 255 : int(255 * (life_time - 0.25f)/0.75f));*/
-  CL_Color color(255, 0, 0);
-
-  sprite.set_color(color.red, color.green, color.blue, 0.0f);
+                 life_time >= 0.25 ? 255 : int(255 * (life_time - 0.25f)/0.75f));
+  sprite.set_color(color);
   sprite.set_alpha(1.0f - factor);
   sprite.set_scale(1.0 - factor/2, 1.0 - factor/2);
 }
