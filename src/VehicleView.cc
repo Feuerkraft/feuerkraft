@@ -1,4 +1,4 @@
-//  $Id: VehicleView.cc,v 1.7 2001/11/29 20:43:19 grumbel Exp $
+//  $Id: VehicleView.cc,v 1.8 2001/11/30 17:07:02 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -41,11 +41,13 @@ VehicleView::update (float time_delta)
 
   CL_Vector target = vehicle->get_pos ();
   set_zoom (1.0f);
-  /* Stuff for zoom out on acceleration
+  // Stuff for zoom out on acceleration
  
   float zoom = (-fabs(vehicle->get_velocity ()/10.0f) + 1.0);
-  set_zoom (zoom);
-  */
+  set_zoom (zoom*1.5f);
+
+  std::cout << "Vehicle: " << vehicle->get_velocity () << std::endl;
+
   if (!(pos == target))
     {
       CL_Vector direction = (target - pos);

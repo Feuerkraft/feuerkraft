@@ -1,4 +1,4 @@
-//  $Id: View.cc,v 1.11 2001/11/29 20:43:19 grumbel Exp $
+//  $Id: View.cc,v 1.12 2001/11/30 17:07:02 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -31,6 +31,8 @@ View::View (boost::dummy_ptr<GameWorld> arg_world,
 {
   x_offset -= x1;
   y_offset -= y1;
+  zoom = 1.0;
+  rotation = 0;
 }
 
 View::~View ()
@@ -51,6 +53,7 @@ View::draw ()
   CL_Display::push_clip_rect (CL_ClipRect (x1, y1, x2, y2));
   glPushMatrix ();
   glTranslated (400, 300, 0.0);
+  glScaled (zoom, zoom, 1.0);
   glRotated (rotation, 0, 0, 1.0);
   glTranslated (-400, -300, 0.0);
   world->draw (this);
@@ -81,17 +84,8 @@ View::set_zoom (float z)
 void 
 View::draw (CL_Surface& sur, const CL_Vector& pos)
 {
-  if (zoom == 1.0)
-    {   
-      sur.put_screen (int(pos.x + get_x_offset ()),
-		      int(pos.y + get_y_offset ()));
-    }
-  else
-    {
-      sur.put_screen (int(pos.x + get_x_offset ()) * zoom,
-		      int(pos.y + get_y_offset ()) * zoom,
-		      zoom, zoom);
-    }
+  sur.put_screen (int(pos.x + get_x_offset ()),
+		  int(pos.y + get_y_offset ()));
 }
 
 void 
@@ -104,34 +98,15 @@ View::draw (Sprite* sprite, const CL_Vector& pos, float angle)
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos)
 {
-  if (zoom == 1.0)
-    {
-      sur.put_screen (x_pos + get_x_offset (),
-		      y_pos + get_y_offset ());
-    }
-  else
-    {
-      sur.put_screen ((x_pos + get_x_offset ()) * zoom,
-		      (y_pos + get_y_offset ()) * zoom,
-		      zoom, zoom);
-    }
+  sur.put_screen (x_pos + get_x_offset (),
+		  y_pos + get_y_offset ());
 }
 
 void 
 View::draw (CL_Surface& sur, int x_pos, int y_pos, int frame)
 {
-  if (zoom == 1.0)
-    {
-      sur.put_screen (x_pos + get_x_offset (),
-		      y_pos + get_y_offset (), frame);  
-    }
-  else
-    {
-      sur.put_screen ((x_pos + get_x_offset ()) * zoom,
-		      (y_pos + get_y_offset ()) * zoom,
-		      zoom, zoom,
-		      frame);  
-    }
+  sur.put_screen (x_pos + get_x_offset (),
+		  y_pos + get_y_offset (), frame);  
 }
 
 void 

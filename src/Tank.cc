@@ -148,10 +148,10 @@ Tank::update (float delta)
     velocity = 0;
 
   // Terminal velocity
-  if (velocity > 2)
-    velocity = 2.0f;
-  else if (velocity < -1)
-    velocity = -1.0f;
+  if (velocity > 5)
+    velocity = 5.0f;
+  else if (velocity < -2)
+    velocity = -2.0f;
 
   CL_Vector vel (-velocity, 0.0);
   vel = vel.rotate (angle, // - fmod(angle, circle/16.0), 
@@ -201,7 +201,7 @@ Tank::set_angle (float arg_angle)
 void 
 Tank::increase_velocity (float delta)
 {
-  velocity += 0.5f * delta;
+  velocity += 0.3f * delta;
 
   fuel -= 0.0001 * delta;
 }
@@ -209,7 +209,7 @@ Tank::increase_velocity (float delta)
 void
 Tank::decrease_velocity (float delta)
 {
-  velocity -= 0.5f * delta;
+  velocity -= 0.3f * delta;
 }
 
 void 
