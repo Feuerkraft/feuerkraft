@@ -1,4 +1,4 @@
-//  $Id: ResourceManager.cxx,v 1.2 2002/04/07 17:19:34 grumbel Exp $
+//  $Id: ResourceManager.cxx,v 1.3 2002/04/07 18:26:07 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -36,22 +36,13 @@ ResourceManager::~ResourceManager ()
 CL_Surface
 ResourceManager::get_surface (const std::string& location)
 {
-  CL_PixelBuffer* buffer = new CL_PNGProvider ("data/images/" + location + ".png");
-  return CL_Surface (buffer, true);
+  return CL_Surface (location, resource_manager);
 }
 
 CL_Sprite
 ResourceManager::get_sprite (const std::string& location)
 {
-  /*
-  std::cout << "ResourceManager::get_sprite: " << location << std::endl;
-  CL_SpriteDescription desc;
-  desc.add_frame (new CL_PNGProvider ("data/images/" + location + ".png"), true);
-  
-  CL_Sprite sprite (desc);
-  sprite.set_translation_hotspot (origin_center);
-  return sprite;
-  */
+  std::cout << "Loading: " << location << std::endl;
   try {
     return CL_Sprite (location, resource_manager);
   } catch (CL_Error& err) {
@@ -60,7 +51,7 @@ ResourceManager::get_sprite (const std::string& location)
       return CL_Sprite (location, resource_manager2);
     } catch (CL_Error& err) {
       std::cout << "Bailout: " << err.message << std::endl;
-      assert (0);
+      cl_assert (0);
       return CL_Sprite ();
     }
   }
@@ -70,7 +61,7 @@ CL_Sprite*
 ResourceManager::get_sprite_ptr (const std::string& location)
 {
   std::cout << "ResourceManager::get_sprite_ptr: " << location << std::endl;
-  return new CL_Sprite ("pcxsprite", resource_manager);
+  return new CL_Sprite (get_sprite (location));
 }
 
 /* EOF */

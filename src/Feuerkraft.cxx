@@ -200,7 +200,7 @@ public:
 	//world->add (heli2);
 	world->add (tank1);
 	world->add (tank2);
-	world->add (new Background (world, resources->get_surface("feuerkraft/sand")));
+	world->add (new Background (world, resources->get_sprite("feuerkraft/sand")));
 	world->add (new Playfield (world));
 	world->add (new Flag (world, CL_Vector(200.0f, 200.f)));
 
