@@ -1,4 +1,4 @@
-//  $Id: TreeData.hxx,v 1.2 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: TreeData.hxx,v 1.3 2002/07/04 09:50:03 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,9 +25,13 @@
 #include <guile/gh.h>
 #include "GameObjData.hxx"
 
+
+
 class TreeData : public GameObjData
 {
 protected:
+  friend class Tree;
+
   CL_Vector pos;
   std::string name;
   // FIXME: Insert destruction status here

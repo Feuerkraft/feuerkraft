@@ -1,4 +1,4 @@
-//  $Id: GameObj.hxx,v 1.4 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: GameObj.hxx,v 1.5 2002/07/04 09:50:03 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -77,6 +77,11 @@ public:
 
   // @return true if the object can be removed from the world
   virtual bool removable () { return remove_me; }
+  
+  /** flip is called once after an update step is completly
+      finished. This is needed because collision detection is handled
+      outsite this gameobject */
+  virtual void flip () { /* do nothing */ }
 
   //
   virtual int  get_z_pos () { return 0; }

@@ -1,4 +1,4 @@
-//  $Id: Tree.cxx,v 1.7 2002/04/03 10:55:47 grumbel Exp $
+//  $Id: Tree.cxx,v 1.8 2002/07/04 09:50:03 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,11 +20,11 @@
 #include "ResourceManager.hxx"
 #include "Tree.hxx"
 
-Tree::Tree (boost::dummy_ptr<GameWorld>  w, const TreeData& data)
+Tree::Tree (boost::dummy_ptr<GameWorld>  w, const TreeData& arg_data)
   : GameObj (w),
-    TreeData (data),
-   sur (resources->get_sprite(name.c_str ())),
-   sur_shadow (resources->get_sprite((name + "_shadow").c_str ()))
+    data (arg_data),
+    sur (resources->get_sprite(data.name.c_str ())),
+    sur_shadow (resources->get_sprite((data.name + "_shadow").c_str ()))
 {
 }
 
@@ -35,14 +35,14 @@ Tree::~Tree ()
 void 
 Tree::draw (View* view)
 {
-  view->draw (sur_shadow, int(pos.x - 15), int(pos.y - 15));
-  view->draw (sur, pos);
+  view->draw (sur_shadow, int(data.pos.x - 15), int(data.pos.y - 15));
+  view->draw (sur, data.pos);
 }
 
 GameObjData* 
 Tree::get_data ()
 {
-  return this; 
+  return &data; 
 }
 
 /* EOF */

@@ -57,7 +57,7 @@ dnl 	echo "the file 'config.log' to see what went wrong"
 dnl 	exit
 dnl 	])
 
-AC_CHECK_LIB( clanDisplay2,   main,, [
+AC_CHECK_LIB( clanDisplay,   main,, [
 	echo "ClanLib installed, but -lclanCore not found, run 'ldconfig' and try again,"
 	echo "if that doesn't help have a look at the file config.log and look into"
 	echo "the FAQ."

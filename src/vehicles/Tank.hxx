@@ -1,4 +1,4 @@
-//  $Id: Tank.hxx,v 1.1 2002/03/10 19:56:02 grumbel Exp $
+//  $Id: Tank.hxx,v 1.2 2002/07/04 09:50:03 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,13 +20,24 @@
 #ifndef TANK_HXX
 #define TANK_HXX
 
+#include "TankData.hxx"
+
 /** Parent class for MammutTank and FoxTank, its in the hope they both
     will share quite a bit of code */
-class Tank
+class Tank : public GameObj
 {
 private:
+  TankData current_state;
+  TankData next_state;
 
 public:
+  Tank ();
+  
+  /** Update all generic tank data */
+  void update (const GameDelta& delta);
+  
+  /** copy next_state over current_state */
+  void flip ();
 };
 
 #endif

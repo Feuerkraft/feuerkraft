@@ -1,4 +1,4 @@
-//  $Id: GameWorld.cxx,v 1.10 2002/04/07 16:24:00 grumbel Exp $
+//  $Id: GameWorld.cxx,v 1.11 2002/07/04 09:50:03 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -186,9 +186,13 @@ GameWorld::update (float delta)
   objects.remove_if(is_removable ()); 
 #endif 
 
-  for (ObjIter i = objects.begin ();
-       i != objects.end (); ++i)
+  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
     (*i)->update (delta);
+
+  // FIXME: insert collision check here
+
+  for (ObjIter i = objects.begin (); i != objects.end (); ++i)
+    (*i)->flip ();
 }
 
 BuildingMap*

@@ -18,11 +18,8 @@
 /* Define to 1 if you have the `clanCore' library (-lclanCore). */
 #undef HAVE_LIBCLANCORE
 
-/* Define to 1 if you have the `clanDisplay2' library (-lclanDisplay2). */
-#undef HAVE_LIBCLANDISPLAY2
-
-/* Define to 1 if you have the `clanGL' library (-lclanGL). */
-#undef HAVE_LIBCLANGL
+/* Define to 1 if you have the `clanDisplay' library (-lclanDisplay). */
+#undef HAVE_LIBCLANDISPLAY
 
 /* Define to 1 if you have the `guile' library (-lguile). */
 #undef HAVE_LIBGUILE
