@@ -70,8 +70,8 @@ public:
       seconds -= delta;
       if (seconds < 0)
         {
-          func();
-          remove();
+          this->func();
+          this->remove();
         }
     }
   };// struct TimedTrigger
@@ -97,8 +97,8 @@ public:
         {
           if (int(unit->get_pos().x/40) == x && int(unit->get_pos().y/40) == y)
             {
-              func(SCM_MAKINUM(unit->get_id()));
-              remove();
+              this->func(SCM_MAKINUM(unit->get_id()));
+              this->remove();
             }
         }
     }

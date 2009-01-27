@@ -32,6 +32,8 @@
 #  include <direct.h>
 #endif
 
+#include <stdlib.h>
+#include <string.h>
 #include <cstdio>
 #include <iostream>
 #include <ClanLib/Core/System/clanstring.h>
