@@ -1,4 +1,4 @@
-//  $Id: multi_ground_map.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: multi_ground_map.hpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define MULTIGROUNDMAP_HXX
 
 #include <vector>
-#include "multi_ground_map_data.hxx"
-#include "ground_map.hxx"
+#include "multi_ground_map_data.hpp"
+#include "ground_map.hpp"
 
 class MultiGroundMap : public GroundMap,
 		       public MultiGroundMapData

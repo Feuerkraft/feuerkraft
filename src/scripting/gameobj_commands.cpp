@@ -1,4 +1,4 @@
-//  $Id: gameobj_commands.cxx,v 1.9 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: gameobj_commands.cpp,v 1.9 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,20 +17,20 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../guile.hxx"
-#include "../property_set.hxx"
-#include "../property.hxx"
+#include "../guile.hpp"
+#include "../property_set.hpp"
+#include "../property.hpp"
 
-#include "../satchel_charge.hxx"
-#include "../soldier.hxx"
-#include "../vehicles/vehicle.hxx"
-#include "../vehicles/helicopter.hxx"
-#include "../unit.hxx"
+#include "../satchel_charge.hpp"
+#include "../soldier.hpp"
+#include "../vehicles/vehicle.hpp"
+#include "../vehicles/helicopter.hpp"
+#include "../unit.hpp"
 
-#include "../game_obj.hxx"
-#include "../game_obj_manager.hxx"
-#include "../game_obj_factory.hxx"
-#include "gameobj_commands.hxx"
+#include "../game_obj.hpp"
+#include "../game_obj_manager.hpp"
+#include "../game_obj_factory.hpp"
+#include "gameobj_commands.hpp"
 
 SCM
 gameobj_get_property(int handle, const char* name)

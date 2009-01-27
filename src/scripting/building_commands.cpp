@@ -1,4 +1,4 @@
-//  $Id: building_commands.cxx,v 1.13 2003/06/23 09:04:10 grumbel Exp $
+//  $Id: building_commands.cpp,v 1.13 2003/06/23 09:04:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,15 +19,15 @@
 
 #include <iostream>
 #include <guile/gh.h>
-#include "../guile.hxx"
-#include "../game_world.hxx"
-#include "../property.hxx"
-#include "../property_set.hxx"
-#include "../buildings/building.hxx"
-#include "../buildings/custom_building.hxx"
-#include "../buildings/building_type_manager.hxx"
-#include "../buildings/building_manager.hxx"
-#include "building_commands.hxx"
+#include "../guile.hpp"
+#include "../game_world.hpp"
+#include "../property.hpp"
+#include "../property_set.hpp"
+#include "../buildings/building.hpp"
+#include "../buildings/custom_building.hpp"
+#include "../buildings/building_type_manager.hpp"
+#include "../buildings/building_manager.hpp"
+#include "building_commands.hpp"
 
 int
 building_create(int type, int x, int y)

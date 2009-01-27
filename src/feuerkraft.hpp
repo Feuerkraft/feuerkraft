@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.hxx,v 1.8 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: feuerkraft.hpp,v 1.8 2003/06/09 20:27:31 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -75,7 +75,7 @@ class CommandLineArguments;
    deleted by \c delete are named SomeObject*, while pointers which
    only hold references to objects managed and allocated elsewhere are
    named SomeObjectPtr. typedef for SomeObjectPtr should be in the
-   some_object.hxx file.
+   some_object.hpp file.
 */
 
 /** Command Line arguments in a parsed and easily accessible form,

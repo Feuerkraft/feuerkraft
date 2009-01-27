@@ -1,4 +1,4 @@
-//  $Id: custom_building.cxx,v 1.9 2003/06/23 08:43:32 grumbel Exp $
+//  $Id: custom_building.cpp,v 1.9 2003/06/23 08:43:32 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../alist.hxx"
-#include "../resource_manager.hxx"
-#include "custom_building.hxx"
+#include "../alist.hpp"
+#include "../resource_manager.hpp"
+#include "custom_building.hpp"
 
 CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
   : Building(lst)

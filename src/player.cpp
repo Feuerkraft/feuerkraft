@@ -1,4 +1,4 @@
-//  $Id: player.cxx,v 1.5 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: player.cpp,v 1.5 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <assert.h>
-#include "player.hxx"
+#include "player.hpp"
 
 Player::Player(Unit* arg_unit)
 {

@@ -1,4 +1,4 @@
-//  $Id: trigger_commands.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: trigger_commands.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../trigger_manager.hxx"
-#include "../scm_functor.hxx"
-#include "trigger_commands.hxx"
+#include "../trigger_manager.hpp"
+#include "../scm_functor.hpp"
+#include "trigger_commands.hpp"
 
 // FIXME: return handles to the triggers to allow removal of them
 

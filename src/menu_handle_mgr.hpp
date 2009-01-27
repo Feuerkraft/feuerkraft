@@ -1,4 +1,4 @@
-//  $Id: menu_handle_mgr.hxx,v 1.1 2003/06/06 09:49:35 grumbel Exp $
+//  $Id: menu_handle_mgr.hpp,v 1.1 2003/06/06 09:49:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef HEADER_MENU_HANDLE_MGR_HXX
 #define HEADER_MENU_HANDLE_MGR_HXX
 
-#include "menu.hxx"
-#include "menu_item.hxx"
-#include "handle_manager.hxx"
+#include "menu.hpp"
+#include "menu_item.hpp"
+#include "handle_manager.hpp"
 
 extern HandleManager<Menu>     menu_handle_mgr;
 extern HandleManager<MenuItem> menu_item_handle_mgr;

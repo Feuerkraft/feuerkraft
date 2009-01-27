@@ -1,4 +1,4 @@
-//  $Id: guile.cxx,v 1.18 2003/08/20 00:15:10 grumbel Exp $
+//  $Id: guile.cpp,v 1.18 2003/08/20 00:15:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #include <guile/gh.h>
 #include <ClanLib/Core/System/cl_assert.h>
 
-#include "property.hxx"
-#include "property_set.hxx"
-#include "guile.hxx"
+#include "property.hpp"
+#include "property_set.hpp"
+#include "guile.hpp"
 
 namespace Guile {
 std::string

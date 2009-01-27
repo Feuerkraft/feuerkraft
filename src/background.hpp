@@ -1,4 +1,4 @@
-//  $Id: background.hxx,v 1.9 2003/10/20 21:30:09 grumbel Exp $
+//  $Id: background.hpp,v 1.9 2003/10/20 21:30:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,7 +23,7 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
 
-#include "game_obj.hxx"
+#include "game_obj.hpp"
 
 /** should be moved to groundmaps/.. and renamed to BaseGroundMap or
     something like that */

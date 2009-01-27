@@ -23,7 +23,7 @@
 #include <queue>
 #include <string>
 #include <guile/gh.h>
-#include "input_manager_impl.hxx"
+#include "input_manager_impl.hpp"
 
 /** Playback class for events recorded my the InputRecorder */
 class InputManagerPlayer : public InputManagerImpl

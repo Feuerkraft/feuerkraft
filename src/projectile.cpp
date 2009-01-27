@@ -1,4 +1,4 @@
-//  $Id: projectile.cxx,v 1.14 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: projectile.cpp,v 1.14 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,16 +18,16 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "property_set.hxx"
-#include "view.hxx"
-#include "collision_manager.hxx"
-#include "explosion.hxx"
-#include "buildings/building.hxx"
-#include "buildings/building_map.hxx"
-#include "game_obj_manager.hxx"
-#include "projectile.hxx"
-#include "vehicles/vehicle.hxx"
-#include "resource_manager.hxx"
+#include "property_set.hpp"
+#include "view.hpp"
+#include "collision_manager.hpp"
+#include "explosion.hpp"
+#include "buildings/building.hpp"
+#include "buildings/building_map.hpp"
+#include "game_obj_manager.hpp"
+#include "projectile.hpp"
+#include "vehicles/vehicle.hpp"
+#include "resource_manager.hpp"
 
 Projectile::Projectile (GameObj* p,
 			const FloatVector2d& arg_pos, const FloatVector2d& arg_velocity)

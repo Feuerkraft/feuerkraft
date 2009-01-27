@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.hxx,v 1.15 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: ai_vehicle.hpp,v 1.15 2003/06/08 15:31:27 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,13 +21,13 @@
 #define HEADER_AI_VEHICLE_HXX
 
 #include <list>
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 #include <ClanLib/Display/sprite.h>
 
-#include "energie.hxx"
-#include "line_segments.hxx"
-#include "sequence_manager.hxx"
-#include "vehicles/vehicle.hxx"
+#include "energie.hpp"
+#include "line_segments.hpp"
+#include "sequence_manager.hpp"
+#include "vehicles/vehicle.hpp"
 
 class SmokeEmitter;
 class LevelMap;

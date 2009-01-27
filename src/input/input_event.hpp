@@ -1,4 +1,4 @@
-//  $Id: input_event.hxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: input_event.hpp,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "input_button.hxx"
-#include "button_axis.hxx"
+#include "input_button.hpp"
+#include "button_axis.hpp"
 
 ButtonAxis::ButtonAxis(InputButton* left, InputButton* right)
   : left(left), right(right)

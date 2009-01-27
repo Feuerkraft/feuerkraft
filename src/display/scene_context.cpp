@@ -19,7 +19,7 @@
 
 #include <ClanLib/display.h>
 #include <ClanLib/gl.h>
-#include "scene_context.hxx"
+#include "scene_context.hpp"
 
 class SceneContextImpl
 {

@@ -1,4 +1,4 @@
-//  $Id: handle_manager.hxx,v 1.3 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: handle_manager.hpp,v 1.3 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

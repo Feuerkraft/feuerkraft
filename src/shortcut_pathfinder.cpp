@@ -1,4 +1,4 @@
-//  $Id: shortcut_pathfinder.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: shortcut_pathfinder.cpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include <ClanLib/core.h>
 #include <iostream>
 #include <unistd.h>
-#include "shortcut_pathfinder.hxx"
+#include "shortcut_pathfinder.hpp"
 
 struct NodeCost;
 struct NodeWalkable;
@@ -185,7 +185,7 @@ int main()
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 shortcut_pathfinder.cxx  -o shortcut_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 shortcut_pathfinder.cpp  -o shortcut_pathfinder -lclanCore"
 // End:
 
 /* EOF */

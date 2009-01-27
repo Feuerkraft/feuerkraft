@@ -1,4 +1,4 @@
-//  $Id: tree.cxx,v 1.12 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: tree.cpp,v 1.12 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,12 +18,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "assert.hxx"
-#include "view.hxx"
-#include "property_set.hxx"
-#include "resource_manager.hxx"
-#include "alist.hxx"
-#include "tree.hxx"
+#include "assert.hpp"
+#include "view.hpp"
+#include "property_set.hpp"
+#include "resource_manager.hpp"
+#include "alist.hpp"
+#include "tree.hpp"
 
 Tree::Tree (const AList& lst)
 {

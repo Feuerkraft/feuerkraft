@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle.cxx,v 1.18 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: ai_vehicle.cpp,v 1.18 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,16 +19,16 @@
 
 #include <ClanLib/Display/display.h>
 #include <math.h>
-#include "resource_manager.hxx"
-#include "game_world.hxx"
-#include "particles/smoke_particle.hxx"
-#include "collision_manager.hxx"
-#include "ai_vehicle.hxx"
-#include "projectile.hxx"
-#include "property_set.hxx"
-#include "mine.hxx"
-#include "particles/smoke_emitter.hxx"
-#include "level_map.hxx"
+#include "resource_manager.hpp"
+#include "game_world.hpp"
+#include "particles/smoke_particle.hpp"
+#include "collision_manager.hpp"
+#include "ai_vehicle.hpp"
+#include "projectile.hpp"
+#include "property_set.hpp"
+#include "mine.hpp"
+#include "particles/smoke_emitter.hpp"
+#include "level_map.hpp"
 
 AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
   : destroyed(false),

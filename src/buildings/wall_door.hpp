@@ -1,4 +1,4 @@
-//  $Id: wall_door.hxx,v 1.10 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: wall_door.hpp,v 1.10 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,8 +23,8 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Core/Math/cl_vector.h>
 
-#include "../vector2d.hxx"
-#include "building.hxx"
+#include "../vector2d.hpp"
+#include "building.hpp"
 
 class View;
 class Radar;

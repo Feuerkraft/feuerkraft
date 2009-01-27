@@ -1,4 +1,4 @@
-//  $Id: comm_commands.cxx,v 1.3 2003/06/05 21:17:11 grumbel Exp $
+//  $Id: comm_commands.cpp,v 1.3 2003/06/05 21:17:11 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,9 @@
 
 #include <iostream>
 #include <sstream>
-#include "../message_buffer.hxx"
-#include "../communication_dialog.hxx"
-#include "comm_commands.hxx"
+#include "../message_buffer.hpp"
+#include "../communication_dialog.hpp"
+#include "comm_commands.hpp"
 
 void
 comm_send_message(int color, const char* str) 

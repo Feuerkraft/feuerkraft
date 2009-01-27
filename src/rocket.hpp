@@ -20,8 +20,8 @@
 #ifndef HEADER_ROCKET_HXX
 #define HEADER_ROCKET_HXX
 
-#include "vector2d.hxx"
-#include "game_obj.hxx"
+#include "vector2d.hpp"
+#include "game_obj.hpp"
 
 /** */
 class Rocket : public GameObj

@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.cxx,v 1.11 2003/06/06 14:25:47 grumbel Exp $
+//  $Id: vehicle_view.cpp,v 1.11 2003/06/06 14:25:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <math.h>
-#include "vehicle_view.hxx"
+#include "vehicle_view.hpp"
 
 VehicleViewUpdater::VehicleViewUpdater (Unit* arg_unit)
   : unit(arg_unit)

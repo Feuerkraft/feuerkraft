@@ -1,4 +1,4 @@
-//  $Id: screen.hxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: screen.hpp,v 1.8 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define SCREEN_HH
 
 #include <vector>
-#include "gui_obj.hxx"
+#include "gui_obj.hpp"
 
 /** A screen is a collection of gui objects, it basically represents a
     complete screen. */

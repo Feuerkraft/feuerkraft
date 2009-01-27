@@ -1,4 +1,4 @@
-//  $Id: menu_handle_mgr.cxx,v 1.1 2003/06/06 09:49:35 grumbel Exp $
+//  $Id: menu_handle_mgr.cpp,v 1.1 2003/06/06 09:49:35 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "menu_handle_mgr.hxx"
+#include "menu_handle_mgr.hpp"
 
 HandleManager<Menu>     menu_handle_mgr;
 HandleManager<MenuItem> menu_item_handle_mgr;

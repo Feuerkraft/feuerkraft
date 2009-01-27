@@ -1,4 +1,4 @@
-//  $Id: player_view.cxx,v 1.4 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: player_view.cpp,v 1.4 2003/06/04 13:10:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "player.hxx"
-#include "player_view.hxx"
+#include "player.hpp"
+#include "player_view.hpp"
 
 PlayerViewUpdater::PlayerViewUpdater(Player* arg_player)
   : VehicleViewUpdater(arg_player->get_current_unit()),

@@ -1,4 +1,4 @@
-//  $Id: start_screen.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: start_screen.cpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Core/System/system.h>
-#include "start_screen.hxx"
-#include "resource_manager.hxx"
+#include "start_screen.hpp"
+#include "resource_manager.hpp"
 
 StartScreen::StartScreen (CL_DisplayWindow* arg_display)
   : display (arg_display),

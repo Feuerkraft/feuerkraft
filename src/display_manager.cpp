@@ -1,4 +1,4 @@
-//  $Id: display_manager.cxx,v 1.6 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: display_manager.cpp,v 1.6 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,15 +18,15 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "assert.hxx"
-#include "help.hxx"
-#include "radar.hxx"
-#include "menu.hxx"
-#include "level_map.hxx"
-#include "vehicle_status.hxx"
-#include "message_buffer.hxx"
-#include "communication_dialog.hxx"
-#include "display_manager.hxx"
+#include "assert.hpp"
+#include "help.hpp"
+#include "radar.hpp"
+#include "menu.hpp"
+#include "level_map.hpp"
+#include "vehicle_status.hpp"
+#include "message_buffer.hpp"
+#include "communication_dialog.hpp"
+#include "display_manager.hpp"
 
 extern Player*  player;
 DisplayManager* DisplayManager::current_ = 0;

@@ -1,4 +1,4 @@
-//  $Id: radar.hxx,v 1.12 2003/06/23 10:01:41 grumbel Exp $
+//  $Id: radar.hpp,v 1.12 2003/06/23 10:01:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #ifndef RADAR_HH
 #define RADAR_HH
 
-#include "vector2d.hxx"
-#include "game_world.hxx"
-#include "gui_obj.hxx"
-#include "resource_manager.hxx"
+#include "vector2d.hpp"
+#include "game_world.hpp"
+#include "gui_obj.hpp"
+#include "resource_manager.hpp"
 
 class Building;
 class Player;

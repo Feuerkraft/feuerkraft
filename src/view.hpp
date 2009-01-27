@@ -1,4 +1,4 @@
-//  $Id: view.hxx,v 1.14 2003/10/20 21:30:09 grumbel Exp $
+//  $Id: view.hpp,v 1.14 2003/10/20 21:30:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #ifndef VIEW_HH
 #define VIEW_HH
 
-#include "view_properties.hxx"
-#include "vector2d.hxx"
-#include "display/drawing_context.hxx"
-#include "display/scene_context.hxx"
+#include "view_properties.hpp"
+#include "vector2d.hpp"
+#include "display/drawing_context.hpp"
+#include "display/scene_context.hpp"
 
 class CL_Sprite;
 class Color;

@@ -1,4 +1,4 @@
-//  $Id: astar_pathfinder.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: astar_pathfinder.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include <ClanLib/core.h>
 #include <iostream>
 #include <unistd.h>
-#include "astar_pathfinder.hxx"
+#include "astar_pathfinder.hpp"
 
 AStarPathfinder::AStarPathfinder(Field<int>* arg_field)
   : field(*arg_field),
@@ -329,7 +329,7 @@ int main()
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -Wall -O2 astar_pathfinder.cxx  -o astar_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -Wall -O2 astar_pathfinder.cpp  -o astar_pathfinder -lclanCore"
 // End:
 
 /* EOF */

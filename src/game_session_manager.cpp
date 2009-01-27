@@ -1,4 +1,4 @@
-//  $Id: game_session_manager.cxx,v 1.1 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: game_session_manager.cpp,v 1.1 2003/06/10 00:38:50 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "path_manager.hxx"
-#include "game_session.hxx"
-#include "game_session_manager.hxx"
+#include "path_manager.hpp"
+#include "game_session.hpp"
+#include "game_session_manager.hpp"
 
 GameSessionManager* GameSessionManager::instance_ = 0;
 

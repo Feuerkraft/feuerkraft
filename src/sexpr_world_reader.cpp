@@ -1,4 +1,4 @@
-//  $Id: sexpr_world_reader.cxx,v 1.6 2003/08/20 00:15:10 grumbel Exp $
+//  $Id: sexpr_world_reader.cpp,v 1.6 2003/08/20 00:15:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <assert.h>
-#include "guile.hxx"
-#include "world_builder.hxx"
-#include "sexpr_world_reader.hxx"
+#include "guile.hpp"
+#include "world_builder.hpp"
+#include "sexpr_world_reader.hpp"
 
 SexprWorldReader::SexprWorldReader(const std::string& arg_filename, 
                                    WorldBuilder* arg_builder)

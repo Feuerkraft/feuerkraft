@@ -1,4 +1,4 @@
-//  $Id: menu_item.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: menu_item.cpp,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "fonts.hxx"
-#include "display_manager.hxx"
-#include "menu_item.hxx"
+#include "fonts.hpp"
+#include "display_manager.hpp"
+#include "menu_item.hpp"
 
 MenuItemSubMenuFunctor::MenuItemSubMenuFunctor(Menu* arg_submenu)
   : submenu(arg_submenu)

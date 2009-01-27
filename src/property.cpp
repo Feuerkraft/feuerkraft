@@ -1,4 +1,4 @@
-//  $Id: property.cxx,v 1.7 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: property.cpp,v 1.7 2003/06/09 20:27:31 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include <iostream>
 #include <assert.h>
 #include <ClanLib/Core/System/clanstring.h>
-#include "property.hxx"
+#include "property.hpp"
 
 Property::Property(const std::string& arg_name)
   : name(arg_name), type(T_EMPTY)

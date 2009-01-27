@@ -1,4 +1,4 @@
-//  $Id: fire_particle.cxx,v 1.2 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: fire_particle.cpp,v 1.2 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/color.h>
-#include "../math.hxx"
-#include "../view.hxx"
-#include "../resource_manager.hxx"
-#include "fire_particle.hxx"
+#include "../math.hpp"
+#include "../view.hpp"
+#include "../resource_manager.hpp"
+#include "fire_particle.hpp"
 
 FireParticle::FireParticle(const FloatVector2d& arg_pos)
   : sprite(resources->get_sprite("feuerkraft/firep")),

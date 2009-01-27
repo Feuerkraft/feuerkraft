@@ -1,4 +1,4 @@
-//  $Id: grid_map.cxx,v 1.11 2003/10/20 20:58:40 grumbel Exp $
+//  $Id: grid_map.cpp,v 1.11 2003/10/20 20:58:40 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "grid_tile.hxx"
-#include "../path_manager.hxx"
-#include "grid_map.hxx"
+#include "grid_tile.hpp"
+#include "../path_manager.hpp"
+#include "grid_map.hpp"
 
 GridMap::GridMap (const GridMapData& data)
   : GridMapData (data),

@@ -1,4 +1,4 @@
-//  $Id: helicopter.cxx,v 1.11 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: helicopter.cpp,v 1.11 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,15 +18,15 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../alist.hxx"
-#include "../projectile.hxx"
-#include "../explosion.hxx"
-#include "../vehicle_ai.hxx"
-#include "../ai_manager.hxx"
-#include "../rocket.hxx"
-#include "../resource_manager.hxx"
-#include "../math.hxx"
-#include "helicopter.hxx"
+#include "../alist.hpp"
+#include "../projectile.hpp"
+#include "../explosion.hpp"
+#include "../vehicle_ai.hpp"
+#include "../ai_manager.hpp"
+#include "../rocket.hpp"
+#include "../resource_manager.hpp"
+#include "../math.hpp"
+#include "helicopter.hpp"
 
 Helicopter::Helicopter(const AList& lst)
   : strafe (0.0),

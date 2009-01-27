@@ -1,4 +1,4 @@
-//  $Id: vehicle_view.hxx,v 1.10 2003/06/04 13:10:09 grumbel Exp $
+//  $Id: vehicle_view.hpp,v 1.10 2003/06/04 13:10:09 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #ifndef HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
 #define HEADER_FEUERKRAFT_VEHICLEVIEWUPDATER_HH
 
-#include "vehicles/vehicle.hxx"
-#include "view.hxx"
+#include "vehicles/vehicle.hpp"
+#include "view.hpp"
 
 // FIXME: Rename to UnitViewUpdater
 class VehicleViewUpdater : public ViewUpdater

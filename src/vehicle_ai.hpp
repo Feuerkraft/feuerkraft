@@ -1,4 +1,4 @@
-//  $Id: vehicle_ai.hxx,v 1.2 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: vehicle_ai.hpp,v 1.2 2003/06/18 13:03:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #ifndef HEADER_VEHICLE_AI_HXX
 #define HEADER_VEHICLE_AI_HXX
 
-#include "line_segments.hxx"
-#include "input/controller.hxx"
-#include "ai.hxx"
-#include "vehicles/vehicle.hxx"
+#include "line_segments.hpp"
+#include "input/controller.hpp"
+#include "ai.hpp"
+#include "vehicles/vehicle.hpp"
 
 /** class for AI driven vehicles */
 class VehicleAI : public AI

@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.cxx,v 1.9 2003/06/08 15:31:27 grumbel Exp $
+//  $Id: vehicle_status.cpp,v 1.9 2003/06/08 15:31:27 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "resource_manager.hxx"
-#include "player.hxx"
-#include "vehicles/vehicle.hxx"
-#include "vehicle_status.hxx"
+#include "resource_manager.hpp"
+#include "player.hpp"
+#include "vehicles/vehicle.hpp"
+#include "vehicle_status.hpp"
 
 extern Player* player;
 

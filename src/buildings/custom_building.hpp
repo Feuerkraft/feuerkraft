@@ -1,4 +1,4 @@
-//  $Id: custom_building.hxx,v 1.6 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: custom_building.hpp,v 1.6 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_CUSTOM_BUILDING_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "../energie.hxx"
-#include "building.hxx"
+#include "../energie.hpp"
+#include "building.hpp"
 
 class AList;
 

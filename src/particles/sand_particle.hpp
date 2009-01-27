@@ -1,4 +1,4 @@
-//  $Id: sand_particle.hxx,v 1.1 2003/06/18 13:05:35 grumbel Exp $
+//  $Id: sand_particle.hpp,v 1.1 2003/06/18 13:05:35 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef SANDPARTICLE_HXX
 #define SANDPARTICLE_HXX
 
-#include "../view.hxx"
-#include "../resource_manager.hxx"
-#include "particle.hxx"
+#include "../view.hpp"
+#include "../resource_manager.hpp"
+#include "particle.hpp"
 
 class SandParticle : public Particle
 {

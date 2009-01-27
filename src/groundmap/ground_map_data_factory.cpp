@@ -1,4 +1,4 @@
-//  $Id: ground_map_data_factory.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: ground_map_data_factory.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "tile_map_data.hxx"
-#include "multi_ground_map.hxx"
-#include "grid_map_data.hxx"
-#include "ground_map_data_factory.hxx"
+#include "tile_map_data.hpp"
+#include "multi_ground_map.hpp"
+#include "grid_map_data.hpp"
+#include "ground_map_data_factory.hpp"
 
 GroundMapData* 
 GroundMapDataFactory::create (SCM desc)

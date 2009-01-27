@@ -1,4 +1,4 @@
-//  $Id: vehicle_ai.cxx,v 1.2 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: vehicle_ai.cpp,v 1.2 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "math.hxx"
-#include "vehicles/vehicle.hxx"
-#include "vehicle_ai.hxx"
+#include "math.hpp"
+#include "vehicles/vehicle.hpp"
+#include "vehicle_ai.hpp"
 
 VehicleAI::VehicleAI(Vehicle* arg_vehicle)
   : vehicle(arg_vehicle)

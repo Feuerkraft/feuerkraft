@@ -1,4 +1,4 @@
-//  $Id: player_commands.cxx,v 1.6 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: player_commands.cpp,v 1.6 2003/06/17 22:06:13 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,11 +18,11 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../game_obj.hxx"
-#include "../unit.hxx"
-#include "../player.hxx"
-#include "../game_obj_manager.hxx"
-#include "player_commands.hxx"
+#include "../game_obj.hpp"
+#include "../unit.hpp"
+#include "../player.hpp"
+#include "../game_obj_manager.hpp"
+#include "player_commands.hpp"
 
 extern Player* player;
 

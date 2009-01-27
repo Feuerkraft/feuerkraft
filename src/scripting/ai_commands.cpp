@@ -1,4 +1,4 @@
-//  $Id: ai_commands.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: ai_commands.cpp,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../soldier.hxx"
-#include "../ai_manager.hxx"
-#include "script_helper.hxx"
-#include "ai_commands.hxx"
+#include "../soldier.hpp"
+#include "../ai_manager.hpp"
+#include "script_helper.hpp"
+#include "ai_commands.hpp"
 
 void
 ai_goto(int handle, float x, float y)

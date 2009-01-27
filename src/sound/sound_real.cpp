@@ -1,4 +1,4 @@
-//  $Id: sound_real.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound_real.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,9 +23,9 @@
 #include <ClanLib/Core/System/error.h>
 
 #include <iostream>
-#include "../globals.hxx"
-#include "sound_res_mgr.hxx"
-#include "sound_real.hxx"
+#include "../globals.hpp"
+#include "sound_res_mgr.hpp"
+#include "sound_real.hpp"
 
 #ifdef HAVE_LIBCLANVORBIS
 #  include <ClanLib/vorbis.h>

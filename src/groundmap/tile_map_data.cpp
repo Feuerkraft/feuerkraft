@@ -1,4 +1,4 @@
-//  $Id: tile_map_data.cxx,v 1.5 2003/10/20 20:58:40 grumbel Exp $
+//  $Id: tile_map_data.cpp,v 1.5 2003/10/20 20:58:40 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #include <iostream>
 #include <ClanLib/Display/Providers/png_provider.h>
 
-#include "../path_manager.hxx"
-#include "tile_data_factory.hxx"
-#include "tile_map_data.hxx"
-#include "tile_map.hxx"
+#include "../path_manager.hpp"
+#include "tile_data_factory.hpp"
+#include "tile_map_data.hpp"
+#include "tile_map.hpp"
 
 TileMapData::TileMapData (SCM desc)
 {

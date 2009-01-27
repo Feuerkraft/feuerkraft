@@ -1,4 +1,4 @@
-//  $Id: fuelstation.hxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: fuelstation.hpp,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define FUELSTATION_HH
 
 #include <ClanLib/Display/sprite.h>
-#include "../view.hxx"
-#include "building.hxx"
+#include "../view.hpp"
+#include "building.hpp"
 
 class Fuelstation
   : public Building

@@ -1,4 +1,4 @@
-//  $Id: input_manager.cxx,v 1.4 2003/08/20 00:15:10 grumbel Exp $
+//  $Id: input_manager.cpp,v 1.4 2003/08/20 00:15:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -23,12 +23,12 @@
 #include <sstream>
 #include <ClanLib/Display/joystick.h>
 
-#include "../feuerkraft_error.hxx"
-#include "input_manager_custom.hxx"
-#include "input_manager_player.hxx"
-#include "input_manager_impl.hxx"
-#include "input_recorder.hxx"
-#include "input_manager.hxx"
+#include "../feuerkraft_error.hpp"
+#include "input_manager_custom.hpp"
+#include "input_manager_player.hpp"
+#include "input_manager_impl.hpp"
+#include "input_recorder.hpp"
+#include "input_manager.hpp"
 
 InputManagerImpl* InputManager::impl = 0;
 InputRecorder* InputManager::recorder = 0;

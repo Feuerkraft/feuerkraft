@@ -1,4 +1,4 @@
-//  $Id: mine.hxx,v 1.10 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: mine.hpp,v 1.10 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #ifndef MINE_HH
 #define MINE_HH
 
-#include "game_obj.hxx"
-#include "explosion.hxx"
+#include "game_obj.hpp"
+#include "explosion.hpp"
 
 class AList;
 

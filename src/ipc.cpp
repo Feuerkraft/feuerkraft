@@ -1,4 +1,4 @@
-//  $Id: ipc.cxx,v 1.1 2003/06/04 13:16:17 grumbel Exp $
+//  $Id: ipc.cpp,v 1.1 2003/06/04 13:16:17 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,7 +27,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#include "ipc.hxx"
+#include "ipc.hpp"
 
 IPC::IPC(const std::string& arg_filename)
   : filename(arg_filename)

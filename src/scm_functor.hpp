@@ -1,4 +1,4 @@
-//  $Id: scm_functor.hxx,v 1.5 2003/09/15 20:23:53 grumbel Exp $
+//  $Id: scm_functor.hpp,v 1.5 2003/09/15 20:23:53 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

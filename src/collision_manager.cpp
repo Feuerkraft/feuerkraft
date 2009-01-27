@@ -1,4 +1,4 @@
-//  $Id: collision_manager.cxx,v 1.9 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: collision_manager.cpp,v 1.9 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,15 +20,15 @@
 #include <iostream>
 #include <assert.h>
 #include <math.h>
-#include "math.hxx"
-#include "color.hxx"
-#include "view.hxx"
-#include "game_world.hxx"
-#include "buildings/building.hxx"
-#include "buildings/building_map.hxx"
-#include "collision_manager.hxx"
-#include "game_obj_manager.hxx"
-#include "display/drawing_context.hxx"
+#include "math.hpp"
+#include "color.hpp"
+#include "view.hpp"
+#include "game_world.hpp"
+#include "buildings/building.hpp"
+#include "buildings/building_map.hpp"
+#include "collision_manager.hpp"
+#include "game_obj_manager.hpp"
+#include "display/drawing_context.hpp"
 
 CollisionManager* CollisionManager::current_ = 0;
 

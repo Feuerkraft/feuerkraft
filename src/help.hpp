@@ -1,4 +1,4 @@
-//  $Id: help.hxx,v 1.1 2003/06/05 21:34:23 grumbel Exp $
+//  $Id: help.hpp,v 1.1 2003/06/05 21:34:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_HELP_HXX
 
 #include <ClanLib/Display/font.h>
-#include "gui_obj.hxx"
+#include "gui_obj.hpp"
 
 /** */
 class Help : public GuiObj

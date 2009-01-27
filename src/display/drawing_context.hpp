@@ -23,7 +23,7 @@
 #include <ClanLib/Core/Math/rect.h>
 #include <ClanLib/Display/color.h>
 #include <vector>
-#include "drawing_request.hxx"
+#include "drawing_request.hpp"
 
 class CL_Sprite;
 

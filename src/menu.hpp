@@ -1,4 +1,4 @@
-//  $Id: menu.hxx,v 1.5 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: menu.hpp,v 1.5 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_MENU_HXX
 
 #include <vector>
-#include "input/input_event.hxx"
-#include "gui_obj.hxx"
+#include "input/input_event.hpp"
+#include "gui_obj.hpp"
 
 class MenuItem;
 

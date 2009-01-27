@@ -1,4 +1,4 @@
-//  $Id: ai_manager.cxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: ai_manager.cpp,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <algorithm>
-#include "ai.hxx"
-#include "ai_manager.hxx"
+#include "ai.hpp"
+#include "ai_manager.hpp"
 
 AIManager* AIManager::instance_ = 0;
 

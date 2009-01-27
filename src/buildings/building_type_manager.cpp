@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.cxx,v 1.5 2003/06/23 09:56:39 grumbel Exp $
+//  $Id: building_type_manager.cpp,v 1.5 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,13 +19,13 @@
 
 #include <iostream>
 
-#include "wall_door.hxx"
-#include "wall.hxx"
-#include "tower.hxx"
-#include "fuelstation.hxx"
-#include "ammotent.hxx"
+#include "wall_door.hpp"
+#include "wall.hpp"
+#include "tower.hpp"
+#include "fuelstation.hpp"
+#include "ammotent.hpp"
 
-#include "building_type_manager.hxx"
+#include "building_type_manager.hpp"
 
 BuildingTypeManager* BuildingTypeManager::current_ = 0;
 

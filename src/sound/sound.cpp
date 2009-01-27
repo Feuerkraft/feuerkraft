@@ -1,4 +1,4 @@
-//  $Id: sound.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #include <ClanLib/Core/System/error.h>
 #include <iostream>
 #include <assert.h>
-#include "../path_manager.hxx"
-#include "../globals.hxx"
-#include "sound_dummy.hxx"
-#include "sound_real.hxx"
+#include "../path_manager.hpp"
+#include "../globals.hpp"
+#include "sound_dummy.hpp"
+#include "sound_real.hpp"
 
 PingusSound* PingusSound::sound;
 

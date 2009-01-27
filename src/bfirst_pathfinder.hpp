@@ -1,4 +1,4 @@
-//  $Id: bfirst_pathfinder.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: bfirst_pathfinder.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_BFIRST_PATHFINDER_HXX
 
 #include <list>
-#include "field.hxx"
-#include "pathfinder.hxx"
+#include "field.hpp"
+#include "pathfinder.hpp"
 
 /** Breadth First Pathfinder */
 class BFirstPathfinder
@@ -72,7 +72,7 @@ public:
 };
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -Wall -O2 bfirst_pathfinder.cxx  -o bfirst_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -Wall -O2 bfirst_pathfinder.cpp  -o bfirst_pathfinder -lclanCore"
 // End:
 
 #endif

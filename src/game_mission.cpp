@@ -1,4 +1,4 @@
-//  $Id: game_mission.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_mission.cpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,9 +19,9 @@
 
 #include <guile/gh.h>
 #include <iostream>
-#include "guile.hxx"
-#include "game_mission.hxx"
-#include "game_world.hxx"
+#include "guile.hpp"
+#include "game_mission.hpp"
+#include "game_world.hpp"
 
 GameMission::GameMission (SCM desc)
   : creation_time (0),

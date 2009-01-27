@@ -23,10 +23,10 @@
 #include <guile/gh.h>
 #include <ClanLib/Display/input_device.h>
 #include <ClanLib/Display/input_event.h>
-#include "input_event.hxx"
-#include "input_button.hxx"
-#include "input_axis.hxx"
-#include "input_manager_impl.hxx"
+#include "input_event.hpp"
+#include "input_button.hpp"
+#include "input_axis.hpp"
+#include "input_manager_impl.hpp"
 
 /** */
 class InputManagerCustom : public InputManagerImpl

@@ -1,4 +1,4 @@
-//  $Id: start_screen.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: start_screen.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>

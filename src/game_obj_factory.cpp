@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.cxx,v 1.10 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: game_obj_factory.cpp,v 1.10 2003/06/22 17:22:47 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,19 +18,19 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "property_set.hxx"
+#include "property_set.hpp"
 
 // GameObjs
-#include "vehicles/tank.hxx"
-#include "vehicles/helicopter.hxx"
-#include "tree.hxx"
-#include "marker.hxx"
-#include "mine.hxx"
-#include "soldier.hxx"
-#include "satchel_charge.hxx"
+#include "vehicles/tank.hpp"
+#include "vehicles/helicopter.hpp"
+#include "tree.hpp"
+#include "marker.hpp"
+#include "mine.hpp"
+#include "soldier.hpp"
+#include "satchel_charge.hpp"
 
-#include "game_obj.hxx"
-#include "game_obj_factory.hxx"
+#include "game_obj.hpp"
+#include "game_obj_factory.hpp"
 
 GameObjFactory* GameObjFactory::instance_ = 0;
 

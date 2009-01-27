@@ -22,7 +22,7 @@
 
 #include <map>
 #include <ClanLib/Display/sprite.h>
-#include "gui_obj.hxx"
+#include "gui_obj.hpp"
 
 /** */
 class CommunicationDialog : public GuiObj

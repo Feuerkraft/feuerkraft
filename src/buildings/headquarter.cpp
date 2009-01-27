@@ -1,4 +1,4 @@
-//  $Id: headquarter.cxx,v 1.9 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: headquarter.cpp,v 1.9 2003/06/22 19:22:56 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../radar.hxx"
-#include "../explosion.hxx"
-#include "../resource_manager.hxx"
-#include "headquarter.hxx"
+#include "../radar.hpp"
+#include "../explosion.hpp"
+#include "../resource_manager.hpp"
+#include "headquarter.hpp"
 
 Headquarter::Headquarter (const AList& lst)
   : Building (lst),

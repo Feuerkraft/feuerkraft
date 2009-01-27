@@ -1,4 +1,4 @@
-//  $Id: marker.cxx,v 1.3 2003/06/23 09:56:39 grumbel Exp $
+//  $Id: marker.cpp,v 1.3 2003/06/23 09:56:39 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,12 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "property_set.hxx"
-#include "resource_manager.hxx"
-#include "marker.hxx"
-#include "alist.hxx"
-#include "radar.hxx"
-#include "view.hxx"
+#include "property_set.hpp"
+#include "resource_manager.hpp"
+#include "marker.hpp"
+#include "alist.hpp"
+#include "radar.hpp"
+#include "view.hpp"
 
 Marker::Marker(const AList& lst)
 {

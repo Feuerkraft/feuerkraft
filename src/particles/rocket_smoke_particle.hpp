@@ -20,7 +20,7 @@
 #ifndef HEADER_ROCKET_SMOKE_PARTICLE_HXX
 #define HEADER_ROCKET_SMOKE_PARTICLE_HXX
 
-#include "particle.hxx"
+#include "particle.hpp"
 
 /** */
 class RocketSmokeParticle : public Particle

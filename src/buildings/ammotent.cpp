@@ -1,4 +1,4 @@
-//  $Id: ammotent.cxx,v 1.12 2003/06/22 18:34:52 grumbel Exp $
+//  $Id: ammotent.cpp,v 1.12 2003/06/22 18:34:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,13 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <math.h>
-#include "../color.hxx"
-#include "../game_obj_manager.hxx"
-#include "../radar.hxx"
-#include "../resource_manager.hxx"
-#include "../vehicles/vehicle.hxx"
-#include "../display/drawing_context.hxx"
-#include "ammotent.hxx"
+#include "../color.hpp"
+#include "../game_obj_manager.hpp"
+#include "../radar.hpp"
+#include "../resource_manager.hpp"
+#include "../vehicles/vehicle.hpp"
+#include "../display/drawing_context.hpp"
+#include "ammotent.hpp"
 
 Ammotent::Ammotent (const AList& lst)
   : Building (lst),

@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../view.hxx"
-#include "../resource_manager.hxx"
-#include "rocket_smoke_particle.hxx"
+#include "../view.hpp"
+#include "../resource_manager.hpp"
+#include "rocket_smoke_particle.hpp"
 
 RocketSmokeParticle::RocketSmokeParticle(const FloatVector2d& arg_pos)
 {

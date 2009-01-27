@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../guile.hxx"
-#include "input_manager_player.hxx"
+#include "../guile.hpp"
+#include "input_manager_player.hpp"
 
 InputManagerPlayer::InputManagerPlayer(const std::string& filename)
 {

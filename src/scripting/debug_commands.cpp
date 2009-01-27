@@ -1,4 +1,4 @@
-//  $Id: debug_commands.cxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: debug_commands.cpp,v 1.1 2003/06/18 13:04:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #include <string.h>
 #include <stdexcept>
 #include <iostream>
-#include "../globals.hxx"
-#include "debug_commands.hxx"
+#include "../globals.hpp"
+#include "debug_commands.hpp"
 
 static
 bool& debug_lookup_flag(const char* name)

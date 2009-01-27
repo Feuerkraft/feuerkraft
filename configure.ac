@@ -1,6 +1,6 @@
 AC_INIT(Feuerkraft, 0.1.1)
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_SRCDIR(src/feuerkraft.hxx)
+AC_CONFIG_SRCDIR(src/feuerkraft.hpp)
 AM_INIT_AUTOMAKE(dist-bzip2)
 
 AC_PROG_CXX

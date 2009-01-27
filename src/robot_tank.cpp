@@ -1,4 +1,4 @@
-//  $Id: robot_tank.cxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: robot_tank.cpp,v 1.6 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,11 +17,11 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "vector2d.hxx"
-#include "view.hxx"
-#include "math.hxx"
-#include "resource_manager.hxx"
-#include "robot_tank.hxx"
+#include "vector2d.hpp"
+#include "view.hpp"
+#include "math.hpp"
+#include "resource_manager.hpp"
+#include "robot_tank.hpp"
 
 RobotTank::RobotTank(float x_, float y_, float orientation_, float velocity_)
 {

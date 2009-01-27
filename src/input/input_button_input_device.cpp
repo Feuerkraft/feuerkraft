@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <ClanLib/Display/input_event.h>
-#include "input_button_input_device.hxx"
+#include "input_button_input_device.hpp"
 
 InputButtonInputDevice::InputButtonInputDevice(CL_InputDevice& dev_, int keycode_)
   : dev(dev_), keycode(keycode_)

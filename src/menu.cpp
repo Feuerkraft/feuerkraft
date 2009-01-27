@@ -1,4 +1,4 @@
-//  $Id: menu.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: menu.cpp,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,12 +18,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "assert.hxx"
-#include "display_manager.hxx"
-#include "fonts.hxx"
-#include "input/input_manager.hxx"
-#include "menu_item.hxx"
-#include "menu.hxx"
+#include "assert.hpp"
+#include "display_manager.hpp"
+#include "fonts.hpp"
+#include "input/input_manager.hpp"
+#include "menu_item.hpp"
+#include "menu.hpp"
 
 Menu::Menu()
 {

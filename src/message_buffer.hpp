@@ -1,4 +1,4 @@
-//  $Id: message_buffer.hxx,v 1.2 2003/06/08 15:49:00 grumbel Exp $
+//  $Id: message_buffer.hpp,v 1.2 2003/06/08 15:49:00 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_MESSAGE_BUFFER_HXX
 
 #include <vector>
-#include "gui_obj.hxx"
+#include "gui_obj.hpp"
 
 struct MessageBufferEntry {
   std::string message;

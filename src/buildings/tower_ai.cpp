@@ -1,4 +1,4 @@
-//  $Id: tower_ai.cxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: tower_ai.cpp,v 1.1 2003/06/18 13:04:21 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,11 +17,11 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../math.hxx"
-#include "../player.hxx"
-#include "../unit.hxx"
-#include "../property_set.hxx"
-#include "tower_ai.hxx"
+#include "../math.hpp"
+#include "../player.hpp"
+#include "../unit.hpp"
+#include "../property_set.hpp"
+#include "tower_ai.hpp"
 
 extern Player*  player;
 

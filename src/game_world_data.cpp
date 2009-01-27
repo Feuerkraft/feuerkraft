@@ -1,4 +1,4 @@
-//  $Id: game_world_data.cxx,v 1.7 2003/08/20 00:15:10 grumbel Exp $
+//  $Id: game_world_data.cpp,v 1.7 2003/08/20 00:15:10 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,14 +20,14 @@
 #include <typeinfo>
 #include <assert.h>
 #include <iostream>
-#include "guile.hxx"
-#include "game_world.hxx"
-#include "buildings/building_map_data.hxx"
-#include "groundmap/ground_map_data.hxx"
-#include "game_obj_data.hxx"
-#include "groundmap/ground_map_data_factory.hxx"
-#include "game_obj_data_factory.hxx"
-#include "game_world_data.hxx"
+#include "guile.hpp"
+#include "game_world.hpp"
+#include "buildings/building_map_data.hpp"
+#include "groundmap/ground_map_data.hpp"
+#include "game_obj_data.hpp"
+#include "groundmap/ground_map_data_factory.hpp"
+#include "game_obj_data_factory.hpp"
+#include "game_world_data.hpp"
 
 GameWorldData::GameWorldData (SCM desc)
   : needs_delete (true)

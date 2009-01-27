@@ -1,4 +1,4 @@
-//  $Id: sound_commands.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound_commands.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../sound/sound.hxx"
-#include "sound_commands.hxx"
+#include "../sound/sound.hpp"
+#include "sound_commands.hpp"
 
 void
 sound_play_music(const char* name)

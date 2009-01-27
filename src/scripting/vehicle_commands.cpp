@@ -1,4 +1,4 @@
-//  $Id: vehicle_commands.cxx,v 1.2 2003/06/07 18:57:43 grumbel Exp $
+//  $Id: vehicle_commands.cpp,v 1.2 2003/06/07 18:57:43 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../vehicles/helicopter.hxx"
-#include "../vehicles/vehicle.hxx"
-#include "../game_obj_manager.hxx"
-#include "vehicle_commands.hxx"
+#include "../vehicles/helicopter.hpp"
+#include "../vehicles/vehicle.hpp"
+#include "../game_obj_manager.hpp"
+#include "vehicle_commands.hpp"
 
 int vehicle_find_nearest(float x, float y, float max_distance)
 {

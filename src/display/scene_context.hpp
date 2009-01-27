@@ -20,7 +20,7 @@
 #ifndef HEADER_SCENE_CONTEXT_HXX
 #define HEADER_SCENE_CONTEXT_HXX
 
-#include "drawing_context.hxx"
+#include "drawing_context.hpp"
 
 class SceneContextImpl;
 

@@ -1,4 +1,4 @@
-//  $Id: soldier.cxx,v 1.18 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: soldier.cpp,v 1.18 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,14 +19,14 @@
 
 #include <iostream>
 
-#include "buildings/building_map.hxx"
-#include "alist.hxx"
-#include "math.hxx"
-#include "view.hxx"
-#include "input/controller.hxx"
-#include "property_set.hxx"
-#include "ai_manager.hxx"
-#include "soldier.hxx"
+#include "buildings/building_map.hpp"
+#include "alist.hpp"
+#include "math.hpp"
+#include "view.hpp"
+#include "input/controller.hpp"
+#include "property_set.hpp"
+#include "ai_manager.hpp"
+#include "soldier.hpp"
 
 Soldier::Soldier(const AList& lst) 
   : ai(0),

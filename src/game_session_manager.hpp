@@ -1,4 +1,4 @@
-//  $Id: game_session_manager.hxx,v 1.1 2003/06/10 00:38:50 grumbel Exp $
+//  $Id: game_session_manager.hpp,v 1.1 2003/06/10 00:38:50 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

@@ -19,12 +19,12 @@
 
 #include <ClanLib/Display/display.h>
 #include <ClanLib/Core/System/system.h>
-#include "fonts.hxx"
-#include "unit.hxx"
-#include "view.hxx"
-#include "resource_manager.hxx"
-#include "game_obj_manager.hxx"
-#include "communication_dialog.hxx"
+#include "fonts.hpp"
+#include "unit.hpp"
+#include "view.hpp"
+#include "resource_manager.hpp"
+#include "game_obj_manager.hpp"
+#include "communication_dialog.hpp"
 
 CommunicationDialog* CommunicationDialog::current_ = 0;
 

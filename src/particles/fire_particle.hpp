@@ -1,4 +1,4 @@
-//  $Id: fire_particle.hxx,v 1.1 2003/06/07 17:18:34 grumbel Exp $
+//  $Id: fire_particle.hpp,v 1.1 2003/06/07 17:18:34 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_FIRE_PARTICLE_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "../vector2d.hxx"
-#include "../game_obj.hxx"
+#include "../vector2d.hpp"
+#include "../game_obj.hpp"
 
 /** */
 class FireParticle : public GameObj

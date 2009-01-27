@@ -1,4 +1,4 @@
-//  $Id: script_helper.hxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: script_helper.hpp,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_SCRIPT_HELPER_HXX
 
 #include <iostream>
-#include "../ai_manager.hxx"
-#include "../game_obj_manager.hxx"
+#include "../ai_manager.hpp"
+#include "../game_obj_manager.hpp"
 
 namespace Scripting {
 

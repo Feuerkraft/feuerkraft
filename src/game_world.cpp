@@ -1,4 +1,4 @@
-//  $Id: game_world.cxx,v 1.20 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: game_world.cpp,v 1.20 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,21 +21,21 @@
 #include <algorithm>
 #include <functional>
 
-#include "mine.hxx"
-#include "vehicles/tank.hxx"
-#include "projectile.hxx"
-#include "game_world.hxx"
-#include "groundmap/ground_map_data.hxx"
-#include "groundmap/ground_map.hxx"
-#include "game_obj.hxx"
-#include "math.hxx"
-#include "game_obj_data.hxx"
-#include "game_obj_manager.hxx"
-#include "view.hxx"
-#include "path_manager.hxx"
-#include "trigger_manager.hxx"
-#include "buildings/building_manager.hxx"
-#include "buildings/building_map.hxx"
+#include "mine.hpp"
+#include "vehicles/tank.hpp"
+#include "projectile.hpp"
+#include "game_world.hpp"
+#include "groundmap/ground_map_data.hpp"
+#include "groundmap/ground_map.hpp"
+#include "game_obj.hpp"
+#include "math.hpp"
+#include "game_obj_data.hpp"
+#include "game_obj_manager.hpp"
+#include "view.hpp"
+#include "path_manager.hpp"
+#include "trigger_manager.hpp"
+#include "buildings/building_manager.hpp"
+#include "buildings/building_map.hpp"
 
 GameWorld* GameWorld::current_world = 0;
 

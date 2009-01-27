@@ -18,12 +18,12 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/joystick.h>
-#include "input_axis_input_device.hxx"
-#include "../feuerkraft_error.hxx"
-#include "../guile.hxx"
-#include "button_factory.hxx"
-#include "button_axis.hxx"
-#include "axis_factory.hxx"
+#include "input_axis_input_device.hpp"
+#include "../feuerkraft_error.hpp"
+#include "../guile.hpp"
+#include "button_factory.hpp"
+#include "button_axis.hpp"
+#include "axis_factory.hpp"
 
 InputAxis* 
 AxisFactory::create(SCM lst)

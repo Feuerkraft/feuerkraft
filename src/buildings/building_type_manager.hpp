@@ -1,4 +1,4 @@
-//  $Id: building_type_manager.hxx,v 1.5 2003/08/20 00:15:10 grumbel Exp $
+//  $Id: building_type_manager.hpp,v 1.5 2003/08/20 00:15:10 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,8 @@
 
 #include <vector>
 #include <assert.h>
-#include "../alist.hxx"
-#include "custom_building.hxx"
+#include "../alist.hpp"
+#include "custom_building.hpp"
 
 class Building;
 

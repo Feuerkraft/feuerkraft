@@ -21,7 +21,7 @@
 #define HEADER_INPUT_RECORDER_HXX
 
 #include <fstream>
-#include "controller.hxx"
+#include "controller.hpp"
 
 /** The InputRecorder hooks into the InputManager and records all
     input events to a file, thus allowing the later playback of the

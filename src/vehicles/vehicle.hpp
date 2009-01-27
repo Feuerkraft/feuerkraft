@@ -1,4 +1,4 @@
-//  $Id: vehicle.hxx,v 1.13 2003/06/18 21:43:50 grumbel Exp $
+//  $Id: vehicle.hpp,v 1.13 2003/06/18 21:43:50 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef VEHICLE_HH
 #define VEHICLE_HH
 
-#include "../unit.hxx"
+#include "../unit.hpp"
 
 class Controller;
 class Projectile;

@@ -1,4 +1,4 @@
-//  $Id: script_helper.cxx,v 1.1 2003/06/18 13:03:13 grumbel Exp $
+//  $Id: script_helper.cpp,v 1.1 2003/06/18 13:03:13 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "script_helper.hxx"
+#include "script_helper.hpp"
 
 
 

@@ -21,7 +21,7 @@
 #define HEADER_AXIS_FACTORY_HXX
 
 #include <guile/gh.h>
-#include "input_axis.hxx"
+#include "input_axis.hpp"
 
 /** */
 class AxisFactory

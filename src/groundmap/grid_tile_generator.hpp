@@ -1,4 +1,4 @@
-//  $Id: grid_tile_generator.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_tile_generator.hpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,8 +24,8 @@
 #include <map>
 #include <string>
 #include <guile/gh.h>
-#include "ground_type.hxx"
-#include "grid_tile_data.hxx"
+#include "ground_type.hpp"
+#include "grid_tile_data.hpp"
 
 class GridTile;
 

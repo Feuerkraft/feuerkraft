@@ -21,7 +21,7 @@
 #define HEADER_INPUT_AXIS_INPUT_DEVICE_HXX
 
 #include <ClanLib/Display/input_device.h>
-#include "input_axis.hxx"
+#include "input_axis.hpp"
 
 class InputAxisInputDevice : public InputAxis
 {

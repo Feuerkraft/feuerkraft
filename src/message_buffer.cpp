@@ -1,4 +1,4 @@
-//  $Id: message_buffer.cxx,v 1.3 2003/06/08 15:49:00 grumbel Exp $
+//  $Id: message_buffer.cpp,v 1.3 2003/06/08 15:49:00 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "assert.hxx"
-#include "fonts.hxx"
-#include "message_buffer.hxx"
+#include "assert.hpp"
+#include "fonts.hpp"
+#include "message_buffer.hpp"
 
 MessageBuffer* MessageBuffer::current_ = 0;
 

@@ -1,4 +1,4 @@
-//  $Id: building.cxx,v 1.6 2003/08/20 00:02:46 grumbel Exp $
+//  $Id: building.cpp,v 1.6 2003/08/20 00:02:46 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,9 +17,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../property_set.hxx"
-#include "../radar.hxx"
-#include "building.hxx"
+#include "../property_set.hpp"
+#include "../radar.hpp"
+#include "building.hpp"
 
 Building::Building (const AList& lst)
   : x_pos (lst.get_int("x-pos")),

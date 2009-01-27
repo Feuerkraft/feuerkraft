@@ -1,4 +1,4 @@
-//  $Id: vehicle.cxx,v 1.11 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: vehicle.cpp,v 1.11 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../input/controller.hxx"
-#include "vehicle.hxx"
+#include "../input/controller.hpp"
+#include "vehicle.hpp"
 
 Vehicle::Vehicle ()
   : ammo (1.0f), 

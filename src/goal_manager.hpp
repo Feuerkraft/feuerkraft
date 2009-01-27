@@ -1,4 +1,4 @@
-//  $Id: goal_manager.hxx,v 1.1 2003/06/18 13:05:35 grumbel Exp $
+//  $Id: goal_manager.hpp,v 1.1 2003/06/18 13:05:35 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

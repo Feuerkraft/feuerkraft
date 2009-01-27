@@ -1,4 +1,4 @@
-//  $Id: explosion.hxx,v 1.8 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: explosion.hpp,v 1.8 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef EXPLOSION_HH
 #define EXPLOSION_HH
 
-#include "vector2d.hxx"
-#include "game_obj.hxx"
-#include "resource_manager.hxx"
+#include "vector2d.hpp"
+#include "game_obj.hpp"
+#include "resource_manager.hpp"
 
 /** Particle emmitter for ExplosionParticles */
 class Explosion : public GameObj

@@ -1,4 +1,4 @@
-//  $Id: vehicle_status.hxx,v 1.7 2003/06/06 09:49:00 grumbel Exp $
+//  $Id: vehicle_status.hpp,v 1.7 2003/06/06 09:49:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef VEHICLESTATUS_HH
 #define VEHICLESTATUS_HH
 
-#include "gui_obj.hxx"
+#include "gui_obj.hpp"
 
 class VehicleStatus : public GuiObj
 {

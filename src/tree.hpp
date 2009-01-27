@@ -1,4 +1,4 @@
-//  $Id: tree.hxx,v 1.12 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: tree.hpp,v 1.12 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,10 +21,10 @@
 #define TREE_HH
 
 #include <string>
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 #include <ClanLib/Display/sprite.h>
 
-#include "game_obj.hxx"
+#include "game_obj.hpp"
 
 class AList;
 

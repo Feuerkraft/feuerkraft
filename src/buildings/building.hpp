@@ -1,4 +1,4 @@
-//  $Id: building.hxx,v 1.13 2003/08/20 00:02:46 grumbel Exp $
+//  $Id: building.hpp,v 1.13 2003/08/20 00:02:46 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef BUILDING_HXX
 #define BUILDING_HXX
 
-#include "../alist.hxx"
+#include "../alist.hpp"
 
 // Begin: Forward declarations
 class GameWorld;

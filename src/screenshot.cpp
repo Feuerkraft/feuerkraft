@@ -23,7 +23,7 @@
 #include <ClanLib/Display/display_window.h>
 #include <ClanLib/Display/pixel_buffer.h>
 #include <ClanLib/Display/pixel_format.h>
-#include "screenshot.hxx"
+#include "screenshot.hpp"
 
 void
 Screenshot::write_screenshot_pnm(const std::string& filename)

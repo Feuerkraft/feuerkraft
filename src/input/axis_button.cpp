@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "input_axis.hxx"
-#include "axis_button.hxx"
+#include "input_axis.hpp"
+#include "axis_button.hpp"
 
 AxisButton::AxisButton(InputAxis* axis, bool top)
   : axis(axis),

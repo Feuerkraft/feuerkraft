@@ -1,4 +1,4 @@
-//  $Id: bfirst_pathfinder.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: bfirst_pathfinder.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include <ClanLib/core.h>
 #include <iostream>
 #include <unistd.h>
-#include "bfirst_pathfinder.hxx"
+#include "bfirst_pathfinder.hpp"
 
 BFirstPathfinder::BFirstPathfinder(Field<int>* arg_field)
   : field(*arg_field),
@@ -325,7 +325,7 @@ int main()
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -Wall -O2 bfirst_pathfinder.cxx  -o bfirst_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -Wall -O2 bfirst_pathfinder.cpp  -o bfirst_pathfinder -lclanCore"
 // End:
 
 /* EOF */

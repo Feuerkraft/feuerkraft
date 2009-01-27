@@ -1,4 +1,4 @@
-//  $Id: game_obj_factory.hxx,v 1.5 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: game_obj_factory.hpp,v 1.5 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_GAME_OBJ_FACTORY_HXX
 
 #include <vector>
-#include "alist.hxx"
+#include "alist.hpp"
 
 class GameObj;
 

@@ -1,4 +1,4 @@
-//  $Id: satchel_charge.cxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: satchel_charge.cpp,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,12 +17,12 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "view.hxx"
-#include "alist.hxx"
-#include "explosion.hxx"
-#include "property_set.hxx"
-#include "resource_manager.hxx"
-#include "satchel_charge.hxx"
+#include "view.hpp"
+#include "alist.hpp"
+#include "explosion.hpp"
+#include "property_set.hpp"
+#include "resource_manager.hpp"
+#include "satchel_charge.hpp"
 
 SatchelCharge::SatchelCharge(const AList& lst)
 {

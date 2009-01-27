@@ -1,4 +1,4 @@
-//  $Id: sound_real.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sound_real.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 #include <config.h>
 #include <vector>
-#include "sound.hxx"
+#include "sound.hpp"
 #include <ClanLib/Sound/soundbuffer_session.h>
 
 class CL_SoundBuffer;

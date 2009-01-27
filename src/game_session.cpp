@@ -1,4 +1,4 @@
-//  $Id: game_session.cxx,v 1.6 2003/06/23 09:04:10 grumbel Exp $
+//  $Id: game_session.cpp,v 1.6 2003/06/23 09:04:10 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -27,39 +27,39 @@
 #include <iostream>
 #include <assert.h>
 
-#include "globals.hxx"
-#include "particles/explosion_particle.hxx"
-#include "menu.hxx"
-#include "groundmap/ground_map.hxx"
-#include "player_view.hxx"
-#include "input/input_manager.hxx"
-#include "soldier.hxx"
-#include "game_obj_factory.hxx"
+#include "globals.hpp"
+#include "particles/explosion_particle.hpp"
+#include "menu.hpp"
+#include "groundmap/ground_map.hpp"
+#include "player_view.hpp"
+#include "input/input_manager.hpp"
+#include "soldier.hpp"
+#include "game_obj_factory.hpp"
 
-#include "vehicles/tank.hxx"
-#include "vehicles/helicopter.hxx"
+#include "vehicles/tank.hpp"
+#include "vehicles/helicopter.hpp"
 
-#include "background.hxx"
-#include "robot_tank.hxx"
-#include "view.hxx"
-#include "display_manager.hxx"
-#include "buildings/building_type_manager.hxx"
-#include "scripting/clanlib_commands.hxx"
-#include "scripting/menu_commands.hxx"
-#include "collision_manager.hxx"
-#include "sexpr_world_reader.hxx"
-#include "guile.hxx"
-#include "soldier_ai.hxx"
-#include "ai_manager.hxx"
-#include "ai_vehicle.hxx"
-#include "vehicle_ai.hxx"
-#include "output_world_builder.hxx"
-#include "game_world.hxx"
-#include "player.hxx"
-#include "path_manager.hxx"
-#include "command_line_arguments.hxx"
-#include "screenshot.hxx"
-#include "game_session.hxx"
+#include "background.hpp"
+#include "robot_tank.hpp"
+#include "view.hpp"
+#include "display_manager.hpp"
+#include "buildings/building_type_manager.hpp"
+#include "scripting/clanlib_commands.hpp"
+#include "scripting/menu_commands.hpp"
+#include "collision_manager.hpp"
+#include "sexpr_world_reader.hpp"
+#include "guile.hpp"
+#include "soldier_ai.hpp"
+#include "ai_manager.hpp"
+#include "ai_vehicle.hpp"
+#include "vehicle_ai.hpp"
+#include "output_world_builder.hpp"
+#include "game_world.hpp"
+#include "player.hpp"
+#include "path_manager.hpp"
+#include "command_line_arguments.hpp"
+#include "screenshot.hpp"
+#include "game_session.hpp"
 
 // FIXME: Replace this with a PlayerManager class or something similar
 Player*  player;

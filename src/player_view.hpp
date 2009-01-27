@@ -1,4 +1,4 @@
-//  $Id: player_view.hxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: player_view.hpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef HEADER_PLAYER_VIEW_HXX
 #define HEADER_PLAYER_VIEW_HXX
 
-#include "vehicle_view.hxx"
+#include "vehicle_view.hpp"
 
 class Player;
 

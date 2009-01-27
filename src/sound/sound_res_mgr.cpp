@@ -1,4 +1,4 @@
-//  $Id: sound_res_mgr.cxx,v 1.3 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: sound_res_mgr.cpp,v 1.3 2003/06/07 16:16:08 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,10 +19,10 @@
 
 #include <ClanLib/sound.h>
 #include <iostream>
-#include "../path_manager.hxx"
-#include "../globals.hxx"
+#include "../path_manager.hpp"
+#include "../globals.hpp"
 
-#include "sound_res_mgr.hxx"
+#include "sound_res_mgr.hpp"
 
 SoundResMgr::SoundMap SoundResMgr::sound_map;
 

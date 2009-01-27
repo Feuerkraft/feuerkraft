@@ -1,4 +1,4 @@
-//  $Id: wall.hxx,v 1.11 2003/06/22 19:22:56 grumbel Exp $
+//  $Id: wall.hpp,v 1.11 2003/06/22 19:22:56 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #define HEADER_FEUERKRAFT_WALL_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "../vector2d.hxx"
+#include "../vector2d.hpp"
 
-#include "building.hxx"
+#include "building.hpp"
 
 class Wall : public Building
 {

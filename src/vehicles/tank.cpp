@@ -1,4 +1,4 @@
-//  $Id: tank.cxx,v 1.26 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: tank.cpp,v 1.26 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,25 +21,25 @@
 #include <iostream>
 #include <string>
 
-#include "../assert.hxx"
-#include "../mine.hxx"
-#include "../alist.hxx"
-#include "../property_set.hxx"
-#include "../groundmap/ground_map.hxx"
-#include "../buildings/building_map.hxx"
-#include "../particles/smoke_particle.hxx"
-#include "../particles/sand_particle.hxx"
-#include "../particles/grass_particle.hxx"
-#include "../particles/smoke_emitter.hxx"
-#include "../resource_manager.hxx"
-#include "../property_set.hxx"
-#include "../alist.hxx"
-#include "../vehicle_ai.hxx"
-#include "../ai_manager.hxx"
-#include "../collision_manager.hxx"
+#include "../assert.hpp"
+#include "../mine.hpp"
+#include "../alist.hpp"
+#include "../property_set.hpp"
+#include "../groundmap/ground_map.hpp"
+#include "../buildings/building_map.hpp"
+#include "../particles/smoke_particle.hpp"
+#include "../particles/sand_particle.hpp"
+#include "../particles/grass_particle.hpp"
+#include "../particles/smoke_emitter.hpp"
+#include "../resource_manager.hpp"
+#include "../property_set.hpp"
+#include "../alist.hpp"
+#include "../vehicle_ai.hpp"
+#include "../ai_manager.hpp"
+#include "../collision_manager.hpp"
 
-#include "turret.hxx"
-#include "tank.hxx"
+#include "turret.hpp"
+#include "tank.hpp"
 
 const float circle = 6.2831854f;
 

@@ -1,4 +1,4 @@
-//  $Id: input_commands.hxx,v 1.6 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: input_commands.hpp,v 1.6 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,7 +24,7 @@
 //@{
 
 /** @brief Register a callback on a key press event 
- *  @param key   a string representing the key, see keys.hxx
+ *  @param key   a string representing the key, see keys.hpp
  *  @param func  a procedure taking zero arguments
  * 
  *  Currently this is a bit limited and buggy, mouse events and other

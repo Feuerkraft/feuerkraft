@@ -1,4 +1,4 @@
-//  $Id: unit.hxx,v 1.7 2003/06/23 10:01:41 grumbel Exp $
+//  $Id: unit.hpp,v 1.7 2003/06/23 10:01:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #ifndef HEADER_FEUERKRAFT_UNIT_HXX
 #define HEADER_FEUERKRAFT_UNIT_HXX
 
-#include "game_obj.hxx"
-#include "vector2d.hxx"
+#include "game_obj.hpp"
+#include "vector2d.hpp"
 
 class Controller;
 

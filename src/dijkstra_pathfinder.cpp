@@ -1,4 +1,4 @@
-//  $Id: dijkstra_pathfinder.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: dijkstra_pathfinder.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #include <ClanLib/core.h>
 #include <iostream>
 #include <unistd.h>
-#include "dijkstra_pathfinder.hxx"
+#include "dijkstra_pathfinder.hpp"
 
 DijkstraPathfinder::DijkstraPathfinder(Field<int>* arg_field)
   : field(*arg_field),
@@ -358,7 +358,7 @@ int main()
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 dijkstra_pathfinder.cxx  -o dijkstra_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -g -Wall -O2 dijkstra_pathfinder.cpp  -o dijkstra_pathfinder -lclanCore"
 // End:
 
 /* EOF */

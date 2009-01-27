@@ -1,4 +1,4 @@
-//  $Id: ambulance.hxx,v 1.7 2003/06/04 10:59:00 grumbel Exp $
+//  $Id: ambulance.hpp,v 1.7 2003/06/04 10:59:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define AMBULANCE_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
+#include "game_obj.hpp"
 
 class Ambulance : public GameObj
 {

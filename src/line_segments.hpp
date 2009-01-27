@@ -1,4 +1,4 @@
-//  $Id: line_segments.hxx,v 1.9 2003/06/06 20:55:24 grumbel Exp $
+//  $Id: line_segments.hpp,v 1.9 2003/06/06 20:55:24 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef HEADER_LINE_SEGMENTS_HXX
 #define HEADER_LINE_SEGMENTS_HXX
 
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 #include <vector>
 
 class View;

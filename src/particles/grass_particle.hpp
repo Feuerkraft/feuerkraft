@@ -1,4 +1,4 @@
-//  $Id: grass_particle.hxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grass_particle.hpp,v 1.7 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #ifndef GRASSPARTICLE_HXX
 #define GRASSPARTICLE_HXX
 
-#include "particle.hxx"
-#include "../resource_manager.hxx"
+#include "particle.hpp"
+#include "../resource_manager.hpp"
 
 class GrassParticle : public Particle
 {

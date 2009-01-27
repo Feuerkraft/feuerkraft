@@ -1,4 +1,4 @@
-//  $Id: grid_map_data.hxx,v 1.5 2003/06/22 19:22:57 grumbel Exp $
+//  $Id: grid_map_data.hpp,v 1.5 2003/06/22 19:22:57 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,8 +24,8 @@
 
 #include <guile/gh.h>
 #include <ClanLib/Display/pixel_buffer.h>
-#include "ground_type.hxx"
-#include "ground_map_data.hxx"
+#include "ground_type.hpp"
+#include "ground_map_data.hpp"
 
 class CL_PixelBuffer;
 

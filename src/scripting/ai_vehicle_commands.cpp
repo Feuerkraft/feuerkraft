@@ -1,4 +1,4 @@
-//  $Id: ai_vehicle_commands.cxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: ai_vehicle_commands.cpp,v 1.5 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../game_obj_manager.hxx"
-#include "../ai_vehicle.hxx"
-#include "ai_vehicle_commands.hxx"
+#include "../game_obj_manager.hpp"
+#include "../ai_vehicle.hpp"
+#include "ai_vehicle_commands.hpp"
 
 static AIVehicle*
 get_AIVehicle(int object_id)

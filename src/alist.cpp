@@ -1,4 +1,4 @@
-//  $Id: alist.cxx,v 1.13 2003/06/23 08:43:32 grumbel Exp $
+//  $Id: alist.cpp,v 1.13 2003/06/23 08:43:32 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "alist.hxx"
+#include "alist.hpp"
 
 AList::AList()
 {  

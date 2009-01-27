@@ -1,4 +1,4 @@
-//  $Id: debug_commands.hxx,v 1.1 2003/06/18 13:04:21 grumbel Exp $
+//  $Id: debug_commands.hpp,v 1.1 2003/06/18 13:04:21 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

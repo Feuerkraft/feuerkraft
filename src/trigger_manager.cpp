@@ -1,4 +1,4 @@
-//  $Id: trigger_manager.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: trigger_manager.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <algorithm>
-#include "trigger_manager.hxx"
+#include "trigger_manager.hpp"
 
 TriggerManager* TriggerManager::current_ = 0;
 

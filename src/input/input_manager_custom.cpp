@@ -23,15 +23,15 @@
 #include <ClanLib/Display/display_iostream.h>
 #include <ClanLib/Display/keys.h>
 
-#include "../guile.hxx"
-#include "../assert.hxx"
-#include "../controller_def.hxx"
-#include "input_button_input_device.hxx"
-#include "input_axis_input_device.hxx"
-#include "button_factory.hxx"
-#include "axis_factory.hxx"
+#include "../guile.hpp"
+#include "../assert.hpp"
+#include "../controller_def.hpp"
+#include "input_button_input_device.hpp"
+#include "input_axis_input_device.hpp"
+#include "button_factory.hpp"
+#include "axis_factory.hpp"
 
-#include "input_manager_custom.hxx"
+#include "input_manager_custom.hpp"
 
 InputManagerCustom::InputManagerCustom(SCM lst)
 {

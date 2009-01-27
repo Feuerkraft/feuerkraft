@@ -1,4 +1,4 @@
-//  $Id: ai_manager.hxx,v 1.3 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: ai_manager.hpp,v 1.3 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

@@ -1,4 +1,4 @@
-//  $Id: building_map.cxx,v 1.9 2003/06/22 21:51:21 grumbel Exp $
+//  $Id: building_map.cpp,v 1.9 2003/06/22 21:51:21 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,16 +18,16 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../view.hxx"
-#include "building_map.hxx"
-#include "building.hxx"
+#include "../view.hpp"
+#include "building_map.hpp"
+#include "building.hpp"
 
-#include "tower.hxx"
-#include "fuelstation.hxx"
-#include "ammotent.hxx"
-#include "headquarter.hxx"
-#include "wall.hxx"
-#include "wall_door.hxx"
+#include "tower.hpp"
+#include "fuelstation.hpp"
+#include "ammotent.hpp"
+#include "headquarter.hpp"
+#include "wall.hpp"
+#include "wall_door.hpp"
 
 BuildingMap::BuildingMap(const BuildingMapData& data)
   : BuildingMapData (data)

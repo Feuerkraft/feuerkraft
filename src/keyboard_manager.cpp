@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: keyboard_manager.cpp,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #include <ClanLib/Display/keyboard.h>
 #include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/mouse.h>
-#include "command_line_arguments.hxx"
-#include "keyboard_manager.hxx"
+#include "command_line_arguments.hpp"
+#include "keyboard_manager.hpp"
 
 KeyboardManager* KeyboardManager::instance_ = 0;
 

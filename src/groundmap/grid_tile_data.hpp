@@ -1,4 +1,4 @@
-//  $Id: grid_tile_data.hxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: grid_tile_data.hpp,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define GRIDTILEDATA_HXX
 
 #include <iostream>
-#include "ground_type.hxx"
+#include "ground_type.hpp"
 
 class GridTile;
 

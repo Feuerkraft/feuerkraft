@@ -1,4 +1,4 @@
-//  $Id: smoke_emitter.hxx,v 1.1 2003/06/07 17:19:19 grumbel Exp $
+//  $Id: smoke_emitter.hpp,v 1.1 2003/06/07 17:19:19 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef HEADER_SMOKE_EMITTER_HXX
 #define HEADER_SMOKE_EMITTER_HXX
 
-#include "../vector2d.hxx"
+#include "../vector2d.hpp"
 
 /** */
 class SmokeEmitter

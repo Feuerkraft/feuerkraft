@@ -1,4 +1,4 @@
-//  $Id: astar_pathfinder.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: astar_pathfinder.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,8 +22,8 @@
 
 #include <queue>
 #include <vector>
-#include "field.hxx"
-#include "pathfinder.hxx"
+#include "field.hpp"
+#include "pathfinder.hpp"
 
 /** AStar Pathfinder */
 class AStarPathfinder
@@ -85,7 +85,7 @@ public:
 #endif
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -Wall -O2 astar_pathfinder.cxx  -o astar_pathfinder -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -Wall -O2 astar_pathfinder.cpp  -o astar_pathfinder -lclanCore"
 // End:
 
 /* EOF */

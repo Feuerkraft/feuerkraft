@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/input_event.h>
-#include "input_axis_input_device.hxx"
+#include "input_axis_input_device.hpp"
 
 InputAxisInputDevice::InputAxisInputDevice(CL_InputDevice& dev, int num)
   : dev(dev), axis_num(num)

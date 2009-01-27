@@ -1,4 +1,4 @@
-//  $Id: vector2d.cxx,v 1.6 2003/06/09 20:27:31 grumbel Exp $
+//  $Id: vector2d.cpp,v 1.6 2003/06/09 20:27:31 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include <math.h>
 #include <iostream>
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 
 FloatVector2d::FloatVector2d()
   : x(0.0f), y(0.0f)

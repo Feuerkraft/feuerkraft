@@ -1,4 +1,4 @@
-//  $Id: scm_sequence_hook.cxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: scm_sequence_hook.cpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <libguile.h>
-#include "scm_sequence_hook.hxx"
+#include "scm_sequence_hook.hpp"
 
 SCMSequenceHook::SCMSequenceHook(SCM arg_func)
 {

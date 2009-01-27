@@ -1,4 +1,4 @@
-//  $Id: energie.hxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: energie.hpp,v 1.7 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 #include <ClanLib/Core/System/system.h>
 
-#include "view.hxx"
+#include "view.hpp"
 
 class Energie
 {

@@ -1,4 +1,4 @@
-//  $Id: background.cxx,v 1.14 2003/10/20 21:30:09 grumbel Exp $
+//  $Id: background.cpp,v 1.14 2003/10/20 21:30:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "view.hxx"
-#include "background.hxx"
+#include "view.hpp"
+#include "background.hpp"
 
 Background::Background (const CL_Sprite& arg_sprite,
                         float arg_z_pos)

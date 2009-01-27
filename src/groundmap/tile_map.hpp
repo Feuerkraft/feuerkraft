@@ -1,4 +1,4 @@
-//  $Id: tile_map.hxx,v 1.5 2003/06/22 19:22:57 grumbel Exp $
+//  $Id: tile_map.hpp,v 1.5 2003/06/22 19:22:57 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define TILEMAP_HXX
 
 #include <vector>
-#include "ground_map.hxx"
-#include "tile_map_data.hxx"
+#include "ground_map.hpp"
+#include "tile_map_data.hpp"
 
 class Tile;
 

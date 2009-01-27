@@ -1,4 +1,4 @@
-//  $Id: sprite_tile.cxx,v 1.4 2003/05/19 19:00:56 grumbel Exp $
+//  $Id: sprite_tile.cpp,v 1.4 2003/05/19 19:00:56 grumbel Exp $
 // 
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #define SPRITETILE_CXX
 
 #include <ClanLib/display.h>
-#include "sprite_tile.hxx"
-#include "../resource_manager.hxx"
-#include "../view.hxx"
+#include "sprite_tile.hpp"
+#include "../resource_manager.hpp"
+#include "../view.hpp"
 
 SpriteTile::SpriteTile (const SpriteTileData& data)
   : SpriteTileData (data),

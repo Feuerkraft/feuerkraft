@@ -1,4 +1,4 @@
-//  $Id: robot_tank.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: robot_tank.hpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,8 +20,8 @@
 #ifndef HEADER_ROBOT_TANK_HXX
 #define HEADER_ROBOT_TANK_HXX
 
-#include "vector2d.hxx"
-#include "vehicles/vehicle.hxx"
+#include "vector2d.hpp"
+#include "vehicles/vehicle.hpp"
 
 /** */
 class RobotTank : public Vehicle

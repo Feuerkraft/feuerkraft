@@ -1,4 +1,4 @@
-//  $Id: guile.hxx,v 1.13 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: guile.hpp,v 1.13 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -24,9 +24,9 @@
 #include <string>
 #include <iostream>
 
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 
-#include "alist.hxx"
+#include "alist.hpp"
 
 class Property;
 class PropertySet;

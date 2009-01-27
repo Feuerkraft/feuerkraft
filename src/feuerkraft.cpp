@@ -1,4 +1,4 @@
-//  $Id: feuerkraft.cxx,v 1.55 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: feuerkraft.cpp,v 1.55 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -30,18 +30,18 @@
 #include <libguile.h>
 #include <time.h>
 
-#include "feuerkraft_error.hxx"
-#include "fonts.hxx"
-#include "input/input_manager.hxx"
-#include "game_session_manager.hxx"
-#include "keyboard_manager.hxx"
-#include "resource_manager.hxx"
-#include "path_manager.hxx"
-#include "globals.hxx"
-#include "sound/sound.hxx"
-#include "command_line_arguments.hxx"
-#include "guile.hxx"
-#include "feuerkraft.hxx"
+#include "feuerkraft_error.hpp"
+#include "fonts.hpp"
+#include "input/input_manager.hpp"
+#include "game_session_manager.hpp"
+#include "keyboard_manager.hpp"
+#include "resource_manager.hpp"
+#include "path_manager.hpp"
+#include "globals.hpp"
+#include "sound/sound.hpp"
+#include "command_line_arguments.hpp"
+#include "guile.hpp"
+#include "feuerkraft.hpp"
 
 //#define WITH_STATIC_READLINE 1
 

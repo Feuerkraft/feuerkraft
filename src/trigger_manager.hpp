@@ -1,4 +1,4 @@
-//  $Id: trigger_manager.hxx,v 1.3 2003/06/22 22:23:00 grumbel Exp $
+//  $Id: trigger_manager.hpp,v 1.3 2003/06/22 22:23:00 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,10 +22,10 @@
 
 #include <iostream>
 #include <vector>
-#include "unit.hxx"
-#include "game_world.hxx"
-#include "player.hxx"
-#include "game_obj_manager.hxx"
+#include "unit.hpp"
+#include "game_world.hpp"
+#include "player.hpp"
+#include "game_obj_manager.hpp"
 
 extern Player* player;
 

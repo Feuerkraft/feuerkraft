@@ -1,4 +1,4 @@
-//  $Id: line_segments.cxx,v 1.14 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: line_segments.cpp,v 1.14 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,10 +20,10 @@
 #include <math.h>
 #include <assert.h>
 #include <iostream>
-#include "math.hxx"
-#include "color.hxx"
-#include "view.hxx"
-#include "line_segments.hxx"
+#include "math.hpp"
+#include "color.hpp"
+#include "view.hpp"
+#include "line_segments.hpp"
 
 LineSegments::LineSegments(float arg_init_x, float arg_init_y, float arg_init_orientation)
   : init_x(arg_init_x),

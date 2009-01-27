@@ -1,4 +1,4 @@
-//  $Id: smoke_particle.hxx,v 1.9 2003/06/07 16:16:08 grumbel Exp $
+//  $Id: smoke_particle.hpp,v 1.9 2003/06/07 16:16:08 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef SMOKEPARTICLE_HXX
 #define SMOKEPARTICLE_HXX
 
-#include "../view.hxx"
-#include "../resource_manager.hxx"
-#include "particle.hxx"
+#include "../view.hpp"
+#include "../resource_manager.hpp"
+#include "particle.hpp"
 
 class SmokeParticle : public Particle
 {

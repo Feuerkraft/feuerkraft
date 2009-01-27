@@ -1,4 +1,4 @@
-//  $Id: satchel_charge.hxx,v 1.2 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: satchel_charge.hpp,v 1.2 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #define HEADER_SATCHEL_CHARGE_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
+#include "game_obj.hpp"
 
 class AList;
 

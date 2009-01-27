@@ -1,4 +1,4 @@
-//  $Id: game_world_builder.hxx,v 1.2 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_world_builder.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,7 +20,7 @@
 #ifndef HEADER_GAME_WORLD_BUILDER_HXX
 #define HEADER_GAME_WORLD_BUILDER_HXX
 
-#include "world_builder.hxx"
+#include "world_builder.hpp"
 
 class GameWorld;
 

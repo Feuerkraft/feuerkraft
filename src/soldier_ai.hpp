@@ -1,4 +1,4 @@
-//  $Id: soldier_ai.hxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: soldier_ai.hpp,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef HEADER_SOLDIER_AI_HXX
 #define HEADER_SOLDIER_AI_HXX
 
-#include "vector2d.hxx"
-#include "input/controller.hxx"
-#include "ai.hxx"
+#include "vector2d.hpp"
+#include "input/controller.hpp"
+#include "ai.hpp"
 
 class Soldier;
 

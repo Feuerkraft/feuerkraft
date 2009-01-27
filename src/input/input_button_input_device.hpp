@@ -21,7 +21,7 @@
 #define HEADER_INPUT_BOTTON_INPUT_DEVICE_HXX
 
 #include <ClanLib/Display/input_device.h>
-#include "input_button.hxx"
+#include "input_button.hpp"
 
 class InputButtonInputDevice : public InputButton
 {

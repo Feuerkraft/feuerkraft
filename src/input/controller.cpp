@@ -1,4 +1,4 @@
-//  $Id: controller.cxx,v 1.4 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: controller.cpp,v 1.4 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "../assert.hxx"
-#include "controller.hxx"
+#include "../assert.hpp"
+#include "controller.hpp"
 
 Controller::Controller()
 {

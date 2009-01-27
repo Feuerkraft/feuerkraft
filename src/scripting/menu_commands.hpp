@@ -1,4 +1,4 @@
-//  $Id: menu_commands.hxx,v 1.4 2003/06/17 22:06:13 grumbel Exp $
+//  $Id: menu_commands.hpp,v 1.4 2003/06/17 22:06:13 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

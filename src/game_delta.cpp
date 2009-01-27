@@ -1,4 +1,4 @@
-//  $Id: game_delta.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_delta.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,7 +17,7 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "game_delta.hxx"
+#include "game_delta.hpp"
 
 float 
 GameDelta::get_time ()

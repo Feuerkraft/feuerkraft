@@ -20,15 +20,15 @@
 #include <ClanLib/Display/joystick.h>
 #include <ClanLib/Display/keyboard.h>
 #include <ClanLib/Core/System/clanstring.h>
-#include "../guile.hxx"
-#include "../feuerkraft_error.hxx"
-#include "input_button.hxx"
-#include "input_axis.hxx"
-#include "input_button_input_device.hxx"
-#include "axis_factory.hxx"
-#include "axis_button.hxx"
-#include "multi_button.hxx"
-#include "button_factory.hxx"
+#include "../guile.hpp"
+#include "../feuerkraft_error.hpp"
+#include "input_button.hpp"
+#include "input_axis.hpp"
+#include "input_button_input_device.hpp"
+#include "axis_factory.hpp"
+#include "axis_button.hpp"
+#include "multi_button.hpp"
+#include "button_factory.hpp"
 
 InputButton* 
 ButtonFactory::create(SCM lst)

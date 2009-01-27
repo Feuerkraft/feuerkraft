@@ -1,4 +1,4 @@
-//  $Id: view.cxx,v 1.19 2003/10/20 21:30:09 grumbel Exp $
+//  $Id: view.cpp,v 1.19 2003/10/20 21:30:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,10 +22,10 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
 
-#include "assert.hxx"
-#include "color.hxx"
-#include "math.hxx"
-#include "view.hxx"
+#include "assert.hpp"
+#include "color.hpp"
+#include "math.hpp"
+#include "view.hpp"
 
 View* View::current_ = 0;
 

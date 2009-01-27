@@ -21,7 +21,7 @@
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/graphic_context.h>
 #include <iostream>
-#include "drawing_context.hxx"
+#include "drawing_context.hpp"
 
 struct DrawingRequestsSorter
 {

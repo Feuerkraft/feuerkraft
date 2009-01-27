@@ -1,4 +1,4 @@
-//  $Id: alist.hxx,v 1.10 2003/06/23 08:43:32 grumbel Exp $
+//  $Id: alist.hpp,v 1.10 2003/06/23 08:43:32 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -22,7 +22,7 @@
 
 #include <string>
 #include <map>
-#include "vector2d.hxx"
+#include "vector2d.hpp"
 
 /** Simple associated list like class 
 

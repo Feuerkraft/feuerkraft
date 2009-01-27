@@ -1,4 +1,4 @@
-//  $Id: command_line_arguments.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: command_line_arguments.cpp,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,7 +21,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ClanLib/Core/System/command_line.h>
-#include "command_line_arguments.hxx"
+#include "command_line_arguments.hpp"
 
 CommandLineArguments::CommandLineArguments()
 {

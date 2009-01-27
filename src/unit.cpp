@@ -1,4 +1,4 @@
-//  $Id: unit.cxx,v 1.5 2003/08/20 00:02:46 grumbel Exp $
+//  $Id: unit.cpp,v 1.5 2003/08/20 00:02:46 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "property_set.hxx"
-#include "player.hxx"
-#include "radar.hxx"
-#include "unit.hxx"
+#include "property_set.hpp"
+#include "player.hpp"
+#include "radar.hpp"
+#include "unit.hpp"
 
 extern Player* player;
 

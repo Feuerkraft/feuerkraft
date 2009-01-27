@@ -17,13 +17,13 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "resource_manager.hxx"
-#include "collision_manager.hxx"
-#include "explosion.hxx"
-#include "particles/rocket_smoke_particle.hxx"
-#include "view.hxx"
-#include "buildings/building.hxx"
-#include "rocket.hxx"
+#include "resource_manager.hpp"
+#include "collision_manager.hpp"
+#include "explosion.hpp"
+#include "particles/rocket_smoke_particle.hpp"
+#include "view.hpp"
+#include "buildings/building.hpp"
+#include "rocket.hpp"
 
 Rocket::Rocket(const FloatVector2d& pos, float orientation)
   : pos(pos),

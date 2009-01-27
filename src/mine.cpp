@@ -1,4 +1,4 @@
-//  $Id: mine.cxx,v 1.11 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: mine.cpp,v 1.11 2003/06/20 20:54:23 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,15 +17,15 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "alist.hxx"
-#include "vehicles/tank.hxx"
-#include "mine.hxx"
-#include "game_obj_manager.hxx"
-#include "game_world.hxx"
-#include "groundmap/ground_map.hxx"
-#include "collision_manager.hxx"
-#include "property_set.hxx"
-#include "resource_manager.hxx"
+#include "alist.hpp"
+#include "vehicles/tank.hpp"
+#include "mine.hpp"
+#include "game_obj_manager.hpp"
+#include "game_world.hpp"
+#include "groundmap/ground_map.hpp"
+#include "collision_manager.hpp"
+#include "property_set.hpp"
+#include "resource_manager.hpp"
 
 Mine::Mine (const AList& lst)
   : pos (0, 0),

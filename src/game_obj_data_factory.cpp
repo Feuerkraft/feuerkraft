@@ -1,4 +1,4 @@
-//  $Id: game_obj_data_factory.cxx,v 1.6 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: game_obj_data_factory.cpp,v 1.6 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <guile/gh.h>
-#include "guile.hxx"
-#include "game_obj_data_factory.hxx"
+#include "guile.hpp"
+#include "game_obj_data_factory.hpp"
 
 GameObjData*
 GameObjDataFactory::create (SCM symbol, SCM data)

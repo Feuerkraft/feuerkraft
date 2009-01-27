@@ -1,4 +1,4 @@
-//  $Id: menu_commands.cxx,v 1.7 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: menu_commands.cpp,v 1.7 2003/10/31 23:24:41 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,10 +18,10 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../scm_functor.hxx"
-#include "../menu_handle_mgr.hxx"
-#include "../display_manager.hxx"
-#include "menu_commands.hxx"
+#include "../scm_functor.hpp"
+#include "../menu_handle_mgr.hpp"
+#include "../display_manager.hpp"
+#include "menu_commands.hpp"
 
 void
 menu_show(int menu_id)

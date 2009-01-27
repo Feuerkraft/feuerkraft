@@ -1,4 +1,4 @@
-//  $Id: scm_functor.cxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: scm_functor.cpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -19,7 +19,7 @@
 
 #include <iostream>
 #include <libguile.h>
-#include "scm_functor.hxx"
+#include "scm_functor.hpp"
 
 SCMFunctor::SCMFunctor(SCM arg_func)
 {

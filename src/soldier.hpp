@@ -1,4 +1,4 @@
-//  $Id: soldier.hxx,v 1.16 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: soldier.hpp,v 1.16 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef SOLDIER_HH
 #define SOLDIER_HH
 
-#include "soldier_ai.hxx"
-#include "unit.hxx"
-#include "resource_manager.hxx"
+#include "soldier_ai.hpp"
+#include "unit.hpp"
+#include "resource_manager.hpp"
 
 class AList;
 class SoldierAI;

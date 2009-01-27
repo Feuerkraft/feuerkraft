@@ -1,4 +1,4 @@
-//  $Id: sprite_tile.hxx,v 1.4 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sprite_tile.hpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #define SPRITETILE_HXX
 
 #include <ClanLib/display.h>
-#include "ground_type.hxx"
-#include "tile.hxx"
-#include "sprite_tile_data.hxx"
+#include "ground_type.hpp"
+#include "tile.hpp"
+#include "sprite_tile_data.hpp"
 
 class SpriteTile : public Tile,
 		   public SpriteTileData

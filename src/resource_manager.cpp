@@ -1,4 +1,4 @@
-//  $Id: resource_manager.cxx,v 1.12 2003/09/15 20:23:53 grumbel Exp $
+//  $Id: resource_manager.cpp,v 1.12 2003/09/15 20:23:53 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -25,8 +25,8 @@
 #include <ClanLib/Core/System/error.h>
 #include <ClanLib/Core/System/cl_assert.h>
 
-#include "path_manager.hxx"
-#include "resource_manager.hxx"
+#include "path_manager.hpp"
+#include "resource_manager.hpp"
 
 ResourceManager* resources;
 

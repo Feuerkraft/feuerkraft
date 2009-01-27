@@ -1,4 +1,4 @@
-//  $Id: helicopter.hxx,v 1.13 2003/06/22 17:22:47 grumbel Exp $
+//  $Id: helicopter.hpp,v 1.13 2003/06/22 17:22:47 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,9 +21,9 @@
 #define HELICOPTER_HH
 
 #include <ClanLib/Display/sprite.h>
-#include "../energie.hxx"
-#include "vehicle.hxx"
-#include "rotor.hxx"
+#include "../energie.hpp"
+#include "vehicle.hpp"
+#include "rotor.hpp"
 
 class VehicleAI;
 class AList;

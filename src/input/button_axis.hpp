@@ -20,7 +20,7 @@
 #ifndef HEADER_BUTTON_AXIS_HXX
 #define HEADER_BUTTON_AXIS_HXX
 
-#include "input_axis.hxx"
+#include "input_axis.hpp"
 
 class InputButton;
 

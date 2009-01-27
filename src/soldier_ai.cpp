@@ -1,4 +1,4 @@
-//  $Id: soldier_ai.cxx,v 1.2 2003/06/18 14:38:28 grumbel Exp $
+//  $Id: soldier_ai.cpp,v 1.2 2003/06/18 14:38:28 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "math.hxx"
-#include "soldier.hxx"
-#include "soldier_ai.hxx"
+#include "math.hpp"
+#include "soldier.hpp"
+#include "soldier_ai.hpp"
 
 SoldierAI::SoldierAI(Soldier* arg_soldier)
   : soldier(arg_soldier),

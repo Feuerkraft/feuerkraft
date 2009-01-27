@@ -1,11 +1,11 @@
 #include <iostream>
-#include "../projectile.hxx"
-#include "../math.hxx"
-#include "../resource_manager.hxx"
-#include "../rocket.hxx"
-#include "../math.hxx"
-#include "tank.hxx"
-#include "turret.hxx"
+#include "../projectile.hpp"
+#include "../math.hpp"
+#include "../resource_manager.hpp"
+#include "../rocket.hpp"
+#include "../math.hpp"
+#include "tank.hpp"
+#include "turret.hpp"
 
 const float circle = 6.2831854f;
 

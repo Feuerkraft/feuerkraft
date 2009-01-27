@@ -1,4 +1,4 @@
-//  $Id: fuelstation.cxx,v 1.12 2003/06/22 18:34:52 grumbel Exp $
+//  $Id: fuelstation.cpp,v 1.12 2003/06/22 18:34:52 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,13 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <cmath>
-#include "../game_obj_manager.hxx"
-#include "../color.hxx"
-#include "../radar.hxx"
-#include "../vehicles/vehicle.hxx"
-#include "../resource_manager.hxx"
-#include "../display/drawing_context.hxx"
-#include "fuelstation.hxx"
+#include "../game_obj_manager.hpp"
+#include "../color.hpp"
+#include "../radar.hpp"
+#include "../vehicles/vehicle.hpp"
+#include "../resource_manager.hpp"
+#include "../display/drawing_context.hpp"
+#include "fuelstation.hpp"
 
 Fuelstation::Fuelstation(const AList& lst)
   : Building(lst),

@@ -1,4 +1,4 @@
-//  $Id: sprite_tile_data.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: sprite_tile_data.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -17,8 +17,8 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include "sprite_tile.hxx"
-#include "sprite_tile_data.hxx"
+#include "sprite_tile.hpp"
+#include "sprite_tile_data.hpp"
 
 SpriteTileData::SpriteTileData ()
 {

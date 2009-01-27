@@ -1,4 +1,4 @@
-//  $Id: shockwave.hxx,v 1.8 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: shockwave.hpp,v 1.8 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef SHOCKWAVE_HH
 #define SHOCKWAVE_HH
 
-#include "vector2d.hxx"
-#include "game_obj.hxx"
-#include "resource_manager.hxx"
+#include "vector2d.hpp"
+#include "game_obj.hpp"
+#include "resource_manager.hpp"
 
 class Shockwave : public GameObj
 {

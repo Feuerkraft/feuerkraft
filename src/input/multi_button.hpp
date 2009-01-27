@@ -21,7 +21,7 @@
 #define HEADER_MULTI_BUTTON_HXX
 
 #include <vector>
-#include "input_button.hxx"
+#include "input_button.hpp"
 
 /** */
 class MultiButton : public InputButton

@@ -1,4 +1,4 @@
-//  $Id: radar.cxx,v 1.15 2003/06/23 10:01:41 grumbel Exp $
+//  $Id: radar.cpp,v 1.15 2003/06/23 10:01:41 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright(C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,13 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "buildings/building_map.hxx"
-#include "game_obj_manager.hxx"
-#include "radar.hxx"
-#include "math.hxx"
-#include "player.hxx"
-#include "vehicles/vehicle.hxx"
-#include "resource_manager.hxx"
+#include "buildings/building_map.hpp"
+#include "game_obj_manager.hpp"
+#include "radar.hpp"
+#include "math.hpp"
+#include "player.hpp"
+#include "vehicles/vehicle.hpp"
+#include "resource_manager.hpp"
 
 Radar::Radar(const FloatVector2d& arg_pos, 
              PlayerPtr p)

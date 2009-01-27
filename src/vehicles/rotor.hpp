@@ -21,7 +21,7 @@
 #define HEADER_FEUERKRAFT_VEHICLES_ROTOR_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "rotor_description.hxx"
+#include "rotor_description.hpp"
 
 class View;
 

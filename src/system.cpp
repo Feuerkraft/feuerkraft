@@ -1,4 +1,4 @@
-//  $Id: system.cxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: system.cpp,v 1.5 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
@@ -39,8 +39,8 @@
 #include <ClanLib/Core/System/clanstring.h>
 #include "gettext.h"
 
-//#include "PingusError.hxx" 
-#include "system.hxx"
+//#include "PingusError.hpp" 
+#include "system.hpp"
 
 int System::verbose;
 std::string System::default_email;

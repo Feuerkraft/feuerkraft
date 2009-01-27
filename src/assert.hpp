@@ -1,4 +1,4 @@
-//  $Id: assert.hxx,v 1.4 2003/06/20 20:54:23 grumbel Exp $
+//  $Id: assert.hpp,v 1.4 2003/06/20 20:54:23 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

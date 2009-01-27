@@ -1,4 +1,4 @@
-//  $Id: keyboard_manager.hxx,v 1.6 2003/10/31 23:24:41 grumbel Exp $
+//  $Id: keyboard_manager.hpp,v 1.6 2003/10/31 23:24:41 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>

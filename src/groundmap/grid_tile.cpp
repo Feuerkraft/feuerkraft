@@ -1,4 +1,4 @@
-//  $Id: grid_tile.cxx,v 1.7 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: grid_tile.cpp,v 1.7 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,9 +18,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/core.h>
-#include "../view.hxx"
-#include "grid_tile.hxx"
-#include "../resource_manager.hxx"
+#include "../view.hpp"
+#include "grid_tile.hpp"
+#include "../resource_manager.hpp"
 
 GridTile::GridTile (std::string filename)
 {  

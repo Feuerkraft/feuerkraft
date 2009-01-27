@@ -1,4 +1,4 @@
-//  $Id: ground_map.hxx,v 1.5 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: ground_map.hpp,v 1.5 2003/06/03 14:11:22 grumbel Exp $
 // 
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -20,9 +20,9 @@
 #ifndef GROUNDMAP_HXX
 #define GROUNDMAP_HXX
 
-#include "../view.hxx"
-#include "../game_obj.hxx"
-#include "ground_type.hxx"
+#include "../view.hpp"
+#include "../game_obj.hpp"
+#include "ground_type.hpp"
 
 /** The GroundMap interface defines the basic interaction between
     vehicles and the ground. It allows a GameObj to know what the

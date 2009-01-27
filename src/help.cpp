@@ -1,4 +1,4 @@
-//  $Id: help.cxx,v 1.2 2003/06/06 11:11:19 grumbel Exp $
+//  $Id: help.cpp,v 1.2 2003/06/06 11:11:19 grumbel Exp $
 //
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,8 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <ClanLib/Display/display.h>
-#include "fonts.hxx"
-#include "help.hxx"
+#include "fonts.hpp"
+#include "help.hpp"
 
 Help::Help()
 {

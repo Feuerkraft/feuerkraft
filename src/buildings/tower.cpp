@@ -1,4 +1,4 @@
-//  $Id: tower.cxx,v 1.12 2003/10/20 21:30:09 grumbel Exp $
+//  $Id: tower.cpp,v 1.12 2003/10/20 21:30:09 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,13 +18,13 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "../property_set.hxx"
-#include "../radar.hxx"
-#include "../resource_manager.hxx"
-#include "../input/controller.hxx"
-#include "../math.hxx"
-#include "../explosion.hxx"
-#include "tower.hxx"
+#include "../property_set.hpp"
+#include "../radar.hpp"
+#include "../resource_manager.hpp"
+#include "../input/controller.hpp"
+#include "../math.hpp"
+#include "../explosion.hpp"
+#include "tower.hpp"
 
 Tower::Tower(const AList& lst)
   : Building(lst),

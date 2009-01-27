@@ -1,4 +1,4 @@
-//  $Id: marker.hxx,v 1.3 2003/06/23 09:56:39 grumbel Exp $
+//  $Id: marker.hpp,v 1.3 2003/06/23 09:56:39 grumbel Exp $
 // 
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -21,8 +21,8 @@
 #define HEADER_MARKER_HXX
 
 #include <ClanLib/Display/sprite.h>
-#include "game_obj.hxx"
-#include "vector2d.hxx"
+#include "game_obj.hpp"
+#include "vector2d.hpp"
 
 class AList;
 class View;

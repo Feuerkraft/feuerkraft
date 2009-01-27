@@ -1,4 +1,4 @@
-//  $Id: draw_circle.cxx,v 1.3 2003/06/03 14:11:22 grumbel Exp $
+//  $Id: draw_circle.cpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
@@ -18,7 +18,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include <iostream>
-#include "draw_circle.hxx"
+#include "draw_circle.hpp"
 
 int main()
 {
@@ -48,7 +48,7 @@ int main()
 }
 
 // Local Variables:
-// compile-command: "g++-3.2 -DTESTME -Wall -O2 draw_circle.cxx  -o draw_circle -lclanCore"
+// compile-command: "g++-3.2 -DTESTME -Wall -O2 draw_circle.cpp  -o draw_circle -lclanCore"
 // End:
 
 /* EOF */
