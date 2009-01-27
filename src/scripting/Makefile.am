@@ -1,63 +1,63 @@
 noinst_LIBRARIES = libfeuerkraft_scripting.a
 
 command_source = \
- ai_commands.cxx \
- ai_commands.hxx \
- ai_vehicle_commands.cxx \
- ai_vehicle_commands.hxx \
- building_commands.cxx   \
- building_commands.hxx   \
- clanlib_commands.hxx    \
- clanlib_commands.cxx    \
- comm_commands.cxx       \
- comm_commands.hxx       \
- display_commands.hxx    \
- display_commands.cxx    \
- debug_commands.hxx      \
- debug_commands.cxx      \
- effect_commands.cxx     \
- effect_commands.hxx     \
- gameobj_commands.cxx    \
- gameobj_commands.hxx    \
- game_commands.cxx       \
- game_commands.hxx       \
- input_commands.cxx      \
- input_commands.hxx      \
- menu_commands.cxx       \
- menu_commands.hxx       \
- object_commands.cxx     \
- object_commands.hxx     \
- player_commands.cxx     \
- player_commands.hxx     \
- sequence_commands.cxx   \
- sequence_commands.hxx   \
- sound_commands.cxx      \
- sound_commands.hxx      \
- trigger_commands.cxx    \
- trigger_commands.hxx    \
- vehicle_commands.cxx    \
- vehicle_commands.hxx    \
- script_helper.cxx       \
- script_helper.hxx
+ ai_commands.cpp \
+ ai_commands.hpp \
+ ai_vehicle_commands.cpp \
+ ai_vehicle_commands.hpp \
+ building_commands.cpp   \
+ building_commands.hpp   \
+ clanlib_commands.hpp    \
+ clanlib_commands.cpp    \
+ comm_commands.cpp       \
+ comm_commands.hpp       \
+ display_commands.hpp    \
+ display_commands.cpp    \
+ debug_commands.hpp      \
+ debug_commands.cpp      \
+ effect_commands.cpp     \
+ effect_commands.hpp     \
+ gameobj_commands.cpp    \
+ gameobj_commands.hpp    \
+ game_commands.cpp       \
+ game_commands.hpp       \
+ input_commands.cpp      \
+ input_commands.hpp      \
+ menu_commands.cpp       \
+ menu_commands.hpp       \
+ object_commands.cpp     \
+ object_commands.hpp     \
+ player_commands.cpp     \
+ player_commands.hpp     \
+ sequence_commands.cpp   \
+ sequence_commands.hpp   \
+ sound_commands.cpp      \
+ sound_commands.hpp      \
+ trigger_commands.cpp    \
+ trigger_commands.hpp    \
+ vehicle_commands.cpp    \
+ vehicle_commands.hpp    \
+ script_helper.cpp       \
+ script_helper.hpp
 
 libfeuerkraft_scripting_a_SOURCES = \
  $(command_source) \
- feuerkraft_wrap.cxx
+ feuerkraft_wrap.cpp
 
 #lib_LTLIBRARIES = libguile-feuerkraft.la
 
-#libguile_feuerkraft_la_SOURCES = feuerkraft_wrap.cxx
+#libguile_feuerkraft_la_SOURCES = feuerkraft_wrap.cpp
 #libguile_feuerkraft_la_LIBADD = libfeuerkraft_scripting.a
 
-# Include feuerkraft_wrap.cxx in case the user doesn't have swig installed
-EXTRA_DIST = feuerkraft_wrap.cxx
+# Include feuerkraft_wrap.cpp in case the user doesn't have swig installed
+EXTRA_DIST = feuerkraft_wrap.cpp
 
-feuerkraft_wrap.cxx: feuerkraft.i  $(command_source)
+feuerkraft_wrap.cpp: feuerkraft.i  $(command_source)
 	$(SWIG) -guile -c++  -o $@ $<
 
 # We override the default compile command to skip all the warnings
 # that compiling the wrappers causes.
-feuerkraft_wrap.o : feuerkraft_wrap.cxx
+feuerkraft_wrap.o : feuerkraft_wrap.cpp
 	$(CXX) -c -O2 -o $@ $<
 
 # EOF #
