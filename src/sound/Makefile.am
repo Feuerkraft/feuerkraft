@@ -19,8 +19,8 @@
 noinst_LIBRARIES = libpingus_sound.a
 
 libpingus_sound_a_SOURCES = \
-	sound.cxx  sound_dummy.cxx  sound_real.cxx \
-	sound.hxx  sound_dummy.hxx  sound_real.hxx \
-        sounds.hxx sound_res_mgr.hxx sound_res_mgr.cxx
+	sound.cpp  sound_dummy.cpp  sound_real.cpp \
+	sound.hpp  sound_dummy.hpp  sound_real.hpp \
+        sounds.hpp sound_res_mgr.hpp sound_res_mgr.cpp
 
 # EOF #

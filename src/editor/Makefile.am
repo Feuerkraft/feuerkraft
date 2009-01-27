@@ -19,6 +19,6 @@
 noinst_LIBRARIES = libfeuerkraft_editor.a
 
 libfeuerkraft_editor_a_SOURCES = \
-  editor.hxx editor.cxx
+  editor.hpp editor.cpp
 
 # EOF #

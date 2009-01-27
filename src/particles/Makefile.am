@@ -1,19 +1,19 @@
 noinst_LIBRARIES = libfeuerkraft_particles.a
 
 libfeuerkraft_particles_a_SOURCES = \
- explosion_particle.hxx \
- particle.hxx           \
- particle_system.hxx    \
- smoke_particle.hxx     \
- sand_particle.hxx      \
- grass_particle.hxx     \
- fire_particle.hxx     \
- fire_particle.cxx     \
- fire_emitter.hxx      \
- fire_emitter.cxx      \
- rocket_smoke_particle.hxx     \
- rocket_smoke_particle.cxx     \
- smoke_emitter.hxx     \
- smoke_emitter.cxx     
+ explosion_particle.hpp \
+ particle.hpp           \
+ particle_system.hpp    \
+ smoke_particle.hpp     \
+ sand_particle.hpp      \
+ grass_particle.hpp     \
+ fire_particle.hpp     \
+ fire_particle.cpp     \
+ fire_emitter.hpp      \
+ fire_emitter.cpp      \
+ rocket_smoke_particle.hpp     \
+ rocket_smoke_particle.cpp     \
+ smoke_emitter.hpp     \
+ smoke_emitter.cpp     
 
 # EOF #
