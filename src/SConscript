@@ -13,6 +13,9 @@ env.ParseConfig("pkg-config --cflags --libs " +
                 "clanMikMod-0.8 " +
                 "clanVorbis-0.8")
 
+env.Command("scripting/feuerkraft_wrap.cpp", "scripting/feuerkraft.i",
+            "swig -guile -c++  -o $TARGET $SOURCE")
+
 env.Program("feuerkraft", [
     "editor/editor.cpp",
 
