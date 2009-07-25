@@ -43,7 +43,7 @@ T* get_object(int object_id)
     } 
 }
 
-template<>
+inline
 GameObj* get_object(int object_id)
 {
   return GameObjManager::current()->get_object_by_id(object_id);
