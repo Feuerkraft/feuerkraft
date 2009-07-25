@@ -51,8 +51,7 @@ Explosion::Explosion (const FloatVector2d& arg_pos, Size arg_size)
   lifetime = .5f;
 
   new_particle_time = 1.0f;
-
-};
+}
 
 void 
 Explosion::draw (View& view) 

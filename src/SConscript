@@ -1,9 +1,10 @@
 import os
 
 env = Environment(ENV = os.environ,
-                  CXXFLAGS=["-g", "-O2", "-Wall"],
+                  CXXFLAGS=["-g", "-O2", "-Wall", "-ansi", "-pedantic"],
                   CPPPATH=["..", "."],
                   LIBS=["guile"])
+
 env.ParseConfig("pkg-config --cflags --libs " +
                 "clanCore-0.8 " +
                 "clanApp-0.8 " +
@@ -16,7 +17,7 @@ env.ParseConfig("pkg-config --cflags --libs " +
 env.Command("scripting/feuerkraft_wrap.cpp", "scripting/feuerkraft.i",
             "swig -guile -c++  -o $TARGET $SOURCE")
 
-env.Program("feuerkraft", [
+env.Program("../feuerkraft", [
     "editor/editor.cpp",
 
     "buildings/ammotent.cpp", 
