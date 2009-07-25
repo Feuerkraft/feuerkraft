@@ -17,10 +17,10 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-#include <config.h>
 #include <iostream>
 #include <stdlib.h>
 #include <ClanLib/Core/System/command_line.h>
+
 #include "command_line_arguments.hpp"
 
 CommandLineArguments::CommandLineArguments()
@@ -117,7 +117,7 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
           break;
 
         case 'V':
-          std::cout << PACKAGE_STRING << std::endl;
+          std::cout << "Feuerkraft 0.1.0" << std::endl;
           exit(EXIT_SUCCESS);
           break;
 
