@@ -1,0 +1,4 @@
+#define PACKAGE_STRING "Feuerkraft 0.1.0"
+#define HAVE_LIBCLANVORBIS 1
+#define HAVE_LIBCLANMIKMOD 1
+
