@@ -1,4 +1,4 @@
-SConscript("external/clanlib/SConstruct")
+# SConscript("external/clanlib/SConstruct")
 SConscript("src/SConscript")
 
 # EOF #
