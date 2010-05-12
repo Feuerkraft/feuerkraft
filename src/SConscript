@@ -1,18 +1,34 @@
 import os
 
-env = Environment(ENV = os.environ,
-                  CXXFLAGS=["-g", "-O2", "-Wall", "-ansi", "-pedantic"],
-                  CPPPATH=["..", "."],
-                  LIBS=["guile"])
-
-env.ParseConfig("pkg-config --cflags --libs " +
-                "clanCore-0.8 " +
-                "clanApp-0.8 " +
-                "clanDisplay-0.8 " +
-                "clanGL-0.8 " +
-                "clanSound-0.8 " +
-                "clanMikMod-0.8 " +
-                "clanVorbis-0.8")
+if True:
+    env = Environment(CXXFLAGS=["-g", "-O2", "-Wall", "-ansi", "-pedantic"],
+                      CPPPATH=['../external/clanlib/', '..', '.'],
+                      LIBPATH=['/usr/X11R6/lib/',
+                               '../external/clanlib/'],
+                      LIBS=['clanSound',      
+                            'clanGL',
+                            'clanApp',
+                            'clanVorbis',
+                            'clanMikMod',
+                            'clanDisplay',
+                            'clanSignals', 
+                            'clanCore',
+                            'X11', 'Xmu', 'GL', 'GLU', 'png', 'jpeg', 'Xxf86vm', 'Xi',
+                            'guile'])
+else:
+    env = Environment(ENV = os.environ,
+                      CXXFLAGS=["-g", "-O2", "-Wall", "-ansi", "-pedantic"],
+                      CPPPATH=["..", "."],
+                      LIBS=["guile"])
+    
+    env.ParseConfig("pkg-config --cflags --libs " +
+                    "clanCore-0.8 " +
+                    "clanApp-0.8 " +
+                    "clanDisplay-0.8 " +
+                    "clanGL-0.8 " +
+                    "clanSound-0.8 " +
+                    "clanMikMod-0.8 " +
+                    "clanVorbis-0.8")
 
 env.Command("scripting/feuerkraft_wrap.cpp", "scripting/feuerkraft.i",
             "swig -guile -c++  -o $TARGET $SOURCE")
