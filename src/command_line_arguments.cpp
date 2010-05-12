@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <ClanLib/Core/System/command_line.h>
 
 #include "command_line_arguments.hpp"
