@@ -94,11 +94,13 @@ Feuerkraft::init()
     }
   else
     {
-      path_manager.add_path(CL_System::get_exe_path() + "../data");
-      path_manager.add_path("../data");
-      path_manager.add_path("data");
-      path_manager.add_path("share/games/feuerkraft");
-      path_manager.add_path("../share/games/feuerkraft");
+      std::string exe_path = CL_System::get_exe_path();
+      path_manager.add_path(exe_path + "../data");
+      path_manager.add_path(exe_path + "data");
+      path_manager.add_path(exe_path + "share/feuerkraft");
+      path_manager.add_path(exe_path + "share/games/feuerkraft");
+      path_manager.add_path(exe_path + "../share/feuerkraft");
+      path_manager.add_path(exe_path + "../share/games/feuerkraft");
       path_manager.find_path("feuerkraft.xml");     
     }
 
