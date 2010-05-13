@@ -27,10 +27,12 @@
 #include "ai_manager.hpp"
 #include "soldier.hpp"
 
-Soldier::Soldier(const AList& lst) 
-  : ai(0),
-    sur(resources->get_sprite("feuerkraft/soldier")),
-    sur_light(resources->get_sprite("feuerkraft/soldier-light"))
+Soldier::Soldier(const AList& lst) :
+  ai(0),
+  sur(resources->get_sprite("feuerkraft/soldier")),
+  sur_light(resources->get_sprite("feuerkraft/soldier-light")),
+  acceleration(),
+  steering()
 {
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
