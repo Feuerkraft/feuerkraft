@@ -54,7 +54,8 @@ extern "C" void SWIG_init(void);
 Feuerkraft feuerkraft;
 CommandLineArguments* args;
 
-Feuerkraft::Feuerkraft()
+Feuerkraft::Feuerkraft() :
+  window()
 {
   args = 0;
 }

@@ -16,7 +16,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
 #include <ClanLib/Display/display.h>
 #include <ClanLib/Display/sprite.h>
 #include <ClanLib/Display/surface.h>
@@ -38,9 +37,6 @@ View::View (int arg_x1, int arg_y1,
   properties(),
   scene_context()
 {
-  //std::cout << "View: " << x1 << " " << y1 << " " << x2 << " " << y2 
-    //<< " " << state.x_offset << " " << state.y_offset << std::endl;
-  
   state.x_offset = -x1;
   state.y_offset = -y1;
 

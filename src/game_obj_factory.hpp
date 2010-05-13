@@ -27,6 +27,8 @@ class GameObj;
 class GameObjAbstractFactory
 {
 public:
+  virtual ~GameObjAbstractFactory() {}
+
   virtual GameObj* create(const AList& lst) =0;
 };
 

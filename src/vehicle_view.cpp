@@ -57,7 +57,7 @@ VehicleViewUpdater::update (float delta, ViewState& state)
   
   state.x_offset = int(pos.x);
   state.y_offset = int(pos.y);
-
+  
   float my_rotation = -(unit->get_orientation()/3.1415927*180.0) + 90;
 
   if (state.rotation > my_rotation) 

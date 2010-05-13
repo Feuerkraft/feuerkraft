@@ -33,7 +33,8 @@
 
 GameObjFactory* GameObjFactory::instance_ = 0;
 
-GameObjFactory::GameObjFactory()
+GameObjFactory::GameObjFactory() :
+  factories()
 {
   // If anything is changed here, make sure to update
   // data/feuerkraft.scm

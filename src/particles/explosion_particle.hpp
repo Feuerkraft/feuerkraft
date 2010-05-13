@@ -35,7 +35,13 @@ private:
   bool direction;
   float angle;
 public:
-  ExplosionParticle(const FloatVector2d& arg_pos, const FloatVector2d& arg_vel, float arg_size)
+  ExplosionParticle(const FloatVector2d& arg_pos, const FloatVector2d& arg_vel, float arg_size) :
+    size(),
+    sprite(),
+    sprite_light(),
+    max_life_time(),
+    direction(),
+    angle()
   {
     velocity = arg_vel;
     pos = arg_pos;

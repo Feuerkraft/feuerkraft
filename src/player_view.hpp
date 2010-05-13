@@ -28,10 +28,12 @@ class PlayerViewUpdater : public VehicleViewUpdater
 {
 private:
   Player* player;
+
 public:
   PlayerViewUpdater(Player* arg_player);
 
   void update(float delta, ViewState& state);
+
 private:
   PlayerViewUpdater (const PlayerViewUpdater&);
   PlayerViewUpdater& operator= (const PlayerViewUpdater&);

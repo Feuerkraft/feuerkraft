@@ -19,9 +19,9 @@
 #include "player.hpp"
 #include "player_view.hpp"
 
-PlayerViewUpdater::PlayerViewUpdater(Player* arg_player)
-  : VehicleViewUpdater(arg_player->get_current_unit()),
-    player(arg_player)
+PlayerViewUpdater::PlayerViewUpdater(Player* arg_player) :
+  VehicleViewUpdater(arg_player->get_current_unit()),
+  player(arg_player)
 {
 }
 

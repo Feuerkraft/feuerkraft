@@ -42,8 +42,29 @@
 
 const float circle = 6.2831854f;
 
-Tank::Tank(const AList& lst)
-  : energie(100)
+Tank::Tank(const AList& lst) :
+  tmp_pos(),
+  speed(),
+  increment(),
+  frame(),
+  burning(),
+  smod(),
+  sur_destroyed(),
+  sur(),
+  sur_light(),
+  sur_highlight(),
+  shadow(),
+  turret(),
+  smodpos(),
+  tmp_angle(),
+  smod_step(),
+  mine_reload_time(),
+  energie(100),
+  destroyed(),
+  particle_release(),
+  destroy_time(),
+  smoke_emitter(),
+  ai()
 {
   // FIME: This needs cleanup
   AList def;
@@ -101,21 +122,22 @@ Tank::Tank(const AList& lst)
 }
 
 Tank::Tank (const FloatVector2d &arg_pos,
-	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) 
-  : speed (0.0f),
-    increment (2.0f),
-    burning(false),
-    smod (resources->get_sprite (tank.c_str ())),
-    sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
-    sur (resources->get_sprite (tank.c_str ())),
-    sur_light(resources->get_sprite("feuerkraft/tank_light")),
-    sur_highlight(resources->get_sprite("feuerkraft/tank_highlight")),
-    shadow (resources->get_sprite ("feuerkraft/tank2_shadow")),
-    turret (NULL),
-    smod_step (0),
-    mine_reload_time (0),
-    energie (100),
-    destroyed (false)
+	    int reloading_speed, std::string tank, std::string str_turret, std::string fire) :
+  tmp_pos(),
+  speed (0.0f),
+  increment (2.0f),
+  burning(false),
+  smod (resources->get_sprite (tank.c_str ())),
+  sur_destroyed (resources->get_sprite ("feuerkraft/tank2destroyed")),
+  sur (resources->get_sprite (tank.c_str ())),
+  sur_light(resources->get_sprite("feuerkraft/tank_light")),
+  sur_highlight(resources->get_sprite("feuerkraft/tank_highlight")),
+  shadow (resources->get_sprite ("feuerkraft/tank2_shadow")),
+  turret (NULL),
+  smod_step (0),
+  mine_reload_time (0),
+  energie (100),
+  destroyed (false)
 {
   ai = 0;
   velocity = 0.0f;

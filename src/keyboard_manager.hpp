@@ -46,6 +46,8 @@ private:
       : key_id(id)
     {}
 
+    virtual ~Callback() {}
+
     virtual void run() =0;
   };
   

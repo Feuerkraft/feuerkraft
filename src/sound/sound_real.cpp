@@ -38,7 +38,7 @@
 namespace Sound {
 
 PingusSoundReal::PingusSoundReal ()
-  : music_sample (0), music_session(0)
+  : output(), music_sample (0), music_session(0)
 {
   std::cout << "Initializing ClanLib-Sound" << std::endl;
 

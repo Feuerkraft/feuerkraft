@@ -32,6 +32,7 @@ Unit::Unit() :
 
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
+
   properties->register_float("orientation", &orientation);
 }
 

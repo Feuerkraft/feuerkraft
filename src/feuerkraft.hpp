@@ -100,6 +100,10 @@ public:
 
 private:
   void key_down(const CL_InputEvent& event);
+
+private:
+  Feuerkraft(const Feuerkraft&);
+  Feuerkraft& operator=(const Feuerkraft&);
 };
 
 #endif

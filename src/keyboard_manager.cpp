@@ -25,7 +25,9 @@
 
 KeyboardManager* KeyboardManager::instance_ = 0;
 
-KeyboardManager::KeyboardManager()
+KeyboardManager::KeyboardManager() :
+  slots(),
+  callbacks()
 {
   slots.push_back(CL_Keyboard::sig_key_down().connect(this, &KeyboardManager::button_down));
   slots.push_back(CL_Keyboard::sig_key_up().connect(this, &KeyboardManager::button_up));

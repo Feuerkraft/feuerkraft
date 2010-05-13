@@ -63,11 +63,19 @@
 // FIXME: Replace this with a PlayerManager class or something similar
 Player*  player;
 
-GameSession::GameSession(const std::string& arg_filename)
-  : control_state(UNIT_CONTROL),
-    filename(arg_filename),
-    do_quit(false),
-    do_pause(false)
+GameSession::GameSession(const std::string& arg_filename) :
+  control_state(UNIT_CONTROL),
+  filename(arg_filename),
+  do_quit(false),
+  do_pause(false),
+  deltas(),
+  loops(),
+  frames(),
+  start_time(),
+  buildingtypemanager(),
+  collision_mgr(),
+  world(),
+  view()
 {  
 }
 
