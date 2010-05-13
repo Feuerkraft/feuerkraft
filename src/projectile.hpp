@@ -55,6 +55,10 @@ public:
 
   void detonate ();
   bool is_colliding(FloatVector2d) { return false;}
+
+private:
+  Projectile(const Projectile&);
+  Projectile& operator=(const Projectile&);
 };
 
 #endif

@@ -26,6 +26,7 @@ extern Player*  player;
 
 TowerAI::TowerAI(Tower* arg_tower)
   : tower(arg_tower),
+    controller(),
     ai_count(0)
 {
 }

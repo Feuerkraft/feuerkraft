@@ -35,7 +35,7 @@ struct BuildingFactory {
       portability. */
   std::string name;
 
-  BuildingFactory() {}
+  BuildingFactory() : id(), name() {}
   virtual ~BuildingFactory() {}
 
   virtual Building* create(const AList& lst) =0;

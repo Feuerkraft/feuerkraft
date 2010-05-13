@@ -28,8 +28,11 @@
 #include "wall.hpp"
 #include "wall_door.hpp"
 
-BuildingMap::BuildingMap(const BuildingMapData& data)
-  : BuildingMapData (data)
+BuildingMap::BuildingMap(const BuildingMapData& data) :
+  BuildingMapData (data),
+  buildings(),
+  building_map()
+
 {
   for (std::vector<BuildingData>::iterator i = buildings_data.begin ();
        i != buildings_data.end ();

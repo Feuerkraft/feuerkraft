@@ -22,8 +22,13 @@
 #include "../resource_manager.hpp"
 #include "wall_door.hpp"
 
-WallDoor::WallDoor(const AList& lst)
-  : Building(lst)
+WallDoor::WallDoor(const AList& lst) :
+  Building(lst),
+  sprite(),
+  map_width(),
+  map_height(),
+  status(),
+  pos()
 {
   if (lst.get_string("orientation") == "vertical")
     {

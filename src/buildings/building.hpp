@@ -89,6 +89,10 @@ public:
       false the building will 'disapear' from the collision map
    */
   virtual bool alive () { return true; }
+
+private:
+  Building(const Building&);
+  Building& operator=(const Building&);
 };
 
 #endif

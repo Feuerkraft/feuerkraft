@@ -31,7 +31,11 @@ private:
   float angle;
   float max_life_time;
 public:
-  SandParticle(const FloatVector2d& arg_pos)
+  SandParticle(const FloatVector2d& arg_pos) :
+    sprite(),
+    size(),
+    angle(),
+    max_life_time()
   {
     pos = arg_pos;
     size = 1;

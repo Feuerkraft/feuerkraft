@@ -33,6 +33,10 @@ public:
   VehicleAI(Vehicle* vehicle);
   virtual ~VehicleAI() {};
   GameObj* get_object() { return vehicle; }
+
+private:
+  VehicleAI(const VehicleAI&);
+  VehicleAI& operator=(const VehicleAI&);
 };
 
 /** class for robot like ai which controlls a vehicle with physic
@@ -59,6 +63,10 @@ public:
   
   void drive_to(const FloatVector2d& pos);
   void update(float delta);
+
+private:
+  VehiclePathAI(const VehiclePathAI&);
+  VehiclePathAI& operator=(const VehiclePathAI&);
 };
 
 #endif

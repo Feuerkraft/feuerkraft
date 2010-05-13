@@ -27,6 +27,7 @@ Headquarter::Headquarter (const AList& lst)
     headquarter (resources->get_sprite("feuerkraft/headquarter")),
     headquarter_damaged (resources->get_sprite("feuerkraft/headquarterdamaged")),
     headquarter_destroyed (resources->get_sprite("feuerkraft/headquarterdestroyed")),
+    current_sur(),
     energie (100),
     destroyed (false)
 {

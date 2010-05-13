@@ -24,7 +24,8 @@
 BuildingManager* BuildingManager::current_ = 0;
 int BuildingManager::next_id = 1;
 
-BuildingManager::BuildingManager()
+BuildingManager::BuildingManager() :
+  buildings()
 {
   current_ = this;
 }

@@ -31,12 +31,17 @@ private:
 
   float speed;
   float zoom_follower;
+
 public:
   VehicleViewUpdater (Unit* arg_unit);
   virtual ~VehicleViewUpdater ();
 
   virtual void update(float delta, ViewState& state);
   void set_unit(Unit* arg_unit);
+
+private:
+  VehicleViewUpdater(const VehicleViewUpdater&);
+  VehicleViewUpdater& operator=(const VehicleViewUpdater&);
 };
 
 #endif

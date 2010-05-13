@@ -19,8 +19,11 @@
 #include <math.h>
 #include "vehicle_view.hpp"
 
-VehicleViewUpdater::VehicleViewUpdater (Unit* arg_unit)
-  : unit(arg_unit)
+VehicleViewUpdater::VehicleViewUpdater (Unit* arg_unit) :
+  unit(arg_unit),
+  pos(),
+  speed(),
+  zoom_follower()
 {
   pos = unit->get_pos();
   speed = 0.1f;

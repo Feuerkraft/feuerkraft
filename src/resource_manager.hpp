@@ -41,6 +41,10 @@ public:
   CL_Surface get_surface(const std::string& location);
   CL_Sprite  get_sprite(const std::string& location);
   CL_Font    get_font(const std::string& location);
+
+private:
+  ResourceManager(const ResourceManager&);
+  ResourceManager& operator=(const ResourceManager&);
 };
 
 //extern CL_SpriteProviderStorage* storage;

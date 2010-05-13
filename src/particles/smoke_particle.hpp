@@ -31,7 +31,11 @@ private:
   float angle;
   float max_life_time;
 public:
-  SmokeParticle(const FloatVector2d& arg_pos)
+  SmokeParticle(const FloatVector2d& arg_pos) :
+    sprite(),
+    size(),
+    angle(),
+    max_life_time()
   {
     pos = arg_pos;
     size = 1;

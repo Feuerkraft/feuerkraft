@@ -27,7 +27,8 @@ private:
   int id;
 public:
   SequenceHook();
-  
+  virtual ~SequenceHook() {}
+
   int  get_id() const { return id; }
   void set_id(int arg_id) { id = arg_id; }
 

@@ -54,7 +54,7 @@ private:
 
 public:
   GameWorld (SCM scm);
-  ~GameWorld ();
+  virtual ~GameWorld ();
 
   float get_time() { return current_time; }
   
@@ -78,6 +78,10 @@ private:
   static GameWorld* current_world;
 public:
   static GameWorld* current() { return current_world; }
+
+private:
+  GameWorld(const GameWorld&);
+  GameWorld& operator=(const GameWorld&);
 };
 
 #endif

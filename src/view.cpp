@@ -30,10 +30,13 @@ View* View::current_ = 0;
 
 View::View (int arg_x1, int arg_y1, 
 	    int arg_x2, int arg_y2,
-	    ViewUpdater* arg_updater)
-  : x1 (arg_x1), y1 (arg_y1),
-    x2 (arg_x2), y2 (arg_y2),
-    view_updater(arg_updater)
+	    ViewUpdater* arg_updater) :
+  x1 (arg_x1), y1 (arg_y1),
+  x2 (arg_x2), y2 (arg_y2),
+  state(),
+  view_updater(arg_updater),
+  properties(),
+  scene_context()
 {
   //std::cout << "View: " << x1 << " " << y1 << " " << x2 << " " << y2 
     //<< " " << state.x_offset << " " << state.y_offset << std::endl;

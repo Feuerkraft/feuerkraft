@@ -127,6 +127,9 @@ public:
   void attach_ai();
   void dettach_ai();
 
+private:
+  Tank(const Tank&);
+  Tank& operator=(const Tank&);
 };
 
 #endif // TANK_HH

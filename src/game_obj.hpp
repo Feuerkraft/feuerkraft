@@ -109,6 +109,10 @@ public:
      on */
   virtual float get_physical_mass () { return 1.0; }
   virtual float get_physical_size () { return 1.0; }
+
+private:
+  GameObj(const GameObj&);
+  GameObj& operator=(const GameObj&);
 };
 
 typedef GameObj* GameObjPtr;

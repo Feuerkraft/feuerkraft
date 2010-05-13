@@ -38,6 +38,7 @@ private:
 
   int width;
   int height;
+
 public:
   CustomBuilding(const AList& type, const AList& lst);
   virtual ~CustomBuilding() {}

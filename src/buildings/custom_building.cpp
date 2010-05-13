@@ -20,8 +20,12 @@
 #include "../resource_manager.hpp"
 #include "custom_building.hpp"
 
-CustomBuilding::CustomBuilding(const AList& type, const AList& lst)
-  : Building(lst)
+CustomBuilding::CustomBuilding(const AList& type, const AList& lst) :
+  Building(lst),
+  sprite(),
+  energie(),
+  width(),
+  height()
 {
   std::string sprite_str = "feuerkraft/nobuilding";
   int         i_energie = 100;

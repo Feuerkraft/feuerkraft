@@ -31,7 +31,11 @@ private:
   float max_life_time;
   
 public:
-  GrassParticle(const FloatVector2d& arg_pos)
+  GrassParticle(const FloatVector2d& arg_pos) :
+    sprite(),
+    size(),
+    angle(),
+    max_life_time()
   {
     pos = arg_pos;
     size = 1;

@@ -27,7 +27,8 @@ Wall::Wall (const AList& lst)
     pos (x_pos * 40 + 20, y_pos * 40 + 20),
     wall (resources->get_sprite("feuerkraft/wall")),
     wall_damaged (resources->get_sprite ("feuerkraft/wall_damaged")),
-    wall_destroyed (resources->get_sprite ("feuerkraft/wall_destroyed"))
+    wall_destroyed (resources->get_sprite ("feuerkraft/wall_destroyed")),
+    energie()
 {
   energie = lst.get_int("energie", 100);
   properties->register_int("energie", &energie);

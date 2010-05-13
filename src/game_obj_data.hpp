@@ -27,6 +27,8 @@ class GameObjData
 private:
 
 public:
+  virtual ~GameObjData() {}
+
   /** Create the correct GameObj out of an GameObjData object. This is
       something like a virtual constructor. */
   virtual GameObj* create() =0;

@@ -25,14 +25,17 @@
 #include "../explosion.hpp"
 #include "tower.hpp"
 
-Tower::Tower(const AList& lst)
-  : Building(lst),
-    towerbase(resources->get_sprite("feuerkraft/tower/base")),
-    towerdamaged (resources->get_sprite("feuerkraft/tower/damaged")),
-    towerdestroyed (resources->get_sprite("feuerkraft/tower/destroyed")),
-    turret (resources->get_sprite("feuerkraft/tower/turret")),
-    energie (lst.get_int("start-energie", 100)),
-    destroyed (false)
+Tower::Tower(const AList& lst) :
+  Building(lst),
+  towerbase(resources->get_sprite("feuerkraft/tower/base")),
+  towerdamaged (resources->get_sprite("feuerkraft/tower/damaged")),
+  towerdestroyed (resources->get_sprite("feuerkraft/tower/destroyed")),
+  turret (resources->get_sprite("feuerkraft/tower/turret")),
+  steering(),
+  orientation(),
+  energie (lst.get_int("start-energie", 100)),
+  destroyed (false),
+  pos()
 {  
   //int energie;
   //std::cout << lst.retrieve_int("start-energie", energie) << std::endl;

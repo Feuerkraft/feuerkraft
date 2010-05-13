@@ -51,6 +51,10 @@ public:
   
   void set_absolute_orientation (float orientation);
   void set_relative_orientation (float orientation);
+
+private:
+  Turret(const Turret&);
+  Turret& operator=(const Turret&);
 };
 
 #endif // TURRET_HH

@@ -39,7 +39,7 @@ protected:
   
 public:
   explicit GameWorldData (SCM desc);
-  ~GameWorldData ();
+  virtual ~GameWorldData ();
  
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */
@@ -48,6 +48,10 @@ public:
 private:
   void parse_objects(SCM desc);
   void parse_scripts(SCM desc);
+
+private:
+  GameWorldData(const GameWorldData&);
+  GameWorldData& operator=(const GameWorldData&);
 };
 
 #endif

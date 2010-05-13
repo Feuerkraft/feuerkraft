@@ -39,14 +39,16 @@ public:
   void draw (View& view, int x_pos, int y_pos);
   operator int () { return int(energie); }
 
-  void operator--() { 
+  Energie& operator--() { 
     --energie; 
     last_change = CL_System::get_time ();
+    return *this;
   }
 
-  void operator++() {
+  Energie& operator++() {
     ++energie; 
     last_change = CL_System::get_time ();
+    return *this;
   }
 
   void operator+=(int i) { 

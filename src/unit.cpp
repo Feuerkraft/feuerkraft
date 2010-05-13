@@ -23,7 +23,9 @@
 
 extern Player* player;
 
-Unit::Unit()
+Unit::Unit() :
+  pos(),
+  orientation()
 {
   pos = FloatVector2d(0,0);
   orientation = 0;

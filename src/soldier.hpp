@@ -54,6 +54,10 @@ public:
   void attach_ai();
 
   void deattach_ai();
+
+private:
+  Soldier(const Soldier&);
+  Soldier& operator=(const Soldier&);
 };
 
 #endif

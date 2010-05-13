@@ -20,9 +20,11 @@
 #include "../radar.hpp"
 #include "building.hpp"
 
-Building::Building (const AList& lst)
-  : x_pos (lst.get_int("x-pos")),
-    y_pos (lst.get_int("y-pos"))
+Building::Building (const AList& lst) :
+  id(),
+  properties(),
+  x_pos (lst.get_int("x-pos")),
+  y_pos (lst.get_int("y-pos"))
 {
   register_properties();
 }

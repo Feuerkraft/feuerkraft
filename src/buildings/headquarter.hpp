@@ -50,6 +50,10 @@ public:
   int get_map_height () { return 2; }
 
   bool alive ();
+
+private:
+  Headquarter(const Headquarter&);
+  Headquarter& operator=(const Headquarter&);
 };
 
 #endif

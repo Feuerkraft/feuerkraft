@@ -53,6 +53,10 @@ public:
       3: large vehicle, 4: building) */
   void draw_blip(const FloatVector2d& pos, int size, 
 		  float red = 1.0f, float green = 0.0f, float blue = 0.0f);
+
+private:
+  Radar(const Radar&);
+  Radar& operator=(const Radar&);
 };
 
 typedef Radar* RadarPtr;

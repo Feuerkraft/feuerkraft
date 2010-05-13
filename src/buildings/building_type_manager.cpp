@@ -28,7 +28,9 @@
 
 BuildingTypeManager* BuildingTypeManager::current_ = 0;
 
-BuildingTypeManager::BuildingTypeManager()
+BuildingTypeManager::BuildingTypeManager() :
+  next_id(),
+  factories()
 {
   next_id = 2;
   current_ = this;

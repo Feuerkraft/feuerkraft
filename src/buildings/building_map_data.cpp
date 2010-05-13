@@ -21,7 +21,10 @@
 #include "building_map.hpp"
 #include "../guile.hpp"
 
-BuildingMapData::BuildingMapData (SCM desc)
+BuildingMapData::BuildingMapData (SCM desc) :
+  buildings_data(),
+  width(),
+  height()
 {
   //std::cout << "BuildingMapData: parsing: start" << std::endl;
 

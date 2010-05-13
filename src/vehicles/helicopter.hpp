@@ -69,6 +69,10 @@ public:
 
   void attach_ai();
   void dettach_ai();
+
+private:
+  Helicopter(const Helicopter&);
+  Helicopter& operator=(const Helicopter&);
 };
 
 #endif

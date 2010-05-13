@@ -30,10 +30,15 @@ private:
   Tower* tower;
   Controller controller;
   float ai_count;
+
 public:
   TowerAI(Tower* arg_tower);
   GameObj* get_object();
   void update(float delta);
+
+private:
+  TowerAI(const TowerAI&);
+  TowerAI& operator=(const TowerAI&);
 };
 
 #endif

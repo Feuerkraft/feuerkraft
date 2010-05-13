@@ -33,7 +33,12 @@ public:
   float life_time;
 
 public:
-  Particle () {}
+  Particle () :
+    pos(),
+    velocity(),
+    acceleration(),
+    life_time()
+  {}
   virtual ~Particle () {}
 
   virtual void update (float delta) {

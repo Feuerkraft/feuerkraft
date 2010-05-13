@@ -43,6 +43,10 @@ public:
 
   void goto_to(const FloatVector2d& target_pos);
   void stop();
+
+private:
+  SoldierAI(const SoldierAI&);
+  SoldierAI& operator=(const SoldierAI&);
 };
 
 #endif
