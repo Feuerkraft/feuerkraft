@@ -37,11 +37,20 @@ struct ViewState
   float y_offset;
   float zoom;
   float rotation;
+
+  ViewState() :
+    x_offset(),
+    y_offset(),
+    zoom(),
+    rotation()
+  {}
 };
 
 class ViewUpdater
 {
 public:
+  virtual ~ViewUpdater() {}
+
   virtual void update(float delta, ViewState& state) =0;
 };
 
@@ -95,6 +104,10 @@ public:
 
   FloatVector2d screen_to_world (const FloatVector2d&);
   FloatVector2d world_to_screen (const FloatVector2d&);
+
+private:
+  View(const View&);
+  View& operator=(const View&);
 };
 
 typedef View* ViewPtr;
