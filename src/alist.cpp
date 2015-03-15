@@ -79,7 +79,7 @@ AList::ensure_free_cell(const std::string& name, Type type)
   return value;
 }
 
-AList::AList&
+AList&
 AList::set_int(const std::string& name, int value)
 {
   Value& v = ensure_free_cell(name, AL_INT);
