@@ -51,7 +51,6 @@ file(GLOB FEUERKRAFT_SOURCES
   src/*.cpp
   src/buildings/*.cpp
   src/display/*.cpp
-  src/editor/*.cpp
   src/generic/*.cpp
   src/groundmap/*.cpp
   src/input/*.cpp
