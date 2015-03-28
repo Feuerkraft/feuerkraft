@@ -18,6 +18,7 @@
 #define FIELD_HXX
 
 #include <vector>
+#include <assert.h>
 
 template<class T>
 class Field

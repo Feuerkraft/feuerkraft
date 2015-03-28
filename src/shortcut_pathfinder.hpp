@@ -19,6 +19,8 @@
 
 #include <queue>
 #include <vector>
+#include <assert.h>
+
 #include "field.hpp"
 #include "pathfinder.hpp"
 
@@ -165,8 +167,7 @@ public:
 
   State get_state() { return state; }
 
-  void
-  ShortcutPathfinder::construct_path()
+  void construct_path()
   {
     //std::cout << "Construct path" << std::endl;
     // We construct the path reverse, so we start at the end
@@ -182,8 +183,7 @@ public:
     //std::cout << "OPenNodes: " << open_nodes.size() << std::endl;
   }
 
-  void
-  ShortcutPathfinder::make_neighbors_open(Node& cnode)
+  void make_neighbors_open(Node& cnode)
   {
     // FIXME: We don't handle neightbors with smaller cost here
     /*
@@ -284,8 +284,7 @@ public:
     open_nodes.push(&cnode);
   }
 
-  Node&
-  ShortcutPathfinder::resolve_parent(Node& node)
+  Node& resolve_parent(Node& node)
   {
     assert(node.parent != PARENT_NONE);
 
