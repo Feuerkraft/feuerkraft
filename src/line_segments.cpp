@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -41,7 +41,7 @@ LineSegments::get_orientation(const Segment& segment, float len)
         const float& start_angle = segment.radial.start_angle;
         const float& end_angle   = segment.radial.end_angle;
         //const float& radius      = segment.radial.radius;
-        
+
         float angle;
 
         if (segment.radial.turn_right)
@@ -70,7 +70,7 @@ LineSegments::get_orientation(const Segment& segment, float len)
     default:
       assert(false);
     }
-  return 0;  
+  return 0;
 }
 
 float
@@ -111,7 +111,7 @@ LineSegments::Segments::iterator
 LineSegments::get_segment(float l)
 {
   float len = 0.0f;
-  
+
   Segments::iterator seg = segments.end();
   for(Segments::iterator i = segments.begin(); i != segments.end(); ++i)
     {
@@ -126,8 +126,8 @@ LineSegments::get_segment(float l)
 float
 LineSegments::get_orientation(float l)
 {
-  float len = 0.0f; 
-  
+  float len = 0.0f;
+
   Segments::iterator seg = segments.begin();
   while(seg != segments.end())
     {
@@ -149,8 +149,8 @@ LineSegments::get_orientation(float l)
 FloatVector2d
 LineSegments::get_pos(float l)
 {
-  float len = 0.0f; 
-  
+  float len = 0.0f;
+
   Segments::iterator seg = segments.begin();
   while(seg != segments.end())
     {
@@ -175,7 +175,7 @@ LineSegments::get_end_orientation()
   if (segments.size() > 0)
     {
       Segment& segment = segments.back();
-  
+
       switch (segment.type)
         {
         case STRAIGHT:
@@ -184,7 +184,7 @@ LineSegments::get_end_orientation()
           break;
 
         case RADIAL:
-      
+
           break;
         }
       return 0;
@@ -226,7 +226,7 @@ LineSegments::get_length()
 
   for(Segments::iterator i = segments.begin(); i != segments.end(); ++i)
     len += i->length;
-  
+
   return len;
 }
 
@@ -240,7 +240,7 @@ LineSegments::get_pos(const Segment& segment, float len)
         const float& start_angle = segment.radial.start_angle;
         const float& end_angle   = segment.radial.end_angle;
         const float& radius      = segment.radial.radius;
-        
+
         float angle;
 
         if (segment.radial.turn_right)
@@ -287,14 +287,14 @@ LineSegments::add_straight_segment(float x1, float y1, float x2, float y2)
 
   segment.type   = STRAIGHT;
   segment.length = calc_length(segment);
-  
+
   //std::cout << "Line length: " << segment.length << std::endl;
 
   segments.push_back(segment);
 }
 
 void
-LineSegments::add_radial_segment(float x, float y, float radius, 
+LineSegments::add_radial_segment(float x, float y, float radius,
                                  float start_angle, float stop_angle, bool turn_right)
 {
   Segment segment;
@@ -312,9 +312,9 @@ LineSegments::add_radial_segment(float x, float y, float radius,
   segments.push_back(segment);
 }
 
-bool LineSegments::calc_route(float start_x, float start_y, 
-                              float dest_x, float dest_y, 
-                              float start_orientation, 
+bool LineSegments::calc_route(float start_x, float start_y,
+                              float dest_x, float dest_y,
+                              float start_orientation,
                               float radius, bool turn_right,
                               float& px, float& py, float& qx, float& qy,
                               float& angle_start, float& angle_final, float& length)
@@ -335,13 +335,13 @@ bool LineSegments::calc_route(float start_x, float start_y,
 
   float d = sqrt(h*h - radius*radius);
   float theta = acos(radius / h);
-  
+
   float phi = atan2(dy, dx);
 
   angle_final = Math::normalize_angle(turn_right ? phi + theta : phi - theta);
   qx = px + radius * cos(angle_final);
   qy = py + radius * sin(angle_final);
-  
+
   angle_start = Math::normalize_angle(angle_to_p + Math::pi);
 
   float total_curve = turn_right ? angle_start - angle_final : angle_final - angle_start;
@@ -349,13 +349,13 @@ bool LineSegments::calc_route(float start_x, float start_y,
   float curve_length = Math::normalize_angle(total_curve) * radius;
 
   length = d + curve_length;
-  
+
   return true;
 }
 
 void
 LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
-{ 
+{
   float start_orientation = get_end_orientation();
   float start_x = get_end_pos().x;
   float start_y = get_end_pos().y;
@@ -368,16 +368,16 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
                           start_orientation, radius, true,
                           l_px, l_py, l_qx, l_qy,
                           l_angle_start, l_angle_final, l_length);
-  
+
   float r_px, r_py, r_qx, r_qy, r_angle_start, r_angle_final, r_length;
   bool r_possible;
-  r_possible = calc_route(start_x, start_y, 
+  r_possible = calc_route(start_x, start_y,
                           dest_x, dest_y,
                           start_orientation,
                           radius, false,
-                          r_px, r_py, r_qx, r_qy, 
+                          r_px, r_py, r_qx, r_qy,
                           r_angle_start, r_angle_final, r_length);
-  
+
   if (l_possible && r_possible)
     {
       if (l_length < r_length)
@@ -388,7 +388,7 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
       else
         {
           add_radial_segment(r_px, r_py, radius, r_angle_start, r_angle_final, true);
-          add_straight_segment(r_qx, r_qy, dest_x, dest_y); 
+          add_straight_segment(r_qx, r_qy, dest_x, dest_y);
         }
     }
   else if (l_possible)
@@ -410,7 +410,7 @@ LineSegments::add_controll_point(float dest_x, float dest_y, float radius)
 void
 LineSegments::clear()
 {
-  segments.clear();  
+  segments.clear();
 }
 
 void
@@ -423,7 +423,7 @@ LineSegments::draw(View& view)
       //std::cout << "Pos: " << pos << std::endl;
       view->draw_fillrect(int(pos.x-5), int(pos.y-5),
                           int(pos.x+5), int(pos.y+5),
-                          1.0f, 0.0f, 0.0f, .5f); // red      
+                          1.0f, 0.0f, 0.0f, .5f); // red
     }
 #endif
 
@@ -443,7 +443,7 @@ LineSegments::draw(View& view)
           if (i->radial.turn_right)
             {
               view.get_sc().color().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
-                                     i->radial.start_angle, i->radial.end_angle, 
+                                     i->radial.start_angle, i->radial.end_angle,
                                      CL_Color(255, 255, 255));
               /*
               view.draw_fillrect((int)i->radial.x-5, (int)i->radial.y-5,
@@ -454,7 +454,7 @@ LineSegments::draw(View& view)
           else
             {
               view.get_sc().color().draw_arc(i->radial.x, i->radial.y, i->radial.radius,
-                                     i->radial.end_angle, i->radial.start_angle, 
+                                     i->radial.end_angle, i->radial.start_angle,
                                      CL_Color(255, 255, 255));
               /*
               view.draw_fillrect(i->radial.x-5, i->radial.y-5,
@@ -482,7 +482,7 @@ LineSegments::draw(View& view)
 
         case STRAIGHT:
           view.get_sc().color().draw_line(i->straight.x1, i->straight.y1,
-                                  i->straight.x2, i->straight.y2, 
+                                  i->straight.x2, i->straight.y2,
                                   CL_Color(255, 255, 255, 255));
           break;
         default:

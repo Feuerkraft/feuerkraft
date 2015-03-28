@@ -1,5 +1,5 @@
 //  $Id: gameobj_commands.hpp,v 1.7 2003/06/22 21:51:21 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -30,7 +30,7 @@ void gameobj_set_property(int handle, const char* name, SCM value);
 /** @return a list of available properties */
 SCM gameobj_properties(int handle);
 
-/** Create a game object with the parameters given as \a lst 
+/** Create a game object with the parameters given as \a lst
     @return handle to the GameObj */
 int gameobj_create(int type_id, SCM lst);
 

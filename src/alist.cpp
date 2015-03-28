@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -20,7 +20,7 @@
 #include "alist.hpp"
 
 AList::AList()
-{  
+{
 }
 
 AList::AList(const AList& alist)
@@ -69,13 +69,13 @@ AList::ensure_free_cell(const std::string& name, Type type)
   Value& value = content[name];
   if (value.type == AL_STRING)
     delete value.v_string;
-  
+
   if (value.type != type && value.type != AL_NONE)
     {
       std::cout << "AList: Warning: Overwriting cell: " << name << " with other type." << std::endl;
     }
   value.type = type;
-  
+
   return value;
 }
 
@@ -124,7 +124,7 @@ AList&
 AList::set_value (const std::string& str, const Value& value)
 {
   switch (value.type)
-    {      
+    {
     case AL_INT:
       return set_int(str, value.v_int);
 
@@ -138,7 +138,7 @@ AList::set_value (const std::string& str, const Value& value)
       return set_string(str, *value.v_string);
 
     default:
-      return *this; 
+      return *this;
     }
 }
 
@@ -147,7 +147,7 @@ AList::set_value (const std::string& str, const Value& value)
   AList::set_float_vector2d(const std::string& name, FloatVector2d& value)
   {
   Value& v = ensure_free_cell(name, AL_FLOATVECTOR2D);
-  v.v_float_vector2d = value;  
+  v.v_float_vector2d = value;
   return *this;
   }
 */
@@ -166,7 +166,7 @@ AList::get_value(const std::string& name, Type type) const
         return &(i->second);
       else
         return 0;
-    } 
+    }
 }
 
 bool
@@ -289,7 +289,7 @@ AList::get_bool(const std::string& str, bool def) const
     return def;
 }
 
-std::string 
+std::string
 AList::get_string(const std::string& str, const std::string& def) const
 {
   std::string res;
@@ -329,7 +329,7 @@ std::ostream& operator<< (std::ostream& os, const AList& lst)
   for(AList::const_iterator i = lst.begin(); i != lst.end(); ++i)
     {
       os << "  " << i->first << " -> " << i->second << std::endl;
-    }  
+    }
   os << std::endl;
   return os;
 }
@@ -337,7 +337,7 @@ std::ostream& operator<< (std::ostream& os, const AList& lst)
 std::ostream& operator<< (std::ostream& os, const AList::Value& value)
 {
   switch (value.type)
-    {      
+    {
     case AList::AL_INT:
       return os << value.v_int;
 

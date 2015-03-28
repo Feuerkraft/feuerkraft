@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -31,7 +31,7 @@ ButtonAxis::ButtonAxis(InputButton* left, InputButton* right)
 
   left_state  = false;
   right_state = false;
-  
+
   pos = 0.0f;
 }
 
@@ -46,7 +46,7 @@ ButtonAxis::update(float delta)
     {
       new_pos -= 1.0f;
     }
-  
+
   if (right_state)
     {
       new_pos += 1.0f;

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -25,7 +25,7 @@
 #include "vehicles/vehicle.hpp"
 #include "resource_manager.hpp"
 
-Radar::Radar(const FloatVector2d& arg_pos, 
+Radar::Radar(const FloatVector2d& arg_pos,
              PlayerPtr p)
   : player(p),
     background(resources->get_sprite("feuerkraft/radar")),
@@ -38,7 +38,7 @@ Radar::~Radar()
 {
 }
 
-void 
+void
 Radar::draw(CL_GraphicContext& gc)
 {
   FloatVector2d end(0.0f, 64.0f);
@@ -48,7 +48,7 @@ Radar::draw(CL_GraphicContext& gc)
   end += pos;
 
   background.draw(int(pos.x), int(pos.y), &gc);
-  
+
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
@@ -84,17 +84,17 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
   if (diff.get_length() < 64.0)
     {
       //diff = diff.rotate(-vehicle->get_angle () + (3.14159/2), FloatVector2d (0, 0, 1.0));
-      
+
       CL_Display::fill_rect(CL_Rect(int(pos.x + diff.x) - size, int(pos.y + diff.y) - size,
                                     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
                             CL_Color(int(255*red),
                                      int(255*green),
-                                     int(255*blue), 
+                                     int(255*blue),
                                      int(255*alpha)));
     }
 }
 
-void 
+void
 Radar::update(float delta)
 {
   angle += 10.0f * delta;

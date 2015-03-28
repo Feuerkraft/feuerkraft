@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -49,7 +49,7 @@ TileMap::TileMap (const TileMapData& data)
 	  //std::cout << "Tile" << tiles.size() << ": " << tilemap_data[i] << std::endl;
 	}
     }
-  
+
   //std::cout << "Tilemap: " << width << "x" << height << std::endl;
 
 }
@@ -74,9 +74,9 @@ TileMap::draw(View& view)
   int tile_x_offset = int(-(view.get_x_offset () / 40));
   int tile_y_offset = int(-(view.get_y_offset () / 40));
   int tile_width    = tile_x_offset + (view.get_width () / 40) + 1;
-  int tile_height   = tile_y_offset + (view.get_height () / 40) + 1; 
+  int tile_height   = tile_y_offset + (view.get_height () / 40) + 1;
  // FIXME: one tile more to avoid artefacts, hack, hack hack...
-  
+
 
   for (int y = tile_y_offset; y < tile_height; ++y)
     for (int x = tile_x_offset; x < tile_width; ++x)
@@ -85,7 +85,7 @@ TileMap::draw(View& view)
       if (y < height && y >= 0 && x < width && x >= 0) // Could be optimized away
 	if (tilemap [(width * y) + x])
           {
-            tilemap [(width * y) + x]->draw (view , 
+            tilemap [(width * y) + x]->draw (view ,
                                              int(x * 40),
                                              int(y * 40));
           }

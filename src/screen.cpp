@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -26,7 +26,7 @@ Screen::~Screen ()
 {
 }
 
-void 
+void
 Screen::draw (CL_GraphicContext& gc)
 {
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
@@ -35,7 +35,7 @@ Screen::draw (CL_GraphicContext& gc)
     }
 }
 
-void 
+void
 Screen::update (float delta)
 {
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
@@ -50,18 +50,18 @@ Screen::has(GuiObj* obj)
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
     if (obj == *i)
       return true;
-  
+
   return false;
 }
 
-void 
+void
 Screen::add (GuiObj* obj)
 {
   if (!has(obj))
     gui_objs.push_back (obj);
 }
 
-void 
+void
 Screen::remove (GuiObj* obj)
 {
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)

@@ -1,5 +1,5 @@
 //  $Id: building_map_data.hpp,v 1.6 2003/06/22 19:22:56 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -50,12 +50,12 @@ public:
    */
   BuildingMapData (SCM desc);
   virtual ~BuildingMapData ();
-  
+
   GameObj* create();
 
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */
-  SCM dump_to_scm ();  
+  SCM dump_to_scm ();
 };
 
 #endif

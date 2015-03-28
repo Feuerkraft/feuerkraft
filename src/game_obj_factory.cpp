@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -50,7 +50,7 @@ GameObjFactory::GameObjFactory() :
   register_factory("helicopter", new GameObjGenericFactory<Helicopter>());
 }
 
-GameObjFactory* 
+GameObjFactory*
 GameObjFactory::instance()
 {
   if (instance_)
@@ -68,13 +68,13 @@ GameObjFactory::create(int type_id, const AList& alst)
     {
       // FIXME: All this should be no longer needed if objects get the AList
       // as constructor
-#if 0      
+#if 0
       PropertySet* props = obj->get_properties();
 
       for (AList::const_iterator i = alst.begin(); i != alst.end(); ++i)
         {
           //std::cout << ">>># " << i->second.type << std::endl;
-          
+
           switch(i->second.type)
             {
             case AList::AL_INT:
@@ -101,7 +101,7 @@ GameObjFactory::create(int type_id, const AList& alst)
   return obj;
 }
 
-GameObj* 
+GameObj*
 GameObjFactory::create_raw_object(int type_id, const AList& lst)
 {
   GameObjAbstractFactory* factory = get_factory(type_id);
@@ -117,7 +117,7 @@ GameObjFactory::get_factory(int type_id)
 {
   if (type_id >= 0 && type_id < int(factories.size()))
     return factories[type_id];
-  else 
+  else
     return 0;
 }
 

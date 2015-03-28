@@ -1,5 +1,5 @@
 //  $Id: game_world.hpp,v 1.13 2003/06/22 21:51:21 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -45,7 +45,7 @@ private:
 
   // FIXME: This is a ugly ugly hack...
   GameObj* buildingmap;
-  
+
   GroundMap* groundmap;
   float current_time;
   FloatVector2d wind;
@@ -57,7 +57,7 @@ public:
   virtual ~GameWorld ();
 
   float get_time() { return current_time; }
-  
+
   /** @return the current speed and direction of the wind */
   FloatVector2d get_wind() const;
 

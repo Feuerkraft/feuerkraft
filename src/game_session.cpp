@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -76,7 +76,7 @@ GameSession::GameSession(const std::string& arg_filename) :
   collision_mgr(),
   world(),
   view()
-{  
+{
 }
 
 void
@@ -95,11 +95,11 @@ GameSession::init()
   // FIXME: These functions need a better place
   scm_c_primitive_load(path_manager.complete("feuerkraft.scm").c_str());
   scm_c_primitive_load(path_manager.complete("input.scm").c_str());
-  
+
   // Deserialize the game world
   {
     std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-    SCM fdes = scm_open_file (scm_makfrom0str(filename.c_str()), 
+    SCM fdes = scm_open_file (scm_makfrom0str(filename.c_str()),
                               scm_makfrom0str("r"));
     SCM lst = scm_read (fdes);
     scm_close (fdes);
@@ -192,7 +192,7 @@ GameSession::init()
   DisplayManager::init();
 }
 
-void 
+void
 GameSession::update()
 {
   int delta_wait = static_cast<int>(1000/args->fps);
@@ -226,7 +226,7 @@ GameSession::update()
 
   if (!do_pause)
     DisplayManager::current()->update(delta);
-      
+
   DisplayManager::current()->draw(*(CL_Display::get_current_window()->get_gc()));
 
   if (CL_Mouse::get_keycode(CL_MOUSE_MIDDLE))
@@ -254,7 +254,7 @@ GameSession::update()
     }
 
   ++frames;
-	    
+
   // Update keyboard input and handle system events:
   // Exits the loop if ClanLib requests shutdown - for instance if
   // someone closes the window.
@@ -274,7 +274,7 @@ GameSession::update()
                   menu_hide();
                   control_state = UNIT_CONTROL;
                 }
-              else 
+              else
                 {
                   menu_show(0);
                   control_state = MENU_CONTROL;
@@ -303,8 +303,8 @@ GameSession::update()
     case UNIT_CONTROL:
       player->get_current_unit()->update_controlls(InputManager::get_controller());
       break;
-      
-    default: 
+
+    default:
       std::cout << "Unknown ControlState, switching back to UNIT_CONTROL" << std::endl;
       control_state = UNIT_CONTROL;
       break;
@@ -323,7 +323,7 @@ GameSession::deinit()
   DisplayManager::deinit();
 
   std::cout << "Avarage delta: " << deltas/loops << std::endl;
-  std::cout << "Avarage fps:   " 
+  std::cout << "Avarage fps:   "
             << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
 }
 

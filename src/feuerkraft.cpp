@@ -1,5 +1,5 @@
 //  $Id: feuerkraft.cpp,v 1.55 2003/10/31 23:24:41 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -48,7 +48,7 @@
 extern "C" void scm_init_readline();
 #endif
 extern "C" void SWIG_init(void);
-          
+
 
 // Global Instance of the main class
 Feuerkraft feuerkraft;
@@ -65,7 +65,7 @@ Feuerkraft::~Feuerkraft()
   delete args;
 }
 
-void 
+void
 Feuerkraft::init()
 {
   // Init Guile
@@ -89,7 +89,7 @@ Feuerkraft::init()
   // Init pseudo random number generator
   srand (time (0));
 
-  // Find the location of Feuerkrafts data files (images, sounds, etc.) 
+  // Find the location of Feuerkrafts data files (images, sounds, etc.)
   if (!args->datadir.empty())
     {
     }
@@ -102,12 +102,12 @@ Feuerkraft::init()
       path_manager.add_path(exe_path + "share/games/feuerkraft");
       path_manager.add_path(exe_path + "../share/feuerkraft");
       path_manager.add_path(exe_path + "../share/games/feuerkraft");
-      path_manager.find_path("feuerkraft.xml");     
+      path_manager.find_path("feuerkraft.xml");
     }
 
   // Create the main window
   window = new CL_DisplayWindow(PACKAGE_STRING,
-                                args->screen_width, args->screen_height, 
+                                args->screen_width, args->screen_height,
                                 args->fullscreen);
   CL_Display::set_current_window (window);
   CL_Display::clear();
@@ -137,7 +137,7 @@ Feuerkraft::init()
     InputManager::setup_recorder(args->event_record_file);
 }
 
-void 
+void
 Feuerkraft::deinit()
 {
   Fonts::deinit();
@@ -149,14 +149,14 @@ Feuerkraft::deinit()
   CL_SetupDisplay::deinit();
   CL_SetupCore::deinit();
 }
-	
+
 int
 Feuerkraft::main(int argc, char** argv)
 {
   // Create a console window for text-output if not available
   CL_ConsoleWindow console("Console");
   console.redirect_stdio();
-  
+
   try
     {
       // Make arguments accessible for all member functions
@@ -164,7 +164,7 @@ Feuerkraft::main(int argc, char** argv)
 
       // Init all subsystems
       init();
-      
+
       if (args->mission_file.empty())
         args->mission_file = path_manager.complete("missions/airport.feu");
 
@@ -208,7 +208,7 @@ Feuerkraft::key_down(const CL_InputEvent& event)
       std::cout << "Saving screenshot to: " << filename << std::endl;
       CL_ProviderFactory::save(CL_Display::get_front_buffer(),
                                filename);
-    } 
+    }
   else if (event.id == CL_KEY_F11)
     {
       if (CL_Display::is_fullscreen())

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -40,7 +40,7 @@ Helicopter::Helicopter(const AList& lst)
       heli          = resources->get_sprite("feuerkraft/huey");
       heli_shadow   = resources->get_sprite("feuerkraft/huey_shadow");
       helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
-      
+
       RotorDescription rotor;
       rotor.direction = RotorDescription::LEFT;
       rotor.slow_sprite ="feuerkraft/huey_rotor";
@@ -52,26 +52,26 @@ Helicopter::Helicopter(const AList& lst)
       heli          = resources->get_sprite("feuerkraft/helicopter");
       heli_shadow   = resources->get_sprite("feuerkraft/helicopter_shadow");
       helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
-      
+
       RotorDescription rotor;
       rotor.direction = RotorDescription::LEFT;
       rotor.slow_sprite ="feuerkraft/huey_rotor";
       rotor.fast_sprite = "feuerkraft/huey_rotor2";
-      rotors.push_back(Rotor(rotor));      
+      rotors.push_back(Rotor(rotor));
     }
   else // if (lst.get_int("type") == 2)
     {
       heli          = resources->get_sprite("feuerkraft/chinook");
       heli_shadow   = resources->get_sprite("feuerkraft/chinook_shadow");
       helidestroyed = resources->get_sprite("feuerkraft/helidestroyed");
-        
+
       RotorDescription rotor1;
       rotor1.offset = FloatVector2d(40.0f, 0);
       rotor1.slow_sprite = "feuerkraft/chinook_rotor";
       rotor1.fast_sprite = "feuerkraft/chinook_rotor2";
       rotor1.direction = RotorDescription::LEFT;
       rotors.push_back(Rotor(rotor1));
-  
+
       RotorDescription rotor2;
       rotor2.offset = FloatVector2d(-40.0f, 0);
       rotor2.slow_sprite = "feuerkraft/chinook_rotor";
@@ -94,7 +94,7 @@ Helicopter::~Helicopter ()
 {
 }
 
-void 
+void
 Helicopter::draw (View& view)
 {
   if (!destroyed)
@@ -119,7 +119,7 @@ Helicopter::draw (View& view)
     }
 }
 
-void 
+void
 Helicopter::update (float delta)
 {
   for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
@@ -142,7 +142,7 @@ Helicopter::update (float delta)
       bool running = true;
       for (Rotors::iterator i = rotors.begin(); i != rotors.end(); ++i)
         if (!(*i).is_running())
-          running = false;          
+          running = false;
 
       if (running)
         {
@@ -154,7 +154,7 @@ Helicopter::update (float delta)
             }
         }
     }
-    
+
   // Apply controlls
   if (state != LANDED && height > 0)
     {
@@ -174,7 +174,7 @@ Helicopter::update (float delta)
                                                                            + Math::frand()*0.06f - 0.03f)));
     }
   secondary_reload += delta;
- 
+
   delta *= 50;
 
   if (energie <= 0 && !destroyed)
@@ -184,7 +184,7 @@ Helicopter::update (float delta)
     }
 
   FloatVector2d vel(velocity, 0.0);
- 
+
   pos += vel.rotate(orientation);
 
   // Let the heli strafe
@@ -218,17 +218,17 @@ Helicopter::land_or_start()
     }
 }
 
-bool 
+bool
 Helicopter::is_colliding (FloatVector2d obj_pos)
 {
-  float range = 20.0; 
+  float range = 20.0;
 
   return  (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
 	   && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);
 }
 
 void
-Helicopter::collide (Projectile*) 
+Helicopter::collide (Projectile*)
 {
   energie -= 15;
 }

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -33,14 +33,14 @@ Tree::Tree (const AList& lst)
   def.set_float("y-pos", 0.0f);
   def.set_float("z-pos", 10.0f);
   def.set_string("sprite", "feuerkraft/tree");
-  
+
   def.merge(lst);
 
   // Load stuff
   sprite_name = def.get_string("sprite");
   sur = resources->get_sprite(sprite_name);
   AssertMsg(!sur.is_null(), "Tree: surface not loaded correctly: '" << sprite_name << "'");
-    
+
   pos.x = def.get_float("x-pos");
   pos.y = def.get_float("y-pos");
   z_pos = def.get_float("z-pos");
@@ -63,8 +63,8 @@ Tree::properties_updated()
   sur = resources->get_sprite(sprite_name);
   sur.set_alignment(origin_center);
 }
-  
-void 
+
+void
 Tree::draw (View& view)
 {
   view.get_sc().color().draw(sur, pos.x, pos.y);

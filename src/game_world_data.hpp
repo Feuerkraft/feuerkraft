@@ -1,5 +1,5 @@
 //  $Id: game_world_data.hpp,v 1.5 2003/06/22 21:51:21 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -36,15 +36,15 @@ protected:
   std::vector<std::string> scripts;
   GroundMapData* groundmap_data;
   BuildingMapData* buildingmap_data;
-  
+
 public:
   explicit GameWorldData (SCM desc);
   virtual ~GameWorldData ();
- 
+
   /** Convert the data from a given data object into an SCM which can
       be written to a save game file or similar things */
   SCM dump_to_scm ();
-  
+
 private:
   void parse_objects(SCM desc);
   void parse_scripts(SCM desc);

@@ -1,5 +1,5 @@
 //  $Id: draw_circle.hpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -48,7 +48,7 @@ void draw_fill_circle(Field<int>& field, int center_x, int center_y, int radius)
           xchange += 2;
         }
     }
-  
+
   if (center_x > 0 && center_x < field.get_width())
     for(int y = -pos[0]; y <= pos[0]; ++y)
       ++field(center_x, center_y + y);
@@ -69,7 +69,7 @@ void draw_circle(Field<int>& field, int center_x, int center_y, int radius)
   int x = radius;
   int y = 0;
   int radius_error = 0;
-  
+
   while (x >= y)
     {
       field(center_x + x, center_y + y) = 8;

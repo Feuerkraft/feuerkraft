@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -48,7 +48,7 @@ AIVehicle::AIVehicle(const FloatVector2d& arg_pos)
   destroyed_sprite.set_alignment(origin_center);
 
   current_order.type = AI_VO_NONE;
-  
+
   properties->register_bool ("destroyed",   &destroyed);
 
   smoke_emitter = new SmokeEmitter(pos);
@@ -72,7 +72,7 @@ AIVehicle::update(float delta)
     case AI_VO_DRIVETO:
       {
         float old_orientation = orientation;
-        
+
         FloatVector2d target_pos(current_order.drive_to.pos.x,
                              current_order.drive_to.pos.y);
 
@@ -92,7 +92,7 @@ AIVehicle::update(float delta)
           }
         if (rand()% 15 == 1)
           world->add (new SmokeParticle (pos));
-      } 
+      }
       break;
 
     case AI_VO_WAIT:
@@ -109,7 +109,7 @@ AIVehicle::update(float delta)
     {
       smoke_emitter->set_pos(pos + (FloatVector2d(-10.0f, -10.0f).rotate(orientation)));
       smoke_emitter->update(delta);
-      return; 
+      return;
     }
 
   if (current_order.type != AI_VO_NONE)
@@ -149,7 +149,7 @@ AIVehicle::draw (View& view)
   //line_segments.draw(view);
 }
 
-void 
+void
 AIVehicle::draw_levelmap (LevelMap& levelmap)
 {
   CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
@@ -167,12 +167,12 @@ void
 AIVehicle::wait(float seconds)
 {
   AIVehicleOrder order;
-  
+
   order.type = AI_VO_WAIT;
 
   order.wait.sequence_id = SequenceManager::current()->start_sequence();
   order.wait.seconds = seconds;
-  
+
   add_order(order);
 }
 
@@ -223,10 +223,10 @@ AIVehicle::clear_orders()
 void
 AIVehicle::draw_energie (View& view)
 {
-  energie.draw (view, 
+  energie.draw (view,
 		int(pos.x), int(pos.y - 40));
 }
-  
+
 void
 AIVehicle::drive_to(const FloatVector2d& n_pos)
 {
@@ -238,7 +238,7 @@ AIVehicle::drive_to(const FloatVector2d& n_pos)
   order.drive_to.sequence_id = SequenceManager::current()->start_sequence();
   order.drive_to.pos.x = n_pos.x;
   order.drive_to.pos.y = n_pos.y;
-  
+
   add_order(order);
 #else
   current_order.type = AI_VO_DRIVETO;

@@ -1,5 +1,5 @@
 //  $Id: game_obj.hpp,v 1.13 2003/08/20 00:15:10 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -58,7 +58,7 @@ public:
   /** This is called once somebody alters the properties, might be
       needed if one for example changes the surface-string and
       requires the surface to be reloaded.
-  
+
       FIXME: Might be a stupid way to do it, a surface with self
       reloading capabilities might be better, but might not always
       work. */
@@ -78,7 +78,7 @@ public:
   /** Draw the object to the levelmap, the levelmap gives an overview
       about the complete level */
   virtual void draw_levelmap(LevelMap& view) {}
-  
+
   /** Update the object once a game loop */
   virtual void update (float) {}
 
@@ -98,7 +98,7 @@ public:
 
   // @return true if the object can be removed from the world
   virtual bool removable () { return remove_me; }
-  
+
   virtual void on_collision(GameObj* obj);
   virtual void on_collision_with_building(Building* building);
 

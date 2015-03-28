@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -30,7 +30,7 @@ Screenshot::write_screenshot_pnm(const std::string& filename)
   CL_PixelBuffer buf = take_screen_shot();
 
   FILE* out = fopen(filename.c_str(), "wb");
-  
+
   if (!out)
     {
       perror(filename.c_str());
@@ -52,12 +52,12 @@ Screenshot::write_screenshot_pnm(const std::string& filename)
 	  height);
 
   unsigned char* data = static_cast<unsigned char*>(buf.get_data());
-  
+
   for(int i = height-1; i >= 0; --i)
     {
       fwrite(data + pitch*i,
              sizeof(unsigned char),
-             pitch, 
+             pitch,
              out);
     }
 
@@ -69,13 +69,13 @@ CL_PixelBuffer
 Screenshot::take_screen_shot()
 {
   CL_PixelBuffer back_buffer = CL_Display::get_current_window()->get_back_buffer();
-  
+
   unsigned short width = back_buffer.get_width();
   unsigned short height = back_buffer.get_height();
-		
+
   CL_PixelBuffer pbuf(width, height, width*3, CL_PixelFormat::bgr888);
   back_buffer.convert(pbuf);
-  
+
   return pbuf;
 }
 

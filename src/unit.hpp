@@ -1,5 +1,5 @@
 //  $Id: unit.hpp,v 1.7 2003/06/23 10:01:41 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,13 +38,13 @@ protected:
 public:
   Unit();
   ~Unit();
-  
+
   void draw_radar(Radar& radar);
 
   /** Feed new input events into the unit, allowing it to move
       accordingly */
   virtual void update_controlls(const Controller& events) =0;
-  
+
   /** Attach an AI to this object and let it act */
   virtual void attach_ai() {}
 

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -44,15 +44,15 @@ Menu::add_item(MenuItem* item)
 void
 Menu::update(float delta)
 {
-  
+
 }
 
 void
 Menu::draw(CL_GraphicContext& gc)
 {
-  // Draw menu background 
+  // Draw menu background
   CL_Display::fill_rect(CL_Rect(CL_Display::get_width() - 170, 0,
-                                CL_Display::get_width(), items.size() 
+                                CL_Display::get_width(), items.size()
                                 * (Fonts::font.get_height() + 4) + 20),
                         CL_Color(0,0,0, 50));
 
@@ -149,7 +149,7 @@ Menu::process_events(const InputEventLst& lst)
 
   // FIXME: no delta
   float delta = InputManager::get_controller().get_axis_state(ACCELERATE_AXIS);
-  
+
   if (delta > .1f && !moving)
     {
       pos = 5.0f;
@@ -164,9 +164,9 @@ Menu::process_events(const InputEventLst& lst)
     {
       moving = false;
     }
-  
+
   pos += delta/4.0f;
-  
+
   if (pos >= 1.0f)
     {
       next_item();

@@ -9,7 +9,7 @@
 
 const float circle = 6.2831854f;
 
-Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire) 
+Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire)
   : fire_sur (resources->get_sprite (fire.c_str ())),
     sur (resources->get_sprite (surface.c_str ())),
     shadow (resources->get_sprite ("feuerkraft/turret2_shadow")),
@@ -25,17 +25,17 @@ Turret::~Turret ()
 {
 }
 
-void 
+void
 Turret::draw (View& view)
 {
   float absolute_orientation = tank->get_orientation () + orientation;
 
-#ifdef UGLY_SHADOWS_ENABLED  
+#ifdef UGLY_SHADOWS_ENABLED
   view.draw(shadow, tank->get_pos () + FloatVector2d (10,10), absolute_orientation);
   view.draw(shadow, tank->get_pos () + FloatVector2d (15,15), absolute_orientation);
   view.draw(shadow, tank->get_pos () + FloatVector2d (20,20), absolute_orientation);
   view.draw(shadow, tank->get_pos () + FloatVector2d (25,25), absolute_orientation);
-#endif 
+#endif
 
   sur.set_angle((absolute_orientation + Math::pi) / Math::pi * 180.0f);
   view.get_sc().color().draw(sur, tank->get_pos().x, tank->get_pos().y);
@@ -63,7 +63,7 @@ Turret::update (float delta)
       tank->ammo -=  0.003 * delta;
 
       float rot_angle = tank->get_orientation() + orientation;
-      
+
       FloatVector2d dir = FloatVector2d::make_polar(10.0 + tank->get_velocity(), rot_angle);
 
       if (floppy)
@@ -82,7 +82,7 @@ Turret::update (float delta)
     }
 }
 
-void 
+void
 Turret::increase_angle (float delta)
 {
   orientation += tank->get_increment () * delta;
@@ -101,7 +101,7 @@ Turret::stop_fire ()
   fireing = false;
 }
 
-void 
+void
 Turret::set_relative_orientation (float arg_orientation)
 {
   orientation = arg_orientation;
@@ -113,4 +113,4 @@ Turret::set_absolute_orientation (float arg_orientation)
   orientation = orientation - tank->get_orientation();
 }
 
-// EOF 
+// EOF

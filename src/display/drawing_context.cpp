@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -34,7 +34,7 @@ class FillScreenDrawingRequest : public DrawingRequest
 private:
   CL_Color color;
 public:
-  FillScreenDrawingRequest(const CL_Color& color_) 
+  FillScreenDrawingRequest(const CL_Color& color_)
     : DrawingRequest(CL_Vector(0, 0, -1000.0f)), color(color_)
   {
   }
@@ -87,7 +87,7 @@ void
 DrawingContext::render(CL_GraphicContext* gc)
 {
   std::stable_sort(drawingrequests.begin(), drawingrequests.end(), DrawingRequestsSorter());
-  
+
   for(DrawingRequests::iterator i = drawingrequests.begin(); i != drawingrequests.end(); ++i)
     {
       (*i)->draw(gc);
@@ -121,30 +121,30 @@ DrawingContext::draw(const CL_Sprite&   sprite,  float x, float y, float z)
 
 void
 DrawingContext::draw(const std::string& text,    float x, float y, float z)
-{ 
+{
   draw(new TextDrawingRequest(text, CL_Vector(x, y, z)));
 }
 
 void
-DrawingContext::draw_line (float x1, float y1, float x2, float y2, 
+DrawingContext::draw_line (float x1, float y1, float x2, float y2,
                            const CL_Color& color)
 {
 }
 
 void
-DrawingContext::draw_fillrect (float x1, float y1, float x2, float y2, 
+DrawingContext::draw_fillrect (float x1, float y1, float x2, float y2,
 		      const CL_Color& color)
 {
 }
 
 void
-DrawingContext::draw_rect (float x1, float y1, float x2, float y2, 
+DrawingContext::draw_rect (float x1, float y1, float x2, float y2,
 		  const CL_Color& color)
 {
 }
 
 void
-DrawingContext::draw_pixel (float x_pos, float y_pos, 
+DrawingContext::draw_pixel (float x_pos, float y_pos,
 		   const CL_Color& color)
 {
 }

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,7 +38,7 @@
 #include <ClanLib/Core/System/clanstring.h>
 #include "gettext.h"
 
-//#include "PingusError.hpp" 
+//#include "PingusError.hpp"
 #include "system.hpp"
 
 int System::verbose;
@@ -57,10 +57,10 @@ System::opendir(const std::string& pathname, const std::string& pattern)
 {
   std::list<System::DirectoryEntry> dir_list;
 
-#ifndef WIN32 
+#ifndef WIN32
   DIR* dp;
-  dirent* de; 
-  
+  dirent* de;
+
   dp = ::opendir(pathname.c_str());
 
   if (dp == 0)
@@ -69,21 +69,21 @@ System::opendir(const std::string& pathname, const std::string& pattern)
     }
   else
     {
-      while ((de = ::readdir(dp)) != 0) 
+      while ((de = ::readdir(dp)) != 0)
 	{
-	  if (fnmatch(pattern.c_str(), de->d_name, FNM_PATHNAME) == 0) 
+	  if (fnmatch(pattern.c_str(), de->d_name, FNM_PATHNAME) == 0)
 	    {
 	      if (de->d_type == 'd')
 		{
 		  dir_list.push_back(DirectoryEntry(de->d_name));
 		}
-	      else 
+	      else
 		{
 		  dir_list.push_back(DirectoryEntry(de->d_name));
 		}
 	    }
 	}
-      
+
       closedir(dp);
     }
 #else /* !WIN32 */
@@ -96,14 +96,14 @@ System::opendir(const std::string& pathname, const std::string& pattern)
     {
       std::cout << "System: Couldn't open: " << pathname << std::endl;
     }
-  
+
   do
-    {     
+    {
       dir_list.push_back(DirectoryEntry(coFindData.cFileName));
     }
   while (FindNextFile(hFind,&coFindData));
 
-  FindClose(hFind);  
+  FindClose(hFind);
 #endif
 
   return dir_list;
@@ -114,17 +114,17 @@ std::string
 System::basename(std::string filename)
 {
   // Should be replaced with STL
-  
+
   const char* str = filename.c_str();
   int i;
 
-  for(i = filename.size() - 1; i >= 0; --i) 
+  for(i = filename.size() - 1; i >= 0; --i)
     {
       if (*(str + i) == '/') {
 	break;
       }
     }
-  
+
   return (str+i + 1);
 }
 
@@ -155,7 +155,7 @@ System::create_dir(std::string directory)
 	{
 	  std::cout << _("Successfully created: ") << directory << std::endl;
 	}
-    }  
+    }
   else
     {
       if (verbose) std::cout << _("Found: ") << directory << std::endl;
@@ -181,7 +181,7 @@ System::init_directories()
 {
   std::string statdir  = get_statdir();
   std::string vardir   = get_vardir();
-  
+
   create_dir(statdir);
   create_dir(statdir + "levels/");
   create_dir(statdir + "levels/dist");
@@ -193,7 +193,7 @@ System::init_directories()
 
   // create_dir(vardir);
 }
- 
+
 std::string
 System::get_statdir()
 {
@@ -202,7 +202,7 @@ System::get_statdir()
 #else /* !WIN32 */
   char* homedir = getenv("HOME");
 
-  if (homedir) 
+  if (homedir)
     {
       return std::string(homedir) + "/.feuerkraft/";
     }
@@ -213,7 +213,7 @@ System::get_statdir()
 #endif
 }
 
-std::string 
+std::string
 System::get_cachedir()
 {
   return get_statdir() + "cache/";
@@ -222,7 +222,7 @@ System::get_cachedir()
 std::string
 System::get_vardir()
 {
-#ifdef WIN32   
+#ifdef WIN32
   return "var\\";
 #else
   return "/var/games/pingus/";
@@ -232,7 +232,7 @@ System::get_vardir()
 std::string
 System::get_tmpdir()
 {
-#ifdef WIN32   
+#ifdef WIN32
   // FIXME: Warrning this hardcoded values are mostlikly wrong!
   return "c:\\windows\\temp\\";
 #else
@@ -260,7 +260,7 @@ System::get_username()
 }
 
 /** Returns the EMail of the user or an empty string */
-std::string 
+std::string
 System::get_email()
 {
   if (default_email.empty())
@@ -290,7 +290,7 @@ System::get_language()
       if (strcmp(lang, "de_DE") == 0)
 	return "de";
       else
-	return lang; 
+	return lang;
     }
   else
     return default_language;
@@ -300,12 +300,12 @@ std::string
 System::translate(std::map<std::string, std::string> strs)
 {
   std::string str = strs[System::get_language()];
-  
+
   if (str.empty())
     {
       return strs[default_language];
     }
-  else 
+  else
     {
       return str;
     }
@@ -328,10 +328,10 @@ System::checksum (std::string filename)
       return "";
     }
 
-  do 
+  do
     {
       bytes_read = fread (buffer, sizeof (char), 4096, in);
-      
+
       if (bytes_read == -1)
 	{
 	  throw Error (_("System:checksum: file read error"));
@@ -339,7 +339,7 @@ System::checksum (std::string filename)
 
       for (int i=0; i < bytes_read; i++)
 	checksum = checksum * 17 + buffer[i];
-    } 
+    }
   while (bytes_read != 0);
 
   fclose (in);

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -71,7 +71,7 @@ BuildingMap::BuildingMap(const BuildingMapData& data) :
     }
 
   building_map.resize(width * height);
-  
+
   // Clear all pointers in the building map
   for (std::vector<Building*>::iterator i = building_map.begin();
        i != building_map.end();
@@ -86,12 +86,12 @@ BuildingMap::BuildingMap(const BuildingMapData& data) :
        ++i)
     {
       Building* building = *i;
-      
+
       for (int x = building->get_x_pos();
 	   x < building->get_x_pos() + building->get_map_width();
 	   ++x)
 	{
-	  for (int y = building->get_y_pos(); 
+	  for (int y = building->get_y_pos();
 	       y < building->get_y_pos() + building->get_map_height();
 	       ++y)
 	    {
@@ -124,7 +124,7 @@ BuildingMap::draw_energie (View& view)
        ++i)
     {
       (*i)->draw_energie (view);
-    }  
+    }
 }
 
 void
@@ -135,9 +135,9 @@ BuildingMap::draw_radar (Radar& radar)
        ++i)
     {
       (*i)->draw_radar (radar);
-    }  
+    }
 }
-  
+
 // Update the object once a game loop
 void
 BuildingMap::update (float delta)

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -24,7 +24,7 @@
 
 const float circle = 6.2831854f;
 
-Jeep::Jeep(FloatVector2d arg_pos) 
+Jeep::Jeep(FloatVector2d arg_pos)
   : energie (50),
     velocity (0.0),
     angle (0.0)
@@ -34,7 +34,7 @@ Jeep::Jeep(FloatVector2d arg_pos)
   jeep = resources->get_sprite ("feuerkraft/jeep");
 }
 
-void 
+void
 Jeep::update (float delta)
 {
   delta *= 50;
@@ -63,35 +63,35 @@ Jeep::update (float delta)
   velocity /= 1.03f;
 }
 
-void 
+void
 Jeep::draw (View& view)
 {
   const float circle = 6.2831854f;
-  
+
   jeep.set_angle(angle/(circle/2.0)*180);
   view.get_sc().color().draw(jeep, pos.x, pos.y);
   energie.draw (view, int(pos.x), int(pos.y - 30));
 }
 
-void 
+void
 Jeep::turn_left (float delta)
 {
   angle += 0.06f * (velocity/5) * delta;
 }
 
-void 
+void
 Jeep::turn_right (float delta)
 {
   angle -= 0.06f * (velocity/5) * delta;
 }
 
-void 
-Jeep::turn_left2 (float delta) 
+void
+Jeep::turn_left2 (float delta)
 {
 }
 
 void
-Jeep::turn_right2 (float delta) 
+Jeep::turn_right2 (float delta)
 {
 }
 
@@ -108,38 +108,38 @@ Jeep::decrease_velocity (float delta)
 }
 
 void
-Jeep::start_fire () 
+Jeep::start_fire ()
 {
 }
 
 void
-Jeep::stop_fire () 
+Jeep::stop_fire ()
 {
 }
 
 void
-Jeep::drop_mine () 
+Jeep::drop_mine ()
 {
 }
 
-void 
+void
 Jeep::collide (Projectile*)
 {
   energie -= 5;
 }
 
-void 
-Jeep::collide (FloatVector2d force) 
+void
+Jeep::collide (FloatVector2d force)
 {
   energie -= int(force.get_length());
-  
+
   std::cout << "Jeep: Got force: " << force.get_length() << std::endl;
 }
 
-bool 
+bool
 Jeep::is_colliding (FloatVector2d obj_pos)
 {
-  float range = 6.0; 
+  float range = 6.0;
 
   return  (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
 	   && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);

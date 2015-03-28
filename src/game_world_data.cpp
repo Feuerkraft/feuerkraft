@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -46,7 +46,7 @@ GameWorldData::GameWorldData (SCM desc)
       if (gh_pair_p (gh_car (desc)))
 	{
 	  SCM symbol = gh_caar(desc);
-	  SCM data   = gh_cdar(desc);   
+	  SCM data   = gh_cdar(desc);
 
 	  if (gh_symbol_p (symbol))
 	    {
@@ -54,7 +54,7 @@ GameWorldData::GameWorldData (SCM desc)
 		{
 		  groundmap_data = GroundMapDataFactory::create (data);
 		}
-	      else if (gh_equal_p (gh_symbol2scm ("buildings"), symbol)) 
+	      else if (gh_equal_p (gh_symbol2scm ("buildings"), symbol))
 		{
 		  buildingmap_data = new BuildingMapData (data);
 		}
@@ -97,7 +97,7 @@ GameWorldData::parse_objects (SCM desc)
       if (gh_pair_p (gh_car (desc))) // is a symbol/value pair
 	{
 	  SCM symbol = gh_caar(desc);
-	  SCM data   = gh_cdar(desc);   
+	  SCM data   = gh_cdar(desc);
 
 	  GameObjData* obj = GameObjDataFactory::create (symbol, data);
 	  if (obj)
@@ -148,7 +148,7 @@ GameWorldData::dump_to_scm ()
 	    }
 	}
     }
-  
+
   world_lst = gh_cons (gh_symbol2scm ("objects"), gh_reverse(objs));
 
   world_lst = SCM_BOOL_F; //scm_listify (gh_symbol2scm ("world"), world_lst, SCM_UNDEFINED);
@@ -164,7 +164,7 @@ GameWorldData::parse_scripts(SCM desc)
       SCM script = gh_car(desc);
 
       scripts.push_back(Guile::scm2string(script));
-      
+
       desc = gh_cdr(desc);
     }
 }

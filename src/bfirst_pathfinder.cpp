@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -53,7 +53,7 @@ BFirstPathfinder::init(Pos& arg_start, Pos& arg_end)
   state = WORKING;
 
   Node& node = node_field(start.x, start.y);
-  
+
   node.visited = 1;
   node.cost    = 0;
   node.parent  = PARENT_GOAL;
@@ -84,7 +84,7 @@ BFirstPathfinder::process_one_open_node()
 
       cnode.visited = 1;
       cnode.cost    = 1;
- 
+
       // Goal reached
       if (int(cnode.x) == end.x && int(cnode.y) == end.y)
         {
@@ -92,7 +92,7 @@ BFirstPathfinder::process_one_open_node()
           state = PATH_FOUND;
           return;
         }
-     
+
       make_neighbors_open(cnode);
     }
 }
@@ -117,7 +117,7 @@ BFirstPathfinder::make_neighbors_open(Node& cnode)
   if (int(cnode.x) < node_field.get_width()-1  && field(cnode.x+1, cnode.y) == 0)
     {
       Node& east = node_field(cnode.x + 1, cnode.y);
-      if (east.visited == 0  && east.parent == PARENT_NONE) 
+      if (east.visited == 0  && east.parent == PARENT_NONE)
         {
           east.parent = PARENT_WEST;
           add_to_open_nodes(east);
@@ -133,7 +133,7 @@ BFirstPathfinder::make_neighbors_open(Node& cnode)
           add_to_open_nodes(north);
         }
     }
-  
+
   if (int(cnode.y) < node_field.get_height() - 1  && field(cnode.x, cnode.y+1) == 0)
     {
       Node& south = node_field(cnode.x, cnode.y + 1);
@@ -198,7 +198,7 @@ BFirstPathfinder::display()
 bool
 BFirstPathfinder::is_path_node(int x, int y)
 {
-  if (path.empty()) 
+  if (path.empty())
     return false;
   else
     {
@@ -261,7 +261,7 @@ int main()
   srand(time(NULL));
   Field<int> field(80, 50);
 
-  std::cout << "Created field of size: " 
+  std::cout << "Created field of size: "
             << field.get_width() << "x" << field.get_height() << std::endl;
 
   unsigned int start_time = CL_System::get_time();
@@ -298,7 +298,7 @@ int main()
   end_time = CL_System::get_time();
 
   pathfinder.display();
-      
+
   if (pathfinder.get_state() != BFirstPathfinder::PATH_FOUND)
     {
       std::cout << "No Path could be found" << std::endl;
@@ -310,7 +310,7 @@ int main()
       for (std::vector<Pos>::iterator i = path.begin(); i != path.end(); ++i)
         {
           std::cout << "[" << i->x << ", " << i->y << "] ";
-        }       
+        }
       std::cout << std::endl;
     }
 

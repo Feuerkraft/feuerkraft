@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -47,19 +47,19 @@ GameWorld::GameWorld (SCM scm)
     wind(40.0f, 30.0f)
 {
   current_world = this;
-  
+
   if (groundmap_data)
     groundmap = groundmap_data->create ();//this);
 
   if (buildingmap_data)
     buildingmap = buildingmap_data->create();
 
-  if (!groundmap) 
+  if (!groundmap)
     {
       std::cout << "GameWorld: No groundmap created, bailout" << std::endl;
       assert(groundmap);
     }
-  
+
   if (!buildingmap)
     {
       std::cout << "GameWorld: No buildingmap created, bailout" << std::endl;
@@ -73,7 +73,7 @@ GameWorld::GameWorld (SCM scm)
     {
       game_obj_manager->add_object((*i)->create());
     }
-  
+
   // FIXME: a little hacky
   //world_module = scm_c_define_module("feuerkraft game-world", 0, 0);
   //last_module  = scm_set_current_module(world_module);
@@ -98,13 +98,13 @@ GameWorld::~GameWorld ()
   //scm_set_current_module(last_module);
 }
 
-void 
+void
 GameWorld::add (GameObj* obj)
 {
   game_obj_manager->add_object(obj);
 }
 
-void 
+void
 GameWorld::add_front (GameObj* obj)
 {
   // FIXME: no go...
@@ -119,7 +119,7 @@ struct z_pos_sorter
   }
 };
 
-void 
+void
 GameWorld::draw (View& view)
 {
   game_obj_manager->get_objects().sort (z_pos_sorter ());
@@ -132,7 +132,7 @@ GameWorld::draw (View& view)
     }
 }
 
-void 
+void
 GameWorld::draw_energie (View& view)
 {
   GameObjManager* objs = game_obj_manager;
@@ -164,7 +164,7 @@ struct is_removable
   }
 };
 
-void 
+void
 GameWorld::update(float delta)
 {
   current_time += delta;
@@ -173,7 +173,7 @@ GameWorld::update(float delta)
 
   trigger_manager->update(delta);
 
-  game_obj_manager->get_objects().remove_if(is_removable ()); 
+  game_obj_manager->get_objects().remove_if(is_removable ());
 
   GameObjManager* objs = game_obj_manager;
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)

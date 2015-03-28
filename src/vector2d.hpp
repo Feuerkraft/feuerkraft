@@ -1,5 +1,5 @@
 //  $Id: vector2d.hpp,v 1.6 2003/08/20 00:15:10 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -41,16 +41,16 @@ public:
   /** Create a vector with the given polar coordinates */
   static FloatVector2d make_polar(float length, float orientation);
 
-  /** 
+  /**
    * Set the orienentation of a vector to \a angle
-   * 
+   *
    * @param angle in radian
    */
   void set_orientation(float angle);
 
-  /** 
+  /**
    * Rotate a vector by modifing it
-   * 
+   *
    * @param angle in radian
    */
   FloatVector2d& rotate(float angle);

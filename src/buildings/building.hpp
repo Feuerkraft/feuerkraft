@@ -1,5 +1,5 @@
 //  $Id: building.hpp,v 1.13 2003/08/20 00:02:46 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -47,7 +47,7 @@ protected:
 public:
   Building (const AList& lst);
   virtual ~Building ();
-  
+
   PropertySet* get_properties() { return properties; }
 
   void set_id(int i) { id = i; }
@@ -57,7 +57,7 @@ public:
   virtual void draw (View& view) =0;
 
   virtual void draw_energie (View& view) {}
-  
+
   virtual void draw_radar (Radar& radar);
 
   // Update the object once a game loop
@@ -65,7 +65,7 @@ public:
 
   int get_x_pos () { return x_pos; }
   int get_y_pos () { return y_pos; }
-  
+
   /** Returns the width which this building will take on the BuildingMap */
   virtual int get_map_width () =0;
 
@@ -77,7 +77,7 @@ public:
   virtual void collide (int energie) {}
 
   /** is_at() can be overwritten to provide a more detailed building
-      'resolution', so that buildings can be subgrid large 
+      'resolution', so that buildings can be subgrid large
       FIXME: Looks a bit hack like and doesn't work at polygon level  */
   virtual bool is_at (float x, float y) { return true; }
 

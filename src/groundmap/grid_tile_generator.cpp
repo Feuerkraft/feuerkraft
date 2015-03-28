@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -24,7 +24,7 @@
 GridTileGenerator::GridTileGenerator (std::string filename)
   : emptytile (new GridTile ("feuerkraft/emptytile"))
 {
-  SCM fdes = scm_open_file (gh_str02scm(filename.c_str ()), 
+  SCM fdes = scm_open_file (gh_str02scm(filename.c_str ()),
 			    gh_str02scm("r"));
   SCM lst  = scm_read (fdes);
 
@@ -33,7 +33,7 @@ GridTileGenerator::GridTileGenerator (std::string filename)
   while (gh_pair_p(lst))
     {
       parse_line (gh_car (lst));
-      lst = gh_cdr(lst); 
+      lst = gh_cdr(lst);
     }
 
   scm_close (fdes);
@@ -76,7 +76,7 @@ GridTileGenerator::scm2GridTileData (SCM desc)
   data.ur = symbol2GroundType(gh_cadr (desc));
   data.br = symbol2GroundType(gh_caddr (desc));
   data.bl = symbol2GroundType(gh_car(gh_cdddr (desc)));
-  
+
   return data;
 }
 
@@ -111,7 +111,7 @@ GridTileGenerator::symbol2GroundType (SCM symbol)
     {
       return GT_WETSAND;
     }
-  else 
+  else
     {
       return GT_EMPTY;
     }
@@ -126,7 +126,7 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
     {
       char* str = gh_scm2newstr (gh_car (desc), 0);
       vec.push_back (new GridTile (str));
-      
+
 #ifndef WIN32
       free (str);
 #endif
@@ -144,7 +144,7 @@ GridTileGenerator::create (const GridTileData& data)
     {
       return 0;
     }
-  
+
   // We switch to transparent when the tile has the same 'color' as the base ground
   // FIXME: ground color needs to be variable
   if (data.ur == GT_SAND && data.ul == GT_SAND && data.bl == GT_SAND && data.br == GT_SAND)

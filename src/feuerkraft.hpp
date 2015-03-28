@@ -1,5 +1,5 @@
 //  $Id: feuerkraft.hpp,v 1.8 2003/06/09 20:27:31 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -26,14 +26,14 @@ class CommandLineArguments;
 
 /**
    \mainpage %Feuerkraft Index Page
- 
+
    \section intro Introduction
- 
+
    This is the source code documentation for Feuerkraft, not all
    members and functions might be documented, but source code is
    included, so you might still figure out what a function should do
    and what it shouldn't.
- 
+
 
    \section code Quick Overview
 
@@ -66,7 +66,7 @@ class CommandLineArguments;
 
 
    \section style Coding Style
-   
+
    Coding style is mostly the default GNU Emacs one for C++, in
    addition to that namespaces have a indent level of 0.
 
@@ -93,7 +93,7 @@ private:
 public:
   Feuerkraft();
   ~Feuerkraft();
-  
+
   void init();
   void deinit();
   int  main(int argc, char** argv);

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -78,7 +78,7 @@ CollisionManager::run()
             }
         }
     }
-  
+
   // Check for GameObj building collision
   for(Shapes::iterator i = shapes.begin(); i != shapes.end(); ++i)
     {
@@ -88,7 +88,7 @@ CollisionManager::run()
           {
             BuildingMap* building_map = GameWorld::current()->get_buildingmap();
             Building* building = building_map->get_building(FloatVector2d(i->circle.x, i->circle.y));
-            
+
             if (!building)
               building = building_map->get_building(FloatVector2d(i->circle.x - i->circle.radius, i->circle.y));
 
@@ -100,7 +100,7 @@ CollisionManager::run()
 
             if (!building)
               building = building_map->get_building(FloatVector2d(i->circle.x, i->circle.y + i->circle.radius));
-            
+
             if (building)
               {
                 GameObj* obj = GameObjManager::current()->get_object_by_id(i->circle.object_id);
@@ -181,7 +181,7 @@ CollisionManager::add_rect(int object_id, float x, float y, float width, float h
   shape.rect.orientation = orientation;
 #else
   shape.type = SHAPE_CIRCLE;
-  
+
   shape.circle.object_id = object_id;
   shape.circle.x = x;
   shape.circle.y = y;
@@ -234,7 +234,7 @@ CollisionManager::check_rect_rect_collision(const Rectangle& rect1, const Rectan
 void
 CollisionManager::check_circle_rect_collision(const Circle& circle, const Rectangle& rect)
 {
-  
+
 }
 
 void

@@ -1,5 +1,5 @@
 //  $Id: game_mission.hpp,v 1.3 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -36,7 +36,7 @@ private:
   std::string author_email;
   unsigned int creation_time;
   GameWorld* world;
-  
+
 public:
   /** Create an GameMission out of an SCM description. A game mission
       is stored in a directory with the files [FIXME:...] */
@@ -46,7 +46,7 @@ public:
   /** Return the date of the mission creation in number of seconds
       since 1. Jan 1970 (standard unix time) */
   unsigned int get_creation_time ();
-  
+
   // FIXME: What about support for multiple authors? -> useless?!
 
   /** Return the authors name */

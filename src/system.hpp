@@ -1,5 +1,5 @@
 //  $Id: system.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 1999 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -35,7 +35,7 @@ private:
 public:
   struct Error {
     std::string message;
-    
+
     Error (const std::string& str)
       : message (str) {}
   };
@@ -55,7 +55,7 @@ public:
 
   ///
   typedef std::list<DirectoryEntry> Directory;
-  
+
   ///
   static Directory opendir(const std::string& pathname, const std::string& pattern = "*");
 
@@ -70,8 +70,8 @@ public:
 
   /** Change into the directory named dir, on error throw an PingusError */
   static void change_dir (std::string dir);
- 
-  /** Check if all needed directories are available, if not then create 
+
+  /** Check if all needed directories are available, if not then create
       them. */
   static void init_directories();
 
@@ -92,7 +92,7 @@ public:
   static std::string get_vardir();
 
   /** Asks different variables to check were the directory for
-      temporary files is located 
+      temporary files is located
       @return The location of the tmp directory */
   static std::string get_tmpdir();
 

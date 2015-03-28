@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -69,7 +69,7 @@ TileMapData::TileMapData (SCM desc)
 }
 
 TileMapData::~TileMapData ()
-{ 
+{
 }
 
 void
@@ -89,7 +89,7 @@ TileMapData::parse_from_file (SCM desc)
   height = provider.get_height ();
 
   tilemap_data.resize (width * height);
-  
+
   unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
   for (int i = 0; i < width * height; ++i)
     tilemap_data[i] = buffer[i];
@@ -103,16 +103,16 @@ TileMapData::parse_map (SCM desc)
   assert (width != -1);
   assert (height != -1);
   tilemap_data.resize (width * height);
-  
+
   // Init the map to '0'
   for (std::vector<int>::iterator it = tilemap_data.begin ();
        it != tilemap_data.end (); ++it)
     *it = 0;
-  
+
   /*std::cout << "Tilemap MapData: " << std::flush;
   gh_display (desc);
   gh_newline ();*/
-  
+
   int i = 0;
   bool to_large = false;
   while (!gh_null_p (desc))
@@ -127,7 +127,7 @@ TileMapData::parse_map (SCM desc)
 	  to_large = true;
 	  ++i;
 	}
-      
+
       desc = gh_cdr(desc);
     }
 

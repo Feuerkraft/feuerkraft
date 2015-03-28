@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -26,7 +26,7 @@ GridMap::GridMap (const GridMapData& data)
     surface(provider)
 {
   std::vector<GridTileData> tile_data;
-  
+
   width  = grid_width  - 1;
   height = grid_height - 1;
 
@@ -55,7 +55,7 @@ GridMap::GridMap (const GridMapData& data)
 
 GridMap::~GridMap ()
 {
-  
+
 }
 
 void
@@ -67,9 +67,9 @@ GridMap::draw (View& view)
   int tile_x_offset = int(-(view.get_x_offset ()) / 40);
   int tile_y_offset = int(-(view.get_y_offset ()) / 40);
   int tile_width    = tile_x_offset + (view.get_width()  / 40) + 2;
-  int tile_height   = tile_y_offset + (view.get_height() / 40) + 2; 
+  int tile_height   = tile_y_offset + (view.get_height() / 40) + 2;
   // FIXME: one tile more to avoid artefacts, hack, hack hack...
-  
+
   for (int y = tile_y_offset; y < tile_height; ++y)
     for (int x = tile_x_offset; x < tile_width; ++x)
       {
@@ -78,7 +78,7 @@ GridMap::draw (View& view)
 	  {
 	    if (gridmap [(width * y) + x]) // Tile is not empty
 	      {
-		gridmap [(width * y) + x]->draw (view, 
+		gridmap [(width * y) + x]->draw (view,
 						 int(x * 40) + 20, // FIXME: Map offset needs to be
 						 int(y * 40) + 20); // FIXME: configurable;
 	      }
@@ -93,7 +93,7 @@ GridMap::draw (View& view)
 void
 GridMap::update (float)
 {
-  
+
 }
 
 void

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -29,7 +29,7 @@ std::string
 scm2string (SCM data)
 {
   std::string str;
-  
+
   if (gh_string_p(data))
     {
       char* tmpstr = gh_scm2newstr(data, 0);
@@ -61,7 +61,7 @@ SCM pos2scm (int x, int y)
 {
   return SCM_BOOL_F;/*scm_listify (gh_symbol2scm ("pos"),
                       gh_int2scm (x),
-                      gh_int2scm (y), 
+                      gh_int2scm (y),
                       SCM_UNDEFINED);*/
 }
 
@@ -106,7 +106,7 @@ AList keywords2alist(SCM lst)
     {
       SCM key  = gh_car(lst);
       SCM data = gh_cadr(lst);
-    
+
       if (scm_keyword_p(key) == SCM_BOOL_F)
         {
           std::cout << "Skipping keyword: " << key << std::endl;
@@ -135,7 +135,7 @@ AList keywords2alist(SCM lst)
                              gh_scm2bool(data));
             }
           else if (gh_list_p(data) && gh_length(data) == 2
-                   && gh_exact_p(gh_car(data)) 
+                   && gh_exact_p(gh_car(data))
                    && gh_exact_p(gh_cadr(data)))
             {
               IntVector2d vec;
@@ -154,7 +154,7 @@ AList keywords2alist(SCM lst)
               std::cout << "Guile: Error: Couldn't handle data" << std::endl;
               gh_display(data);
               gh_newline();
-            }          
+            }
         }
 
       lst = gh_cddr(lst);
@@ -183,32 +183,32 @@ AList scm2alist(SCM lst)
         {
           if (gh_string_p(data))
             {
-              alist.set_string(Guile::symbol2string(key), 
+              alist.set_string(Guile::symbol2string(key),
                                Guile::scm2string(data));
             }
           else if (gh_exact_p(data))
             {
-              alist.set_int(Guile::symbol2string(key), 
+              alist.set_int(Guile::symbol2string(key),
                             gh_scm2int(data));
             }
           else if (gh_inexact_p(data))
             {
-              alist.set_float(Guile::symbol2string(key), 
+              alist.set_float(Guile::symbol2string(key),
                               gh_scm2double(data));
             }
           else if (gh_boolean_p(data))
             {
-              alist.set_bool(Guile::symbol2string(key), 
+              alist.set_bool(Guile::symbol2string(key),
                              gh_scm2bool(data));
             }
           else if (gh_list_p(data) && gh_length(data) == 2
-                   && gh_exact_p(gh_car(data)) 
+                   && gh_exact_p(gh_car(data))
                    && gh_exact_p(gh_cadr(data)))
             {
               IntVector2d vec;
               vec.x = gh_scm2int(gh_car(data));
               vec.y = gh_scm2int(gh_cadr(data));
-              alist.set_int_vector2d(Guile::symbol2string(key), 
+              alist.set_int_vector2d(Guile::symbol2string(key),
                                      vec);
             }
           else if (gh_symbol_p(data))
@@ -281,7 +281,7 @@ SCM  property2scm(const Property& property)
     case Property::T_INT:
       return gh_int2scm(property.get_int());
       break;
-              
+
     case Property::T_FLOAT:
       return gh_double2scm(property.get_float());
       break;

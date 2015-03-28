@@ -1,5 +1,5 @@
 //  $Id: collision_manager.hpp,v 1.5 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -28,7 +28,7 @@ class View;
 class CollisionManager
 {
 private:
-  enum { SHAPE_CIRCLE, SHAPE_RECT }; 
+  enum { SHAPE_CIRCLE, SHAPE_RECT };
 
   struct Circle {
     int object_id;
@@ -64,9 +64,9 @@ private:
   static CollisionManager* current_;
 public:
   static CollisionManager* current();
-  
+
   CollisionManager();
-  
+
   /** Removes all collisions shapes and starts a new run */
   void clear();
 

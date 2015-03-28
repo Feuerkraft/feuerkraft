@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -39,7 +39,7 @@ Projectile::Projectile (GameObj* p,
 {
   //std::cout << "Velocity: " << velocity.x << " " << velocity.y << std::endl;
   pos  = arg_pos;
-  
+
   properties->register_float("lifetime",   &lifetime);
   properties->register_float("x-pos",      &pos.x);
   properties->register_float("y-pos",      &pos.y);
@@ -49,10 +49,10 @@ Projectile::Projectile (GameObj* p,
 
 Projectile::~Projectile ()
 {
-  
+
 }
 
-void 
+void
 Projectile::draw (View& view)
 {
   if (lifetime > 0) {
@@ -63,11 +63,11 @@ Projectile::draw (View& view)
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;
-  //CL_Display::draw_line (tmp_pos.x, tmp_pos.y, 
+  //CL_Display::draw_line (tmp_pos.x, tmp_pos.y,
   //		 pos.x, pos.y, 1.0, 1.0, 1.0, 0.0);
 }
 
-void 
+void
 Projectile::update (float delta)
 {
   sur.update(delta);
@@ -87,13 +87,13 @@ Projectile::update (float delta)
   CollisionManager::current()->add_point(get_id(), pos.x, pos.y);
 }
 
-bool 
+bool
 Projectile::removable ()
 {
   return (lifetime < 0);
 }
 
-void 
+void
 Projectile::detonate ()
 {
   lifetime = -1;

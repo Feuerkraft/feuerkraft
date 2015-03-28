@@ -1,5 +1,5 @@
 //  $Id: shortcut_pathfinder.hpp,v 1.4 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -27,7 +27,7 @@
 struct Node {
   unsigned int visited : 1;
   /// If parent != PARENT_NONE then is in open
-  unsigned int parent  : 3; 
+  unsigned int parent  : 3;
   unsigned int cost    : 8;
 
   unsigned int x       : 8;
@@ -56,8 +56,8 @@ class ShortcutPathfinder
 {
 public:
   enum State { WORKING,
-               NO_PATH_AVAILABLE, 
-               PATH_FOUND, 
+               NO_PATH_AVAILABLE,
+               PATH_FOUND,
                ALREADY_ON_GOAL };
 
   struct PQComp
@@ -72,7 +72,7 @@ private:
   Cost     cost;
   Field<Node> node_field;
   typedef std::priority_queue<Node*,
-                              std::vector<Node*>, 
+                              std::vector<Node*>,
                               PQComp> OpenNodes;
   OpenNodes open_nodes;
 
@@ -101,7 +101,7 @@ public:
           node.cost    = 0;
           node.x = x;
           node.y = y;
-        }  
+        }
   }
 
   void init(Pos& arg_start, Pos& arg_end)
@@ -135,7 +135,7 @@ public:
     state = WORKING;
 
     Node& node = node_field(start.x, start.y);
-  
+
     node.visited = 1;
     node.cost    = 0;
     node.parent  = PARENT_GOAL;
@@ -143,14 +143,14 @@ public:
     make_neighbors_open(node);
   }
 
-  inline bool finished() 
+  inline bool finished()
   {
     return state != WORKING;
   }
 
   bool is_path_node(int x, int y)
   {
-    if (path.empty()) 
+    if (path.empty())
       return false;
     else
       {
@@ -166,7 +166,7 @@ public:
   std::vector<Pos>& get_path() { return path; }
 
   State get_state() { return state; }
-  
+
   void
   ShortcutPathfinder::construct_path()
   {
@@ -183,7 +183,7 @@ public:
       }
     //std::cout << "OPenNodes: " << open_nodes.size() << std::endl;
   }
- 
+
   void
   ShortcutPathfinder::make_neighbors_open(Node& cnode)
   {
@@ -212,7 +212,7 @@ public:
     if (int(cnode.x) != node_field.get_width()-1  && walkable(field(cnode.x+1, cnode.y)))
       {
         Node& east = node_field(cnode.x + 1, cnode.y);
-        if (east.visited == 0  && east.parent == PARENT_NONE) 
+        if (east.visited == 0  && east.parent == PARENT_NONE)
           {
             east.parent = PARENT_WEST;
             //east.cost   = cnode.cost + 1;
@@ -232,7 +232,7 @@ public:
             add_to_open_nodes(north);
           }
       }
-  
+
     if (int(cnode.y) != node_field.get_height() - 1  && walkable(field(cnode.x, cnode.y+1)))
       {
         Node& south = node_field(cnode.x, cnode.y + 1);
@@ -245,7 +245,7 @@ public:
           }
       }
   }
-  
+
   inline void process_one_open_node()
   {
     if (++rounds == max_rounds)
@@ -266,7 +266,7 @@ public:
 
         assert(cnode.visited == 0);
         cnode.visited = 1;
-      
+
         // Goal reached
         if (int(cnode.x) == end.x && int(cnode.y) == end.y)
           {
@@ -274,7 +274,7 @@ public:
             state = PATH_FOUND;
             return;
           }
-     
+
         make_neighbors_open(cnode);
       }
   }

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -37,7 +37,7 @@ WallDoor::WallDoor(const AList& lst) :
       map_width = 1;
       map_height = 3;
     }
-  else 
+  else
     {
       sprite = resources->get_sprite("feuerkraft/hdoor");
       pos = FloatVector2d(x_pos * 40 + 60, y_pos * 40 + 20);
@@ -66,7 +66,7 @@ void
 WallDoor::update(float)
 {
   status = S_CLOSED;
-  
+
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
 
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)

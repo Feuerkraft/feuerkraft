@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -34,7 +34,7 @@ Mine::Mine (const AList& lst)
 {
   properties->register_float("x-pos", &pos.x);
   properties->register_float("y-pos", &pos.y);
-  
+
   pos.x = lst.get_float("x-pos");
   pos.y = lst.get_float("y-pos");
 
@@ -57,8 +57,8 @@ Mine::Mine (const AList& lst)
     }
 }
 
-void 
-Mine::update (float delta) 
+void
+Mine::update (float delta)
 {
   if (!is_active ())
     {
@@ -76,14 +76,14 @@ Mine::on_collision(GameObj* obj)
   Mine::detonate();
 }
 
-bool 
+bool
 Mine::is_active ()
 {
   return (active <= 0);
 }
 
-void 
-Mine::draw (View& view) 
+void
+Mine::draw (View& view)
 {
   if (!is_active ())
     {
@@ -99,15 +99,15 @@ Mine::draw (View& view)
     }
 }
 
-void 
-Mine::detonate () 
+void
+Mine::detonate ()
 {
   // Search for game objects in the given area to make damage
   GameObjManager* objs = GameWorld::current()->get_game_obj_manager();
   for (GameObjManager::iterator i = objs->begin(); i != objs->end(); ++i)
     {
       //Vehicle* vehicle = dynamic_cast<Vehicle*>(*i);
-      
+
       // If distance to the mine is smaller than 100 apply a force
       /*if (vehicle && (vehicle->get_pos () - get_pos ()).get_length() < 100.0)
 	{

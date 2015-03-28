@@ -1,5 +1,5 @@
 //  $Id: tank.cpp,v 1.26 2003/06/22 17:22:47 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -72,11 +72,11 @@ Tank::Tank(const AList& lst) :
   def.set_float ("x-pos", 0);
   def.set_float ("y-pos", 0);
   def.set_int   ("reloading_speed", 5);
-  
+
   // Surfaces
   def.set_string("tank",   "feuerkraft/tank");
   def.set_string("turret", "feuerkraft/turret");
-  def.set_string("fire",   "feuerkraft/fire");    
+  def.set_string("fire",   "feuerkraft/fire");
 
   def.merge(lst);
 
@@ -86,19 +86,19 @@ Tank::Tank(const AList& lst) :
   sur_light     = resources->get_sprite("feuerkraft/tank_light");
   sur_highlight = resources->get_sprite("feuerkraft/tank_highlight");
 
-  turret = new Turret(this, 
+  turret = new Turret(this,
                       def.get_int("reloading_speed"),
-                      def.get_string("turret"), 
+                      def.get_string("turret"),
                       def.get_string("fire"));
 
   pos.x = def.get_float("x-pos");
   pos.y = def.get_float("y-pos");
-  
+
   // Init local variables
   speed = 0.0f;
   increment = 2.0f;
   burning = false;
-  
+
   sur_destroyed = resources->get_sprite ("feuerkraft/tank2destroyed");
   shadow        = resources->get_sprite ("feuerkraft/tank2_shadow");
   smod_step = 0;
@@ -113,10 +113,10 @@ Tank::Tank(const AList& lst) :
   sur_destroyed.set_alignment(origin_center);
 
   particle_release = 0.0f;
-  
+
   properties->register_float("ammo",  &ammo);
   properties->register_float("fuel",  &fuel);
-  
+
   smoke_emitter = new SmokeEmitter(pos);
   ai = 0;
 }
@@ -152,10 +152,10 @@ Tank::Tank (const FloatVector2d &arg_pos,
   pos = arg_pos;
 
   particle_release = 0.0f;
-  
+
   properties->register_float("ammo",  &ammo);
   properties->register_float("fuel",  &fuel);
-  
+
   smoke_emitter = new SmokeEmitter(pos);
 }
 
@@ -168,10 +168,10 @@ Tank::~Tank ()
 void
 Tank::draw_energie (View& view)
 {
-  energie.draw (view, 
+  energie.draw (view,
 		int(pos.x), int(pos.y - 40));
 }
-  
+
 void
 Tank::draw_levelmap (LevelMap& levelmap)
 {
@@ -192,11 +192,11 @@ Tank::draw (View& view)
       for (std::deque<FloatVector2d>::iterator i = smodpos.begin ();
 	   i != smodpos.end (); ++i)
 	{
-	  /*view.draw (smod, 
+	  /*view.draw (smod,
             int(i->x - (smod.get_width ()/2)),
             int(i->y - (smod.get_height ()/2)),
             int(fmod (i->z, circle) / circle * 16.0));*/
-	  //view.draw (smod, 
+	  //view.draw (smod,
 	}
 
 #ifdef UGLY_SHADOWS_ENABLED
@@ -245,7 +245,7 @@ Tank::draw (View& view)
     }
 }
 
-void 
+void
 Tank::explode ()
 {
   GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
@@ -256,7 +256,7 @@ Tank::explode ()
 void
 Tank::respawn ()
 {
-  /* FIXME: This respawn code is extremly ugly... 
+  /* FIXME: This respawn code is extremly ugly...
      Tank* tank = new Tank(FloatVector2d (560, 1245), 5,
      "feuerkraft/tank2", "feuerkraft/turret2", "feuerkraft/fire2");
      GameWorld::current()->add (tank);
@@ -270,7 +270,7 @@ Tank::respawn ()
   */
 }
 
-void 
+void
 Tank::update (float delta)
 {
   if (burning)
@@ -311,7 +311,7 @@ Tank::update (float delta)
 
       particle_release = 0;
     }
-  
+
   delta = delta * 50.0f;
 
   if (destroyed)
@@ -322,7 +322,7 @@ Tank::update (float delta)
 
   if (energie <= 0)
     explode ();
-  
+
   turret->update (delta);
 
   if (mine_reload_time)
@@ -383,32 +383,32 @@ Tank::drop_mine ()
     }
 }
 
-bool 
+bool
 Tank::is_colliding (FloatVector2d obj_pos)
 {
-  float range = 10.0; 
+  float range = 10.0;
 
   return  (obj_pos.x > pos.x - range && obj_pos.x < pos.x + range
 	   && obj_pos.y > pos.y - range && obj_pos.y < pos.y + range);
 }
 
-void 
+void
 Tank::collide (Projectile*)
 {
   energie -= 5;
 }
 
-void 
+void
 Tank::collide (Mine*)
 {
   energie -= 25;
 }
 
-void 
+void
 Tank::collide (FloatVector2d force)
 {
   energie -= int(force.get_length());
-  
+
   std::cout << "Tank: Got force: " << force.get_length() << std::endl;
 }
 

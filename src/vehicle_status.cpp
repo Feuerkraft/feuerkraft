@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -36,12 +36,12 @@ VehicleStatus::~VehicleStatus ()
 {
 }
 
-void 
+void
 VehicleStatus::update (float delta)
 {
 }
 
-void 
+void
 VehicleStatus::draw (CL_GraphicContext& gc)
 {
   Vehicle* vehicle = dynamic_cast<Vehicle*>(player->get_current_unit());
@@ -62,7 +62,7 @@ VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
 			 CL_Color(0, 0, 0,200));
   if (fill > 0.0)
     CL_Display::fill_rect (CL_Rect(x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12),
-			   CL_Color(int((1.0 - fill)*255), 
+			   CL_Color(int((1.0 - fill)*255),
                                     int(255*fill),
                                     0,
                                     200));

@@ -1,5 +1,5 @@
 //  $Id: view.hpp,v 1.14 2003/10/20 21:30:09 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -55,12 +55,12 @@ public:
 };
 
 /** A View provides a 'View' onto the world.
-    
+
 A View is similar to a CL_GraphicContext, you can paint on it with
 specific operations. It works basically by holding a pointer to
 the world and passing a draw() call to the world in the event that
 the View needs a draw. A pointer to the View class is passed as
-argument to the Worlds draw call. 
+argument to the Worlds draw call.
 
 FIXME: We need plugable modules for the View so that the zoom,
 scale and rotation of the view will be automagically changed
@@ -68,7 +68,7 @@ acording to a plugin, possible plugins would be VehicleView,
 BuildingView, FixedView, etc. How should clean translation between
 plugins be provided? Should that be handled at plugin site?
 */
-class View 
+class View
 {
 protected:
   int x1, y1;
@@ -78,7 +78,7 @@ protected:
   ViewUpdater* view_updater;
   ViewProperty properties;
   SceneContext* scene_context;
-  
+
   static View* current_;
 public:
   View (int x1, int y1, int x2, int y2, ViewUpdater* arg_updater = 0);
@@ -91,13 +91,13 @@ public:
 
   int get_width ();
   int get_height ();
-  
+
   /** Set the ViewUpdater. \a arg_updater will get deleted once it is
       no longer used */
   void set_updater(ViewUpdater* arg_updater);
   void update(float delta);
 
-  SceneContext& get_sc() { return *scene_context; } 
+  SceneContext& get_sc() { return *scene_context; }
 
   bool get_property (ViewProperty p);
   void set_property (ViewProperty p);

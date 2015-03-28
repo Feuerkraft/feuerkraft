@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -36,7 +36,7 @@ Tower::Tower(const AList& lst) :
   energie (lst.get_int("start-energie", 100)),
   destroyed (false),
   pos()
-{  
+{
   //int energie;
   //std::cout << lst.retrieve_int("start-energie", energie) << std::endl;
   //std::cout << lst << std::endl;
@@ -51,7 +51,7 @@ Tower::Tower(const AList& lst) :
 
   Building::properties->register_float("orientation", &orientation);
 }
-  
+
 Tower::~Tower ()
 {
 }
@@ -79,7 +79,7 @@ Tower::draw (View& view)
       view.get_sc().color().draw(turret, pos.x, pos.y);
     }
 }
-  
+
 void
 Tower::draw_energie (View& view)
 {
@@ -125,10 +125,10 @@ Tower::collide (int hits)
     }
 }
 
-void 
+void
 Tower::collide (Projectile*)
 {
-  energie -= 5;   
+  energie -= 5;
   if (!destroyed && !(energie > 0))
     {
       GameWorld::current()->add (new Explosion (pos, Explosion::LARGE));

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -44,7 +44,7 @@ MultiGroundMap::get_groundtype (float x, float y)
       GroundType type = (*i)->get_groundtype (x, y);
       if (type != GT_EMPTY)
 	return type;
-    }  
+    }
   return GT_SAND;
 }
 
@@ -63,7 +63,7 @@ MultiGroundMap::draw_levelmap(LevelMap& levelmap)
   for (std::vector<GroundMap*>::reverse_iterator i = maps.rbegin (); i != maps.rend (); ++i)
     {
       (*i)->draw_levelmap(levelmap);
-    } 
+    }
 }
 
 void

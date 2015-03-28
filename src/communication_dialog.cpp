@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -55,7 +55,7 @@ CommunicationDialog::draw (CL_GraphicContext& gc)
 
           CL_Display::fill_rect(CL_Rect(CL_Point(int(dialog_pos.x - bbox.get_width()/2 - 10),
                                                  int(dialog_pos.y - 10)),
-                                        CL_Size(bbox.get_width()  + 20, 
+                                        CL_Size(bbox.get_width()  + 20,
                                                 bbox.get_height() + 20)),
                                 CL_Color(0,0,0, 100));
 

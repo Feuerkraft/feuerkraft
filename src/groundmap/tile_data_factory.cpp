@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -28,7 +28,7 @@ TileDataFactory::create (SCM desc)
 {
   SCM symbol = gh_car (desc);
   SCM data   = gh_cdr (desc);
-  
+
   if (gh_equal_p (gh_symbol2scm ("spritetile"), symbol))
     {
       return create_SpriteTileData (data);
@@ -64,7 +64,7 @@ TileDataFactory::create_SpriteTileData (SCM desc)
 	  sprite_data->sprite_location = str;
 #ifndef WIN32	// Freeing this crashed under VisualC++
 	  free (str);
-#endif	
+#endif
 	}
       else
 	{

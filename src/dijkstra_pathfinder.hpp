@@ -1,5 +1,5 @@
 //  $Id: dijkstra_pathfinder.hpp,v 1.2 2003/06/03 14:11:22 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -29,8 +29,8 @@ class DijkstraPathfinder
 {
 public:
   enum State { WORKING,
-               NO_PATH_AVAILABLE, 
-               PATH_FOUND, 
+               NO_PATH_AVAILABLE,
+               PATH_FOUND,
                ALREADY_ON_GOAL };
 
   struct Node {
@@ -60,7 +60,7 @@ private:
   Field<int>& field;
   Field<Node> node_field;
   typedef std::priority_queue<Node*,
-                      std::vector<Node*>, 
+                      std::vector<Node*>,
                       PQComp> OpenNodes;
   OpenNodes open_nodes;
 
@@ -71,7 +71,7 @@ private:
   State state;
 public:
   DijkstraPathfinder(Field<int>* arg_field);
-  
+
   void init(Pos& arg_start, Pos& arg_end);
 
   bool finished();

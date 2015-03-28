@@ -1,5 +1,5 @@
 //  $Id: trigger_manager.hpp,v 1.3 2003/06/22 22:23:00 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -39,7 +39,7 @@ public:
 public:
   struct Trigger {
     bool removable;
-    
+
     Trigger() : removable(false) {}
     void remove() { removable = true; }
     virtual void update(float delta) =0;
@@ -88,10 +88,10 @@ public:
 
     virtual ~TileTrigger() {}
 
-    void update(float delta) 
+    void update(float delta)
     {
       Unit* unit = player->get_current_unit();
-      
+
       if (unit)
         {
           if (int(unit->get_pos().x/40) == x && int(unit->get_pos().y/40) == y)

@@ -1,5 +1,5 @@
 //  $Id: alist.hpp,v 1.10 2003/06/23 08:43:32 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -23,7 +23,7 @@
 #include <map>
 #include "vector2d.hpp"
 
-/** Simple associated list like class 
+/** Simple associated list like class
 
     FIXME: Looks pretty similar to PropertySet, except for the
     pointers. Spliting of the Value struct into an own more generic
@@ -35,7 +35,7 @@ public:
 
   struct Value {
     Type type;
-    
+
     union {
       int   v_int;
       float v_float;

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -35,11 +35,11 @@ void
 VehicleRoboAI::update(float delta)
 {
   ai_count += delta;
-  
+
   if (ai_count > 2)
     {
       ai_count = 0;
-      
+
       switch (rand() % 5)
         {
         case 0:
@@ -57,7 +57,7 @@ VehicleRoboAI::update(float delta)
 
       controller.set_axis_state(ORIENTATION_AXIS, Math::frand() * 2.0f - 1.0f);
     }
-  
+
   if (rand() % 30 == 0)
     {
       controller.set_button_state(PRIMARY_FIRE_BUTTON, true);
@@ -66,7 +66,7 @@ VehicleRoboAI::update(float delta)
     {
       controller.set_button_state(PRIMARY_FIRE_BUTTON, false);
     }
-  
+
   vehicle->update_controlls(controller);
 }
 
@@ -74,7 +74,7 @@ VehiclePathAI::VehiclePathAI(Vehicle* vehicle)
   : VehicleAI(vehicle),
     driving(false),
     length(0.0f),
-    line_segments(vehicle->get_pos().x, 
+    line_segments(vehicle->get_pos().x,
                   vehicle->get_pos().y,
                   vehicle->get_orientation())
 {
@@ -99,7 +99,7 @@ void
 VehiclePathAI::drive_to(const FloatVector2d& pos)
 {
   driving = true;
-  line_segments.add_controll_point(pos.x, pos.y, 50.0f);  
+  line_segments.add_controll_point(pos.x, pos.y, 50.0f);
 }
 
 /* EOF */

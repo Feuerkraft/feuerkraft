@@ -1,5 +1,5 @@
 //  $Id: line_segments.hpp,v 1.9 2003/06/06 20:55:24 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -23,7 +23,7 @@
 #include <vector>
 
 class View;
-          
+
 /** */
 class LineSegments
 {
@@ -42,12 +42,12 @@ private:
     float end_angle;   ///< end angle in radians
     bool  turn_right;  ///< true if counterclockwise
   };
-  
+
   // FIXME: Replace me with OO
   struct Segment {
     int   type;   ///< type of the segment
     float length; ///< length of the segment, calculated from the segment
-    
+
     union {
       struct RadialSegment   radial;
       struct StraightSegment straight;
@@ -56,7 +56,7 @@ private:
 
   typedef std::vector<Segment> Segments;
   Segments segments;
-  
+
   float init_x, init_y, init_orientation;
 
   float calc_length(const Segment&);
@@ -67,11 +67,11 @@ private:
   FloatVector2d get_pos(const Segment&, float l);
   float     get_orientation(const Segment&, float l);
 
-  bool calc_route(float start_x, float start_y, 
-                  float dest_x, float dest_y, 
-                  float start_orientation, 
+  bool calc_route(float start_x, float start_y,
+                  float dest_x, float dest_y,
+                  float start_orientation,
                   float radius, bool turn_right,
-                  float& px, float& py, float& qx, float& qy, 
+                  float& px, float& py, float& qx, float& qy,
                   float& angle_start, float& angle_final, float& length);
 public:
   LineSegments(float init_x, float init_y, float init_orientation);
@@ -84,7 +84,7 @@ public:
 
   /** @return length of all segments together */
   float get_length();
-  
+
   /** Remove all segments */
   void clear();
 
@@ -92,9 +92,9 @@ public:
   void set_pos(float init_x, float init_y, float init_orientation);
 
   void add_straight_segment(float x1, float y1, float x2, float y2);
-  void add_radial_segment(float x, float y, float radius, 
+  void add_radial_segment(float x, float y, float radius,
                           float start_angle, float stop_angle, bool turn_right);
-  
+
   /** Generate one or more segments to the given controll point */
   void add_controll_point(float x, float y, float turn_radius);
 

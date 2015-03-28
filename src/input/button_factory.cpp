@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -29,7 +29,7 @@
 #include "multi_button.hpp"
 #include "button_factory.hpp"
 
-InputButton* 
+InputButton*
 ButtonFactory::create(SCM lst)
 {
   SCM sym = gh_car(lst);
@@ -55,7 +55,7 @@ ButtonFactory::create(SCM lst)
       throw FeuerkraftError("ButtonFactory::create: parse error: '"
                             + Guile::scm2string(lst) + "'");
     }
-      
+
   return 0;
 }
 
@@ -64,7 +64,7 @@ ButtonFactory::create_axis_button(SCM lst)
 {
   InputAxis* axis = AxisFactory::create(gh_car(lst));
   bool top = gh_scm2bool(gh_cadr(lst));
-  
+
   return new AxisButton(axis, top);
 }
 
@@ -73,7 +73,7 @@ ButtonFactory::create_joystick_button(SCM lst)
 {
   int device_num = gh_scm2int(gh_car(lst));
   int button_num = gh_scm2int(gh_cadr(lst));
-  
+
   if (device_num >= 0 && device_num < CL_Joystick::get_device_count())
     return new InputButtonInputDevice(CL_Joystick::get_device(device_num), button_num);
   else
@@ -97,13 +97,13 @@ InputButton*
 ButtonFactory::create_multi_button(SCM lst)
 {
   MultiButton* button = new MultiButton();
-  
+
   while (!gh_null_p(lst))
     {
       button->add(create(gh_car(lst)));
       lst = gh_cdr(lst);
     }
-  
+
   return button;
 }
 

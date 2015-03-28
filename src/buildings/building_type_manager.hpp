@@ -1,5 +1,5 @@
 //  $Id: building_type_manager.hpp,v 1.5 2003/08/20 00:15:10 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -41,7 +41,7 @@ struct BuildingFactory {
   virtual Building* create(const AList& lst) =0;
 };
 
-struct CustomBuildingFactory 
+struct CustomBuildingFactory
   : public BuildingFactory
 {
   AList prefs;
@@ -59,14 +59,14 @@ struct CustomBuildingFactory
 };
 
 template<class C>
-struct GenericBuildingFactory 
-  : public BuildingFactory 
+struct GenericBuildingFactory
+  : public BuildingFactory
 {
-  GenericBuildingFactory(const std::string& arg_name) 
+  GenericBuildingFactory(const std::string& arg_name)
   {
     name = arg_name;
   }
-  
+
   Building* create(const AList& lst) {
     return new C(lst);
   }
@@ -95,7 +95,7 @@ public:
   std::string id_to_name(int id);
 
   Building* create_building(int type_id, const AList& params);
-  
+
 private:
   BuildingTypeManager (const BuildingTypeManager&);
   BuildingTypeManager& operator= (const BuildingTypeManager&);

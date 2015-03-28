@@ -1,5 +1,5 @@
 //  $Id$
-// 
+//
 //  Pingus - A free Lemmings clone
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -59,13 +59,13 @@ public:
   void draw(const CL_Sprite&   sprite,  float x, float y, float z = 0);
   void draw(const std::string& text,    float x, float y, float z = 0);
 
-  void draw_line (float x1, float y1, float x2, float y2, 
+  void draw_line (float x1, float y1, float x2, float y2,
 		  const CL_Color& color);
-  void draw_fillrect (float x1, float y1, float x2, float y2, 
+  void draw_fillrect (float x1, float y1, float x2, float y2,
 		      const CL_Color& color);
-  void draw_rect (float x1, float y1, float x2, float y2, 
+  void draw_rect (float x1, float y1, float x2, float y2,
 		  const CL_Color& color);
-  void draw_pixel (float x_pos, float y_pos, 
+  void draw_pixel (float x_pos, float y_pos,
 		   const CL_Color& color);
   void draw_circle (float x_pos, float y_pos, float radius,
                     const CL_Color& color);
@@ -75,7 +75,7 @@ public:
   void draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_end,
                  const CL_Color& color);
   /*} */
-  
+
   /** Translate the drawing context */
   void translate(float x, float y);
 

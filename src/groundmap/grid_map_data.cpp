@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -27,7 +27,7 @@ GridMapData::GridMapData (SCM desc)
 {
   grid_width  = -1;
   grid_height = -1;
-  
+
   while (!gh_null_p (desc))
     {
       SCM symbol = gh_caar(desc);
@@ -77,17 +77,17 @@ GridMapData::parse_from_file (SCM desc)
   grid_height = provider.get_height () + 2;
 
   grid_data.resize (grid_width * grid_height);
-  
+
   for (int i = 0; i < grid_height * grid_width; ++i)
     grid_data[i] = GT_SAND; // FIXME: should be variable not hardcoded!
 
   unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
   for (int y = 0; y < provider.get_height (); ++y)
     for (int x = 0; x < provider.get_width (); ++x)
-      grid_data[(x + 1) + ((y+1) * grid_width)] 
+      grid_data[(x + 1) + ((y+1) * grid_width)]
 	= static_cast<GroundType>(buffer[x + (provider.get_width () * y)]);
 
-  provider.unlock (); 
+  provider.unlock ();
 }
 
 GroundMap*

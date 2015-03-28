@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -33,7 +33,7 @@ StartScreen::~StartScreen ()
 {
 }
 
-void 
+void
 StartScreen::draw ()
 {
   if (logo_mode == S_STARTLOGO)
@@ -42,9 +42,9 @@ StartScreen::draw ()
 	logo.set_alpha ((display_time/2.0f));
       else
 	logo.set_alpha (1.0f);
-  
-      //FIXME:Display2 CL_Display::clear_display ();    
-      
+
+      //FIXME:Display2 CL_Display::clear_display ();
+
       logo.draw (CL_Display::get_width ()/2,
 		 CL_Display::get_height ()/2,
 		 display->get_gc ());
@@ -88,7 +88,7 @@ StartScreen::draw ()
     }
 }
 
-void 
+void
 StartScreen::update (float delta)
 {
   display_time += delta;
@@ -126,10 +126,10 @@ StartScreen::update (float delta)
       logo_mode = S_FADETOBLACK;
       display_time = 0;
     }
-  
+
 }
 
-bool 
+bool
 StartScreen::done ()
 {
   return logo_mode == S_FADETOGAME;

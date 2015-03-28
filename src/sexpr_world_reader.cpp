@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -21,7 +21,7 @@
 #include "world_builder.hpp"
 #include "sexpr_world_reader.hpp"
 
-SexprWorldReader::SexprWorldReader(const std::string& arg_filename, 
+SexprWorldReader::SexprWorldReader(const std::string& arg_filename,
                                    WorldBuilder* arg_builder)
   : builder(arg_builder)
 {
@@ -64,15 +64,15 @@ SexprWorldReader::parse_file(SCM desc)
       if (gh_pair_p (gh_car (desc)))
 	{
 	  SCM symbol = gh_caar(desc);
-	  SCM data   = gh_cdar(desc);   
-          
+	  SCM data   = gh_cdar(desc);
+
 	  if (gh_symbol_p (symbol))
 	    {
 	      if (gh_equal_p(gh_symbol2scm("groundmap"), symbol))
 		{
 		  parse_groundmap(data);
 		}
-	      else if (gh_equal_p(gh_symbol2scm("buildings"), symbol)) 
+	      else if (gh_equal_p(gh_symbol2scm("buildings"), symbol))
 		{
                   parse_buildings(data);
 		}
@@ -110,7 +110,7 @@ SexprWorldReader::parse_buildings(SCM data)
   while(!gh_null_p(data))
     {
       SCM building = gh_car(data);
-      
+
       if (gh_symbol_p(gh_car(building)))
         {
           builder->add_building(Guile::symbol2string(gh_car(building)),
@@ -124,7 +124,7 @@ SexprWorldReader::parse_buildings(SCM data)
         }
 
       data = gh_cdr(data);
-    }  
+    }
 }
 
 void
@@ -133,7 +133,7 @@ SexprWorldReader::parse_objects(SCM data)
   while(!gh_null_p(data))
     {
       SCM object = gh_car(data);
-      
+
       if (gh_symbol_p(gh_car(object)))
         {
           builder->add_object(Guile::symbol2string(gh_car(object)),
@@ -145,7 +145,7 @@ SexprWorldReader::parse_objects(SCM data)
           gh_display(object);
           gh_newline();
         }
-     
+
       data = gh_cdr(data);
     }
 }
@@ -155,9 +155,9 @@ SexprWorldReader::parse_brushes(SCM data)
 {
   while(!gh_null_p(data))
     {
-      
+
       data = gh_cdr(data);
-    }  
+    }
 }
 
 void
@@ -165,9 +165,9 @@ SexprWorldReader::parse_groundmap(SCM data)
 {
   while(!gh_null_p(data))
     {
-      
+
       data = gh_cdr(data);
-    }  
+    }
 }
 
 void
@@ -176,9 +176,9 @@ SexprWorldReader::parse_scripts(SCM data)
   while(!gh_null_p(data))
     {
       SCM script = gh_car(data);
-      
+
       builder->add_script(Guile::scm2string(script));
-      
+
       data = gh_cdr(data);
     }
 }

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -39,7 +39,7 @@ Help::draw(CL_GraphicContext& gc)
                                 center_x + 200, center_y + 150),
                         CL_Color(100, 100, 0, 230));
   font.set_alignment(origin_top_left);
-  font.draw(center_x - 190, center_y - 120, 
+  font.draw(center_x - 190, center_y - 120,
             "F1 - show/hide this help screen\n"
             "Esc - leave game\n"
             "j  - enter/leave a vehicle\n"

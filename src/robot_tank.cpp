@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -26,7 +26,7 @@ RobotTank::RobotTank(float x_, float y_, float orientation_, float velocity_)
 {
   pos.x = x_;
   pos.y = y_;
-  orientation = orientation_; 
+  orientation = orientation_;
   velocity = velocity_;
 
   max_velocity = 150.0f;
@@ -95,11 +95,11 @@ void
 RobotTank::update_ai (float delta)
 {
   ai_count += delta;
-  
+
   if (ai_count > 2)
     {
       ai_count = 0;
-      
+
       switch (rand() % 5)
         {
         case 0:

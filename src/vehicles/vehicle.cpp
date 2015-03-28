@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -21,7 +21,7 @@
 #include "vehicle.hpp"
 
 Vehicle::Vehicle ()
-  : ammo (1.0f), 
+  : ammo (1.0f),
     fuel (1.0f)
 {
   acceleration = 0;
@@ -31,19 +31,19 @@ Vehicle::Vehicle ()
   secondary_firing = false;
 }
 
-float 
+float
 Vehicle::get_ammo ()
 {
   return ammo;
 }
 
-float 
+float
 Vehicle::get_fuel ()
 {
   return fuel;
 }
 
-void 
+void
 Vehicle::refuel (float delta)
 {
   fuel += 0.003 * delta;
@@ -52,7 +52,7 @@ Vehicle::refuel (float delta)
     fuel = 1.0f;
 }
 
-void 
+void
 Vehicle::reload_ammo (float delta)
 {
   ammo += 0.003 * delta;

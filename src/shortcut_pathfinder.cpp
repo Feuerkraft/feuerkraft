@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -35,7 +35,7 @@ struct NodeWalkable {
 struct NodeCost {
   Pos goal;
 
-  NodeCost(Pos& goal) 
+  NodeCost(Pos& goal)
     : goal(goal)
   {
   }
@@ -87,10 +87,10 @@ int main()
     {
       start.x = rand()%field.get_width();
       start.y = rand()%field.get_height();
-  
+
       end.x = rand()%field.get_width();
       end.y = rand()%field.get_height();
-      
+
       pathfinder.init(start, end);
       //pathfinder.display();
 
@@ -113,9 +113,9 @@ int main()
       pathfinder.display();
       std::cout << "Rounds: " << rounds << std::endl;
       getchar();
-     
+
       //pathfinder.display();
-      
+
       /*
         if (pathfinder.get_state() != ShortcutPathfinder::PATH_FOUND)
         {
@@ -128,7 +128,7 @@ int main()
         for (std::vector<Pos>::iterator i = path.begin(); i != path.end(); ++i)
         {
         std::cout << "[" << i->x << ", " << i->y << "] ";
-        }       
+        }
         std::cout << std::endl;
         }
       */
@@ -164,12 +164,12 @@ int main()
     {
       start.x = rand()%field.get_width();
       start.y = rand()%field.get_height();
-  
+
       end.x = rand()%field.get_width();
       end.y = rand()%field.get_height();
 
       pathfinder.init(start, end);
-    
+
       while(!pathfinder.finished())
         {
           pathfinder.process_one_open_node();

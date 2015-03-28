@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -35,25 +35,25 @@ GameWorldBuilder::~GameWorldBuilder()
 void
 GameWorldBuilder::add_object (const std::string& type, const AList&)
 {
-  
+
 }
 
 void
 GameWorldBuilder::add_brush(const std::string& resname, const AList&)
 {
-  
+
 }
 
 void
 GameWorldBuilder::add_building(const std::string& type, const AList&)
 {
-  
+
 }
 
 void
 GameWorldBuilder::add_groundmap(const std::string& type, const AList&)
 {
-  
+
 }
 
 void
@@ -65,15 +65,15 @@ GameWorldBuilder::add_script(const std::string& resname)
 }
 
 GameWorld*
-GameWorldBuilder::get_world() 
+GameWorldBuilder::get_world()
 {
   GameWorld* the_world = world;
 
   // remove our world handle, so that we don't delete world
   // in the destructor
-  world = 0; 
+  world = 0;
 
-  return the_world; 
+  return the_world;
 }
 
 /* EOF */

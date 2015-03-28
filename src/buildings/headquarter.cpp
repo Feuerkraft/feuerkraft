@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -38,7 +38,7 @@ Headquarter::~Headquarter ()
 {
 }
 
-void 
+void
 Headquarter::update (float delta)
 {
   if (energie <= 0 && !destroyed)
@@ -48,7 +48,7 @@ Headquarter::update (float delta)
     }
 }
 
-void 
+void
 Headquarter::draw (View& view)
 {
   view.get_sc().color().draw(*current_sur, pos.x, pos.y);
@@ -61,7 +61,7 @@ Headquarter::draw_radar (Radar& radar)
   radar.draw_blip (pos, 4);
 }
 
-bool 
+bool
 Headquarter::is_colliding (FloatVector2d obj_pos)
 {
   return (!destroyed &&
@@ -69,7 +69,7 @@ Headquarter::is_colliding (FloatVector2d obj_pos)
 	  obj_pos.y > pos.y - 40 && obj_pos.y < pos.y + 40);
 }
 
-void 
+void
 Headquarter::collide (Projectile*)
 {
   energie -= 10;

@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -34,7 +34,7 @@ VehicleViewUpdater::~VehicleViewUpdater ()
 {
 }
 
-void 
+void
 VehicleViewUpdater::update (float delta, ViewState& state)
 {
   delta *= 50.0f;
@@ -47,23 +47,23 @@ VehicleViewUpdater::update (float delta, ViewState& state)
   if (zoom_follower < zoom) zoom_follower += 0.01 * delta;
 
   state.zoom = zoom_follower;
-#endif 
+#endif
 
   if ((pos - target).get_length() > 1.0f)
     {
       FloatVector2d direction = (target - pos);
       pos += direction * speed;
    }
-  
+
   state.x_offset = int(pos.x);
   state.y_offset = int(pos.y);
-  
+
   float my_rotation = -(unit->get_orientation()/3.1415927*180.0) + 90;
 
-  if (state.rotation > my_rotation) 
+  if (state.rotation > my_rotation)
     state.rotation -= 2 * delta;
-  
-  if (state.rotation < my_rotation) 
+
+  if (state.rotation < my_rotation)
     state.rotation += 2 * delta;
 }
 

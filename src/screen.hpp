@@ -1,5 +1,5 @@
 //  $Id: screen.hpp,v 1.8 2003/06/06 09:49:00 grumbel Exp $
-// 
+//
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
@@ -7,12 +7,12 @@
 //  it under the terms of the GNU General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
 //  (at your option) any later version.
-//  
+//
 //  This program is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
-//  
+//
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -30,16 +30,16 @@ class Screen
 private:
   std::vector<GuiObj*> gui_objs;
   typedef std::vector<GuiObj*>::iterator GuiObjIter;
-  
+
 public:
   Screen ();
   virtual ~Screen ();
 
   virtual void draw (CL_GraphicContext& gc);
   virtual void update (float delta);
- 
+
   bool has(GuiObj* obj);
- 
+
   /** FIXME: Who takes controll over the allocated object? Currently nobody... -> MEMLEAK*/
   virtual void add (GuiObj* obj);
   virtual void remove (GuiObj* obj);
