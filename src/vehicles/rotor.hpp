@@ -1,4 +1,4 @@
-//  $Id$
+
 //
 //  Feuerkraft - A Tank Battle Game
 //  Copyright (C) 2003 Ingo Ruhnke <grumbel@gmx.de>

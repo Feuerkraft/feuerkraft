@@ -1,4 +1,4 @@
-//  $Id: sprite_tile.cpp,v 1.4 2003/05/19 19:00:56 grumbel Exp $
+
 //
 //  Feuerkraft
 //  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
