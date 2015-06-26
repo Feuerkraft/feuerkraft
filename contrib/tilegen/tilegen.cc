@@ -1,4 +1,4 @@
-//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmx.de>
+//  Copyright (C) 2002 Ingo Ruhnke <grumbel@gmail.com>
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
 #include <png.h>
 
 const char *argp_program_version = "Feuerkraft TileGen Version 0.0.0";
-const char *argp_program_bug_address = "<grumbel@gmx.de>";
+const char *argp_program_bug_address = "<grumbel@gmail.com>";
 
 static char doc[] = "Feuerkraft TileGen";
      
