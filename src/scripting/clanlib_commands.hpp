@@ -17,7 +17,7 @@
 #ifndef HEADER_CLANLIB_COMMANDS_HXX
 #define HEADER_CLANLIB_COMMANDS_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 
 SCM  clanlib_get_post_keep_alive_func();
 void clanlib_set_post_keep_alive_func(SCM func);

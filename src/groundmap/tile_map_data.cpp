@@ -27,42 +27,42 @@ TileMapData::TileMapData (SCM desc)
   width = -1;
   height = -1;
 
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+      SCM symbol = scm_caar(desc);
+      SCM data   = scm_cdar(desc);
 
-      if (gh_equal_p (gh_symbol2scm ("width"), symbol))
+      if (scm_equal_p (scm_from_utf8_symbol ("width"), symbol))
 	{
-	  width = gh_scm2int(gh_car (data));
+	  width = scm_to_int(scm_car (data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("height"), symbol))
+      else if (scm_equal_p (scm_from_utf8_symbol ("height"), symbol))
 	{
-	  height = gh_scm2int(gh_car (data));
+	  height = scm_to_int(scm_car (data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("tiles"), symbol))
+      else if (scm_equal_p (scm_from_utf8_symbol ("tiles"), symbol))
 	{
 	  parse_tiles (data);
 	}
-      else if (gh_equal_p (gh_symbol2scm ("file"), symbol))
+      else if (scm_equal_p (scm_from_utf8_symbol ("file"), symbol))
 	{
 	  parse_from_file (data);
 	}
-      else if (gh_equal_p (gh_symbol2scm ("map"), symbol))
+      else if (scm_equal_p (scm_from_utf8_symbol ("map"), symbol))
 	{
 	  parse_map (data);
 	}
       else
 	{
 	  std::cout << "TileMapData: Unknown data type: '" << std::flush;
-	  gh_display (symbol);
+	  scm_display (symbol, SCM_UNDEFINED);
 	  std::cout << "' with data: " << std::flush;
-	  gh_display (data);
+	  scm_display (data, SCM_UNDEFINED);
 	  std::cout << std::endl;
 	  return;
 	}
 
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 }
 
@@ -73,7 +73,7 @@ TileMapData::~TileMapData ()
 void
 TileMapData::parse_from_file (SCM desc)
 {
-  char* str = gh_scm2newstr(gh_car (desc), 0);
+  char* str = scm_to_utf8_string(scm_car(desc));
   std::cout << "Loading from: " << str << std::endl;
   std::string filename = str;
   free (str);
@@ -108,16 +108,16 @@ TileMapData::parse_map (SCM desc)
     *it = 0;
 
   /*std::cout << "Tilemap MapData: " << std::flush;
-  gh_display (desc);
-  gh_newline ();*/
+  scm_display (desc, SCM_UNDEFINED);
+  scm_newline ();*/
 
   int i = 0;
   bool to_large = false;
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
       if (i < static_cast<int>(tilemap_data.size()))
 	{
-	  tilemap_data[i] = gh_scm2int (gh_car (desc));
+	  tilemap_data[i] = scm_to_int (scm_car (desc));
 	  ++i;
 	}
       else
@@ -126,7 +126,7 @@ TileMapData::parse_map (SCM desc)
 	  ++i;
 	}
 
-      desc = gh_cdr(desc);
+      desc = scm_cdr(desc);
     }
 
   std::cout << "TileMapData: map to large: " << width * height
@@ -137,10 +137,10 @@ void
 TileMapData::parse_tiles (SCM desc)
 {
   //std::cout << "TileMapData::parse_tiles: " tiles_ << std::endl;
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
-      tiles_data.push_back (TileDataFactory::create (gh_car(desc)));
-      desc = gh_cdr (desc);
+      tiles_data.push_back (TileDataFactory::create (scm_car(desc)));
+      desc = scm_cdr (desc);
     }
 }
 

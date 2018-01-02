@@ -17,6 +17,7 @@
 #include <iostream>
 #include "draw_circle.hpp"
 
+#ifdef TESTME
 int main()
 {
   Field<int> field(50, 50);
@@ -43,6 +44,7 @@ int main()
       std::cout << std::endl;
     }
 }
+#endif
 
 // Local Variables:
 // compile-command: "g++-3.2 -DTESTME -Wall -O2 draw_circle.cpp  -o draw_circle -lclanCore"

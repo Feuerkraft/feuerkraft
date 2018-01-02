@@ -17,7 +17,7 @@
 #ifndef TILEFACTORY_HXX
 #define TILEFACTORY_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 
 class TileData;
 class SpriteTileData;

@@ -24,19 +24,19 @@
 TileData*
 TileDataFactory::create (SCM desc)
 {
-  SCM symbol = gh_car (desc);
-  SCM data   = gh_cdr (desc);
+  SCM symbol = scm_car (desc);
+  SCM data   = scm_cdr (desc);
 
-  if (gh_equal_p (gh_symbol2scm ("spritetile"), symbol))
+  if (scm_equal_p (scm_from_utf8_symbol ("spritetile"), symbol))
     {
       return create_SpriteTileData (data);
     }
   else
     {
       std::cout << "TileDataFactory: Unknown tile type: '" << std::flush;
-      gh_display (symbol);
+      scm_display (symbol, SCM_UNDEFINED);
       std::cout << "' with data: " << std::flush;
-      gh_display (data);
+      scm_display (data, SCM_UNDEFINED);
       std::cout << std::endl;
       return 0;
     }
@@ -48,17 +48,17 @@ TileDataFactory::create_SpriteTileData (SCM desc)
   SpriteTileData* sprite_data = new SpriteTileData ();
 
   //std::cout << "TileDataFactory:create_SpriteTileData:" << std::flush;
-  //gh_display (desc);
+  //scm_display (desc, SCM_UNDEFINED);
   //std::cout << std::endl;
 
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+      SCM symbol = scm_caar(desc);
+      SCM data   = scm_cdar(desc);
 
-      if (gh_equal_p (gh_symbol2scm ("location"), symbol))
+      if (scm_equal_p (scm_from_utf8_symbol ("location"), symbol))
 	{
-	  char* str = gh_scm2newstr(gh_car (data), 0);
+	  char* str = scm_to_utf8_string(scm_car(data));
 	  sprite_data->sprite_location = str;
 #ifndef WIN32	// Freeing this crashed under VisualC++
 	  free (str);
@@ -67,14 +67,14 @@ TileDataFactory::create_SpriteTileData (SCM desc)
       else
 	{
 	  std::cout << "TileDataFactory: Unknown sprite tile type: '" << std::flush;
-	  gh_display (symbol);
+	  scm_display (symbol, SCM_UNDEFINED);
 	  std::cout << "' with data: " << std::flush;
-	  gh_display (data);
+	  scm_display (data, SCM_UNDEFINED);
 	  std::cout << std::endl;
 	  return 0;
 	}
 
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 
   return sprite_data;

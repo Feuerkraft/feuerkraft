@@ -19,7 +19,7 @@
 
 #include <vector>
 
-#include <guile/gh.h>
+#include <libguile.h>
 #include <ClanLib/Display/pixel_buffer.h>
 #include "ground_type.hpp"
 #include "ground_map_data.hpp"

@@ -30,10 +30,10 @@ BuildingMapData::BuildingMapData (SCM desc) :
   width = 256;
   height = 256;
 
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+      SCM symbol = scm_caar(desc);
+      SCM data   = scm_cdar(desc);
 
       AList alst = Guile::scm2alist(data);
       std::string str = Guile::symbol2string(symbol);
@@ -43,7 +43,7 @@ BuildingMapData::BuildingMapData (SCM desc) :
 
       //std::cout << "BuildingData: " << str << "\n" << alst << std::endl;
 
-      desc = gh_cdr(desc);
+      desc = scm_cdr(desc);
     }
 }
 
@@ -75,11 +75,11 @@ BuildingMapData::dump_to_scm ()
 	}
       else // dump successful
 	{
-	  building_map_scm = gh_cons (obj, building_map_scm);
+	  building_map_scm = scm_cons (obj, building_map_scm);
 	}
     }
 
-  building_map_scm = gh_cons (gh_symbol2scm ("buildingmap"), gh_reverse (building_map_scm));
+  building_map_scm = scm_cons(scm_from_utf8_symbol("buildingmap"), scm_reverse(building_map_scm));
 
   return building_map_scm;
 #endif

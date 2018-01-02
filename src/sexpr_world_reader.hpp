@@ -17,7 +17,7 @@
 #ifndef HEADER_SEXPR_WORLD_READER_HXX
 #define HEADER_SEXPR_WORLD_READER_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 #include <string>
 
 class WorldBuilder;

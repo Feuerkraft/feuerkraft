@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <guile/gh.h>
+#include <libguile.h>
 #include "../guile.hpp"
 #include "../game_world.hpp"
 #include "../property.hpp"
@@ -77,26 +77,26 @@ building_create_type(const char* name, SCM lst)
 {
   AList alist;
 
-  while(!gh_null_p(lst))
+  while(!scm_null_p(lst))
     {
-      SCM key   = gh_car(lst);
+      SCM key   = scm_car(lst);
 
-      if (gh_null_p(gh_cdr(lst)))
+      if (scm_null_p(scm_cdr(lst)))
         {
           std::cout << "Missing argument to keyword!" << std::endl;
         }
 
-      SCM value = gh_cadr(lst);
+      SCM value = scm_cadr(lst);
 
-      if (gh_boolean_p(value))
+      if (scm_boolean_p(value))
         {
-          alist.set_bool(Guile::keyword2string(key), gh_scm2bool(value));
+          alist.set_bool(Guile::keyword2string(key), scm_to_bool(value));
         }
-      else if (gh_number_p(value))
+      else if (scm_number_p(value))
         {
-          alist.set_int(Guile::keyword2string(key), gh_scm2int(value));
+          alist.set_int(Guile::keyword2string(key), scm_to_int(value));
         }
-      else if (gh_string_p(value))
+      else if (scm_string_p(value))
         {
           alist.set_string(Guile::keyword2string(key), Guile::scm2string(value));
         }
@@ -105,7 +105,7 @@ building_create_type(const char* name, SCM lst)
           std::cout << "BuildingCommands: unknown argumnent type" << std::endl;
         }
 
-      lst = gh_cddr(lst);
+      lst = scm_cddr(lst);
     }
 
   return BuildingTypeManager::current()->register_factory(new CustomBuildingFactory(name, alist));

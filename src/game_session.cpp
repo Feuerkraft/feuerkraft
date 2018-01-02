@@ -97,8 +97,8 @@ GameSession::init()
   // Deserialize the game world
   {
     std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-    SCM fdes = scm_open_file (scm_makfrom0str(filename.c_str()),
-                              scm_makfrom0str("r"));
+    SCM fdes = scm_open_file(scm_from_utf8_string(filename.c_str()),
+                             scm_from_utf8_string("r"));
     SCM lst = scm_read (fdes);
     scm_close (fdes);
 
@@ -281,7 +281,7 @@ GameSession::update()
           else if (i->button.name == USE_BUTTON && i->button.is_down())
             {
               // FIXME: Unclean hack
-              gh_call0(gh_lookup("join-nearest-vehicle"));
+              scm_call_0(scm_c_lookup("join-nearest-vehicle"));
             }
         }
     }

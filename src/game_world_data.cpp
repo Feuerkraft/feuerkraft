@@ -29,38 +29,38 @@
 GameWorldData::GameWorldData (SCM desc)
   : needs_delete (true)
 {
-  assert(gh_pair_p(desc));
+  assert(scm_pair_p(desc));
 
-  if (gh_equal_p (gh_symbol2scm ("feuerkraft-scenario"), gh_car(desc)))
-    desc = gh_cdr(desc);
+  if (scm_equal_p (scm_from_utf8_symbol ("feuerkraft-scenario"), scm_car(desc)))
+    desc = scm_cdr(desc);
   else
     {
       std::cout << "File is not a feuerkraft scenario" << std::endl;
       assert(false);
     }
 
-  while (gh_pair_p(desc))
+  while (scm_pair_p(desc))
     {
-      if (gh_pair_p (gh_car (desc)))
+      if (scm_pair_p (scm_car (desc)))
 	{
-	  SCM symbol = gh_caar(desc);
-	  SCM data   = gh_cdar(desc);
+	  SCM symbol = scm_caar(desc);
+	  SCM data   = scm_cdar(desc);
 
-	  if (gh_symbol_p (symbol))
+	  if (scm_symbol_p (symbol))
 	    {
-	      if (gh_equal_p (gh_symbol2scm ("groundmap"), symbol))
+	      if (scm_equal_p (scm_from_utf8_symbol ("groundmap"), symbol))
 		{
 		  groundmap_data = GroundMapDataFactory::create (data);
 		}
-	      else if (gh_equal_p (gh_symbol2scm ("buildings"), symbol))
+	      else if (scm_equal_p (scm_from_utf8_symbol ("buildings"), symbol))
 		{
 		  buildingmap_data = new BuildingMapData (data);
 		}
-	      else if (gh_equal_p (gh_symbol2scm ("objects"), symbol))
+	      else if (scm_equal_p (scm_from_utf8_symbol ("objects"), symbol))
 		{
 		  parse_objects(data);
 		}
-	      else if (gh_equal_p (gh_symbol2scm ("scripts"), symbol))
+	      else if (scm_equal_p (scm_from_utf8_symbol ("scripts"), symbol))
 		{
 		  parse_scripts(data);
 		}
@@ -72,15 +72,16 @@ GameWorldData::GameWorldData (SCM desc)
 	  else
 	    {
 	      std::cout << "GameWorldData: Error not a symbol: ";// << symbol << " " << data << std::endl;;
-	      gh_display (symbol); gh_newline ();
+	      scm_display(symbol, SCM_UNDEFINED);
+              scm_newline(SCM_UNDEFINED);
 	    }
 	}
       else
 	{
-	  std::cout << "GameWorldData: Error not a pair: " << gh_car(desc) << std::endl;;
+	  std::cout << "GameWorldData: Error not a pair: " << scm_car(desc) << std::endl;;
 	}
 
-      desc = gh_cdr(desc);
+      desc = scm_cdr(desc);
     }
 }
 
@@ -88,14 +89,14 @@ void
 GameWorldData::parse_objects (SCM desc)
 {
   //std::cout << "GameWorldData::parse_objects" << std::endl;
-  //gh_display (desc);
-  //gh_newline ();
-  while (gh_pair_p(desc)) // is a list
+  //scm_display (desc);
+  //scm_newline ();
+  while (scm_pair_p(desc)) // is a list
     {
-      if (gh_pair_p (gh_car (desc))) // is a symbol/value pair
+      if (scm_pair_p (scm_car (desc))) // is a symbol/value pair
 	{
-	  SCM symbol = gh_caar(desc);
-	  SCM data   = gh_cdar(desc);
+	  SCM symbol = scm_caar(desc);
+	  SCM data   = scm_cdar(desc);
 
 	  GameObjData* obj = GameObjDataFactory::create (symbol, data);
 	  if (obj)
@@ -111,7 +112,7 @@ GameWorldData::parse_objects (SCM desc)
 	{
 	  std::cout << "Error: GameWorldData::parse_objects" << std::endl;
 	}
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 }
 
@@ -142,14 +143,14 @@ GameWorldData::dump_to_scm ()
 	    }
 	  else // Object successfully dumped
 	    {
-	      objs = gh_cons (obj, objs);
+	      objs = scm_cons (obj, objs);
 	    }
 	}
     }
 
-  world_lst = gh_cons (gh_symbol2scm ("objects"), gh_reverse(objs));
+  world_lst = scm_cons (scm_from_utf8_symbol ("objects"), scm_reverse(objs));
 
-  world_lst = SCM_BOOL_F; //scm_listify (gh_symbol2scm ("world"), world_lst, SCM_UNDEFINED);
+  world_lst = SCM_BOOL_F; //scm_listify (scm_from_utf8_symbol ("world"), world_lst, SCM_UNDEFINED);
 
   return world_lst;
 }
@@ -157,13 +158,13 @@ GameWorldData::dump_to_scm ()
 void
 GameWorldData::parse_scripts(SCM desc)
 {
-  while(!gh_null_p(desc))
+  while(!scm_null_p(desc))
     {
-      SCM script = gh_car(desc);
+      SCM script = scm_car(desc);
 
       scripts.push_back(Guile::scm2string(script));
 
-      desc = gh_cdr(desc);
+      desc = scm_cdr(desc);
     }
 }
 

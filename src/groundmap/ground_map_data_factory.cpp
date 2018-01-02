@@ -26,40 +26,40 @@ GroundMapDataFactory::create (SCM desc)
   MultiGroundMapData* multigroundmap = new MultiGroundMapData ();
 
   /*std::cout << "GroundMapFactory: desc: "<< std::flush;
-  gh_display (desc);
-  gh_newline ();*/
+  scm_display (desc, SCM_UNDEFINED);
+  scm_newline ();*/
 
-  while (gh_pair_p (desc))
+  while (scm_pair_p (desc))
     {
-      SCM symbol = gh_caar (desc);
-      SCM data   = gh_cdar (desc);
+      SCM symbol = scm_caar (desc);
+      SCM data   = scm_cdar (desc);
 
       /*
       std::cout << "GroundMapFactory: symbol: "<< std::flush;
-      gh_display (symbol);
-      gh_newline ();
+      scm_display (symbol, SCM_UNDEFINED);
+      scm_newline ();
 
       std::cout << "GroundMapFactory: data: "<< std::flush;
-      gh_display (data);
-      gh_newline ();
+      scm_display (data, SCM_UNDEFINED);
+      scm_newline ();
       */
-      if (gh_equal_p (gh_symbol2scm ("tilemap"), symbol))
+      if (scm_equal_p (scm_from_utf8_symbol ("tilemap"), symbol))
 	{
 	  multigroundmap->add(new TileMapData (data));
 	}
-      else if (gh_equal_p (gh_symbol2scm ("gridmap"), symbol))
+      else if (scm_equal_p (scm_from_utf8_symbol ("gridmap"), symbol))
 	{
 	  multigroundmap->add(new GridMapData (data));
 	}
       else
 	{
 	  std::cout << "GroundMapFactory: Unknown map type: " << std::flush;
-	  gh_display (symbol);
-	  gh_newline ();
+	  scm_display (symbol, SCM_UNDEFINED);
+	  scm_newline (SCM_UNDEFINED);
 	  //return 0;
 	}
 
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 
   return multigroundmap;

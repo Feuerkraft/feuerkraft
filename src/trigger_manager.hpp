@@ -94,7 +94,7 @@ public:
         {
           if (int(unit->get_pos().x/40) == x && int(unit->get_pos().y/40) == y)
             {
-              this->func(SCM_MAKINUM(unit->get_id()));
+              this->func(scm_from_int(unit->get_id()));
               this->remove();
             }
         }

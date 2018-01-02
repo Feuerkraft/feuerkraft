@@ -18,7 +18,7 @@
 #define BUILDINGMAPDATA_HXX
 
 #include <vector>
-#include <guile/gh.h>
+#include <libguile.h>
 #include "../alist.hpp"
 #include "../game_obj_data.hpp"
 

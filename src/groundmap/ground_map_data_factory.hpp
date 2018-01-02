@@ -17,7 +17,7 @@
 #ifndef GROUNDMAPDATAFACTORY_HXX
 #define GROUNDMAPDATAFACTORY_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 
 class GroundMapData;
 

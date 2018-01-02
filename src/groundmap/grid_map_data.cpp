@@ -26,26 +26,26 @@ GridMapData::GridMapData (SCM desc)
   grid_width  = -1;
   grid_height = -1;
 
-  while (!gh_null_p (desc))
+  while (!scm_null_p (desc))
     {
-      SCM symbol = gh_caar(desc);
-      SCM data   = gh_cdar(desc);
+      SCM symbol = scm_caar(desc);
+      SCM data   = scm_cdar(desc);
 
-      if (gh_equal_p (gh_symbol2scm ("file"), symbol))
+      if (scm_equal_p (scm_from_utf8_symbol ("file"), symbol))
         {
           parse_from_file (data);
         }
       else
         {
           std::cout << "GridMapData: Unknown data type: '" << std::flush;
-          gh_display (symbol);
+          scm_display (symbol, SCM_UNDEFINED);
           std::cout << "' with data: " << std::flush;
-          gh_display (data);
+          scm_display (data, SCM_UNDEFINED);
           std::cout << std::endl;
           return;
         }
 
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 }
 
@@ -59,7 +59,7 @@ GridMapData::parse_from_file (SCM desc)
 {
   /* GridMaps will always get a one pixel boarder with the base
      enviroment */
-  char* str = gh_scm2newstr(gh_car (desc), 0);
+  char* str = scm_to_utf8_string(scm_car (desc));
   std::cout << "Loading from: " << str << std::endl;
   std::string filename = str;
 #ifndef WIN32

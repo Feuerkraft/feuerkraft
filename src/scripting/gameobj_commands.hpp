@@ -17,7 +17,7 @@
 #ifndef HEADER_GAMEOBJ_COMMANDS_HXX
 #define HEADER_GAMEOBJ_COMMANDS_HXX
 
-#include <guile/gh.h>
+#include <libguile.h>
 
 /** @addtogroup scripting */
 //@{

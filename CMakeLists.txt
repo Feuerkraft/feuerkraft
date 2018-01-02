@@ -34,7 +34,7 @@ include(${SWIG_USE_FILE})
 
 find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
-pkg_search_module(GUILE REQUIRED guile-1.8)
+pkg_search_module(GUILE REQUIRED guile-2.2)
 pkg_search_module(CLANCORE REQUIRED clanCore-1.0)
 pkg_search_module(CLANAPP REQUIRED clanApp-1.0)
 pkg_search_module(CLANDISPLAY REQUIRED clanDisplay-1.0)
@@ -43,8 +43,9 @@ pkg_search_module(CLANSOUND REQUIRED clanSound-1.0)
 pkg_search_module(CLANMIKMOD REQUIRED clanMikMod-1.0)
 pkg_search_module(CLANVORBIS REQUIRED clanVorbis-1.0)
 
+include_directories(${GUILE_INCLUDE_DIRS})
 set_source_files_properties(src/scripting/feuerkraft.i PROPERTIES CPLUSPLUS ON)
-swig_add_module(feuerkraft_wrap guile src/scripting/feuerkraft.i)
+swig_add_library(feuerkraft_wrap LANGUAGE guile SOURCES src/scripting/feuerkraft.i)
 set(FEUERKRAFT_WRAP_GENERATED_SOURCES ${swig_generated_file_fullname})
 
 file(GLOB FEUERKRAFT_SOURCES

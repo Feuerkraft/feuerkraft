@@ -77,10 +77,10 @@ gameobj_properties(int handle)
                i != properties->end();
                ++i)
             {
-              lst = gh_cons(gh_str02scm(i->second->get_name().c_str()), lst);
+              lst = scm_cons(scm_from_utf8_string(i->second->get_name().c_str()), lst);
             }
         }
-      return gh_reverse(lst);
+      return scm_reverse(lst);
     }
   return SCM_BOOL_F;
 }
@@ -152,7 +152,7 @@ gameobj_get_all()
        i != GameObjManager::current()->end();
        ++i)
     {
-      lst = gh_cons(scm_long2num((*i)->get_id()), lst);
+      lst = scm_cons(scm_from_long((*i)->get_id()), lst);
     }
 
   return scm_reverse(lst);

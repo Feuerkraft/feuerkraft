@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <guile/gh.h>
+#include <libguile.h>
 #include "guile.hpp"
 #include "game_obj_data_factory.hpp"
 
@@ -22,20 +22,20 @@ GameObjData*
 GameObjDataFactory::create (SCM symbol, SCM data)
 {
   /*
-  if (Guile::equal_p(scm_str2symbol("tree"), symbol))
+  if (Guile::equal_p(scm_from_utf8_symbol("tree"), symbol))
     {
       return new TreeData (data);
     }
   else*/
-    if (Guile::equal_p(scm_str2symbol("tank"), symbol))
+    if (Guile::equal_p(scm_from_utf8_symbol("tank"), symbol))
     {
       std::cout << "GameObjDataFactory::create: not implemented" << std::endl;
     }
   else
     {
       std::cout << "GameObjDataFactory: Unknown symbol: " << std::flush;
-      gh_display (symbol);
-      gh_newline ();
+      scm_display(symbol, SCM_UNDEFINED);
+      scm_newline(SCM_UNDEFINED);
     }
   return 0;
 }

@@ -20,7 +20,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <guile/gh.h>
+#include <libguile.h>
 #include "ground_type.hpp"
 #include "grid_tile_data.hpp"
 

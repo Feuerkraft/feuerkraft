@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <assert.h>
-#include <guile/gh.h>
+#include <libguile.h>
 #include <ClanLib/Core/System/cl_assert.h>
 
 #include "property.hpp"
@@ -28,17 +28,17 @@ scm2string (SCM data)
 {
   std::string str;
 
-  if (gh_string_p(data))
+  if (scm_string_p(data))
     {
-      char* tmpstr = gh_scm2newstr(data, 0);
+      char* tmpstr = scm_to_utf8_string(data);
       str = tmpstr;
       free(tmpstr);
     } else {
-      SCM scmstr = scm_make_string(SCM_MAKINUM(0), SCM_UNDEFINED);
+      SCM scmstr = scm_make_string(scm_from_int(0), SCM_UNDEFINED);
       SCM port = scm_mkstrport(SCM_INUM0, scmstr,
                                SCM_OPN | SCM_WRTNG, "scm_mkstrport");
       scm_display(data, port);
-      char* tmpstr = gh_scm2newstr(scmstr, 0);
+      char* tmpstr = scm_to_utf8_string(scmstr);
       str = tmpstr;
       free(tmpstr);
     }
@@ -47,19 +47,19 @@ scm2string (SCM data)
 
 SCM vector2scm (const FloatVector2d& vec)
 {
-  /** If this causes throuble on WIN32, replace it with gh_cons() */
-  return SCM_BOOL_F; /*scm_listify (gh_symbol2scm ("pos"),
-                       gh_double2scm(vec.x),
-                       gh_double2scm(vec.y),
-                       gh_double2scm(vec.z),
+  /** If this causes throuble on WIN32, replace it with scm_cons() */
+  return SCM_BOOL_F; /*scm_listify (scm_symbol2scm ("pos"),
+                       scm_double2scm(vec.x),
+                       scm_double2scm(vec.y),
+                       scm_double2scm(vec.z),
                        SCM_UNDEFINED);*/
 }
 
 SCM pos2scm (int x, int y)
 {
-  return SCM_BOOL_F;/*scm_listify (gh_symbol2scm ("pos"),
-                      gh_int2scm (x),
-                      gh_int2scm (y),
+  return SCM_BOOL_F;/*scm_listify (scm_symbol2scm ("pos"),
+                      scm_int2scm (x),
+                      scm_int2scm (y),
                       SCM_UNDEFINED);*/
 }
 
@@ -67,8 +67,8 @@ void pretty_print (std::ostream& stream, SCM obj)
 {
   std::cout << "pretty_print" << std::endl;
   // FIXME: ...lalala..
-  gh_write (obj);
-  gh_newline ();
+  scm_write (obj, SCM_UNDEFINED);
+  scm_newline (SCM_UNDEFINED);
 
 }
 
@@ -79,19 +79,19 @@ bool equal_p(SCM a, SCM b)
 
 SCM symbol2scm(const char* str)
 {
-  return scm_str2symbol(str);
+  return scm_from_utf8_symbol(str);
 }
 
 std::string keyword2string(SCM keyword)
 {
-  assert(SCM_KEYWORDP(keyword));
+  assert(scm_keyword_p(keyword));
   //puts("keyword2string: ");
-  //gh_display(keyword);
-  //gh_newline();
-  //gh_display(scm_keyword_dash_symbol(keyword));
-  //gh_newline();
+  //scm_display(keyword);
+  //scm_newline();
+  //scm_display(scm_keyword_dash_symbol(keyword));
+  //scm_newline();
 
-  char* str = gh_symbol2newstr(scm_keyword_dash_symbol(keyword), 0);
+  char* str = scm_to_utf8_string(keyword);
   std::string ret = str + 1; // skip the dash
   free(str);
   return ret;
@@ -100,10 +100,10 @@ std::string keyword2string(SCM keyword)
 AList keywords2alist(SCM lst)
 {
   AList alist;
-  while(gh_pair_p(lst) && !gh_null_p(gh_cdr(lst)))
+  while(scm_pair_p(lst) && !scm_null_p(scm_cdr(lst)))
     {
-      SCM key  = gh_car(lst);
-      SCM data = gh_cadr(lst);
+      SCM key  = scm_car(lst);
+      SCM data = scm_cadr(lst);
 
       if (scm_keyword_p(key) == SCM_BOOL_F)
         {
@@ -112,37 +112,37 @@ AList keywords2alist(SCM lst)
       else
         {
           std::string keyword = Guile::keyword2string(key);
-          if (gh_string_p(data))
+          if (scm_string_p(data))
             {
               alist.set_string(keyword,
                                Guile::scm2string(data));
             }
-          else if (gh_exact_p(data))
+          else if (scm_exact_p(data))
             {
               alist.set_int(keyword,
-                            gh_scm2int(data));
+                            scm_to_int(data));
             }
-          else if (gh_inexact_p(data))
+          else if (scm_inexact_p(data))
             {
               alist.set_float(keyword,
-                              gh_scm2double(data));
+                              scm_to_double(data));
             }
-          else if (gh_boolean_p(data))
+          else if (scm_boolean_p(data))
             {
               alist.set_bool(keyword,
-                             gh_scm2bool(data));
+                             scm_to_bool(data));
             }
-          else if (gh_list_p(data) && gh_length(data) == 2
-                   && gh_exact_p(gh_car(data))
-                   && gh_exact_p(gh_cadr(data)))
+          else if (scm_list_p(data) && scm_ilength(data) == 2
+                   && scm_exact_p(scm_car(data))
+                   && scm_exact_p(scm_cadr(data)))
             {
               IntVector2d vec;
-              vec.x = gh_scm2int(gh_car(data));
-              vec.y = gh_scm2int(gh_cadr(data));
+              vec.x = scm_to_int(scm_car(data));
+              vec.y = scm_to_int(scm_cadr(data));
               alist.set_int_vector2d(keyword,
                                      vec);
             }
-          else if (gh_symbol_p(data))
+          else if (scm_symbol_p(data))
             {
               alist.set_string(keyword,
                                Guile::symbol2string(data));
@@ -150,12 +150,12 @@ AList keywords2alist(SCM lst)
           else
             {
               std::cout << "Guile: Error: Couldn't handle data" << std::endl;
-              gh_display(data);
-              gh_newline();
+              scm_display(data, SCM_UNDEFINED);
+              scm_newline(SCM_UNDEFINED);
             }
         }
 
-      lst = gh_cddr(lst);
+      lst = scm_cddr(lst);
     }
   return alist;
 }
@@ -163,53 +163,53 @@ AList keywords2alist(SCM lst)
 AList scm2alist(SCM lst)
 {
   AList alist;
-  while(!gh_null_p(lst))
+  while(!scm_null_p(lst))
     {
-      SCM key  = gh_caar(lst);
-      SCM data = gh_cdar(lst);
+      SCM key  = scm_caar(lst);
+      SCM data = scm_cdar(lst);
 
-      if (gh_pair_p(data) && gh_null_p(gh_cdr(data)))
-        data = gh_car(data);
+      if (scm_pair_p(data) && scm_null_p(scm_cdr(data)))
+        data = scm_car(data);
 
-      if (!gh_symbol_p(key))
+      if (!scm_symbol_p(key))
         {
           std::cout << "Guile: Error: key not a symbol" << std::endl;
-          gh_display(key);
-          gh_newline();
+          scm_display(key, SCM_UNDEFINED);
+          scm_newline(SCM_UNDEFINED);
         }
       else
         {
-          if (gh_string_p(data))
+          if (scm_string_p(data))
             {
               alist.set_string(Guile::symbol2string(key),
                                Guile::scm2string(data));
             }
-          else if (gh_exact_p(data))
+          else if (scm_exact_p(data))
             {
               alist.set_int(Guile::symbol2string(key),
-                            gh_scm2int(data));
+                            scm_to_int(data));
             }
-          else if (gh_inexact_p(data))
+          else if (scm_inexact_p(data))
             {
               alist.set_float(Guile::symbol2string(key),
-                              gh_scm2double(data));
+                              scm_to_double(data));
             }
-          else if (gh_boolean_p(data))
+          else if (scm_boolean_p(data))
             {
               alist.set_bool(Guile::symbol2string(key),
-                             gh_scm2bool(data));
+                             scm_to_bool(data));
             }
-          else if (gh_list_p(data) && gh_length(data) == 2
-                   && gh_exact_p(gh_car(data))
-                   && gh_exact_p(gh_cadr(data)))
+          else if (scm_list_p(data) && scm_ilength(data) == 2
+                   && scm_exact_p(scm_car(data))
+                   && scm_exact_p(scm_cadr(data)))
             {
               IntVector2d vec;
-              vec.x = gh_scm2int(gh_car(data));
-              vec.y = gh_scm2int(gh_cadr(data));
+              vec.x = scm_to_int(scm_car(data));
+              vec.y = scm_to_int(scm_cadr(data));
               alist.set_int_vector2d(Guile::symbol2string(key),
                                      vec);
             }
-          else if (gh_symbol_p(data))
+          else if (scm_symbol_p(data))
             {
               alist.set_string(Guile::symbol2string(key),
                                Guile::symbol2string(data));
@@ -217,19 +217,19 @@ AList scm2alist(SCM lst)
           else
             {
               std::cout << "Guile: Error: Couldn't handle data" << std::endl;
-              gh_display(data);
-              gh_newline();
+              scm_display(data, SCM_UNDEFINED);
+              scm_newline(SCM_UNDEFINED);
             }
         }
 
-      lst = gh_cdr(lst);
+      lst = scm_cdr(lst);
     }
   return alist;
 }
 
 std::string symbol2string(SCM symbol)
 {
-  char* c_str = gh_symbol2newstr(symbol, 0);
+  char* c_str = scm_to_utf8_string(symbol);
   std::string str = c_str;
   free(c_str);
   return str;
@@ -237,7 +237,7 @@ std::string symbol2string(SCM symbol)
 
 void enter_repl()
 {
-  SCM func = gh_lookup("feuerkraft:repl");
+  SCM func = scm_c_lookup("feuerkraft:repl");
   if (func != SCM_BOOL_F)
     {
       scm_call_0(func);
@@ -250,21 +250,21 @@ void enter_repl()
 
 void scm2property(PropertySet& properties, const char* name, SCM value)
 {
-  if (gh_string_p(value))
+  if (scm_string_p(value))
     {
       properties.set_string(name, Guile::scm2string(value));
     }
-  else if (gh_boolean_p(value))
+  else if (scm_boolean_p(value))
     {
-      properties.set_bool(name, gh_scm2bool(value));
+      properties.set_bool(name, scm_to_bool(value));
     }
-  else if (gh_exact_p(value))
+  else if (scm_exact_p(value))
     {
-      properties.set_int(name, gh_scm2int(value));
+      properties.set_int(name, scm_to_int(value));
     }
-  else if (gh_inexact_p(value))
+  else if (scm_inexact_p(value))
     {
-      properties.set_float(name, gh_scm2double(value));
+      properties.set_float(name, scm_to_double(value));
     }
   else
     {
@@ -277,19 +277,19 @@ SCM  property2scm(const Property& property)
   switch(property.get_type())
     {
     case Property::T_INT:
-      return gh_int2scm(property.get_int());
+      return scm_from_int(property.get_int());
       break;
 
     case Property::T_FLOAT:
-      return gh_double2scm(property.get_float());
+      return scm_from_double(property.get_float());
       break;
 
     case Property::T_BOOL:
-      return gh_bool2scm(property.get_bool());
+      return scm_from_bool(property.get_bool());
       break;
 
     case Property::T_STRING:
-      return gh_str02scm(property.get_string().c_str());
+      return scm_from_utf8_string(property.get_string().c_str());
       break;
 
     default:
@@ -307,18 +307,24 @@ void enable_debug()
   SCM_RECORD_POSITIONS_P = 1;
   SCM_RESET_DEBUG_MODE;
 #else
-  gh_eval_str("(debug-enable 'debug)"
-              "(debug-enable 'backtrace)"
-              "(read-enable  'positions)");
+  if (false)
+  {
+    scm_c_eval_string("(debug-enable 'debug)"
+                      "(debug-enable 'backtrace)"
+                      "(read-enable  'positions)");
+  }
 #endif
 }
 
 /** Disable all debugging */
 void disable_debug()
 {
-  gh_eval_str("(debug-disable 'debug)"
-              "(debug-disable 'backtrace)"
-              "(read-disable  'positions)");
+  if (false)
+  {
+    scm_c_eval_string("(debug-disable 'debug)"
+                      "(debug-disable 'backtrace)"
+                      "(read-disable  'positions)");
+  }
 }
 
 void enable_readline()
@@ -328,8 +334,8 @@ void enable_readline()
   scm_init_readline();
 #endif
 
-  gh_eval_str("(use-modules (ice-9 readline))"
-              "(activate-readline)");
+  scm_c_eval_string("(use-modules (ice-9 readline))"
+                    "(activate-readline)");
 }
 
 } // namespace Guile

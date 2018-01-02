@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <guile/gh.h>
+#include <libguile.h>
 #include <iostream>
 #include "guile.hpp"
 #include "game_mission.hpp"
@@ -32,7 +32,7 @@ GameMission::GameMission (SCM desc)
 
   SCM symbol = SCM_CAAR(desc);
 
-  if (Guile::equal_p(scm_str2symbol("feuerkraft-mission"), symbol))
+  if (Guile::equal_p(scm_from_utf8_symbol("feuerkraft-mission"), symbol))
     {
       std::cout << "GameMission: SCM is mission data" << std::endl;
     }
@@ -50,19 +50,19 @@ GameMission::GameMission (SCM desc)
       SCM symbol = SCM_CAAR(desc);
       SCM data   = SCM_CDAR(desc);
 
-      if (Guile::equal_p(scm_str2symbol("author-name"), symbol))
+      if (Guile::equal_p(scm_from_utf8_symbol("author-name"), symbol))
 	{
 	  author_name = Guile::scm2string(SCM_CADR(data));
 	}
-      else if (Guile::equal_p(scm_str2symbol("author-email"), symbol))
+      else if (Guile::equal_p(scm_from_utf8_symbol("author-email"), symbol))
 	{
 	  author_email = Guile::scm2string(SCM_CADR(data));
 	}
-      else if (Guile::equal_p(scm_str2symbol("creation-time"), symbol))
+      else if (Guile::equal_p(scm_from_utf8_symbol("creation-time"), symbol))
 	{
-	  creation_time = gh_scm2int(SCM_CADR(data));
+	  creation_time = scm_to_int(SCM_CADR(data));
 	}
-      else if (Guile::equal_p(scm_str2symbol("world"), symbol))
+      else if (Guile::equal_p(scm_from_utf8_symbol("world"), symbol))
 	{
 
 	}

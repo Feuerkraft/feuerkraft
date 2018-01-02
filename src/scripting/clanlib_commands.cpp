@@ -39,7 +39,7 @@ void clanlib_call_post_keep_alive_func()
 {
   if (post_keep_alive_func != SCM_BOOL_F)
     {
-      gh_call0(post_keep_alive_func);
+      scm_call_0(post_keep_alive_func);
     }
 }
 

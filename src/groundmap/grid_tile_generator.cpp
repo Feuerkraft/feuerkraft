@@ -22,16 +22,16 @@
 GridTileGenerator::GridTileGenerator (std::string filename)
   : emptytile (new GridTile ("feuerkraft/emptytile"))
 {
-  SCM fdes = scm_open_file (gh_str02scm(filename.c_str ()),
-			    gh_str02scm("r"));
+  SCM fdes = scm_open_file(scm_from_utf8_string(filename.c_str()),
+                           scm_from_utf8_string("r"));
   SCM lst  = scm_read (fdes);
 
-  lst = gh_cdr(lst); // Skip the 'tiles' mark
+  lst = scm_cdr(lst); // Skip the 'tiles' mark
 
-  while (gh_pair_p(lst))
+  while (scm_pair_p(lst))
     {
-      parse_line (gh_car (lst));
-      lst = gh_cdr(lst);
+      parse_line (scm_car (lst));
+      lst = scm_cdr(lst);
     }
 
   scm_close (fdes);
@@ -45,8 +45,8 @@ GridTileGenerator::~GridTileGenerator ()
 void
 GridTileGenerator::parse_line (SCM desc)
 {
-  SCM data = gh_car (desc);
-  SCM lst  = gh_cdr (desc);
+  SCM data = scm_car (desc);
+  SCM lst  = scm_cdr (desc);
 
   GridTileData gdata = scm2GridTileData (data);
 
@@ -70,10 +70,10 @@ GridTileGenerator::scm2GridTileData (SCM desc)
 {
   GridTileData data;
   // FIXME: No error checking here
-  data.ul = symbol2GroundType(gh_car (desc));
-  data.ur = symbol2GroundType(gh_cadr (desc));
-  data.br = symbol2GroundType(gh_caddr (desc));
-  data.bl = symbol2GroundType(gh_car(gh_cdddr (desc)));
+  data.ul = symbol2GroundType(scm_car (desc));
+  data.ur = symbol2GroundType(scm_cadr (desc));
+  data.br = symbol2GroundType(scm_caddr (desc));
+  data.bl = symbol2GroundType(scm_car(scm_cdddr (desc)));
 
   return data;
 }
@@ -81,31 +81,31 @@ GridTileGenerator::scm2GridTileData (SCM desc)
 GroundType
 GridTileGenerator::symbol2GroundType (SCM symbol)
 {
-  if (gh_equal_p (gh_symbol2scm ("s"), symbol))
+  if (scm_equal_p (scm_from_utf8_symbol ("s"), symbol))
     {
       return GT_SAND;
     }
-  else if (gh_equal_p (gh_symbol2scm ("f"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("f"), symbol))
     {
       return GT_FLATWATER;
     }
-  else if (gh_equal_p (gh_symbol2scm ("d"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("d"), symbol))
     {
       return GT_DEEPWATER;
     }
-  else if (gh_equal_p (gh_symbol2scm ("g"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("g"), symbol))
     {
       return GT_GRASS;
     }
-  else if (gh_equal_p (gh_symbol2scm ("m"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("m"), symbol))
     {
       return GT_MUD;
     }
-  else if (gh_equal_p (gh_symbol2scm ("a"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("a"), symbol))
     {
       return GT_ASPHALT;
     }
-  else if (gh_equal_p (gh_symbol2scm ("w"), symbol))
+  else if (scm_equal_p (scm_from_utf8_symbol ("w"), symbol))
     {
       return GT_WETSAND;
     }
@@ -120,16 +120,16 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
 {
   std::vector<GridTile*> vec;
 
-  while (gh_pair_p(desc))
+  while (scm_pair_p(desc))
     {
-      char* str = gh_scm2newstr (gh_car (desc), 0);
+      char* str = scm_to_utf8_string(scm_car (desc));
       vec.push_back (new GridTile (str));
 
 #ifndef WIN32
       free (str);
 #endif
 
-      desc = gh_cdr (desc);
+      desc = scm_cdr (desc);
     }
 
   return vec;
