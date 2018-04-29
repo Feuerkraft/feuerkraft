@@ -335,6 +335,7 @@ void enable_readline()
 #endif
 
   scm_c_eval_string("(use-modules (ice-9 readline))"
+                    "(use-modules (ice-9 top-repl))"
                     "(activate-readline)");
 }
 

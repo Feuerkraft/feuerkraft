@@ -95,16 +95,13 @@
 
 (define (feuerkraft:repl)
   (display "### Feuerkraft repl, exit with (quit)\n")
-  (let ((old-prompt scm-repl-prompt))
-    (set-repl-prompt! "feuerkraft> ")
-    (catch #t
-           (lambda ()
-             (top-repl)
-             (display "Feuerkraft Readline exited nicly.\n"))
-           (lambda args
-             (display "Error: ")
-             (display args)(newline)))
-    (set-repl-prompt! old-prompt)))
+  (catch #t
+         (lambda ()
+           (top-repl)
+           (display "Feuerkraft Readline exited nicly.\n"))
+         (lambda args
+           (display "Error: ")
+           (display args)(newline))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Game Play related stuff ;;
