@@ -122,7 +122,7 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
 
   while (scm_pair_p(desc))
     {
-      char* str = scm_to_utf8_string(scm_car (desc));
+      char* str = scm_to_utf8_string(scm_car(desc));
       vec.push_back (new GridTile (str));
 
 #ifndef WIN32

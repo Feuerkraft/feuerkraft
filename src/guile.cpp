@@ -91,7 +91,7 @@ std::string keyword2string(SCM keyword)
   //scm_display(scm_keyword_dash_symbol(keyword));
   //scm_newline();
 
-  char* str = scm_to_utf8_string(keyword);
+  char* str = scm_to_utf8_string(scm_symbol_to_string(scm_keyword_to_symbol(keyword)));
   std::string ret = str + 1; // skip the dash
   free(str);
   return ret;
@@ -229,7 +229,7 @@ AList scm2alist(SCM lst)
 
 std::string symbol2string(SCM symbol)
 {
-  char* c_str = scm_to_utf8_string(symbol);
+  char* c_str = scm_to_utf8_string(scm_symbol_to_string(symbol));
   std::string str = c_str;
   free(c_str);
   return str;
