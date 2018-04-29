@@ -281,7 +281,7 @@ GameSession::update()
           else if (i->button.name == USE_BUTTON && i->button.is_down())
             {
               // FIXME: Unclean hack
-              scm_call_0(scm_c_lookup("join-nearest-vehicle"));
+              scm_call_0(scm_variable_ref(scm_c_lookup("join-nearest-vehicle")));
             }
         }
     }

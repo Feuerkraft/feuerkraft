@@ -240,7 +240,7 @@ void enter_repl()
   SCM func = scm_c_lookup("feuerkraft:repl");
   if (func != SCM_BOOL_F)
     {
-      scm_call_0(func);
+      scm_call_0(scm_variable_ref(func));
     }
   else
     {
