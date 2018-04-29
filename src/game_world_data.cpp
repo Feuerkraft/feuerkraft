@@ -31,7 +31,7 @@ GameWorldData::GameWorldData (SCM desc)
 {
   assert(scm_pair_p(desc));
 
-  if (scm_equal_p (scm_from_utf8_symbol ("feuerkraft-scenario"), scm_car(desc)))
+  if (Guile::equal_p (scm_from_utf8_symbol ("feuerkraft-scenario"), scm_car(desc)))
     desc = scm_cdr(desc);
   else
     {
@@ -39,28 +39,28 @@ GameWorldData::GameWorldData (SCM desc)
       assert(false);
     }
 
-  while (scm_pair_p(desc))
+  while (scm_is_true(scm_pair_p(desc)))
     {
-      if (scm_pair_p (scm_car (desc)))
+      if (scm_is_true(scm_pair_p (scm_car (desc))))
 	{
 	  SCM symbol = scm_caar(desc);
 	  SCM data   = scm_cdar(desc);
 
-	  if (scm_symbol_p (symbol))
+	  if (scm_is_true(scm_symbol_p (symbol)))
 	    {
-	      if (scm_equal_p (scm_from_utf8_symbol ("groundmap"), symbol))
+	      if (Guile::equal_p (scm_from_utf8_symbol ("groundmap"), symbol))
 		{
 		  groundmap_data = GroundMapDataFactory::create (data);
 		}
-	      else if (scm_equal_p (scm_from_utf8_symbol ("buildings"), symbol))
+	      else if (Guile::equal_p (scm_from_utf8_symbol ("buildings"), symbol))
 		{
 		  buildingmap_data = new BuildingMapData (data);
 		}
-	      else if (scm_equal_p (scm_from_utf8_symbol ("objects"), symbol))
+	      else if (Guile::equal_p (scm_from_utf8_symbol ("objects"), symbol))
 		{
 		  parse_objects(data);
 		}
-	      else if (scm_equal_p (scm_from_utf8_symbol ("scripts"), symbol))
+	      else if (Guile::equal_p (scm_from_utf8_symbol ("scripts"), symbol))
 		{
 		  parse_scripts(data);
 		}
@@ -91,9 +91,9 @@ GameWorldData::parse_objects (SCM desc)
   //std::cout << "GameWorldData::parse_objects" << std::endl;
   //scm_display (desc);
   //scm_newline ();
-  while (scm_pair_p(desc)) // is a list
+  while (scm_is_true(scm_pair_p(desc))) // is a list
     {
-      if (scm_pair_p (scm_car (desc))) // is a symbol/value pair
+      if (scm_is_true(scm_pair_p (scm_car (desc)))) // is a symbol/value pair
 	{
 	  SCM symbol = scm_caar(desc);
 	  SCM data   = scm_cdar(desc);
@@ -158,7 +158,7 @@ GameWorldData::dump_to_scm ()
 void
 GameWorldData::parse_scripts(SCM desc)
 {
-  while(!scm_null_p(desc))
+  while(!scm_is_true(scm_null_p(desc)))
     {
       SCM script = scm_car(desc);
 

@@ -77,26 +77,26 @@ building_create_type(const char* name, SCM lst)
 {
   AList alist;
 
-  while(!scm_null_p(lst))
+  while(!scm_is_true(scm_null_p(lst)))
     {
       SCM key   = scm_car(lst);
 
-      if (scm_null_p(scm_cdr(lst)))
+      if (scm_is_true(scm_null_p(scm_cdr(lst))))
         {
           std::cout << "Missing argument to keyword!" << std::endl;
         }
 
       SCM value = scm_cadr(lst);
 
-      if (scm_boolean_p(value))
+      if (scm_is_true(scm_boolean_p(value)))
         {
           alist.set_bool(Guile::keyword2string(key), scm_to_bool(value));
         }
-      else if (scm_number_p(value))
+      else if (scm_is_true(scm_number_p(value)))
         {
           alist.set_int(Guile::keyword2string(key), scm_to_int(value));
         }
-      else if (scm_string_p(value))
+      else if (scm_is_true(scm_string_p(value)))
         {
           alist.set_string(Guile::keyword2string(key), Guile::scm2string(value));
         }

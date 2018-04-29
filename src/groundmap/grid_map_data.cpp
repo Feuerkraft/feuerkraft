@@ -20,18 +20,19 @@
 #include "../path_manager.hpp"
 #include "grid_map.hpp"
 #include "grid_map_data.hpp"
+#include "guile.hpp"
 
 GridMapData::GridMapData (SCM desc)
 {
   grid_width  = -1;
   grid_height = -1;
 
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       SCM symbol = scm_caar(desc);
       SCM data   = scm_cdar(desc);
 
-      if (scm_equal_p (scm_from_utf8_symbol ("file"), symbol))
+      if (Guile::equal_p (scm_from_utf8_symbol ("file"), symbol))
         {
           parse_from_file (data);
         }

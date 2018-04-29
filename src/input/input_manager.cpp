@@ -26,6 +26,7 @@
 #include "input_manager_impl.hpp"
 #include "input_recorder.hpp"
 #include "input_manager.hpp"
+#include "guile.hpp"
 
 InputManagerImpl* InputManager::impl = 0;
 InputRecorder* InputManager::recorder = 0;
@@ -44,7 +45,7 @@ InputManager::init(const std::string& filename)
                            scm_from_utf8_string("r"));
   SCM lst  = scm_read(port);
 
-  if (scm_equal_p(scm_from_utf8_symbol("feuerkraft-controller"), scm_car(lst)))
+  if (Guile::equal_p(scm_from_utf8_symbol("feuerkraft-controller"), scm_car(lst)))
     {
       impl = new InputManagerCustom(scm_cdr(lst));
     }

@@ -19,6 +19,7 @@
 #include "multi_ground_map.hpp"
 #include "grid_map_data.hpp"
 #include "ground_map_data_factory.hpp"
+#include "guile.hpp"
 
 GroundMapData*
 GroundMapDataFactory::create (SCM desc)
@@ -29,7 +30,7 @@ GroundMapDataFactory::create (SCM desc)
   scm_display (desc, SCM_UNDEFINED);
   scm_newline ();*/
 
-  while (scm_pair_p (desc))
+  while (scm_is_true(scm_pair_p (desc)))
     {
       SCM symbol = scm_caar (desc);
       SCM data   = scm_cdar (desc);
@@ -43,11 +44,11 @@ GroundMapDataFactory::create (SCM desc)
       scm_display (data, SCM_UNDEFINED);
       scm_newline ();
       */
-      if (scm_equal_p (scm_from_utf8_symbol ("tilemap"), symbol))
+      if (Guile::equal_p (scm_from_utf8_symbol ("tilemap"), symbol))
 	{
 	  multigroundmap->add(new TileMapData (data));
 	}
-      else if (scm_equal_p (scm_from_utf8_symbol ("gridmap"), symbol))
+      else if (Guile::equal_p (scm_from_utf8_symbol ("gridmap"), symbol))
 	{
 	  multigroundmap->add(new GridMapData (data));
 	}

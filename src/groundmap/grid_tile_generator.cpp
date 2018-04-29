@@ -18,6 +18,7 @@
 #include "../command_line_arguments.hpp"
 #include "grid_tile.hpp"
 #include "grid_tile_generator.hpp"
+#include "guile.hpp"
 
 GridTileGenerator::GridTileGenerator (std::string filename)
   : emptytile (new GridTile ("feuerkraft/emptytile"))
@@ -28,7 +29,7 @@ GridTileGenerator::GridTileGenerator (std::string filename)
 
   lst = scm_cdr(lst); // Skip the 'tiles' mark
 
-  while (scm_pair_p(lst))
+  while (scm_is_true(scm_pair_p(lst)))
     {
       parse_line (scm_car (lst));
       lst = scm_cdr(lst);
@@ -81,31 +82,31 @@ GridTileGenerator::scm2GridTileData (SCM desc)
 GroundType
 GridTileGenerator::symbol2GroundType (SCM symbol)
 {
-  if (scm_equal_p (scm_from_utf8_symbol ("s"), symbol))
+  if (Guile::equal_p (scm_from_utf8_symbol ("s"), symbol))
     {
       return GT_SAND;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("f"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("f"), symbol))
     {
       return GT_FLATWATER;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("d"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("d"), symbol))
     {
       return GT_DEEPWATER;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("g"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("g"), symbol))
     {
       return GT_GRASS;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("m"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("m"), symbol))
     {
       return GT_MUD;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("a"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("a"), symbol))
     {
       return GT_ASPHALT;
     }
-  else if (scm_equal_p (scm_from_utf8_symbol ("w"), symbol))
+  else if (Guile::equal_p (scm_from_utf8_symbol ("w"), symbol))
     {
       return GT_WETSAND;
     }
@@ -120,7 +121,7 @@ GridTileGenerator::scm2GridTileVector (SCM desc)
 {
   std::vector<GridTile*> vec;
 
-  while (scm_pair_p(desc))
+  while (scm_is_true(scm_pair_p(desc)))
     {
       char* str = scm_to_utf8_string(scm_car(desc));
       vec.push_back (new GridTile (str));

@@ -21,34 +21,35 @@
 #include "tile_data_factory.hpp"
 #include "tile_map_data.hpp"
 #include "tile_map.hpp"
+#include "guile.hpp"
 
 TileMapData::TileMapData (SCM desc)
 {
   width = -1;
   height = -1;
 
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       SCM symbol = scm_caar(desc);
       SCM data   = scm_cdar(desc);
 
-      if (scm_equal_p (scm_from_utf8_symbol ("width"), symbol))
+      if (Guile::equal_p (scm_from_utf8_symbol ("width"), symbol))
 	{
 	  width = scm_to_int(scm_car (data));
 	}
-      else if (scm_equal_p (scm_from_utf8_symbol ("height"), symbol))
+      else if (Guile::equal_p (scm_from_utf8_symbol ("height"), symbol))
 	{
 	  height = scm_to_int(scm_car (data));
 	}
-      else if (scm_equal_p (scm_from_utf8_symbol ("tiles"), symbol))
+      else if (Guile::equal_p (scm_from_utf8_symbol ("tiles"), symbol))
 	{
 	  parse_tiles (data);
 	}
-      else if (scm_equal_p (scm_from_utf8_symbol ("file"), symbol))
+      else if (Guile::equal_p (scm_from_utf8_symbol ("file"), symbol))
 	{
 	  parse_from_file (data);
 	}
-      else if (scm_equal_p (scm_from_utf8_symbol ("map"), symbol))
+      else if (Guile::equal_p (scm_from_utf8_symbol ("map"), symbol))
 	{
 	  parse_map (data);
 	}
@@ -113,7 +114,7 @@ TileMapData::parse_map (SCM desc)
 
   int i = 0;
   bool to_large = false;
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       if (i < static_cast<int>(tilemap_data.size()))
 	{
@@ -137,7 +138,7 @@ void
 TileMapData::parse_tiles (SCM desc)
 {
   //std::cout << "TileMapData::parse_tiles: " tiles_ << std::endl;
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       tiles_data.push_back (TileDataFactory::create (scm_car(desc)));
       desc = scm_cdr (desc);

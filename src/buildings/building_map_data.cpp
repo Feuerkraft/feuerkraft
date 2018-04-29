@@ -30,7 +30,7 @@ BuildingMapData::BuildingMapData (SCM desc) :
   width = 256;
   height = 256;
 
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       SCM symbol = scm_caar(desc);
       SCM data   = scm_cdar(desc);

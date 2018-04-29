@@ -32,27 +32,27 @@ ButtonFactory::create(SCM lst)
 {
   SCM sym = scm_car(lst);
 
-  if (scm_equal_p(sym, scm_from_utf8_symbol("joystick-button")))
-    {
-      return create_joystick_button(scm_cdr(lst));
-    }
-  else if (scm_equal_p(sym, scm_from_utf8_symbol("keyboard-button")))
-    {
-      return create_keyboard_button(scm_cdr(lst));
-    }
-  else if (scm_equal_p(sym, scm_from_utf8_symbol("axis-button")))
-    {
-      return create_axis_button(scm_cdr(lst));
-    }
-  else if (scm_equal_p(sym, scm_from_utf8_symbol("multi-button")))
-    {
-      return create_multi_button(scm_cdr(lst));
-    }
+  if (Guile::equal_p(sym, scm_from_utf8_symbol("joystick-button")))
+  {
+    return create_joystick_button(scm_cdr(lst));
+  }
+  else if (Guile::equal_p(sym, scm_from_utf8_symbol("keyboard-button")))
+  {
+    return create_keyboard_button(scm_cdr(lst));
+  }
+  else if (Guile::equal_p(sym, scm_from_utf8_symbol("axis-button")))
+  {
+    return create_axis_button(scm_cdr(lst));
+  }
+  else if (Guile::equal_p(sym, scm_from_utf8_symbol("multi-button")))
+  {
+    return create_multi_button(scm_cdr(lst));
+  }
   else
-    {
-      throw FeuerkraftError("ButtonFactory::create: parse error: '"
-                            + Guile::scm2string(lst) + "'");
-    }
+  {
+    throw FeuerkraftError("ButtonFactory::create: parse error: '"
+                          + Guile::scm2string(lst) + "'");
+  }
 
   return 0;
 }
@@ -96,7 +96,7 @@ ButtonFactory::create_multi_button(SCM lst)
 {
   MultiButton* button = new MultiButton();
 
-  while (!scm_null_p(lst))
+  while (!scm_is_true(scm_null_p(lst)))
     {
       button->add(create(scm_car(lst)));
       lst = scm_cdr(lst);

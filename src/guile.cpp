@@ -28,7 +28,7 @@ scm2string (SCM data)
 {
   std::string str;
 
-  if (scm_string_p(data))
+  if (scm_is_true(scm_string_p(data)))
     {
       char* tmpstr = scm_to_utf8_string(data);
       str = tmpstr;
@@ -74,7 +74,7 @@ void pretty_print (std::ostream& stream, SCM obj)
 
 bool equal_p(SCM a, SCM b)
 {
-  return SCM_NFALSEP(scm_equal_p(a, b));
+  return scm_is_true(scm_equal_p(a, b));
 }
 
 SCM symbol2scm(const char* str)
@@ -100,41 +100,41 @@ std::string keyword2string(SCM keyword)
 AList keywords2alist(SCM lst)
 {
   AList alist;
-  while(scm_pair_p(lst) && !scm_null_p(scm_cdr(lst)))
+  while(scm_is_true(scm_pair_p(lst)) && !scm_is_true(scm_null_p(scm_cdr(lst))))
     {
       SCM key  = scm_car(lst);
       SCM data = scm_cadr(lst);
 
-      if (scm_keyword_p(key) == SCM_BOOL_F)
+      if (scm_is_false(scm_keyword_p(key)))
         {
           std::cout << "Skipping keyword: " << key << std::endl;
         }
       else
         {
           std::string keyword = Guile::keyword2string(key);
-          if (scm_string_p(data))
+          if (scm_is_true(scm_string_p(data)))
             {
               alist.set_string(keyword,
                                Guile::scm2string(data));
             }
-          else if (scm_exact_p(data))
+          else if (scm_is_true(scm_exact_p(data)))
             {
               alist.set_int(keyword,
                             scm_to_int(data));
             }
-          else if (scm_inexact_p(data))
+          else if (scm_is_true(scm_inexact_p(data)))
             {
               alist.set_float(keyword,
                               scm_to_double(data));
             }
-          else if (scm_boolean_p(data))
+          else if (scm_is_true(scm_boolean_p(data)))
             {
               alist.set_bool(keyword,
                              scm_to_bool(data));
             }
-          else if (scm_list_p(data) && scm_ilength(data) == 2
-                   && scm_exact_p(scm_car(data))
-                   && scm_exact_p(scm_cadr(data)))
+          else if (scm_is_true(scm_list_p(data)) && scm_ilength(data) == 2
+                   && scm_is_true(scm_exact_p(scm_car(data)))
+                   && scm_is_true(scm_exact_p(scm_cadr(data))))
             {
               IntVector2d vec;
               vec.x = scm_to_int(scm_car(data));
@@ -142,7 +142,7 @@ AList keywords2alist(SCM lst)
               alist.set_int_vector2d(keyword,
                                      vec);
             }
-          else if (scm_symbol_p(data))
+          else if (scm_is_true(scm_symbol_p(data)))
             {
               alist.set_string(keyword,
                                Guile::symbol2string(data));
@@ -163,15 +163,15 @@ AList keywords2alist(SCM lst)
 AList scm2alist(SCM lst)
 {
   AList alist;
-  while(!scm_null_p(lst))
+  while(!scm_is_true(scm_null_p(lst)))
     {
       SCM key  = scm_caar(lst);
       SCM data = scm_cdar(lst);
 
-      if (scm_pair_p(data) && scm_null_p(scm_cdr(data)))
+      if (scm_is_true(scm_pair_p(data)) && scm_is_true(scm_null_p(scm_cdr(data))))
         data = scm_car(data);
 
-      if (!scm_symbol_p(key))
+      if (!scm_is_true(scm_symbol_p(key)))
         {
           std::cout << "Guile: Error: key not a symbol" << std::endl;
           scm_display(key, SCM_UNDEFINED);
@@ -179,29 +179,29 @@ AList scm2alist(SCM lst)
         }
       else
         {
-          if (scm_string_p(data))
+          if (scm_is_true(scm_string_p(data)))
             {
               alist.set_string(Guile::symbol2string(key),
                                Guile::scm2string(data));
             }
-          else if (scm_exact_p(data))
+          else if (scm_is_true(scm_exact_p(data)))
             {
               alist.set_int(Guile::symbol2string(key),
                             scm_to_int(data));
             }
-          else if (scm_inexact_p(data))
+          else if (scm_is_true(scm_inexact_p(data)))
             {
               alist.set_float(Guile::symbol2string(key),
                               scm_to_double(data));
             }
-          else if (scm_boolean_p(data))
+          else if (scm_is_true(scm_boolean_p(data)))
             {
               alist.set_bool(Guile::symbol2string(key),
                              scm_to_bool(data));
             }
-          else if (scm_list_p(data) && scm_ilength(data) == 2
-                   && scm_exact_p(scm_car(data))
-                   && scm_exact_p(scm_cadr(data)))
+          else if (scm_is_true(scm_list_p(data)) && scm_ilength(data) == 2
+                   && scm_is_true(scm_exact_p(scm_car(data)))
+                   && scm_is_true(scm_exact_p(scm_cadr(data))))
             {
               IntVector2d vec;
               vec.x = scm_to_int(scm_car(data));
@@ -209,7 +209,7 @@ AList scm2alist(SCM lst)
               alist.set_int_vector2d(Guile::symbol2string(key),
                                      vec);
             }
-          else if (scm_symbol_p(data))
+          else if (scm_is_true(scm_symbol_p(data)))
             {
               alist.set_string(Guile::symbol2string(key),
                                Guile::symbol2string(data));
@@ -250,19 +250,19 @@ void enter_repl()
 
 void scm2property(PropertySet& properties, const char* name, SCM value)
 {
-  if (scm_string_p(value))
+  if (scm_is_true(scm_string_p(value)))
     {
       properties.set_string(name, Guile::scm2string(value));
     }
-  else if (scm_boolean_p(value))
+  else if (scm_is_true(scm_boolean_p(value)))
     {
       properties.set_bool(name, scm_to_bool(value));
     }
-  else if (scm_exact_p(value))
+  else if (scm_is_true(scm_exact_p(value)))
     {
       properties.set_int(name, scm_to_int(value));
     }
-  else if (scm_inexact_p(value))
+  else if (scm_is_true(scm_inexact_p(value)))
     {
       properties.set_float(name, scm_to_double(value));
     }

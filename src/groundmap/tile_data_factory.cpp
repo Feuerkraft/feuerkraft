@@ -20,6 +20,7 @@
 #include "sprite_tile_data.hpp"
 #include "sprite_tile.hpp"
 #include "tile_data_factory.hpp"
+#include "guile.hpp"
 
 TileData*
 TileDataFactory::create (SCM desc)
@@ -27,7 +28,7 @@ TileDataFactory::create (SCM desc)
   SCM symbol = scm_car (desc);
   SCM data   = scm_cdr (desc);
 
-  if (scm_equal_p (scm_from_utf8_symbol ("spritetile"), symbol))
+  if (Guile::equal_p (scm_from_utf8_symbol ("spritetile"), symbol))
     {
       return create_SpriteTileData (data);
     }
@@ -51,12 +52,12 @@ TileDataFactory::create_SpriteTileData (SCM desc)
   //scm_display (desc, SCM_UNDEFINED);
   //std::cout << std::endl;
 
-  while (!scm_null_p (desc))
+  while (!scm_is_true(scm_null_p (desc)))
     {
       SCM symbol = scm_caar(desc);
       SCM data   = scm_cdar(desc);
 
-      if (scm_equal_p (scm_from_utf8_symbol ("location"), symbol))
+      if (Guile::equal_p (scm_from_utf8_symbol ("location"), symbol))
 	{
 	  char* str = scm_to_utf8_string(scm_car(data));
 	  sprite_data->sprite_location = str;
