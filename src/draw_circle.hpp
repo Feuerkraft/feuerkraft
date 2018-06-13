@@ -29,7 +29,7 @@ void draw_fill_circle(Field<int>& field, int center_x, int center_y, int radius)
   int x = radius;
   int y = 0;
   int radius_error = 0;
-  int pos[radius + 1];
+  std::vector<int> pos(radius + 1);
 
   while (x >= y)
     {
