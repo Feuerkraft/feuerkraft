@@ -30,6 +30,7 @@ before_script:
     clang-6.0
     libclanlib-dev
     guile-2.2-dev
+    swig3.0
 
 .build_feuerkraft_template: &build_feuerkraft
   stage: build
