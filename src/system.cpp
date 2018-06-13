@@ -163,17 +163,6 @@ System::create_dir(std::string directory)
 #endif
 }
 
-/** Change into the directory named dir, on error throw an PingusError */
-void
-System::change_dir (std::string dir)
-{
-#ifdef WIN32
-  _chdir (dir.c_str ());
-#else
-  chdir (dir.c_str ());
-#endif
-}
-
 void
 System::init_directories()
 {
