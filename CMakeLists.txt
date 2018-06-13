@@ -66,11 +66,14 @@ file(GLOB FEUERKRAFT_SOURCES
   src/scripting/*.cpp
   src/sound/*.cpp
   src/vehicles/*.cpp)
-list(APPEND FEUERKRAFT_SOURCES ${FEUERKRAFT_WRAP_GENERATED_SOURCES})
+
+add_library(libfeuerkraft_scripting STATIC
+  ${FEUERKRAFT_WRAP_GENERATED_SOURCES})
 
 add_executable(feuerkraft ${FEUERKRAFT_SOURCES})
 target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})
 target_link_libraries(feuerkraft PRIVATE
+  libfeuerkraft_scripting
   ${GUILE_LIBRARIES}
   ${CLANCORE_LIBRARIES}
   ${CLANAPP_LIBRARIES}
