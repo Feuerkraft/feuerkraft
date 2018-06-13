@@ -39,6 +39,7 @@ public:
     bool removable;
 
     Trigger() : removable(false) {}
+    virtual ~Trigger() {}
     void remove() { removable = true; }
     virtual void update(float delta) =0;
   };

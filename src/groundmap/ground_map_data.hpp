@@ -24,6 +24,7 @@ class GroundMapData
 private:
 
 public:
+  virtual ~GroundMapData() {}
   virtual GroundMap* create() =0;
 };
 

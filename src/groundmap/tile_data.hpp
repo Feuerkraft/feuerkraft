@@ -22,6 +22,7 @@ class Tile;
 class TileData
 {
 public:
+  virtual ~TileData() {}
   virtual Tile* create_Tile () =0;
 };
 

@@ -24,6 +24,7 @@ class Tile
 private:
 
 public:
+  virtual ~Tile() {}
   virtual void draw(View&, float x, float y) =0;
 
   /** FIXME: 'float delta' should be replaced with GameDelta */
