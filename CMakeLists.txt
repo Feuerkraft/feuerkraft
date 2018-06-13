@@ -79,7 +79,7 @@ target_link_libraries(feuerkraft PRIVATE
   ${CLANMIKMOD_LIBRARIES}
   ${CLANVORBIS_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT})
-target_include_directories(feuerkraft PRIVATE
+target_include_directories(feuerkraft SYSTEM PRIVATE
   ${GUILE_INCLUDE_DIRS}
   ${CLANCORE_INCLUDE_DIRS}
   ${CLANAPP_INCLUDE_DIRS}
