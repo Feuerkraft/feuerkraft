@@ -17,13 +17,19 @@
 cmake_minimum_required(VERSION 3.0)
 project(feuerkraft VERSION 0.2.0)
 
-set(WARNINGS 0 CACHE BOOL "Switch on extra warnings")
+option(WARNINGS "Switch on extra warnings" OFF)
+option(WERROR "Treat all warnings as errors" OFF)
 
 if(WARNINGS)
   set(WARNINGS_CXX_FLAGS
     -pedantic -Wall -Wextra -Wno-c++0x-compat -Wnon-virtual-dtor -Weffc++
     -Wconversion -Werror -Wshadow -Wcast-qual -Winit-self -Wno-unused-parameter)
   # -Winline -Wfloat-equal -Wunreachable-code
+endif()
+
+if(WERROR)
+  set(WARNINGS_CXX_FLAGS ${WARNINGS_CXX_FLAGS}
+    -Werror)
 endif()
 
 include_directories(src/)
@@ -62,6 +68,7 @@ file(GLOB FEUERKRAFT_SOURCES
 list(APPEND FEUERKRAFT_SOURCES ${FEUERKRAFT_WRAP_GENERATED_SOURCES})
 
 add_executable(feuerkraft ${FEUERKRAFT_SOURCES})
+target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})
 target_link_libraries(feuerkraft PRIVATE
   ${GUILE_LIBRARIES}
   ${CLANCORE_LIBRARIES}
