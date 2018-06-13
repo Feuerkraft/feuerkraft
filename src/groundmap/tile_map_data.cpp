@@ -113,7 +113,6 @@ TileMapData::parse_map (SCM desc)
   scm_newline ();*/
 
   int i = 0;
-  bool to_large = false;
   while (!scm_is_true(scm_null_p (desc)))
     {
       if (i < static_cast<int>(tilemap_data.size()))
@@ -123,7 +122,6 @@ TileMapData::parse_map (SCM desc)
 	}
       else
 	{
-	  to_large = true;
 	  ++i;
 	}
 
