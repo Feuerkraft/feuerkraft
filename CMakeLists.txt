@@ -22,8 +22,9 @@ option(WERROR "Treat all warnings as errors" OFF)
 
 if(WARNINGS)
   set(WARNINGS_CXX_FLAGS
-    -pedantic -Wall -Wextra -Wno-c++0x-compat -Wnon-virtual-dtor -Weffc++
-    -Wconversion -Werror -Wshadow -Wcast-qual -Winit-self -Wno-unused-parameter)
+    -pedantic -Wall -Wextra -Wno-c++0x-compat -Wnon-virtual-dtor
+    -Werror -Wcast-qual -Winit-self -Wno-unused-parameter)
+  # -Wshadow -Weffc++ -Wconversion
   # -Winline -Wfloat-equal -Wunreachable-code
 endif()
 
