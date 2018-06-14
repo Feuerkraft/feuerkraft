@@ -26,20 +26,22 @@
     @brief A collection of mathematical helper functions */
 namespace Math {
 
-const double pi   = 3.14159265358979323846;	/* pi */
-const double pi_2 = 1.57079632679489661923;	/* pi/2 */
+const float pi   = 3.14159265358979323846f;	/* pi */
+const float pi_2 = 1.57079632679489661923f;	/* pi/2 */
 
-const double east  = 0;
-const double north = pi_2;
-const double west  = pi;
-const double south = 3.0*pi_2;
+const float tau   = 2.0f * 3.14159265358979323846f;	/* tau */
 
-inline double deg2rad(double deg)
+const float east  = 0;
+const float north = pi_2;
+const float west  = pi;
+const float south = 3.0f * pi_2;
+
+inline float deg2rad(float deg)
 {
-  return deg / 180.0 * pi;
+  return deg / 180.0f * pi;
 }
 
-inline double rad2deg(double rad)
+inline float rad2deg(float rad)
 {
   return rad / pi * 180;
 }
@@ -69,9 +71,9 @@ T mid (const T& a, const T& b, const T& c)
 }
 
 inline
-double frand()
+float frand()
 {
-  return double(rand()) / (RAND_MAX+1.0);
+  return static_cast<float>(rand()) / RAND_MAX;
 }
 
 inline
@@ -85,9 +87,9 @@ float normalize_angle(float angle)
 {
   // FIXME: Use fmod here
   if (angle < 0)
-    return normalize_angle(angle + 2*pi);
-  else if (angle > 2*pi)
-    return normalize_angle(angle - 2*pi);
+    return normalize_angle(angle + tau);
+  else if (angle > tau)
+    return normalize_angle(angle - tau);
   else
     return angle;
 }
