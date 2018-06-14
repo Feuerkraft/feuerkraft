@@ -20,7 +20,6 @@
 #include <ClanLib/Display/font.h>
 #include <ClanLib/Core/Resources/resource_manager.h>
 #include <ClanLib/Core/System/error.h>
-#include <ClanLib/Core/System/cl_assert.h>
 
 #include "path_manager.hpp"
 #include "resource_manager.hpp"

@@ -16,7 +16,6 @@
 
 #include <assert.h>
 #include <libguile.h>
-#include <ClanLib/Core/System/cl_assert.h>
 
 #include "property.hpp"
 #include "property_set.hpp"

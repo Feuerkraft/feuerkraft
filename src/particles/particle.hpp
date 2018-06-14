@@ -18,6 +18,11 @@
 #define PARTICLE_HXX
 
 #include <ClanLib/core.h>
+
+// ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
+// with "no matching function for call to __assert_fail" #undef.
+#undef __PRETTY_FUNCTION__
+
 #include "../game_obj.hpp"
 
 class Particle : public GameObj

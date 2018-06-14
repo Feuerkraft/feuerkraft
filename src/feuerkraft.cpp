@@ -24,6 +24,11 @@
 #include <ClanLib/Display/keys.h>
 #include <ClanLib/GL/setupgl.h>
 #include <ClanLib/core.h>
+
+// ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
+// with "no matching function for call to __assert_fail" #undef.
+#undef __PRETTY_FUNCTION__
+
 #include <libguile.h>
 #include <time.h>
 
