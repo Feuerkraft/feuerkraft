@@ -38,7 +38,7 @@
 #include "turret.hpp"
 #include "tank.hpp"
 
-const float circle = 6.2831854f;
+// const float circle = 6.2831854f;
 
 Tank::Tank(const AList& lst) :
   tmp_pos(),

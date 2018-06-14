@@ -20,7 +20,7 @@
 #include "../resource_manager.hpp"
 #include "jeep.hpp"
 
-const float circle = 6.2831854f;
+// const float circle = 6.2831854f;
 
 Jeep::Jeep(FloatVector2d arg_pos)
   : energie (50),

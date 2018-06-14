@@ -7,7 +7,7 @@
 #include "tank.hpp"
 #include "turret.hpp"
 
-const float circle = 6.2831854f;
+// const float circle = 6.2831854f;
 
 Turret::Turret (Tank* arg_tank, int r_speed, std::string surface, std::string fire)
   : fire_sur (resources->get_sprite (fire.c_str ())),
