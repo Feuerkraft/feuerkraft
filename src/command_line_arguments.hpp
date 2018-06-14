@@ -20,7 +20,7 @@
 #include <string>
 
 /** */
-struct CommandLineArguments
+class CommandLineArguments
 {
 public:
   int screen_width;

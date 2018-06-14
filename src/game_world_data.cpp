@@ -139,7 +139,8 @@ GameWorldData::dump_to_scm ()
 	  SCM obj = (*i)->dump_to_scm ();
 	  if (obj == SCM_BOOL_F)
 	    {
-	      std::cout << "GameWorldData: Error dumping: " << typeid(**i).name () << std::endl;
+              auto&& i_ = **i;
+	      std::cout << "GameWorldData: Error dumping: " << typeid(i_).name() << std::endl;
 	    }
 	  else // Object successfully dumped
 	    {
