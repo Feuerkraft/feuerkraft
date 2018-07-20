@@ -95,6 +95,8 @@ Feuerkraft::init()
   // Find the location of Feuerkrafts data files (images, sounds, etc.)
   if (!args->datadir.empty())
     {
+      path_manager.add_path(args->datadir);
+      path_manager.find_path("feuerkraft.xml");
     }
   else
     {
