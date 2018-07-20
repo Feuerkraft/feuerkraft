@@ -19,6 +19,9 @@ project(feuerkraft VERSION 0.2.0)
 
 option(WARNINGS "Switch on extra warnings" OFF)
 option(WERROR "Treat all warnings as errors" OFF)
+option(BUILD_TESTS "Build test cases" OFF)
+
+include(GNUInstallDirs)
 
 if(WARNINGS)
   set(WARNINGS_CXX_FLAGS
@@ -42,6 +45,25 @@ endif()
 if(WERROR)
   set(WARNINGS_CXX_FLAGS ${WARNINGS_CXX_FLAGS}
     -Werror)
+endif()
+
+if (BUILD_TESTS)
+  # add 'make test' target, use 'make test ARGS="-V"' or 'ctest -V' for verbose
+  enable_testing()
+endif(BUILD_TESTS)
+
+find_package(Git)
+if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+  execute_process(COMMAND ${GIT_EXECUTABLE} describe --tags --always HEAD
+    OUTPUT_VARIABLE GIT_REPO_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+  execute_process(COMMAND ${GIT_EXECUTABLE} log -n 1 --pretty=%cd --date=format:%Y-%m-%d ${GIT_REPO_VERSION}
+    OUTPUT_VARIABLE GIT_REPO_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+else()
+  set(GIT_REPO_VERSION "${PROJECT_VERSION}")
+  string(TIMESTAMP GIT_REPO_DATE "%Y-%m-%d")
 endif()
 
 include_directories(src/)
@@ -103,5 +125,39 @@ target_include_directories(feuerkraft SYSTEM PRIVATE
   ${CLANSOUND_INCLUDE_DIRS}
   ${CLANMIKMOD_INCLUDE_DIRS}
   ${CLANVORBIS_INCLUDE_DIRS})
+
+install(TARGETS feuerkraft RUNTIME
+  DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
+
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/feuerkraft.sh.in
+  ${CMAKE_BINARY_DIR}/feuerkraft.sh)
+
+install(FILES
+  ${CMAKE_BINARY_DIR}/feuerkraft.sh
+  RENAME feuerkraft
+  PERMISSIONS OWNER_EXECUTE OWNER_READ OWNER_WRITE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+  DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
+
+install(FILES
+  feuerkraft.svg
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
+
+install(FILES
+  feuerkraft.desktop
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+
+configure_file(feuerkraft.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
+
+if (BUILD_TESTS)
+  add_test(NAME feuerkraft.appdata.xml
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND appstream-util validate-relax ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml)
+endif(BUILD_TESTS)
 
 # EOF #
