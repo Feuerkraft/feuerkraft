@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Feuerkraft
+Comment=A Tank Battle Game
+Icon=feuerkraft
+Terminal=false
+Exec=feuerkraft %f
+Type=Application
+Categories=Game;ActionGame;AdventureGame;Simulation;
+StartupNotify=false
+MimeType=application/x-feuerkraft
+
