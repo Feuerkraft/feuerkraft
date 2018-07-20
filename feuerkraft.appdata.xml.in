@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018 Ingo Ruhnke <grumbel@gmail.com> -->
+<component type="desktop-application">
+  <id>io.gitlab.feuerkraft.Feuerkraft</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-realistic">intense</content_attribute>
+    <content_attribute id="violence-bloodshed">intense</content_attribute>
+    <content_attribute id="violence-desecration">intense</content_attribute>
+    <content_attribute id="drugs-alcohol">moderate</content_attribute>
+    <content_attribute id="drugs-narcotics">moderate</content_attribute>
+    <content_attribute id="drugs-tobacco">moderate</content_attribute>
+    <content_attribute id="language-profanity">intense</content_attribute>
+    <content_attribute id="language-humor">intense</content_attribute>
+    <content_attribute id="language-discrimination">intense</content_attribute>
+  </content_rating>
+  <name>Feuerkraft</name>
+  <summary>A Tank Battle Game</summary>
+  <description>
+    <p>
+      Feuerkraft is an incomplete 2D top-down tank battle game with
+      some inspiration from games like GTA or Operation Flashpoint. It
+      is not in a playable state, but it allows you to run around and
+      get into vehicles.
+    </p>
+  </description>
+  <developer_name>Ingo Ruhnke</developer_name>
+  <update_contact>grumbel@gmail.com</update_contact>
+  <url type="homepage">https://feuerkraft.gitlab.io</url>
+  <url type="bugtracker">https://gitlab.com/feuerkraft/feuerkraft/issues</url>
+  <categories>
+    <category>Game</category>
+    <category>ActionGame</category>
+    <category>AdventureGame</category>
+    <category>Simulation</category>
+  </categories>
+  <screenshots>
+    <screenshot type="default">https://feuerkraft.gitlab.io/images/screenshot-12.jpg</screenshot>
+    <screenshot>https://feuerkraft.gitlab.io/images/screenshot-13.jpg</screenshot>
+  </screenshots>
+  <releases>
+    <release version="@GIT_REPO_VERSION@" date="@GIT_REPO_DATE@" />
+  </releases>
+</component>
