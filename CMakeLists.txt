@@ -1,5 +1,5 @@
 # Feuerkraft - A Tank Battle Game
-# Copyright (C) 2015 Ingo Ruhnke <grumbel@gmail.com>
+# Copyright (C) 2015-2019 Ingo Ruhnke <grumbel@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,8 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.13)
 project(feuerkraft VERSION 0.2.0)
+
+cmake_policy(SET CMP0078 OLD) # Swig
+cmake_policy(SET CMP0086 OLD) # Swig
 
 option(WARNINGS "Switch on extra warnings" OFF)
 option(WERROR "Treat all warnings as errors" OFF)
