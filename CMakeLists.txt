@@ -88,8 +88,7 @@ pkg_search_module(CLANVORBIS REQUIRED clanVorbis-1.0)
 
 include_directories(${GUILE_INCLUDE_DIRS})
 set_source_files_properties(src/scripting/feuerkraft.i PROPERTIES CPLUSPLUS ON)
-swig_add_library(feuerkraft_wrap LANGUAGE guile SOURCES src/scripting/feuerkraft.i)
-set(FEUERKRAFT_WRAP_GENERATED_SOURCES ${swig_generated_file_fullname})
+swig_add_library(libfeuerkraft_scripting TYPE STATIC LANGUAGE guile SOURCES src/scripting/feuerkraft.i)
 
 file(GLOB FEUERKRAFT_SOURCES
   src/*.cpp
@@ -102,9 +101,6 @@ file(GLOB FEUERKRAFT_SOURCES
   src/scripting/*.cpp
   src/sound/*.cpp
   src/vehicles/*.cpp)
-
-add_library(libfeuerkraft_scripting STATIC
-  ${FEUERKRAFT_WRAP_GENERATED_SOURCES})
 
 add_executable(feuerkraft ${FEUERKRAFT_SOURCES})
 target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})

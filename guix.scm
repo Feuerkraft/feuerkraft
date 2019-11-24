@@ -112,7 +112,7 @@ build applications with it.")
    (build-system cmake-build-system)
    (arguments
     `(#:tests? #f  ; some swig dependency issue
-      #:parallel-build? #f))
+      ))
    (native-inputs
     `(("pkg-config" ,pkg-config)))
    (inputs
