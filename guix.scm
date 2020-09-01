@@ -15,7 +15,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (set! %load-path
-  (cons* "/ipfs/Qmc2YqtiNZBUKwTz5xRpnLmjSV1Wb3VQgk3U1ortdvJwbi/guix-cocfree_0.0.0-55-gfd817b0"
+  (cons* "/ipfs/QmNbci3WpEWumBVvfbqsKhKnJTtdmkyVwYtSaPr5jVZo2m/guix-cocfree_0.0.0-56-g3a32b64"
          %load-path))
 
 (use-modules (guix build-system cmake)
@@ -24,7 +24,6 @@
              (gnu packages guile)
              (gnu packages gl)
              (gnu packages pkg-config)
-             (gnu packages bdw-gc)
              (gnu packages swig)
              (guix-cocfree utils))
 
@@ -48,8 +47,7 @@
     `(("mesa" ,mesa)
       ("glu" ,glu)
       ("swig" ,swig)
-      ("guile-2.2" ,guile-2.2)
-      ("libatomic-ops" ,libatomic-ops)
+      ("guile" ,guile-3.0)
       ("clanlib-1.0" ,clanlib-1.0)))
    (synopsis (synopsis-from-source %source-dir))
    (description (description-from-source %source-dir))
