@@ -33,7 +33,6 @@ public:
   float y;
 
   FloatVector2d();
-  FloatVector2d(const FloatVector2d& vec) : x(vec.x), y(vec.y) {};
   FloatVector2d(float arg_x, float arg_y);
 
   /** Create a vector with the given polar coordinates */
