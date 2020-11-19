@@ -83,7 +83,7 @@ SCM symbol2scm(const char* str)
 
 std::string keyword2string(SCM keyword)
 {
-  assert(scm_keyword_p(keyword));
+  assert(scm_is_true(scm_keyword_p(keyword)));
   //puts("keyword2string: ");
   //scm_display(keyword);
   //scm_newline();

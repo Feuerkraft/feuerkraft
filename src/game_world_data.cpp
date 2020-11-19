@@ -29,7 +29,7 @@
 GameWorldData::GameWorldData (SCM desc)
   : needs_delete (true)
 {
-  assert(scm_pair_p(desc));
+  assert(scm_is_true(scm_pair_p(desc)));
 
   if (Guile::equal_p (scm_from_utf8_symbol ("feuerkraft-scenario"), scm_car(desc)))
     desc = scm_cdr(desc);
