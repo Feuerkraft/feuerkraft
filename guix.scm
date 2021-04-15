@@ -15,7 +15,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (set! %load-path
-  (cons* "/ipfs/QmNbci3WpEWumBVvfbqsKhKnJTtdmkyVwYtSaPr5jVZo2m/guix-cocfree_0.0.0-56-g3a32b64"
+  (cons* "/ipfs/QmcQaosGtaQ6dsb4iykNihZ2ZTie8om2i7pgHucZ9Ranyq/guix-cocfree_0.0.0-64-gd618440"
          %load-path))
 
 (use-modules (guix build-system cmake)
@@ -31,7 +31,7 @@
 
 (define clanlib-1.0
   (package-from-file
-   "/ipfs/QmbZhaLZULD3EbKEdG4NnsVLgA9Jo2w7vt222aVryeWXkq/clanlib-1.0_1.0.0-18-gf0de815/guix.scm"))
+   "/ipfs/QmWeNxGLkdFQjH1XaYbz7D4zMbBDCnuwrNNuWcQgcqY2RK/clanlib-1.0_1.0.0-22-gc2f3e1c/guix.scm"))
 
 (define-public feuerkraft
   (package
