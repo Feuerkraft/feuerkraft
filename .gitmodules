@@ -1,0 +1,3 @@
+[submodule "external/clanlib"]
+	path = external/clanlib
+	url = https://github.com/grumbel/clanlib-1.0.git
