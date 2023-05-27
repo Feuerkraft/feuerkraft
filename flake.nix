@@ -2,7 +2,7 @@
   description = "A Tank Battle Game";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
 
     clanlib.url = "github:grumbel/clanlib-1.0";
@@ -19,23 +19,23 @@
            default = feuerkraft;
 
            feuerkraft = pkgs.stdenv.mkDerivation {
-             name = "feuerkraft";
+             pname = "feuerkraft";
+             version = "0.1.1";
 
-             src = nixpkgs.lib.cleanSource ./.;
+             src = ./.;
 
-             nativeBuildInputs = [
-               pkgs.cmake
-               pkgs.pkgconfig
+             nativeBuildInputs = with pkgs; [
+               cmake
+               pkgconfig
              ];
 
-             buildInputs = [
+             buildInputs = with pkgs; [
+               swig
+               guile_3_0
+               libGLU
+               libGL
+             ] ++ [
                clanlib.packages.${system}.default
-
-               pkgs.swig
-               pkgs.guile_3_0
-               pkgs.mesa
-               pkgs.libGLU
-               pkgs.libGL
              ];
            };
         };
