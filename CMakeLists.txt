@@ -149,14 +149,4 @@ install(FILES
   feuerkraft.desktop
   DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 
-configure_file(feuerkraft.appdata.xml.in ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
-
-if (BUILD_TESTS)
-  add_test(NAME feuerkraft.appdata.xml
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND appstream-util validate-relax ${CMAKE_CURRENT_BINARY_DIR}/feuerkraft.appdata.xml)
-endif(BUILD_TESTS)
-
 # EOF #
