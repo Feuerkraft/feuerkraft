@@ -200,7 +200,6 @@ GameSession::update()
   deltas += delta;
   ++loops;
 
-  // TODO(Phase 4): keyboard input via SDL
   // if (key D) Guile::enter_repl();
 
   unsigned int last_time = System::get_time ();
@@ -233,7 +232,6 @@ GameSession::update()
 
   DisplayManager::current()->draw(Display::get_renderer());
 
-  // TODO(Phase 4): mouse input via SDL
 
   // Comment out for variable frame rate
   int sleep_time = (last_time + delta_wait) - System::get_time();
@@ -256,9 +254,7 @@ GameSession::update()
 
   ++frames;
 
-  // Update keyboard input and handle system events:
-  // Exits the loop if ClanLib requests shutdown - for instance if
-  // someone closes the window.
+  // SDL event pump (quit / keys)
   System::keep_alive();
 
   // SDL event pump

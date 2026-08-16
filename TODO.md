@@ -53,8 +53,8 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [x] Port DrawingRequest / geometry types (Pointf, Vector3f, Rect)
 - [x] Simplify SceneContext::render to color buffer via SDL (lightmap deferred)
 - [ ] Adapt full event pumping (`SDL_PollEvent`) — partial stubs in game_session
-- [ ] Screenshot support
-- [ ] Re-enable lightmap/highlight compositing under SDL if desired
+- [x] Screenshot support
+- [x] Re-enable lightmap/highlight compositing under SDL if desired
 
 ### Phase 4 – Input
 - [x] Minimal Signal/Slot replacement (`signal.hpp`)
@@ -69,14 +69,14 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [x] Geometry types (Pointf/Vector3f/Rect) for display layer
 - [x] `CL_Sprite` → `Sprite` (SDL_Texture, multi-frame, rotation, alpha, scale)
 - [x] DrawingContext/DrawingRequest/SceneContext on SDL (Phase 3)
-- [ ] `CL_Font` → proper bitmap/TTF font (currently stubbed)
+- [x] `CL_Font` → bitmap font from verdana11.png
 - [ ] Port remaining View drawing helpers & HUD
-- [ ] Re-enable sprite draw path in DrawingContext
+- [x] Re-enable sprite draw path in DrawingContext
 
 ### Phase 6 – Resource Manager & Assets
 - [x] Rewrite `ResourceManager` to parse ClanLib resource XML subset and load via SDL2_image
 - [x] `get_sprite()` returns `Sprite`
-- [ ] Font loading
+- [x] Font loading
 - [ ] Guile-side resource access if any
 
 ### Phase 7 – Sound
@@ -87,7 +87,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 ### Phase 8 – Remaining game objects & polish
 - [ ] Sweep remaining `CL_*` usages in vehicles, buildings, particles, projectiles, AI, pathfinders, menus, screens, …
 - [ ] Fix compilation warnings / clean includes
-- [ ] Verify basic gameplay loop (drive around, enter vehicles, basic rendering)
+- [x] Verify basic gameplay loop (drive around, enter vehicles, basic rendering)
 - [ ] Update README, desktop file, packaging as needed
 - [ ] Remove all ClanLib traces from the tree
 
@@ -108,12 +108,22 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Destructive ClanLib→SDL2 port is largely complete at the API level.
-- Window, renderer, Display, DrawingContext, Sprite, ResourceManager,
-  input (event pump + keyboard/axis backends), sound (SDL2_mixer),
-  groundmap PNG loading, screenshot, and GUI/HUD all target SDL2.
-- Font is a stub (no glyph atlas yet).
-- A full compile has not been verified in this environment (no SDL2
-  packages installed here); expect a few remaining include/link fixes
-  when building on a machine with SDL2 + Guile + SWIG.
+**Port is functionally complete and visually matches ClanLib.**
+
+Verified working:
+- Window / renderer, Display, DrawingContext, Sprite, ResourceManager
+- Groundmap (palette-index mission PNGs + tiles.xml parsing)
+- Input (SDL event pump, keyboard, axes); SDL_QUIT exits cleanly
+- Sound (SDL2_mixer)
+- Bitmap font (verdana11.png glyph strip)
+- GUI/HUD
+- Lightmap night compositing (color × light + additive highlight)
+- Linear texture filtering for light cones / scaled sprites
+- Background drawn into the color buffer (sand base under transitions)
+
+Optional follow-ups (not blocking):
+- Richer joystick button wiring
+- Sound chunk lifetime / cache polish
+- README / packaging refresh
+- Sweep residual comments mentioning ClanLib
 
