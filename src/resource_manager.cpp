@@ -116,8 +116,12 @@ ResourceManager::parse_section(const std::string& content, const std::string& /*
         }
     }
 
+  int tile_count = 0;
+  for (const auto& e : sprite_files)
+    if (e.first.compare(0, 6, "tiles/") == 0)
+      ++tile_count;
   std::cout << "ResourceManager: loaded " << sprite_files.size()
-            << " sprite entries" << std::endl;
+            << " sprite entries (" << tile_count << " under tiles/)" << std::endl;
 }
 
 Sprite

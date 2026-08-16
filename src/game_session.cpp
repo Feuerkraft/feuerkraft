@@ -214,6 +214,8 @@ GameSession::update()
       view->update(delta);
     }
 
+  Display::clear(Color(0, 0, 0));
+
   GameWorld::current()->draw(*view);
   GameWorld::current()->draw_energie(*view);
   view->get_sc().render();
