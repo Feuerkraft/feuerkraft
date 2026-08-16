@@ -23,6 +23,7 @@
 
 typedef Mix_Chunk* SoundHandle;
 
+/** Cache of Mix_Chunk* keyed by logical name or filesystem path. */
 class SoundResMgr
 {
 private:
@@ -30,7 +31,14 @@ private:
   static SoundMap sound_map;
 
 public:
+  /** Load by short name under sounds/ (tries .wav then .ogg). */
   static SoundHandle load(const std::string& name);
+
+  /** Load by absolute/complete path (used by play_sound with full paths). */
+  static SoundHandle load_path(const std::string& path);
+
+  /** Free all cached chunks (call on sound shutdown). */
+  static void clear();
 
 private:
   SoundResMgr(const SoundResMgr&);

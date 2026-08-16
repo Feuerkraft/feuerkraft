@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include "../globals.hpp"
+#include "sound_res_mgr.hpp"
 #include "sound_real.hpp"
 
 namespace Sound {
@@ -34,6 +35,8 @@ PingusSoundReal::PingusSoundReal()
 PingusSoundReal::~PingusSoundReal()
 {
   real_stop_music();
+  Mix_HaltChannel(-1);
+  SoundResMgr::clear();
   Mix_CloseAudio();
 }
 
@@ -65,23 +68,24 @@ PingusSoundReal::real_stop_music()
 void
 PingusSoundReal::real_play_sound(const std::string& filename, float volume, float panning)
 {
-  Mix_Chunk* chunk = Mix_LoadWAV(filename.c_str());
+  // filename may be a short name or a complete path — try cache both ways
+  Mix_Chunk* chunk = SoundResMgr::load_path(filename);
   if (!chunk)
-    {
-      std::cerr << "Failed to load sound " << filename << ": " << Mix_GetError() << std::endl;
-      return;
-    }
+    chunk = SoundResMgr::load(filename);
+  if (!chunk)
+    return;
+
   int channel = Mix_PlayChannel(-1, chunk, 0);
   if (channel >= 0)
     {
       Mix_Volume(channel, static_cast<int>(volume * MIX_MAX_VOLUME));
-      // panning: -1 left .. +1 right → 0..255
-      Uint8 left  = static_cast<Uint8>((1.0f - panning) * 127.5f);
-      Uint8 right = static_cast<Uint8>((1.0f + panning) * 127.5f);
+      float p = panning;
+      if (p < -1.0f) p = -1.0f;
+      if (p >  1.0f) p =  1.0f;
+      Uint8 left  = static_cast<Uint8>((1.0f - p) * 127.5f);
+      Uint8 right = static_cast<Uint8>((1.0f + p) * 127.5f);
       Mix_SetPanning(channel, left, right);
     }
-  // Note: chunk is leaked per-play for simplicity during the port;
-  // a proper SoundResMgr cache should own chunks long-term.
 }
 
 } // namespace Sound

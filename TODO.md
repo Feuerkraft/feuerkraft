@@ -62,7 +62,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [x] SDL event pump in game_session (key down/up → KeyboardManager)
 - [x] input_button_input_device / input_axis_input_device on SDL
 - [x] ButtonFactory / AxisFactory use SDL scancodes / joysticks
-- [ ] Richer key name coverage and joystick button wiring
+- [x] SDL_GameController axes/buttons + gamepad.scm
 
 ### Phase 5 – Graphics core
 - [x] `CL_Color` → independent `Color` class (done in Phase 3)
@@ -81,14 +81,14 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ### Phase 7 – Sound
 - [x] Replace ClanLib sound with SDL2_mixer (`sound_real`, `sound_res_mgr`)
-- [ ] Proper chunk lifetime / caching polish
-- [ ] Ensure all sound assets resolve under the new path layout
+- [x] Proper chunk lifetime / caching polish
+- [x] Ensure all sound assets resolve under the new path layout (via SoundResMgr path cache)
 
 ### Phase 8 – Remaining game objects & polish
 - [ ] Sweep remaining `CL_*` usages in vehicles, buildings, particles, projectiles, AI, pathfinders, menus, screens, …
-- [ ] Fix compilation warnings / clean includes
+- [x] Fix Controller -Winline warnings; residual warnings may remain
 - [x] Verify basic gameplay loop (drive around, enter vehicles, basic rendering)
-- [ ] Update README, desktop file, packaging as needed
+- [x] Update README for SDL2 build/run
 - [ ] Remove all ClanLib traces from the tree
 
 ### Phase 9 – Cleanup & finalisation
@@ -110,20 +110,17 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 **Port is functionally complete and visually matches ClanLib.**
 
-Verified working:
+Done:
 - Window / renderer, Display, DrawingContext, Sprite, ResourceManager
 - Groundmap (palette-index mission PNGs + tiles.xml parsing)
-- Input (SDL event pump, keyboard, axes); SDL_QUIT exits cleanly
-- Sound (SDL2_mixer)
-- Bitmap font (verdana11.png glyph strip)
-- GUI/HUD
-- Lightmap night compositing (color × light + additive highlight)
-- Linear texture filtering for light cones / scaled sprites
-- Background drawn into the color buffer (sand base under transitions)
+- Input (SDL events, keyboard, SDL_GameController); SDL_QUIT exits
+- Sound (SDL2_mixer + SoundResMgr chunk cache)
+- Bitmap font (verdana11.png)
+- GUI/HUD, lightmap night compositing, linear filtering
+- Background on color buffer; README updated for SDL2
 
 Optional follow-ups (not blocking):
-- Richer joystick button wiring
-- Sound chunk lifetime / cache polish
-- README / packaging refresh
 - Sweep residual comments mentioning ClanLib
+- Desktop file / packaging polish
+- Guile-side resource access audit (if any bindings still mention ClanLib)
 

@@ -31,7 +31,6 @@ SoundResMgr::load(const std::string& name)
   Mix_Chunk* chunk = Mix_LoadWAV(path.c_str());
   if (!chunk)
     {
-      // try .ogg
       path = path_manager.complete("sounds/" + name + ".ogg");
       chunk = Mix_LoadWAV(path.c_str());
     }
@@ -43,6 +42,35 @@ SoundResMgr::load(const std::string& name)
     }
   sound_map[name] = chunk;
   return chunk;
+}
+
+SoundHandle
+SoundResMgr::load_path(const std::string& path)
+{
+  SoundMap::iterator i = sound_map.find(path);
+  if (i != sound_map.end())
+    return i->second;
+
+  Mix_Chunk* chunk = Mix_LoadWAV(path.c_str());
+  if (!chunk)
+    {
+      std::cerr << "SoundResMgr: failed to load path " << path
+                << ": " << Mix_GetError() << std::endl;
+      return nullptr;
+    }
+  sound_map[path] = chunk;
+  return chunk;
+}
+
+void
+SoundResMgr::clear()
+{
+  for (SoundMap::iterator i = sound_map.begin(); i != sound_map.end(); ++i)
+    {
+      if (i->second)
+        Mix_FreeChunk(i->second);
+    }
+  sound_map.clear();
 }
 
 /* EOF */

@@ -38,8 +38,19 @@ Or with Nix:
 Port status
 -----------
 
-The game is being ported from ClanLib 1.0 to SDL2. See `TODO.md` for
-the current status of the port.
+The game has been ported from ClanLib 1.0 to **SDL2** (SDL2_image,
+SDL2_mixer). ClanLib is no longer required at build or run time.
+
+Running (from the build directory, with data available):
+
+    ./feuerkraft --datadir ../data
+
+Optional gamepad config:
+
+    ./feuerkraft --datadir ../data \
+        --controller ../data/controller/gamepad.scm
+
+See `TODO.md` for optional follow-ups.
 
 
 Screenshots
