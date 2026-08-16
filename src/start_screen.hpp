@@ -14,16 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "sprite.hpp"
 #ifndef STARTSCREEN_HXX
 #define STARTSCREEN_HXX
 
+#include "sprite.hpp"
 
-/** FIXME: Mega ugly peace of code, should be replaced with something better */
+/** Simple logo/intro screen sequence. */
 class StartScreen
 {
 private:
-  CL_DisplayWindow* display;
   Sprite logo;
   Sprite endlogo;
   float display_time;
@@ -37,12 +36,12 @@ public:
   LogoMode logo_mode;
 
 public:
-  StartScreen (CL_DisplayWindow* arg_display);
-  ~StartScreen ();
+  StartScreen();
+  ~StartScreen();
 
-  void draw ();
-  void update (float delta);
-  bool done ();
+  void draw();
+  void update(float delta);
+  bool done();
 };
 
 #endif

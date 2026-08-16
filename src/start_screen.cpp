@@ -16,120 +16,91 @@
 
 #include "start_screen.hpp"
 #include "resource_manager.hpp"
+#include "display.hpp"
+#include "color.hpp"
 
-StartScreen::StartScreen (CL_DisplayWindow* arg_display)
-  : display (arg_display),
-    logo (resources->get_sprite ("feuerkraft/logo")),
-    endlogo (resources->get_sprite ("feuerkraft/endlogo")),
-    display_time (0),
-    logo_mode (S_STARTLOGO)
+StartScreen::StartScreen()
+  : logo(resources->get_sprite("feuerkraft/logo")),
+    endlogo(resources->get_sprite("feuerkraft/endlogo")),
+    display_time(0),
+    logo_mode(S_STARTLOGO)
 {
 }
 
-StartScreen::~StartScreen ()
+StartScreen::~StartScreen()
 {
 }
 
 void
-StartScreen::draw ()
+StartScreen::draw()
 {
   if (logo_mode == S_STARTLOGO)
     {
       if (display_time <= 2.0f)
-	logo.set_alpha ((display_time/2.0f));
+	logo.set_alpha(display_time / 2.0f);
       else
-	logo.set_alpha (1.0f);
+	logo.set_alpha(1.0f);
 
-      //FIXME:Display2 CL_Display::clear_display ();
-
-      logo.draw (Display::get_width()/2,
-		 Display::get_height()/2,
-		 display->get_gc ());
+      logo.draw(Display::get_width() / 2,
+		Display::get_height() / 2);
     }
   else if (logo_mode == S_FADETOGAME)
     {
-      if (display_time <= 1.5f)
-	{
-	  logo.set_alpha (1.0f - (display_time/1.5f));
-	  logo.draw (Display::get_width()/2,
-		     Display::get_height()/2,
-		     display->get_gc ());
-	}
-      else
-	logo_mode = S_GAME;
-    }
-  else if (logo_mode == S_GAME)
-    {
-      // do nothing
+      logo.set_alpha(1.0f - (display_time / 2.0f));
+      logo.draw(Display::get_width() / 2,
+		Display::get_height() / 2);
     }
   else if (logo_mode == S_ENDLOGO)
     {
-      if (display_time <= 1.5f)
-	  endlogo.set_alpha ((display_time/1.5f));
+      if (display_time <= 2.0f)
+	endlogo.set_alpha(display_time / 2.0f);
       else
-	  endlogo.set_alpha (1.0f);
+	endlogo.set_alpha(1.0f);
 
-      endlogo.draw (Display::get_width()/2,
-		    Display::get_height()/2);
+      endlogo.draw(Display::get_width() / 2,
+		   Display::get_height() / 2);
     }
   else if (logo_mode == S_FADETOBLACK)
     {
-      endlogo.set_alpha (1.0f);
-      endlogo.draw (Display::get_width()/2,
-		    Display::get_height()/2);
+      endlogo.set_alpha(1.0f);
+      endlogo.draw(Display::get_width() / 2,
+		   Display::get_height() / 2);
 
-      Display::fill_rect (Rect(0, 0, Display::get_width(), Display::get_height()),
-			     Color(0, 0, 0, int(255.0f * display_time/2.0f)));
-      if (display_time >= 2.0f)
-	logo_mode = S_QUIT;
+      Display::fill_rect(0, 0, Display::get_width(), Display::get_height(),
+			 Color(0, 0, 0, int(255.0f * display_time / 2.0f)));
     }
 }
 
 void
-StartScreen::update (float delta)
+StartScreen::update(float delta)
 {
   display_time += delta;
 
-  if (logo_mode == S_STARTLOGO && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
-				   || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE)
-				   || display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)))
+  if (logo_mode == S_STARTLOGO && display_time > 4.0f)
     {
-      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
-	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
-	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
-	System::keep_alive ();
-
       logo_mode = S_FADETOGAME;
       display_time = 0;
     }
-  else if (logo_mode == S_GAME  && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)))
+  else if (logo_mode == S_FADETOGAME && display_time > 2.0f)
     {
-      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE))
-	System::keep_alive ();
-
+      logo_mode = S_GAME;
       display_time = 0;
-      logo_mode = S_ENDLOGO;
     }
-  else if (logo_mode == S_ENDLOGO && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
-				      || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE)
-				      || display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)))
+  else if (logo_mode == S_ENDLOGO && display_time > 4.0f)
     {
-      while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
-	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
-	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
-	System::keep_alive ();
-
-
       logo_mode = S_FADETOBLACK;
       display_time = 0;
     }
-
+  else if (logo_mode == S_FADETOBLACK && display_time >= 2.0f)
+    {
+      logo_mode = S_QUIT;
+    }
 }
 
 bool
-StartScreen::done ()
+StartScreen::done()
 {
-  return logo_mode == S_FADETOGAME;
+  return logo_mode == S_QUIT || logo_mode == S_GAME;
 }
 
 /* EOF */

@@ -108,8 +108,12 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Core systems on SDL2: window, Display, DrawingContext, Sprite,
-  ResourceManager, input (event pump + backends), sound, groundmap
-  PNG loading, screenshot.
-- Font is stubbed (API present, no glyph rendering yet).
-  GUI/HUD path uses SDL_Renderer. Residual ClanLib is mostly comments.
+- Destructive ClanLib→SDL2 port is largely complete at the API level.
+- Window, renderer, Display, DrawingContext, Sprite, ResourceManager,
+  input (event pump + keyboard/axis backends), sound (SDL2_mixer),
+  groundmap PNG loading, screenshot, and GUI/HUD all target SDL2.
+- Font is a stub (no glyph atlas yet).
+- A full compile has not been verified in this environment (no SDL2
+  packages installed here); expect a few remaining include/link fixes
+  when building on a machine with SDL2 + Guile + SWIG.
+
