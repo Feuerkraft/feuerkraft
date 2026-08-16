@@ -42,14 +42,14 @@ FireParticle::update(float delta)
       remove();
     }
 
-  // black  CL_Color(  0,   0,   0);
-  // red    CL_Color(255,   0,   0);
-  // yellow CL_Color(255, 255,   0);
-  // white  CL_Color(255, 255, 255);
+  // black  Color(  0,   0,   0);
+  // red    Color(255,   0,   0);
+  // yellow Color(255, 255,   0);
+  // white  Color(255, 255, 255);
 
   float factor = life_time * 3.0f;
 
-  CL_Color color(life_time >= 0.75 ? 255 : int(255 * (life_time - 0.75f)/0.25f),
+  Color color(life_time >= 0.75 ? 255 : int(255 * (life_time - 0.75f)/0.25f),
                  int(factor * 255),
                  life_time >= 0.25 ? 255 : int(255 * (life_time - 0.25f)/0.75f));
   sprite.set_color(color);

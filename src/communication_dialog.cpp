@@ -55,7 +55,7 @@ CommunicationDialog::draw (CL_GraphicContext& gc)
                                                  int(dialog_pos.y - 10)),
                                         CL_Size(bbox.get_width()  + 20,
                                                 bbox.get_height() + 20)),
-                                CL_Color(0,0,0, 100));
+                                Color(0,0,0, 100));
 
           font.set_alignment(origin_top_center);
           font.draw(int(dialog_pos.x), int(dialog_pos.y), i->second.text);

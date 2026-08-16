@@ -50,7 +50,7 @@ public:
   /** Fills the screen with a given color, this is different from
       clear() in that it doesn't remove other DrawingRequest from the
       queue */
-  void fill_screen(const CL_Color& color);
+  void fill_screen(const Color& color);
 
   /*{ */
   void draw(DrawingRequest* request);
@@ -58,20 +58,20 @@ public:
   void draw(const std::string& text,    float x, float y, float z = 0);
 
   void draw_line (float x1, float y1, float x2, float y2,
-		  const CL_Color& color);
+		  const Color& color);
   void draw_fillrect (float x1, float y1, float x2, float y2,
-		      const CL_Color& color);
+		      const Color& color);
   void draw_rect (float x1, float y1, float x2, float y2,
-		  const CL_Color& color);
+		  const Color& color);
   void draw_pixel (float x_pos, float y_pos,
-		   const CL_Color& color);
+		   const Color& color);
   void draw_circle (float x_pos, float y_pos, float radius,
-                    const CL_Color& color);
+                    const Color& color);
 
   /** Draws an arc, starting from angle_start to angle_end in
       counterclockwise direction. Angles are taken in radian */
   void draw_arc (float x_pos, float y_pos, float radius, float angle_start, float angle_end,
-                 const CL_Color& color);
+                 const Color& color);
   /*} */
 
   /** Translate the drawing context */

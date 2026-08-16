@@ -175,7 +175,7 @@ Tank::draw_levelmap (LevelMap& levelmap)
 {
   CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
 				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
-			 CL_Color(255, 0, 0, 255));
+			 Color(255, 0, 0, 255));
 }
 
 void

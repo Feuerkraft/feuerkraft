@@ -17,28 +17,29 @@
 #include "color.hpp"
 
 Color::Color()
+  : red(1.0f), green(1.0f), blue(1.0f), alpha(1.0f)
 {
-  red   = 1.0f;
-  green = 1.0f;
-  blue  = 1.0f;
-  alpha = 1.0f;
 }
 
 Color::Color(float red_, float green_, float blue_, float alpha_)
+  : red(red_), green(green_), blue(blue_), alpha(alpha_)
 {
-  red   = red_;
-  green = green_;
-  blue  = blue_;
-  alpha = alpha_;
 }
 
-CL_Color
-Color::get_cl_color() const
+Color::Color(int r, int g, int b, int a)
+  : red(r / 255.0f), green(g / 255.0f), blue(b / 255.0f), alpha(a / 255.0f)
 {
-  return CL_Color(static_cast<int>(255 * red),
-                  static_cast<int>(255 * green),
-                  static_cast<int>(255 * blue),
-                  static_cast<int>(255 * alpha));
+}
+
+SDL_Color
+Color::to_sdl() const
+{
+  SDL_Color c;
+  c.r = static_cast<Uint8>(red   * 255.0f);
+  c.g = static_cast<Uint8>(green * 255.0f);
+  c.b = static_cast<Uint8>(blue  * 255.0f);
+  c.a = static_cast<Uint8>(alpha * 255.0f);
+  return c;
 }
 
 /* EOF */

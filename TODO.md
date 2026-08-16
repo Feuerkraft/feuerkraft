@@ -45,9 +45,12 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Full removal of leftover ClanLib includes still present in many translation units
 
 ### Phase 3 – Window, main loop, Display
-- [ ] Create SDL_Window + SDL_Renderer (or GL context) in `Feuerkraft::init`
-- [ ] Replace `CL_DisplayWindow` / `CL_Display::*` (clear, flip, get_width/height, etc.)
-- [ ] Adapt main loop / event pumping (`CL_Display` event handling → `SDL_PollEvent`)
+- [x] Create SDL_Window + SDL_Renderer in `Feuerkraft::init`
+- [x] Introduce `Display` facade (width/height/clear/flip/fullscreen)
+- [x] Make `Color` independent of ClanLib (SDL_Color conversion)
+- [x] Wire `Display` into main and game_session (width/height/flip)
+- [ ] Replace remaining `CL_Display::*` drawing calls (line/rect/fill) in View etc.
+- [ ] Adapt full event pumping (`SDL_PollEvent`) — partial stubs in game_session
 - [ ] Screenshot support (`CL_PixelBuffer` → SDL_Surface / SDL_RenderReadPixels)
 
 ### Phase 4 – Input
@@ -57,8 +60,8 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Remove `CL_Slot` / `CL_Signal_*` dependency (either implement a tiny signal or switch to std::function / direct calls)
 
 ### Phase 5 – Graphics core
+- [x] `CL_Color` → independent `Color` class (done in Phase 3)
 - [ ] Introduce thin wrappers or replace:
-  - `CL_Color` → simple struct or SDL_Color
   - `CL_Rect` / `CL_Pointf` / `CL_Vector` → own math or SDL_Rect / custom
   - `CL_Sprite` → texture + frame data (SDL_Texture + metadata)
   - `CL_Surface` / `CL_PixelBuffer` → SDL_Surface / SDL_Texture
@@ -102,6 +105,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- TODO + port plan committed.
-- Phase 1 (build system) done.
-- Phase 2 (core/system) largely done: timing, cmdline, main init/window skeleton, Setup* removed from entry points. Many ClanLib graphics/input/sound/resource calls remain; the project still does not fully compile.
+- Phases 1–2 done.
+- Phase 3 in progress: SDL window + renderer + Display facade + Color are in place.
+  game_session uses Display for size/flip. Many drawing, sprite, input and resource
+  call sites still reference ClanLib and will be ported next.

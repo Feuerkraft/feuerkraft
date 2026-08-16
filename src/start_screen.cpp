@@ -80,7 +80,7 @@ StartScreen::draw ()
 		    CL_Display::get_height ()/2);
 
       CL_Display::fill_rect (CL_Rect(0, 0, CL_Display::get_width (), CL_Display::get_height ()),
-			     CL_Color(0, 0, 0, int(255.0f * display_time/2.0f)));
+			     Color(0, 0, 0, int(255.0f * display_time/2.0f)));
       if (display_time >= 2.0f)
 	logo_mode = S_QUIT;
     }

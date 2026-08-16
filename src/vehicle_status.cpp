@@ -57,10 +57,10 @@ void
 VehicleStatus::draw_rect (int x_pos, int y_pos, float fill)
 {
   CL_Display::fill_rect (CL_Rect(x_pos, y_pos, x_pos + 100, y_pos + 14),
-			 CL_Color(0, 0, 0,200));
+			 Color(0, 0, 0,200));
   if (fill > 0.0)
     CL_Display::fill_rect (CL_Rect(x_pos + 2, y_pos + 2, int(x_pos + (98 * fill)), y_pos + 12),
-			   CL_Color(int((1.0 - fill)*255),
+			   Color(int((1.0 - fill)*255),
                                     int(255*fill),
                                     0,
                                     200));

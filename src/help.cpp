@@ -35,7 +35,7 @@ Help::draw(CL_GraphicContext& gc)
 
   CL_Display::fill_rect(CL_Rect(center_x - 200, center_y - 150,
                                 center_x + 200, center_y + 150),
-                        CL_Color(100, 100, 0, 230));
+                        Color(100, 100, 0, 230));
   font.set_alignment(origin_top_left);
   font.draw(center_x - 190, center_y - 120,
             "F1 - show/hide this help screen\n"

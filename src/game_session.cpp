@@ -14,15 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/Core/System/system.h>
-#include <ClanLib/Display/display.h>
-#include <ClanLib/Display/display_window.h>
-#include <ClanLib/Display/mouse.h>
-#include <ClanLib/Display/keyboard.h>
-#include <ClanLib/Display/keys.h>
 #include <sstream>
 #include <iostream>
-#include <assert.h>
+#include <cassert>
+#include <SDL.h>
+
+#include "system.hpp"
+#include "display.hpp"
+#include "color.hpp"
 
 #include "globals.hpp"
 #include "particles/explosion_particle.hpp"
@@ -41,7 +40,7 @@
 #include "view.hpp"
 #include "display_manager.hpp"
 #include "buildings/building_type_manager.hpp"
-#include "scripting/clanlib_commands.hpp"
+// #include "scripting/clanlib_commands.hpp" // removed with ClanLib
 #include "scripting/menu_commands.hpp"
 #include "collision_manager.hpp"
 #include "sexpr_world_reader.hpp"
@@ -186,7 +185,7 @@ GameSession::init()
   world->add(soldier);
 
   player = new Player(soldier);
-  view   = new View(0, 0, CL_Display::get_width(), CL_Display::get_height(), new PlayerViewUpdater(player));
+  view   = new View(0, 0, Display::get_width(), Display::get_height(), new PlayerViewUpdater(player));
   DisplayManager::init();
 }
 
@@ -199,8 +198,8 @@ GameSession::update()
   deltas += delta;
   ++loops;
 
-  if (CL_Keyboard::get_keycode(CL_KEY_D))
-    Guile::enter_repl();
+  // TODO(Phase 4): keyboard input via SDL
+  // if (key D) Guile::enter_repl();
 
   unsigned int last_time = System::get_time ();
 
@@ -217,7 +216,7 @@ GameSession::update()
   GameWorld::current()->draw(*view);
   GameWorld::current()->draw_energie(*view);
   view->get_sc().render();
-  view->get_sc().light().fill_screen(CL_Color(50, 50, 100));
+  view->get_sc().light().fill_screen(Color(50, 50, 100));
 
   if (draw_colmap)
     collision_mgr->draw(*view);
@@ -225,12 +224,10 @@ GameSession::update()
   if (!do_pause)
     DisplayManager::current()->update(delta);
 
-  DisplayManager::current()->draw(*(CL_Display::get_current_window()->get_gc()));
+  // TODO(Phase 5): DisplayManager::draw via SDL_Renderer
+  // DisplayManager::current()->draw(...);
 
-  if (CL_Mouse::get_keycode(CL_MOUSE_MIDDLE))
-    world->add(new ExplosionParticle(view->screen_to_world(FloatVector2d(CL_Mouse::get_x (),
-                                                                         CL_Mouse::get_y ())),
-                                     FloatVector2d(), 3.0f));
+  // TODO(Phase 4): mouse input via SDL
 
   // Comment out for variable frame rate
   int sleep_time = (last_time + delta_wait) - System::get_time();
@@ -238,7 +235,7 @@ GameSession::update()
     System::sleep (sleep_time);
 
   // Flip front and backbuffer. This makes the changes visible:
-  CL_Display::flip ();
+  Display::flip();
 
   if (!args->video_record_directory.empty())
     {
@@ -257,7 +254,7 @@ GameSession::update()
   // Exits the loop if ClanLib requests shutdown - for instance if
   // someone closes the window.
   System::keep_alive();
-  clanlib_call_post_keep_alive_func();
+  // clanlib_call_post_keep_alive_func removed
   InputManager::update(delta);
 
   InputEventLst lst = InputManager::get_controller().get_events();

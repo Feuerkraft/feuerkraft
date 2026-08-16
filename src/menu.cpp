@@ -52,7 +52,7 @@ Menu::draw(CL_GraphicContext& gc)
   CL_Display::fill_rect(CL_Rect(CL_Display::get_width() - 170, 0,
                                 CL_Display::get_width(), items.size()
                                 * (Fonts::font.get_height() + 4) + 20),
-                        CL_Color(0,0,0, 50));
+                        Color(0,0,0, 50));
 
   // Draw menu items
   int y = 10;

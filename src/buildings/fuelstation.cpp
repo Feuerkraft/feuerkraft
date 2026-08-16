@@ -43,7 +43,7 @@ Fuelstation::draw (View& view)
     {
       view.get_sc().color().draw_fillrect(pos.x - 32, pos.y + 25,
                                   pos.x + 31, pos.y + 57,
-                                  CL_Color(CL_Colorf(1.0, 1.0, 1.0,
+                                  Color(Color(1.0, 1.0, 1.0,
                                                      sin(GameWorld::current()->get_time () * 10.0f)
                                                      * .3f + .5f)));
     }

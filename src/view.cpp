@@ -80,7 +80,7 @@ View::draw_line (float x1, float y1, float x2, float y2,
                         int((y1 + get_y_offset ())),
                         int((x2 + get_x_offset ())),
                         int((y2 + get_y_offset ())),
-                        color.get_cl_color());
+                        color);
 }
 
 void
@@ -91,14 +91,14 @@ View::draw_fillrect (float x1, float y1, float x2, float y2,
                                  int((y1 + get_y_offset ())),
                                  int((x2 + get_x_offset ())),
                                  int((y2 + get_y_offset ()))),
-			 color.get_cl_color());
+			 color);
 }
 
 void
 View::draw_rect (float x1, float y1, float x2, float y2,
 		 const Color& arg_color)
 {
-  const CL_Color& color = arg_color.get_cl_color();
+  const Color& color = arg_color;
 
   CL_Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()),
 			 int(x1 + get_x_offset ()), int(y2 + get_y_offset ()),

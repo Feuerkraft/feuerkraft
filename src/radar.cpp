@@ -57,11 +57,11 @@ Radar::draw(CL_GraphicContext& gc)
 
   CL_Display::draw_line(int(pos.x), int(pos.y - 5),
                         int(pos.x), int(pos.y + 5),
-                        CL_Color(0, 255, 0));
+                        Color(0, 255, 0));
 
   CL_Display::draw_line(int(pos.x - 5), int(pos.y),
                         int(pos.x + 5), int(pos.y),
-                        CL_Color(0, 255, 0));
+                        Color(0, 255, 0));
 }
 
 void
@@ -85,7 +85,7 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
 
       CL_Display::fill_rect(CL_Rect(int(pos.x + diff.x) - size, int(pos.y + diff.y) - size,
                                     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
-                            CL_Color(int(255*red),
+                            Color(int(255*red),
                                      int(255*green),
                                      int(255*blue),
                                      int(255*alpha)));

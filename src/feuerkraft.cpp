@@ -21,6 +21,7 @@
 #include <ctime>
 
 #include "system.hpp"
+#include "display.hpp"
 
 #include "feuerkraft_error.hpp"
 #include "fonts.hpp"
@@ -114,6 +115,20 @@ Feuerkraft::init()
       throw FeuerkraftError(std::string("SDL_CreateWindow failed: ") + SDL_GetError());
     }
 
+  SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,
+                                              SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  if (!renderer)
+    {
+      // Fall back to software renderer
+      renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    }
+  if (!renderer)
+    {
+      throw FeuerkraftError(std::string("SDL_CreateRenderer failed: ") + SDL_GetError());
+    }
+  Display::init(window, renderer);
+  Display::clear();
+
   resources = new ResourceManager ();
   Fonts::init();
 
@@ -145,6 +160,10 @@ Feuerkraft::deinit()
   Fonts::deinit();
   PingusSound::deinit();
 
+  SDL_Renderer* renderer = Display::get_renderer();
+  Display::deinit();
+  if (renderer)
+    SDL_DestroyRenderer(renderer);
   if (window)
     {
       SDL_DestroyWindow(window);

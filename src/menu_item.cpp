@@ -46,7 +46,7 @@ void
 MenuItem::draw_highlight(int x, int y)
 {
   CL_Display::fill_rect(CL_Rect(x, y, x + 150, y + Fonts::font.get_height() + 2),
-                        CL_Color(255, 255, 255, 230));
+                        Color(255, 255, 255, 230));
   Fonts::font.set_alignment(origin_top_left);
   Fonts::font.draw(x + 10, y + 1, label);
 }
@@ -55,7 +55,7 @@ void
 MenuItem::draw(int x, int y)
 {
   CL_Display::fill_rect(CL_Rect(x, y, x + 150, y + Fonts::font.get_height() + 2),
-                        CL_Color(85,85,0, 230));
+                        Color(85,85,0, 230));
   Fonts::font.set_alignment(origin_top_left);
   Fonts::font.draw(x + 10, y + 1, label);
 }

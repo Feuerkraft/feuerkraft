@@ -17,12 +17,11 @@
 #ifndef HEADER_COLOR_HXX
 #define HEADER_COLOR_HXX
 
-#include <ClanLib/Display/color.h>
+#include <SDL.h>
 
-/** */
+/** Simple RGBA colour (components in 0..1 range). */
 class Color
 {
-private:
 public:
   float red;
   float green;
@@ -32,11 +31,14 @@ public:
   /** Init the color to white */
   Color();
 
-  /** Set color to the given RGB value */
+  /** Set color to the given RGBA value (0..1) */
   Color(float red_, float green_, float blue_, float alpha_ = 1.0f);
 
-  /** @return the CL_Color version of the same color */
-  CL_Color get_cl_color() const;
+  /** Construct from 0..255 integer components */
+  Color(int r, int g, int b, int a = 255);
+
+  /** Convert to SDL_Color (0..255). */
+  SDL_Color to_sdl() const;
 };
 
 #endif
