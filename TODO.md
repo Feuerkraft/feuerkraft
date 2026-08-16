@@ -111,5 +111,5 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - Core systems on SDL2: window, Display, DrawingContext, Sprite,
   ResourceManager, input (event pump + backends), sound, groundmap
   PNG loading, screenshot.
-- Remaining: fonts, DisplayManager HUD drawing path, and any
-  residual ClanLib references in less-used files.
+- Font is stubbed (API present, no glyph rendering yet).
+  GUI/HUD path uses SDL_Renderer. Residual ClanLib is mostly comments.
