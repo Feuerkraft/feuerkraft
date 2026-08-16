@@ -18,7 +18,6 @@
 #ifndef HEADER_CUSTOM_BUILDING_HXX
 #define HEADER_CUSTOM_BUILDING_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "../energie.hpp"
 #include "building.hpp"
 

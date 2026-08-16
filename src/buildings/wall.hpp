@@ -18,7 +18,6 @@
 #ifndef HEADER_FEUERKRAFT_WALL_HXX
 #define HEADER_FEUERKRAFT_WALL_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "../vector2d.hpp"
 
 #include "building.hpp"

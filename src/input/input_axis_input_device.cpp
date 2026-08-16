@@ -14,21 +14,24 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/Display/input_event.h>
 #include "input_axis_input_device.hpp"
 
-InputAxisInputDevice::InputAxisInputDevice(CL_InputDevice& dev, int num)
-  : dev(dev), axis_num(num)
+InputAxisInputDevice::InputAxisInputDevice(SDL_Joystick* joystick_, int num)
+  : joystick(joystick_), axis_num(num), last_pos(0.0f)
 {
-  slots.push_back(dev.sig_axis_move().connect(this, &InputAxisInputDevice::on_axis_move));
 }
 
 void
-InputAxisInputDevice::on_axis_move(const CL_InputEvent& event)
+InputAxisInputDevice::update(float /*delta*/)
 {
-  if (event.id == axis_num)
+  if (!joystick)
+    return;
+  Sint16 raw = SDL_JoystickGetAxis(joystick, axis_num);
+  float pos = raw / 32767.0f;
+  if (pos != last_pos)
     {
-      move(event.axis_pos);
+      move(pos);
+      last_pos = pos;
     }
 }
 

@@ -18,7 +18,6 @@
 #ifndef HELICOPTER_HH
 #define HELICOPTER_HH
 
-#include <ClanLib/Display/sprite.h>
 #include "../energie.hpp"
 #include "vehicle.hpp"
 #include "rotor.hpp"

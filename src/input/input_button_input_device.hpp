@@ -17,22 +17,20 @@
 #ifndef HEADER_INPUT_BOTTON_INPUT_DEVICE_HXX
 #define HEADER_INPUT_BOTTON_INPUT_DEVICE_HXX
 
-#include <ClanLib/Display/input_device.h>
+#include <SDL.h>
 #include "input_button.hpp"
 
+/** Keyboard (or joystick button) backed by SDL scancode/button id. */
 class InputButtonInputDevice : public InputButton
 {
 private:
-  CL_InputDevice dev;
-  int keycode;
-
-  void on_key_down(const CL_InputEvent& event);
-  void on_key_up(const CL_InputEvent& event);
+  SDL_Scancode scancode;
+  bool was_down;
 
 public:
-  InputButtonInputDevice(CL_InputDevice& dev, int keycode);
+  explicit InputButtonInputDevice(SDL_Scancode scancode);
 
-  void update(float delta) {}
+  void update(float delta) override;
 };
 
 #endif

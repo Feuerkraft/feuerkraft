@@ -18,7 +18,6 @@
 #ifndef TOWER_HXX
 #define TOWER_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "../energie.hpp"
 #include "../unit.hpp"
 #include "building.hpp"

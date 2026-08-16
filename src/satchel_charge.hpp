@@ -18,7 +18,6 @@
 #ifndef HEADER_SATCHEL_CHARGE_HXX
 #define HEADER_SATCHEL_CHARGE_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "game_obj.hpp"
 
 class AList;

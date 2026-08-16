@@ -19,7 +19,6 @@
 #define TANK_HH
 
 #include <deque>
-#include <ClanLib/Display/sprite.h>
 #include "../vector2d.hpp"
 
 #include "../mine.hpp"

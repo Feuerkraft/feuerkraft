@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string.h>
-#include <ClanLib/display.h>
 #include "keys.hpp"
 
 #ifdef WIN32

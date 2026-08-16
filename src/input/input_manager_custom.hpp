@@ -18,8 +18,6 @@
 #define HEADER_INPUT_MANAGER_CUSTOM_HXX
 
 #include <libguile.h>
-#include <ClanLib/Display/input_device.h>
-#include <ClanLib/Display/input_event.h>
 #include "input_event.hpp"
 #include "input_button.hpp"
 #include "input_axis.hpp"

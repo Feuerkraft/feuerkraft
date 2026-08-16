@@ -18,7 +18,6 @@
 #ifndef FUELSTATION_HH
 #define FUELSTATION_HH
 
-#include <ClanLib/Display/sprite.h>
 #include "../view.hpp"
 #include "building.hpp"
 

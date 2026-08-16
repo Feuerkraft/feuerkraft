@@ -18,7 +18,6 @@
 #ifndef HEADER_FIRE_PARTICLE_HXX
 #define HEADER_FIRE_PARTICLE_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "../vector2d.hpp"
 #include "../game_obj.hpp"
 

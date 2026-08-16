@@ -59,9 +59,10 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 ### Phase 4 – Input
 - [x] Minimal Signal/Slot replacement (`signal.hpp`)
 - [x] InputButton / InputAxis / KeyboardManager off ClanLib signals
-- [ ] SDL event loop feeding KeyboardManager and controller backends
-- [ ] Replace input_axis_input_device / input_button_input_device ClanLib device backends
-- [ ] Map SDL scancodes / mouse / joystick to controller scheme
+- [x] SDL event pump in game_session (key down/up → KeyboardManager)
+- [x] input_button_input_device / input_axis_input_device on SDL
+- [x] ButtonFactory / AxisFactory use SDL scancodes / joysticks
+- [ ] Richer key name coverage and joystick button wiring
 
 ### Phase 5 – Graphics core
 - [x] `CL_Color` → independent `Color` class (done in Phase 3)
@@ -107,7 +108,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Phases 1–3, most of 5–7 done.
-- Signal/Slot, KeyboardManager, Sound on SDL2.
-- Remaining: SDL event pump, low-level input device backends,
-  fonts, and sweeping leftover ClanLib includes in game objects.
+- Phases 1–7 largely in place (window, display, drawing, sprites,
+  resources, signals, input backends, sound).
+- Remaining work: fonts, groundmap/pixel buffers, screenshot,
+  DisplayManager drawing, and clearing residual ClanLib includes.

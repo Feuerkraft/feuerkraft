@@ -15,10 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <ClanLib/Display/keyboard.h>
-#include <ClanLib/Display/joystick.h>
-#include <ClanLib/Display/display_iostream.h>
-#include <ClanLib/Display/keys.h>
 
 #include "../guile.hpp"
 #include "../assert.hpp"

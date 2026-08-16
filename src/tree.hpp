@@ -20,7 +20,6 @@
 
 #include <string>
 #include "vector2d.hpp"
-#include <ClanLib/Display/sprite.h>
 
 #include "game_obj.hpp"
 

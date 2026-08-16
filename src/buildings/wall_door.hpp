@@ -18,8 +18,6 @@
 #ifndef WALLDOOR_HXX
 #define WALLDOOR_HXX
 
-#include <ClanLib/Display/sprite.h>
-#include <ClanLib/Core/Math/cl_vector.h>
 
 #include "../vector2d.hpp"
 #include "building.hpp"

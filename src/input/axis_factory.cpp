@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/Display/joystick.h>
+#include <SDL.h>
 #include "input_axis_input_device.hpp"
 #include "../feuerkraft_error.hpp"
 #include "../guile.hpp"
@@ -25,23 +25,17 @@
 InputAxis*
 AxisFactory::create(SCM lst)
 {
-  while(scm_is_true(scm_pair_p(lst)))
+  while (scm_is_true(scm_pair_p(lst)))
     {
       SCM sym  = scm_car(lst);
       SCM data = scm_cdr(lst);
 
       if (Guile::equal_p(sym, scm_from_utf8_symbol("joystick-axis")))
-        {
-          return create_joystick_axis(data);
-        }
+        return create_joystick_axis(data);
       else if (Guile::equal_p(sym, scm_from_utf8_symbol("button-axis")))
-        {
-          return create_button_axis(data);
-        }
+        return create_button_axis(data);
       else
-        {
-          throw FeuerkraftError("AxisFactory::create: parse error");
-        }
+        throw FeuerkraftError("AxisFactory::create: parse error");
 
       lst = scm_cdr(lst);
     }
@@ -54,14 +48,14 @@ AxisFactory::create_joystick_axis(SCM lst)
   int device_num = scm_to_int(scm_car(lst));
   int axis_num   = scm_to_int(scm_cadr(lst));
 
-  if (device_num >= 0 && device_num < CL_Joystick::get_device_count())
-    return new InputAxisInputDevice(CL_Joystick::get_device(device_num), axis_num);
-  else
+  if (device_num >= 0 && device_num < SDL_NumJoysticks())
     {
-      throw FeuerkraftError("Error: AxisFactory::create_joystick_axis: "
-                            + Guile::scm2string(lst));
-      return 0;
+      SDL_Joystick* joy = SDL_JoystickOpen(device_num);
+      return new InputAxisInputDevice(joy, axis_num);
     }
+
+  // No joystick — return a dead axis so the controller still loads
+  return new InputAxisInputDevice(nullptr, axis_num);
 }
 
 InputAxis*
@@ -69,7 +63,6 @@ AxisFactory::create_button_axis(SCM lst)
 {
   InputButton* left  = ButtonFactory::create(scm_car(lst));
   InputButton* right = ButtonFactory::create(scm_cadr(lst));
-
   return new ButtonAxis(left, right);
 }
 

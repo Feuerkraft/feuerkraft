@@ -14,33 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <iostream>
-#include <ClanLib/Display/input_event.h>
 #include "input_button_input_device.hpp"
 
-InputButtonInputDevice::InputButtonInputDevice(CL_InputDevice& dev_, int keycode_)
-  : dev(dev_), keycode(keycode_)
+InputButtonInputDevice::InputButtonInputDevice(SDL_Scancode scancode_)
+  : scancode(scancode_), was_down(false)
 {
-  slots.push_back(dev.sig_key_down().connect(this, &InputButtonInputDevice::on_key_down));
-  slots.push_back(dev.sig_key_up().connect(this, &InputButtonInputDevice::on_key_up));
 }
 
 void
-InputButtonInputDevice::on_key_down(const CL_InputEvent& event)
+InputButtonInputDevice::update(float /*delta*/)
 {
-  if (keycode == event.id)
-    {
-      button_down();
-    }
-}
-
-void
-InputButtonInputDevice::on_key_up(const CL_InputEvent& event)
-{
-  if (keycode == event.id)
-    {
-      button_up();
-    }
+  const Uint8* state = SDL_GetKeyboardState(nullptr);
+  bool down = state[scancode] != 0;
+  if (down && !was_down)
+    button_down();
+  else if (!down && was_down)
+    button_up();
+  was_down = down;
 }
 
 /* EOF */

@@ -18,7 +18,6 @@
 #ifndef STARTSCREEN_HXX
 #define STARTSCREEN_HXX
 
-#include <ClanLib/display.h>
 
 /** FIXME: Mega ugly peace of code, should be replaced with something better */
 class StartScreen

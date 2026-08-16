@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/gl.h>
 #include <iostream>
 #include "../buildings/building_map.hpp"
 #include "../resource_manager.hpp"

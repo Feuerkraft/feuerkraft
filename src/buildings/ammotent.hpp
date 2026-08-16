@@ -18,7 +18,6 @@
 #ifndef AMMOTENT_HH
 #define AMMOTENT_HH
 
-#include <ClanLib/Display/sprite.h>
 
 #include "../view.hpp"
 #include "building.hpp"

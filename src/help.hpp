@@ -17,7 +17,6 @@
 #ifndef HEADER_HELP_HXX
 #define HEADER_HELP_HXX
 
-#include <ClanLib/Display/font.h>
 #include "gui_obj.hpp"
 
 /** */

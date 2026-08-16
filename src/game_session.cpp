@@ -29,6 +29,7 @@
 #include "groundmap/ground_map.hpp"
 #include "player_view.hpp"
 #include "input/input_manager.hpp"
+#include "keyboard_manager.hpp"
 #include "soldier.hpp"
 #include "game_obj_factory.hpp"
 
@@ -254,7 +255,25 @@ GameSession::update()
   // Exits the loop if ClanLib requests shutdown - for instance if
   // someone closes the window.
   System::keep_alive();
-  // clanlib_call_post_keep_alive_func removed
+
+  // SDL event pump
+  SDL_Event event;
+  while (SDL_PollEvent(&event))
+    {
+      if (event.type == SDL_QUIT)
+        {
+          // Signal session end — handled by controller/escape for now
+        }
+      else if (event.type == SDL_KEYDOWN)
+        {
+          KeyboardManager::instance()->on_key_down(event.key.keysym.scancode);
+        }
+      else if (event.type == SDL_KEYUP)
+        {
+          KeyboardManager::instance()->on_key_up(event.key.keysym.scancode);
+        }
+    }
+
   InputManager::update(delta);
 
   InputEventLst lst = InputManager::get_controller().get_events();

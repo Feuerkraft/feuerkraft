@@ -17,20 +17,20 @@
 #ifndef HEADER_INPUT_AXIS_INPUT_DEVICE_HXX
 #define HEADER_INPUT_AXIS_INPUT_DEVICE_HXX
 
-#include <ClanLib/Display/input_device.h>
+#include <SDL.h>
 #include "input_axis.hpp"
 
+/** Joystick axis backed by SDL. For now keyboard axes are not used. */
 class InputAxisInputDevice : public InputAxis
 {
 private:
-  CL_InputDevice dev;
+  SDL_Joystick* joystick;
   int axis_num;
-
-  void on_axis_move(const CL_InputEvent& event);
+  float last_pos;
 
 public:
-  InputAxisInputDevice(CL_InputDevice& dev, int num);
-  void update(float delta) {}
+  InputAxisInputDevice(SDL_Joystick* joystick, int num);
+  void update(float delta) override;
 };
 
 #endif

@@ -18,7 +18,6 @@
 #include <assert.h>
 #include <stdexcept>
 #include <sstream>
-#include <ClanLib/Display/joystick.h>
 
 #include "../feuerkraft_error.hpp"
 #include "input_manager_custom.hpp"

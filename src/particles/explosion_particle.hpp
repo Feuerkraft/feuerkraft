@@ -18,7 +18,6 @@
 #ifndef EXPLOSIONPARTICLE_HXX
 #define EXPLOSIONPARTICLE_HXX
 
-#include <ClanLib/display.h>
 #include "view.hpp"
 #include "particle.hpp"
 #include "../math.hpp"
