@@ -52,10 +52,11 @@ void
 ResourceManager::parse_section(const std::string& content, const std::string& /*prefix*/)
 {
   // Tokenise by walking with regexes for section open/close and sprite blocks.
+  // Match <image ... file="..."> with any attribute order
   std::regex token_re(
     "<section\\s+name=\"([^\"]+)\"\\s*>|</section>|"
     "<sprite\\s+name=\"([^\"]+)\"\\s*>|</sprite>|"
-    "<image\\s+file=\"([^\"]+)\"",
+    "<image\\b[^>]*\\bfile=\"([^\"]+)\"",
     std::regex::ECMAScript);
 
   std::vector<std::string> section_stack;
