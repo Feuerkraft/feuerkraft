@@ -57,6 +57,7 @@
 #include "command_line_arguments.hpp"
 #include "screenshot.hpp"
 #include "game_session.hpp"
+#include "game_session_manager.hpp"
 
 // FIXME: Replace this with a PlayerManager class or something similar
 Player*  player;
@@ -263,7 +264,8 @@ GameSession::update()
     {
       if (event.type == SDL_QUIT)
         {
-          // Signal session end — handled by controller/escape for now
+          do_quit = true;
+          GameSessionManager::instance()->quit();
         }
       else if (event.type == SDL_KEYDOWN)
         {
