@@ -17,53 +17,29 @@
 #ifndef HEADER_PINGUS_SOUND_REAL_HXX
 #define HEADER_PINGUS_SOUND_REAL_HXX
 
-#include <config.h>
-#include <vector>
+#include <string>
+#include <SDL_mixer.h>
 #include "sound.hpp"
-#include <ClanLib/Sound/soundbuffer_session.h>
-
-class CL_SoundBuffer;
-class CL_SoundBuffer_Session;
-class CL_SoundOutput;
 
 namespace Sound {
 
-/** A simple wrapper class around SDL_Mixer, it will init itself
-    automatically if a sound is played. */
+/** SDL2_mixer-backed sound implementation. */
 class PingusSoundReal : public PingusSound
 {
 private:
-  CL_SoundOutput* output;
-
-  /** The current music file */
-  CL_SoundBuffer * music_sample;
-
-  /** Music Controller Session */
-  CL_SoundBuffer_Session* music_session;
+  Mix_Music* music;
 
 public:
-  PingusSoundReal ();
-  virtual ~PingusSoundReal ();
+  PingusSoundReal();
+  virtual ~PingusSoundReal();
 
-  /** Load a music file and play it immediately.
-
-      @param filename The complete filename
-      @param volume   The volume to play the music with  */
-  virtual void real_play_music(const std::string & filename, float volume);
-
+  virtual void real_play_music(const std::string& filename, float volume);
   virtual void real_stop_music();
-
-  /** Load a sound file and play it immediately
-
-      @param filename The complete filename
-      @param volume   The volume to play the sound at
-      @param panning  The panning to play the sound with */
-
-  virtual void real_play_sound(const std::string & filename, float volume, float panning);
+  virtual void real_play_sound(const std::string& filename, float volume, float panning);
 
 private:
-  PingusSoundReal (const PingusSoundReal&);
-  PingusSoundReal& operator= (const PingusSoundReal&);
+  PingusSoundReal(const PingusSoundReal&);
+  PingusSoundReal& operator=(const PingusSoundReal&);
 };
 
 } // namespace Sound

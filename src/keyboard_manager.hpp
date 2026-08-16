@@ -18,12 +18,12 @@
 #define HEADER_KEYBOARD_MANAGER_HXX
 
 #include <vector>
-#include <ClanLib/Display/input_event.h>
+#include <SDL.h>
+#include "signal.hpp"
 
-/** Management class for keyboard events, if a key is pressed it looks
-    up a callback and if one it set it evalutes the callback. This
-    class is mainly used for user-created callback functions from
-    Guile */
+/** Management class for keyboard events. During the SDL2 port the
+    low-level ClanLib input is replaced; callbacks are still supported
+    and will be driven from the main SDL event loop. */
 class KeyboardManager
 {
 private:
@@ -36,36 +36,25 @@ public:
       return instance_ = new KeyboardManager();
   }
 private:
-  std::vector<CL_Slot> slots;
-
   struct Callback {
     int key_id;
-    Callback(int id)
-      : key_id(id)
-    {}
-
+    Callback(int id) : key_id(id) {}
     virtual ~Callback() {}
-
     virtual void run() =0;
   };
 
   template<class C>
-  struct GenericCallback
-    : public Callback {
+  struct GenericCallback : public Callback {
     C callback;
     GenericCallback(int key_id, const C& c)
-      : Callback(key_id),
-        callback(c)
-    {
-    }
-
+      : Callback(key_id), callback(c) {}
     virtual ~GenericCallback() {}
-
     void run() { callback(); }
   };
 
   typedef std::vector<Callback*> Callbacks;
   Callbacks callbacks;
+
 public:
   KeyboardManager();
   ~KeyboardManager();
@@ -74,10 +63,12 @@ public:
   void register_down_callback(int key_id, const C& c) {
     callbacks.push_back(new GenericCallback<C>(key_id, c));
   }
-private:
-  void button_up(const CL_InputEvent& event);
-  void button_down(const CL_InputEvent& event);
 
+  /** Called from the main loop with SDL keyboard events. */
+  void on_key_down(int key_id);
+  void on_key_up(int key_id);
+
+private:
   KeyboardManager (const KeyboardManager&);
   KeyboardManager& operator= (const KeyboardManager&);
 };

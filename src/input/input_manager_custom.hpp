@@ -29,7 +29,7 @@
 class InputManagerCustom : public InputManagerImpl
 {
 private:
-  std::vector<CL_Slot> slots;
+  std::vector<Slot> slots;
 
   typedef std::vector<InputAxis*>   Axes;
   typedef std::vector<InputButton*> Buttons;

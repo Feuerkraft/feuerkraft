@@ -57,10 +57,11 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Re-enable lightmap/highlight compositing under SDL if desired
 
 ### Phase 4 – Input
-- [ ] Replace ClanLib keyboard/mouse/joystick + signal/slot wiring
-- [ ] Keep the existing high-level `InputManager` / controller / axis / button abstraction; only replace the backend that feeds it
-- [ ] Map SDL scancodes / mouse buttons / joystick axes to the existing controller scheme
-- [ ] Remove `CL_Slot` / `CL_Signal_*` dependency (either implement a tiny signal or switch to std::function / direct calls)
+- [x] Minimal Signal/Slot replacement (`signal.hpp`)
+- [x] InputButton / InputAxis / KeyboardManager off ClanLib signals
+- [ ] SDL event loop feeding KeyboardManager and controller backends
+- [ ] Replace input_axis_input_device / input_button_input_device ClanLib device backends
+- [ ] Map SDL scancodes / mouse / joystick to controller scheme
 
 ### Phase 5 – Graphics core
 - [x] `CL_Color` → independent `Color` class (done in Phase 3)
@@ -78,9 +79,9 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Guile-side resource access if any
 
 ### Phase 7 – Sound
-- [ ] Replace ClanLib sound with SDL2_mixer
-- [ ] Port `sound_real.cpp` / `sound_res_mgr` (music + SFX, volume, stop, etc.)
-- [ ] Drop MikMod/Vorbis ClanLib providers; use SDL2_mixer’s built-in support (or libmodplug / etc. if needed)
+- [x] Replace ClanLib sound with SDL2_mixer (`sound_real`, `sound_res_mgr`)
+- [ ] Proper chunk lifetime / caching polish
+- [ ] Ensure all sound assets resolve under the new path layout
 
 ### Phase 8 – Remaining game objects & polish
 - [ ] Sweep remaining `CL_*` usages in vehicles, buildings, particles, projectiles, AI, pathfinders, menus, screens, …
@@ -106,7 +107,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Phases 1–3 largely done; Phase 5/6 started.
-- Sprite + ResourceManager now on SDL2_image.
-- Fonts stubbed. Input, sound, and many remaining ClanLib includes
-  in game objects still need work.
+- Phases 1–3, most of 5–7 done.
+- Signal/Slot, KeyboardManager, Sound on SDL2.
+- Remaining: SDL event pump, low-level input device backends,
+  fonts, and sweeping leftover ClanLib includes in game objects.

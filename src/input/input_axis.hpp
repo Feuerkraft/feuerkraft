@@ -18,20 +18,19 @@
 #define HEADER_INPUT_AXIS_HXX
 
 #include <vector>
-#include <ClanLib/Signals/slot.h>
-#include <ClanLib/Signals/signal_v1.h>
+#include "signal.hpp"
 
 class InputAxis
 {
 protected:
-  std::vector<CL_Slot> slots;
-  CL_Signal_v1<float> move;
+  std::vector<Slot> slots;
+  Signal<float> move;
 public:
   InputAxis() {}
   virtual ~InputAxis() {}
 
   virtual void update(float delta) {}
-  CL_Signal_v1<float>& on_move() { return move; }
+  Signal<float>& on_move() { return move; }
 };
 
 #endif

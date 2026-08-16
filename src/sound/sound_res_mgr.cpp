@@ -14,11 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/sound.h>
 #include <iostream>
 #include "../path_manager.hpp"
-#include "../globals.hpp"
-
 #include "sound_res_mgr.hpp"
 
 SoundResMgr::SoundMap SoundResMgr::sound_map;
@@ -27,22 +24,25 @@ SoundHandle
 SoundResMgr::load(const std::string& name)
 {
   SoundMap::iterator i = sound_map.find(name);
+  if (i != sound_map.end())
+    return i->second;
 
-  if (i == sound_map.end())
+  std::string path = path_manager.complete("sounds/" + name + ".wav");
+  Mix_Chunk* chunk = Mix_LoadWAV(path.c_str());
+  if (!chunk)
     {
-      std::string filename = path_manager.complete("sounds/" + name + ".wav");
-      CL_SoundBuffer* buffer = new CL_SoundBuffer(new CL_SoundProvider_Wave(filename, NULL), true);
-      std::cout << "SoundResMgr: Loading sound from disk: "
-                                 << name << " -> " << filename << std::endl;
-
-      sound_map[name] = buffer;
-      return buffer;
+      // try .ogg
+      path = path_manager.complete("sounds/" + name + ".ogg");
+      chunk = Mix_LoadWAV(path.c_str());
     }
-  else
+  if (!chunk)
     {
-      std::cout << "SoundResMgr: Loading sound from cache: " << name << std::endl;
-      return i->second;
+      std::cerr << "SoundResMgr: failed to load " << name
+                << ": " << Mix_GetError() << std::endl;
+      return nullptr;
     }
+  sound_map[name] = chunk;
+  return chunk;
 }
 
 /* EOF */

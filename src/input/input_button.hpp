@@ -18,15 +18,14 @@
 #define HEADER_INPUT_BOTTON_HXX
 
 #include <vector>
-#include <ClanLib/Signals/slot.h>
-#include <ClanLib/Signals/signal_v0.h>
+#include "signal.hpp"
 
 class InputButton
 {
 protected:
-  std::vector<CL_Slot> slots;
-  CL_Signal_v0 button_down;
-  CL_Signal_v0 button_up;
+  std::vector<Slot> slots;
+  Signal_v0 button_down;
+  Signal_v0 button_up;
 
 public:
   InputButton() {}
@@ -34,8 +33,8 @@ public:
 
   virtual void update(float delta) {}
 
-  CL_Signal_v0& on_key_down() { return button_down; }
-  CL_Signal_v0& on_key_up()   { return button_up; }
+  Signal_v0& on_key_down() { return button_down; }
+  Signal_v0& on_key_up()   { return button_up; }
 };
 
 #endif

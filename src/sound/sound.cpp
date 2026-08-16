@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/Core/System/error.h>
 #include <iostream>
 #include <assert.h>
 #include "../path_manager.hpp"
@@ -38,8 +37,8 @@ PingusSound::init (PingusSound* s)
 
           try {
             PingusSound::init (new PingusSoundReal ());
-          } catch (CL_Error& err) {
-            std::cout << "CL_Error: " << err.message << std::endl;
+          } catch (std::exception& err) {
+            std::cout << "CL_Error: " << err.what() << std::endl;
             std::cout << "Sound will be disabled" << std::endl;
             PingusSound::init (new PingusSoundDummy ());
           }

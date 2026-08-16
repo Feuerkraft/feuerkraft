@@ -26,7 +26,7 @@ class MultiButton : public InputButton
 private:
   typedef std::vector<InputButton*> Buttons;
   Buttons buttons;
-  std::vector<CL_Slot> slots;
+  std::vector<Slot> slots;
   int press_count;
 public:
   MultiButton();

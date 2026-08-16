@@ -25,7 +25,7 @@ class InputAxis;
 class AxisButton : public InputButton
 {
 private:
-  CL_Slot on_axis_move_slot;
+  Slot on_axis_move_slot;
   InputAxis* axis;
   bool down;
 
