@@ -14,9 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/display.h>
-#include <ClanLib/gl.h>
 #include "scene_context.hpp"
+#include "display.hpp"
 
 class SceneContextImpl
 {
@@ -24,18 +23,6 @@ public:
   DrawingContext color;
   DrawingContext light;
   DrawingContext highlight;
-
-  CL_OpenGLSurface lightmap;
-  CL_Canvas        canvas;
-
-  SceneContextImpl()
-    : lightmap(CL_PixelBuffer(200,
-                              150,
-                              200*4, CL_PixelFormat::rgba8888)),
-      canvas(lightmap)
-  {
-    canvas.get_gc()->set_scale(0.25, 0.25);
-  }
 };
 
 SceneContext::SceneContext()
@@ -66,8 +53,6 @@ SceneContext::highlight()
   return impl->highlight;
 }
 
-
-/** Translate the drawing context */
 void
 SceneContext::translate(float x, float y)
 {
@@ -76,7 +61,6 @@ SceneContext::translate(float x, float y)
   impl->highlight.translate(x, y);
 }
 
-/** Set the rotation of the drawing context */
 void
 SceneContext::rotate(float angel)
 {
@@ -85,7 +69,6 @@ SceneContext::rotate(float angel)
   impl->highlight.rotate(angel);
 }
 
-/** Set the scaling of the drawing context */
 void
 SceneContext::scale(float x, float y)
 {
@@ -121,23 +104,16 @@ SceneContext::reset_modelview()
 void
 SceneContext::render()
 {
-  // Render all buffers
-  // FIXME: Render all to pbuffer for later combining of them
-  impl->color.render(0);
+  SDL_Renderer* renderer = Display::get_renderer();
+  if (!renderer)
+    return;
 
-  impl->light.render(impl->canvas.get_gc());
-  impl->canvas.sync_surface();
+  // For now: only the color buffer is rendered. Lightmap/highlight
+  // compositing from the original ClanLib-GL path is deferred.
+  impl->color.render(renderer);
+  // impl->light and impl->highlight ignored until a proper lightmap
+  // implementation is available under SDL.
 
-  //impl->lightmap.set_blend_func(blend_src_alpha, blend_one);
-  impl->lightmap.set_blend_func(blend_dest_color, blend_zero);
-  //GL_DST_COLOR, GL_ZERO
-  impl->lightmap.set_scale(4.0f, 4.0f);
-  impl->lightmap.draw();
-  impl->canvas.get_gc()->clear();
-
-  impl->highlight.render(0);
-
-  // Clear all DrawingContexts
   impl->color.clear();
   impl->light.clear();
   impl->highlight.clear();

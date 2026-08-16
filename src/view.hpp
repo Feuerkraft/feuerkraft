@@ -22,7 +22,7 @@
 #include "display/drawing_context.hpp"
 #include "display/scene_context.hpp"
 
-class CL_Sprite;
+class Sprite;
 class Color;
 class DrawingContext;
 

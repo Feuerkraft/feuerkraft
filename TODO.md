@@ -49,9 +49,12 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [x] Introduce `Display` facade (width/height/clear/flip/fullscreen)
 - [x] Make `Color` independent of ClanLib (SDL_Color conversion)
 - [x] Wire `Display` into main and game_session (width/height/flip)
-- [ ] Replace remaining `CL_Display::*` drawing calls (line/rect/fill) in View etc.
+- [x] Port DrawingContext primitives (line/rect/fill/circle/arc) to SDL_Renderer
+- [x] Port DrawingRequest / geometry types (Pointf, Vector3f, Rect)
+- [x] Simplify SceneContext::render to color buffer via SDL (lightmap deferred)
 - [ ] Adapt full event pumping (`SDL_PollEvent`) — partial stubs in game_session
-- [ ] Screenshot support (`CL_PixelBuffer` → SDL_Surface / SDL_RenderReadPixels)
+- [ ] Screenshot support
+- [ ] Re-enable lightmap/highlight compositing under SDL if desired
 
 ### Phase 4 – Input
 - [ ] Replace ClanLib keyboard/mouse/joystick + signal/slot wiring
@@ -106,6 +109,6 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 ## Current Status
 
 - Phases 1–2 done.
-- Phase 3 in progress: SDL window + renderer + Display facade + Color are in place.
-  game_session uses Display for size/flip. Many drawing, sprite, input and resource
-  call sites still reference ClanLib and will be ported next.
+- Phase 3 advanced: Display facade, Color, DrawingContext (SDL primitives),
+  DrawingRequest, SceneContext (color-buffer path) are on SDL2.
+  Sprites, fonts, resources, input and sound still use ClanLib APIs.

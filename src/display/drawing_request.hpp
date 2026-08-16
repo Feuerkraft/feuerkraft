@@ -17,21 +17,21 @@
 #ifndef HEADER_DRAWING_REQUEST_HXX
 #define HEADER_DRAWING_REQUEST_HXX
 
-#include <ClanLib/Core/Math/cl_vector.h>
-
-class CL_GraphicContext;
+#include <SDL.h>
+#include "math_types.hpp"
 
 /**
+ * Base class for deferred drawing commands.
  */
 class DrawingRequest
 {
 protected:
-  CL_Vector pos;
+  Vector3f pos;
 public:
-  DrawingRequest(const CL_Vector& pos_) : pos(pos_) {}
+  DrawingRequest(const Vector3f& pos_) : pos(pos_) {}
   virtual ~DrawingRequest() {}
 
-  virtual void draw(CL_GraphicContext* gc) = 0;
+  virtual void draw(SDL_Renderer* renderer) = 0;
 
   /** Returns true if the request contains an alpha channel and needs
       to be drawn in order */
