@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <iostream>
 #include "scene_context.hpp"
 #include "display.hpp"
 
@@ -23,6 +24,58 @@ public:
   DrawingContext color;
   DrawingContext light;
   DrawingContext highlight;
+
+  SDL_Texture* color_tex;
+  SDL_Texture* light_tex;
+  SDL_Texture* highlight_tex;
+  int tex_w;
+  int tex_h;
+
+  SceneContextImpl()
+    : color_tex(nullptr), light_tex(nullptr), highlight_tex(nullptr),
+      tex_w(0), tex_h(0)
+  {
+  }
+
+  ~SceneContextImpl()
+  {
+    if (color_tex) SDL_DestroyTexture(color_tex);
+    if (light_tex) SDL_DestroyTexture(light_tex);
+    if (highlight_tex) SDL_DestroyTexture(highlight_tex);
+  }
+
+  void ensure_targets(SDL_Renderer* renderer, int w, int h)
+  {
+    if (color_tex && tex_w == w && tex_h == h)
+      return;
+
+    if (color_tex) { SDL_DestroyTexture(color_tex); color_tex = nullptr; }
+    if (light_tex) { SDL_DestroyTexture(light_tex); light_tex = nullptr; }
+    if (highlight_tex) { SDL_DestroyTexture(highlight_tex); highlight_tex = nullptr; }
+
+    tex_w = w;
+    tex_h = h;
+
+    color_tex = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+                                  SDL_TEXTUREACCESS_TARGET, w, h);
+    light_tex = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+                                  SDL_TEXTUREACCESS_TARGET, w, h);
+    highlight_tex = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+                                      SDL_TEXTUREACCESS_TARGET, w, h);
+
+    if (!color_tex || !light_tex || !highlight_tex)
+      {
+        std::cerr << "SceneContext: failed to create render targets: "
+                  << SDL_GetError() << std::endl;
+      }
+
+    if (color_tex)
+      SDL_SetTextureBlendMode(color_tex, SDL_BLENDMODE_BLEND);
+    if (light_tex)
+      SDL_SetTextureBlendMode(light_tex, SDL_BLENDMODE_MOD); // multiply
+    if (highlight_tex)
+      SDL_SetTextureBlendMode(highlight_tex, SDL_BLENDMODE_ADD);
+  }
 };
 
 SceneContext::SceneContext()
@@ -108,11 +161,57 @@ SceneContext::render()
   if (!renderer)
     return;
 
-  // For now: only the color buffer is rendered. Lightmap/highlight
-  // compositing from the original ClanLib-GL path is deferred.
+  int w = Display::get_width();
+  int h = Display::get_height();
+  if (w <= 0 || h <= 0)
+    return;
+
+  impl->ensure_targets(renderer, w, h);
+  if (!impl->color_tex || !impl->light_tex || !impl->highlight_tex)
+    {
+      // Fallback: color only
+      impl->color.render(renderer);
+      impl->color.clear();
+      impl->light.clear();
+      impl->highlight.clear();
+      return;
+    }
+
+  // --- Color buffer ---
+  SDL_SetRenderTarget(renderer, impl->color_tex);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+  SDL_RenderClear(renderer);
   impl->color.render(renderer);
-  // impl->light and impl->highlight ignored until a proper lightmap
-  // implementation is available under SDL.
+
+  // --- Light buffer (ambient + light sprites) ---
+  SDL_SetRenderTarget(renderer, impl->light_tex);
+  // Default ambient if nothing was queued: dark blue night
+  SDL_SetRenderDrawColor(renderer, 50, 50, 100, 255);
+  SDL_RenderClear(renderer);
+  // DrawingContext light requests (fill_screen + sprites) drawn on top
+  impl->light.render(renderer);
+
+  // --- Highlight buffer ---
+  SDL_SetRenderTarget(renderer, impl->highlight_tex);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+  SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+  SDL_RenderClear(renderer);
+  impl->highlight.render(renderer);
+
+  // --- Composite onto the window ---
+  SDL_SetRenderTarget(renderer, nullptr);
+
+  // 1. Color
+  SDL_SetTextureBlendMode(impl->color_tex, SDL_BLENDMODE_NONE);
+  SDL_RenderCopy(renderer, impl->color_tex, nullptr, nullptr);
+
+  // 2. Multiply by lightmap (night + local lights)
+  SDL_SetTextureBlendMode(impl->light_tex, SDL_BLENDMODE_MOD);
+  SDL_RenderCopy(renderer, impl->light_tex, nullptr, nullptr);
+
+  // 3. Additive highlights
+  SDL_SetTextureBlendMode(impl->highlight_tex, SDL_BLENDMODE_ADD);
+  SDL_RenderCopy(renderer, impl->highlight_tex, nullptr, nullptr);
 
   impl->color.clear();
   impl->light.clear();

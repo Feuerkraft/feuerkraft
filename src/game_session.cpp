@@ -217,10 +217,13 @@ GameSession::update()
 
   Display::clear(Color(0, 0, 0));
 
+  // Ambient lightmap (night). Must be queued before world draw so lights
+  // and the ambient clear are composited together in SceneContext::render.
+  view->get_sc().light().fill_screen(Color(50, 50, 100));
+
   GameWorld::current()->draw(*view);
   GameWorld::current()->draw_energie(*view);
   view->get_sc().render();
-  view->get_sc().light().fill_screen(Color(50, 50, 100));
 
   if (draw_colmap)
     collision_mgr->draw(*view);
