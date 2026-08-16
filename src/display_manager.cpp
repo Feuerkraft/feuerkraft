@@ -44,7 +44,7 @@ DisplayManager::DisplayManager()
 {
   level_map = new LevelMap();
 
-  screen.add(message_buffer = new MessageBuffer(CL_Display::get_width()/2, CL_Display::get_height() - 30));
+  screen.add(message_buffer = new MessageBuffer(Display::get_width()/2, Display::get_height() - 30));
   help = new Help();
   screen.add(radar = new Radar(FloatVector2d(64, 64), player));
   screen.add(new CommunicationDialog());
@@ -68,7 +68,7 @@ DisplayManager::update(float delta)
 }
 
 void
-DisplayManager::draw(CL_GraphicContext& gc)
+DisplayManager::draw(SDL_Renderer* gc)
 {
   screen.draw(gc);
 }

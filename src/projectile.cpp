@@ -61,7 +61,7 @@ Projectile::draw (View& view)
   }
 
   //std::cout << "Pos: " << pos.x << " " << pos.y << std::endl;
-  //CL_Display::draw_line (tmp_pos.x, tmp_pos.y,
+  //Display::draw_line (tmp_pos.x, tmp_pos.y,
   //		 pos.x, pos.y, 1.0, 1.0, 1.0, 0.0);
 }
 

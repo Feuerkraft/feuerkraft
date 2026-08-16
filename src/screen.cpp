@@ -25,7 +25,7 @@ Screen::~Screen ()
 }
 
 void
-Screen::draw (CL_GraphicContext& gc)
+Screen::draw (SDL_Renderer* gc)
 {
   for (GuiObjIter i = gui_objs.begin (); i != gui_objs.end (); ++i)
     {

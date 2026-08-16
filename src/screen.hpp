@@ -33,7 +33,7 @@ public:
   Screen ();
   virtual ~Screen ();
 
-  virtual void draw (CL_GraphicContext& gc);
+  virtual void draw (SDL_Renderer* gc);
   virtual void update (float delta);
 
   bool has(GuiObj* obj);

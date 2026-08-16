@@ -17,7 +17,7 @@
 #ifndef GUIOBJ_HH
 #define GUIOBJ_HH
 
-class CL_GraphicContext;
+struct SDL_Renderer;
 
 class GuiObj
 {
@@ -26,7 +26,7 @@ private:
 public:
   GuiObj() {}
   virtual ~GuiObj() {}
-  virtual void draw (CL_GraphicContext& gc) =0;
+  virtual void draw (SDL_Renderer* gc) =0;
   virtual void update (float delta) =0;
 };
 

@@ -44,7 +44,7 @@ public:
   Radar(const FloatVector2d& arg_pos, PlayerPtr v);
   ~Radar();
 
-  void draw(CL_GraphicContext& gc);
+  void draw(SDL_Renderer* gc);
   void update(float delta);
 
   /** Draw a blip to the radar, where 'pos' is in world coordinates

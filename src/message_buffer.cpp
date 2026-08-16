@@ -44,7 +44,7 @@ MessageBuffer::add(const std::string& str)
 }
 
 void
-MessageBuffer::draw(CL_GraphicContext& gc)
+MessageBuffer::draw(SDL_Renderer* gc)
 {
   int y = y_pos;
 

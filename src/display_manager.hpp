@@ -58,7 +58,7 @@ public:
 
   void add(GuiObj*);
   void update(float delta);
-  void draw(CL_GraphicContext& gc);
+  void draw(SDL_Renderer* gc);
 
   void show_levelmap();
   void hide_levelmap();

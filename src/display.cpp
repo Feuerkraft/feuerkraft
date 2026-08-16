@@ -1,3 +1,4 @@
+#include <algorithm>
 // Feuerkraft - A Tank Battle Game
 // Copyright (C) 2026 Ingo Ruhnke <grumbel@gmail.com>
 //
@@ -89,6 +90,53 @@ Display::set_fullscreen(bool enable)
     return;
   SDL_SetWindowFullscreen(window_,
                           enable ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
+
+void
+Display::fill_rect(const Rect& r, const Color& color)
+{
+  fill_rect(r.left, r.top, r.right, r.bottom, color);
+}
+
+void
+Display::fill_rect(int x1, int y1, int x2, int y2, const Color& color)
+{
+  if (!renderer_) return;
+  SDL_Color c = color.to_sdl();
+  SDL_SetRenderDrawColor(renderer_, c.r, c.g, c.b, c.a);
+  SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
+  SDL_Rect r;
+  r.x = std::min(x1, x2);
+  r.y = std::min(y1, y2);
+  r.w = std::abs(x2 - x1);
+  r.h = std::abs(y2 - y1);
+  SDL_RenderFillRect(renderer_, &r);
+}
+
+void
+Display::draw_line(int x1, int y1, int x2, int y2, const Color& color)
+{
+  if (!renderer_) return;
+  SDL_Color c = color.to_sdl();
+  SDL_SetRenderDrawColor(renderer_, c.r, c.g, c.b, c.a);
+  SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
+  SDL_RenderDrawLine(renderer_, x1, y1, x2, y2);
+}
+
+void
+Display::draw_rect(int x1, int y1, int x2, int y2, const Color& color)
+{
+  if (!renderer_) return;
+  SDL_Color c = color.to_sdl();
+  SDL_SetRenderDrawColor(renderer_, c.r, c.g, c.b, c.a);
+  SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
+  SDL_Rect r;
+  r.x = std::min(x1, x2);
+  r.y = std::min(y1, y2);
+  r.w = std::abs(x2 - x1);
+  r.h = std::abs(y2 - y1);
+  SDL_RenderDrawRect(renderer_, &r);
 }
 
 /* EOF */

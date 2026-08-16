@@ -199,10 +199,6 @@ Feuerkraft::main(int argc, char** argv)
       // Shutdown everything
       deinit();
     }
-  catch (CL_Error& err)
-    {
-      std::cout << "CL_Error: " << err.message.c_str() << std::endl;
-    }
   catch (FeuerkraftError& err)
     {
       std::cout << "FeuerkraftError: " << err.what() << std::endl;

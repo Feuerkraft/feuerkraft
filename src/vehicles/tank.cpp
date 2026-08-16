@@ -172,7 +172,7 @@ Tank::draw_energie (View& view)
 void
 Tank::draw_levelmap (LevelMap& levelmap)
 {
-  CL_Display::fill_rect (CL_Rect(int(pos.x / 40), int(pos.y / 40),
+  Display::fill_rect (Rect(int(pos.x / 40), int(pos.y / 40),
 				 int(pos.x / 40) + 4, int(pos.y / 40) + 4),
 			 Color(255, 0, 0, 255));
 }

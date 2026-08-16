@@ -225,8 +225,7 @@ GameSession::update()
   if (!do_pause)
     DisplayManager::current()->update(delta);
 
-  // TODO(Phase 5): DisplayManager::draw via SDL_Renderer
-  // DisplayManager::current()->draw(...);
+  DisplayManager::current()->draw(Display::get_renderer());
 
   // TODO(Phase 4): mouse input via SDL
 

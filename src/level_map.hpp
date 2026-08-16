@@ -29,7 +29,7 @@ public:
   ~LevelMap ();
 
   void update (float delta);
-  void draw (CL_GraphicContext& gc);
+  void draw (SDL_Renderer* gc);
 };
 
 #endif

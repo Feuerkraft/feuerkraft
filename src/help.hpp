@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "fonts.hpp"
 #ifndef HEADER_HELP_HXX
 #define HEADER_HELP_HXX
 
@@ -23,12 +24,12 @@
 class Help : public GuiObj
 {
 private:
-  CL_Font font;
+  Font font;
 public:
   Help();
   ~Help();
 
-  void draw(CL_GraphicContext& gc);
+  void draw(SDL_Renderer* gc);
   void update(float delta);
 private:
   Help (const Help&);

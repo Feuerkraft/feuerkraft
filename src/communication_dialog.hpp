@@ -44,7 +44,7 @@ public:
 
   void send(int id, const std::string& message);
 
-  void draw (CL_GraphicContext& gc);
+  void draw (SDL_Renderer* gc);
   void update (float delta);
 private:
   CommunicationDialog (const CommunicationDialog&);

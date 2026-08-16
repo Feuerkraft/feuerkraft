@@ -36,7 +36,7 @@ Radar::~Radar()
 }
 
 void
-Radar::draw(CL_GraphicContext& gc)
+Radar::draw(SDL_Renderer* gc)
 {
   FloatVector2d end(0.0f, 64.0f);
 
@@ -54,11 +54,11 @@ Radar::draw(CL_GraphicContext& gc)
 
   GameWorld::current()->get_buildingmap()->draw_radar(*this);
 
-  CL_Display::draw_line(int(pos.x), int(pos.y - 5),
+  Display::draw_line(int(pos.x), int(pos.y - 5),
                         int(pos.x), int(pos.y + 5),
                         Color(0, 255, 0));
 
-  CL_Display::draw_line(int(pos.x - 5), int(pos.y),
+  Display::draw_line(int(pos.x - 5), int(pos.y),
                         int(pos.x + 5), int(pos.y),
                         Color(0, 255, 0));
 }
@@ -82,7 +82,7 @@ Radar::draw_blip(const FloatVector2d& arg_pos, int size,
     {
       //diff = diff.rotate(-vehicle->get_angle () + (3.14159/2), FloatVector2d (0, 0, 1.0));
 
-      CL_Display::fill_rect(CL_Rect(int(pos.x + diff.x) - size, int(pos.y + diff.y) - size,
+      Display::fill_rect(Rect(int(pos.x + diff.x) - size, int(pos.y + diff.y) - size,
                                     int(pos.x + diff.x) + size, int(pos.y + diff.y) + size),
                             Color(int(255*red),
                                      int(255*green),

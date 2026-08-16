@@ -30,7 +30,7 @@ public:
   VehicleStatus ();
   virtual ~VehicleStatus ();
   void update (float delta);
-  void draw (CL_GraphicContext& gc);
+  void draw (SDL_Renderer* gc);
   void draw_rect (int x_pos, int y_pos, float fill);
 };
 

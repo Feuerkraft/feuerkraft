@@ -18,9 +18,10 @@
 
 namespace Fonts {
 
+Font font;
+
 void init()
 {
-  // TODO: load bitmap font from resources
 }
 
 void deinit()

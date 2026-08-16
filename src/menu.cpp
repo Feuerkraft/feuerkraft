@@ -45,11 +45,11 @@ Menu::update(float delta)
 }
 
 void
-Menu::draw(CL_GraphicContext& gc)
+Menu::draw(SDL_Renderer* gc)
 {
   // Draw menu background
-  CL_Display::fill_rect(CL_Rect(CL_Display::get_width() - 170, 0,
-                                CL_Display::get_width(), items.size()
+  Display::fill_rect(Rect(Display::get_width() - 170, 0,
+                                Display::get_width(), items.size()
                                 * (Fonts::font.get_height() + 4) + 20),
                         Color(0,0,0, 50));
 
@@ -58,9 +58,9 @@ Menu::draw(CL_GraphicContext& gc)
   for(MenuItems::iterator i = items.begin(); i != items.end(); ++i)
     {
       if ((i - items.begin()) == current_item)
-        (*i)->draw_highlight(CL_Display::get_width() - 160, y);
+        (*i)->draw_highlight(Display::get_width() - 160, y);
       else
-        (*i)->draw(CL_Display::get_width() - 160, y);
+        (*i)->draw(Display::get_width() - 160, y);
 
       y += (Fonts::font.get_height() + 4);
     }

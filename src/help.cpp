@@ -27,12 +27,12 @@ Help::~Help()
 }
 
 void
-Help::draw(CL_GraphicContext& gc)
+Help::draw(SDL_Renderer* gc)
 {
-  int center_x = CL_Display::get_width()/2;
-  int center_y = CL_Display::get_height()/2;
+  int center_x = Display::get_width()/2;
+  int center_y = Display::get_height()/2;
 
-  CL_Display::fill_rect(CL_Rect(center_x - 200, center_y - 150,
+  Display::fill_rect(Rect(center_x - 200, center_y - 150,
                                 center_x + 200, center_y + 150),
                         Color(100, 100, 0, 230));
   font.set_alignment(origin_top_left);

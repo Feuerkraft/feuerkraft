@@ -36,7 +36,7 @@ public:
   Menu();
   ~Menu();
 
-  void draw (CL_GraphicContext& gc);
+  void draw (SDL_Renderer* gc);
   void update(float delta);
   void add_item(MenuItem*);
 

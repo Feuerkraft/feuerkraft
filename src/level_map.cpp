@@ -31,7 +31,7 @@ LevelMap::update (float delta)
 }
 
 void
-LevelMap::draw (CL_GraphicContext& gc)
+LevelMap::draw (SDL_Renderer* gc)
 {
   GameWorld::current()->draw_levelmap (*this);
 }

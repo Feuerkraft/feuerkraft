@@ -42,8 +42,8 @@ StartScreen::draw ()
 
       //FIXME:Display2 CL_Display::clear_display ();
 
-      logo.draw (CL_Display::get_width ()/2,
-		 CL_Display::get_height ()/2,
+      logo.draw (Display::get_width()/2,
+		 Display::get_height()/2,
 		 display->get_gc ());
     }
   else if (logo_mode == S_FADETOGAME)
@@ -51,8 +51,8 @@ StartScreen::draw ()
       if (display_time <= 1.5f)
 	{
 	  logo.set_alpha (1.0f - (display_time/1.5f));
-	  logo.draw (CL_Display::get_width ()/2,
-		     CL_Display::get_height ()/2,
+	  logo.draw (Display::get_width()/2,
+		     Display::get_height()/2,
 		     display->get_gc ());
 	}
       else
@@ -69,16 +69,16 @@ StartScreen::draw ()
       else
 	  endlogo.set_alpha (1.0f);
 
-      endlogo.draw (CL_Display::get_width ()/2,
-		    CL_Display::get_height ()/2);
+      endlogo.draw (Display::get_width()/2,
+		    Display::get_height()/2);
     }
   else if (logo_mode == S_FADETOBLACK)
     {
       endlogo.set_alpha (1.0f);
-      endlogo.draw (CL_Display::get_width ()/2,
-		    CL_Display::get_height ()/2);
+      endlogo.draw (Display::get_width()/2,
+		    Display::get_height()/2);
 
-      CL_Display::fill_rect (CL_Rect(0, 0, CL_Display::get_width (), CL_Display::get_height ()),
+      Display::fill_rect (Rect(0, 0, Display::get_width(), Display::get_height()),
 			     Color(0, 0, 0, int(255.0f * display_time/2.0f)));
       if (display_time >= 2.0f)
 	logo_mode = S_QUIT;

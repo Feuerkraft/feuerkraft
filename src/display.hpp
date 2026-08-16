@@ -11,6 +11,7 @@
 
 #include <SDL.h>
 #include "color.hpp"
+#include "display/math_types.hpp"
 
 /**
  * Thin facade around the SDL window/renderer.
@@ -33,6 +34,11 @@ public:
 
   static bool is_fullscreen();
   static void set_fullscreen(bool enable);
+
+  static void fill_rect(int x1, int y1, int x2, int y2, const Color& color);
+  static void fill_rect(const Rect& r, const Color& color);
+  static void draw_line(int x1, int y1, int x2, int y2, const Color& color);
+  static void draw_rect(int x1, int y1, int x2, int y2, const Color& color);
 
 private:
   static SDL_Window*   window_;

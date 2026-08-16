@@ -17,10 +17,40 @@
 #ifndef HEADER_FEUERKRAFT_FONTS_HXX
 #define HEADER_FEUERKRAFT_FONTS_HXX
 
-// Font support is temporarily stubbed during the SDL2 port.
-// A proper bitmap/TTF font implementation will replace this.
+#include <string>
+#include "sprite.hpp"
+
+/** Minimal font stub used during the SDL2 port.
+ *  Provides the methods call sites expect; rendering is a no-op until
+ *  a real bitmap/TTF implementation is added. */
+class Font
+{
+public:
+  Font() {}
+
+  int get_height() const { return 12; }
+  int get_width(const std::string& text) const { return static_cast<int>(text.size()) * 7; }
+
+  struct BoundingRect {
+    int width, height;
+    int get_width() const { return width; }
+    int get_height() const { return height; }
+  };
+
+  BoundingRect bounding_rect(int /*x*/, int /*y*/, const std::string& text) const {
+    BoundingRect b;
+    b.width = get_width(text);
+    b.height = get_height();
+    return b;
+  }
+
+  void set_alignment(Origin /*o*/) {}
+  void draw(int /*x*/, int /*y*/, const std::string& /*text*/) {}
+};
 
 namespace Fonts {
+
+extern Font font;
 
 void init();
 void deinit();

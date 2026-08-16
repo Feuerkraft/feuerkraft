@@ -41,7 +41,7 @@ public:
 
   void add(const std::string& );
 
-  void draw(CL_GraphicContext& gc);
+  void draw(SDL_Renderer* gc);
   void update(float delta);
 private:
   MessageBuffer (const MessageBuffer&);
