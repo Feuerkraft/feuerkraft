@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "assert.hpp"
+#include "display.hpp"
 #include "display_manager.hpp"
 #include "fonts.hpp"
 #include "input/input_manager.hpp"

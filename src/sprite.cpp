@@ -8,14 +8,14 @@
 
 Sprite::Sprite()
   : current_frame(0), angle(0), alpha(1.0f),
-    scale_x(1.0f), scale_y(1.0f), origin(origin_center),
+    scale_x(1.0f), scale_y(1.0f), anim_time(0), frame_delay(0.1f), origin(origin_center),
     color(1.0f, 1.0f, 1.0f, 1.0f)
 {
 }
 
 Sprite::Sprite(const std::string& filename)
   : current_frame(0), angle(0), alpha(1.0f),
-    scale_x(1.0f), scale_y(1.0f), origin(origin_center),
+    scale_x(1.0f), scale_y(1.0f), anim_time(0), frame_delay(0.1f), origin(origin_center),
     color(1.0f, 1.0f, 1.0f, 1.0f)
 {
   load_frame(filename);
@@ -23,7 +23,7 @@ Sprite::Sprite(const std::string& filename)
 
 Sprite::Sprite(SDL_Texture* texture, int width, int height)
   : current_frame(0), angle(0), alpha(1.0f),
-    scale_x(1.0f), scale_y(1.0f), origin(origin_center),
+    scale_x(1.0f), scale_y(1.0f), anim_time(0), frame_delay(0.1f), origin(origin_center),
     color(1.0f, 1.0f, 1.0f, 1.0f)
 {
   if (texture)
@@ -40,6 +40,7 @@ Sprite::Sprite(const Sprite& other)
   : current_frame(other.current_frame),
     angle(other.angle), alpha(other.alpha),
     scale_x(other.scale_x), scale_y(other.scale_y),
+    anim_time(other.anim_time), frame_delay(other.frame_delay),
     origin(other.origin), color(other.color)
 {
   // Share textures (no deep copy of GPU resources). Refcounting would
@@ -59,6 +60,8 @@ Sprite::operator=(const Sprite& other)
   alpha = other.alpha;
   scale_x = other.scale_x;
   scale_y = other.scale_y;
+  anim_time = other.anim_time;
+  frame_delay = other.frame_delay;
   origin = other.origin;
   color = other.color;
   return *this;
@@ -202,6 +205,20 @@ Sprite::draw(float x, float y) const
 
   SDL_RenderCopyEx(renderer, f.texture, nullptr, &dst,
                    angle, nullptr, SDL_FLIP_NONE);
+}
+
+
+void
+Sprite::update(float delta)
+{
+  if (frames.size() <= 1 || frame_delay <= 0.0f)
+    return;
+  anim_time += delta;
+  while (anim_time >= frame_delay)
+    {
+      anim_time -= frame_delay;
+      current_frame = (current_frame + 1) % static_cast<int>(frames.size());
+    }
 }
 
 /* EOF */

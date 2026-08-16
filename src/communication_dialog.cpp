@@ -16,6 +16,7 @@
 
 #include "fonts.hpp"
 #include "display.hpp"
+#include "system.hpp"
 #include "unit.hpp"
 #include "view.hpp"
 #include "resource_manager.hpp"

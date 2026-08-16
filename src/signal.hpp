@@ -9,10 +9,8 @@
 
 #include <functional>
 #include <vector>
-#include <memory>
 
-/** Opaque connection handle (replaces CL_Slot). Keeping the connection
- *  alive is optional; signals hold their own copies of the callbacks. */
+/** Opaque connection handle (replaces CL_Slot). */
 class Slot
 {
 public:
@@ -27,7 +25,6 @@ public:
 
   Signal() {}
 
-  /** Connect a free function or lambda. */
   Slot connect(Callback cb)
   {
     callbacks.push_back(std::move(cb));
@@ -44,12 +41,23 @@ public:
     return Slot();
   }
 
-  /** Connect a const member function. */
   template<typename T>
   Slot connect(T* obj, void (T::*method)(Args...) const)
   {
     callbacks.push_back([obj, method](Args... args) {
       (obj->*method)(args...);
+    });
+    return Slot();
+  }
+
+  /** ClanLib-style bind of an extra trailing int argument:
+   *  sig.connect(obj, &Class::method, index)
+   *  where method has signature void(Args..., int). */
+  template<typename T>
+  Slot connect(T* obj, void (T::*method)(Args..., int), int bound)
+  {
+    callbacks.push_back([obj, method, bound](Args... args) {
+      (obj->*method)(args..., bound);
     });
     return Slot();
   }
@@ -66,7 +74,6 @@ private:
   std::vector<Callback> callbacks;
 };
 
-// Aliases matching ClanLib naming used in the tree
 using Signal_v0 = Signal<>;
 using Signal_v1_float = Signal<float>;
 

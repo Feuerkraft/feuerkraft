@@ -14,7 +14,16 @@
 enum Origin
 {
   origin_top_left,
+  origin_top_center,
   origin_center
+};
+
+enum BlendFunc
+{
+  blend_src_alpha,
+  blend_one,
+  blend_zero,
+  blend_dst_color
 };
 
 /**
@@ -57,6 +66,20 @@ public:
   /** Draw at the given screen position (alignment applied). */
   void draw(float x, float y) const;
   void draw(int x, int y) const { draw(static_cast<float>(x), static_cast<float>(y)); }
+  // Compatibility overload (renderer arg ignored; uses Display::get_renderer())
+  void draw(float x, float y, void*) const { draw(x, y); }
+  void draw(int x, int y, void* p) const { draw(static_cast<float>(x), static_cast<float>(y), p); }
+
+  /** Advance animation by delta seconds (multi-frame sprites). */
+  void update(float delta);
+
+  /** No-op blend func stub (SDL_Texture uses fixed blend mode). */
+  void set_blend_func(BlendFunc, BlendFunc) {}
+
+  /** Rotate by degrees (adds to current angle). */
+  void rotate(float degrees) { angle += degrees; }
+
+  explicit operator bool() const { return !frames.empty(); }
 
   /** Add an extra frame from a file (for multi-frame sprites). */
   void add_frame(const std::string& filename);
@@ -75,6 +98,8 @@ private:
   float alpha;
   float scale_x;
   float scale_y;
+  float anim_time;
+  float frame_delay; // seconds per frame
   Origin origin;
   Color color;
 

@@ -15,6 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <math.h>
+#include "math.hpp"
+#include "display.hpp"
 #include "resource_manager.hpp"
 #include "game_world.hpp"
 #include "particles/smoke_particle.hpp"

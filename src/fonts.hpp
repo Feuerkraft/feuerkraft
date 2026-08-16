@@ -45,6 +45,7 @@ public:
   }
 
   void set_alignment(Origin /*o*/) {}
+  void set_alpha(float /*a*/) {}
   void draw(int /*x*/, int /*y*/, const std::string& /*text*/) {}
 };
 

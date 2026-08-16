@@ -186,6 +186,10 @@ bool triangle_collide(const Triangle& a, const Triangle& b);
 
 } // namespace Math
 
+#ifndef PI
+#define PI 3.14159265358979323846f
+#endif
+
 #endif
 
 /* EOF */

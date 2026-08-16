@@ -1,3 +1,5 @@
+#include <SDL.h>
+#include <SDL_image.h>
 // Feuerkraft - A Tank Battle Game
 // Copyright (C) 2000 Ingo Ruhnke <grumbel@gmail.com>
 //

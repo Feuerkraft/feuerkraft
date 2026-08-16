@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "resource_manager.hpp"
+#include "display.hpp"
 #include "player.hpp"
 #include "vehicles/vehicle.hpp"
 #include "vehicle_status.hpp"

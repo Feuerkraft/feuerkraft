@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "buildings/building_map.hpp"
+#include "display.hpp"
 #include "game_obj_manager.hpp"
 #include "radar.hpp"
 #include "math.hpp"
