@@ -121,6 +121,7 @@ Font::load(const std::string& image_path, const std::string& letters)
       return false;
     }
   SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+  SDL_SetTextureScaleMode(texture, SDL_ScaleModeLinear);
 
   if (regions.size() != letters.size())
     {

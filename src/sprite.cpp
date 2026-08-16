@@ -103,6 +103,8 @@ Sprite::load_frame(const std::string& filename)
     }
 
   SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+  // Linear filtering matches ClanLib-GL light cones / scaled sprites
+  SDL_SetTextureScaleMode(texture, SDL_ScaleModeLinear);
 
   Frame f;
   f.texture = texture;

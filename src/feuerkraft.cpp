@@ -120,6 +120,9 @@ Feuerkraft::init()
       throw FeuerkraftError(std::string("SDL_CreateWindow failed: ") + SDL_GetError());
     }
 
+  // Prefer linear filtering for scaled sprites/light cones (ClanLib default)
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
   SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,
                                               SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   if (!renderer)

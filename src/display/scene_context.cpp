@@ -70,11 +70,20 @@ public:
       }
 
     if (color_tex)
-      SDL_SetTextureBlendMode(color_tex, SDL_BLENDMODE_BLEND);
+      {
+        SDL_SetTextureBlendMode(color_tex, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureScaleMode(color_tex, SDL_ScaleModeLinear);
+      }
     if (light_tex)
-      SDL_SetTextureBlendMode(light_tex, SDL_BLENDMODE_MOD); // multiply
+      {
+        SDL_SetTextureBlendMode(light_tex, SDL_BLENDMODE_MOD); // multiply
+        SDL_SetTextureScaleMode(light_tex, SDL_ScaleModeLinear);
+      }
     if (highlight_tex)
-      SDL_SetTextureBlendMode(highlight_tex, SDL_BLENDMODE_ADD);
+      {
+        SDL_SetTextureBlendMode(highlight_tex, SDL_BLENDMODE_ADD);
+        SDL_SetTextureScaleMode(highlight_tex, SDL_ScaleModeLinear);
+      }
   }
 };
 
