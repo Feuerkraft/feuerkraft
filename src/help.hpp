@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "fonts.hpp"
 #ifndef HEADER_HELP_HXX
 #define HEADER_HELP_HXX
 
@@ -24,7 +23,6 @@
 class Help : public GuiObj
 {
 private:
-  Font font;
 public:
   Help();
   ~Help();

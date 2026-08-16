@@ -20,7 +20,6 @@
 
 Help::Help()
 {
-  font = Fonts::font;
 }
 
 Help::~Help()
@@ -36,8 +35,8 @@ Help::draw(SDL_Renderer* gc)
   Display::fill_rect(Rect(center_x - 200, center_y - 150,
                                 center_x + 200, center_y + 150),
                         Color(100, 100, 0, 230));
-  font.set_alignment(origin_top_left);
-  font.draw(center_x - 190, center_y - 120,
+  Fonts::font.set_alignment(origin_top_left);
+  Fonts::font.draw(center_x - 190, center_y - 120,
             "F1 - show/hide this help screen\n"
             "Esc - leave game\n"
             "j  - enter/leave a vehicle\n"
