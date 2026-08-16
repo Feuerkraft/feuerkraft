@@ -28,12 +28,35 @@ Background::Background (const Sprite& arg_sprite,
 void
 Background::draw (View& view)
 {
-  //sprite.draw();
-  // FIXME: We should take the view size and surface size into account
+  // Tile the background in screen space, but queue through the color
+  // DrawingContext so it ends up on the lightmap color buffer (direct
+  // sprite.draw() would hit the window and be overwritten by SceneContext).
+  int sw = sprite.get_width();
+  int sh = sprite.get_height();
+  if (sw <= 0 || sh <= 0)
+    return;
+
+  float ox = view.get_x_offset();
+  float oy = view.get_y_offset();
+
+  // SceneContext applies translate(ox, oy); pass world coords so that
+  // world + translate = screen position.
+  int mod_x = int(ox) % sw;
+  int mod_y = int(oy) % sh;
+  // C++ % can be negative for negative offsets
+  if (mod_x < 0) mod_x += sw;
+  if (mod_y < 0) mod_y += sh;
+
   for (int y = -1; y <= 2; ++y)
     for (int x = -1; x <= 2; ++x)
-      sprite.draw(x * sprite.get_width()  + (int(view.get_x_offset()) % sprite.get_width()),
-                  y * sprite.get_height() + (int(view.get_y_offset()) % sprite.get_height()));
+      {
+        float screen_x = float(x * sw + mod_x);
+        float screen_y = float(y * sh + mod_y);
+        view.get_sc().color().draw(sprite,
+                                   screen_x - ox,
+                                   screen_y - oy,
+                                   z_pos);
+      }
 }
 
 /* EOF */
