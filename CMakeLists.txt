@@ -26,6 +26,12 @@ option(BUILD_TESTS "Build test cases" OFF)
 
 include(GNUInstallDirs)
 
+# Compiled-in data directory (overridable with -DFEUERKRAFT_DATADIR=...)
+if(NOT DEFINED FEUERKRAFT_DATADIR)
+  set(FEUERKRAFT_DATADIR "${CMAKE_INSTALL_FULL_DATADIR}/${PROJECT_NAME}")
+endif()
+message(STATUS "FEUERKRAFT_DATADIR=${FEUERKRAFT_DATADIR}")
+
 if(WARNINGS)
   set(WARNINGS_CXX_FLAGS
     -pedantic
@@ -102,6 +108,9 @@ file(GLOB FEUERKRAFT_SOURCES
 
 add_executable(feuerkraft ${FEUERKRAFT_SOURCES})
 target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})
+target_compile_definitions(feuerkraft PRIVATE
+  FEUERKRAFT_DATADIR="${FEUERKRAFT_DATADIR}"
+  PACKAGE_STRING="Feuerkraft ${PROJECT_VERSION}")
 target_link_libraries(feuerkraft PRIVATE
   libfeuerkraft_scripting
   ${GUILE_LIBRARIES}
@@ -115,28 +124,20 @@ target_include_directories(feuerkraft SYSTEM PRIVATE
   ${SDL2_IMAGE_INCLUDE_DIRS}
   ${SDL2_MIXER_INCLUDE_DIRS})
 
-install(TARGETS feuerkraft RUNTIME
-  DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
-
-configure_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/feuerkraft.sh.in
-  ${CMAKE_BINARY_DIR}/feuerkraft.sh)
-
-install(FILES
-  ${CMAKE_BINARY_DIR}/feuerkraft.sh
-  RENAME feuerkraft
-  PERMISSIONS OWNER_EXECUTE OWNER_READ OWNER_WRITE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-  DESTINATION ${CMAKE_INSTALL_BINDIR})
+# Binary goes to bindir; data path is compiled in as FEUERKRAFT_DATADIR
+install(TARGETS feuerkraft
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/data/
   DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME})
 
 install(FILES
-  feuerkraft.svg
-  DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
+  ${CMAKE_CURRENT_SOURCE_DIR}/feuerkraft.svg
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
+  RENAME feuerkraft.svg)
 
 install(FILES
-  feuerkraft.desktop
+  ${CMAKE_CURRENT_SOURCE_DIR}/feuerkraft.desktop
   DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 
 # EOF #

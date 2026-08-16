@@ -28,6 +28,14 @@ Compilation is done via `cmake`:
     cmake ..
     make
 
+Install (optional):
+
+    cmake --install . --prefix /usr/local
+
+The data directory is compiled in as `FEUERKRAFT_DATADIR` (default:
+`$prefix/share/feuerkraft`). Override at configure time with
+`-DFEUERKRAFT_DATADIR=/path/to/data`, or at runtime with `--datadir`.
+
 Or with Nix:
 
     nix build

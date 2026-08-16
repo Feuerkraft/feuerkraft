@@ -90,14 +90,18 @@ Feuerkraft::init()
   // Init pseudo random number generator
   srand (time (0));
 
-  // Find the location of Feuerkrafts data files (images, sounds, etc.)
+  // Find the location of Feuerkraft data files (images, sounds, etc.)
+  // Prefer --datadir, then the compile-time FEUERKRAFT_DATADIR, then
+  // paths relative to the executable (developer builds).
   if (!args->datadir.empty())
     {
       path_manager.add_path(args->datadir);
-      path_manager.find_path("feuerkraft.xml");
     }
   else
     {
+#ifdef FEUERKRAFT_DATADIR
+      path_manager.add_path(FEUERKRAFT_DATADIR);
+#endif
       std::string exe_path = System::get_exe_path();
       path_manager.add_path(exe_path + "../data");
       path_manager.add_path(exe_path + "data");
@@ -105,7 +109,12 @@ Feuerkraft::init()
       path_manager.add_path(exe_path + "share/games/feuerkraft");
       path_manager.add_path(exe_path + "../share/feuerkraft");
       path_manager.add_path(exe_path + "../share/games/feuerkraft");
-      path_manager.find_path("feuerkraft.xml");
+    }
+  if (!path_manager.find_path("feuerkraft.xml"))
+    {
+      throw FeuerkraftError(
+        "Could not find data directory (feuerkraft.xml). "
+        "Pass --datadir or install data to FEUERKRAFT_DATADIR.");
     }
 
   // Create the main window (SDL2) — full graphics port follows in later phases
