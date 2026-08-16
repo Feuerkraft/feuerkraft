@@ -26,6 +26,7 @@
 
 #include "feuerkraft_error.hpp"
 #include "fonts.hpp"
+#include "input/game_controllers.hpp"
 #include "input/input_manager.hpp"
 #include "game_session_manager.hpp"
 #include "keyboard_manager.hpp"
@@ -166,6 +167,7 @@ void
 Feuerkraft::deinit()
 {
   Fonts::deinit();
+  GameControllers::clear();
   PingusSound::deinit();
 
   SDL_Renderer* renderer = Display::get_renderer();

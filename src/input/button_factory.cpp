@@ -26,6 +26,8 @@
 #include "axis_button.hpp"
 #include "multi_button.hpp"
 #include "button_factory.hpp"
+#include "input_button_game_controller.hpp"
+#include "game_controllers.hpp"
 
 namespace {
 
@@ -106,10 +108,13 @@ ButtonFactory::create_axis_button(SCM lst)
 InputButton*
 ButtonFactory::create_joystick_button(SCM lst)
 {
-  // Joystick buttons not fully wired yet; return a dummy keyboard binding
-  // so the controller file still loads.
-  (void)lst;
-  return new InputButtonInputDevice(SDL_SCANCODE_UNKNOWN);
+  // (joystick-button device button) → SDL_GameController button
+  // button: 0=A 1=B 2=X 3=Y 4=BACK 5=GUIDE 6=START 7=LEFTSTICK
+  //         8=RIGHTSTICK 9=LEFTSHOULDER 10=RIGHTSHOULDER 11=DPAD_UP …
+  int device_num = scm_to_int(scm_car(lst));
+  int button_num = scm_to_int(scm_cadr(lst));
+  SDL_GameController* gc = GameControllers::get(device_num);
+  return new InputButtonGameController(gc, button_num);
 }
 
 InputButton*

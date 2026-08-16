@@ -16,6 +16,7 @@
 
 #include <SDL.h>
 #include "input_axis_input_device.hpp"
+#include "game_controllers.hpp"
 #include "../feuerkraft_error.hpp"
 #include "../guile.hpp"
 #include "button_factory.hpp"
@@ -48,14 +49,10 @@ AxisFactory::create_joystick_axis(SCM lst)
   int device_num = scm_to_int(scm_car(lst));
   int axis_num   = scm_to_int(scm_cadr(lst));
 
-  if (device_num >= 0 && device_num < SDL_NumJoysticks())
-    {
-      SDL_Joystick* joy = SDL_JoystickOpen(device_num);
-      return new InputAxisInputDevice(joy, axis_num);
-    }
-
-  // No joystick — return a dead axis so the controller still loads
-  return new InputAxisInputDevice(nullptr, axis_num);
+  // (joystick-axis device axis) → SDL_GameController axis
+  // axis: 0=LEFTX 1=LEFTY 2=RIGHTX 3=RIGHTY 4=TRIGGERLEFT 5=TRIGGERRIGHT
+  SDL_GameController* gc = GameControllers::get(device_num);
+  return new InputAxisInputDevice(gc, axis_num);
 }
 
 InputAxis*

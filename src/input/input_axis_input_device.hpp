@@ -20,16 +20,17 @@
 #include <SDL.h>
 #include "input_axis.hpp"
 
-/** Joystick axis backed by SDL. For now keyboard axes are not used. */
+/** GameController axis (left stick, triggers, …) via SDL_GameController. */
 class InputAxisInputDevice : public InputAxis
 {
 private:
-  SDL_Joystick* joystick;
-  int axis_num;
+  SDL_GameController* controller;
+  SDL_GameControllerAxis axis;
   float last_pos;
+  float deadzone;
 
 public:
-  InputAxisInputDevice(SDL_Joystick* joystick, int num);
+  InputAxisInputDevice(SDL_GameController* controller, int axis_num);
   void update(float delta) override;
 };
 
