@@ -37,6 +37,7 @@ private:
 
 public:
   Controller();
+  ~Controller();
 
   float get_axis_state  (int name) const;
   bool  get_button_state(int name) const;

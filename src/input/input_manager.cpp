@@ -79,7 +79,7 @@ InputManager::update(float delta)
     recorder->record(get_controller());
 }
 
-Controller
+const Controller&
 InputManager::get_controller()
 {
   assert(impl);

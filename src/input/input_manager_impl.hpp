@@ -35,7 +35,7 @@ public:
 
   InputEventLst get_events();
 
-  Controller get_controller();
+  const Controller& get_controller();
   void clear();
 
   void add_axis_event  (int name, float pos);

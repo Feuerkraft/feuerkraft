@@ -17,6 +17,10 @@
 #include "../assert.hpp"
 #include "controller.hpp"
 
+Controller::~Controller()
+{
+}
+
 Controller::Controller()
 {
   buttons.resize(ControllerDef::get_button_count());

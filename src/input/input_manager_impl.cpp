@@ -22,7 +22,7 @@ InputManagerImpl::get_events()
   return events;
 }
 
-Controller
+const Controller&
 InputManagerImpl::get_controller()
 {
   controller.set_events(events);
