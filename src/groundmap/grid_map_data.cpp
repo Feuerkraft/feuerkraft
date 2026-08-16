@@ -59,7 +59,9 @@ void
 GridMapData::parse_from_file (SCM desc)
 {
   /* GridMaps will always get a one pixel border with the base
-     environment */
+     environment. Mission PNGs are 8-bit indexed images where the
+     palette index is the GroundType enum value — do not convert the
+     surface or the indices are lost. */
   char* str = scm_to_utf8_string(scm_car (desc));
   std::cout << "Loading from: " << str << std::endl;
   std::string filename = str;
@@ -74,43 +76,51 @@ GridMapData::parse_from_file (SCM desc)
       return;
     }
 
-  // Convert to indexed/palette or at least a known 8-bit layout if possible
-  SDL_Surface* converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_INDEX8, 0);
-  if (!converted)
+  // Prefer the surface as loaded. Converting to INDEX8 remaps the
+  // palette and destroys the GroundType encoding.
+  SDL_Surface* src = surface;
+  SDL_Surface* owned = nullptr;
+  if (surface->format->BitsPerPixel != 8)
     {
-      // Fall back to reading first byte of each pixel from RGBA
-      converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0);
+      // Unexpected format: convert keeping indices if possible, else fail loudly
+      std::cerr << "GridMapData: expected 8-bit indexed PNG, got "
+                << int(surface->format->BitsPerPixel) << "-bit for "
+                << path << std::endl;
+      owned = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_INDEX8, 0);
+      if (!owned)
+        {
+          SDL_FreeSurface(surface);
+          std::cerr << "GridMapData: convert failed: " << SDL_GetError() << std::endl;
+          return;
+        }
+      src = owned;
     }
-  SDL_FreeSurface(surface);
 
-  if (!converted)
-    {
-      std::cerr << "GridMapData: convert failed: " << SDL_GetError() << std::endl;
-      return;
-    }
-
-  grid_width  = converted->w + 2;
-  grid_height = converted->h + 2;
+  grid_width  = src->w + 2;
+  grid_height = src->h + 2;
 
   grid_data.resize (grid_width * grid_height);
 
   for (int i = 0; i < grid_height * grid_width; ++i)
     grid_data[i] = GT_SAND;
 
-  SDL_LockSurface(converted);
-  unsigned char* buffer = static_cast<unsigned char*>(converted->pixels);
-  int bpp = converted->format->BytesPerPixel;
-  int pitch = converted->pitch;
+  SDL_LockSurface(src);
+  unsigned char* buffer = static_cast<unsigned char*>(src->pixels);
+  int pitch = src->pitch;
 
-  for (int y = 0; y < converted->h; ++y)
-    for (int x = 0; x < converted->w; ++x)
+  for (int y = 0; y < src->h; ++y)
+    for (int x = 0; x < src->w; ++x)
       {
-        unsigned char value = buffer[y * pitch + x * bpp];
+        // 8-bit: one index byte per pixel
+        unsigned char value = buffer[y * pitch + x];
         grid_data[(x + 1) + ((y + 1) * grid_width)]
           = static_cast<GroundType>(value);
       }
-  SDL_UnlockSurface(converted);
-  SDL_FreeSurface(converted);
+  SDL_UnlockSurface(src);
+
+  if (owned)
+    SDL_FreeSurface(owned);
+  SDL_FreeSurface(surface);
 }
 
 GroundMap*

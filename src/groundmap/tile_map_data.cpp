@@ -88,26 +88,29 @@ TileMapData::parse_from_file (SCM desc)
                 << ": " << IMG_GetError() << std::endl;
       return;
     }
-  SDL_Surface* converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_INDEX8, 0);
-  if (!converted)
-    converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0);
-  SDL_FreeSurface(surface);
-  if (!converted)
-    return;
 
-  width  = converted->w;
-  height = converted->h;
+  // Keep original palette indices; do not convert.
+  if (surface->format->BitsPerPixel != 8)
+    {
+      std::cerr << "TileMapData: expected 8-bit indexed PNG, got "
+                << int(surface->format->BitsPerPixel) << "-bit for "
+                << path << std::endl;
+      SDL_FreeSurface(surface);
+      return;
+    }
+
+  width  = surface->w;
+  height = surface->h;
   tilemap_data.resize (width * height);
 
-  SDL_LockSurface(converted);
-  unsigned char* buffer = static_cast<unsigned char*>(converted->pixels);
-  int bpp = converted->format->BytesPerPixel;
-  int pitch = converted->pitch;
+  SDL_LockSurface(surface);
+  unsigned char* buffer = static_cast<unsigned char*>(surface->pixels);
+  int pitch = surface->pitch;
   for (int y = 0; y < height; ++y)
     for (int x = 0; x < width; ++x)
-      tilemap_data[x + y * width] = buffer[y * pitch + x * bpp];
-  SDL_UnlockSurface(converted);
-  SDL_FreeSurface(converted);
+      tilemap_data[x + y * width] = buffer[y * pitch + x];
+  SDL_UnlockSurface(surface);
+  SDL_FreeSurface(surface);
 }
 
 void
