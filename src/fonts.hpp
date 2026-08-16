@@ -18,24 +18,45 @@
 #define HEADER_FEUERKRAFT_FONTS_HXX
 
 #include <string>
+#include <map>
+#include <vector>
+#include <SDL.h>
 #include "sprite.hpp"
 
-/** Minimal font stub used during the SDL2 port.
- *  Provides the methods call sites expect; rendering is a no-op until
- *  a real bitmap/TTF implementation is added. */
+/** Bitmap font built from a horizontal glyph strip (ClanLib-style). */
 class Font
 {
 public:
-  Font() {}
-
-  int get_height() const { return 12; }
-  int get_width(const std::string& text) const { return static_cast<int>(text.size()) * 7; }
+  struct Glyph {
+    int x, y, w, h;
+  };
 
   struct BoundingRect {
     int width, height;
     int get_width() const { return width; }
     int get_height() const { return height; }
   };
+
+private:
+  SDL_Texture* texture;
+  int texture_w;
+  int texture_h;
+  int line_height;
+  int space_width;
+  std::map<char, Glyph> glyphs;
+  Origin alignment;
+  float alpha;
+
+public:
+  Font();
+  ~Font();
+
+  /** Load a horizontal glyph atlas. Glyphs are detected by opaque
+   *  pixel runs; `letters` maps them left-to-right to characters. */
+  bool load(const std::string& image_path, const std::string& letters);
+
+  int get_height() const { return line_height; }
+  int get_width(const std::string& text) const;
 
   BoundingRect bounding_rect(int /*x*/, int /*y*/, const std::string& text) const {
     BoundingRect b;
@@ -44,9 +65,14 @@ public:
     return b;
   }
 
-  void set_alignment(Origin /*o*/) {}
-  void set_alpha(float /*a*/) {}
-  void draw(int /*x*/, int /*y*/, const std::string& /*text*/) {}
+  void set_alignment(Origin o) { alignment = o; }
+  void set_alpha(float a) { alpha = a; }
+
+  void draw(int x, int y, const std::string& text) const;
+
+private:
+  Font(const Font&);
+  Font& operator=(const Font&);
 };
 
 namespace Fonts {
