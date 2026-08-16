@@ -14,7 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/core.h>
+#include <SDL.h>
+#include "system.hpp"
 
 // ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
 // with "no matching function for call to __assert_fail" #undef.
@@ -71,12 +72,12 @@ void generate_map(Field<int>& field)
 */
 int main()
 {
-  CL_SetupCore::init();
+  SDL_Init(SDL_INIT_TIMER);
 
   srand(time(NULL));
   Field<int> field(50, 30);
 
-  unsigned int start_time = CL_System::get_time();
+  unsigned int start_time = System::get_time();
   unsigned int end_time;
 
   generate_map(field);
@@ -139,15 +140,15 @@ int main()
       //      getchar();
       //std::cout << "round: " << ++i << std::endl;
     }
-  end_time = CL_System::get_time();
+  end_time = System::get_time();
   std::cout << "Msec: " << end_time - start_time << std::endl;
 
-  CL_SetupCore::deinit();
+  SDL_Quit();
 }
 #elif TESTME2
 int main()
 {
-  CL_SetupCore::init();
+  SDL_Init(SDL_INIT_TIMER);
 
   srand(time(NULL));
   Field<int> field(256, 256);
@@ -159,7 +160,7 @@ int main()
   Pos start;
   Pos end;
 
-  unsigned int start_time = CL_System::get_time();
+  unsigned int start_time = System::get_time();
   unsigned int end_time;
 
 
@@ -179,10 +180,10 @@ int main()
         }
       //std::cout << "State: " << rounds << " " << pathfinder.get_state() << std::endl;
     }
-  end_time = CL_System::get_time();
+  end_time = System::get_time();
   std::cout << "Msec: " << end_time - start_time << std::endl;
 
-  CL_SetupCore::deinit();
+  SDL_Quit();
 }
 #endif
 

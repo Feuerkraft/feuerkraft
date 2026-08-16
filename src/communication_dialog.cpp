@@ -68,7 +68,7 @@ CommunicationDialog::send(int unit_id, const std::string& text)
 {
   Message message;
 
-  message.time = CL_System::get_time();
+  message.time = System::get_time();
   message.text = text;
 
   messages[unit_id] = message;
@@ -80,7 +80,7 @@ CommunicationDialog::update (float delta)
   // Remove old messages from the display
   for (Messages::iterator i = messages.begin(); i != messages.end(); ++i)
     {
-      if (i->second.time + 2000 < CL_System::get_time())
+      if (i->second.time + 2000 < System::get_time())
         {
           messages.erase(i);
         }

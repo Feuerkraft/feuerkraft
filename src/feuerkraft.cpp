@@ -16,21 +16,11 @@
 
 #include <config.h>
 #include <iostream>
-#include <ClanLib/gl.h>
-#include <ClanLib/Display/setupdisplay.h>
-#include <ClanLib/Display/display.h>
-#include <ClanLib/Display/keyboard.h>
-#include <ClanLib/Display/Providers/provider_factory.h>
-#include <ClanLib/Display/keys.h>
-#include <ClanLib/GL/setupgl.h>
-#include <ClanLib/core.h>
-
-// ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
-// with "no matching function for call to __assert_fail" #undef.
-#undef __PRETTY_FUNCTION__
-
+#include <SDL.h>
 #include <libguile.h>
-#include <time.h>
+#include <ctime>
+
+#include "system.hpp"
 
 #include "feuerkraft_error.hpp"
 #include "fonts.hpp"
@@ -58,7 +48,7 @@ Feuerkraft feuerkraft;
 CommandLineArguments* args;
 
 Feuerkraft::Feuerkraft() :
-  window()
+  window(nullptr)
 {
   args = 0;
 }
@@ -79,10 +69,11 @@ Feuerkraft::init()
   // Init Swig
   SWIG_init();
 
-  // Init ClanLib
-  CL_SetupCore::init();
-  CL_SetupDisplay::init();
-  CL_SetupGL::init();
+  // Init SDL2
+  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) < 0)
+    {
+      throw FeuerkraftError(std::string("SDL_Init failed: ") + SDL_GetError());
+    }
 
   // Init Sound Subsystem
   music_enabled = args->music_enabled;
@@ -100,7 +91,7 @@ Feuerkraft::init()
     }
   else
     {
-      std::string exe_path = CL_System::get_exe_path();
+      std::string exe_path = System::get_exe_path();
       path_manager.add_path(exe_path + "../data");
       path_manager.add_path(exe_path + "data");
       path_manager.add_path(exe_path + "share/feuerkraft");
@@ -110,12 +101,18 @@ Feuerkraft::init()
       path_manager.find_path("feuerkraft.xml");
     }
 
-  // Create the main window
-  window = new CL_DisplayWindow(PACKAGE_STRING,
-                                args->screen_width, args->screen_height,
-                                args->fullscreen);
-  CL_Display::set_current_window (window);
-  CL_Display::clear();
+  // Create the main window (SDL2) — full graphics port follows in later phases
+  Uint32 flags = SDL_WINDOW_SHOWN;
+  if (args->fullscreen)
+    flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+  window = SDL_CreateWindow(PACKAGE_STRING,
+                            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                            args->screen_width, args->screen_height,
+                            flags);
+  if (!window)
+    {
+      throw FeuerkraftError(std::string("SDL_CreateWindow failed: ") + SDL_GetError());
+    }
 
   resources = new ResourceManager ();
   Fonts::init();
@@ -148,20 +145,17 @@ Feuerkraft::deinit()
   Fonts::deinit();
   PingusSound::deinit();
 
-  delete window;
-
-  CL_SetupGL::deinit();
-  CL_SetupDisplay::deinit();
-  CL_SetupCore::deinit();
+  if (window)
+    {
+      SDL_DestroyWindow(window);
+      window = nullptr;
+    }
+  SDL_Quit();
 }
 
 int
 Feuerkraft::main(int argc, char** argv)
 {
-  // Create a console window for text-output if not available
-  CL_ConsoleWindow console("Console");
-  console.redirect_stdio();
-
   try
     {
       // Make arguments accessible for all member functions
@@ -173,8 +167,7 @@ Feuerkraft::main(int argc, char** argv)
       if (args->mission_file.empty())
         args->mission_file = path_manager.complete("missions/airport.feu");
 
-      CL_Slot slot = CL_Keyboard::sig_key_down().connect(this, &Feuerkraft::key_down);
-
+      // Keyboard handling will be ported to SDL events in Phase 4
       GameSessionManager::instance()->load(args->mission_file);
       GameSessionManager::instance()->run();
 
@@ -198,31 +191,15 @@ Feuerkraft::main(int argc, char** argv)
       std::cout << "Bug: Unknown exception catched, don't know what to do" << std::endl;
     }
 
-  // Display console close message and wait for a key
-  console.display_close_message();
-
   return 0;
 }
 
-void
-Feuerkraft::key_down(const CL_InputEvent& event)
+// key_down removed; will be replaced by SDL event handling
+
+int main(int argc, char** argv)
 {
-  if (event.id == CL_KEY_F12)
-    {
-      std::string filename = "screenshot.jpg";
-      std::cout << "Saving screenshot to: " << filename << std::endl;
-      CL_ProviderFactory::save(CL_Display::get_front_buffer(),
-                               filename);
-    }
-  else if (event.id == CL_KEY_F11)
-    {
-      if (CL_Display::is_fullscreen())
-        CL_Display::set_windowed();
-      else
-        CL_Display::set_fullscreen(CL_Display::get_width(),
-                                   CL_Display::get_height(),
-                                   32);
-    }
+  return feuerkraft.main(argc, argv);
 }
 
 // EOF //
+

@@ -1,4 +1,5 @@
 // Feuerkraft - A Tank Battle Game
+#include "system.hpp"
 // Copyright (C) 2000 Ingo Ruhnke <grumbel@gmail.com>
 //
 // This program is free software: you can redistribute it and/or modify
@@ -43,7 +44,7 @@ Energie::Energie (int arg_energie) :
 void
 Energie::draw (View& view, int x_pos, int y_pos)
 {
-  int time_diff = CL_System::get_time () - last_change ;
+  int time_diff = System::get_time () - last_change ;
 
   float ratio = energie / max_energie;
 
@@ -53,7 +54,7 @@ Energie::draw (View& view, int x_pos, int y_pos)
   //  std::cout << "Ratio: " << ratio << std::endl;
 
   if (time_diff < 1000
-      && CL_System::get_time () > 2000)
+      && System::get_time () > 2000)
     {
       // Black border rectangle
       view.get_sc().color().draw_fillrect(x_pos - 32, y_pos - 5,

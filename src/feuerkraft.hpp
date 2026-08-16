@@ -17,9 +17,8 @@
 #ifndef FEUERKRAFT_HH
 #define FEUERKRAFT_HH
 
-#include <ClanLib/application.h>
+#include <SDL.h>
 
-class CL_DisplayWindow;
 class CommandLineArguments;
 
 /**
@@ -37,11 +36,11 @@ class CommandLineArguments;
 
    A very quick overview about the source code, it works like this:
 
-   - everything starts from FeuerkraftMain
+   - everything starts from Feuerkraft::main
 
-   - FeuerkraftMain constructs the GameWorld and a View
+   - Feuerkraft constructs the GameWorld and a View
 
-   - FeuerkraftMain enters a while(true) loop and updates the
+   - Feuerkraft enters a while(true) loop and updates the
    GameWorld repeatatly and redraws the View as necessary
 
    - everything in GameWorld is a GameObj and has a id, by which it
@@ -79,14 +78,12 @@ class CommandLineArguments;
     no need to touch \a argc or \a argv */
 extern CommandLineArguments* args;
 
-/** Feuerkraft is wrapper class around main(), which itself is part of
-    clanApp. */
-class Feuerkraft : public CL_ClanApplication
+/** Feuerkraft is the main application class. */
+class Feuerkraft
 {
 private:
-  /** Pointer to the main display window of Feuerkraft. FIXME: Could
-      probally be placed in a DisplayManager or something like that */
-  CL_DisplayWindow*     window;
+  /** Pointer to the main display window of Feuerkraft. */
+  SDL_Window* window;
 
 public:
   Feuerkraft();
@@ -97,7 +94,8 @@ public:
   int  main(int argc, char** argv);
 
 private:
-  void key_down(const CL_InputEvent& event);
+  // Temporary: will be replaced by SDL event handling
+  // void key_down(...);
 
 private:
   Feuerkraft(const Feuerkraft&);

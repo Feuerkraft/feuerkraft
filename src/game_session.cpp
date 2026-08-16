@@ -83,7 +83,7 @@ GameSession::init()
   loops = 0;
   deltas = 0.0;
 
-  start_time = CL_System::get_time ();
+  start_time = System::get_time ();
   frames = 0;
 
   collision_mgr       = new CollisionManager();
@@ -202,7 +202,7 @@ GameSession::update()
   if (CL_Keyboard::get_keycode(CL_KEY_D))
     Guile::enter_repl();
 
-  unsigned int last_time = CL_System::get_time ();
+  unsigned int last_time = System::get_time ();
 
   // Update stuff
   if (!do_pause)
@@ -233,9 +233,9 @@ GameSession::update()
                                      FloatVector2d(), 3.0f));
 
   // Comment out for variable frame rate
-  int sleep_time = (last_time + delta_wait) - CL_System::get_time();
+  int sleep_time = (last_time + delta_wait) - System::get_time();
   if (sleep_time > 0)
-    CL_System::sleep (sleep_time);
+    System::sleep (sleep_time);
 
   // Flip front and backbuffer. This makes the changes visible:
   CL_Display::flip ();
@@ -256,7 +256,7 @@ GameSession::update()
   // Update keyboard input and handle system events:
   // Exits the loop if ClanLib requests shutdown - for instance if
   // someone closes the window.
-  CL_System::keep_alive();
+  System::keep_alive();
   clanlib_call_post_keep_alive_func();
   InputManager::update(delta);
 
@@ -322,7 +322,7 @@ GameSession::deinit()
 
   std::cout << "Avarage delta: " << deltas/loops << std::endl;
   std::cout << "Avarage fps:   "
-            << float (frames) / (CL_System::get_time () - start_time) * 1000.0 << std::endl;
+            << float (frames) / (System::get_time () - start_time) * 1000.0 << std::endl;
 }
 
 void

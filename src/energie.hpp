@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "system.hpp"
 #ifndef ENERGIE_HH
 #define ENERGIE_HH
 
-#include <ClanLib/Core/System/system.h>
 
 #include "view.hpp"
 
@@ -39,24 +39,24 @@ public:
 
   Energie& operator--() {
     --energie;
-    last_change = CL_System::get_time ();
+    last_change = System::get_time ();
     return *this;
   }
 
   Energie& operator++() {
     ++energie;
-    last_change = CL_System::get_time ();
+    last_change = System::get_time ();
     return *this;
   }
 
   void operator+=(int i) {
     energie += i;
-    last_change = CL_System::get_time ();
+    last_change = System::get_time ();
   }
 
   void operator-=(int i) {
     energie -= i;
-    last_change = CL_System::get_time ();
+    last_change = System::get_time ();
   }
 
 };

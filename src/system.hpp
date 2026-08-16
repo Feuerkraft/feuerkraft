@@ -108,6 +108,19 @@ public:
    generation is very primitiv and should probably be replaced by CRC
    or md5. */
   static std::string checksum (std::string filename);
+
+  /** Milliseconds since an arbitrary start point (SDL_GetTicks). */
+  static unsigned int get_time();
+
+  /** Sleep for the given number of milliseconds. */
+  static void sleep(unsigned int msec);
+
+  /** Keep the event system alive (no-op under SDL; events are polled
+      explicitly). Kept for call-site compatibility during the port. */
+  static void keep_alive();
+
+  /** Directory containing the running executable (with trailing separator). */
+  static std::string get_exe_path();
 };
 
 #endif

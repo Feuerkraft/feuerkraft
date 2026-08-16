@@ -15,9 +15,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
-#include <ClanLib/Core/System/command_line.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <string>
 
 #include "command_line_arguments.hpp"
 
@@ -25,7 +26,6 @@ CommandLineArguments::CommandLineArguments()
 {
   load_defaults();
 }
-
 
 CommandLineArguments::CommandLineArguments(int argc, char** argv)
 {
@@ -36,7 +36,6 @@ CommandLineArguments::CommandLineArguments(int argc, char** argv)
 void
 CommandLineArguments::load_defaults()
 {
-  // Default Screen Size
   screen_width  = 800;
   screen_height = 600;
   fullscreen    = false;
@@ -50,114 +49,123 @@ CommandLineArguments::load_defaults()
   sound_enabled = false;
 }
 
+static void
+print_help(const char* argv0)
+{
+  std::cout
+    << "Usage: " << argv0 << " [LEVELFILE] [OPTIONS]\n"
+    << "Feuerkraft is a tank battle game\n\n"
+    << "General Options:\n"
+    << "  -v, --verbose              Produce verbose output\n"
+    << "  -V, --version              Print the exact version of the game\n"
+    << "  -q, --quiet                Produce no output\n"
+    << "  -h, --help                 Produce this help output\n"
+    << "  -d, --datadir DATADIR      Set the path to search for gamedata\n\n"
+    << "Display Options:\n"
+    << "  -g, --geometry WIDTHxHEIGHT  Set screen size\n"
+    << "  -w, --fullscreen           Switch to Fullscreen on startup\n"
+    << "  -f, --fps FPS              Limit of frames per second\n\n"
+    << "Audio Options:\n"
+    << "  -m, --music                Enable music\n"
+    << "  -s, --sound                Enable sound\n\n"
+    << "Input Options:\n"
+    << "  -c, --controller FILE      Use controller as defined in FILE\n\n"
+    << "Demo Recording/Playback Options:\n"
+    << "  -r, --record FILE          Record input events to FILE\n"
+    << "  -a, --record-video DIR     Record a gameplay video to DIR\n"
+    << "  -p, --play FILE            Playback input events from FILE\n";
+}
+
 void
 CommandLineArguments::parse_arguments(int argc, char** argv)
 {
-  CL_CommandLine argp;
-
-  argp.set_help_indent(22);
-  argp.add_usage ("[LEVELFILE]");
-  argp.add_doc   ("Feuerkraft is a tank battle game");
-
-  argp.add_group("General Options:");
-  argp.add_option('v', "verbose", "",  "Produce verbose output");
-  argp.add_option('V', "version", "",  "Print the exact version of the game");
-  argp.add_option('q', "quiet",   "",  "Produce no output");
-  argp.add_option('h', "help",   "",   "Produce this help output");
-  argp.add_option('d', "datadir", "DATADIR", "Set the path to search for gamedata");
-
-  argp.add_group("Display Options:");
-  argp.add_option('g', "geometry",   "WIDTHxHEIGHT", "Set screen size");
-  argp.add_option('w', "fullscreen", "",    "Switch to Fullscreen on startup");
-  argp.add_option('f', "fps",        "FPS", "Limit of frames per second");
-
-  argp.add_group("Audio Options:");
-  argp.add_option('m', "music", "",  "Enable music");
-  argp.add_option('s', "sound", "",  "Enable sound");
-
-  argp.add_group("Input Options:");
-  argp.add_option('c', "controller", "FILE",   "Use controller as defined in FILE");
-
-  argp.add_group("Demo Recording/Playback Options:");
-  argp.add_option('r', "record",      "FILE", "Record input events to FILE");
-  argp.add_option('a', "record-video","DIR",  "Record a gameplay video to DIR");
-  argp.add_option('p', "play",        "FILE", "Playback input events from FILE");
-
-  argp.parse_args(argc, argv);
-
-  while (argp.next())
+  for (int i = 1; i < argc; ++i)
     {
-      switch(argp.get_key())
+      const char* arg = argv[i];
+      auto need_arg = [&](const char* name) -> const char* {
+        if (i + 1 >= argc)
+          {
+            std::cerr << "Option " << name << " requires an argument\n";
+            std::exit(EXIT_FAILURE);
+          }
+        return argv[++i];
+      };
+
+      if (arg[0] != '-')
         {
-        case CL_CommandLine::REST_ARG:
-          mission_file = argp.get_argument();
-          break;
+          mission_file = arg;
+          continue;
+        }
 
-        case 'a':
-          video_record_directory = argp.get_argument();
-          break;
-
-        case 'r':
-          event_record_file = argp.get_argument();
-          break;
-
-        case 'h':
-          argp.print_help();
-          exit(EXIT_SUCCESS);
-          break;
-
-        case 'p':
-          playback_file = argp.get_argument();
-          break;
-
-        case 'f':
-          fps = strtof(argp.get_argument().c_str(), 0);
-          break;
-
-        case 'V':
-          std::cout << "Feuerkraft 0.1.2" << std::endl;
-          exit(EXIT_SUCCESS);
-          break;
-
-        case 'v':
+      std::string opt = arg;
+      if (opt == "-h" || opt == "--help")
+        {
+          print_help(argv[0]);
+          std::exit(EXIT_SUCCESS);
+        }
+      else if (opt == "-V" || opt == "--version")
+        {
+          std::cout << "Feuerkraft 0.2.0\n";
+          std::exit(EXIT_SUCCESS);
+        }
+      else if (opt == "-v" || opt == "--verbose")
+        {
           verbose = true;
-          break;
-
-        case 'd':
-          datadir = argp.get_argument();
-          break;
-
-        case 'q':
+        }
+      else if (opt == "-q" || opt == "--quiet")
+        {
           verbose = false;
-          break;
-
-        case 'm':
-          music_enabled = true;
-          break;
-
-        case 'c':
-          controller_file = argp.get_argument();
-          break;
-
-        case 's':
-          sound_enabled = true;
-          break;
-
-        case 'w':
-          fullscreen = true;
-          break;
-
-        case 'g':
-          if (sscanf(argp.get_argument().c_str(), "%dx%d", &screen_width, &screen_height) != 2)
+        }
+      else if (opt == "-d" || opt == "--datadir")
+        {
+          datadir = need_arg(opt.c_str());
+        }
+      else if (opt == "-g" || opt == "--geometry")
+        {
+          const char* geo = need_arg(opt.c_str());
+          if (sscanf(geo, "%dx%d", &screen_width, &screen_height) != 2)
             {
-              std::cout << "Screen size value incorrect: '" << argp.get_argument() << "'" << std::endl;
-              exit(EXIT_FAILURE);
+              std::cerr << "Screen size value incorrect: '" << geo << "'\n";
+              std::exit(EXIT_FAILURE);
             }
-          break;
-
-        default:
-          std::cout << "CommandLineArguments: Unhandled key: " << argp.get_key() << std::endl;
-          break;
+        }
+      else if (opt == "-w" || opt == "--fullscreen")
+        {
+          fullscreen = true;
+        }
+      else if (opt == "-f" || opt == "--fps")
+        {
+          fps = strtof(need_arg(opt.c_str()), nullptr);
+        }
+      else if (opt == "-m" || opt == "--music")
+        {
+          music_enabled = true;
+        }
+      else if (opt == "-s" || opt == "--sound")
+        {
+          sound_enabled = true;
+        }
+      else if (opt == "-c" || opt == "--controller")
+        {
+          controller_file = need_arg(opt.c_str());
+        }
+      else if (opt == "-r" || opt == "--record")
+        {
+          event_record_file = need_arg(opt.c_str());
+        }
+      else if (opt == "-a" || opt == "--record-video")
+        {
+          video_record_directory = need_arg(opt.c_str());
+        }
+      else if (opt == "-p" || opt == "--play")
+        {
+          playback_file = need_arg(opt.c_str());
+        }
+      else
+        {
+          std::cerr << "Unknown option: " << opt << "\n";
+          print_help(argv[0]);
+          std::exit(EXIT_FAILURE);
         }
     }
 }

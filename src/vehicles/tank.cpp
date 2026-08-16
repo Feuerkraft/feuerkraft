@@ -248,7 +248,7 @@ Tank::explode ()
 {
   GameWorld::current()->add (new Explosion (pos, Explosion::MEDIUM));
   destroyed = true;
-  destroy_time = CL_System::get_time ();
+  destroy_time = System::get_time ();
 }
 
 void
@@ -291,7 +291,7 @@ Tank::update (float delta)
     turret->stop_fire();
 
   // FIXME: Ugly
-  if (destroyed && destroy_time != -1 && destroy_time + 2000 < (int) CL_System::get_time ())
+  if (destroyed && destroy_time != -1 && destroy_time + 2000 < (int) System::get_time ())
     {
       respawn ();
     }

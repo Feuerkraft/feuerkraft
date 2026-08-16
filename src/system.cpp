@@ -33,7 +33,6 @@
 #include <string.h>
 #include <cstdio>
 #include <iostream>
-#include <ClanLib/Core/System/clanstring.h>
 #include "gettext.h"
 
 //#include "PingusError.hpp"
@@ -331,7 +330,39 @@ System::checksum (std::string filename)
 
   fclose (in);
 
-  return CL_String::to(checksum);
+  return std::to_string(checksum);
+}
+
+
+#include <SDL.h>
+
+unsigned int
+System::get_time()
+{
+  return SDL_GetTicks();
+}
+
+void
+System::sleep(unsigned int msec)
+{
+  SDL_Delay(msec);
+}
+
+void
+System::keep_alive()
+{
+  // Events are polled explicitly via SDL_PollEvent in the main loop.
+}
+
+std::string
+System::get_exe_path()
+{
+  char* base = SDL_GetBasePath();
+  if (!base)
+    return "./";
+  std::string path(base);
+  SDL_free(base);
+  return path;
 }
 
 /* EOF */

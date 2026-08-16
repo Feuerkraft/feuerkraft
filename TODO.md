@@ -36,11 +36,13 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Make the project compile with stubs or minimal SDL2 window (main still exits quickly) — blocked on actual ClanLib API removal (Phase 2+)
 
 ### Phase 2 – Core / System replacements
-- [ ] Replace `CL_System::get_time()` (and related timing) with `SDL_GetTicks()` / `SDL_GetPerformanceCounter`
-- [ ] Replace `CL_CommandLine` usage in `command_line_arguments.cpp`
-- [ ] Replace `CL_Error` / exception handling
-- [ ] Replace string helpers (`CL_String`, etc.) with `std::string` / C++11 utilities
-- [ ] Remove all `CL_SetupCore` / `CL_SetupDisplay` / `CL_SetupGL` / `CL_SetupSound` init/deinit calls
+- [x] Replace `CL_System::get_time()` (and related timing) with `SDL_GetTicks()` via `System::get_time/sleep/keep_alive/get_exe_path`
+- [x] Replace `CL_CommandLine` usage in `command_line_arguments.cpp` with a simple argv parser
+- [x] Remove `CL_Error` catch in main; other CL_Error sites remain for later phases
+- [x] Replace `CL_String::to` in system.cpp with `std::to_string`
+- [x] Remove `CL_SetupCore/Display/GL` from main and pathfinder test mains; SDL_Init used instead
+- [ ] Remaining `CL_Error` in ResourceManager and elsewhere
+- [ ] Full removal of leftover ClanLib includes still present in many translation units
 
 ### Phase 3 – Window, main loop, Display
 - [ ] Create SDL_Window + SDL_Renderer (or GL context) in `Feuerkraft::init`
@@ -101,4 +103,5 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 ## Current Status
 
 - TODO + port plan committed.
-- Phase 1 (build system) largely done: CMake and flake now depend on SDL2 / SDL2_image / SDL2_mixer instead of ClanLib. Submodule removed. Source still contains ClanLib API calls, so the binary does not yet link/run — that is the work of subsequent phases.
+- Phase 1 (build system) done.
+- Phase 2 (core/system) largely done: timing, cmdline, main init/window skeleton, Setup* removed from entry points. Many ClanLib graphics/input/sound/resource calls remain; the project still does not fully compile.

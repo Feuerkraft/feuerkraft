@@ -14,7 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/core.h>
+#include <SDL.h>
+#include "system.hpp"
 
 // ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
 // with "no matching function for call to __assert_fail" #undef.
@@ -282,12 +283,12 @@ DijkstraPathfinder::construct_path()
 */
 int main()
 {
-  CL_SetupCore::init();
+  SDL_Init(SDL_INIT_TIMER);
 
   srand(time(NULL));
   Field<int> field(80, 50);
 
-  unsigned int start_time = CL_System::get_time();
+  unsigned int start_time = System::get_time();
   unsigned int end_time;
 
   for(int y = 0; y < field.get_height(); ++y)
@@ -352,10 +353,10 @@ int main()
       //      getchar();
       //std::cout << "round: " << ++i << std::endl;
     }
-  end_time = CL_System::get_time();
+  end_time = System::get_time();
   std::cout << "Msec: " << end_time - start_time << std::endl;
 
-  CL_SetupCore::deinit();
+  SDL_Quit();
 }
 #endif
 

@@ -98,7 +98,7 @@ StartScreen::update (float delta)
       while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
 	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
 	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
-	CL_System::keep_alive ();
+	System::keep_alive ();
 
       logo_mode = S_FADETOGAME;
       display_time = 0;
@@ -106,7 +106,7 @@ StartScreen::update (float delta)
   else if (logo_mode == S_GAME  && (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)))
     {
       while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE))
-	CL_System::keep_alive ();
+	System::keep_alive ();
 
       display_time = 0;
       logo_mode = S_ENDLOGO;
@@ -118,7 +118,7 @@ StartScreen::update (float delta)
       while (display->get_ic()->get_keyboard().get_keycode (CL_KEY_RETURN)
 	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_ESCAPE)
 	     || display->get_ic()->get_keyboard().get_keycode (CL_KEY_SPACE))
-	CL_System::keep_alive ();
+	System::keep_alive ();
 
 
       logo_mode = S_FADETOBLACK;
