@@ -19,6 +19,7 @@
 #include <cassert>
 #include "drawing_context.hpp"
 #include "display.hpp"
+#include "sprite.hpp"
 
 struct DrawingRequestsSorter
 {
@@ -115,6 +116,19 @@ public:
   }
 };
 
+
+class SpriteDrawingRequest : public DrawingRequest
+{
+  Sprite sprite;
+public:
+  SpriteDrawingRequest(const Sprite& sprite_, const Vector3f& pos_)
+    : DrawingRequest(pos_), sprite(sprite_)
+  {}
+  void draw(SDL_Renderer* /*renderer*/) {
+    sprite.draw(pos.x, pos.y);
+  }
+};
+
 class TextDrawingRequest : public DrawingRequest
 {
   std::string text;
@@ -159,6 +173,15 @@ void
 DrawingContext::draw(DrawingRequest* request)
 {
   drawingrequests.push_back(request);
+}
+
+
+void
+DrawingContext::draw(const Sprite& sprite, float x, float y, float z)
+{
+  draw(new SpriteDrawingRequest(sprite,
+        Vector3f(translate_stack.back().x + x,
+                 translate_stack.back().y + y, z)));
 }
 
 void

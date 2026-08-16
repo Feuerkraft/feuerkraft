@@ -18,7 +18,6 @@
 #ifndef SPRITETILE_HXX
 #define SPRITETILE_HXX
 
-#include <ClanLib/display.h>
 #include "ground_type.hpp"
 #include "tile.hpp"
 #include "sprite_tile_data.hpp"

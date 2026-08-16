@@ -19,7 +19,6 @@
 #ifndef SPRITETILE_CXX
 #define SPRITETILE_CXX
 
-#include <ClanLib/display.h>
 #include "sprite_tile.hpp"
 #include "../resource_manager.hpp"
 #include "../view.hpp"

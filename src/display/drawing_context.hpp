@@ -56,8 +56,7 @@ public:
   void fill_screen(const Color& color);
 
   void draw(DrawingRequest* request);
-  // Sprite drawing will be re-enabled once Sprite is ported
-  // void draw(const Sprite& sprite, float x, float y, float z = 0);
+  void draw(const Sprite& sprite, float x, float y, float z = 0);
   void draw(const std::string& text, float x, float y, float z = 0);
 
   void draw_line (float x1, float y1, float x2, float y2,

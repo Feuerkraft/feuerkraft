@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/Display/mouse.h>
+#include <SDL.h>
 #include "../scm_functor.hpp"
 #include "../keys.hpp"
 #include "../view.hpp"
@@ -31,27 +31,33 @@ input_register_callback(const char* key, SCM func)
 int
 input_get_mouse_x()
 {
-  return CL_Mouse::get_x();
+  int x = 0, y = 0;
+  SDL_GetMouseState(&x, &y);
+  return x;
 }
 
 int
 input_get_mouse_y()
 {
-  return CL_Mouse::get_y();
+  int x = 0, y = 0;
+  SDL_GetMouseState(&x, &y);
+  return y;
 }
 
 float
 input_get_mouse_world_x()
 {
-  return View::current()->screen_to_world(FloatVector2d(CL_Mouse::get_x(),
-                                                        CL_Mouse::get_y())).x;
+  int x = 0, y = 0;
+  SDL_GetMouseState(&x, &y);
+  return View::current()->screen_to_world(FloatVector2d(x, y)).x;
 }
 
 float
 input_get_mouse_world_y()
 {
-  return View::current()->screen_to_world(FloatVector2d(CL_Mouse::get_x(),
-                                                        CL_Mouse::get_y())).y;
+  int x = 0, y = 0;
+  SDL_GetMouseState(&x, &y);
+  return View::current()->screen_to_world(FloatVector2d(x, y)).y;
 }
 
 /* EOF */

@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <ClanLib/core.h>
 
 // ClanLib defines __PRETTY_FUNCTION__, which causes clang to fail
 // with "no matching function for call to __assert_fail" #undef.

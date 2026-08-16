@@ -15,7 +15,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <ClanLib/Display/Providers/png_provider.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 #include "../path_manager.hpp"
 #include "grid_map.hpp"
@@ -39,9 +40,9 @@ GridMapData::GridMapData (SCM desc)
       else
         {
           std::cout << "GridMapData: Unknown data type: '" << std::flush;
-          scm_display (symbol, SCM_UNDEFINED);
+          scm_display (symbol, scm_current_output_port());
           std::cout << "' with data: " << std::flush;
-          scm_display (data, SCM_UNDEFINED);
+          scm_display (data, scm_current_output_port());
           std::cout << std::endl;
           return;
         }
@@ -52,41 +53,64 @@ GridMapData::GridMapData (SCM desc)
 
 GridMapData::~GridMapData ()
 {
-  // delete provider; FIXME: disabled cause it could lead to throuble with copy c'tor
 }
 
 void
 GridMapData::parse_from_file (SCM desc)
 {
-  /* GridMaps will always get a one pixel boarder with the base
-     enviroment */
+  /* GridMaps will always get a one pixel border with the base
+     environment */
   char* str = scm_to_utf8_string(scm_car (desc));
   std::cout << "Loading from: " << str << std::endl;
   std::string filename = str;
-#ifndef WIN32
   free (str);
-#endif
 
-  provider = CL_PNGProvider (path_manager.complete("missions/" + filename));
+  std::string path = path_manager.complete("missions/" + filename);
+  SDL_Surface* surface = IMG_Load(path.c_str());
+  if (!surface)
+    {
+      std::cerr << "GridMapData: failed to load " << path
+                << ": " << IMG_GetError() << std::endl;
+      return;
+    }
 
-  provider.lock ();
-  //FIXME:Display2 assert (provider.is_indexed ());
+  // Convert to indexed/palette or at least a known 8-bit layout if possible
+  SDL_Surface* converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_INDEX8, 0);
+  if (!converted)
+    {
+      // Fall back to reading first byte of each pixel from RGBA
+      converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0);
+    }
+  SDL_FreeSurface(surface);
 
-  grid_width  = provider.get_width () + 2;
-  grid_height = provider.get_height () + 2;
+  if (!converted)
+    {
+      std::cerr << "GridMapData: convert failed: " << SDL_GetError() << std::endl;
+      return;
+    }
+
+  grid_width  = converted->w + 2;
+  grid_height = converted->h + 2;
 
   grid_data.resize (grid_width * grid_height);
 
   for (int i = 0; i < grid_height * grid_width; ++i)
-    grid_data[i] = GT_SAND; // FIXME: should be variable not hardcoded!
+    grid_data[i] = GT_SAND;
 
-  unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
-  for (int y = 0; y < provider.get_height (); ++y)
-    for (int x = 0; x < provider.get_width (); ++x)
-      grid_data[(x + 1) + ((y+1) * grid_width)]
-	= static_cast<GroundType>(buffer[x + (provider.get_width () * y)]);
+  SDL_LockSurface(converted);
+  unsigned char* buffer = static_cast<unsigned char*>(converted->pixels);
+  int bpp = converted->format->BytesPerPixel;
+  int pitch = converted->pitch;
 
-  provider.unlock ();
+  for (int y = 0; y < converted->h; ++y)
+    for (int x = 0; x < converted->w; ++x)
+      {
+        unsigned char value = buffer[y * pitch + x * bpp];
+        grid_data[(x + 1) + ((y + 1) * grid_width)]
+          = static_cast<GroundType>(value);
+      }
+  SDL_UnlockSurface(converted);
+  SDL_FreeSurface(converted);
 }
 
 GroundMap*

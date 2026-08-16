@@ -16,66 +16,51 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <ClanLib/Display/display.h>
-#include <ClanLib/Display/display_window.h>
-#include <ClanLib/Display/pixel_buffer.h>
-#include <ClanLib/Display/pixel_format.h>
+#include <vector>
+#include <SDL.h>
+#include "display.hpp"
 #include "screenshot.hpp"
 
 void
 Screenshot::write_screenshot_pnm(const std::string& filename)
 {
-  CL_PixelBuffer buf = take_screen_shot();
+  SDL_Renderer* renderer = Display::get_renderer();
+  if (!renderer)
+    return;
 
-  FILE* out = fopen(filename.c_str(), "wb");
+  int width  = Display::get_width();
+  int height = Display::get_height();
+  if (width <= 0 || height <= 0)
+    return;
 
-  if (!out)
+  std::vector<unsigned char> pixels(width * height * 4);
+  if (SDL_RenderReadPixels(renderer, nullptr, SDL_PIXELFORMAT_RGB24,
+                           pixels.data(), width * 3) != 0)
     {
-      perror(filename.c_str());
-      std::cout << "Screenshot: Couldn't write file: " << filename << std::endl;
+      // Try with a temporary target - some drivers need a texture
+      std::cerr << "Screenshot: RenderReadPixels failed: " << SDL_GetError() << std::endl;
       return;
     }
 
-  buf.lock();
-  int width  = buf.get_width();
-  int pitch  = buf.get_width()*3;
-  int height = buf.get_height();
-
-  fprintf(out,
-	  "P6\n"
-	  "# CREATOR: Feuerkraft\n"
-          "%d %d\n"
-	  "255\n",
-	  width,
-	  height);
-
-  unsigned char* data = static_cast<unsigned char*>(buf.get_data());
-
-  for(int i = height-1; i >= 0; --i)
+  FILE* out = fopen(filename.c_str(), "wb");
+  if (!out)
     {
-      fwrite(data + pitch*i,
-             sizeof(unsigned char),
-             pitch,
-             out);
+      perror(filename.c_str());
+      return;
     }
 
-  buf.unlock();
+  fprintf(out,
+          "P6\n"
+          "# CREATOR: Feuerkraft\n"
+          "%d %d\n"
+          "255\n",
+          width, height);
+
+  // RGB24 from top to bottom; original wrote bottom-up
+  for (int y = height - 1; y >= 0; --y)
+    fwrite(pixels.data() + y * width * 3, 1, width * 3, out);
+
   fclose(out);
 }
-
-CL_PixelBuffer
-Screenshot::take_screen_shot()
-{
-  CL_PixelBuffer back_buffer = CL_Display::get_current_window()->get_back_buffer();
-
-  unsigned short width = back_buffer.get_width();
-  unsigned short height = back_buffer.get_height();
-
-  CL_PixelBuffer pbuf(width, height, width*3, CL_PixelFormat::bgr888);
-  back_buffer.convert(pbuf);
-
-  return pbuf;
-}
-
 
 /* EOF */

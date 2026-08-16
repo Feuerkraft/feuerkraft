@@ -21,7 +21,7 @@
 GridMap::GridMap (const GridMapData& data)
   : GridMapData (data),
     tiles (path_manager.complete("tiles.scm")),
-    surface(provider)
+    surface()
 {
   std::vector<GridTileData> tile_data;
 
@@ -97,9 +97,9 @@ GridMap::update (float)
 void
 GridMap::draw_levelmap (LevelMap& levelmap)
 {
-  surface.set_alpha(0.95f);
-  surface.draw (0, 0);
-  surface.set_alpha(1.0f);
+  // surface.set_alpha(0.95f);
+  // surface.draw (0, 0);
+  // surface.set_alpha(1.0f);
 }
 
 GroundType

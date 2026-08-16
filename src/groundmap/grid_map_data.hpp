@@ -14,18 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "sprite.hpp"
 #ifndef GRIDMAPDATA_HXX
 #define GRIDMAPDATA_HXX
 
 #include <vector>
-
 #include <libguile.h>
-#include <ClanLib/Display/pixel_buffer.h>
 #include "ground_type.hpp"
 #include "ground_map_data.hpp"
-
-class CL_PixelBuffer;
 
 /**
  */
@@ -37,8 +32,6 @@ protected:
 
   /** The data of the grid */
   std::vector<GroundType> grid_data;
-
-  CL_PixelBuffer provider;
 
 public:
   GridMapData (SCM desc);

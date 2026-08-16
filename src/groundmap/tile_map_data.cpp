@@ -15,7 +15,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <ClanLib/Display/Providers/png_provider.h>
 
 #include "../path_manager.hpp"
 #include "tile_data_factory.hpp"
@@ -79,21 +78,34 @@ TileMapData::parse_from_file (SCM desc)
   std::string filename = str;
   free (str);
 
-  CL_PNGProvider provider(path_manager.complete("missions/" + filename));
+  std::string path = path_manager.complete("missions/" + filename);
+  SDL_Surface* surface = IMG_Load(path.c_str());
+  if (!surface)
+    {
+      std::cerr << "TileMapData: failed to load " << path
+                << ": " << IMG_GetError() << std::endl;
+      return;
+    }
+  SDL_Surface* converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_INDEX8, 0);
+  if (!converted)
+    converted = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0);
+  SDL_FreeSurface(surface);
+  if (!converted)
+    return;
 
-  provider.lock ();
-  //FIXME:Display2 assert (provider.is_indexed ());
-
-  width  = provider.get_width ();
-  height = provider.get_height ();
-
+  width  = converted->w;
+  height = converted->h;
   tilemap_data.resize (width * height);
 
-  unsigned char* buffer = static_cast<unsigned char*>(provider.get_data ());
-  for (int i = 0; i < width * height; ++i)
-    tilemap_data[i] = buffer[i];
-
-  provider.unlock ();
+  SDL_LockSurface(converted);
+  unsigned char* buffer = static_cast<unsigned char*>(converted->pixels);
+  int bpp = converted->format->BytesPerPixel;
+  int pitch = converted->pitch;
+  for (int y = 0; y < height; ++y)
+    for (int x = 0; x < width; ++x)
+      tilemap_data[x + y * width] = buffer[y * pitch + x * bpp];
+  SDL_UnlockSurface(converted);
+  SDL_FreeSurface(converted);
 }
 
 void

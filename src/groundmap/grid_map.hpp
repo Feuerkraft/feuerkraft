@@ -20,7 +20,6 @@
 
 #include <vector>
 #include <map>
-#include <ClanLib/Display/surface.h>
 
 #include "../view.hpp"
 #include "ground_map.hpp"
@@ -55,7 +54,7 @@ private:
 
   /** A surface where each pixel-color represents a tile, used in the
       draw_levelmap() function */
-  CL_Surface surface;
+  Sprite surface;
 
 public:
   GridMap (const GridMapData& data);

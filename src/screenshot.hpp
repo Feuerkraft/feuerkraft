@@ -19,14 +19,10 @@
 
 #include <string>
 
-class CL_PixelBuffer;
-
-/** */
 class Screenshot
 {
 private:
 public:
-  static CL_PixelBuffer take_screen_shot();
   static void write_screenshot_pnm(const std::string& filename);
 private:
   Screenshot (const Screenshot&);

@@ -108,7 +108,8 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Phases 1–7 largely in place (window, display, drawing, sprites,
-  resources, signals, input backends, sound).
-- Remaining work: fonts, groundmap/pixel buffers, screenshot,
-  DisplayManager drawing, and clearing residual ClanLib includes.
+- Core systems on SDL2: window, Display, DrawingContext, Sprite,
+  ResourceManager, input (event pump + backends), sound, groundmap
+  PNG loading, screenshot.
+- Remaining: fonts, DisplayManager HUD drawing path, and any
+  residual ClanLib references in less-used files.

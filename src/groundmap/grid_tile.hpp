@@ -19,7 +19,6 @@
 #define GRIDTILE_HXX
 
 #include <string>
-#include <ClanLib/display.h>
 #include "grid_tile_data.hpp"
 
 class View;

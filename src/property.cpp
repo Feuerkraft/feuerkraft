@@ -16,7 +16,6 @@
 
 #include <iostream>
 #include <assert.h>
-#include <ClanLib/Core/System/clanstring.h>
 #include "property.hpp"
 
 Property::Property(const std::string& arg_name)
@@ -115,13 +114,13 @@ Property::to_string() const
   switch (type)
     {
     case Property::T_BOOL:
-      return CL_String::to(get_bool());
+      return std::to_string(get_bool());
 
     case Property::T_FLOAT:
-      return CL_String::to(get_float());
+      return std::to_string(get_float());
 
     case Property::T_INT:
-      return CL_String::to(get_int());
+      return std::to_string(get_int());
 
     case Property::T_STRING:
       return get_string();
