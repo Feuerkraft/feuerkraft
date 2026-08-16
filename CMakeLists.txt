@@ -78,13 +78,11 @@ include(${SWIG_USE_FILE})
 find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GUILE REQUIRED guile-3.0)
-pkg_search_module(CLANCORE REQUIRED clanCore-1.0)
-pkg_search_module(CLANAPP REQUIRED clanApp-1.0)
-pkg_search_module(CLANDISPLAY REQUIRED clanDisplay-1.0)
-pkg_search_module(CLANGL REQUIRED clanGL-1.0)
-pkg_search_module(CLANSOUND REQUIRED clanSound-1.0)
-pkg_search_module(CLANMIKMOD REQUIRED clanMikMod-1.0)
-pkg_search_module(CLANVORBIS REQUIRED clanVorbis-1.0)
+
+# SDL2 (destructive port away from ClanLib 1.0)
+pkg_search_module(SDL2 REQUIRED sdl2)
+pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
+pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
 
 include_directories(${GUILE_INCLUDE_DIRS})
 set_source_files_properties(src/scripting/feuerkraft.i PROPERTIES CPLUSPLUS ON)
@@ -107,23 +105,15 @@ target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})
 target_link_libraries(feuerkraft PRIVATE
   libfeuerkraft_scripting
   ${GUILE_LIBRARIES}
-  ${CLANCORE_LIBRARIES}
-  ${CLANAPP_LIBRARIES}
-  ${CLANDISPLAY_LIBRARIES}
-  ${CLANGL_LIBRARIES}
-  ${CLANSOUND_LIBRARIES}
-  ${CLANMIKMOD_LIBRARIES}
-  ${CLANVORBIS_LIBRARIES}
+  ${SDL2_LIBRARIES}
+  ${SDL2_IMAGE_LIBRARIES}
+  ${SDL2_MIXER_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT})
 target_include_directories(feuerkraft SYSTEM PRIVATE
   ${GUILE_INCLUDE_DIRS}
-  ${CLANCORE_INCLUDE_DIRS}
-  ${CLANAPP_INCLUDE_DIRS}
-  ${CLANDISPLAY_INCLUDE_DIRS}
-  ${CLANGL_INCLUDE_DIRS}
-  ${CLANSOUND_INCLUDE_DIRS}
-  ${CLANMIKMOD_INCLUDE_DIRS}
-  ${CLANVORBIS_INCLUDE_DIRS})
+  ${SDL2_INCLUDE_DIRS}
+  ${SDL2_IMAGE_INCLUDE_DIRS}
+  ${SDL2_MIXER_INCLUDE_DIRS})
 
 install(TARGETS feuerkraft RUNTIME
   DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})

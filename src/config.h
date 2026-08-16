@@ -1,4 +1,5 @@
-#define PACKAGE_STRING "Feuerkraft 0.1.2"
-#define HAVE_LIBCLANVORBIS 1
-#define HAVE_LIBCLANMIKMOD 1
+#define PACKAGE_STRING "Feuerkraft 0.2.0"
+/* ClanLib sound providers removed; SDL2_mixer is used instead */
+#undef HAVE_LIBCLANVORBIS
+#undef HAVE_LIBCLANMIKMOD
 

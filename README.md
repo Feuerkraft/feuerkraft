@@ -14,10 +14,12 @@ The Feuerkraft webpage is located at:
 Compilation
 -----------
 
-Feuerkraft requires ClanLib-1.0 and Guile-1.8, these can be installed
-in Ubuntu 15.04 with:
+Feuerkraft requires SDL2, SDL2_image, SDL2_mixer and Guile 3.x.
 
-    sudo apt-get install libclanlib-dev libguile-1.8-dev
+On a typical Debian/Ubuntu system:
+
+    sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
+                         guile-3.0-dev swig cmake pkg-config
 
 Compilation is done via `cmake`:
 
@@ -25,6 +27,19 @@ Compilation is done via `cmake`:
     cd build
     cmake ..
     make
+
+Or with Nix:
+
+    nix build
+    # or
+    nix develop
+
+
+Port status
+-----------
+
+The game is being ported from ClanLib 1.0 to SDL2. See `TODO.md` for
+the current status of the port.
 
 
 Screenshots

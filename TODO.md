@@ -29,10 +29,11 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 - [ ] Decide resource strategy: parse existing ClanLib `.xml` resource files, or convert assets to a simpler format (directory of PNGs + metadata) and rewrite ResourceManager.
 
 ### Phase 1 – Build system & skeleton
-- [ ] Update `CMakeLists.txt`: drop all `clan*-1.0` pkg-config modules; add `SDL2`, `SDL2_image`, `SDL2_mixer` (and keep Guile/SWIG/Threads)
-- [ ] Update `flake.nix` / `flake.lock` accordingly (remove clanlib input)
-- [ ] Remove `external/clanlib` submodule / references
-- [ ] Make the project compile with stubs or minimal SDL2 window (main still exits quickly)
+- [x] Update `CMakeLists.txt`: drop all `clan*-1.0` pkg-config modules; add `SDL2`, `SDL2_image`, `SDL2_mixer` (and keep Guile/SWIG/Threads)
+- [x] Update `flake.nix` accordingly (remove clanlib input). `flake.lock` will be regenerated on next `nix flake update`.
+- [x] Remove `external/clanlib` submodule / references
+- [x] Update `README.md` and `src/config.h`
+- [ ] Make the project compile with stubs or minimal SDL2 window (main still exits quickly) — blocked on actual ClanLib API removal (Phase 2+)
 
 ### Phase 2 – Core / System replacements
 - [ ] Replace `CL_System::get_time()` (and related timing) with `SDL_GetTicks()` / `SDL_GetPerformanceCounter`
@@ -99,4 +100,5 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-Starting from tip of `master` (ClanLib 1.0 based). First deliverable is this TODO + plan.
+- TODO + port plan committed.
+- Phase 1 (build system) largely done: CMake and flake now depend on SDL2 / SDL2_image / SDL2_mixer instead of ClanLib. Submodule removed. Source still contains ClanLib API calls, so the binary does not yet link/run — that is the work of subsequent phases.
