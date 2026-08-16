@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_ROCKET_SMOKE_PARTICLE_HXX
 #define HEADER_ROCKET_SMOKE_PARTICLE_HXX
 
@@ -26,7 +27,7 @@ private:
   float max_life_time;
   float size;
   float angle;
-  CL_Sprite sprite;
+  Sprite sprite;
 
 public:
   RocketSmokeParticle(const FloatVector2d& arg_pos);

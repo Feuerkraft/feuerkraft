@@ -18,34 +18,35 @@
 #define RESOURCEMANAGER_HXX
 
 #include <string>
-#include <ClanLib/Display/surface.h>
-#include <ClanLib/Display/sprite.h>
-#include <ClanLib/Display/font.h>
+#include <map>
+#include <vector>
+#include "sprite.hpp"
 
-class CL_Font;
-class CL_ResourceManager;
-
-/** lalala... ugly */
+/** Loads sprites (and later fonts) from the data directory.
+ *  Understands the subset of the old ClanLib resource XML used by
+ *  Feuerkraft (sprite + image file entries, nested sections). */
 class ResourceManager
 {
 private:
-  CL_ResourceManager* resource_manager;
+  /** Maps "section/name" or "name" to a list of image file paths */
+  std::map<std::string, std::vector<std::string> > sprite_files;
+
+  void load_resource_file(const std::string& filename);
+  void parse_section(const std::string& content, const std::string& prefix);
 
 public:
-  ResourceManager ();
-  ~ResourceManager ();
+  ResourceManager();
+  ~ResourceManager();
 
-  /** Load a CL_Sprite */
-  CL_Surface get_surface(const std::string& location);
-  CL_Sprite  get_sprite(const std::string& location);
-  CL_Font    get_font(const std::string& location);
+  Sprite get_sprite(const std::string& location);
+  // Surface API kept as alias for now
+  Sprite get_surface(const std::string& location) { return get_sprite(location); }
 
 private:
   ResourceManager(const ResourceManager&);
   ResourceManager& operator=(const ResourceManager&);
 };
 
-//extern CL_SpriteProviderStorage* storage;
 extern ResourceManager* resources;
 
 #endif

@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_FEUERKRAFT_WALL_HXX
 #define HEADER_FEUERKRAFT_WALL_HXX
 
@@ -26,9 +27,9 @@ class Wall : public Building
 {
 private:
   FloatVector2d pos;
-  CL_Sprite wall;
-  CL_Sprite wall_damaged;
-  CL_Sprite wall_destroyed;
+  Sprite wall;
+  Sprite wall_damaged;
+  Sprite wall_destroyed;
   int energie;
 public:
   Wall(const AList& lst);

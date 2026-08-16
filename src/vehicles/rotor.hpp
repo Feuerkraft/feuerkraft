@@ -16,6 +16,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_FEUERKRAFT_VEHICLES_ROTOR_HXX
 #define HEADER_FEUERKRAFT_VEHICLES_ROTOR_HXX
 
@@ -38,8 +39,8 @@ private:
   float acceleration;
   float max_velocity;
 
-  CL_Sprite slow;
-  CL_Sprite fast;
+  Sprite slow;
+  Sprite fast;
 public:
   Rotor(const RotorDescription& desc);
 

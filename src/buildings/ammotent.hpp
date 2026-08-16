@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef AMMOTENT_HH
 #define AMMOTENT_HH
 
@@ -25,7 +26,7 @@
 class Ammotent : public Building
 {
 private:
-  CL_Sprite ammotent;
+  Sprite ammotent;
   FloatVector2d pos;
   bool reloading;
 

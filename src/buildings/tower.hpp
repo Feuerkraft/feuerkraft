@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef TOWER_HXX
 #define TOWER_HXX
 
@@ -29,10 +30,10 @@ class Tower : public Building,
               public Unit
 {
 private:
-  CL_Sprite towerbase;
-  CL_Sprite towerdamaged;
-  CL_Sprite towerdestroyed;
-  CL_Sprite turret;
+  Sprite towerbase;
+  Sprite towerdamaged;
+  Sprite towerdestroyed;
+  Sprite turret;
 
   float steering;
   float orientation;

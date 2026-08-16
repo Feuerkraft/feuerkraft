@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef EXPLOSIONPARTICLE_HXX
 #define EXPLOSIONPARTICLE_HXX
 
@@ -27,8 +28,8 @@ class ExplosionParticle : public Particle
 {
 private:
   float size;
-  CL_Sprite sprite;
-  CL_Sprite sprite_light;
+  Sprite sprite;
+  Sprite sprite_light;
   float max_life_time;
   bool direction;
   float angle;

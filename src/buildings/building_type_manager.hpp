@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_BUILDING_TYPE_MANAGER_HXX
 #define HEADER_BUILDING_TYPE_MANAGER_HXX
 

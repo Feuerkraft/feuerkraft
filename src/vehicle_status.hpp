@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef VEHICLESTATUS_HH
 #define VEHICLESTATUS_HH
 
@@ -22,8 +23,8 @@
 class VehicleStatus : public GuiObj
 {
 private:
-  CL_Sprite ammo;
-  CL_Sprite fuel;
+  Sprite ammo;
+  Sprite fuel;
 
 public:
   VehicleStatus ();

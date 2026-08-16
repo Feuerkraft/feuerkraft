@@ -17,6 +17,7 @@
 #include <config.h>
 #include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include <libguile.h>
 #include <ctime>
 
@@ -74,6 +75,10 @@ Feuerkraft::init()
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) < 0)
     {
       throw FeuerkraftError(std::string("SDL_Init failed: ") + SDL_GetError());
+    }
+  if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG)))
+    {
+      throw FeuerkraftError(std::string("IMG_Init failed: ") + IMG_GetError());
     }
 
   // Init Sound Subsystem
@@ -169,6 +174,7 @@ Feuerkraft::deinit()
       SDL_DestroyWindow(window);
       window = nullptr;
     }
+  IMG_Quit();
   SDL_Quit();
 }
 

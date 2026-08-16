@@ -64,20 +64,18 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ### Phase 5 – Graphics core
 - [x] `CL_Color` → independent `Color` class (done in Phase 3)
-- [ ] Introduce thin wrappers or replace:
-  - `CL_Rect` / `CL_Pointf` / `CL_Vector` → own math or SDL_Rect / custom
-  - `CL_Sprite` → texture + frame data (SDL_Texture + metadata)
-  - `CL_Surface` / `CL_PixelBuffer` → SDL_Surface / SDL_Texture
-  - `CL_Font` → SDL_ttf or bitmap font / existing font resources
-- [ ] Port `DrawingContext` + `DrawingRequest` hierarchy to target SDL_Renderer (or GL)
-- [ ] Port `View`, `SceneContext`, `DisplayManager`, HUD elements (radar, energy, messages, …)
-- [ ] Handle blending, rotation, scaling, z-ordering that ClanLib sprites provided
+- [x] Geometry types (Pointf/Vector3f/Rect) for display layer
+- [x] `CL_Sprite` → `Sprite` (SDL_Texture, multi-frame, rotation, alpha, scale)
+- [x] DrawingContext/DrawingRequest/SceneContext on SDL (Phase 3)
+- [ ] `CL_Font` → proper bitmap/TTF font (currently stubbed)
+- [ ] Port remaining View drawing helpers & HUD
+- [ ] Re-enable sprite draw path in DrawingContext
 
 ### Phase 6 – Resource Manager & Assets
-- [ ] Rewrite `ResourceManager` to load sprites/surfaces/fonts without ClanLib
-- [ ] Decide on resource format (keep XML and parse, or convert assets once)
-- [ ] Ensure `data/images/`, tiles, etc. load correctly via SDL2_image
-- [ ] Update any Guile-side resource access if present
+- [x] Rewrite `ResourceManager` to parse ClanLib resource XML subset and load via SDL2_image
+- [x] `get_sprite()` returns `Sprite`
+- [ ] Font loading
+- [ ] Guile-side resource access if any
 
 ### Phase 7 – Sound
 - [ ] Replace ClanLib sound with SDL2_mixer
@@ -108,7 +106,7 @@ Work in small, focused commits. Keep the tree buildable as long as possible (or 
 
 ## Current Status
 
-- Phases 1–2 done.
-- Phase 3 advanced: Display facade, Color, DrawingContext (SDL primitives),
-  DrawingRequest, SceneContext (color-buffer path) are on SDL2.
-  Sprites, fonts, resources, input and sound still use ClanLib APIs.
+- Phases 1–3 largely done; Phase 5/6 started.
+- Sprite + ResourceManager now on SDL2_image.
+- Fonts stubbed. Input, sound, and many remaining ClanLib includes
+  in game objects still need work.

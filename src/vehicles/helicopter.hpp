@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HELICOPTER_HH
 #define HELICOPTER_HH
 
@@ -35,9 +36,9 @@ private:
   typedef std::vector<Rotor> Rotors;
   Rotors rotors;
 
-  CL_Sprite heli;
-  CL_Sprite heli_shadow;
-  CL_Sprite helidestroyed;
+  Sprite heli;
+  Sprite heli_shadow;
+  Sprite helidestroyed;
 
   float strafe;
   int   reloading;

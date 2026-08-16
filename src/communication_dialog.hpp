@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_COMMUNICATION_DIALOG_HXX
 #define HEADER_COMMUNICATION_DIALOG_HXX
 
 #include <map>
-#include <ClanLib/Display/sprite.h>
 #include "gui_obj.hpp"
 
 /** */
@@ -33,7 +33,7 @@ private:
 
   typedef std::map<int, Message> Messages;
   Messages messages;
-  CL_Sprite spike;
+  Sprite spike;
 
   static CommunicationDialog* current_;
 public:

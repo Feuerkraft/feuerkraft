@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef PROJECTILE_HH
 #define PROJECTILE_HH
 
@@ -25,8 +26,8 @@ class Projectile : public GameObj
 {
 private:
   FloatVector2d pos;
-  CL_Sprite sur;
-  CL_Sprite sur_light;
+  Sprite sur;
+  Sprite sur_light;
   FloatVector2d tmp_pos;
   FloatVector2d velocity;
   float lifetime;

@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_AI_VEHICLE_HXX
 #define HEADER_AI_VEHICLE_HXX
 
 #include <list>
 #include "vector2d.hpp"
-#include <ClanLib/Display/sprite.h>
 
 #include "energie.hpp"
 #include "line_segments.hpp"
@@ -82,8 +82,8 @@ private:
   float   length;
   LineSegments line_segments;
 
-  CL_Sprite sprite;
-  CL_Sprite destroyed_sprite;
+  Sprite sprite;
+  Sprite destroyed_sprite;
   std::list<AIVehicleOrder> orders;
 
   AIVehicleOrder current_order;

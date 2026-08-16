@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef RADAR_HH
 #define RADAR_HH
 
@@ -32,7 +33,7 @@ class Radar : public GuiObj
 private:
   PlayerPtr player;
 
-  CL_Sprite background;
+  Sprite background;
 
   /** Position of the radar on the screen */
   FloatVector2d pos;

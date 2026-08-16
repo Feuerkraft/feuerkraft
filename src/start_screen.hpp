@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef STARTSCREEN_HXX
 #define STARTSCREEN_HXX
 
@@ -24,8 +25,8 @@ class StartScreen
 {
 private:
   CL_DisplayWindow* display;
-  CL_Sprite logo;
-  CL_Sprite endlogo;
+  Sprite logo;
+  Sprite endlogo;
   float display_time;
 public:
   typedef enum { S_STARTLOGO,

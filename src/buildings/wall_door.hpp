@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef WALLDOOR_HXX
 #define WALLDOOR_HXX
 
@@ -30,7 +31,7 @@ class Projectile;
 class WallDoor : public Building
 {
 private:
-  CL_Sprite sprite;
+  Sprite sprite;
   int map_width;
   int map_height;
   typedef enum { S_OPENED, S_CLOSED } Status;

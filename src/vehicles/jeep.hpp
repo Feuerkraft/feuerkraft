@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef JEEP_HH
 #define JEEP_HH
 
@@ -28,7 +29,7 @@ class Projectile;
 class Jeep : public Vehicle
 {
 private:
-  CL_Sprite jeep;
+  Sprite jeep;
 
   Energie energie;
   float velocity;

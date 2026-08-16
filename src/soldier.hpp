@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef SOLDIER_HH
 #define SOLDIER_HH
 
@@ -28,8 +29,8 @@ class Soldier : public Unit
 {
 private:
   SoldierAI* ai;
-  CL_Sprite sur;
-  CL_Sprite sur_light;
+  Sprite sur;
+  Sprite sur_light;
 
   // Controll variables
   float acceleration;

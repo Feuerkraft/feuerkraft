@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_ROBOT_TANK_HXX
 #define HEADER_ROBOT_TANK_HXX
 
@@ -30,7 +31,7 @@ private:
   SteeringState steering_state;
   float max_velocity;
 
-  CL_Sprite sprite;
+  Sprite sprite;
 
   float ai_count;
 

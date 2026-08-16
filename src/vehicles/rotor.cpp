@@ -25,8 +25,8 @@ Rotor::Rotor(const RotorDescription& desc)
 {
   // Rotor::Description
   direction = desc.direction;
-  slow = CL_Sprite(resources->get_sprite(desc.slow_sprite));
-  fast = CL_Sprite(resources->get_sprite(desc.fast_sprite));
+  slow = Sprite(resources->get_sprite(desc.slow_sprite));
+  fast = Sprite(resources->get_sprite(desc.fast_sprite));
   offset = desc.offset;
 
   running      = false;

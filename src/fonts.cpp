@@ -14,20 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "resource_manager.hpp"
 #include "fonts.hpp"
 
 namespace Fonts {
 
-CL_Font font;
-
 void init()
 {
-  font = resources->get_font("font");
+  // TODO: load bitmap font from resources
 }
 
-void deinit(){
-  // nothing to do
+void deinit()
+{
 }
 
 } // namespace Fonts

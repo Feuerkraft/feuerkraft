@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_SATCHEL_CHARGE_HXX
 #define HEADER_SATCHEL_CHARGE_HXX
 
@@ -29,7 +30,7 @@ class SatchelCharge : public GameObj
 {
 private:
   FloatVector2d pos;
-  CL_Sprite sprite;
+  Sprite sprite;
 public:
   SatchelCharge(const AList& lst);
 

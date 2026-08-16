@@ -18,7 +18,7 @@
 #include "view.hpp"
 #include "background.hpp"
 
-Background::Background (const CL_Sprite& arg_sprite,
+Background::Background (const Sprite& arg_sprite,
                         float arg_z_pos)
   : sprite(arg_sprite),
     z_pos(arg_z_pos)

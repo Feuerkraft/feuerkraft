@@ -14,11 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef FEUERKRAFT_BACKGROUND_HH
 #define FEUERKRAFT_BACKGROUND_HH
 
-#include <ClanLib/Display/sprite.h>
-#include <ClanLib/Display/surface.h>
 
 #include "game_obj.hpp"
 
@@ -28,11 +27,11 @@ class Background
   : public GameObj
 {
 private:
-  CL_Sprite sprite;
+  Sprite sprite;
   float z_pos;
 
 public:
-  Background(const CL_Sprite& sprite, float z_pos);
+  Background(const Sprite& sprite, float z_pos);
   virtual ~Background () {}
 
   void draw (View& draw);

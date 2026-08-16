@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef TURRET_HH
 #define TURRET_HH
 
@@ -24,9 +25,9 @@ class Turret : public GameObj
 private:
   Tank* tank;
 
-  CL_Sprite fire_sur;
-  CL_Sprite sur;
-  CL_Sprite shadow;
+  Sprite fire_sur;
+  Sprite sur;
+  Sprite shadow;
 
   // The angle of the turent relative to the tank in radians
   float orientation;

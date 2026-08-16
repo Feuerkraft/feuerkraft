@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef AMBULANCE_HXX
 #define AMBULANCE_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "game_obj.hpp"
 
 class Ambulance : public GameObj
 {
 private:
-  CL_Sprite sur;
+  Sprite sur;
 
 public:
   Ambulance();

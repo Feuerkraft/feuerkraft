@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_ROCKET_HXX
 #define HEADER_ROCKET_HXX
 
@@ -24,10 +25,10 @@
 class Rocket : public GameObj
 {
 private:
-  CL_Sprite sprite;
-  CL_Sprite sprite_light;
-  CL_Sprite sprite_highlight;
-  CL_Sprite smoke;
+  Sprite sprite;
+  Sprite sprite_light;
+  Sprite sprite_highlight;
+  Sprite smoke;
   FloatVector2d pos;
   float orientation;
   float velocity;

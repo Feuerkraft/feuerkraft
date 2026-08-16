@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef TANK_HH
 #define TANK_HH
 
@@ -55,13 +56,13 @@ private:
   bool burning;
 
   /*CL_Surface sur;*/
-  CL_Sprite smod;
-  CL_Sprite sur_destroyed;
+  Sprite smod;
+  Sprite sur_destroyed;
 
-  CL_Sprite sur;
-  CL_Sprite sur_light;
-  CL_Sprite sur_highlight;
-  CL_Sprite shadow;
+  Sprite sur;
+  Sprite sur_light;
+  Sprite sur_highlight;
+  Sprite shadow;
 
   Turret* turret;
 

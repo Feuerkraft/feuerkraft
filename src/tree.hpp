@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef TREE_HH
 #define TREE_HH
 
@@ -32,7 +33,7 @@ private:
   std::string sprite_name;
   FloatVector2d pos;
   float z_pos;
-  CL_Sprite sur;
+  Sprite sur;
 
 public:
   Tree (const AList& lst);

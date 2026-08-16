@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef SMOKEPARTICLE_HXX
 #define SMOKEPARTICLE_HXX
 
@@ -24,7 +25,7 @@
 class SmokeParticle : public Particle
 {
 private:
-  CL_Sprite sprite;
+  Sprite sprite;
   float size;
   float angle;
   float max_life_time;

@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef FUELSTATION_HH
 #define FUELSTATION_HH
 
@@ -25,7 +26,7 @@ class Fuelstation
   : public Building
 {
 private:
-  CL_Sprite fuelstation;
+  Sprite fuelstation;
   FloatVector2d pos;
 
   /** The refueling variable keeps track if the fuelstation is

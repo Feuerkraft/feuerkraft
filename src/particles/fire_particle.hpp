@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_FIRE_PARTICLE_HXX
 #define HEADER_FIRE_PARTICLE_HXX
 
@@ -25,7 +26,7 @@
 class FireParticle : public GameObj
 {
 private:
-  CL_Sprite sprite;
+  Sprite sprite;
   FloatVector2d pos;
   float life_time;
 public:

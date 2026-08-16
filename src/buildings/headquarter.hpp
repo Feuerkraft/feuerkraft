@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADQUARTER_HH
 #define HEADQUARTER_HH
 
@@ -25,10 +26,10 @@ class Headquarter : public Building
 {
 private:
   FloatVector2d pos;
-  CL_Sprite headquarter;
-  CL_Sprite headquarter_damaged;
-  CL_Sprite headquarter_destroyed;
-  CL_Sprite* current_sur;
+  Sprite headquarter;
+  Sprite headquarter_damaged;
+  Sprite headquarter_destroyed;
+  Sprite* current_sur;
   Energie energie;
   bool destroyed;
 

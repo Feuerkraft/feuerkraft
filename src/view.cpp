@@ -62,7 +62,7 @@ View::get_y_offset ()
 
 /*
 void
-View::draw (CL_Sprite& sprite, const FloatVector2d& pos, float angle)
+View::draw (Sprite& sprite, const FloatVector2d& pos, float angle)
 {
   sprite.set_angle(Math::rad2deg(angle));
   sprite.draw(int(pos.x + get_x_offset ()),

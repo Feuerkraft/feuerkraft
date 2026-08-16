@@ -17,11 +17,10 @@
 #ifndef HEADER_FEUERKRAFT_FONTS_HXX
 #define HEADER_FEUERKRAFT_FONTS_HXX
 
-#include <ClanLib/Display/font.h>
+// Font support is temporarily stubbed during the SDL2 port.
+// A proper bitmap/TTF font implementation will replace this.
 
 namespace Fonts {
-
-extern CL_Font font;
 
 void init();
 void deinit();

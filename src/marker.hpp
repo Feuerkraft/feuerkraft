@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "sprite.hpp"
 #ifndef HEADER_MARKER_HXX
 #define HEADER_MARKER_HXX
 
-#include <ClanLib/Display/sprite.h>
 #include "game_obj.hpp"
 #include "vector2d.hpp"
 
@@ -29,7 +29,7 @@ class View;
 class Marker : public GameObj
 {
 private:
-  CL_Sprite sprite;
+  Sprite sprite;
   FloatVector2d pos;
   float passed_time;
 public:
