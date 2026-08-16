@@ -115,7 +115,7 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
           break;
 
         case 'V':
-          std::cout << "Feuerkraft 0.1.0" << std::endl;
+          std::cout << "Feuerkraft 0.1.2" << std::endl;
           exit(EXIT_SUCCESS);
           break;
 

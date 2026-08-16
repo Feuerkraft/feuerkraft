@@ -20,7 +20,7 @@
 
            feuerkraft = pkgs.stdenv.mkDerivation {
              pname = "feuerkraft";
-             version = "0.1.1";
+             version = "0.1.2";
 
              src = ./.;
 

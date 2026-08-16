@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 3.13)
-project(feuerkraft VERSION 0.2.0)
+project(feuerkraft VERSION 0.1.2)
 
 cmake_policy(SET CMP0078 OLD) # Swig
 cmake_policy(SET CMP0086 OLD) # Swig

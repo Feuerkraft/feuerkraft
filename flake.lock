@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763248500,
-        "narHash": "sha256-BpgbY67VEFFkBhxU8bUm4DHd5b8luY6NwaTn5OCrJKI=",
+        "lastModified": 1786029771,
+        "narHash": "sha256-DBo+O+Qa+WXrMFlP2p2tU4g0A6Q9PTALDVKhW3T27Ac=",
         "owner": "grumbel",
         "repo": "clanlib-1.0",
-        "rev": "4b05c09663a42ab01467553584bf7e22d3908028",
+        "rev": "9a266d9d2a9fe402d30f074d1ddb453ab154461d",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1762977756,
-        "narHash": "sha256-4PqRErxfe+2toFJFgcRKZ0UI9NSIOJa+7RXVtBhy4KE=",
+        "lastModified": 1786862985,
+        "narHash": "sha256-FBJRXmbGXiSUDvYEbfLYRkckayyZ6SK1UEqhCrIZ2Cs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c5ae371f1a6a7fd27823bc500d9390b38c05fa55",
+        "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
         "type": "github"
       },
       "original": {
