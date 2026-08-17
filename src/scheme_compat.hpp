@@ -60,7 +60,7 @@ inline SCM scm_reverse(SCM lst)
 #define scm_cddr(p)         s7_cddr(p)
 #define scm_caddr(p)        s7_caddr(p)
 #define scm_cadddr(p)       s7_cadddr(p)
-#define scm_cadar(p)        s7_car(s7_cadr(p))
+#define scm_cadar(p)        s7_cadr(s7_car(p))  /* (car (cdr (car p))) */
 #define scm_cdddr(p)        s7_cdr(s7_cddr(p))
 #define scm_cons(a, b)      s7_cons(fk_s7, (a), (b))
 
