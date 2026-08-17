@@ -73,7 +73,7 @@ T mid (const T& a, const T& b, const T& c)
 inline
 float frand()
 {
-  return static_cast<float>(rand()) / RAND_MAX;
+  return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 }
 
 inline
