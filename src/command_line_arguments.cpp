@@ -150,6 +150,15 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
               std::exit(EXIT_FAILURE);
             }
         }
+      else if (opt == "--zoom")
+        {
+          zoom = strtof(need_arg(opt.c_str()), nullptr);
+          if (zoom == 0.0f)
+            {
+              std::cerr << "Zoom must not be zero\n";
+              std::exit(EXIT_FAILURE);
+            }
+        }
       else if (opt == "-w" || opt == "--fullscreen")
         {
           fullscreen = true;
