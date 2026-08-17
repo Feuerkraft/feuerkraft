@@ -16,6 +16,8 @@
 
 #include <iostream>
 #include "path_manager.hpp"
+#include "system.hpp"
+#include "command_line_arguments.hpp"
 #include "game_session.hpp"
 #include "game_session_manager.hpp"
 
@@ -32,6 +34,7 @@ GameSessionManager::instance()
 
 GameSessionManager::GameSessionManager()
   : session_changed(false),
+    session_active(false),
     do_quit(false),
     current_session(0),
     new_session(0)
@@ -40,7 +43,10 @@ GameSessionManager::GameSessionManager()
 
 GameSessionManager::~GameSessionManager()
 {
+  if (session_active && current_session)
+    current_session->deinit();
   delete current_session;
+  delete new_session;
 }
 
 void
@@ -64,31 +70,76 @@ GameSessionManager::save(const std::string& filename)
   current_session->save(filename);
 }
 
+bool
+GameSessionManager::tick()
+{
+  if (do_quit)
+    return false;
+
+  // Apply a pending session switch before advancing a frame.
+  if (session_changed)
+    {
+      if (session_active && current_session)
+        {
+          current_session->deinit();
+          session_active = false;
+        }
+      delete current_session;
+      current_session = new_session;
+      new_session = 0;
+      session_changed = false;
+    }
+
+  if (!current_session)
+    {
+      do_quit = true;
+      return false;
+    }
+
+  if (!session_active)
+    {
+      current_session->init();
+      session_active = true;
+    }
+
+  current_session->update();
+
+  return !do_quit;
+}
+
 void
 GameSessionManager::run()
 {
-  while(!do_quit)
+  // Native blocking loop. Under WASM, call tick() from the host frame
+  // callback instead (e.g. emscripten_set_main_loop).
+  while (tick())
     {
-      current_session->init();
-
-      while(!do_quit && !session_changed)
-        current_session->update();
-
-      current_session->deinit();
-
-      if (session_changed)
+      // Frame pacing is the responsibility of the native runner only.
+      // GameSession::update() no longer sleeps, so WASM hosts that drive
+      // tick() via requestAnimationFrame are not blocked.
+      if (args && args->fps > 0.0f)
         {
-          delete current_session;
-          current_session = new_session;
-          session_changed = false;
+          // Approximate fixed-timestep sleep; fine for desktop.
+          // A more precise approach would measure elapsed time, but the
+          // previous code used the same simple limit.
+          const int delta_wait = static_cast<int>(1000.0f / args->fps);
+          if (delta_wait > 0)
+            System::sleep(static_cast<unsigned int>(delta_wait));
         }
+    }
+
+  if (session_active && current_session)
+    {
+      current_session->deinit();
+      session_active = false;
     }
 }
 
 void
 GameSessionManager::pause()
 {
-  current_session->pause();
+  if (current_session)
+    current_session->pause();
 }
 
 void

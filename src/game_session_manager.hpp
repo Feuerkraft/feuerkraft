@@ -21,7 +21,13 @@
 
 class GameSession;
 
-/** */
+/**
+ * Owns the active GameSession and advances it one frame at a time.
+ *
+ * The blocking main loop lives in run(). For environments that cannot
+ * block (e.g. WebAssembly / Emscripten), call tick() repeatedly from an
+ * external frame callback instead of run().
+ */
 class GameSessionManager
 {
 private:
@@ -31,6 +37,7 @@ public:
 
 private:
   bool session_changed;
+  bool session_active;   /**< true while current_session has been init()'d */
   bool do_quit;
   GameSession* current_session;
   GameSession* new_session;
@@ -41,9 +48,26 @@ public:
   void load(const std::string& filename);
   void save(const std::string& filename);
 
+  /**
+   * Advance the game by a single frame.
+   * @return false when the application should exit (quit requested).
+   *
+   * Safe to call from an Emscripten main-loop callback or similar.
+   * Does not sleep; the caller is responsible for frame pacing if needed.
+   */
+  bool tick();
+
+  /**
+   * Native blocking main loop: repeatedly calls tick() and sleeps to
+   * honour the configured FPS limit until quit is requested.
+   * Do not use under WASM — drive tick() from the host event loop instead.
+   */
   void run();
+
   void pause();
   void quit();
+
+  bool should_quit() const { return do_quit; }
 
 private:
   GameSessionManager (const GameSessionManager&);

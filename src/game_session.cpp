@@ -194,15 +194,17 @@ GameSession::init()
 void
 GameSession::update()
 {
+  // Fixed timestep derived from the configured FPS. Frame pacing (sleep)
+  // is done by the native runner in GameSessionManager::run(), not here,
+  // so that a WASM host can drive tick() from requestAnimationFrame
+  // without blocking the browser event loop.
   int delta_wait = static_cast<int>(1000/args->fps);
-  float delta = delta_wait/1000.0f;;
+  float delta = delta_wait/1000.0f;
 
   deltas += delta;
   ++loops;
 
   // if (key D) Guile::enter_repl();
-
-  unsigned int last_time = System::get_time ();
 
   // Update stuff
   if (!do_pause)
@@ -231,12 +233,6 @@ GameSession::update()
     DisplayManager::current()->update(delta);
 
   DisplayManager::current()->draw(Display::get_renderer());
-
-
-  // Comment out for variable frame rate
-  int sleep_time = (last_time + delta_wait) - System::get_time();
-  if (sleep_time > 0)
-    System::sleep (sleep_time);
 
   // Flip front and backbuffer. This makes the changes visible:
   Display::flip();

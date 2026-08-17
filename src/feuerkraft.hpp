@@ -40,8 +40,9 @@ class CommandLineArguments;
 
    - Feuerkraft constructs the GameWorld and a View
 
-   - Feuerkraft enters a while(true) loop and updates the
-   GameWorld repeatatly and redraws the View as necessary
+   - Feuerkraft drives the game via GameSessionManager: on native
+   builds run() blocks and calls tick() each frame; under WASM the
+   host calls tick() from its frame callback instead
 
    - everything in GameWorld is a GameObj and has a id, by which it
    can be accessed
