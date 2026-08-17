@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
 #include "ipc.hpp"
@@ -31,12 +32,22 @@ IPC::IPC(const std::string& arg_filename)
 {
   if (mkfifo(filename.c_str(), S_IREAD | S_IWRITE) != 0)
     {
+      #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
       throw std::runtime_error(strerror(errno));
+#else
+      std::cerr << "IPC: " << strerror(errno) << std::endl;
+      exit(EXIT_FAILURE);
+#endif
     }
 
   if ((stream_fd = open(filename.c_str(), O_RDONLY)) == -1)
     {
+      #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
       throw std::runtime_error(strerror(errno));
+#else
+      std::cerr << "IPC: " << strerror(errno) << std::endl;
+      exit(EXIT_FAILURE);
+#endif
     }
 }
 
@@ -68,7 +79,12 @@ IPC::update()
       close(stream_fd);
       if ((stream_fd = open(filename.c_str(), O_RDONLY)) == -1)
         {
-          throw std::runtime_error(strerror(errno));
+          #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
+      throw std::runtime_error(strerror(errno));
+#else
+      std::cerr << "IPC: " << strerror(errno) << std::endl;
+      exit(EXIT_FAILURE);
+#endif
         }
 
       std::cout << "[[[\n"

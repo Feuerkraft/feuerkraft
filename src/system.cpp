@@ -146,7 +146,12 @@ System::create_dir(std::string directory)
     {
       if (mkdir(directory.c_str(), S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP) != 0)
 	{
+	  #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
 	  throw Error(directory + ": " + strerror(errno));
+#else
+	  std::cerr << "System: " << directory << ": " << strerror(errno) << std::endl;
+	  exit(EXIT_FAILURE);
+#endif
 	}
       else
 	{
@@ -194,7 +199,12 @@ System::get_statdir()
     }
   else
     {
+      #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
       throw Error(_("Enviroment variable $HOME not set, fix that and start again."));
+#else
+      std::cerr << _("Enviroment variable $HOME not set, fix that and start again.") << std::endl;
+      exit(EXIT_FAILURE);
+#endif
     }
 #endif
 }
@@ -320,7 +330,12 @@ System::checksum (std::string filename)
 
       if (bytes_read == -1)
 	{
+	  #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
 	  throw Error (_("System:checksum: file read error"));
+#else
+	  std::cerr << _("System:checksum: file read error") << std::endl;
+	  exit(EXIT_FAILURE);
+#endif
 	}
 
       for (int i=0; i < bytes_read; i++)

@@ -17,47 +17,41 @@
 #include <string.h>
 #include <stdexcept>
 #include <iostream>
+#include <string>
 #include "../globals.hpp"
 #include "debug_commands.hpp"
 
 static
-bool& debug_lookup_flag(const char* name)
+bool* debug_lookup_flag(const char* name)
 {
   if (strcmp(name, "colmap") == 0)
     {
-      return draw_colmap;
+      return &draw_colmap;
     }
   else
     {
-      throw std::domain_error("Debug: Unknown flag " + std::string(name));
+      return nullptr;
     }
 }
 
 void
 debug_set_flag(const char* name, bool value)
 {
-  try
-    {
-      debug_lookup_flag(name) = value;
-    }
-  catch (std::domain_error& err)
-    {
-      std::cout << err.what() << std::endl;
-    }
+  bool* flag = debug_lookup_flag(name);
+  if (flag)
+    *flag = value;
+  else
+    std::cout << "Debug: Unknown flag " << name << std::endl;
 }
 
 bool
 debug_get_flag(const char* name)
 {
-  try
-    {
-      return debug_lookup_flag(name);
-    }
-  catch (std::domain_error& err)
-    {
-      std::cout << err.what() << std::endl;
-      return false;
-    }
+  bool* flag = debug_lookup_flag(name);
+  if (flag)
+    return *flag;
+  std::cout << "Debug: Unknown flag " << name << std::endl;
+  return false;
 }
 
 /* EOF */
