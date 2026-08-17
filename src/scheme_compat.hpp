@@ -91,7 +91,13 @@ inline char* scm_to_utf8_string(SCM p)
 /* --- I/O / eval ------------------------------------------------------- */
 inline SCM scm_c_primitive_load(const char* path)
 {
-  return s7_load(fk_s7, path);
+  SCM result = s7_load(fk_s7, path);
+  if (!result)
+    {
+      std::fprintf(stderr, "Scheme: failed to load '%s'\n", path);
+      return SCM_BOOL_F;
+    }
+  return result;
 }
 
 inline SCM scm_c_eval_string(const char* code)
@@ -155,10 +161,12 @@ inline void scm_write(SCM obj, SCM port)
 /* File read for sexpr world loading: read one object from a file. */
 inline SCM scm_c_read_file(const char* path)
 {
-  /* (call-with-input-file path read) */
-  std::string expr = "(call-with-input-file \"";
+  /* (call-with-input-file path read) with basic error reporting */
+  std::string expr = "(catch #t (lambda () (call-with-input-file \"";
   expr += path;
-  expr += "\" read)";
+  expr += "\" read)) (lambda args (format #t \"Scheme: read failed ~A: ~A\\n\" \"";
+  expr += path;
+  expr += "\" args) #f))";
   return s7_eval_c_string(fk_s7, expr.c_str());
 }
 
@@ -261,6 +269,12 @@ void deinit();
 
 /** Register all Feuerkraft scripting primitives on the current VM. */
 void register_bindings();
+
+/** Prepend a directory to s7 *load-path*. */
+void add_load_path(const char* dir);
+
+/** Load a Guile-compat prelude (format aliases, safe repl, etc.). */
+void load_prelude();
 
 } // namespace Scheme
 

@@ -94,14 +94,8 @@
   (c:building-create-type name args))
 
 (define (feuerkraft:repl)
-  (display "### Feuerkraft repl, exit with (quit)\n")
-  (catch #t
-         (lambda ()
-           (top-repl)
-           (display "Feuerkraft Readline exited nicly.\n"))
-         (lambda args
-           (display "Error: ")
-           (display args)(newline))))
+  (display "### Feuerkraft embedded repl (s7)\n")
+  (display "### Interactive top-repl is not available; use scripts instead.\n"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Game Play related stuff ;;

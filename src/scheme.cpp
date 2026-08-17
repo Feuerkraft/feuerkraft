@@ -57,6 +57,46 @@ init()
     fk_s7 = s7_init();
   s7_define_variable(fk_s7, "*fk-protect*", s7_nil(fk_s7));
   register_bindings();
+  load_prelude();
+}
+
+void
+add_load_path(const char* dir)
+{
+  if (fk_s7 && dir && dir[0])
+    s7_add_to_load_path(fk_s7, dir);
+}
+
+void
+load_prelude()
+{
+  if (!fk_s7)
+    return;
+
+  /* Minimal Guile-compat helpers used by data/*.scm under s7. */
+  const char* prelude =
+    "(begin
+"
+    "  ;; keyword->symbol is built-in; provide a thin alias if needed
+"
+    "  (if (not (defined? 'keyword->symbol))
+"
+    "      (define (keyword->symbol k)
+"
+    "        (string->symbol (symbol->string k))))
+"
+    "  ;; Safe stand-in for Guile top-repl used by feuerkraft:repl
+"
+    "  (if (not (defined? 'top-repl))
+"
+    "      (define (top-repl)
+"
+    "        (display "(top-repl not available in embedded s7)\n")))
+"
+    "  (display "### s7 Scheme runtime ready\n"))
+";
+
+  s7_eval_c_string(fk_s7, prelude);
 }
 
 void

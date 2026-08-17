@@ -36,7 +36,6 @@
 #include "sound/sound.hpp"
 #include "command_line_arguments.hpp"
 #include "guile.hpp"
-#include "scheme_compat.hpp"
 #include "feuerkraft.hpp"
 
 
@@ -105,6 +104,9 @@ Feuerkraft::init()
         "Could not find data directory (feuerkraft.xml). "
         "Pass --datadir or install data to FEUERKRAFT_DATADIR.");
     }
+
+  // Let s7 (load ...) resolve relative paths against the data directory.
+  Scheme::add_load_path(path_manager.get_base_path().c_str());
 
   // Create the main window (SDL2) — full graphics port follows in later phases
   Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
