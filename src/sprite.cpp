@@ -96,15 +96,26 @@ Sprite::load_frame(const std::string& filename)
       return;
     }
 
-  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-  int w = surface->w;
-  int h = surface->h;
+  /* GLES/WebGL (wasm, Android, R36S) is picky about non-alpha RGB
+     surfaces (e.g. sand.png). Always upload as RGBA32. */
+  SDL_Surface* rgba = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGBA32, 0);
   SDL_FreeSurface(surface);
+  if (!rgba)
+    {
+      std::cerr << "Sprite: ConvertSurfaceFormat failed for " << filename
+                << ": " << SDL_GetError() << std::endl;
+      return;
+    }
+
+  int w = rgba->w;
+  int h = rgba->h;
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, rgba);
+  SDL_FreeSurface(rgba);
 
   if (!texture)
     {
       std::cerr << "Sprite: CreateTexture failed for " << filename
-                << ": " << SDL_GetError() << std::endl;
+                << " (" << w << "x" << h << "): " << SDL_GetError() << std::endl;
       return;
     }
 
