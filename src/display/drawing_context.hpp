@@ -39,7 +39,15 @@ private:
   typedef std::vector<DrawingRequest*> DrawingRequests;
   DrawingRequests drawingrequests;
 
-  std::vector<Pointf> translate_stack;
+  struct Transform {
+    float x, y;   // translation
+    float sx, sy; // scale
+    Transform() : x(0), y(0), sx(1), sy(1) {}
+  };
+  std::vector<Transform> transform_stack;
+
+  /** Apply current transform to a point. */
+  void transform(float& x, float& y) const;
 
 public:
   DrawingContext();

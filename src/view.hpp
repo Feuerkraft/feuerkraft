@@ -93,6 +93,10 @@ public:
   /** Resize the view rectangle (e.g. after a window resize). */
   void set_size(int nx1, int ny1, int nx2, int ny2);
 
+  /** Map zoom (1 = normal, <1 zoomed out, >1 zoomed in). Independent of GUI --scale. */
+  void set_zoom(float z);
+  float get_zoom() const;
+
   /** Set the ViewUpdater. \a arg_updater will get deleted once it is
       no longer used */
   void set_updater(ViewUpdater* arg_updater);

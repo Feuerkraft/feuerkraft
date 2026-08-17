@@ -185,6 +185,8 @@ GameSession::init()
 
   player = new Player(soldier);
   view   = new View(0, 0, Display::get_width(), Display::get_height(), new PlayerViewUpdater(player));
+  if (args)
+    view->set_zoom(args->zoom);
   DisplayManager::init();
 }
 

@@ -184,9 +184,15 @@ View::update(float delta)
   if (view_updater)
     view_updater->update(delta, state);
 
+  // World transform: screen = (world - camera) * zoom + view_center
+  // UI is drawn in Display space after the world pass and is unaffected.
+  float z = (state.zoom != 0.0f) ? state.zoom : 1.0f;
+  float cx = x1 + (x2 - x1) / 2.0f;
+  float cy = y1 + (y2 - y1) / 2.0f;
   scene_context->reset_modelview();
-  scene_context->translate(get_x_offset(), get_y_offset());
-  //drawing_context.translate(state.x_offset, state.y_offset);
+  scene_context->translate(cx, cy);
+  scene_context->scale(z, z);
+  scene_context->translate(-state.x_offset, -state.y_offset);
 }
 
 bool
@@ -222,18 +228,36 @@ View::set_size(int nx1, int ny1, int nx2, int ny2)
   y2 = ny2;
 }
 
+void
+View::set_zoom(float z)
+{
+  state.zoom = (z != 0.0f) ? z : 1.0f;
+}
+
+float
+View::get_zoom() const
+{
+  return state.zoom;
+}
+
 FloatVector2d
 View::screen_to_world (const FloatVector2d& pos)
 {
-  return FloatVector2d (pos.x - get_x_offset (),
-                        pos.y - get_y_offset ());
+  float z = (state.zoom != 0.0f) ? state.zoom : 1.0f;
+  float cx = x1 + (x2 - x1) / 2.0f;
+  float cy = y1 + (y2 - y1) / 2.0f;
+  return FloatVector2d((pos.x - cx) / z + state.x_offset,
+                       (pos.y - cy) / z + state.y_offset);
 }
 
 FloatVector2d
 View::world_to_screen (const FloatVector2d& pos)
 {
-  return FloatVector2d (pos.x + get_x_offset (),
-                        pos.y + get_y_offset ());
+  float z = (state.zoom != 0.0f) ? state.zoom : 1.0f;
+  float cx = x1 + (x2 - x1) / 2.0f;
+  float cy = y1 + (y2 - y1) / 2.0f;
+  return FloatVector2d((pos.x - state.x_offset) * z + cx,
+                       (pos.y - state.y_offset) * z + cy);
 }
 
 /* EOF */

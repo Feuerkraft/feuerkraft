@@ -40,6 +40,7 @@ CommandLineArguments::load_defaults()
   screen_width  = 800;
   screen_height = 600;
   scale         = 1.0f;
+  zoom          = 1.0f;
   fullscreen    = false;
 
   mission_file = "";
@@ -66,10 +67,14 @@ print_help(const char* argv0)
     << "Display Options:\n"
     << "  -g, --geometry WIDTHxHEIGHT  Set window size in pixels\n"
     << "      --size WIDTHxHEIGHT      Alias for --geometry\n"
-    << "      --scale FACTOR           Pixel scale as float (default 1.0).\n"
+    << "      --scale FACTOR           GUI/pixel scale (default 1.0).\n"
     << "                               Logical resolution is size/scale; e.g.\n"
     << "                               --size 1280x960 --scale 2 matches\n"
-    << "                               --size 640x480 --scale 1\n"
+    << "                               --size 640x480 --scale 1.\n"
+    << "                               Affects UI size, not map zoom.\n"
+    << "      --zoom FACTOR            Map zoom (default 1.0). <1 zooms out\n"
+    << "                               (more world visible), >1 zooms in.\n"
+    << "                               Independent of --scale.\n"
     << "  -w, --fullscreen           Switch to Fullscreen on startup\n"
     << "  -f, --fps FPS              Limit of frames per second\n\n"
     << "Audio Options:\n"

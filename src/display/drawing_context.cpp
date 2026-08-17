@@ -145,7 +145,7 @@ public:
 
 DrawingContext::DrawingContext()
 {
-  translate_stack.push_back(Pointf(0, 0));
+  transform_stack.push_back(Transform());
 }
 
 void
@@ -179,44 +179,42 @@ DrawingContext::draw(DrawingRequest* request)
 void
 DrawingContext::draw(const Sprite& sprite, float x, float y, float z)
 {
-  draw(new SpriteDrawingRequest(sprite,
-        Vector3f(translate_stack.back().x + x,
-                 translate_stack.back().y + y, z)));
+  transform(x, y);
+  draw(new SpriteDrawingRequest(sprite, Vector3f(x, y, z)));
 }
 
 void
 DrawingContext::draw(const std::string& text, float x, float y, float z)
 {
-  draw(new TextDrawingRequest(text, Vector3f(translate_stack.back().x + x,
-                                             translate_stack.back().y + y,
-                                             z)));
+  transform(x, y);
+  draw(new TextDrawingRequest(text, Vector3f(x, y, z)));
 }
 
 void
 DrawingContext::draw_line(float x1, float y1, float x2, float y2,
                           const Color& color)
 {
-  float tx = translate_stack.back().x;
-  float ty = translate_stack.back().y;
-  draw(new LineDrawingRequest(tx + x1, ty + y1, tx + x2, ty + y2, color, 0));
+  transform(x1, y1);
+  transform(x2, y2);
+  draw(new LineDrawingRequest(x1, y1, x2, y2, color, 0));
 }
 
 void
 DrawingContext::draw_fillrect(float x1, float y1, float x2, float y2,
                               const Color& color)
 {
-  float tx = translate_stack.back().x;
-  float ty = translate_stack.back().y;
-  draw(new FillRectDrawingRequest(tx + x1, ty + y1, tx + x2, ty + y2, color, 0));
+  transform(x1, y1);
+  transform(x2, y2);
+  draw(new FillRectDrawingRequest(x1, y1, x2, y2, color, 0));
 }
 
 void
 DrawingContext::draw_rect(float x1, float y1, float x2, float y2,
                           const Color& color)
 {
-  float tx = translate_stack.back().x;
-  float ty = translate_stack.back().y;
-  draw(new RectDrawingRequest(tx + x1, ty + y1, tx + x2, ty + y2, color, 0));
+  transform(x1, y1);
+  transform(x2, y2);
+  draw(new RectDrawingRequest(x1, y1, x2, y2, color, 0));
 }
 
 void
@@ -231,15 +229,19 @@ DrawingContext::draw_circle(float x_pos, float y_pos, float radius,
 {
   // Approximate with a regular polygon
   const int steps = 32;
-  float tx = translate_stack.back().x + x_pos;
-  float ty = translate_stack.back().y + y_pos;
-  float last_x = tx + radius;
-  float last_y = ty;
+  // Scale radius by average scale for a reasonable circle under uniform zoom
+  const Transform& tr = transform_stack.back();
+  float cx = x_pos, cy = y_pos;
+  transform(cx, cy);
+  float rx = radius * tr.sx;
+  float ry = radius * tr.sy;
+  float last_x = cx + rx;
+  float last_y = cy;
   for (int i = 1; i <= steps; ++i)
     {
       float a = (2.0f * static_cast<float>(M_PI) * i) / steps;
-      float x = tx + radius * std::cos(a);
-      float y = ty + radius * std::sin(a);
+      float x = cx + rx * std::cos(a);
+      float y = cy + ry * std::sin(a);
       draw(new LineDrawingRequest(last_x, last_y, x, y, color, 0));
       last_x = x;
       last_y = y;
@@ -253,15 +255,18 @@ DrawingContext::draw_arc(float x_pos, float y_pos, float radius,
 {
   const int steps = 16;
   float enclosed = angle_end - angle_start;
-  float tx = translate_stack.back().x + x_pos;
-  float ty = translate_stack.back().y + y_pos;
-  float last_x = tx + radius * std::cos(angle_start);
-  float last_y = ty + radius * std::sin(angle_start);
+  const Transform& tr = transform_stack.back();
+  float cx = x_pos, cy = y_pos;
+  transform(cx, cy);
+  float rx = radius * tr.sx;
+  float ry = radius * tr.sy;
+  float last_x = cx + rx * std::cos(angle_start);
+  float last_y = cy + ry * std::sin(angle_start);
   for (int i = 1; i <= steps; ++i)
     {
       float a = angle_start + enclosed * i / steps;
-      float x = tx + radius * std::cos(a);
-      float y = ty + radius * std::sin(a);
+      float x = cx + rx * std::cos(a);
+      float y = cy + ry * std::sin(a);
       draw(new LineDrawingRequest(last_x, last_y, x, y, color, 0));
       last_x = x;
       last_y = y;
@@ -281,42 +286,54 @@ DrawingContext::rotate(float /*angel*/)
 }
 
 void
-DrawingContext::scale(float /*x*/, float /*y*/)
+DrawingContext::scale(float x, float y)
 {
-  // not implemented yet
+  // Post-multiply scale: local coordinates are scaled before existing transform
+  transform_stack.back().sx *= x;
+  transform_stack.back().sy *= y;
 }
 
 void
 DrawingContext::translate(float x, float y)
 {
-  translate_stack.back().x += x;
-  translate_stack.back().y += y;
+  // Post-multiply translation in local space (scaled by current scale)
+  Transform& tr = transform_stack.back();
+  tr.x += x * tr.sx;
+  tr.y += y * tr.sy;
 }
 
 void
 DrawingContext::push_modelview()
 {
-  translate_stack.push_back(translate_stack.back());
+  transform_stack.push_back(transform_stack.back());
 }
 
 void
 DrawingContext::pop_modelview()
 {
-  translate_stack.pop_back();
-  assert(!translate_stack.empty());
+  transform_stack.pop_back();
+  assert(!transform_stack.empty());
 }
 
 void
 DrawingContext::reset_modelview()
 {
-  translate_stack.clear();
-  translate_stack.push_back(Pointf(0, 0));
+  transform_stack.clear();
+  transform_stack.push_back(Transform());
+}
+
+void
+DrawingContext::transform(float& x, float& y) const
+{
+  const Transform& tr = transform_stack.back();
+  x = tr.x + x * tr.sx;
+  y = tr.y + y * tr.sy;
 }
 
 Rect
 DrawingContext::get_clip_rect()
 {
-  return Rect(Pointf(translate_stack.back().x, translate_stack.back().y),
+  return Rect(Pointf(transform_stack.back().x, transform_stack.back().y),
               Display::get_width(), Display::get_height());
 }
 

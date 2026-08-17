@@ -26,10 +26,16 @@ public:
   int screen_width;
   int screen_height;
 
-  /** Pixel scale factor (1 = 1:1, 2 = 2x pixels, 0.5 = half, etc.).
-      Window size is screen_width x screen_height; logical (viewable)
-      size is screen_width/scale x screen_height/scale. */
+  /** GUI / pixel scale (1 = 1:1, 2 = 2x pixels, 0.5 = half, etc.).
+      Window size is screen_width x screen_height; logical resolution
+      for UI and the framebuffer is screen_width/scale x screen_height/scale.
+      Does not change how much of the world is visible. */
   float scale;
+
+  /** Map zoom (1 = normal, <1 zoomed out / more world visible, >1 zoomed in).
+      Independent of --scale so the UI can stay large while the playfield
+      is zoomed out. */
+  float zoom;
 
   /** Mission file to start, empty() if non is given */
   std::string mission_file;
