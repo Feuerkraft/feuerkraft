@@ -59,6 +59,8 @@ public:
   float get_alpha() const { return alpha; }
 
   void set_scale(float x, float y);
+  float get_scale_x() const { return scale_x; }
+  float get_scale_y() const { return scale_y; }
   void set_alignment(Origin origin);
 
   void set_color(const Color& c);

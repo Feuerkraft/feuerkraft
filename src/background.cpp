@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <cmath>
 #include "display.hpp"
 #include "view.hpp"
 #include "background.hpp"
@@ -29,41 +30,27 @@ Background::Background (const Sprite& arg_sprite,
 void
 Background::draw (View& view)
 {
-  // Tile the background in screen space, but queue through the color
-  // DrawingContext so it ends up on the lightmap color buffer (direct
-  // sprite.draw() would hit the window and be overwritten by SceneContext).
+  // Tile in world space so the sand scales with map --zoom (unlike GUI).
   int sw = sprite.get_width();
   int sh = sprite.get_height();
   if (sw <= 0 || sh <= 0)
     return;
 
-  float ox = view.get_x_offset();
-  float oy = view.get_y_offset();
+  float left, top, right, bottom;
+  view.get_world_rect(left, top, right, bottom);
 
-  // Cover the full logical viewport (not a fixed 800x600-era tile count).
-  const int view_w = view.get_width()  > 0 ? view.get_width()  : Display::get_width();
-  const int view_h = view.get_height() > 0 ? view.get_height() : Display::get_height();
+  // Expand by one tile so edges never show gaps while scrolling.
+  int x0 = int(std::floor(left  / sw)) - 1;
+  int y0 = int(std::floor(top   / sh)) - 1;
+  int x1 = int(std::ceil (right / sw)) + 1;
+  int y1 = int(std::ceil (bottom/ sh)) + 1;
 
-  // SceneContext applies translate(ox, oy); pass world coords so that
-  // world + translate = screen position.
-  int mod_x = int(ox) % sw;
-  int mod_y = int(oy) % sh;
-  // C++ % can be negative for negative offsets
-  if (mod_x < 0) mod_x += sw;
-  if (mod_y < 0) mod_y += sh;
-
-  // One extra tile on each side so scrolling never shows gaps.
-  const int tiles_x = view_w / sw + 2;
-  const int tiles_y = view_h / sh + 2;
-
-  for (int y = -1; y <= tiles_y; ++y)
-    for (int x = -1; x <= tiles_x; ++x)
+  for (int y = y0; y <= y1; ++y)
+    for (int x = x0; x <= x1; ++x)
       {
-        float screen_x = float(x * sw + mod_x);
-        float screen_y = float(y * sh + mod_y);
         view.get_sc().color().draw(sprite,
-                                   screen_x - ox,
-                                   screen_y - oy,
+                                   float(x * sw),
+                                   float(y * sh),
                                    z_pos);
       }
 }

@@ -49,13 +49,13 @@ View::~View ()
 }
 
 float
-View::get_x_offset ()
+View::get_x_offset () const
 {
   return x1 - state.x_offset + (x2 - x1)/2;
 }
 
 float
-View::get_y_offset ()
+View::get_y_offset () const
 {
   return y1 - state.y_offset + (y2 - y1)/2;
 }
@@ -65,30 +65,26 @@ void
 View::draw (Sprite& sprite, const FloatVector2d& pos, float angle)
 {
   sprite.set_angle(Math::rad2deg(angle));
-  sprite.draw(int(pos.x + get_x_offset ()),
-              int(pos.y + get_y_offset ()));
+  FloatVector2d s = world_to_screen(pos);
+  sprite.draw(int(s.x), int(s.y));
 }
 
 void
 View::draw_line (float x1, float y1, float x2, float y2,
                  const Color& color)
 {
-  Display::draw_line(int((x1 + get_x_offset ())),
-                        int((y1 + get_y_offset ())),
-                        int((x2 + get_x_offset ())),
-                        int((y2 + get_y_offset ())),
-                        color);
+  FloatVector2d a = world_to_screen(FloatVector2d(x1, y1));
+  FloatVector2d b = world_to_screen(FloatVector2d(x2, y2));
+  Display::draw_line(int(a.x), int(a.y), int(b.x), int(b.y), color);
 }
 
 void
 View::draw_fillrect (float x1, float y1, float x2, float y2,
                      const Color& color)
 {
-  Display::fill_rect (Rect(int((x1 + get_x_offset ())),
-                                 int((y1 + get_y_offset ())),
-                                 int((x2 + get_x_offset ())),
-                                 int((y2 + get_y_offset ()))),
-			 color);
+  FloatVector2d a = world_to_screen(FloatVector2d(x1, y1));
+  FloatVector2d b = world_to_screen(FloatVector2d(x2, y2));
+  Display::fill_rect(Rect(int(a.x), int(a.y), int(b.x), int(b.y)), color);
 }
 
 void
@@ -96,19 +92,12 @@ View::draw_rect (float x1, float y1, float x2, float y2,
 		 const Color& arg_color)
 {
   const Color& color = arg_color;
-
-  Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()),
-			 int(x1 + get_x_offset ()), int(y2 + get_y_offset ()),
-			 color);
-  Display::draw_line (int(x2 + get_x_offset ()), int(y1 + get_y_offset ()),
-			 int(x2 + get_x_offset ()), int(y2 + get_y_offset ()),
-			 color);
-  Display::draw_line (int(x1 + get_x_offset ()), int(y1 + get_y_offset ()),
-			 int(x2 + get_x_offset ()), int(y1 + get_y_offset ()),
-			 color);
-  Display::draw_line (int(x1 + get_x_offset ()), int(y2 + get_y_offset ()),
-			 int(x2 + get_x_offset ()), int(y2 + get_y_offset ()),
-			 color);
+  FloatVector2d a = world_to_screen(FloatVector2d(x1, y1));
+  FloatVector2d b = world_to_screen(FloatVector2d(x2, y2));
+  Display::draw_line(int(a.x), int(a.y), int(a.x), int(b.y), color);
+  Display::draw_line(int(b.x), int(a.y), int(b.x), int(b.y), color);
+  Display::draw_line(int(a.x), int(a.y), int(b.x), int(a.y), color);
+  Display::draw_line(int(a.x), int(b.y), int(b.x), int(b.y), color);
 }
 
 void
@@ -208,13 +197,13 @@ View::set_property (ViewProperty p)
 }
 
 int
-View::get_width ()
+View::get_width () const
 {
   return x2 - x1; // FIXME: Off by one?!
 }
 
 int
-View::get_height ()
+View::get_height () const
 {
   return y2 - y1;// FIXME: Off by one?!
 }
@@ -238,6 +227,30 @@ float
 View::get_zoom() const
 {
   return state.zoom;
+}
+
+float
+View::get_camera_x() const
+{
+  return state.x_offset;
+}
+
+float
+View::get_camera_y() const
+{
+  return state.y_offset;
+}
+
+void
+View::get_world_rect(float& left, float& top, float& right, float& bottom) const
+{
+  float z = (state.zoom != 0.0f) ? state.zoom : 1.0f;
+  float hw = get_width()  / (2.0f * z);
+  float hh = get_height() / (2.0f * z);
+  left   = state.x_offset - hw;
+  right  = state.x_offset + hw;
+  top    = state.y_offset - hh;
+  bottom = state.y_offset + hh;
 }
 
 FloatVector2d

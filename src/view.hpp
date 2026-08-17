@@ -84,11 +84,11 @@ public:
 
   static View* current() { return current_; }
 
-  float get_x_offset ();
-  float get_y_offset ();
+  float get_x_offset () const;
+  float get_y_offset () const;
 
-  int get_width ();
-  int get_height ();
+  int get_width () const;
+  int get_height () const;
 
   /** Resize the view rectangle (e.g. after a window resize). */
   void set_size(int nx1, int ny1, int nx2, int ny2);
@@ -96,6 +96,13 @@ public:
   /** Map zoom (1 = normal, <1 zoomed out, >1 zoomed in). Independent of GUI --scale. */
   void set_zoom(float z);
   float get_zoom() const;
+
+  /** Camera centre in world coordinates. */
+  float get_camera_x() const;
+  float get_camera_y() const;
+
+  /** Axis-aligned world rectangle currently visible (for culling). */
+  void get_world_rect(float& left, float& top, float& right, float& bottom) const;
 
   /** Set the ViewUpdater. \a arg_updater will get deleted once it is
       no longer used */

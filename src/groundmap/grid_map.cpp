@@ -59,14 +59,14 @@ GridMap::~GridMap ()
 void
 GridMap::draw (View& view)
 {
-  //std::cout << "Drawing" << std::endl;
-
-  /* FIXME: This code should be shared with TileMap */
-  int tile_x_offset = int(-(view.get_x_offset ()) / 40);
-  int tile_y_offset = int(-(view.get_y_offset ()) / 40);
-  int tile_width    = tile_x_offset + (view.get_width()  / 40) + 2;
-  int tile_height   = tile_y_offset + (view.get_height() / 40) + 2;
-  // FIXME: one tile more to avoid artefacts, hack, hack hack...
+  // Cull tiles against the visible world rect (accounts for --zoom).
+  float left, top, right, bottom;
+  view.get_world_rect(left, top, right, bottom);
+  const float tile_size = 40.0f;
+  int tile_x_offset = int(left  / tile_size) - 1;
+  int tile_y_offset = int(top   / tile_size) - 1;
+  int tile_width    = int(right / tile_size) + 2;
+  int tile_height   = int(bottom/ tile_size) + 2;
 
   for (int y = tile_y_offset; y < tile_height; ++y)
     for (int x = tile_x_offset; x < tile_width; ++x)

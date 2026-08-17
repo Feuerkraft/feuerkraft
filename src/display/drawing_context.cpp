@@ -180,7 +180,11 @@ void
 DrawingContext::draw(const Sprite& sprite, float x, float y, float z)
 {
   transform(x, y);
-  draw(new SpriteDrawingRequest(sprite, Vector3f(x, y, z)));
+  // Scale sprite size with the current modelview so map --zoom shrinks world art
+  Sprite s = sprite;
+  const Transform& tr = transform_stack.back();
+  s.set_scale(sprite.get_scale_x() * tr.sx, sprite.get_scale_y() * tr.sy);
+  draw(new SpriteDrawingRequest(s, Vector3f(x, y, z)));
 }
 
 void
