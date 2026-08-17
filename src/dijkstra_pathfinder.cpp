@@ -78,7 +78,6 @@ DijkstraPathfinder::finished()
   return state != WORKING;
 }
 
-inline
 void
 DijkstraPathfinder::process_one_open_node()
 {
@@ -169,7 +168,7 @@ DijkstraPathfinder::make_neighbors_open(Node& cnode)
     }
 }
 
-inline void
+void
 DijkstraPathfinder::add_to_open_nodes(Node& cnode)
 {
   assert(cnode.parent != PARENT_NONE);
