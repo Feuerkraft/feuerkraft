@@ -38,6 +38,13 @@ EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
 #include "input/game_controllers.hpp"
 #include "input/input_manager.hpp"
 #include "game_session_manager.hpp"
+#ifdef __EMSCRIPTEN__
+static void fk_emscripten_frame(void)
+{
+  if (!GameSessionManager::instance()->tick())
+    emscripten_cancel_main_loop();
+}
+#endif
 #include "keyboard_manager.hpp"
 #include "resource_manager.hpp"
 #include "path_manager.hpp"
