@@ -12,6 +12,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <vector>
+#include <SDL.h>
 
 #include "s7.h"
 
@@ -94,8 +96,49 @@ inline char* scm_to_utf8_string(SCM p)
 }
 
 /* --- I/O / eval ------------------------------------------------------- */
+inline std::vector<char> fk_read_file_bytes(const char* path)
+{
+  std::vector<char> out;
+  if (!path)
+    return out;
+  SDL_RWops* rw = SDL_RWFromFile(path, "rb");
+  if (!rw)
+    return out;
+  Sint64 sz = SDL_RWsize(rw);
+  if (sz < 0)
+    {
+      /* Unknown size: read in chunks. */
+      char buf[4096];
+      size_t n;
+      while ((n = SDL_RWread(rw, buf, 1, sizeof(buf))) > 0)
+        out.insert(out.end(), buf, buf + n);
+    }
+  else
+    {
+      out.resize(static_cast<size_t>(sz));
+      if (sz > 0 && SDL_RWread(rw, out.data(), 1, static_cast<size_t>(sz)) != static_cast<size_t>(sz))
+        out.clear();
+    }
+  SDL_RWclose(rw);
+  return out;
+}
+
 inline SCM scm_c_primitive_load(const char* path)
 {
+  /* Prefer reading via SDL_RWops so Android APK assets work (s7_load uses fopen). */
+  std::vector<char> bytes = fk_read_file_bytes(path);
+  if (!bytes.empty())
+    {
+      /* s7_load_c_string expects a C string length; content need not be NUL-terminated. */
+      SCM result = s7_load_c_string(fk_s7, bytes.data(), static_cast<s7_int>(bytes.size()));
+      if (!result)
+        {
+          std::fprintf(stderr, "Scheme: failed to eval loaded bytes from '%s'\n", path);
+          return SCM_BOOL_F;
+        }
+      return result;
+    }
+
   SCM result = s7_load(fk_s7, path);
   if (!result)
     {
@@ -171,7 +214,14 @@ inline void scm_write(SCM obj, SCM port)
 /* File read for sexpr world loading: read one object from a file. */
 inline SCM scm_c_read_file(const char* path)
 {
-  /* (call-with-input-file path read) with basic error reporting */
+  std::vector<char> bytes = fk_read_file_bytes(path);
+  if (!bytes.empty())
+    {
+      /* Ensure NUL terminator for eval as string containing one expression. */
+      bytes.push_back('\0');
+      return s7_eval_c_string(fk_s7, bytes.data());
+    }
+  /* Filesystem fallback (desktop / when RWops fails). */
   std::string expr = "(catch #t (lambda () (call-with-input-file \"";
   expr += path;
   expr += "\" read)) (lambda args (format #t \"Scheme: read failed ~A: ~A\\n\" \"";
