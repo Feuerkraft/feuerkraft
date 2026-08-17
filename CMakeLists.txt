@@ -108,9 +108,17 @@ else()
 endif()
 
 
-# Cross toolchains (R36S/ArkOS sysroot, Emscripten) often fail the
-# automatic pthread probe even when -pthread works at link time.
-if(EMSCRIPTEN OR CMAKE_CROSSCOMPILING)
+# Cross toolchains (R36S/ArkOS sysroot) often fail the automatic pthread
+# probe even when -pthread works at link time.
+# Emscripten: stay single-threaded. Linking -pthread pulls --shared-memory
+# and requires every .o to be built with atomics/bulk-memory; our wasm
+# main loop does not use threads.
+if(EMSCRIPTEN)
+  set(CMAKE_THREAD_LIBS_INIT "")
+  set(CMAKE_HAVE_THREADS_LIBRARY 0)
+  set(CMAKE_USE_PTHREADS_INIT 0)
+  set(Threads_FOUND FALSE)
+elseif(CMAKE_CROSSCOMPILING)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   set(CMAKE_THREAD_LIBS_INIT "-pthread")
   set(CMAKE_HAVE_THREADS_LIBRARY 1)
