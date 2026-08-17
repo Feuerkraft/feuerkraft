@@ -26,6 +26,18 @@ typedef s7_pointer SCM;
 #define SCM_UNDEFINED       (s7_undefined(fk_s7))
 #define SCM_EOL             (s7_nil(fk_s7))
 
+#define SCM_NULLP(p)        s7_is_null(fk_s7, (p))
+#define scm_null_p(p)       scm_is_null_p(p)
+#define scm_pair_p(p)       scm_is_pair_p(p)
+#define scm_symbol_p(p)     scm_is_symbol_p(p)
+#define scm_string_p(p)     scm_is_string_p(p)
+#define scm_number_p(p)     scm_is_number_p(p)
+
+inline SCM scm_reverse(SCM lst)
+{
+  return s7_reverse(fk_s7, lst);
+}
+
 /* --- predicates ------------------------------------------------------- */
 #define scm_is_true(p)      ((p) != s7_f(fk_s7))
 #define scm_is_false(p)     ((p) == s7_f(fk_s7))

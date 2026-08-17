@@ -161,13 +161,13 @@ GridTileGenerator::create (const GridTileData& data)
 	{
 	  // The tile list is empty, no tile available
           if (args->verbose)
-            std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
+            std::cout << "GridTileGenerator: Warning: Tile: " << Guile::scm2string(data) << " missing" << std::endl;
           return 0;
 	}
     }
   else
     {
-      std::cout << "GridTileGenerator: Warning: Tile: " << data << " missing" << std::endl;
+      std::cout << "GridTileGenerator: Warning: Tile: " << Guile::scm2string(data) << " missing" << std::endl;
       return emptytile;
     }
 }

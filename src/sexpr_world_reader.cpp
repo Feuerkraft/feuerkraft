@@ -80,7 +80,7 @@ SexprWorldReader::parse_file(SCM desc)
 		}
 	      else
 		{
-		  std::cout << "Error: " << symbol << " " << data << std::endl;;
+		  std::cout << "Error: " << Guile::scm2string(symbol) << " " << Guile::scm2string(data) << std::endl;
 		}
 	    }
 	  else
@@ -92,7 +92,7 @@ SexprWorldReader::parse_file(SCM desc)
 	}
       else
 	{
-	  std::cout << "Error not a pair: " << scm_car(desc) << std::endl;;
+	  std::cout << "Error not a pair: " << Guile::scm2string(scm_car(desc)) << std::endl;
 	}
 
       desc = scm_cdr(desc);

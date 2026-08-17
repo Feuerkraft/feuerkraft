@@ -39,12 +39,6 @@
 #include "scheme_compat.hpp"
 #include "feuerkraft.hpp"
 
-//#define WITH_STATIC_READLINE 1
-
-#ifdef WITH_STATIC_READLINE
-extern "C" void scm_init_readline();
-#endif
-
 
 // Global Instance of the main class
 Feuerkraft feuerkraft;

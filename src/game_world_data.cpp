@@ -66,7 +66,7 @@ GameWorldData::GameWorldData (SCM desc)
 		}
 	      else
 		{
-		  std::cout << "GameWorldData: Error: " << symbol << " " << data << std::endl;;
+		  std::cout << "GameWorldData: Error: " << Guile::scm2string(symbol) << " " << Guile::scm2string(data) << std::endl;
 		}
 	    }
 	  else
@@ -78,7 +78,7 @@ GameWorldData::GameWorldData (SCM desc)
 	}
       else
 	{
-	  std::cout << "GameWorldData: Error not a pair: " << scm_car(desc) << std::endl;;
+	  std::cout << "GameWorldData: Error not a pair: " << Guile::scm2string(scm_car(desc)) << std::endl;
 	}
 
       desc = scm_cdr(desc);
