@@ -73,28 +73,16 @@ load_prelude()
   if (!fk_s7)
     return;
 
-  /* Minimal Guile-compat helpers used by data/*.scm under s7. */
+  // Minimal Guile-compat helpers used by data/*.scm under s7.
+  // Avoid C string \n escapes; use (newline) in Scheme instead.
   const char* prelude =
-    "(begin
-"
-    "  ;; keyword->symbol is built-in; provide a thin alias if needed
-"
-    "  (if (not (defined? 'keyword->symbol))
-"
-    "      (define (keyword->symbol k)
-"
-    "        (string->symbol (symbol->string k))))
-"
-    "  ;; Safe stand-in for Guile top-repl used by feuerkraft:repl
-"
-    "  (if (not (defined? 'top-repl))
-"
-    "      (define (top-repl)
-"
-    "        (display "(top-repl not available in embedded s7)\n")))
-"
-    "  (display "### s7 Scheme runtime ready\n"))
-";
+    "(begin"
+    " (if (not (defined? (quote keyword->symbol)))"
+    "     (define (keyword->symbol k) (string->symbol (symbol->string k))))"
+    " (if (not (defined? (quote top-repl)))"
+    "     (define (top-repl)"
+    "       (begin (display \"(top-repl not available in embedded s7)\") (newline))))"
+    " (display \"### s7 Scheme runtime ready\") (newline))";
 
   s7_eval_c_string(fk_s7, prelude);
 }
@@ -307,14 +295,6 @@ static s7_pointer g_trigger_add_region(s7_scheme* sc, s7_pointer args)
 }
 
 /* ---- vehicle ------------------------------------------------------- */
-static s7_pointer g_vehicle_set_fuel(s7_scheme* sc, s7_pointer args)
-{ vehicle_set_fuel((int)s7_integer(ARG1())); return s7_t(sc); }
-static s7_pointer g_vehicle_get_fuel(s7_scheme* sc, s7_pointer)
-{ return s7_make_integer(sc, vehicle_get_fuel()); }
-static s7_pointer g_vehicle_get_weapon(s7_scheme* sc, s7_pointer args)
-{ return s7_make_integer(sc, vehicle_get_weapon((int)s7_integer(ARG1()))); }
-static s7_pointer g_vehicle_set_position(s7_scheme* sc, s7_pointer args)
-{ vehicle_set_position((int)s7_integer(ARG1()), (int)s7_integer(ARG2()), (int)s7_integer(ARG3())); return s7_t(sc); }
 static s7_pointer g_vehicle_find_nearest(s7_scheme* sc, s7_pointer args)
 {
   return s7_make_integer(sc, vehicle_find_nearest(
@@ -429,10 +409,6 @@ register_bindings()
   DEF("trigger-add-tile",   g_trigger_add_tile,   3, 0, false, "(trigger-add-tile x y func)");
   DEF("trigger-add-region", g_trigger_add_region, 5, 0, false, "(trigger-add-region x1 y1 x2 y2 func)");
 
-  DEF("vehicle-set-fuel",        g_vehicle_set_fuel,        1, 0, false, "(vehicle-set-fuel fuel)");
-  DEF("vehicle-get-fuel",        g_vehicle_get_fuel,        0, 0, false, "(vehicle-get-fuel)");
-  DEF("vehicle-get-weapon",      g_vehicle_get_weapon,      1, 0, false, "(vehicle-get-weapon number)");
-  DEF("vehicle-set-position",    g_vehicle_set_position,    3, 0, false, "(vehicle-set-position handle x y)");
   DEF("vehicle-find-nearest",    g_vehicle_find_nearest,    3, 0, false, "(vehicle-find-nearest x y max-distance)");
   DEF("helicopter-start-or-land",g_helicopter_start_or_land,1, 0, false, "(helicopter-start-or-land handle)");
 

@@ -25,6 +25,7 @@ typedef s7_pointer SCM;
 #define SCM_BOOL_T          (s7_t(fk_s7))
 #define SCM_UNDEFINED       (s7_undefined(fk_s7))
 #define SCM_EOL             (s7_nil(fk_s7))
+#define SCM_UNSPECIFIED     (s7_unspecified(fk_s7))
 
 #define SCM_NULLP(p)        s7_is_null(fk_s7, (p))
 #define scm_null_p(p)       scm_is_null_p(p)
@@ -57,6 +58,10 @@ inline SCM scm_reverse(SCM lst)
 #define scm_cadr(p)         s7_cadr(p)
 #define scm_cdar(p)         s7_cdr(s7_car(p))
 #define scm_cddr(p)         s7_cddr(p)
+#define scm_caddr(p)        s7_caddr(p)
+#define scm_cadddr(p)       s7_cadddr(p)
+#define scm_cadar(p)        s7_car(s7_cadr(p))
+#define scm_cdddr(p)        s7_cdr(s7_cddr(p))
 #define scm_cons(a, b)      s7_cons(fk_s7, (a), (b))
 
 /* Guile-style accessors used as SCM_CAR / SCM_CDR macros in places */
@@ -136,6 +141,11 @@ inline SCM scm_variable_ref(SCM /*unused_var_handle*/)
 inline SCM scm_lookup_value(const char* name)
 {
   return s7_name_to_value(fk_s7, name);
+}
+
+inline SCM scm_current_output_port()
+{
+  return s7_current_output_port(fk_s7);
 }
 
 inline void scm_display(SCM obj, SCM /*port*/)
