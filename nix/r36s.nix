@@ -310,18 +310,10 @@ let
         "-DCMAKE_SKIP_INSTALL_RPATH=ON"
         "-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF"
         "-DCMAKE_INSTALL_RPATH="
-        "-DENABLE_SDL2=ON"
-        "-DENABLE_GLES2=ON"
-        "-DENABLE_OPENGL=ON"
-        "-DENABLE_GP2X=OFF"
-        "-DENABLE_RES320X240=OFF"
-        "-DENABLE_SOUND=${if enableSound then "ON" else "OFF"}"
         "-DCMAKE_BUILD_TYPE=Release"
-        # Relative path next to the binary on device (PortMaster layout:
-        # …/feuerkraft/{binary,data/}). Avoid baking /nix/store.
-        "-DDATA_PREFIX=data"
+        # Data next to the binary on device (PortMaster: feuerkraft/data/).
+        "-DFEUERKRAFT_DATADIR=data"
         "-DPROJECT_VERSION_FULL=${version}"
-        "-DARKOS_SYSROOT=${arkosSysroot}"
       ];
 
       # Do not let nix stdenv rewrite RUNPATH to modern glibc / gcc-15 libs,

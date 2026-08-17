@@ -17,8 +17,9 @@ and [Pingus](https://github.com/Pingus/pingus) (same layout and scripts).
 ## In progress / next
 
 - [x] Fix `stb_image.h` fixed-output hash in flake and enable `feuerkraft-android`
+- [x] Android SDK: `config.allowUnfree` + `android_sdk.accept_license` (SuperTux/Pingus pattern)
 - [x] First successful `nix build .#feuerkraft-wasm`
-- [ ] R36S: provide ArkOS sysroot and enable `feuerkraft-r36s` + PortMaster zip
+- [x] R36S: ArkOS sysroot + `feuerkraft-r36s` / PortMaster packages in flake
 - [ ] Windows: verify MinGW link + DLL staging; add `S7` build under mingw
 - [x] Android: stb_image shim in APK (no libSDL2_image); RWops for assets
 - [x] WASM datadir: prefer `/data` under Emscripten; Android uses `.`

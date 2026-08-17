@@ -108,39 +108,55 @@
         };
         wasmDataDir = if builtins.pathExists ./data then ./data else null;
 
-        # ---- Android ----
-        androidComposition = pkgs.androidenv.composeAndroidPackages {
-          cmdLineToolsVersion = "8.0";
-          toolsVersion = "26.1.1";
-          platformToolsVersion = "34.0.5";
-          buildToolsVersions = [ "30.0.3" ];
-          includeEmulator = false;
-          platformVersions = [ "22" "33" ];
-          includeSources = false;
-          includeSystemImages = false;
-          includeNDK = true;
-          # Match SuperTux / Pingus NDK choice when possible
-          ndkVersions = [ "25.1.8937393" ];
+        # ---- Android (unfree SDK; license accepted here like SuperTux/Pingus) ----
+        androidPkgs = import nixpkgs {
+          system = pkgs.stdenv.hostPlatform.system;
+          config.allowUnfree = true;
+          config.android_sdk.accept_license = true;
         };
-        androidSdk = androidComposition.androidsdk;
         buildToolsVersion = "30.0.3";
         packagePlatform = "22";
         compilePlatform = "33";
+        ndkVersion = "23.1.7779620";
         targetAbis = [ "armeabi-v7a" "arm64-v8a" ];
+        androidSdk = (androidPkgs.androidenv.composeAndroidPackages {
+          platformVersions = [ packagePlatform compilePlatform ];
+          buildToolsVersions = [ buildToolsVersion ];
+          includeNDK = true;
+          inherit ndkVersion;
+          includeEmulator = false;
+          includeSources = false;
+        }).androidsdk;
         android = import ./nix/android.nix {
-          inherit pkgs androidSdk buildToolsVersion packagePlatform compilePlatform targetAbis;
+          pkgs = androidPkgs;
           sdlSrc = sdl2-src;
           sdlVersion = "2.30.9";
           sdlMixerSrc = sdl2-mixer-src;
           sdlMixerVersion = "2.8.1";
+          libxmpSrc = libxmp-src;
+          inherit androidSdk buildToolsVersion packagePlatform compilePlatform targetAbis;
         };
         androidApkName = "feuerkraft-${gitDate}-${gitRev}.apk";
         stbImageH = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/nothings/stb/2c980bb59875b0d32144a71867fbdebb2f77cd20/stb_image.h";
           hash = "sha256-WUwv411JSItDgtv67I+YNm3vyoGdkWrJW+zz519CALM=";
         };
+
         # ---- R36S / ArkOS ----
-        r36s = import ./nix/r36s.nix { inherit pkgs; };
+        r36s = import ./nix/r36s.nix {
+          inherit (pkgs) lib stdenv stdenvNoCC fetchurl cmake pkg-config writeShellScript zip;
+          pkgsCross = pkgs.pkgsCross;
+        };
+        feuerkraftR36s = r36s.mkFeuerkraftR36s {
+          src = lib.cleanSource ./.;
+          inherit version;
+          pname = "feuerkraft-r36s";
+        };
+        feuerkraftR36sPortMaster = r36s.mkFeuerkraftR36sPortMaster {
+          r36sPkg = feuerkraftR36s;
+          inherit version;
+          pname = "feuerkraft-r36s-portmaster";
+        };
 
         # ---- Windows cross (MinGW) ----
         mkSdl2MixerWin = winSystem:
@@ -222,8 +238,15 @@
             gameVersion = version;
           };
 
-          # R36S / PortMaster (needs ArkOS sysroot — see mk/r36s/CROSSCOMPILE.md)
-          # feuerkraft-r36s = r36s.mkFeuerkraftR36s { src = ./.; inherit version; };
+          # R36S / PortMaster (ArkOS aarch64)
+          arkos-sysroot = r36s.arkosSysroot;
+          feuerkraft-r36s = feuerkraftR36s;
+          feuerkraft-r36s-portmaster = feuerkraftR36sPortMaster;
+          feuerkraft-r36s-portmaster-zip = r36s.mkFeuerkraftR36sPortMasterZip {
+            portMasterPkg = feuerkraftR36sPortMaster;
+            inherit version;
+            pname = "feuerkraft-r36s-portmaster-zip";
+          };
 
           # Windows cross from Linux
           feuerkraft-win64 = mkWinCross {
