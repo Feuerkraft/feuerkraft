@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include "display.hpp"
 #include "view.hpp"
 #include "background.hpp"
 
@@ -39,6 +40,10 @@ Background::draw (View& view)
   float ox = view.get_x_offset();
   float oy = view.get_y_offset();
 
+  // Cover the full logical viewport (not a fixed 800x600-era tile count).
+  const int view_w = view.get_width()  > 0 ? view.get_width()  : Display::get_width();
+  const int view_h = view.get_height() > 0 ? view.get_height() : Display::get_height();
+
   // SceneContext applies translate(ox, oy); pass world coords so that
   // world + translate = screen position.
   int mod_x = int(ox) % sw;
@@ -47,8 +52,12 @@ Background::draw (View& view)
   if (mod_x < 0) mod_x += sw;
   if (mod_y < 0) mod_y += sh;
 
-  for (int y = -1; y <= 2; ++y)
-    for (int x = -1; x <= 2; ++x)
+  // One extra tile on each side so scrolling never shows gaps.
+  const int tiles_x = view_w / sw + 2;
+  const int tiles_y = view_h / sh + 2;
+
+  for (int y = -1; y <= tiles_y; ++y)
+    for (int x = -1; x <= tiles_x; ++x)
       {
         float screen_x = float(x * sw + mod_x);
         float screen_y = float(y * sh + mod_y);

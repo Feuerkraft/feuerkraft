@@ -39,7 +39,7 @@ CommandLineArguments::load_defaults()
 {
   screen_width  = 800;
   screen_height = 600;
-  scale         = 1;
+  scale         = 1.0f;
   fullscreen    = false;
 
   mission_file = "";
@@ -66,8 +66,8 @@ print_help(const char* argv0)
     << "Display Options:\n"
     << "  -g, --geometry WIDTHxHEIGHT  Set window size in pixels\n"
     << "      --size WIDTHxHEIGHT      Alias for --geometry\n"
-    << "      --scale FACTOR           Pixel scale (default 1). Logical\n"
-    << "                               resolution becomes size/scale; e.g.\n"
+    << "      --scale FACTOR           Pixel scale as float (default 1.0).\n"
+    << "                               Logical resolution is size/scale; e.g.\n"
     << "                               --size 1280x960 --scale 2 matches\n"
     << "                               --size 640x480 --scale 1\n"
     << "  -w, --fullscreen           Switch to Fullscreen on startup\n"
@@ -138,7 +138,12 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
         }
       else if (opt == "--scale")
         {
-          scale = static_cast<int>(strtol(need_arg(opt.c_str()), nullptr, 10));
+          scale = strtof(need_arg(opt.c_str()), nullptr);
+          if (scale == 0.0f)
+            {
+              std::cerr << "Scale must not be zero\n";
+              std::exit(EXIT_FAILURE);
+            }
         }
       else if (opt == "-w" || opt == "--fullscreen")
         {

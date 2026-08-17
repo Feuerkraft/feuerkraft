@@ -270,12 +270,12 @@ GameSession::update()
           // corners of the new window.
           SDL_Window* win = Display::get_window();
           SDL_Renderer* ren = Display::get_renderer();
-          if (win && ren && args->scale > 0)
+          if (win && ren && args->scale != 0.0f)
             {
               int pixel_w = 0, pixel_h = 0;
               SDL_GetWindowSize(win, &pixel_w, &pixel_h);
-              int logical_w = pixel_w / args->scale;
-              int logical_h = pixel_h / args->scale;
+              int logical_w = static_cast<int>(pixel_w / args->scale);
+              int logical_h = static_cast<int>(pixel_h / args->scale);
               if (logical_w < 1) logical_w = 1;
               if (logical_h < 1) logical_h = 1;
               SDL_RenderSetLogicalSize(ren, logical_w, logical_h);
