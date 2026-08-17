@@ -1,0 +1,6 @@
+s7 Scheme interpreter (vendored)
+Source: https://ccrma.stanford.edu/software/s7/s7.tar.gz
+Official git: https://cm-gitlab.stanford.edu/bil/s7.git
+#define S7_VERSION "11.9"
+#define S7_DATE "17-Aug-2026"
+ * 30-Oct:    change S7_DATE format, and start updating it to reflect s7.c.

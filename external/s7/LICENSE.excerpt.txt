@@ -1,0 +1,25 @@
+ * nrepl.scm is a notcurses-based listener.
+ * cload.scm and lib*.scm tie in various C libraries.
+ * lint.scm checks Scheme code for infelicities.
+ * r7rs.scm implements some of r7rs (small).
+ * write.scm currrently has pretty-print.
+ * mockery.scm has the mock-data definitions.
+ * reactive.scm has reactive-set and friends.
+ * stuff.scm has some stuff.
+ * profile.scm has code to display profile data.
+ * debug.scm has debugging aids.
+ * case.scm has case*, an extension of case to pattern matching.
+ * timing tests are in the s7 tools directory
+ *
+ * s7.c is organized as follows:
+ *    structs and type flags
+ *    internal debugging stuff
+ *    constants
+ *    GC
+ *    stacks
+ *    symbols and keywords
+ *    lets
+ *    continuations
+ *    numbers
+ *    characters
+ *    strings
