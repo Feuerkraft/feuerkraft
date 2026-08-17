@@ -20,8 +20,8 @@ if [ -z "${GAME_SRC_DIR:-}" ] || [ ! -d "$GAME_SRC_DIR" ]; then
 fi
 
 if [ -z "${GAME_DATA_DIR:-}" ] || [ ! -d "$GAME_DATA_DIR" ]; then
-  echo "error: GAME_DATA_DIR must point at the Milestone 1 data/ tree" >&2
-  echo "       (expected images/, levels/, etc. under that path)" >&2
+  echo "error: GAME_DATA_DIR must point at the Feuerkraft data/ tree" >&2
+  echo "       (expected images/, missions/, feuerkraft.xml, etc.)" >&2
   exit 1
 fi
 
@@ -84,9 +84,9 @@ if [ "$ASSET_COUNT" -lt 10 ]; then
   exit 1
 fi
 # Probe a well-known path used by the game at startup.
-if [ ! -f src/assets/images/status/letters-white.png ]; then
-  echo "error: missing src/assets/images/status/letters-white.png" >&2
-  echo "       is GAME_DATA_DIR a full Milestone 1 data/ tree?" >&2
+if [ ! -f src/assets/feuerkraft.xml ]; then
+  echo "error: missing src/assets/feuerkraft.xml" >&2
+  echo "       is GAME_DATA_DIR a full Feuerkraft data/ tree?" >&2
   exit 1
 fi
 

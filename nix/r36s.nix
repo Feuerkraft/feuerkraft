@@ -311,6 +311,9 @@ let
         "-DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF"
         "-DCMAKE_INSTALL_RPATH="
         "-DCMAKE_BUILD_TYPE=Release"
+        "-DCMAKE_THREAD_LIBS_INIT=-pthread"
+        "-DCMAKE_HAVE_THREADS_LIBRARY=1"
+        "-DCMAKE_USE_PTHREADS_INIT=1"
         # Data next to the binary on device (PortMaster: feuerkraft/data/).
         "-DFEUERKRAFT_DATADIR=data"
         "-DPROJECT_VERSION_FULL=${version}"

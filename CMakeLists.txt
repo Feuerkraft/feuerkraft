@@ -105,7 +105,17 @@ else()
 endif()
 
 
-find_package(Threads REQUIRED)
+# Cross toolchains (R36S/ArkOS sysroot, Emscripten) often fail the
+# automatic pthread probe even when -pthread works at link time.
+if(EMSCRIPTEN OR CMAKE_CROSSCOMPILING)
+  set(THREADS_PREFER_PTHREAD_FLAG ON)
+  set(CMAKE_THREAD_LIBS_INIT "-pthread")
+  set(CMAKE_HAVE_THREADS_LIBRARY 1)
+  set(CMAKE_USE_PTHREADS_INIT 1)
+  set(Threads_FOUND TRUE)
+else()
+  find_package(Threads REQUIRED)
+endif()
 
 # SDL2: desktop uses pkg-config; Emscripten / cross builds may pass SDL2_ROOT.
 if(EMSCRIPTEN OR (DEFINED SDL2_ROOT AND NOT SDL2_ROOT STREQUAL ""))
