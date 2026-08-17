@@ -418,7 +418,7 @@
     </sprite>
 
     <sprite name="sand">
-      <image file="images/sand.jpg" />
+      <image file="images/sand.png" />
     </sprite>
 
     <sprite name="cloudshadow">

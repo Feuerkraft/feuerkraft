@@ -19,9 +19,10 @@
 #include <SDL.h>
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
+// Implemented after Feuerkraft class members are available (see below).
 extern "C" {
-EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_resize(int, int) {}
-EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_native(void) {}
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_resize(int w, int h);
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_native(void);
 EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_pause(void) {}
 EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
 }
@@ -38,6 +39,8 @@ EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
 #include "input/game_controllers.hpp"
 #include "input/input_manager.hpp"
 #include "game_session_manager.hpp"
+#include "view.hpp"
+#include <algorithm>
 #ifdef __EMSCRIPTEN__
 static void fk_emscripten_frame(void)
 {
@@ -81,10 +84,19 @@ Feuerkraft::init()
     {
       throw FeuerkraftError(std::string("SDL_Init failed: ") + SDL_GetError());
     }
-  if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG)))
-    {
-      throw FeuerkraftError(std::string("IMG_Init failed: ") + IMG_GetError());
-    }
+  {
+    int img_flags = IMG_INIT_PNG | IMG_INIT_JPG;
+    int img_got = IMG_Init(img_flags);
+    if (!(img_got & IMG_INIT_PNG))
+      {
+        throw FeuerkraftError(std::string("IMG_Init failed (PNG required): ") + IMG_GetError());
+      }
+    if (!(img_got & IMG_INIT_JPG))
+      {
+        std::cerr << "Warning: SDL_image has no JPEG support; sand.jpg etc. may fail: "
+                  << IMG_GetError() << std::endl;
+      }
+  }
 
   // Init Sound Subsystem
   music_enabled = args->music_enabled;
@@ -263,6 +275,36 @@ Feuerkraft::main(int argc, char** argv)
 }
 
 // key_down removed; will be replaced by SDL event handling
+
+#ifdef __EMSCRIPTEN__
+extern "C" {
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_resize(int w, int h)
+{
+  if (w <= 0 || h <= 0)
+    return;
+  SDL_Window* win = Display::get_window();
+  if (!win)
+    return;
+  SDL_SetWindowSize(win, w, h);
+  // Keep logical resolution = window size so the game fills the canvas
+  // (GUI --scale is applied separately via RenderSetLogicalSize at init).
+  float scale = (args && args->scale != 0.0f) ? args->scale : 1.0f;
+  int lw = std::max(1, int(w / scale));
+  int lh = std::max(1, int(h / scale));
+  SDL_Renderer* ren = Display::get_renderer();
+  if (ren)
+    SDL_RenderSetLogicalSize(ren, lw, lh);
+  if (View::current())
+    View::current()->set_size(0, 0, lw, lh);
+}
+
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_native(void)
+{
+  fk_emscripten_canvas_resize(640, 480);
+}
+}
+#endif
+
 
 int main(int argc, char** argv)
 {
