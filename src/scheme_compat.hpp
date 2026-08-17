@@ -214,14 +214,28 @@ inline void scm_write(SCM obj, SCM port)
 /* File read for sexpr world loading: read one object from a file. */
 inline SCM scm_c_read_file(const char* path)
 {
+  /* Read one Scheme *datum* (controller files, missions). Must not eval —
+     the top form is data like (feuerkraft-controller ...), not code. */
   std::vector<char> bytes = fk_read_file_bytes(path);
   if (!bytes.empty())
     {
-      /* Ensure NUL terminator for eval as string containing one expression. */
       bytes.push_back('\0');
-      return s7_eval_c_string(fk_s7, bytes.data());
+      s7_pointer port = s7_open_input_string(fk_s7, bytes.data());
+      if (!port)
+        {
+          std::fprintf(stderr, "Scheme: open-input-string failed for '%s'\n", path);
+          return SCM_BOOL_F;
+        }
+      s7_pointer obj = s7_read(fk_s7, port);
+      s7_close_input_port(fk_s7, port);
+      if (!obj || s7_is_eq(obj, s7_eof_object(fk_s7)))
+        {
+          std::fprintf(stderr, "Scheme: read failed (empty/eof) for '%s'\n", path);
+          return SCM_BOOL_F;
+        }
+      return obj;
     }
-  /* Filesystem fallback (desktop / when RWops fails). */
+  /* Filesystem fallback when RWops cannot open the path. */
   std::string expr = "(catch #t (lambda () (call-with-input-file \"";
   expr += path;
   expr += "\" read)) (lambda args (format #t \"Scheme: read failed ~A: ~A\\n\" \"";

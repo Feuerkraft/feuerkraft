@@ -41,7 +41,13 @@ CommandLineArguments::load_defaults()
   screen_height = 600;
   scale         = 1.0f;
   zoom          = 1.0f;
+#ifdef __ANDROID__
+  /* Phones/tablets: use the full surface; windowed 800x600 triggers
+     orientation fights and exits on some devices. */
+  fullscreen    = true;
+#else
   fullscreen    = false;
+#endif
 
   mission_file = "";
   fps          = 30.0f;

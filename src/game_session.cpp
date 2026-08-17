@@ -57,6 +57,8 @@
 #include "command_line_arguments.hpp"
 #include "screenshot.hpp"
 #include "game_session.hpp"
+#include "log.hpp"
+#include "feuerkraft_error.hpp"
 #include "game_session_manager.hpp"
 
 // FIXME: Replace this with a PlayerManager class or something similar
@@ -97,16 +99,15 @@ GameSession::init()
 
   // Deserialize the game world
   {
-    std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
+    fk_log("Parsing map: %s", filename.c_str());
     SCM lst = scm_c_read_whole_file(filename.c_str());
+    if (scm_is_false(lst) || !s7_is_pair(lst))
+      {
+        feuerkraft_fatal(std::string("Failed to read mission: ") + filename);
+      }
 
-    // unstable Testing stuff
-    //OutputWorldBuilder builder;
-    //SexprWorldReader(lst, &builder).run();
-
-    // Now we create the real world
     world = new GameWorld(lst);
-    std::cout << ">>>>>>>>>>>>> Parsing map >>>>>>>>>>>>>" << std::endl;
+    fk_log("Map parse done");
   }
   // End: Test of parsing code
 

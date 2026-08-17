@@ -42,6 +42,11 @@ InputManager::init(const std::string& filename)
   std::cout << "InputManager::init(" << filename << ")" << std::endl;
   SCM lst = scm_c_read_whole_file(filename.c_str());
 
+  if (scm_is_false(lst) || !s7_is_pair(lst))
+    {
+      feuerkraft_fatal("Error: could not read controller file: " + filename);
+    }
+
   if (Guile::equal_p(scm_from_utf8_symbol("feuerkraft-controller"), scm_car(lst)))
     {
       impl = new InputManagerCustom(scm_cdr(lst));
