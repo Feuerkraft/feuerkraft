@@ -98,6 +98,12 @@ let
         fi
       done
 
+      # glibc 2.30 static libpthread.a references __pointer_chk_guard_local,
+      # which is not provided when the final link uses the shared libc. The
+      # device always has libpthread.so.0; drop the static archives so the
+      # linker cannot pick them up via -pthread / -lpthread.
+      find "$out" -type f \( -name 'libpthread.a' -o -name 'libpthread_nonshared.a' \) -print -delete || true
+
       ln -sfn . "$out/sysroot"
       echo "arkos-sysroot ready" > "$out/SYSROOT.txt"
       runHook postInstall
