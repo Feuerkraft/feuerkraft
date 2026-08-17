@@ -16,28 +16,31 @@
 
 #include "clanlib_commands.hpp"
 
-SCM post_keep_alive_func = SCM_BOOL_F;
+// Must not use SCM_BOOL_F here: that expands to s7_f(fk_s7) and runs at
+// static-init time before Scheme::init() has created the VM.
+static SCM post_keep_alive_func = nullptr;
 
 SCM  clanlib_get_post_keep_alive_func()
 {
-  return post_keep_alive_func;
+  return post_keep_alive_func ? post_keep_alive_func : SCM_BOOL_F;
 }
 
 void clanlib_set_post_keep_alive_func(SCM func)
 {
   if (post_keep_alive_func != func)
     {
-      if (post_keep_alive_func != SCM_BOOL_F)
+      if (post_keep_alive_func)
         scm_gc_unprotect_object(post_keep_alive_func);
 
       post_keep_alive_func = func;
-      scm_gc_protect_object(post_keep_alive_func);
+      if (post_keep_alive_func)
+        scm_gc_protect_object(post_keep_alive_func);
     }
 }
 
 void clanlib_call_post_keep_alive_func()
 {
-  if (post_keep_alive_func != SCM_BOOL_F)
+  if (post_keep_alive_func)
     {
       scm_call_0(post_keep_alive_func);
     }
