@@ -209,7 +209,13 @@ Feuerkraft::init()
     {
       if (args->controller_file.empty())
         {
-          InputManager::init(path_manager.complete("controller/keyboard.scm"));
+          /* Prefer GameController pad config when any joystick is present
+             (R36S / handhelds). Fall back to keyboard for pure desktop. */
+          const char* ctrl = "controller/keyboard.scm";
+          if (SDL_NumJoysticks() > 0)
+            ctrl = "controller/gamepad.scm";
+          fk_log("default controller: %s (joysticks=%d)", ctrl, SDL_NumJoysticks());
+          InputManager::init(path_manager.complete(ctrl));
         }
       else
         {

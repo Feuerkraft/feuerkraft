@@ -18,8 +18,11 @@
 #include <iostream>
 #include <sstream>
 #include <regex>
+#include <vector>
+#include <SDL.h>
 #include "path_manager.hpp"
 #include "resource_manager.hpp"
+#include "log.hpp"
 
 ResourceManager* resources = nullptr;
 
@@ -36,10 +39,39 @@ ResourceManager::~ResourceManager()
 void
 ResourceManager::load_resource_file(const std::string& filename)
 {
+  /* Prefer SDL_RWops so Android APK assets work (ifstream cannot). */
+  SDL_RWops* rw = SDL_RWFromFile(filename.c_str(), "rb");
+  if (rw)
+    {
+      Sint64 sz = SDL_RWsize(rw);
+      std::vector<char> buf;
+      if (sz > 0)
+        {
+          buf.resize(static_cast<size_t>(sz));
+          if (SDL_RWread(rw, buf.data(), 1, static_cast<size_t>(sz)) != static_cast<size_t>(sz))
+            buf.clear();
+        }
+      else
+        {
+          char chunk[4096];
+          size_t n;
+          while ((n = SDL_RWread(rw, chunk, 1, sizeof(chunk))) > 0)
+            buf.insert(buf.end(), chunk, chunk + n);
+        }
+      SDL_RWclose(rw);
+      if (buf.empty())
+        {
+          fk_log_error("ResourceManager: empty or unreadable %s", filename.c_str());
+          return;
+        }
+      parse_section(std::string(buf.begin(), buf.end()), "");
+      return;
+    }
+
   std::ifstream in(filename.c_str());
   if (!in)
     {
-      std::cerr << "ResourceManager: could not open " << filename << std::endl;
+      fk_log_error("ResourceManager: could not open %s", filename.c_str());
       return;
     }
 
