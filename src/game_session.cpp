@@ -266,6 +266,27 @@ GameSession::update()
           do_quit = true;
           GameSessionManager::instance()->quit();
         }
+      else if (event.type == SDL_WINDOWEVENT
+               && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+        {
+          // Keep pixel scale constant; grow/shrink the logical (viewable)
+          // area so GUI elements that query Display::get_*() stay in the
+          // corners of the new window.
+          SDL_Window* win = Display::get_window();
+          SDL_Renderer* ren = Display::get_renderer();
+          if (win && ren && args->scale > 0)
+            {
+              int pixel_w = 0, pixel_h = 0;
+              SDL_GetWindowSize(win, &pixel_w, &pixel_h);
+              int logical_w = pixel_w / args->scale;
+              int logical_h = pixel_h / args->scale;
+              if (logical_w < 1) logical_w = 1;
+              if (logical_h < 1) logical_h = 1;
+              SDL_RenderSetLogicalSize(ren, logical_w, logical_h);
+              if (view)
+                view->set_size(0, 0, logical_w, logical_h);
+            }
+        }
       else if (event.type == SDL_KEYDOWN)
         {
           KeyboardManager::instance()->on_key_down(event.key.keysym.scancode);

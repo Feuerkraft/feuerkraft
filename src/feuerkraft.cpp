@@ -118,7 +118,7 @@ Feuerkraft::init()
     }
 
   // Create the main window (SDL2) — full graphics port follows in later phases
-  Uint32 flags = SDL_WINDOW_SHOWN;
+  Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
   if (args->fullscreen)
     flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
   window = SDL_CreateWindow(PACKAGE_STRING,
@@ -144,6 +144,16 @@ Feuerkraft::init()
     {
       throw FeuerkraftError(std::string("SDL_CreateRenderer failed: ") + SDL_GetError());
     }
+
+  // Logical resolution = window size / scale so that --size WxH --scale S
+  // yields the same viewable area as --size (W/S)x(H/S) --scale 1, with
+  // bigger pixels when S > 1.
+  int logical_w = args->screen_width / args->scale;
+  int logical_h = args->screen_height / args->scale;
+  if (logical_w < 1) logical_w = 1;
+  if (logical_h < 1) logical_h = 1;
+  SDL_RenderSetLogicalSize(renderer, logical_w, logical_h);
+
   Display::init(window, renderer);
   Display::clear();
 

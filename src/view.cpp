@@ -213,6 +213,15 @@ View::get_height ()
   return y2 - y1;// FIXME: Off by one?!
 }
 
+void
+View::set_size(int nx1, int ny1, int nx2, int ny2)
+{
+  x1 = nx1;
+  y1 = ny1;
+  x2 = nx2;
+  y2 = ny2;
+}
+
 FloatVector2d
 View::screen_to_world (const FloatVector2d& pos)
 {

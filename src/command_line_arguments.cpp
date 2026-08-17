@@ -38,6 +38,7 @@ CommandLineArguments::load_defaults()
 {
   screen_width  = 800;
   screen_height = 600;
+  scale         = 1;
   fullscreen    = false;
 
   mission_file = "";
@@ -62,7 +63,12 @@ print_help(const char* argv0)
     << "  -h, --help                 Produce this help output\n"
     << "  -d, --datadir DATADIR      Set the path to search for gamedata\n\n"
     << "Display Options:\n"
-    << "  -g, --geometry WIDTHxHEIGHT  Set screen size\n"
+    << "  -g, --geometry WIDTHxHEIGHT  Set window size in pixels\n"
+    << "      --size WIDTHxHEIGHT      Alias for --geometry\n"
+    << "      --scale FACTOR           Pixel scale (default 1). Logical\n"
+    << "                               resolution becomes size/scale; e.g.\n"
+    << "                               --size 1280x960 --scale 2 matches\n"
+    << "                               --size 640x480 --scale 1\n"
     << "  -w, --fullscreen           Switch to Fullscreen on startup\n"
     << "  -f, --fps FPS              Limit of frames per second\n\n"
     << "Audio Options:\n"
@@ -120,12 +126,21 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
         {
           datadir = need_arg(opt.c_str());
         }
-      else if (opt == "-g" || opt == "--geometry")
+      else if (opt == "-g" || opt == "--geometry" || opt == "--size")
         {
           const char* geo = need_arg(opt.c_str());
           if (sscanf(geo, "%dx%d", &screen_width, &screen_height) != 2)
             {
               std::cerr << "Screen size value incorrect: '" << geo << "'\n";
+              std::exit(EXIT_FAILURE);
+            }
+        }
+      else if (opt == "--scale")
+        {
+          scale = static_cast<int>(strtol(need_arg(opt.c_str()), nullptr, 10));
+          if (scale < 1)
+            {
+              std::cerr << "Scale must be >= 1\n";
               std::exit(EXIT_FAILURE);
             }
         }

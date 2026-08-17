@@ -90,6 +90,9 @@ public:
   int get_width ();
   int get_height ();
 
+  /** Resize the view rectangle (e.g. after a window resize). */
+  void set_size(int nx1, int ny1, int nx2, int ny2);
+
   /** Set the ViewUpdater. \a arg_updater will get deleted once it is
       no longer used */
   void set_updater(ViewUpdater* arg_updater);

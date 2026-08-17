@@ -44,7 +44,10 @@ int
 Display::get_width()
 {
   int w = 0;
-  if (window_)
+  int h = 0;
+  if (renderer_)
+    SDL_RenderGetLogicalSize(renderer_, &w, &h);
+  if (w == 0 && window_)
     SDL_GetWindowSize(window_, &w, nullptr);
   return w;
 }
@@ -52,8 +55,11 @@ Display::get_width()
 int
 Display::get_height()
 {
+  int w = 0;
   int h = 0;
-  if (window_)
+  if (renderer_)
+    SDL_RenderGetLogicalSize(renderer_, &w, &h);
+  if (h == 0 && window_)
     SDL_GetWindowSize(window_, nullptr, &h);
   return h;
 }

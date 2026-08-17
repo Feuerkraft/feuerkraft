@@ -26,6 +26,11 @@ public:
   int screen_width;
   int screen_height;
 
+  /** Pixel scale factor (1 = 1:1, 2 = 2x pixels, etc.). Window size is
+      screen_width x screen_height; logical (viewable) size is
+      screen_width/scale x screen_height/scale. */
+  int scale;
+
   /** Mission file to start, empty() if non is given */
   std::string mission_file;
 

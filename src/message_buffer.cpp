@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "assert.hpp"
+#include "display.hpp"
 #include "fonts.hpp"
 #include "message_buffer.hpp"
 
@@ -46,7 +47,9 @@ MessageBuffer::add(const std::string& str)
 void
 MessageBuffer::draw(SDL_Renderer* gc)
 {
-  int y = y_pos;
+  // Keep messages centered near the bottom, adapting to window/logical size
+  const int x = Display::get_width() / 2;
+  int y = Display::get_height() - 30;
 
   for(Buffer::reverse_iterator i = buffer.rbegin(); i != buffer.rend(); ++i)
     {
@@ -55,7 +58,7 @@ MessageBuffer::draw(SDL_Renderer* gc)
           if (i->display_time > 4.0f)
             Fonts::font.set_alpha(1.0f - (i->display_time - 4.0f));
           Fonts::font.set_alignment(origin_top_center);
-          Fonts::font.draw(x_pos, y, i->message);
+          Fonts::font.draw(x, y, i->message);
           Fonts::font.set_alpha(1.0f);
         }
       y -= Fonts::font.get_height() + 2;
