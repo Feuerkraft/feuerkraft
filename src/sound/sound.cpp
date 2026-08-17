@@ -35,6 +35,7 @@ PingusSound::init (PingusSound* s)
           if (verbose)
             std::cout << "Init Sound" << std::endl;
 
+#if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
           try {
             PingusSound::init (new PingusSoundReal ());
           } catch (std::exception& err) {
@@ -42,6 +43,11 @@ PingusSound::init (PingusSound* s)
             std::cout << "Sound will be disabled" << std::endl;
             PingusSound::init (new PingusSoundDummy ());
           }
+#else
+          // -fno-exceptions (e.g. R36S): PingusSoundReal logs Mix errors itself
+          // and does not throw; always use the real backend when sound is enabled.
+          PingusSound::init (new PingusSoundReal ());
+#endif
         }
       else
         {
