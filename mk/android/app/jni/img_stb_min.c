@@ -43,6 +43,7 @@ void IMG_Quit(void)
   img_error[0] = '\0';
 }
 
+SDL_Surface *IMG_Load_RW(SDL_RWops *src, int freesrc);
 static SDL_Surface *surface_from_rgba(unsigned char *data, int w, int h)
 {
   SDL_Surface *surf = SDL_CreateRGBSurfaceWithFormat(0, w, h, 32, SDL_PIXELFORMAT_RGBA32);
@@ -60,12 +61,18 @@ SDL_Surface *IMG_Load(const char *file)
 {
   int w = 0, h = 0, n = 0;
   unsigned char *data;
+  SDL_RWops *rw;
 
   img_error[0] = '\0';
   if (!file) {
     set_err("IMG_Load: NULL filename");
     return NULL;
   }
+
+  /* Prefer RWops so Android APK assets work (fopen cannot read assets/). */
+  rw = SDL_RWFromFile(file, "rb");
+  if (rw)
+    return IMG_Load_RW(rw, 1);
 
   data = stbi_load(file, &w, &h, &n, 4);
   if (!data) {
