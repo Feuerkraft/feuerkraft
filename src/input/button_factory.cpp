@@ -92,7 +92,7 @@ ButtonFactory::create(SCM lst)
   else if (Guile::equal_p(sym, scm_from_utf8_symbol("multi-button")))
     return create_multi_button(scm_cdr(lst));
   else
-    throw FeuerkraftError("ButtonFactory::create: parse error: '"
+    feuerkraft_fatal("ButtonFactory::create: parse error: '"
                           + Guile::scm2string(lst) + "'");
   return 0;
 }

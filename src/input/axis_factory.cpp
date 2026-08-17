@@ -36,7 +36,7 @@ AxisFactory::create(SCM lst)
       else if (Guile::equal_p(sym, scm_from_utf8_symbol("button-axis")))
         return create_button_axis(data);
       else
-        throw FeuerkraftError("AxisFactory::create: parse error");
+        feuerkraft_fatal("AxisFactory::create: parse error");
 
       lst = scm_cdr(lst);
     }

@@ -48,7 +48,7 @@ InputManager::init(const std::string& filename)
     }
   else
     {
-      throw FeuerkraftError("Error: not a valid controller file: " + filename);
+      feuerkraft_fatal("Error: not a valid controller file: " + filename);
     }
 }
 

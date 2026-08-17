@@ -82,14 +82,14 @@ Feuerkraft::init()
   // Init SDL2
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) < 0)
     {
-      throw FeuerkraftError(std::string("SDL_Init failed: ") + SDL_GetError());
+      feuerkraft_fatal(std::string("SDL_Init failed: ") + SDL_GetError());
     }
   {
     int img_flags = IMG_INIT_PNG | IMG_INIT_JPG;
     int img_got = IMG_Init(img_flags);
     if (!(img_got & IMG_INIT_PNG))
       {
-        throw FeuerkraftError(std::string("IMG_Init failed (PNG required): ") + IMG_GetError());
+        feuerkraft_fatal(std::string("IMG_Init failed (PNG required): ") + IMG_GetError());
       }
     if (!(img_got & IMG_INIT_JPG))
       {
@@ -138,8 +138,7 @@ Feuerkraft::init()
     }
   if (!path_manager.find_path("feuerkraft.xml"))
     {
-      throw FeuerkraftError(
-        "Could not find data directory (feuerkraft.xml). "
+      feuerkraft_fatal("Could not find data directory (feuerkraft.xml). "
         "Pass --datadir or install data to FEUERKRAFT_DATADIR.");
     }
 
@@ -156,7 +155,7 @@ Feuerkraft::init()
                             flags);
   if (!window)
     {
-      throw FeuerkraftError(std::string("SDL_CreateWindow failed: ") + SDL_GetError());
+      feuerkraft_fatal(std::string("SDL_CreateWindow failed: ") + SDL_GetError());
     }
 
   // Prefer linear filtering for scaled sprites/light cones (ClanLib default)
@@ -171,7 +170,7 @@ Feuerkraft::init()
     }
   if (!renderer)
     {
-      throw FeuerkraftError(std::string("SDL_CreateRenderer failed: ") + SDL_GetError());
+      feuerkraft_fatal(std::string("SDL_CreateRenderer failed: ") + SDL_GetError());
     }
 
   // Logical resolution = window size / scale so that --size WxH --scale S
@@ -235,8 +234,10 @@ Feuerkraft::deinit()
 int
 Feuerkraft::main(int argc, char** argv)
 {
+#if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
   try
     {
+#endif
       // Make arguments accessible for all member functions
       args = new CommandLineArguments(argc, argv);
 
@@ -257,6 +258,7 @@ Feuerkraft::main(int argc, char** argv)
 
       // Shutdown everything
       deinit();
+#if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
     }
   catch (FeuerkraftError& err)
     {
@@ -270,6 +272,7 @@ Feuerkraft::main(int argc, char** argv)
     {
       std::cout << "Bug: Unknown exception catched, don't know what to do" << std::endl;
     }
+#endif
 
   return 0;
 }
