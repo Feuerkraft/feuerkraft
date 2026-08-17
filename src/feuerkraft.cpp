@@ -17,6 +17,15 @@
 #include <config.h>
 #include <iostream>
 #include <SDL.h>
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+extern "C" {
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_resize(int, int) {}
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_native(void) {}
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_pause(void) {}
+EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
+}
+#endif
 #include <SDL_image.h>
 #include "scheme_compat.hpp"
 #include <ctime>
@@ -210,7 +219,12 @@ Feuerkraft::main(int argc, char** argv)
 
       // Keyboard handling will be ported to SDL events in Phase 4
       GameSessionManager::instance()->load(args->mission_file);
+#ifdef __EMSCRIPTEN__
+      // Browser frame callback drives tick(); run() would block forever.
+      emscripten_set_main_loop(fk_emscripten_frame, 0, 1);
+#else
       GameSessionManager::instance()->run();
+#endif
 
       // Shutdown everything
       deinit();

@@ -31,9 +31,6 @@ endif()
 
 project(feuerkraft VERSION ${PROJECT_VERSION_BASE})
 
-cmake_policy(SET CMP0078 OLD) # Swig
-cmake_policy(SET CMP0086 OLD) # Swig
-
 option(WARNINGS "Switch on extra warnings" OFF)
 option(WERROR "Treat all warnings as errors" OFF)
 option(BUILD_TESTS "Build test cases" OFF)
@@ -109,12 +106,30 @@ endif()
 
 
 find_package(Threads REQUIRED)
-find_package(PkgConfig REQUIRED)
 
-# SDL2 (destructive port away from ClanLib 1.0)
-pkg_search_module(SDL2 REQUIRED sdl2)
-pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
-pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
+# SDL2: desktop uses pkg-config; Emscripten / cross builds may pass SDL2_ROOT.
+if(EMSCRIPTEN OR (DEFINED SDL2_ROOT AND NOT SDL2_ROOT STREQUAL ""))
+  if(DEFINED SDL2_ROOT AND NOT SDL2_ROOT STREQUAL "")
+    set(_SDL2_PREFIX "${SDL2_ROOT}")
+  else()
+    set(_SDL2_PREFIX "")
+  endif()
+  set(SDL2_INCLUDE_DIRS "${_SDL2_PREFIX}/include" "${_SDL2_PREFIX}/include/SDL2")
+  set(SDL2_LIBRARIES "${_SDL2_PREFIX}/lib/libSDL2.a")
+  set(SDL2_IMAGE_INCLUDE_DIRS "${_SDL2_PREFIX}/include" "${_SDL2_PREFIX}/include/SDL2")
+  set(SDL2_IMAGE_LIBRARIES "${_SDL2_PREFIX}/lib/libSDL2_image.a")
+  if(EXISTS "${_SDL2_PREFIX}/lib/libSDL2_mixer.a")
+    set(SDL2_MIXER_INCLUDE_DIRS "${_SDL2_PREFIX}/include" "${_SDL2_PREFIX}/include/SDL2")
+    set(SDL2_MIXER_LIBRARIES "${_SDL2_PREFIX}/lib/libSDL2_mixer.a")
+  else()
+    set(SDL2_MIXER_LIBRARIES "")
+  endif()
+else()
+  find_package(PkgConfig REQUIRED)
+  pkg_search_module(SDL2 REQUIRED sdl2)
+  pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
+  pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
+endif()
 
 file(GLOB FEUERKRAFT_SOURCES
   src/*.cpp
@@ -145,6 +160,21 @@ target_include_directories(feuerkraft SYSTEM PRIVATE
   ${SDL2_INCLUDE_DIRS}
   ${SDL2_IMAGE_INCLUDE_DIRS}
   ${SDL2_MIXER_INCLUDE_DIRS})
+
+if(EMSCRIPTEN)
+  # Default data root inside the virtual FS (see --preload-file data@/data).
+  if(FEUERKRAFT_DATADIR STREQUAL "${CMAKE_INSTALL_FULL_DATADIR}/${PROJECT_NAME}")
+    set(FEUERKRAFT_DATADIR "/data")
+    target_compile_definitions(feuerkraft PRIVATE FEUERKRAFT_DATADIR="/data")
+  endif()
+  if(DEFINED EMSCRIPTEN_LINK_FLAGS)
+    separate_arguments(_FK_EM_LINK NATIVE_COMMAND "${EMSCRIPTEN_LINK_FLAGS}")
+    target_link_options(feuerkraft PRIVATE ${_FK_EM_LINK})
+  endif()
+  set_target_properties(feuerkraft PROPERTIES
+    SUFFIX ".html"
+    OUTPUT_NAME "feuerkraft")
+endif()
 
 # Binary goes to bindir; data path is compiled in as FEUERKRAFT_DATADIR
 install(TARGETS feuerkraft
