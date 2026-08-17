@@ -15,7 +15,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 3.13)
-project(feuerkraft VERSION 0.1.2)
+
+# Source of truth: top-level VERSION file (e.g. "0.2.0-dev"), or
+# -DPROJECT_VERSION_FULL=... from the packaging (Nix flake appends
+# .<revCount>+g<rev>).
+if(NOT DEFINED PROJECT_VERSION_FULL)
+  file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/VERSION" PROJECT_VERSION_FULL LIMIT_COUNT 1)
+endif()
+
+# project() expects a numeric-ish version; strip any -dev / +git suffix for it.
+string(REGEX REPLACE "^([0-9]+(\\.[0-9]+)*)(.*)$" "\\1" PROJECT_VERSION_BASE "${PROJECT_VERSION_FULL}")
+if(PROJECT_VERSION_BASE STREQUAL "")
+  set(PROJECT_VERSION_BASE "0.0.0")
+endif()
+
+project(feuerkraft VERSION ${PROJECT_VERSION_BASE})
 
 cmake_policy(SET CMP0078 OLD) # Swig
 cmake_policy(SET CMP0086 OLD) # Swig
@@ -31,6 +45,7 @@ if(NOT DEFINED FEUERKRAFT_DATADIR)
   set(FEUERKRAFT_DATADIR "${CMAKE_INSTALL_FULL_DATADIR}/${PROJECT_NAME}")
 endif()
 message(STATUS "FEUERKRAFT_DATADIR=${FEUERKRAFT_DATADIR}")
+message(STATUS "PROJECT_VERSION_FULL=${PROJECT_VERSION_FULL}")
 
 if(WARNINGS)
   set(WARNINGS_CXX_FLAGS
@@ -60,20 +75,6 @@ if (BUILD_TESTS)
   # add 'make test' target, use 'make test ARGS="-V"' or 'ctest -V' for verbose
   enable_testing()
 endif(BUILD_TESTS)
-
-find_package(Git)
-if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
-  execute_process(COMMAND ${GIT_EXECUTABLE} describe --tags --always HEAD
-    OUTPUT_VARIABLE GIT_REPO_VERSION
-    OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-  execute_process(COMMAND ${GIT_EXECUTABLE} log -n 1 --pretty=%cd --date=format:%Y-%m-%d ${GIT_REPO_VERSION}
-    OUTPUT_VARIABLE GIT_REPO_DATE
-    OUTPUT_STRIP_TRAILING_WHITESPACE)
-else()
-  set(GIT_REPO_VERSION "${PROJECT_VERSION}")
-  string(TIMESTAMP GIT_REPO_DATE "%Y-%m-%d")
-endif()
 
 include_directories(src/)
 include_directories(src/scripting/)
@@ -110,7 +111,8 @@ add_executable(feuerkraft ${FEUERKRAFT_SOURCES})
 target_compile_options(feuerkraft PRIVATE ${WARNINGS_CXX_FLAGS})
 target_compile_definitions(feuerkraft PRIVATE
   FEUERKRAFT_DATADIR="${FEUERKRAFT_DATADIR}"
-  PACKAGE_STRING="Feuerkraft ${PROJECT_VERSION}")
+  FEUERKRAFT_VERSION="${PROJECT_VERSION_FULL}"
+  PACKAGE_STRING="Feuerkraft ${PROJECT_VERSION_FULL}")
 target_link_libraries(feuerkraft PRIVATE
   libfeuerkraft_scripting
   ${GUILE_LIBRARIES}

@@ -20,6 +20,7 @@
 #include <cstring>
 #include <string>
 
+#include "config.h"
 #include "command_line_arguments.hpp"
 
 CommandLineArguments::CommandLineArguments()
@@ -111,7 +112,7 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
         }
       else if (opt == "-V" || opt == "--version")
         {
-          std::cout << "Feuerkraft 0.2.0\n";
+          std::cout << "Feuerkraft " << FEUERKRAFT_VERSION << "\n";
           std::exit(EXIT_SUCCESS);
         }
       else if (opt == "-v" || opt == "--verbose")
@@ -138,11 +139,6 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
       else if (opt == "--scale")
         {
           scale = static_cast<int>(strtol(need_arg(opt.c_str()), nullptr, 10));
-          if (scale < 1)
-            {
-              std::cerr << "Scale must be >= 1\n";
-              std::exit(EXIT_FAILURE);
-            }
         }
       else if (opt == "-w" || opt == "--fullscreen")
         {

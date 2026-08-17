@@ -147,9 +147,10 @@ Feuerkraft::init()
 
   // Logical resolution = window size / scale so that --size WxH --scale S
   // yields the same viewable area as --size (W/S)x(H/S) --scale 1, with
-  // bigger pixels when S > 1.
-  int logical_w = args->screen_width / args->scale;
-  int logical_h = args->screen_height / args->scale;
+  // bigger pixels when S > 1. Scale may be < 1 (fractional zoom-out).
+  int scale = args->scale != 0 ? args->scale : 1;
+  int logical_w = args->screen_width / scale;
+  int logical_h = args->screen_height / scale;
   if (logical_w < 1) logical_w = 1;
   if (logical_h < 1) logical_h = 1;
   SDL_RenderSetLogicalSize(renderer, logical_w, logical_h);
