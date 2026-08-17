@@ -72,17 +72,23 @@ public:
     if (color_tex)
       {
         SDL_SetTextureBlendMode(color_tex, SDL_BLENDMODE_BLEND);
+        #if SDL_VERSION_ATLEAST(2, 0, 12)
         SDL_SetTextureScaleMode(color_tex, SDL_ScaleModeLinear);
+        #endif
       }
     if (light_tex)
       {
         SDL_SetTextureBlendMode(light_tex, SDL_BLENDMODE_MOD); // multiply
+        #if SDL_VERSION_ATLEAST(2, 0, 12)
         SDL_SetTextureScaleMode(light_tex, SDL_ScaleModeLinear);
+        #endif
       }
     if (highlight_tex)
       {
         SDL_SetTextureBlendMode(highlight_tex, SDL_BLENDMODE_ADD);
+        #if SDL_VERSION_ATLEAST(2, 0, 12)
         SDL_SetTextureScaleMode(highlight_tex, SDL_ScaleModeLinear);
+        #endif
       }
   }
 };
