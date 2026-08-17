@@ -17,7 +17,7 @@
 #ifndef GAMEOBJDATAFACTORY_HXX
 #define GAMEOBJDATAFACTORY_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 class GameObjData;
 

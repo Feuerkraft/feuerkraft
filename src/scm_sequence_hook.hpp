@@ -17,7 +17,7 @@
 #ifndef HEADER_SCM_SEQUENCE_HOOK_HXX
 #define HEADER_SCM_SEQUENCE_HOOK_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "sequence_manager.hpp"
 
 /** */

@@ -78,22 +78,21 @@ endif(BUILD_TESTS)
 
 include_directories(src/)
 include_directories(src/scripting/)
+include_directories(external/s7)
 
-find_package(SWIG REQUIRED)
-include(${SWIG_USE_FILE})
+# Vendored s7 Scheme (ANSI C)
+add_library(s7 STATIC external/s7/s7.c)
+set_target_properties(s7 PROPERTIES C_STANDARD 11)
+target_include_directories(s7 PUBLIC external/s7)
+
 
 find_package(Threads REQUIRED)
 find_package(PkgConfig REQUIRED)
-pkg_search_module(GUILE REQUIRED guile-3.0)
 
 # SDL2 (destructive port away from ClanLib 1.0)
 pkg_search_module(SDL2 REQUIRED sdl2)
 pkg_search_module(SDL2_IMAGE REQUIRED SDL2_image)
 pkg_search_module(SDL2_MIXER REQUIRED SDL2_mixer)
-
-include_directories(${GUILE_INCLUDE_DIRS})
-set_source_files_properties(src/scripting/feuerkraft.i PROPERTIES CPLUSPLUS ON)
-swig_add_library(libfeuerkraft_scripting TYPE STATIC LANGUAGE guile SOURCES src/scripting/feuerkraft.i)
 
 file(GLOB FEUERKRAFT_SOURCES
   src/*.cpp
@@ -114,14 +113,13 @@ target_compile_definitions(feuerkraft PRIVATE
   FEUERKRAFT_VERSION="${PROJECT_VERSION_FULL}"
   PACKAGE_STRING="Feuerkraft ${PROJECT_VERSION_FULL}")
 target_link_libraries(feuerkraft PRIVATE
-  libfeuerkraft_scripting
-  ${GUILE_LIBRARIES}
+  s7
   ${SDL2_LIBRARIES}
   ${SDL2_IMAGE_LIBRARIES}
   ${SDL2_MIXER_LIBRARIES}
-  ${CMAKE_THREAD_LIBS_INIT})
+  ${CMAKE_THREAD_LIBS_INIT}
+  m)
 target_include_directories(feuerkraft SYSTEM PRIVATE
-  ${GUILE_INCLUDE_DIRS}
   ${SDL2_INCLUDE_DIRS}
   ${SDL2_IMAGE_INCLUDE_DIRS}
   ${SDL2_MIXER_INCLUDE_DIRS})

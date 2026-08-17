@@ -18,7 +18,7 @@
 #ifndef TILEFACTORY_HXX
 #define TILEFACTORY_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 class TileData;
 class SpriteTileData;

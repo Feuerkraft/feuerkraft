@@ -18,7 +18,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include <ctime>
 
 #include "system.hpp"
@@ -36,6 +36,7 @@
 #include "sound/sound.hpp"
 #include "command_line_arguments.hpp"
 #include "guile.hpp"
+#include "scheme_compat.hpp"
 #include "feuerkraft.hpp"
 
 //#define WITH_STATIC_READLINE 1
@@ -43,7 +44,6 @@
 #ifdef WITH_STATIC_READLINE
 extern "C" void scm_init_readline();
 #endif
-extern "C" void SWIG_init(void);
 
 
 // Global Instance of the main class
@@ -64,13 +64,8 @@ Feuerkraft::~Feuerkraft()
 void
 Feuerkraft::init()
 {
-  // Init Guile
-  scm_init_guile ();
-  Guile::enable_debug();
-  Guile::enable_readline();
-
-  // Init Swig
-  SWIG_init();
+  // Init embedded Scheme (s7)
+  Scheme::init();
 
   // Init SDL2
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) < 0)

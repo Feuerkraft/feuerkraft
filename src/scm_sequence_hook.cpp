@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "scm_sequence_hook.hpp"
 
 SCMSequenceHook::SCMSequenceHook(SCM arg_func)

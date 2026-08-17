@@ -22,23 +22,29 @@ InputManagerPlayer::InputManagerPlayer(const std::string& filename)
 {
   std::cout << "InputManagerPlayer::InputManagerPlayer(" << filename << ")" << std::endl;
   entry_counter = 0;
-  SCM port = scm_open_file(scm_from_utf8_string(filename.c_str()),
-                           scm_from_utf8_string("r"));
-  SCM entry;
-  while(scm_is_false(scm_eof_object_p(entry = scm_read(port))))
+
+  // Read all top-level forms from the playback file into a list.
+  std::string expr = "(call-with-input-file \"";
+  expr += filename;
+  expr += "\" (lambda (port) "
+          "(let loop ((out \'()) (x (read port))) "
+          "(if (eof-object? x) (reverse out) (loop (cons x out) (read port))))))";
+  SCM all_entries = s7_eval_c_string(fk_s7, expr.c_str());
+
+  for (SCM cursor = all_entries; scm_is_true(scm_is_pair_p(cursor)); cursor = scm_cdr(cursor))
     {
+      SCM entry = scm_car(cursor);
       InputEventLst lst;
       int entry_num = scm_to_int(scm_cadr(entry));
       entry = scm_cddr(entry);
 
-      while(scm_is_true(scm_pair_p(entry)))
+      while (scm_is_true(scm_is_pair_p(entry)))
         {
           lst.push_back(scm2event(scm_car(entry)));
           entry = scm_cdr(entry);
         }
       entries.push(Entry(entry_num, lst));
     }
-  scm_close_port(port);
 }
 
 InputEvent

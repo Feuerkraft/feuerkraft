@@ -17,7 +17,7 @@
 #ifndef HEADER_AXIS_FACTORY_HXX
 #define HEADER_AXIS_FACTORY_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "input_axis.hpp"
 
 /** */

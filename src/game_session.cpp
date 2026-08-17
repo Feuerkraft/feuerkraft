@@ -98,10 +98,7 @@ GameSession::init()
   // Deserialize the game world
   {
     std::cout << "<<<<<<<<<<<<< Parsing map <<<<<<<<<<<<<" << std::endl;
-    SCM fdes = scm_open_file(scm_from_utf8_string(filename.c_str()),
-                             scm_from_utf8_string("r"));
-    SCM lst = scm_read (fdes);
-    scm_close (fdes);
+    SCM lst = scm_c_read_whole_file(filename.c_str());
 
     // unstable Testing stuff
     //OutputWorldBuilder builder;
@@ -316,7 +313,7 @@ GameSession::update()
           else if (i->button.name == USE_BUTTON && i->button.is_down())
             {
               // FIXME: Unclean hack
-              scm_call_0(scm_variable_ref(scm_c_lookup("join-nearest-vehicle")));
+              scm_call_0(scm_lookup_value("join-nearest-vehicle"));
             }
         }
     }

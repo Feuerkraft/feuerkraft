@@ -17,7 +17,7 @@
 #ifndef HEADER_INPUT_MANAGER_CUSTOM_HXX
 #define HEADER_INPUT_MANAGER_CUSTOM_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "input_event.hpp"
 #include "input_button.hpp"
 #include "input_axis.hpp"

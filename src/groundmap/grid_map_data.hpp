@@ -18,7 +18,7 @@
 #define GRIDMAPDATA_HXX
 
 #include <vector>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "ground_type.hpp"
 #include "ground_map_data.hpp"
 

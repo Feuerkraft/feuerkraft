@@ -18,7 +18,7 @@
 #ifndef TILEMAPDATA_HXX
 #define TILEMAPDATA_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include <vector>
 
 #include "ground_map_data.hpp"

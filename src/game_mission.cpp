@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include <iostream>
 #include "guile.hpp"
 #include "game_mission.hpp"

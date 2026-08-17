@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "../guile.hpp"
 #include "../game_world.hpp"
 #include "../property.hpp"

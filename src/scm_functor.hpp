@@ -17,7 +17,7 @@
 #ifndef HEADER_SCM_FUNCTOR_HXX
 #define HEADER_SCM_FUNCTOR_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 /** */
 class SCMFunctor

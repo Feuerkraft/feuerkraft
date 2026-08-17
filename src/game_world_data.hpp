@@ -17,7 +17,7 @@
 #ifndef GAMEWORLDDATA_HXX
 #define GAMEWORLDDATA_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include <vector>
 #include <string>
 

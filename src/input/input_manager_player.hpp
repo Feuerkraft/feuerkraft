@@ -19,7 +19,7 @@
 
 #include <queue>
 #include <string>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "input_manager_impl.hpp"
 
 /** Playback class for events recorded my the InputRecorder */

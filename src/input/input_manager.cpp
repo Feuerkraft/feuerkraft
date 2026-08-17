@@ -40,9 +40,7 @@ void
 InputManager::init(const std::string& filename)
 {
   std::cout << "InputManager::init(" << filename << ")" << std::endl;
-  SCM port = scm_open_file(scm_from_utf8_string(filename.c_str()),
-                           scm_from_utf8_string("r"));
-  SCM lst  = scm_read(port);
+  SCM lst = scm_c_read_whole_file(filename.c_str());
 
   if (Guile::equal_p(scm_from_utf8_symbol("feuerkraft-controller"), scm_car(lst)))
     {
@@ -52,7 +50,6 @@ InputManager::init(const std::string& filename)
     {
       throw FeuerkraftError("Error: not a valid controller file: " + filename);
     }
-  scm_close_port(port);
 }
 
 void

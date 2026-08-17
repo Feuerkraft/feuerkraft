@@ -18,7 +18,7 @@
 #define GAMEMISSION_HXX
 
 #include <string>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 class GameWorld;
 

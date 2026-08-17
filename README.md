@@ -14,12 +14,12 @@ The Feuerkraft webpage is located at:
 Compilation
 -----------
 
-Feuerkraft requires SDL2, SDL2_image, SDL2_mixer and Guile 3.x.
+Feuerkraft requires SDL2, SDL2_image and SDL2_mixer. Scheme scripting uses vendored s7 (external/s7).
 
 On a typical Debian/Ubuntu system:
 
     sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev \
-                         guile-3.0-dev swig cmake pkg-config
+                         cmake pkg-config
 
 Compilation is done via `cmake`:
 

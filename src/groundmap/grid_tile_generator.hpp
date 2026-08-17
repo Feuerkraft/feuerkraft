@@ -21,7 +21,7 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "ground_type.hpp"
 #include "grid_tile_data.hpp"
 

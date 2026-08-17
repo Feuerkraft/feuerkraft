@@ -17,7 +17,7 @@
 #ifndef HEADER_BUTTON_FACTORY_HXX
 #define HEADER_BUTTON_FACTORY_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 class InputButton;
 

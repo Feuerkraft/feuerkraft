@@ -35,11 +35,9 @@
             nativeBuildInputs = with pkgs; [
               cmake
               pkg-config
-              swig
             ];
 
             buildInputs = with pkgs; [
-              guile_3_0
               SDL2
               SDL2_image
               SDL2_mixer
@@ -57,8 +55,6 @@
           packages = with pkgs; [
             cmake
             pkg-config
-            swig
-            guile_3_0
             SDL2
             SDL2_image
             SDL2_mixer

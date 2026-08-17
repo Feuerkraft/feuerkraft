@@ -23,13 +23,9 @@ SexprWorldReader::SexprWorldReader(const std::string& arg_filename,
                                    WorldBuilder* arg_builder)
   : builder(arg_builder)
 {
-  SCM fdes = scm_open_file (scm_from_utf8_string(arg_filename.c_str()),
-                            scm_from_utf8_string("r"));
-  SCM lst  = scm_read (fdes);
+  SCM lst = scm_c_read_whole_file(arg_filename.c_str());
 
   data = lst;
-
-  scm_close(fdes);
 }
 
 SexprWorldReader::SexprWorldReader(SCM arg_data, WorldBuilder* arg_builder)

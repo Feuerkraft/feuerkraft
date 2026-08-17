@@ -19,7 +19,7 @@
 #define BUILDINGMAPDATA_HXX
 
 #include <vector>
-#include <libguile.h>
+#include "scheme_compat.hpp"
 #include "../alist.hpp"
 #include "../game_obj_data.hpp"
 

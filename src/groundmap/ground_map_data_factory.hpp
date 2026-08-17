@@ -18,7 +18,7 @@
 #ifndef GROUNDMAPDATAFACTORY_HXX
 #define GROUNDMAPDATAFACTORY_HXX
 
-#include <libguile.h>
+#include "scheme_compat.hpp"
 
 class GroundMapData;
 

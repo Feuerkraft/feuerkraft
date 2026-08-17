@@ -23,9 +23,7 @@
 GridTileGenerator::GridTileGenerator (std::string filename)
   : emptytile (new GridTile ("feuerkraft/emptytile"))
 {
-  SCM fdes = scm_open_file(scm_from_utf8_string(filename.c_str()),
-                           scm_from_utf8_string("r"));
-  SCM lst  = scm_read (fdes);
+  SCM lst = scm_c_read_whole_file(filename.c_str());
 
   lst = scm_cdr(lst); // Skip the 'tiles' mark
 
@@ -35,7 +33,6 @@ GridTileGenerator::GridTileGenerator (std::string filename)
       lst = scm_cdr(lst);
     }
 
-  scm_close (fdes);
 }
 
 GridTileGenerator::~GridTileGenerator ()
