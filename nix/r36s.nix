@@ -315,9 +315,9 @@ let
         "-DCMAKE_THREAD_LIBS_INIT=-pthread"
         "-DCMAKE_HAVE_THREADS_LIBRARY=1"
         "-DCMAKE_USE_PTHREADS_INIT=1"
-        # Prefer shared libpthread/libdl; static libpthread.a from the
-        # sysroot pulls undefined __pointer_chk_guard_local.
-        "-DCMAKE_EXE_LINKER_FLAGS=-Wl,-Bdynamic -ldl"
+        # -ldl and -Wl,-Bdynamic are already in the aarch64-arkos-g++ link
+        # wrapper (commonLink). Do not put spaced values in cmakeFlags —
+        # nix passes each list element as a separate argv to cmake.
         # Data next to the binary on device (PortMaster: feuerkraft/data/).
         "-DFEUERKRAFT_DATADIR=data"
         "-DPROJECT_VERSION_FULL=${version}"
