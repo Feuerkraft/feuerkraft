@@ -39,10 +39,15 @@ PathManager::add_path (const std::string& path)
 std::string
 PathManager::complete (const std::string& relative_path)
 {
-  std::string comp_path = base_path + "/" + relative_path;
-  //std::cout << "PathManager: " << relative_path << " -> " << comp_path << std::endl;
-
-  return comp_path;
+  if (base_path.empty() || base_path == ".")
+    {
+      /* Android assets and "." roots: avoid "./foo" so AssetManager gets
+         a clean relative path. */
+      return relative_path;
+    }
+  if (!base_path.empty() && base_path.back() == '/')
+    return base_path + relative_path;
+  return base_path + "/" + relative_path;
 }
 
 bool

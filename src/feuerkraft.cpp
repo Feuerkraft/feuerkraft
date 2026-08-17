@@ -138,8 +138,16 @@ Feuerkraft::init()
     }
   if (!path_manager.find_path("feuerkraft.xml"))
     {
+#ifdef __ANDROID__
+      /* Assets live in the APK; System::exist uses SDL_RWFromFile. If that
+         still fails (JNI not ready), force the asset root so later loads
+         can retry via RWops. */
+      std::cerr << "PathManager: Android fallback base_path=." << std::endl;
+      path_manager.set_path(".");
+#else
       feuerkraft_fatal("Could not find data directory (feuerkraft.xml). "
         "Pass --datadir or install data to FEUERKRAFT_DATADIR.");
+#endif
     }
 
   // Let s7 (load ...) resolve relative paths against the data directory.

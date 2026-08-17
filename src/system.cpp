@@ -38,6 +38,8 @@
 //#include "PingusError.hpp"
 #include "system.hpp"
 
+#include <SDL.h>
+
 int System::verbose;
 std::string System::default_email;
 std::string System::default_username;
@@ -128,10 +130,24 @@ System::basename(std::string filename)
 bool
 System::exist(std::string filename)
 {
+#ifdef __ANDROID__
+  /* APK assets are not visible to access()/stat(); SDL routes relative
+     paths through AssetManager. Strip a leading "./" for cleaner asset
+     names. */
+  const char* path = filename.c_str();
+  if (path[0] == '.' && path[1] == '/')
+    path += 2;
+  SDL_RWops* rw = SDL_RWFromFile(path, "rb");
+  if (rw)
+    {
+      SDL_RWclose(rw);
+      return true;
+    }
+  /* Fall through to filesystem for writable paths (e.g. external storage). */
+#endif
 #ifndef WIN32
   return !access(filename.c_str(), F_OK);
 #else
-  //don't know a better solution
   std::ifstream check(filename.c_str());
   if(!check) return false;
   return true;
