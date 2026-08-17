@@ -17,9 +17,12 @@
 #ifndef HEADER_FEUERKRAFT_ERROR_HXX
 #define HEADER_FEUERKRAFT_ERROR_HXX
 
+#include <cstdlib>
+#include <iostream>
 #include <string>
 
-/** Exception class for all Feuerkraft errors */
+/** Exception class for all Feuerkraft errors (used when C++ exceptions
+    are enabled). */
 class FeuerkraftError
 {
 private:
@@ -30,6 +33,19 @@ public:
 
   const char* what() const throw() { return message.c_str(); }
 };
+
+/** Report a fatal error.  Throws FeuerkraftError when exceptions are
+    available; otherwise prints to stderr and exits.  R36S builds use
+    -fno-exceptions to avoid a GLIBC_2.35 dependency from libgcc_eh. */
+[[noreturn]] inline void feuerkraft_fatal(const std::string& message)
+{
+#if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
+  throw FeuerkraftError(message);
+#else
+  std::cerr << "FeuerkraftError: " << message << std::endl;
+  std::exit(EXIT_FAILURE);
+#endif
+}
 
 #endif
 
