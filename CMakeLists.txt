@@ -102,6 +102,9 @@ else()
   set_target_properties(s7 PROPERTIES C_STANDARD 11)
   target_include_directories(s7 PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/external/s7>)
+  # Feuerkraft does not load Scheme shared objects; disable dlopen so
+  # cross builds (R36S) need not link libdl for s7.
+  target_compile_definitions(s7 PRIVATE WITH_C_LOADER=0)
 endif()
 
 
@@ -169,6 +172,7 @@ target_link_libraries(feuerkraft PRIVATE
   ${SDL2_IMAGE_LIBRARIES}
   ${SDL2_MIXER_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT}
+  ${CMAKE_DL_LIBS}
   m)
 target_include_directories(feuerkraft SYSTEM PRIVATE
   ${SDL2_INCLUDE_DIRS}

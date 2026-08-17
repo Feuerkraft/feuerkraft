@@ -193,6 +193,7 @@ let
       -shared-libgcc \
       -Wl,-Bdynamic \
       -pthread \
+      -ldl \
       -Wl,-rpath-link,${libdir} \
       -Wl,-rpath-link,${sysroot}/usr/lib/aarch64-linux-gnu \
       -Wl,-rpath-link,${sysroot}/lib/aarch64-linux-gnu \
@@ -314,6 +315,9 @@ let
         "-DCMAKE_THREAD_LIBS_INIT=-pthread"
         "-DCMAKE_HAVE_THREADS_LIBRARY=1"
         "-DCMAKE_USE_PTHREADS_INIT=1"
+        # Prefer shared libpthread/libdl; static libpthread.a from the
+        # sysroot pulls undefined __pointer_chk_guard_local.
+        "-DCMAKE_EXE_LINKER_FLAGS=-Wl,-Bdynamic -ldl"
         # Data next to the binary on device (PortMaster: feuerkraft/data/).
         "-DFEUERKRAFT_DATADIR=data"
         "-DPROJECT_VERSION_FULL=${version}"
