@@ -119,9 +119,9 @@
         };
         androidApkName = "feuerkraft-${gitDate}-${gitRev}.apk";
         stbImageH = androidPkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/nothings/stb/f0569113c93bf0955bd3348e35d4d3f6/stb_image.h";
+          url = "https://raw.githubusercontent.com/nothings/stb/2c980bb59875b0d32144a71867fbdebb2f77cd20/stb_image.h";
           # hash filled on first build; use lib.fakeHash to discover if needed
-          hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          hash = "sha256-WUwv411JSItDgtv67I+YNm3vyoGdkWrJW+zz519CALM=";
         };
 
         # ---- R36S / ArkOS ----
