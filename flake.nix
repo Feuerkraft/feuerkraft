@@ -109,21 +109,36 @@
         wasmDataDir = if builtins.pathExists ./data then ./data else null;
 
         # ---- Android ----
-        androidPkgs = pkgs;
+        androidComposition = pkgs.androidenv.composeAndroidPackages {
+          cmdLineToolsVersion = "8.0";
+          toolsVersion = "26.1.1";
+          platformToolsVersion = "34.0.5";
+          buildToolsVersions = [ "30.0.3" ];
+          includeEmulator = false;
+          platformVersions = [ "22" "33" ];
+          includeSources = false;
+          includeSystemImages = false;
+          includeNDK = true;
+          # Match SuperTux / Pingus NDK choice when possible
+          ndkVersions = [ "25.1.8937393" ];
+        };
+        androidSdk = androidComposition.androidsdk;
+        buildToolsVersion = "30.0.3";
+        packagePlatform = "22";
+        compilePlatform = "33";
+        targetAbis = [ "armeabi-v7a" "arm64-v8a" ];
         android = import ./nix/android.nix {
-          pkgs = androidPkgs;
+          inherit pkgs androidSdk buildToolsVersion packagePlatform compilePlatform targetAbis;
           sdlSrc = sdl2-src;
           sdlVersion = "2.30.9";
           sdlMixerSrc = sdl2-mixer-src;
-          # Optional args depend on SuperTux android.nix shape — pass through defaults.
+          sdlMixerVersion = "2.8.1";
         };
         androidApkName = "feuerkraft-${gitDate}-${gitRev}.apk";
-        stbImageH = androidPkgs.fetchurl {
+        stbImageH = pkgs.fetchurl {
           url = "https://raw.githubusercontent.com/nothings/stb/2c980bb59875b0d32144a71867fbdebb2f77cd20/stb_image.h";
-          # hash filled on first build; use lib.fakeHash to discover if needed
           hash = "sha256-WUwv411JSItDgtv67I+YNm3vyoGdkWrJW+zz519CALM=";
         };
-
         # ---- R36S / ArkOS ----
         r36s = import ./nix/r36s.nix { inherit pkgs; };
 
@@ -193,8 +208,19 @@
             sourceUrl = "https://github.com/feuerkraft/feuerkraft";
           };
 
-          # Android APK (requires ANDROID_HOME / NDK in the android.nix pipeline)
-          # feuerkraft-android = android.mkApk { ... };  # enable once stb hash is fixed
+          # Android APK
+          feuerkraft-android = android.mkApk {
+            appName = "feuerkraft";
+            appDir = ./mk/android/app;
+            outApkName = androidApkName;
+            keystore = ./mk/android/keystore/debug.keystore;
+            gameSrcDir = ./src;
+            gameRootDir = ./.;
+            gameDataDir = ./data;
+            sdl2ImageSrc = sdl2-image-src;
+            stbImageH = stbImageH;
+            gameVersion = version;
+          };
 
           # R36S / PortMaster (needs ArkOS sysroot — see mk/r36s/CROSSCOMPILE.md)
           # feuerkraft-r36s = r36s.mkFeuerkraftR36s { src = ./.; inherit version; };
@@ -216,6 +242,10 @@
           feuerkraft-wasm = wasm.mkOpenBrowserApp {
             pkg = self.packages.${system}.feuerkraft-wasm;
             appName = "feuerkraft";
+          };
+          install-android-feuerkraft = android.mkInstallApp {
+            pkg = self.packages.${system}.feuerkraft-android;
+            apkFileName = androidApkName;
           };
         };
 

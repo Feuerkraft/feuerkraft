@@ -90,15 +90,24 @@ Feuerkraft::init()
   // Find the location of Feuerkraft data files (images, sounds, etc.)
   // Prefer --datadir, then the compile-time FEUERKRAFT_DATADIR, then
   // paths relative to the executable (developer builds).
+  // Under Emscripten, data is preloaded at /data (see mk/wasm --preload-file).
+  // Under Android, assets are extracted/opened relative to ".".
   if (!args->datadir.empty())
     {
       path_manager.add_path(args->datadir);
     }
   else
     {
+#ifdef __EMSCRIPTEN__
+      path_manager.add_path("/data");
+#endif
+#ifdef __ANDROID__
+      path_manager.add_path(".");
+#endif
 #ifdef FEUERKRAFT_DATADIR
       path_manager.add_path(FEUERKRAFT_DATADIR);
 #endif
+#ifndef __EMSCRIPTEN__
       std::string exe_path = System::get_exe_path();
       path_manager.add_path(exe_path + "../data");
       path_manager.add_path(exe_path + "data");
@@ -106,6 +115,7 @@ Feuerkraft::init()
       path_manager.add_path(exe_path + "share/games/feuerkraft");
       path_manager.add_path(exe_path + "../share/feuerkraft");
       path_manager.add_path(exe_path + "../share/games/feuerkraft");
+#endif
     }
   if (!path_manager.find_path("feuerkraft.xml"))
     {
