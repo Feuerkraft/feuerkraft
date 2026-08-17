@@ -156,6 +156,7 @@
           r36sPkg = feuerkraftR36s;
           inherit version;
           pname = "feuerkraft-r36s-portmaster";
+          screenshotSrc = ./data/images/sand.png;
         };
 
         # ---- Windows cross (MinGW) ----

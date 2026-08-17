@@ -415,7 +415,7 @@ LAUNCH
   , title ? "Feuerkraft"
   , scriptName ? "Feuerkraft.sh"
   , portDirName ? "feuerkraft"
-  , screenshotSrc ? ../feuerkraft.png
+  , screenshotSrc ? null
   }:
     stdenvNoCC.mkDerivation {
       inherit pname version;
@@ -452,10 +452,11 @@ LAUNCH
 
         # Placeholder / project icon as screenshot + cover (PortMaster wants
         # 4:3 gameplay ideally; icon is fine until a real capture is added).
-        if [ -f "${screenshotSrc}" ]; then
-          cp -f "${screenshotSrc}" "$root/screenshot.png"
-          cp -f "${screenshotSrc}" "$root/cover.png"
-          cp -f "${screenshotSrc}" "$gamedir/cover.png"
+        SCREENSHOT_SRC="${if screenshotSrc == null then "" else screenshotSrc}"
+        if [ -n "$SCREENSHOT_SRC" ] && [ -f "$SCREENSHOT_SRC" ]; then
+          cp -f "$SCREENSHOT_SRC" "$root/screenshot.png"
+          cp -f "$SCREENSHOT_SRC" "$root/cover.png"
+          cp -f "$SCREENSHOT_SRC" "$gamedir/cover.png"
         else
           # Minimal valid 1x1 PNG if the asset is missing
           printf '\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00\x0cIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82' \
