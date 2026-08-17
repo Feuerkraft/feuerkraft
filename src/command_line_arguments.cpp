@@ -54,6 +54,7 @@ CommandLineArguments::load_defaults()
   joystick     = -1;
   verbose      = true;
   datadir      = "";
+  userdir      = "";
   music_enabled = false;
   sound_enabled = false;
 }
@@ -197,17 +198,17 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
         {
           playback_file = need_arg(opt.c_str());
         }
+      else if (opt == "--userdir")
+        {
+          /* PortMaster / ArkOS pass --userdir for writable config/saves.
+             Accepted and stored; save-path wiring can use it later. */
+          userdir = need_arg(opt.c_str());
+        }
       else
         {
-#ifdef __ANDROID__
-          /* SDLActivity / launchers may pass extra flags; ignore rather
-             than exit before the game starts. */
-          std::cerr << "Ignoring unknown option on Android: " << opt << "\n";
-#else
-          std::cerr << "Unknown option: " << opt << "\n";
-          print_help(argv[0]);
-          std::exit(EXIT_FAILURE);
-#endif
+          /* PortMaster and SDLActivity may pass extra flags. Warn and
+             continue so a single unknown option cannot abort startup. */
+          std::cerr << "Ignoring unknown option: " << opt << "\n";
         }
     }
 }

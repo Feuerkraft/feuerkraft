@@ -36,6 +36,9 @@ EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
 
 #include "feuerkraft_error.hpp"
 #include "log.hpp"
+#ifdef __ANDROID__
+#include <android/log.h>
+#endif
 #include "fonts.hpp"
 #include "input/game_controllers.hpp"
 #include "input/input_manager.hpp"
@@ -336,7 +339,16 @@ EMSCRIPTEN_KEEPALIVE void fk_emscripten_canvas_native(void)
 
 int main(int argc, char** argv)
 {
-  return feuerkraft.main(argc, argv);
+  /* Earliest possible banner so Android logcat always shows the build
+     even if later init aborts. */
+  SDL_Log("Feuerkraft %s — SDL_main enter", FEUERKRAFT_VERSION);
+#ifdef __ANDROID__
+  __android_log_print(ANDROID_LOG_INFO, "Feuerkraft",
+                      "Feuerkraft %s — SDL_main enter", FEUERKRAFT_VERSION);
+#endif
+  int rc = feuerkraft.main(argc, argv);
+  SDL_Log("Feuerkraft %s — SDL_main leave (rc=%d)", FEUERKRAFT_VERSION, rc);
+  return rc;
 }
 
 // EOF //

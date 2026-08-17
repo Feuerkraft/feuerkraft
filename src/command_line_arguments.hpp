@@ -42,6 +42,8 @@ public:
 
   /** Path to all the datafiles */
   std::string datadir;
+  /** Writable dir from PortMaster --userdir (may be empty). */
+  std::string userdir;
   std::string controller_file;
 
   /** File to which all input events should be logged */

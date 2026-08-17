@@ -21,6 +21,8 @@
 #include <iostream>
 #include <string>
 
+#include <SDL.h>
+
 #include "log.hpp"
 
 /** Exception class for all Feuerkraft errors (used when C++ exceptions
@@ -37,15 +39,23 @@ public:
 };
 
 /** Report a fatal error.  Throws FeuerkraftError when exceptions are
-    available; otherwise prints and exits.  Always logs (logcat on
-    Android) with the build version. */
+    available; otherwise prints and exits.  Always logs with the build
+    version; on Android also shows a system dialog when possible. */
 [[noreturn]] inline void feuerkraft_fatal(const std::string& message)
 {
-  fk_log_error("FATAL: %s", message.c_str());
+  std::string full = std::string("Feuerkraft ") + FEUERKRAFT_VERSION + ": " + message;
+  fk_log_error("FATAL: %s", full.c_str());
+  std::cerr << full << std::endl;
+#ifdef __ANDROID__
+  /* Surface the failure even when logcat is not being watched. */
+  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
+                           "Feuerkraft",
+                           full.c_str(),
+                           nullptr);
+#endif
 #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
-  throw FeuerkraftError(message);
+  throw FeuerkraftError(full);
 #else
-  std::cerr << "FeuerkraftError: " << message << std::endl;
   std::exit(EXIT_FAILURE);
 #endif
 }
