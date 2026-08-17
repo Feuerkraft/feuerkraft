@@ -78,12 +78,34 @@ endif(BUILD_TESTS)
 
 include_directories(src/)
 include_directories(src/scripting/)
-include_directories(external/s7)
 
-# Vendored s7 Scheme (ANSI C)
-add_library(s7 STATIC external/s7/s7.c)
-set_target_properties(s7 PROPERTIES C_STANDARD 11)
-target_include_directories(s7 PUBLIC external/s7)
+# s7 Scheme: prefer a prebuilt package (Nix -DS7_ROOT=... or $S7_ROOT),
+# else build the vendored sources under external/s7/.
+if(NOT DEFINED S7_ROOT AND DEFINED ENV{S7_ROOT})
+  set(S7_ROOT "$ENV{S7_ROOT}")
+endif()
+if(DEFINED S7_ROOT AND NOT S7_ROOT STREQUAL "")
+  find_path(S7_INCLUDE_DIR s7.h
+    HINTS "${S7_ROOT}/include" "${S7_ROOT}"
+    NO_DEFAULT_PATH)
+  find_library(S7_LIBRARY NAMES s7
+    HINTS "${S7_ROOT}/lib" "${S7_ROOT}"
+    NO_DEFAULT_PATH)
+  if(NOT S7_INCLUDE_DIR OR NOT S7_LIBRARY)
+    message(FATAL_ERROR "S7_ROOT=${S7_ROOT} set but s7.h / libs7 not found")
+  endif()
+  add_library(s7 UNKNOWN IMPORTED)
+  set_target_properties(s7 PROPERTIES
+    IMPORTED_LOCATION "${S7_LIBRARY}"
+    INTERFACE_INCLUDE_DIRECTORIES "${S7_INCLUDE_DIR}")
+  message(STATUS "Using prebuilt s7: ${S7_LIBRARY}")
+else()
+  message(STATUS "Building vendored s7 from external/s7")
+  add_library(s7 STATIC external/s7/s7.c)
+  set_target_properties(s7 PROPERTIES C_STANDARD 11)
+  target_include_directories(s7 PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/external/s7>)
+endif()
 
 
 find_package(Threads REQUIRED)
