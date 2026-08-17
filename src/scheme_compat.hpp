@@ -129,8 +129,10 @@ inline SCM scm_c_primitive_load(const char* path)
   std::vector<char> bytes = fk_read_file_bytes(path);
   if (!bytes.empty())
     {
-      /* s7_load_c_string expects a C string length; content need not be NUL-terminated. */
-      SCM result = s7_load_c_string(fk_s7, bytes.data(), static_cast<s7_int>(bytes.size()));
+      /* s7 requires content[bytes] == '\0' (length excludes the terminator). */
+      bytes.push_back('\0');
+      SCM result = s7_load_c_string(fk_s7, bytes.data(),
+                                    static_cast<s7_int>(bytes.size() - 1));
       if (!result)
         {
           std::fprintf(stderr, "Scheme: failed to eval loaded bytes from '%s'\n", path);

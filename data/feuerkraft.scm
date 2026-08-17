@@ -334,8 +334,10 @@
                              (building-insert-func 'building:wall)
                              (building-insert-func 'building:tower)
                              ))
-;; Make an endless list
-(list-cdr-set! editor-insert-funcs (1- (length editor-insert-funcs)) editor-insert-funcs)
+;; Make an endless (circular) list — portable (s7 has no list-cdr-set!)
+(let ((lst editor-insert-funcs))
+  (do ((p lst (cdr p)))
+      ((null? (cdr p)) (set-cdr! p lst))))
 
 ;; Core events
 ;;(input-register-callback "key_k" join-nearest-vehicle)
