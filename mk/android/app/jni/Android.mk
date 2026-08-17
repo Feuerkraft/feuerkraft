@@ -175,22 +175,24 @@ LOCAL_SRC_FILES := \
 	vehicles/turret.cpp \
 	vehicles/vehicle.cpp \
 	view.cpp \
-	../s7/s7.c
+	../s7/s7.c \
+	img_stb_min.c
 
 # SDL2 (+ optional mixer) prebuilt by nix/android.nix
 FEUERKRAFT_ENABLE_SOUND ?= 1
 ifeq ($(FEUERKRAFT_ENABLE_SOUND),1)
-LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image SDL2_mixer
+# Images via stb (img_stb_min.c + SDL_image.h shim); no libSDL2_image.so
+LOCAL_SHARED_LIBRARIES := SDL2 SDL2_mixer
 else
 LOCAL_CFLAGS += -DNOSOUND
 LOCAL_CPPFLAGS += -DNOSOUND
-LOCAL_SHARED_LIBRARIES := SDL2 SDL2_image
+LOCAL_SHARED_LIBRARIES := SDL2
 endif
 
 LOCAL_LDLIBS := -llog -landroid -lz -lGLESv2
 
-LOCAL_CFLAGS += -DUSE_SDL2 -DFEUERKRAFT_DATADIR=\".\" -std=c11
-LOCAL_CPPFLAGS += -DUSE_SDL2 -DFEUERKRAFT_DATADIR=\".\" -std=c++17
+LOCAL_CFLAGS += -DUSE_SDL2 -D__ANDROID__ -DFEUERKRAFT_DATADIR=\".\" -std=c11
+LOCAL_CPPFLAGS += -DUSE_SDL2 -D__ANDROID__ -DFEUERKRAFT_DATADIR=\".\" -std=c++17
 ifndef FEUERKRAFT_VERSION
 FEUERKRAFT_VERSION := 0.2.0-dev
 endif

@@ -70,7 +70,7 @@ public:
   void draw_line (float x1, float y1, float x2, float y2,
                   const Color& color);
   void draw_fillrect (float x1, float y1, float x2, float y2,
-                      const Color& color);
+                      const Color& color, float z = 0);
   void draw_rect (float x1, float y1, float x2, float y2,
                   const Color& color);
   void draw_pixel (float x_pos, float y_pos,

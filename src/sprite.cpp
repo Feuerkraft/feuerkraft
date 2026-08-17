@@ -82,7 +82,13 @@ Sprite::load_frame(const std::string& filename)
       return;
     }
 
-  SDL_Surface* surface = IMG_Load(filename.c_str());
+  // Prefer RWops so Android APK assets work (fopen cannot read assets/).
+  SDL_Surface* surface = nullptr;
+  SDL_RWops* rw = SDL_RWFromFile(filename.c_str(), "rb");
+  if (rw)
+    surface = IMG_Load_RW(rw, 1); // frees rw
+  else
+    surface = IMG_Load(filename.c_str());
   if (!surface)
     {
       std::cerr << "Sprite: failed to load " << filename

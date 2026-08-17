@@ -205,11 +205,11 @@ DrawingContext::draw_line(float x1, float y1, float x2, float y2,
 
 void
 DrawingContext::draw_fillrect(float x1, float y1, float x2, float y2,
-                              const Color& color)
+                              const Color& color, float z)
 {
   transform(x1, y1);
   transform(x2, y2);
-  draw(new FillRectDrawingRequest(x1, y1, x2, y2, color, 0));
+  draw(new FillRectDrawingRequest(x1, y1, x2, y2, color, z));
 }
 
 void
