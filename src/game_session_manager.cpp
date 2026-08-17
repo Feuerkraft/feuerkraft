@@ -20,6 +20,7 @@
 #include "command_line_arguments.hpp"
 #include "game_session.hpp"
 #include "game_session_manager.hpp"
+#include "log.hpp"
 
 GameSessionManager* GameSessionManager::instance_ = 0;
 
@@ -92,14 +93,17 @@ GameSessionManager::tick()
 
   if (!current_session)
     {
+      fk_log_error("GameSessionManager: no session — quitting");
       do_quit = true;
       return false;
     }
 
   if (!session_active)
     {
+      fk_log("GameSession::init() begin");
       current_session->init();
       session_active = true;
+      fk_log("GameSession::init() done");
     }
 
   current_session->update();
@@ -112,6 +116,7 @@ GameSessionManager::run()
 {
   // Native blocking loop. Under WASM, call tick() from the host frame
   // callback instead (e.g. emscripten_set_main_loop).
+  fk_log("GameSessionManager::run() loop start");
   while (tick())
     {
       // Frame pacing is the responsibility of the native runner only.

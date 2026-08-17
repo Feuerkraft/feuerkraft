@@ -35,6 +35,7 @@ EMSCRIPTEN_KEEPALIVE void fk_emscripten_audio_resume(void) {}
 #include "display.hpp"
 
 #include "feuerkraft_error.hpp"
+#include "log.hpp"
 #include "fonts.hpp"
 #include "input/game_controllers.hpp"
 #include "input/input_manager.hpp"
@@ -76,8 +77,10 @@ Feuerkraft::~Feuerkraft()
 void
 Feuerkraft::init()
 {
+  fk_log("Scheme::init");
   // Init embedded Scheme (s7)
   Scheme::init();
+  fk_log("SDL_Init");
 
   // Init SDL2
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) < 0)
@@ -142,7 +145,7 @@ Feuerkraft::init()
       /* Assets live in the APK; System::exist uses SDL_RWFromFile. If that
          still fails (JNI not ready), force the asset root so later loads
          can retry via RWops. */
-      std::cerr << "PathManager: Android fallback base_path=." << std::endl;
+      fk_log_warn("PathManager: feuerkraft.xml not found via exist(); fallback base_path=.");
       path_manager.set_path(".");
 #else
       feuerkraft_fatal("Could not find data directory (feuerkraft.xml). "
@@ -242,18 +245,29 @@ Feuerkraft::deinit()
 int
 Feuerkraft::main(int argc, char** argv)
 {
+  fk_log("Feuerkraft %s starting (argc=%d)", FEUERKRAFT_VERSION, argc);
+  for (int i = 0; i < argc; ++i)
+    fk_log("  argv[%d]=%s", i, argv[i] ? argv[i] : "(null)");
+
 #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
   try
     {
 #endif
       // Make arguments accessible for all member functions
       args = new CommandLineArguments(argc, argv);
+      fk_log("args: size=%dx%d scale=%.2f fullscreen=%d datadir='%s' mission='%s'",
+             args->screen_width, args->screen_height, args->scale,
+             args->fullscreen ? 1 : 0, args->datadir.c_str(),
+             args->mission_file.c_str());
 
       // Init all subsystems
+      fk_log("init() begin");
       init();
+      fk_log("init() ok; base_path='%s'", path_manager.get_base_path().c_str());
 
       if (args->mission_file.empty())
         args->mission_file = path_manager.complete("missions/airport.feu");
+      fk_log("loading mission: %s", args->mission_file.c_str());
 
       // Keyboard handling will be ported to SDL events in Phase 4
       GameSessionManager::instance()->load(args->mission_file);
@@ -261,7 +275,9 @@ Feuerkraft::main(int argc, char** argv)
       // Browser frame callback drives tick(); run() would block forever.
       emscripten_set_main_loop(fk_emscripten_frame, 0, 1);
 #else
+      fk_log("entering GameSessionManager::run()");
       GameSessionManager::instance()->run();
+      fk_log("run() returned");
 #endif
 
       // Shutdown everything
@@ -270,18 +286,19 @@ Feuerkraft::main(int argc, char** argv)
     }
   catch (FeuerkraftError& err)
     {
-      std::cout << "FeuerkraftError: " << err.what() << std::endl;
+      fk_log_error("FeuerkraftError: %s", err.what());
     }
   catch (std::exception& err)
     {
-      std::cout << "Error: " << err.what() << std::endl;
+      fk_log_error("std::exception: %s", err.what());
     }
   catch (...)
     {
-      std::cout << "Bug: Unknown exception catched, don't know what to do" << std::endl;
+      fk_log_error("unknown exception");
     }
 #endif
 
+  fk_log("main() exiting");
   return 0;
 }
 

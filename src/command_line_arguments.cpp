@@ -193,9 +193,15 @@ CommandLineArguments::parse_arguments(int argc, char** argv)
         }
       else
         {
+#ifdef __ANDROID__
+          /* SDLActivity / launchers may pass extra flags; ignore rather
+             than exit before the game starts. */
+          std::cerr << "Ignoring unknown option on Android: " << opt << "\n";
+#else
           std::cerr << "Unknown option: " << opt << "\n";
           print_help(argv[0]);
           std::exit(EXIT_FAILURE);
+#endif
         }
     }
 }

@@ -21,6 +21,8 @@
 #include <iostream>
 #include <string>
 
+#include "log.hpp"
+
 /** Exception class for all Feuerkraft errors (used when C++ exceptions
     are enabled). */
 class FeuerkraftError
@@ -35,10 +37,11 @@ public:
 };
 
 /** Report a fatal error.  Throws FeuerkraftError when exceptions are
-    available; otherwise prints to stderr and exits.  R36S builds use
-    -fno-exceptions to avoid a GLIBC_2.35 dependency from libgcc_eh. */
+    available; otherwise prints and exits.  Always logs (logcat on
+    Android) with the build version. */
 [[noreturn]] inline void feuerkraft_fatal(const std::string& message)
 {
+  fk_log_error("FATAL: %s", message.c_str());
 #if defined(__EXCEPTIONS) || (defined(__cpp_exceptions) && __cpp_exceptions)
   throw FeuerkraftError(message);
 #else

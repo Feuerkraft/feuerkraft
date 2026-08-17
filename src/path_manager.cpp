@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
+#include <SDL.h>
 #include "system.hpp"
 #include "path_manager.hpp"
 
@@ -66,13 +67,13 @@ PathManager::find_path (const std::list<std::string>& file_list)
 	  path_found = true;
 	  base_path = *i;
 
-	  std::cout << "PathManager: Using base_path: " << base_path << std::endl;
+	  SDL_Log("[PathManager] Using base_path: %s", base_path.c_str());
 
 	  return true;
 	}
     }
 
-  std::cout << "PathManager: No base path found" << std::endl;
+  SDL_Log("[PathManager] No base path found");
 
   return false;
 }
@@ -88,13 +89,13 @@ PathManager::find_path (const std::string& file)
 	  path_found = true;
 	  base_path = *i;
 
-	  std::cout << "PathManager: Using base_path: " << base_path << std::endl;
+	  SDL_Log("[PathManager] Using base_path: %s", base_path.c_str());
 
 	  return true;
 	}
     }
 
-  std::cout << "PathManager: No base path found" << std::endl;
+  SDL_Log("[PathManager] No base path found");
 
   return false;
 }
